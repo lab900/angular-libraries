@@ -1,0 +1,13 @@
+{
+  "name": "@lab900/angular-admin",
+  "version": "0.1.2",
+  "peerDependencies": {
+    "@angular/common": "^9.1.6",
+    "@angular/core": "^9.1.6",
+    "tslib": "^1.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lab900/angular-libraries.git"
+  }
+}
