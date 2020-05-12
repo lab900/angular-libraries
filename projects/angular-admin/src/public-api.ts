@@ -1,7 +1,9 @@
 /*
  * Public API Surface of angular-admin
  */
+export * from './lib/models/crudService'
+export * from './lib/models/editType'
+export * from './lib/models/schema'
+export * from './lib/models/schemaField'
 
-export * from './lib/angular-admin.service';
-export * from './lib/angular-admin.component';
-export * from './lib/angular-admin.module';
+export * from './lib/pages/admin-page/admin-page.component'
