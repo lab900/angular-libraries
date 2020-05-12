@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SchemaField } from '../../models/schemaField';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { EditType } from '../../models/editType';
 
 @Component({
   selector: 'lab900-admin-table',
@@ -16,6 +17,12 @@ export class AdminTableComponent implements OnInit {
   @Output() onEdit: EventEmitter<any> = new EventEmitter<any>();
   @Output() onDelete: EventEmitter<any> = new EventEmitter<any>();
   @Output() onPageEvent: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+
+  public readonly Wysiwyg = EditType.Wysiwyg
+  public readonly Date = EditType.Date
+  public readonly Input = EditType.Input
+  public readonly Checkbox = EditType.Checkbox
+  public readonly TextArea = EditType.TextArea
 
   public headers: string[];
   public columns: SchemaField[];

@@ -4,7 +4,6 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminEditComponent } from '../../components/admin-edit/admin-edit.component';
 import { ConfirmationDialogComponent } from '../../components/confirmation-dialog/confirmation-dialog.component';
-import { error } from 'ng-packagr/lib/utils/log';
 
 @Component({
   selector: 'lab900-admin-page',

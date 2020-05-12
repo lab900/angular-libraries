@@ -5,4 +5,10 @@ export interface SchemaField {
   title: string;
   showInOverview: boolean;  // When true, it will be shown in the table
   editType: EditType;
+  displayOptions?: DateDisplayOptions // | CheckboxDisplayOptions | WysiwygDisplayOptions ...
 }
+
+export interface DateDisplayOptions {
+  pipeFormat?: string      // https://angular.io/api/common/DatePipe
+}
+

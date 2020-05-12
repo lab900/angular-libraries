@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AngularAdminComponent } from './angular-admin.component';
+import { DateDisplayComponent } from './date-display.component';
 
-describe('AngularAdminComponent', () => {
-  let component: AngularAdminComponent;
-  let fixture: ComponentFixture<AngularAdminComponent>;
+describe('DateDisplayComponent', () => {
+  let component: DateDisplayComponent;
+  let fixture: ComponentFixture<DateDisplayComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AngularAdminComponent ]
+      declarations: [ DateDisplayComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AngularAdminComponent);
+    fixture = TestBed.createComponent(DateDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

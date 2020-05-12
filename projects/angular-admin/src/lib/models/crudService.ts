@@ -1,13 +1,12 @@
-import { Page } from './page';
+import { Item, Page } from './page';
 
 export interface CrudService {
 
   /* Single methods */
-  update(id: any, object: any): Promise<void>;
-  delete(id: any): Promise<void>;
-  get(id: any): Promise<any>;
+  update(item: Item): Promise<void>;
+  delete(item: Item): Promise<void>;
 
   /* Paginated methods */
-  getPage(page: number, items: number ): Promise<Page<any>>;
+  getPage(page: number, items: number): Promise<Page<Item>>;
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../../../../projects/angular-admin/src/lib/models/crudService';
 import { EditType } from '../../../../projects/angular-admin/src/lib/models/editType';
 import { Schema } from '../../../../projects/angular-admin/src/lib/models/schema';
-import { Page } from '../../../../projects/angular-admin/src/lib/models/page';
+import { Item, Page } from '../../../../projects/angular-admin/src/lib/models/page';
 
 @Component({
   selector: 'app-angular-admin-showcase',
@@ -39,6 +39,15 @@ export class AngularAdminShowcaseComponent implements OnInit {
         showInOverview: true
       },
       {
+        title: 'Posted On',
+        editType: EditType.Date,
+        attribute: 'postedOnShort',
+        showInOverview: true,
+        displayOptions: {
+          pipeFormat: 'shortTime'
+        }
+      },
+      {
         title: 'Posted By',
         attribute: 'postedBy',
         editType: EditType.Input,
@@ -52,33 +61,61 @@ export class AngularAdminShowcaseComponent implements OnInit {
       },
     ],
     crudService: new class implements CrudService {
-      delete(id: any): Promise<void> {
-        // Can use external services to do its work or implement them again
+      delete(item: Item): Promise<void> {
+        console.log(`deleting item ${item.id}`)
         return Promise.resolve(undefined);
       }
 
-      get(id: any): Promise<any> {
+      getPage(page: number, items: number): Promise<Page<Item>> {
+        return Promise.resolve({
+          items: [
+            ({
+              id: '1',
+              title: 'hello world',
+              subTitle: 'hello world sub',
+              author: 'Johan',
+              postedBy: 'johan',
+              postedOn: new Date(),
+              postedOnShort: new Date()
+            }) as Item
+          ]
+        });
+      }
+
+      update(object: Item): Promise<void> {
         return Promise.resolve(undefined);
       }
 
-      getPage(page: number, items: number): Promise<Page<any>> {
-        // This one probably needs more: ordering, filters. Maybe in v1 we only do one type of filtering?
-        return Promise.resolve({ items: [
-          {
-            title: 'hello world',
-            subTitle: 'hello world sub',
-            author: 'Johan',
-            postedBy: 'johan'
-          }
-        ] });
-      }
-
-      update(id: any, object: any): Promise<void> {
-        return Promise.resolve(undefined);
-      }
     }()
-  };
+  }
 
+  /*
+        delete(item: Item<string>): Promise<void> {
+        console.log(`deleting item ${id}`)
+        return Promise.resolve(undefined);
+      }
+
+      get(id: string): Promise<unknown> {
+        return Promise.resolve(undefined);
+      }
+
+      getPage(page: number, items: number): Promise<Page<unknown>> {
+        return Promise.resolve({
+          items: [
+            {
+              title: 'hello world',
+              subTitle: 'hello world sub',
+              author: 'Johan',
+              postedBy: 'johan'
+            }
+            ]
+        });
+      }
+
+      update(id: unknown, object: unknown): Promise<void> {
+        return Promise.resolve(undefined);
+      }
+   */
 
   constructor() { }
 

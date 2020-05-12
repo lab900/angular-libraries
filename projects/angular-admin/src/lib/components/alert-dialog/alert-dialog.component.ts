@@ -1,14 +1,10 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'lib-alert-dialog',
+  selector: 'lab900-alert-dialog',
   templateUrl: './alert-dialog.component.html',
   styleUrls: ['./alert-dialog.component.css']
-})
-@Component({
-  selector: 'app-alert-dialog',
-  templateUrl: './alert-dialog.component.html'
 })
 export class AlertDialogComponent {
   message: string = ""

@@ -1,20 +1,25 @@
 <div class="mat-elevation-z8">
-
     <mat-table [dataSource]="data">
-
         <ng-container *ngFor="let column of columns" matColumnDef="{{column.attribute}}">
             <mat-header-cell *matHeaderCellDef> {{column.title }} </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{ element[column.attribute] }} </mat-cell>
+            <mat-cell *matCellDef="let element">
+                <span [ngSwitch]="column.editType">
+                    <span *ngSwitchCase="Date">
+                        <lab900-date-display [data]="element[column.attribute]" [fieldType]="column"></lab900-date-display>
+                    </span>
+                    <span *ngSwitchDefault>{{ element[column.attribute] }}</span>
+                </span>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="edit">
-            <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> <button mat-icon-button (click)="onEdit.emit(element)"><mat-icon>edit</mat-icon></button> </mat-cell>
+            <mat-header-cell *matHeaderCellDef  class="table__icon"></mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table__icon"><button mat-icon-button (click)="onEdit.emit(element)"><mat-icon>edit</mat-icon></button></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="delete">
-            <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
-            <mat-cell *matCellDef="let element"> <button mat-icon-button (click)="onDelete.emit(element)"><mat-icon>delete</mat-icon></button> </mat-cell>
+            <mat-header-cell *matHeaderCellDef  class="table__icon"></mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table__icon"><button mat-icon-button (click)="onDelete.emit(element)"><mat-icon>delete</mat-icon></button> </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
