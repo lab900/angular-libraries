@@ -1,15 +1,15 @@
 ## Creating a new library
 
-1) from the folder /angularAdminLibrary:
+1) from the folder /:
 ng generate library AngularAdmin
 
---> This will create the library on /angularAdminLibrary/projects/angular-admin
+--> This will create the library on /projects/angular-admin
 
-2) update /angularAdminLibrary/projects/angular-admin/tslint.json:
+2) update /projects/angular-admin/tslint.json:
 directive-selector and component-selector: replace lib to lab900
 
 3)
-update /angularAdminLibrary/projects/angular-admin/package.json to look similar to this:
+update /projects/angular-admin/package.json to look similar to this:
 
 ```
 {
@@ -26,7 +26,7 @@ update /angularAdminLibrary/projects/angular-admin/package.json to look similar 
   }
 }
 ````
-4) Add the file /angularAdminLibrary/projects/angular-admin/.npmrc
+4) Add the file /projects/angular-admin/.npmrc
 
 with content:
 ```
@@ -43,7 +43,7 @@ registry=https://npm.pkg.github.com/lab900
     ```
     (use the token when it asks for your password)
 
-3) from /angularAdminLibrary/projects/angular-admin/
+3) from /projects/angular-admin/
     ```
     npm version patch       --> 0.0.2
     npm version minor       --> 0.1.0
@@ -51,7 +51,7 @@ registry=https://npm.pkg.github.com/lab900
     ```
 
 4) build the library you want to publish
-(from /angularAdminLibrary/projects/angular-admin/ or from root)
+(from /projects/angular-admin/ or from root)
     ```
     ng build angularAdmin --prod
     ```
@@ -64,3 +64,5 @@ registry=https://npm.pkg.github.com/lab900
 
 ## using the library
 
+npm install @lab900/angular-admin@0.1.2
+npm install @lab900/angular-admin@latest
