@@ -1,3 +1,5 @@
+import { Page } from './page';
+
 export interface CrudService {
 
   /* Single methods */
@@ -6,6 +8,6 @@ export interface CrudService {
   get(id: any): Promise<any>;
 
   /* Paginated methods */
-  getList(page: number, items: number ): Promise<any>;
+  getPage(page: number, items: number ): Promise<Page<any>>;
 
 }

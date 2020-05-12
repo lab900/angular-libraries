@@ -21,5 +21,5 @@
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons (page)="onPageEvent.emit($event)" [length]=""></mat-paginator>
+    <mat-paginator hidePageSize  (page)="onPageEvent.emit($event)" [length]=""></mat-paginator>
 </div>

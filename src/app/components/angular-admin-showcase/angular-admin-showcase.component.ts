@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../../../../projects/angular-admin/src/lib/models/crudService';
 import { EditType } from '../../../../projects/angular-admin/src/lib/models/editType';
 import { Schema } from '../../../../projects/angular-admin/src/lib/models/schema';
+import { Page } from '../../../../projects/angular-admin/src/lib/models/page';
 
 @Component({
   selector: 'app-angular-admin-showcase',
@@ -60,16 +61,16 @@ export class AngularAdminShowcaseComponent implements OnInit {
         return Promise.resolve(undefined);
       }
 
-      getList(page: number, items: number): Promise<any> {
+      getPage(page: number, items: number): Promise<Page<any>> {
         // This one probably needs more: ordering, filters. Maybe in v1 we only do one type of filtering?
-        return Promise.resolve([
+        return Promise.resolve({ items: [
           {
             title: 'hello world',
             subTitle: 'hello world sub',
             author: 'Johan',
             postedBy: 'johan'
           }
-        ]);
+        ] });
       }
 
       update(id: any, object: any): Promise<void> {
