@@ -3,8 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'lab900-alert-dialog',
-  templateUrl: './alert-dialog.component.html',
-  styleUrls: ['./alert-dialog.component.css']
+  templateUrl: './alert-dialog.component.html'
 })
 export class AlertDialogComponent {
   message: string = ""

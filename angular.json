@@ -128,6 +128,11 @@
     },
     "angularAdmin": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/angular-admin",
       "sourceRoot": "projects/angular-admin/src",
       "prefix": "lib",

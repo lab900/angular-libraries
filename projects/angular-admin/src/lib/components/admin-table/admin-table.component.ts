@@ -7,7 +7,7 @@ import { EditType } from '../../models/editType';
 @Component({
   selector: 'lab900-admin-table',
   templateUrl: './admin-table.component.html',
-  styleUrls: ['./admin-table.component.css']
+  styleUrls: ['./admin-table.component.scss']
 })
 export class AdminTableComponent implements OnInit {
 

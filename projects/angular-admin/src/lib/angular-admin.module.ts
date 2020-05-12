@@ -12,11 +12,10 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
 import { DateDisplayComponent } from './components/date-display/date-display.component';
-import { TextDisplayComponent } from './components/text-display/text-display.component';
 
 
 @NgModule({
-  declarations: [AdminPageComponent, AdminTableComponent, AdminEditComponent, AlertDialogComponent, ConfirmationDialogComponent, DateDisplayComponent, TextDisplayComponent],
+  declarations: [AdminPageComponent, AdminTableComponent, AdminEditComponent, AlertDialogComponent, ConfirmationDialogComponent, DateDisplayComponent],
   imports: [
     CommonModule,
     MatTableModule,

@@ -3,8 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'lab900-confirmation-dialog',
-  templateUrl: './confirmation-dialog.component.html',
-  styleUrls: ['./confirmation-dialog.component.css']
+  templateUrl: './confirmation-dialog.component.html'
 })
 export class ConfirmationDialogComponent {
   message: string = "Are you sure?"

@@ -5,11 +5,14 @@
     <mat-spinner></mat-spinner>
 </div>
 <div *ngIf="!loading && !error">
-    <lab900-admin-table
-            [fields]="schema.fields"
-            [data]="items"
-            (onPageEvent)="onPageEvent($event)"
-            (onEdit)="onEdit($event)"
-            (onDelete)="onDelete($event)"
-    ></lab900-admin-table>
+    <div class="admin-page">
+        <button mat-raised-button color="primary" (click)="onCreate()">Create</button>
+        <lab900-admin-table
+                [fields]="schema.fields"
+                [data]="items"
+                (onPageEvent)="onPageEvent($event)"
+                (onEdit)="onEdit($event)"
+                (onDelete)="onDelete($event)"
+        ></lab900-admin-table>
+    </div>
 </div>
