@@ -21,10 +21,6 @@
   "lint-staged": {
     "{src,projects}/**/**.{ts,js,scss}": [
       "npx prettier --write"
-
-    ],
-    "{src,projects}/**/**.html": [
-      "npx prettier --write --no-config --print-width=140"
     ]
   },
   "private": true,
