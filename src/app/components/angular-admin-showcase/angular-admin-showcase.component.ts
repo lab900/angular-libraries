@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../../projects/angular-admin/src/lib/models/crudService';
+import { DataService } from '../../../../projects/angular-admin/src/lib/models/dataService';
 import { EditType } from '../../../../projects/angular-admin/src/lib/models/editType';
 import { Schema } from '../../../../projects/angular-admin/src/lib/models/schema';
 import { Item, Page } from '../../../../projects/angular-admin/src/lib/models/page';

@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AdminEditComponent } from '../../components/admin-edit/admin-edit.component';
 import { ConfirmationDialogComponent } from '../../components/confirmation-dialog/confirmation-dialog.component';
 import { Subscription } from 'rxjs';
-import { DataService } from '../../models/crudService';
+import { DataService } from '../../models/dataService';
 
 @Component({
   selector: 'lab900-admin-page',
