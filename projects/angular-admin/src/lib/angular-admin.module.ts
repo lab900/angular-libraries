@@ -13,7 +13,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
 import { DateDisplayComponent } from './components/date-display/date-display.component';
 import { ImageDisplayComponent } from './components/image-display/image-display.component';
-
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [AdminPageComponent, AdminTableComponent, AdminEditComponent, AlertDialogComponent, ConfirmationDialogComponent, DateDisplayComponent, ImageDisplayComponent],
@@ -24,8 +24,8 @@ import { ImageDisplayComponent } from './components/image-display/image-display.
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
+    MatCardModule,
     MatProgressSpinnerModule,
-    MatProgressSpinnerModule
   ],
   exports: [ AdminPageComponent, AlertDialogComponent, ConfirmationDialogComponent]
 })

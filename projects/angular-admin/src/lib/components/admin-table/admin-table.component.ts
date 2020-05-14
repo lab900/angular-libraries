@@ -10,6 +10,7 @@ import { EditType } from '../../models/editType';
 })
 export class AdminTableComponent implements OnInit {
 
+  @Input() loading: boolean = false;
   @Input() fields: SchemaField[];
   @Input() data: any[];
 

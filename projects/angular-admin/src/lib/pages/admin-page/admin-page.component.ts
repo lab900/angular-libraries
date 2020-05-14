@@ -39,12 +39,14 @@ export class AdminPageComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.loading = true;
+    this.items = [];
     this.dataService.getPage(this.pageInfo.currentPage,this.pageInfo.pageSize)
       .then(page => {
         this.items = page.items;
         this.loading = false;
       })
       .catch(err => {
+        console.log(err);
         this.error = 'Oops, something went wrong'
       })
       .finally(() => this.loading = false);
@@ -58,8 +60,6 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   }
 
   onCreate() {
-    console.log('show dialog to create');
-
     const dialogRef = this.dialog.open(AdminEditComponent, {
       width: '250px',
       data: { schemaFields: this.schema.fields }
@@ -71,9 +71,6 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   }
 
   onEdit(item:any) {
-    console.log('show dialog to edit');
-    console.log(item);
-
     const dialogRef = this.dialog.open(AdminEditComponent, {
       width: '250px',
       data: { schemaFields: this.schema.fields, data: item }
@@ -85,8 +82,6 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   }
 
   onDelete(item:any) {
-    console.log('show dialog to delete');
-    console.log(item);
     const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
       data:{
         message: 'Are you sure want to delete?',
@@ -101,12 +96,12 @@ export class AdminPageComponent implements OnInit, OnDestroy {
       if (confirmed) {
         this.loading = true;
         this.dataService.delete(item)
-          .then(() => this.loading = false )
+          .then(() => this.loadData())
           .catch(err => {
             console.log(err);
             this.error = 'Oops, something went wrong.';
+            this.loading = false
           })
-          .finally(() => this.loading = false);
       }
     });
     this.subscriptions.push(afterClosed);

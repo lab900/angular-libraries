@@ -176,12 +176,17 @@ export class AngularAdminShowcaseComponent implements OnInit {
   }
 
   getPage(page: number, items: number): Promise<Page<Item>> {
-    console.log(`${page}, ${items}`)
-    console.log(`that is from ${(page-1)*items}, ${items} items`)
+    return new Promise<Page<Item>>(resolve => {
+      console.log(`${page}, ${items}`)
+      console.log(`that is from ${(page-1)*items}, ${items} items`)
 
-    return Promise.resolve({
-      items: NEWS_ITEMS.slice((page-1)*items,page*items)
-    });
+      setTimeout(() => resolve(
+        {
+          pageNumber: page,
+          items: NEWS_ITEMS.slice((page-1)*items,page*items)
+        }), 3000);
+
+    })
   }
 
   defaultPageSize(): number {

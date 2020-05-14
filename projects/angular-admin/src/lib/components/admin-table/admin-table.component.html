@@ -27,8 +27,17 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;" class="table__row"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" class="table__row">
+            <div *ngIf="!loading">
+                <mat-spinner></mat-spinner>
+            </div>
+        </mat-row>
     </mat-table>
-
-    <mat-paginator hidePageSize disabled="false" (page)="onPageEvent.emit($event)" length="9999999"></mat-paginator>
+    <mat-card *ngIf="loading" style="display: flex; justify-content: center; align-items: center">
+        <mat-progress-spinner
+                color="primary"
+                mode="indeterminate">
+        </mat-progress-spinner>
+    </mat-card>
+    <mat-paginator hidePageSize [disabled]="loading" (page)="onPageEvent.emit($event)" length="9999999"></mat-paginator>
 </div>
