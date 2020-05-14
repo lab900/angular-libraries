@@ -3,27 +3,27 @@
         <ng-container *ngFor="let column of columns" matColumnDef="{{column.attribute}}">
             <mat-header-cell *matHeaderCellDef> {{column.title }} </mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <span *ngIf="column?.displayOptions?.customFormatter" [innerHTML]="column.displayOptions.customFormatter(element[column.attribute])"></span>
-                <span *ngIf="!column?.displayOptions?.customFormatter" [ngSwitch]="column.editType">
+                <span *ngIf="column?.displayOptions?.customFormatter" [innerHTML]="column.displayOptions.customFormatter(element[column.attribute])" ></span>
+                <span *ngIf="!column?.displayOptions?.customFormatter" [ngSwitch]="column.editType" class="table__cell__wrapper">
                     <span *ngSwitchCase="Date">
                         <lab900-date-display [data]="element[column.attribute]" [fieldType]="column"></lab900-date-display>
                     </span>
                     <span *ngSwitchCase="Image">
                         <lab900-image-display [data]="element[column.attribute]" [fieldType]="column"></lab900-image-display>
                     </span>
-                    <span *ngSwitchDefault>{{ element[column.attribute] }}</span>
+                    <span *ngSwitchDefault class="table__cell__wrapper__text" >{{ element[column.attribute] }}</span>
                 </span>
             </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="edit">
             <mat-header-cell *matHeaderCellDef  class="table__icon"></mat-header-cell>
-            <mat-cell *matCellDef="let element" class="table__icon"><button mat-icon-button (click)="onEdit.emit(element)"><mat-icon>edit</mat-icon></button></mat-cell>
+            <mat-cell *matCellDef="let element" class="table__cell__icon"><button mat-icon-button (click)="onEdit.emit(element)"><mat-icon>edit</mat-icon></button></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="delete">
-            <mat-header-cell *matHeaderCellDef  class="table__icon"></mat-header-cell>
-            <mat-cell *matCellDef="let element" class="table__icon"><button mat-icon-button (click)="onDelete.emit(element)"><mat-icon>delete</mat-icon></button> </mat-cell>
+            <mat-header-cell *matHeaderCellDef  class="table__cell__icon"></mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table__cell_icon"><button mat-icon-button (click)="onDelete.emit(element)"><mat-icon>delete</mat-icon></button> </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
