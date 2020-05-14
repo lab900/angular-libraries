@@ -14,13 +14,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "ng lint --fix"
     }
   },
   "lint-staged": {
     "{src,projects}/**/**.{ts,js,scss}": [
-      "npx prettier --write",
-      "ng lint --fix"
+      "npx prettier --write"
+
     ],
     "{src,projects}/**/**.html": [
       "npx prettier --write --no-config --print-width=140"
