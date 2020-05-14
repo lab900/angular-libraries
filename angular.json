@@ -160,6 +160,46 @@
           }
         }
       }
+    },
+    "ModelDrivenForms": {
+      "projectType": "library",
+      "root": "projects/model-driven-forms",
+      "sourceRoot": "projects/model-driven-forms/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/model-driven-forms/tsconfig.lib.json",
+            "project": "projects/model-driven-forms/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/model-driven-forms/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/model-driven-forms/src/test.ts",
+            "tsConfig": "projects/model-driven-forms/tsconfig.spec.json",
+            "karmaConfig": "projects/model-driven-forms/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/model-driven-forms/tsconfig.lib.json",
+              "projects/model-driven-forms/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angularAdminLibrary"
