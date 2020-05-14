@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
-import { ModelDrivenFormsComponent } from './model-driven-forms.component';
-
-
 
 @NgModule({
-  declarations: [ModelDrivenFormsComponent],
-  imports: [
-  ],
-  exports: [ModelDrivenFormsComponent]
+  declarations: [],
+  imports: [],
+  exports: [],
 })
-export class ModelDrivenFormsModule { }
+export class ModelDrivenFormsModule {}
