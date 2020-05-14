@@ -8,5 +8,6 @@ export interface DataService {
 
   /* Paginated methods */
   getPage(page: number, items: number): Promise<Page<Item>>;
+  defaultPageSize(): number;
 
 }

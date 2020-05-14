@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SchemaField } from '../../models/schemaField';
 import { PageEvent } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
 import { EditType } from '../../models/editType';
 
 @Component({
@@ -29,8 +28,7 @@ export class AdminTableComponent implements OnInit {
   public columns: SchemaField[];
   public displayedColumns: string[];
 
-
-  constructor(public dialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.columns = this.fields.filter(value => value.showInOverview).map((value,index) => value);

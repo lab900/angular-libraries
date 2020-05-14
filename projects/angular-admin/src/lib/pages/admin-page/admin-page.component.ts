@@ -19,12 +19,17 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   @Input() dataService: DataService;
   public error: string;
   public loading = false;
+  private pageInfo: { currentPage: number, pageSize: number};
 
   private subscriptions: Subscription[] = [];
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.pageInfo = {
+      currentPage: 1,
+      pageSize: this.dataService.defaultPageSize()
+    };
     this.loadData();
   }
 
@@ -34,10 +39,9 @@ export class AdminPageComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.loading = true;
-    this.dataService.getPage(1,20)
+    this.dataService.getPage(this.pageInfo.currentPage,this.pageInfo.pageSize)
       .then(page => {
         this.items = page.items;
-        console.log(page.items);
         this.loading = false;
       })
       .catch(err => {
@@ -49,6 +53,8 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   onPageEvent(pageEvent: PageEvent) {
     console.log('Loading page');
     console.log(pageEvent);
+    this.pageInfo.currentPage = pageEvent.pageIndex+1;
+    this.loadData();
   }
 
   onCreate() {
