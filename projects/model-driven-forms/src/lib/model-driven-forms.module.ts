@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
+import { DialogFormComponent } from './components/dialog-form/dialog-form.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [DialogFormComponent],
   imports: [],
   exports: [],
 })
