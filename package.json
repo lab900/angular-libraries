@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pretty:check": "prettier -c \"{src,projects}/**/**.{ts,js,html,css}\"",
-    "pretty:fix": "prettier  --write \"{src,projects}/**/**.{ts,js,html,css}\"",
+    "pretty:check": "prettier -c \"{src,projects}/**/**.{ts,js}\"",
+    "pretty:fix": "prettier  --write \"{src,projects}/**/**.{ts,js}\"",
     "pretty:html:fix": "prettier --no-config --print-width=140 --write \"{src,projects}/**/**.html\""
   },
   "husky": {
