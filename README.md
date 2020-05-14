@@ -43,6 +43,9 @@ registry=https://npm.pkg.github.com/lab900
     ```
     (use the token when it asks for your password)
 
+  
+The next steps are also executed when running the script /deploy.sh
+
 3) from /projects/angular-admin/
     ```
     npm version patch       --> 0.0.2
@@ -63,6 +66,8 @@ registry=https://npm.pkg.github.com/lab900
     ```
 
 ## using the library
-
-npm install @lab900/angular-admin@0.1.2
-npm install @lab900/angular-admin@latest
+    
+    npm install @lab900/angular-admin@0.1.2
+    or
+    npm install @lab900/angular-admin@latest
+    

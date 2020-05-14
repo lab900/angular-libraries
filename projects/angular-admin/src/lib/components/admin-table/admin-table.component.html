@@ -3,9 +3,13 @@
         <ng-container *ngFor="let column of columns" matColumnDef="{{column.attribute}}">
             <mat-header-cell *matHeaderCellDef> {{column.title }} </mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <span [ngSwitch]="column.editType">
+                <span *ngIf="column?.displayOptions?.customFormatter" [innerHTML]="column.displayOptions.customFormatter(element[column.attribute])"></span>
+                <span *ngIf="!column?.displayOptions?.customFormatter" [ngSwitch]="column.editType">
                     <span *ngSwitchCase="Date">
                         <lab900-date-display [data]="element[column.attribute]" [fieldType]="column"></lab900-date-display>
+                    </span>
+                    <span *ngSwitchCase="Image">
+                        <lab900-image-display [data]="element[column.attribute]" [fieldType]="column"></lab900-image-display>
                     </span>
                     <span *ngSwitchDefault>{{ element[column.attribute] }}</span>
                 </span>

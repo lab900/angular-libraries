@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from '../../../../projects/angular-admin/src/lib/models/crudService';
+import { DataService } from '../../../../projects/angular-admin/src/lib/models/crudService';
 import { EditType } from '../../../../projects/angular-admin/src/lib/models/editType';
 import { Schema } from '../../../../projects/angular-admin/src/lib/models/schema';
 import { Item, Page } from '../../../../projects/angular-admin/src/lib/models/page';
@@ -51,7 +51,10 @@ export class AngularAdminShowcaseComponent implements OnInit {
         title: 'Posted By',
         attribute: 'postedBy',
         editType: EditType.Input,
-        showInOverview: true
+        showInOverview: true,
+        displayOptions: {
+          customFormatter: data => `custom <strong>formatted</strong> ${data}`
+        }
       },
       {
         title: 'Content',
@@ -59,63 +62,43 @@ export class AngularAdminShowcaseComponent implements OnInit {
         editType: EditType.Wysiwyg,
         showInOverview: false
       },
-    ],
-    crudService: new class implements CrudService {
-      delete(item: Item): Promise<void> {
-        console.log(`deleting item ${item.id}`)
-        return Promise.resolve(undefined);
-      }
-
-      getPage(page: number, items: number): Promise<Page<Item>> {
-        return Promise.resolve({
-          items: [
-            ({
-              id: '1',
-              title: 'hello world',
-              subTitle: 'hello world sub',
-              author: 'Johan',
-              postedBy: 'johan',
-              postedOn: new Date(),
-              postedOnShort: new Date()
-            }) as Item
-          ]
-        });
-      }
-
-      update(object: Item): Promise<void> {
-        return Promise.resolve(undefined);
-      }
-
-    }()
+      {
+        title: 'Background',
+        attribute: 'backgroundImageUrl',
+        editType: EditType.Image,
+        showInOverview: true
+      },
+    ]
   }
 
-  /*
-        delete(item: Item<string>): Promise<void> {
-        console.log(`deleting item ${id}`)
-        return Promise.resolve(undefined);
-      }
+  public dataService = new class implements DataService {
+  delete(item: Item): Promise<void> {
+    console.log(`deleting item ${item.id}`)
+    return Promise.resolve(undefined);
+  }
 
-      get(id: string): Promise<unknown> {
-        return Promise.resolve(undefined);
-      }
+  getPage(page: number, items: number): Promise<Page<Item>> {
+    return Promise.resolve({
+      items: [
+        ({
+          id: '1',
+          title: 'hello world',
+          subTitle: 'hello world sub',
+          author: 'Johan',
+          postedBy: 'johan',
+          postedOn: new Date(),
+          postedOnShort: new Date(),
+          backgroundImageUrl: 'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fproject-images%2Fradar%2Fradar-mockup.svg?alt=media&token=0b42563b-730f-4cf2-8828-17d957e30965'
+        }) as Item
+      ]
+    });
+  }
 
-      getPage(page: number, items: number): Promise<Page<unknown>> {
-        return Promise.resolve({
-          items: [
-            {
-              title: 'hello world',
-              subTitle: 'hello world sub',
-              author: 'Johan',
-              postedBy: 'johan'
-            }
-            ]
-        });
-      }
+  update(object: Item): Promise<void> {
+    return Promise.resolve(undefined);
+  }
 
-      update(id: unknown, object: unknown): Promise<void> {
-        return Promise.resolve(undefined);
-      }
-   */
+}();
 
   constructor() { }
 

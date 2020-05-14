@@ -8,7 +8,11 @@ export interface SchemaField {
   displayOptions?: DateDisplayOptions // | CheckboxDisplayOptions | WysiwygDisplayOptions ...
 }
 
-export interface DateDisplayOptions {
+export interface DisplayOptions {
+  customFormatter?: (data: any) => string
+}
+
+export interface DateDisplayOptions extends DisplayOptions {
   pipeFormat?: string      // https://angular.io/api/common/DatePipe
 }
 

@@ -1,6 +1,6 @@
 import { Item, Page } from './page';
 
-export interface CrudService {
+export interface DataService {
 
   /* Single methods */
   update(item: Item): Promise<void>;

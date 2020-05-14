@@ -23,6 +23,7 @@ export class AdminTableComponent implements OnInit {
   public readonly Input = EditType.Input
   public readonly Checkbox = EditType.Checkbox
   public readonly TextArea = EditType.TextArea
+  public readonly Image = EditType.Image
 
   public headers: string[];
   public columns: SchemaField[];

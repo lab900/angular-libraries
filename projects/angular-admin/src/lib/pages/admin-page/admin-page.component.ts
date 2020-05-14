@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AdminEditComponent } from '../../components/admin-edit/admin-edit.component';
 import { ConfirmationDialogComponent } from '../../components/confirmation-dialog/confirmation-dialog.component';
 import { Subscription } from 'rxjs';
+import { DataService } from '../../models/crudService';
 
 @Component({
   selector: 'lab900-admin-page',
@@ -15,6 +16,7 @@ export class AdminPageComponent implements OnInit, OnDestroy {
 
   public items: any[];
   @Input() schema: Schema;
+  @Input() dataService: DataService;
   public error: string;
   public loading = false;
 
@@ -32,7 +34,7 @@ export class AdminPageComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.loading = true;
-    this.schema.crudService.getPage(1,20)
+    this.dataService.getPage(1,20)
       .then(page => {
         this.items = page.items;
         console.log(page.items);
@@ -92,7 +94,7 @@ export class AdminPageComponent implements OnInit, OnDestroy {
     const afterClosed = dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         this.loading = true;
-        this.schema.crudService.delete(item)
+        this.dataService.delete(item)
           .then(() => this.loading = false )
           .catch(err => {
             console.log(err);
