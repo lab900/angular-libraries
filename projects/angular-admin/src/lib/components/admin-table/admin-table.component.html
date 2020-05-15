@@ -18,12 +18,20 @@
 
         <ng-container matColumnDef="edit">
             <mat-header-cell *matHeaderCellDef  class="table__cell__icon"></mat-header-cell>
-            <mat-cell *matCellDef="let element" class="table__cell__icon"><button mat-icon-button (click)="onEdit.emit(element)"><mat-icon>edit</mat-icon></button></mat-cell>
+            <mat-cell *matCellDef="let element" class="table__cell__icon">
+                <button mat-icon-button (click)="edit.emit(element)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="delete">
             <mat-header-cell *matHeaderCellDef  class="table__cell__icon"></mat-header-cell>
-            <mat-cell *matCellDef="let element" class="table__cell__icon"><button mat-icon-button (click)="onDelete.emit(element)"><mat-icon>delete</mat-icon></button> </mat-cell>
+            <mat-cell *matCellDef="let element" class="table__cell__icon">
+                <button mat-icon-button (click)="delete.emit(element)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -39,5 +47,5 @@
                 mode="indeterminate">
         </mat-progress-spinner>
     </mat-card>
-    <mat-paginator hidePageSize [disabled]="loading" (page)="onPageEvent.emit($event)" length="9999999"></mat-paginator>
+    <mat-paginator hidePageSize [disabled]="loading" (page)="pageEvent.emit($event)" length="9999999"></mat-paginator>
 </div>

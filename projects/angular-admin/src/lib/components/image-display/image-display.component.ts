@@ -4,16 +4,13 @@ import { SchemaField } from '../../models/schemaField';
 @Component({
   selector: 'lab900-image-display',
   templateUrl: './image-display.component.html',
-  styleUrls: ['./image-display.component.css']
+  styleUrls: ['./image-display.component.css'],
 })
 export class ImageDisplayComponent implements OnInit {
+  @Input() fieldType: SchemaField;
+  @Input() data;
 
-  @Input() fieldType: SchemaField
-  @Input() data
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -7,16 +7,9 @@ import { AngularAdminShowcaseComponent } from './components/angular-admin-showca
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AngularAdminShowcaseComponent
-  ],
-  imports: [
-    BrowserModule,
-    AngularAdminModule,
-    BrowserAnimationsModule
-  ],
+  declarations: [AppComponent, AngularAdminShowcaseComponent],
+  imports: [BrowserModule, AngularAdminModule, BrowserAnimationsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
