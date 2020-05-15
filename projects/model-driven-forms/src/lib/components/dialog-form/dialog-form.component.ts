@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup as NgFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup as NgFormGroup, Validators } from '@angular/forms';
 import { defaultValue } from '../../models/editType';
 import { Form, isFormField } from '../../models/Form';
 import { FormField } from '../../models/FormField';
@@ -25,7 +25,9 @@ export class DialogFormComponent<T> implements OnInit {
     this.form = this.fb.group(
       this.schema.fields.reduce((formGroupObject, field) => {
         if (isFormField(field)) {
-          formGroupObject[field.attribute] = [defaultValue(field.editType), [Validators.required]];
+          formGroupObject[field.attribute] = new FormControl(defaultValue(field.editType), [
+            field.options?.required ? Validators.required : () => null,
+          ]);
         }
         return formGroupObject;
       }, {}),

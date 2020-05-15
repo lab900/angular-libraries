@@ -15,8 +15,8 @@ export class FormsShowcaseComponent implements OnInit {
     this.formSchema = {
       title: 'Enter your name.',
       fields: [
-        { attribute: 'first', editType: EditType.Input, title: 'First Name' },
-        { attribute: 'last', editType: EditType.Input, title: 'Last Name' },
+        { attribute: 'first', editType: EditType.Input, title: 'First Name', options: { required: true } },
+        { attribute: 'last', editType: EditType.Input, title: 'Last Name', options: { required: true } },
       ],
     };
   }
