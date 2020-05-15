@@ -19,7 +19,7 @@
     }
   },
   "lint-staged": {
-    "{src,projects}/**/**.{ts,js,scss}": [
+    "{src,projects}/**/**.{ts,js}": [
       "npx prettier --write"
     ]
   },
