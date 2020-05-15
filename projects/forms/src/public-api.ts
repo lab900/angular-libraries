@@ -1,5 +1,5 @@
 /*
- * Public API Surface of model-driven-forms
+ * Public API Surface of forms
  */
 
 export * from './lib/models/Form';
@@ -10,4 +10,4 @@ export * from './lib/models/editType';
 export * from './lib/components/dialog-form/dialog-form.component';
 export * from './lib/components/form-container/form-container.component';
 
-export * from './lib/model-driven-forms.module';
+export * from './lib/forms.module';

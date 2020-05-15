@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AngularAdminShowcaseComponent } from './angular-admin-showcase.component';
+import { AngularAdminShowcaseComponent } from './admin-showcase.component';
 
 describe('AngularAdminShowcaseComponent', () => {
   let component: AngularAdminShowcaseComponent;

@@ -27,4 +27,4 @@ import { FormFieldDirective } from './directives/form-field.directive';
   ],
   exports: [DialogFormComponent, FormContainerComponent],
 })
-export class ModelDrivenFormsModule {}
+export class FormsModule {}

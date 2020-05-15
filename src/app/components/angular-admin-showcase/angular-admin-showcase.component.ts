@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../../projects/angular-admin/src/lib/models/dataService';
-import { EditType } from '../../../../projects/angular-admin/src/lib/models/editType';
-import { Item, Page } from '../../../../projects/angular-admin/src/lib/models/page';
-import { Schema } from '../../../../projects/angular-admin/src/lib/models/schema';
+import { DataService } from '../../../../projects/admin/src/lib/models/dataService';
+import { EditType } from '../../../../projects/admin/src/lib/models/editType';
+import { Item, Page } from '../../../../projects/admin/src/lib/models/page';
+import { Schema } from '../../../../projects/admin/src/lib/models/schema';
 
 const NEWS_ITEMS = [
   {
@@ -112,9 +112,9 @@ const NEWS_ITEMS = [
 ];
 
 @Component({
-  selector: 'lab900-angular-admin-showcase',
-  templateUrl: './angular-admin-showcase.component.html',
-  styleUrls: ['./angular-admin-showcase.component.scss'],
+  selector: 'lab900-admin-showcase',
+  templateUrl: './admin-showcase.component.html',
+  styleUrls: ['./admin-showcase.component.scss'],
 })
 export class AngularAdminShowcaseComponent implements OnInit {
   public newsSchema: Schema = {
