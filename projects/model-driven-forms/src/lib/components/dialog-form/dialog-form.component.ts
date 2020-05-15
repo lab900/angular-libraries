@@ -49,6 +49,8 @@ export class DialogFormComponent<T> implements OnInit {
   }
 
   submitHandler() {
-    this.submitForm.emit({ type: 'new', data: this.form.value as T });
+    if (this.valid) {
+      this.submitForm.emit({ type: 'new', data: this.form.value as T });
+    }
   }
 }

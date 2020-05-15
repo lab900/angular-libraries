@@ -13,7 +13,7 @@ export class FormsShowcaseComponent implements OnInit {
 
   constructor() {
     this.formSchema = {
-      title: 'First Name - Last Name',
+      title: 'Enter your name.',
       fields: [
         { attribute: 'first', editType: EditType.Input, title: 'First Name' },
         { attribute: 'last', editType: EditType.Input, title: 'Last Name' },
