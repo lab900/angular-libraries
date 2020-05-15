@@ -1,1 +1,15 @@
-<p>dialog-form works!</p>
+<div class="centered">
+    <form [formGroup]="form" [hidden]="success" (ngSubmit)="submitHandler()">
+        <div *ngFor="let field of formSchema.fields;">
+            <ng-container *ngIf="isFormField(field)">
+                <ng-container libFormField [schema]="field" [group]="form"></ng-container>
+            </ng-container>
+            <ng-container *ngIf="!isFormField(field)">
+                <p>Group</p>
+            </ng-container>
+        </div>
+        <button mat-raised-button color="primary" [disabled]="!valid">Submit</button>
+    </form>
+</div>
+
+
