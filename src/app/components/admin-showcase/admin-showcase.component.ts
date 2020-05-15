@@ -116,7 +116,7 @@ const NEWS_ITEMS = [
   templateUrl: './admin-showcase.component.html',
   styleUrls: ['./admin-showcase.component.scss'],
 })
-export class AngularAdminShowcaseComponent implements OnInit {
+export class AdminShowcaseComponent implements OnInit {
   public newsSchema: Schema = {
     name: 'News',
     fields: [

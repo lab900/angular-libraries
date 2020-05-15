@@ -1,6 +1,6 @@
 {
   "name": "@lab900/admin",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "peerDependencies": {
     "@angular/common": "^9.1.6",
     "@angular/core": "^9.1.6",
