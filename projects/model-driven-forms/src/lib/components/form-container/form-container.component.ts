@@ -7,7 +7,7 @@ import { FormGroup } from '../../models/FormGroup';
 import { FormSubmit } from '../../models/FormSubmit';
 
 @Component({
-  selector: 'lib-form-container',
+  selector: 'lab900-form-container',
   templateUrl: './form-container.component.html',
   styleUrls: ['./form-container.component.scss'],
 })

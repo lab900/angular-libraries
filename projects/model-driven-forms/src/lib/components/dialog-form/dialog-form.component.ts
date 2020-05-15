@@ -7,7 +7,7 @@ import { FormGroup } from '../../models/FormGroup';
 import { FormSubmit } from '../../models/FormSubmit';
 
 @Component({
-  selector: 'lib-dialog-form',
+  selector: 'lab900-dialog-form',
   templateUrl: './dialog-form.component.html',
   styleUrls: ['./dialog-form.component.css'],
 })

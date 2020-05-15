@@ -16,7 +16,7 @@ const mapToComponent = (field: FormField): Type<IFormComponent> => {
 };
 
 @Directive({
-  selector: '[libFormField]',
+  selector: '[lab900FormField]',
 })
 export class FormFieldDirective implements IFormComponent, OnChanges, OnInit {
   @Input() schema: FormField;
