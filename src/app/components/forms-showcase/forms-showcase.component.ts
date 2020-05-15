@@ -21,7 +21,7 @@ export class FormsShowcaseComponent implements OnInit {
     };
   }
 
-  log(event: FormSubmit<{ first: string; last: string }>) {
+  log(event: FormSubmit<{ first: string; last: string }> | boolean) {
     console.log(event);
   }
 
