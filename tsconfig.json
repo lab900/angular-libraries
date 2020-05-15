@@ -16,6 +16,10 @@
       "angular-libraries": [
         "dist/angular-libraries/angular-libraries",
         "dist/angular-libraries"
+      ],
+      "model-driven-forms": [
+        "dist/model-driven-forms/model-driven-forms",
+        "dist/model-driven-forms"
       ]
     }
   },
