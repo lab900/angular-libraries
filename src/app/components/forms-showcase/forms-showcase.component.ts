@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EditType } from '../../../../projects/model-driven-forms/src/lib/models/editType';
 import { Form } from '../../../../projects/model-driven-forms/src/lib/models/Form';
+import { FormSubmit } from '../../../../projects/model-driven-forms/src/lib/models/FormSubmit';
 
 @Component({
   selector: 'lab900-forms-showcase',
@@ -18,6 +19,10 @@ export class FormsShowcaseComponent implements OnInit {
         { attribute: 'last', editType: EditType.Input, title: 'Last Name' },
       ],
     };
+  }
+
+  log(event: FormSubmit<{ first: string; last: string }>) {
+    console.log(event);
   }
 
   ngOnInit(): void {}

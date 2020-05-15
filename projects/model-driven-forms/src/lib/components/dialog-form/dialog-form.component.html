@@ -1,15 +1,31 @@
-<div class="centered">
-    <form [formGroup]="form" [hidden]="success" (ngSubmit)="submitHandler()">
-        <div *ngFor="let field of formSchema.fields;">
+<form [formGroup]="form" class="form" [hidden]="success">
+    <mat-grid-list cols="4" rowHeight="60px" gutterSize="8px">
+        <mat-grid-tile
+                *ngFor="let field of schema.fields;"
+                [colspan]="4"
+                [rowspan]="1"
+        >
             <ng-container *ngIf="isFormField(field)">
-                <ng-container libFormField [schema]="field" [group]="form"></ng-container>
+                <ng-container libFormField [schema]="field" [group]="form" class="form-field"></ng-container>
             </ng-container>
             <ng-container *ngIf="!isFormField(field)">
                 <p>Group</p>
             </ng-container>
-        </div>
-        <button mat-raised-button color="primary" [disabled]="!valid">Submit</button>
-    </form>
-</div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+            <div class="form-button-group">
+                <div class="form-button">
+                    <button mat-raised-button color="secondary" (click)="cancelSubmit()">Cancel</button>
+                </div>
+                <div class="form-button">
+                    <button mat-raised-button color="primary" [disabled]="!valid" (click)="submitHandler()">Submit
+                    </button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</form>
+
 
 
