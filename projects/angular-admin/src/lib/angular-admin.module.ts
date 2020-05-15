@@ -16,7 +16,15 @@ import { ImageDisplayComponent } from './components/image-display/image-display.
 import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
-  declarations: [AdminPageComponent, AdminTableComponent, AdminEditComponent, AlertDialogComponent, ConfirmationDialogComponent, DateDisplayComponent, ImageDisplayComponent],
+  declarations: [
+    AdminPageComponent,
+    AdminTableComponent,
+    AdminEditComponent,
+    AlertDialogComponent,
+    ConfirmationDialogComponent,
+    DateDisplayComponent,
+    ImageDisplayComponent,
+  ],
   imports: [
     CommonModule,
     MatTableModule,
@@ -27,7 +35,6 @@ import { MatCardModule } from '@angular/material/card';
     MatCardModule,
     MatProgressSpinnerModule,
   ],
-  exports: [ AdminPageComponent, AlertDialogComponent, ConfirmationDialogComponent]
+  exports: [AdminPageComponent, AlertDialogComponent, ConfirmationDialogComponent],
 })
-
-export class AngularAdminModule { }
+export class AngularAdminModule {}

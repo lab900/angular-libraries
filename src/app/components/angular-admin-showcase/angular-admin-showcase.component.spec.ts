@@ -8,9 +8,8 @@ describe('AngularAdminShowcaseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AngularAdminShowcaseComponent ]
-    })
-    .compileComponents();
+      declarations: [AngularAdminShowcaseComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
