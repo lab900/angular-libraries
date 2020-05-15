@@ -1,6 +1,6 @@
 <form [formGroup]="form" class="form" [hidden]="success">
     <p>{{schema.title}}</p>
-    <mat-grid-list cols="4" rowHeight="75px" gutterSize="8px">
+    <mat-grid-list cols="4" rowHeight="80px" gutterSize="8px">
         <mat-grid-tile
                 *ngFor="let field of schema.fields;"
                 [colspan]="4"

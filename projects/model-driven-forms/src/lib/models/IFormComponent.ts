@@ -13,4 +13,8 @@ export class FormComponent implements IFormComponent {
   get vaild(): boolean {
     return this.group.get(this.schema.attribute).valid;
   }
+
+  get required(): boolean {
+    return this.group.get(this.schema.attribute).hasError('required');
+  }
 }
