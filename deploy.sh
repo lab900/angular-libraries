@@ -1,0 +1,2 @@
+./deployAdmin.sh
+./deployForms.sh
