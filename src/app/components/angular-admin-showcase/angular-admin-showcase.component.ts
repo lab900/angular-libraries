@@ -124,61 +124,78 @@ export class AngularAdminShowcaseComponent implements OnInit {
         title: 'Id',
         attribute: 'id',
         editType: EditType.Input,
-        showInOverview: true,
+        overviewOptions: {
+          show: false,
+        },
       },
       {
         title: 'Title',
         attribute: 'title',
         editType: EditType.Input,
-        showInOverview: true,
+        overviewOptions: {
+          show: true,
+          sticky: true,
+        },
       },
       {
         title: 'Subtitle',
         attribute: 'subTitle',
         editType: EditType.Input,
-        showInOverview: false,
       },
       {
         title: 'Author',
         attribute: 'author',
         editType: EditType.Input,
-        showInOverview: true,
+        overviewOptions: {
+          show: true,
+        },
       },
       {
         title: 'Posted On',
         editType: EditType.Date,
         attribute: 'postedOn',
-        showInOverview: true,
+        overviewOptions: {
+          show: true,
+        },
       },
       {
         title: 'Posted On',
         editType: EditType.Date,
         attribute: 'postedOnShort',
-        showInOverview: true,
-        displayOptions: {
-          pipeFormat: 'shortTime',
+        overviewOptions: {
+          show: true,
+          displayOptions: {
+            pipeFormat: 'shortTime',
+            maxColumnWidth: '90px',
+          },
         },
       },
       {
         title: 'Posted By',
         attribute: 'postedBy',
         editType: EditType.Input,
-        showInOverview: true,
-        displayOptions: {
-          customFormatter: (data) => `custom <strong>formatted</strong> ${data}`,
+        overviewOptions: {
+          show: true,
+          displayOptions: {
+            customFormatter: (data) => `custom <strong>formatted</strong> ${data}`,
+          },
         },
       },
       {
         title: 'Content',
         attribute: 'content',
         editType: EditType.Wysiwyg,
-        showInOverview: true,
+        overviewOptions: {
+          show: true,
+        },
       },
       {
         title: 'Background',
         attribute: 'backgroundImageUrl',
         editType: EditType.Image,
-        showInOverview: true,
+        overviewOptions: {
+          show: true,
+        },
       },
     ],
   };
@@ -200,7 +217,7 @@ export class AngularAdminShowcaseComponent implements OnInit {
               pageNumber: page,
               items: NEWS_ITEMS.slice((page - 1) * items, page * items),
             }),
-          3000,
+          300,
         );
       });
     }

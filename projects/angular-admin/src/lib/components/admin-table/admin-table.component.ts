@@ -31,8 +31,8 @@ export class AdminTableComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.columns = this.fields.filter((value) => value.showInOverview).map((value, index) => value);
-    this.displayedColumns = this.fields.filter((value) => value.showInOverview).map((value, index) => value.attribute);
+    this.columns = this.fields.filter((value) => value.overviewOptions?.show).map((value, index) => value);
+    this.displayedColumns = this.fields.filter((value) => value.overviewOptions?.show).map((value, index) => value.attribute);
     this.displayedColumns.push('edit');
     this.displayedColumns.push('delete');
   }
