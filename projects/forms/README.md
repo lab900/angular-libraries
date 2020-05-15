@@ -13,7 +13,7 @@ Run `ng build ModelDrivenForms` to build the project. The build artifacts will b
 
 ## Publishing
 
-After building your library with `ng build ModelDrivenForms`, go to the dist folder `cd dist/model-driven-forms` and run `npm publish`.
+After building your library with `ng build ModelDrivenForms`, go to the dist folder `cd dist/forms` and run `npm publish`.
 
 ## Running unit tests
 

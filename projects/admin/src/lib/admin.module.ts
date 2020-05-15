@@ -37,4 +37,4 @@ import { MatCardModule } from '@angular/material/card';
   ],
   exports: [AdminPageComponent, AlertDialogComponent, ConfirmationDialogComponent],
 })
-export class AngularAdminModule {}
+export class AdminModule {}

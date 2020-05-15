@@ -1,10 +1,10 @@
-# AngularAdmin
+# admin
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
 
 ## Code scaffolding
 
-Run `ng generate component component-name --project angularAdmin` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angularAdmin`.
+Run `ng generate component component-name --project admin` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angularAdmin`.
 > Note: Don't forget to add `--project angularAdmin` or else it will be added to the default project in your `angular.json` file. 
 
 ## Build
@@ -13,7 +13,7 @@ Run `ng build angularAdmin` to build the project. The build artifacts will be st
 
 ## Publishing
 
-After building your library with `ng build angularAdmin`, go to the dist folder `cd dist/angular-admin` and run `npm publish`.
+After building your library with `ng build angularAdmin`, go to the dist folder `cd dist/admin` and run `npm publish`.
 
 ## Running unit tests
 

@@ -1,5 +1,5 @@
 /*
- * Public API Surface of angular-admin
+ * Public API Surface of admin
  */
 
 export * from './lib/components/alert-dialog/alert-dialog.component';
@@ -12,4 +12,4 @@ export * from './lib/models/page';
 
 export * from './lib/pages/admin-page/admin-page.component';
 
-export * from './lib/angular-admin.module';
+export * from './lib/admin.module';

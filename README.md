@@ -3,17 +3,17 @@
 1) from the folder /:
 ng generate library AngularAdmin
 
---> This will create the library on /projects/angular-admin
+--> This will create the library on /projects/admin
 
-2) update /projects/angular-admin/tslint.json:
+2) update /projects/admin/tslint.json:
 directive-selector and component-selector: replace lib to lab900
 
 3)
-update /projects/angular-admin/package.json to look similar to this:
+update /projects/admin/package.json to look similar to this:
 
 ```
 {
-  "name": "@lab900/angular-admin",
+  "name": "@lab900/admin",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^9.1.6",
@@ -26,7 +26,7 @@ update /projects/angular-admin/package.json to look similar to this:
   }
 }
 ````
-4) Add the file /projects/angular-admin/.npmrc
+4) Add the file /projects/admin/.npmrc
 
 with content:
 ```
@@ -46,7 +46,7 @@ registry=https://npm.pkg.github.com/lab900
   
 The next steps are also executed when running the script /deploy.sh
 
-3) from /projects/angular-admin/
+3) from /projects/admin/
     ```
     npm version patch       --> 0.0.2
     npm version minor       --> 0.1.0
@@ -54,20 +54,20 @@ The next steps are also executed when running the script /deploy.sh
     ```
 
 4) build the library you want to publish
-(from /projects/angular-admin/ or from root)
+(from /projects/admin/ or from root)
     ```
-    ng build angularAdmin --prod
+    ng build admin --prod
     ```
 
 5) publish the library
-    from /dist/angular-admin:
+    from /dist/admin:
     ```
     npm publish
     ```
 
 ## using the library
     
-    npm install @lab900/angular-admin@0.1.2
+    npm install @lab900/admin@0.1.2
     or
-    npm install @lab900/angular-admin@latest
+    npm install @lab900/admin@latest
     
