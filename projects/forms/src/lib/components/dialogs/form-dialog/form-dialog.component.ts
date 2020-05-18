@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogFormData } from '../../../models/dialogFormData';
 
 @Component({
-  selector: 'lib-form-dialog',
+  selector: 'lab900-form-dialog',
   templateUrl: './form-dialog.component.html',
   styleUrls: ['./form-dialog.component.css'],
 })
