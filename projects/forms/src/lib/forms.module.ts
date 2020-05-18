@@ -6,17 +6,40 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { BrowserModule } from '@angular/platform-browser';
-import { DialogFormComponent } from './components/dialog-form/dialog-form.component';
 import { FormContainerComponent } from './components/form-container/form-container.component';
 import { InputFieldComponent } from './components/form-fields/input-field/input-field.component';
 import { UnknownFieldComponent } from './components/form-fields/unknown-field/unknown-field.component';
 import { FormFieldDirective } from './directives/form-field.directive';
+import { FormDialogComponent } from './components/dialogs/form-dialog/form-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormDialogDirective } from './directives/form-dialog.directive';
+import { ConfirmationDialogDirective } from './directives/confirmation-dialog.directive';
+import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
+import { DateFieldComponent } from './components/form-fields/date-field/date-field.component';
+import { WysiwygFieldComponent } from './components/form-fields/wysiwyg-field/wysiwyg-field.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [DialogFormComponent, FormFieldDirective, UnknownFieldComponent, InputFieldComponent, FormContainerComponent],
+  declarations: [
+    FormFieldDirective,
+    FormDialogDirective,
+    ConfirmationDialogDirective,
+    UnknownFieldComponent,
+    InputFieldComponent,
+    FormContainerComponent,
+    FormDialogComponent,
+    ConfirmationDialogComponent,
+    AlertDialogComponent,
+    DateFieldComponent,
+    WysiwygFieldComponent,
+  ],
   imports: [
-    BrowserModule,
+    CommonModule,
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -24,7 +47,12 @@ import { FormFieldDirective } from './directives/form-field.directive';
     MatInputModule,
     MatButtonModule,
     MatGridListModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    AngularEditorModule,
+    HttpClientModule,
   ],
-  exports: [DialogFormComponent, FormContainerComponent],
+  exports: [FormContainerComponent, FormDialogDirective, ConfirmationDialogDirective],
 })
 export class FormsModule {}

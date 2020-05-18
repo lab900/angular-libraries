@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../../projects/admin/src/lib/models/dataService';
-import { EditType } from '../../../../projects/admin/src/lib/models/editType';
 import { Item, Page } from '../../../../projects/admin/src/lib/models/page';
 import { Schema } from '../../../../projects/admin/src/lib/models/schema';
+import { EditType } from 'forms';
 
 const NEWS_ITEMS = [
   {
@@ -201,16 +201,15 @@ export class AdminShowcaseComponent implements OnInit {
   };
 
   public dataService = new (class implements DataService {
+    create(item: object): Promise<string> {
+      throw new Error('Method not implemented.');
+    }
     delete(item: Item): Promise<void> {
-      console.log(`deleting item ${item.id}`);
       return Promise.resolve(undefined);
     }
 
     getPage(page: number, items: number): Promise<Page<Item>> {
       return new Promise<Page<Item>>((resolve) => {
-        console.log(`${page}, ${items}`);
-        console.log(`that is from ${(page - 1) * items}, ${items} items`);
-
         setTimeout(
           () =>
             resolve({
@@ -227,7 +226,10 @@ export class AdminShowcaseComponent implements OnInit {
     }
 
     update(object: Item): Promise<void> {
-      return Promise.resolve(undefined);
+      console.log('data service is updating the item');
+      return new Promise<void>((resolve) => {
+        setTimeout(() => resolve(), 1000);
+      });
     }
   })();
 

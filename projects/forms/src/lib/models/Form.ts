@@ -2,7 +2,7 @@ import { FormField } from './FormField';
 import { FormGroup } from './FormGroup';
 
 export class Form {
-  title: string;
+  title?: string;
   fields: (FormGroup | FormField)[];
 }
 

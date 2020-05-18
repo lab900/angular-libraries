@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { EditType } from '../../models/editType';
 import { SchemaField } from '../../models/schemaField';
+import { EditType, Form } from '@lab900/forms';
+import { Schema } from '../../models/schema';
 
 @Component({
   selector: 'lab900-admin-table',
@@ -10,8 +11,10 @@ import { SchemaField } from '../../models/schemaField';
 })
 export class AdminTableComponent implements OnInit {
   @Input() loading = false;
-  @Input() fields: SchemaField[];
+  @Input() schema: Schema;
+  @Input() editForm: Form;
   @Input() data: any[];
+  @Input() editHandler: (data: any) => Promise<boolean>;
 
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
@@ -28,11 +31,9 @@ export class AdminTableComponent implements OnInit {
   public columns: SchemaField[];
   public displayedColumns: string[];
 
-  constructor() {}
-
   ngOnInit(): void {
-    this.columns = this.fields.filter((value) => value.overviewOptions?.show).map((value, index) => value);
-    this.displayedColumns = this.fields.filter((value) => value.overviewOptions?.show).map((value, index) => value.attribute);
+    this.columns = this.schema.fields.filter((value) => value.overviewOptions?.show).map((value, index) => value);
+    this.displayedColumns = this.schema.fields.filter((value) => value.overviewOptions?.show).map((value, index) => value.attribute);
     this.displayedColumns.push('edit');
     this.displayedColumns.push('delete');
   }

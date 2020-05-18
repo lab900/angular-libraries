@@ -5,11 +5,17 @@ import { UnknownFieldComponent } from '../components/form-fields/unknown-field/u
 import { EditType } from '../models/editType';
 import { FormField } from '../models/FormField';
 import { IFormComponent } from '../models/IFormComponent';
+import { WysiwygFieldComponent } from '../components/form-fields/wysiwyg-field/wysiwyg-field.component';
+import { DateFieldComponent } from '../components/form-fields/date-field/date-field.component';
 
 const mapToComponent = (field: FormField): Type<IFormComponent> => {
   switch (field.editType) {
     case EditType.Input:
       return InputFieldComponent;
+    case EditType.Wysiwyg:
+      return WysiwygFieldComponent;
+    case EditType.Date:
+      return DateFieldComponent;
     default:
       return UnknownFieldComponent;
   }

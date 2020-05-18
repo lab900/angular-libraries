@@ -24,7 +24,7 @@
         <ng-container matColumnDef="edit" stickyEnd>
             <mat-header-cell *matHeaderCellDef  class="table__cell__icon"></mat-header-cell>
             <mat-cell *matCellDef="let element" class="table__cell__icon">
-                <button mat-icon-button (click)="edit.emit(element)">
+                <button mat-icon-button lab900FormDialog [data]="element" [schema]="editForm" [submitFormHandler]="editHandler">
                     <mat-icon>edit</mat-icon>
                 </button>
             </mat-cell>
@@ -33,7 +33,7 @@
         <ng-container matColumnDef="delete" stickyEnd>
             <mat-header-cell *matHeaderCellDef  class="table__cell__icon"></mat-header-cell>
             <mat-cell *matCellDef="let element" class="table__cell__icon">
-                <button mat-icon-button (click)="delete.emit(element)">
+                <button mat-icon-button (confirmed)="delete.emit(element)" lab900ConfirmationDialog>
                     <mat-icon>delete</mat-icon>
                 </button>
             </mat-cell>
