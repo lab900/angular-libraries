@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AlertDialog } from '../../../models/alertDialog';
 
 @Component({
   selector: 'lab900-alert-dialog',
@@ -7,13 +8,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class AlertDialogComponent {
   message = '';
-  cancelButtonText = 'Cancel';
-  constructor(@Inject(MAT_DIALOG_DATA) private data: any, private dialogRef: MatDialogRef<AlertDialogComponent>) {
+  buttonText = 'Ok';
+  constructor(@Inject(MAT_DIALOG_DATA) private data: AlertDialog, private dialogRef: MatDialogRef<AlertDialogComponent>) {
     if (data) {
       this.message = data.message || this.message;
-      if (data.buttonText) {
-        this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
-      }
+      this.buttonText = data.okButtonText || this.buttonText;
     }
     this.dialogRef.updateSize('300vw', '300vw');
   }

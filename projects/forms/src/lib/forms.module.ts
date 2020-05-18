@@ -14,11 +14,13 @@ import { FormFieldDirective } from './directives/form-field.directive';
 import { FormDialogComponent } from './components/dialogs/form-dialog/form-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormDialogDirective } from './directives/form-dialog.directive';
+import { ConfirmationDialogDirective } from './directives/confirmation-dialog.directive';
 
 @NgModule({
   declarations: [
     FormFieldDirective,
     FormDialogDirective,
+    ConfirmationDialogDirective,
     UnknownFieldComponent,
     InputFieldComponent,
     FormContainerComponent,
@@ -35,6 +37,6 @@ import { FormDialogDirective } from './directives/form-dialog.directive';
     MatGridListModule,
     MatDialogModule,
   ],
-  exports: [FormContainerComponent, FormDialogDirective],
+  exports: [FormContainerComponent, FormDialogDirective, ConfirmationDialogDirective],
 })
 export class FormsModule {}
