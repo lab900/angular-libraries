@@ -1,5 +1,5 @@
 <form [formGroup]="form" class="form">
-    <p>{{schema.title}}</p>
+    <p *ngIf="schema.title">{{schema.title}}</p>
     <mat-grid-list cols="4" rowHeight="80px" gutterSize="8px">
         <mat-grid-tile
                 *ngFor="let field of schema.fields;"
@@ -13,16 +13,5 @@
                 <p>Group</p>
             </ng-container>
         </mat-grid-tile>
-        <!--mat-grid-tile [colspan]="4" [rowspan]="1">
-            <div class="form-button-group">
-                <div class="form-button">
-                    <button mat-raised-button color="secondary" (click)="cancelSubmit()">Cancel</button>
-                </div>
-                <div class="form-button">
-                    <button mat-raised-button color="primary" [disabled]="!valid" (click)="submitHandler()">Submit
-                    </button>
-                </div>
-            </div>
-        </mat-grid-tile>-->
     </mat-grid-list>
 </form>

@@ -15,6 +15,8 @@ import { FormDialogComponent } from './components/dialogs/form-dialog/form-dialo
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormDialogDirective } from './directives/form-dialog.directive';
 import { ConfirmationDialogDirective } from './directives/confirmation-dialog.directive';
+import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ConfirmationDialogDirective } from './directives/confirmation-dialog.di
     InputFieldComponent,
     FormContainerComponent,
     FormDialogComponent,
+    ConfirmationDialogComponent,
+    AlertDialogComponent,
   ],
   imports: [
     BrowserModule,

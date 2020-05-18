@@ -1,11 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Schema } from '../../models/schema';
+import { Schema, SchemaConverter } from '../../models/schema';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
-import { AdminEditComponent } from '../../components/admin-edit/admin-edit.component';
-import { ConfirmationDialogComponent } from '../../../../../forms/src/lib/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../models/dataService';
+import { Item } from '../../models/page';
+import { Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-admin-page',
@@ -13,13 +13,15 @@ import { DataService } from '../../models/dataService';
   styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent implements OnInit, OnDestroy {
-  public items: any[];
   @Input() schema: Schema;
   @Input() dataService: DataService;
+
+  public items: any[];
   public error: string;
   public loading = false;
-  private pageInfo: { currentPage: number; pageSize: number };
+  public editForm: Form;
 
+  private pageInfo: { currentPage: number; pageSize: number };
   private subscriptions: Subscription[] = [];
 
   constructor(public dialog: MatDialog) {}
@@ -29,6 +31,9 @@ export class AdminPageComponent implements OnInit, OnDestroy {
       currentPage: 1,
       pageSize: this.dataService.defaultPageSize(),
     };
+
+    this.editForm = SchemaConverter.toForm(this.schema);
+
     this.loadData();
   }
 
@@ -59,52 +64,24 @@ export class AdminPageComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  onCreate() {
-    const dialogRef = this.dialog.open(AdminEditComponent, {
-      width: '250px',
-      data: { schemaFields: this.schema.fields },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      this.loadData();
-    });
-  }
-
-  onEdit(item: any) {
-    const dialogRef = this.dialog.open(AdminEditComponent, {
-      width: '250px',
-      data: { schemaFields: this.schema.fields, data: item },
-    });
-    const afterClosed = dialogRef.afterClosed().subscribe((result) => {
-      this.loadData();
-    });
-    this.subscriptions.push(afterClosed);
-  }
+  editHandler = async (item: any): Promise<boolean> => {
+    console.log('updating item ');
+    console.log(item);
+    this.loading = true;
+    await this.dataService.update(item as Item);
+    this.loadData();
+    return true;
+  };
 
   onDelete(item: any) {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: {
-        message: 'Are you sure want to delete?',
-        buttonText: {
-          ok: 'Yes',
-          cancel: 'No',
-        },
-      },
-    });
-
-    const afterClosed = dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        this.loading = true;
-        this.dataService
-          .delete(item)
-          .then(() => this.loadData())
-          .catch((err) => {
-            console.log(err);
-            this.error = 'Oops, something went wrong.';
-            this.loading = false;
-          });
-      }
-    });
-    this.subscriptions.push(afterClosed);
+    this.loading = true;
+    this.dataService
+      .delete(item)
+      .then(() => this.loadData())
+      .catch((err) => {
+        console.log(err);
+        this.error = 'Oops, something went wrong.';
+        this.loading = false;
+      });
   }
 }

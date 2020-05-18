@@ -10,7 +10,8 @@ export class ConfirmationDialogDirective {
   @Input() okButtonText: string;
   @Input() cancelButtonText: string;
 
-  @Output() confirmed: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() confirmed: EventEmitter<void> = new EventEmitter<void>();
+  @Output() cancelled: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef, public dialog: MatDialog) {}
 
@@ -24,7 +25,11 @@ export class ConfirmationDialogDirective {
     });
 
     dialog.beforeClosed().subscribe((data) => {
-      this.confirmed.emit(!!data);
+      if (data) {
+        this.confirmed.emit();
+      } else {
+        this.cancelled.emit();
+      }
     });
   }
 }

@@ -7,24 +7,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AlertDialogComponent } from '../../../forms/src/lib/components/dialogs/alert-dialog/alert-dialog.component';
-import { ConfirmationDialogComponent } from '../../../forms/src/lib/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AdminEditComponent } from './components/admin-edit/admin-edit.component';
 import { DateDisplayComponent } from './components/date-display/date-display.component';
 import { ImageDisplayComponent } from './components/image-display/image-display.component';
 import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@lab900/forms';
 
 @NgModule({
-  declarations: [
-    AdminPageComponent,
-    AdminTableComponent,
-    AdminEditComponent,
-    AlertDialogComponent,
-    ConfirmationDialogComponent,
-    DateDisplayComponent,
-    ImageDisplayComponent,
-  ],
+  declarations: [AdminPageComponent, AdminTableComponent, DateDisplayComponent, ImageDisplayComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -34,7 +24,8 @@ import { MatCardModule } from '@angular/material/card';
     MatDialogModule,
     MatCardModule,
     MatProgressSpinnerModule,
+    FormsModule,
   ],
-  exports: [AdminPageComponent, AlertDialogComponent, ConfirmationDialogComponent],
+  exports: [AdminPageComponent],
 })
 export class AdminModule {}

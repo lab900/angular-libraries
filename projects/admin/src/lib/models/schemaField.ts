@@ -1,10 +1,12 @@
-import { EditType } from './editType';
+import { EditType } from '@lab900/forms';
+import { FieldOptions } from '../../../../forms/src/lib/models/FormField';
 
 export interface SchemaField {
   attribute: string;
   title: string;
   editType: EditType;
   overviewOptions?: OverviewOptions;
+  editOptions?: FieldOptions;
 }
 
 export interface OverviewOptions {

@@ -11,5 +11,7 @@
     "type": "git",
     "url": "git://github.com/lab900/angular-libraries.git"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@lab900/forms": "^0.1.8"
+  }
 }

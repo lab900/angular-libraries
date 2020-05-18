@@ -3,13 +3,14 @@
 </div>
 <div *ngIf="!error">
     <div class="admin-page">
-        <button mat-raised-button color="primary" (click)="onCreate()">Create</button>
+        <button mat-raised-button color="primary" lab900FormDialog [schema]="editForm" [submitFormHandler]="editHandler">Create</button>
         <lab900-admin-table
                 [loading]="loading"
-                [fields]="schema.fields"
+                [schema]="schema"
+                [editForm]="editForm"
                 [data]="items"
+                [editHandler]="editHandler"
                 (pageEvent)="onPageEvent($event)"
-                (edit)="onEdit($event)"
                 (delete)="onDelete($event)"
         ></lab900-admin-table>
     </div>
