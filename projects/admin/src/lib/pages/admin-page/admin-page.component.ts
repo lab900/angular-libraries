@@ -58,19 +58,22 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   }
 
   onPageEvent(pageEvent: PageEvent) {
-    console.log('Loading page');
-    console.log(pageEvent);
     this.pageInfo.currentPage = pageEvent.pageIndex + 1;
     this.loadData();
   }
 
   editHandler = async (item: Item): Promise<boolean> => {
-    console.log('updating item ');
-    console.log(item);
     this.loading = true;
     await this.dataService.update(item);
     this.loadData();
     return true;
+  };
+
+  createHandler = async (item: object): Promise<string> => {
+    this.loading = true;
+    const newId = await this.dataService.create(item);
+    this.loadData();
+    return newId;
   };
 
   onDelete(item: any) {

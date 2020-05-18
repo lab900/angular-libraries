@@ -22,8 +22,6 @@ export class FormDialogDirective<T> {
       },
     });
 
-    dialog.beforeClosed().subscribe((data) => {
-      console.log('dialog closing!');
-    });
+    dialog.beforeClosed().subscribe((data) => {});
   }
 }

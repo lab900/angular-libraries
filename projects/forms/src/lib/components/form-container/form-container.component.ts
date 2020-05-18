@@ -31,7 +31,6 @@ export class FormContainerComponent<T> implements OnInit {
     );
 
     if (this.data) {
-      console.log('Setting value');
       this.form.patchValue(this.data);
     }
   }

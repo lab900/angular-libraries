@@ -201,8 +201,10 @@ export class AdminShowcaseComponent implements OnInit {
   };
 
   public dataService = new (class implements DataService {
+    create(item: object): Promise<string> {
+      throw new Error('Method not implemented.');
+    }
     delete(item: Item): Promise<void> {
-      console.log(`deleting item ${item.id}`);
       return Promise.resolve(undefined);
     }
 

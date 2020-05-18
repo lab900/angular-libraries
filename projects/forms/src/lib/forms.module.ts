@@ -6,7 +6,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormContainerComponent } from './components/form-container/form-container.component';
 import { InputFieldComponent } from './components/form-fields/input-field/input-field.component';
 import { UnknownFieldComponent } from './components/form-fields/unknown-field/unknown-field.component';
@@ -21,6 +20,9 @@ import { DateFieldComponent } from './components/form-fields/date-field/date-fie
 import { WysiwygFieldComponent } from './components/form-fields/wysiwyg-field/wysiwyg-field.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     WysiwygFieldComponent,
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -48,6 +50,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    AngularEditorModule,
+    HttpClientModule,
   ],
   exports: [FormContainerComponent, FormDialogDirective, ConfirmationDialogDirective],
 })

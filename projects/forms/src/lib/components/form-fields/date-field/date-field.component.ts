@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 
 @Component({
-  selector: 'lib-date-field',
+  selector: 'lab900-date-field',
   templateUrl: './date-field.component.html',
   styleUrls: ['./date-field.component.css'],
 })

@@ -18,7 +18,7 @@ export class FormsShowcaseComponent implements OnInit {
     this.formSchema = {
       title: 'Enter your name.',
       fields: [
-        { attribute: 'first', editType: EditType.Input, title: 'First Name', options: { required: true } },
+        { attribute: 'first', editType: EditType.Input, title: 'First Name', options: { required: true, hide: true } },
         { attribute: 'last', editType: EditType.Input, title: 'Last Name', options: { required: true } },
         { attribute: 'postedOn', editType: EditType.Date, title: 'Posted On', options: { required: true } },
         { attribute: 'content', editType: EditType.Wysiwyg, title: 'Message', options: { required: true } },
@@ -29,7 +29,6 @@ export class FormsShowcaseComponent implements OnInit {
 
   submitForm(data: any): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
-      console.log('Submitted');
       console.log(data);
       setTimeout(() => resolve(true), 1000);
     });

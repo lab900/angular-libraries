@@ -1,5 +1,4 @@
-import { EditType } from '@lab900/forms';
-import { FieldOptions } from '../../../../forms/src/lib/models/FormField';
+import { EditType, FieldOptions } from '@lab900/forms';
 
 export interface SchemaField {
   attribute: string;
