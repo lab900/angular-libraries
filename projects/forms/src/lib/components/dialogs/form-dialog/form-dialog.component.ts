@@ -5,7 +5,7 @@ import { DialogFormData } from '../../../models/dialogFormData';
 @Component({
   selector: 'lab900-form-dialog',
   templateUrl: './form-dialog.component.html',
-  styleUrls: ['./form-dialog.component.css'],
+  styleUrls: ['./form-dialog.component.scss'],
 })
 export class FormDialogComponent<T> {
   public dialogFormData: DialogFormData<T>;

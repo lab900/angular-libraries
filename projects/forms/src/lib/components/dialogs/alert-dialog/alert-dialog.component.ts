@@ -5,6 +5,7 @@ import { AlertDialog } from '../../../models/alertDialog';
 @Component({
   selector: 'lab900-alert-dialog',
   templateUrl: './alert-dialog.component.html',
+  styleUrls: ['./alert-dialog.component.scss'],
 })
 export class AlertDialogComponent {
   message = '';

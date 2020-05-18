@@ -5,6 +5,7 @@ import { ConfirmationDialog } from '../../../models/confirmationDialog';
 @Component({
   selector: 'lab900-confirmation-dialog',
   templateUrl: './confirmation-dialog.component.html',
+  styleUrls: ['./confirmation-dialog.component.scss'],
 })
 export class ConfirmationDialogComponent {
   message = 'Are you sure?';

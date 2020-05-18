@@ -12,6 +12,6 @@
     "url": "git://github.com/lab900/angular-libraries.git"
   },
   "dependencies": {
-    "@lab900/forms": "^0.1.8"
+    "@lab900/forms": "^0.1.9"
   }
 }
