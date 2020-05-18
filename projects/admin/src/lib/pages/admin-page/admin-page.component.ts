@@ -64,11 +64,11 @@ export class AdminPageComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  editHandler = async (item: any): Promise<boolean> => {
+  editHandler = async (item: Item): Promise<boolean> => {
     console.log('updating item ');
     console.log(item);
     this.loading = true;
-    await this.dataService.update(item as Item);
+    await this.dataService.update(item);
     this.loadData();
     return true;
   };
