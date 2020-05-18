@@ -8,10 +8,11 @@ import { FormsModule } from '../../projects/forms/src/lib/forms.module';
 import { AppComponent } from './app.component';
 import { FormsShowcaseComponent } from './components/forms-showcase/forms-showcase.component';
 import { AdminShowcaseComponent } from './components/admin-showcase/admin-showcase.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AppComponent, AdminShowcaseComponent, FormsShowcaseComponent],
-  imports: [BrowserModule, AdminModule, BrowserAnimationsModule, FormsModule, MatTabsModule],
+  imports: [BrowserModule, AdminModule, BrowserAnimationsModule, FormsModule, MatTabsModule, MatButtonModule],
   providers: [],
   bootstrap: [AppComponent],
 })

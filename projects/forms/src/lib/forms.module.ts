@@ -7,14 +7,23 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
-import { DialogFormComponent } from './components/dialog-form/dialog-form.component';
 import { FormContainerComponent } from './components/form-container/form-container.component';
 import { InputFieldComponent } from './components/form-fields/input-field/input-field.component';
 import { UnknownFieldComponent } from './components/form-fields/unknown-field/unknown-field.component';
 import { FormFieldDirective } from './directives/form-field.directive';
+import { FormDialogComponent } from './components/dialogs/form-dialog/form-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormDialogDirective } from './directives/form-dialog.directive';
 
 @NgModule({
-  declarations: [DialogFormComponent, FormFieldDirective, UnknownFieldComponent, InputFieldComponent, FormContainerComponent],
+  declarations: [
+    FormFieldDirective,
+    FormDialogDirective,
+    UnknownFieldComponent,
+    InputFieldComponent,
+    FormContainerComponent,
+    FormDialogComponent,
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -24,7 +33,8 @@ import { FormFieldDirective } from './directives/form-field.directive';
     MatInputModule,
     MatButtonModule,
     MatGridListModule,
+    MatDialogModule,
   ],
-  exports: [DialogFormComponent, FormContainerComponent],
+  exports: [FormContainerComponent, FormDialogDirective],
 })
 export class FormsModule {}

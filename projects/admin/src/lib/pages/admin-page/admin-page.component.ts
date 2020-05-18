@@ -3,7 +3,7 @@ import { Schema } from '../../models/schema';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminEditComponent } from '../../components/admin-edit/admin-edit.component';
-import { ConfirmationDialogComponent } from '../../components/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../../../../../forms/src/lib/components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../models/dataService';
 

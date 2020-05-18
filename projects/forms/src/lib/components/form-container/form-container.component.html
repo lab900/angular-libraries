@@ -1,4 +1,4 @@
-<form [formGroup]="form" class="form" [hidden]="success">
+<form [formGroup]="form" class="form">
     <p>{{schema.title}}</p>
     <mat-grid-list cols="4" rowHeight="80px" gutterSize="8px">
         <mat-grid-tile
@@ -13,7 +13,7 @@
                 <p>Group</p>
             </ng-container>
         </mat-grid-tile>
-        <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <!--mat-grid-tile [colspan]="4" [rowspan]="1">
             <div class="form-button-group">
                 <div class="form-button">
                     <button mat-raised-button color="secondary" (click)="cancelSubmit()">Cancel</button>
@@ -23,6 +23,6 @@
                     </button>
                 </div>
             </div>
-        </mat-grid-tile>
+        </mat-grid-tile>-->
     </mat-grid-list>
 </form>

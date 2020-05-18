@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup as NgFormGroup, Validators } from '@angular/forms';
 import { defaultValue } from '../../models/editType';
 import { Form, isFormField } from '../../models/Form';
 import { FormField } from '../../models/FormField';
 import { FormGroup } from '../../models/FormGroup';
-import { FormSubmit } from '../../models/FormSubmit';
 
 @Component({
   selector: 'lab900-form-container',
@@ -13,9 +12,7 @@ import { FormSubmit } from '../../models/FormSubmit';
 })
 export class FormContainerComponent<T> implements OnInit {
   @Input() schema: Form;
-
-  @Output() submitForm: EventEmitter<FormSubmit<T>> = new EventEmitter<FormSubmit<T>>();
-  @Output() cancel: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() data: T;
 
   form: NgFormGroup;
 
@@ -32,27 +29,22 @@ export class FormContainerComponent<T> implements OnInit {
         return formGroupObject;
       }, {}),
     );
+
+    if (this.data) {
+      console.log('Setting value');
+      this.form.setValue(this.data);
+    }
   }
 
   isFormField(formField: FormGroup | FormField): boolean {
     return isFormField(formField);
   }
 
-  get success() {
-    return false;
-  }
-
   get valid() {
     return this.form.valid;
   }
 
-  cancelSubmit() {
-    this.cancel.emit(true);
-  }
-
-  submitHandler() {
-    if (this.valid) {
-      this.submitForm.emit({ type: 'new', data: this.form.value as T });
-    }
+  get value(): T {
+    return this.form.value as T;
   }
 }

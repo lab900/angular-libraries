@@ -10,7 +10,7 @@ export class FormComponent implements IFormComponent {
   group: FormGroup;
   schema: FormField;
 
-  get vaild(): boolean {
+  get valid(): boolean {
     return this.group.get(this.schema.attribute).valid;
   }
 
