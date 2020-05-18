@@ -32,7 +32,7 @@ export class FormContainerComponent<T> implements OnInit {
 
     if (this.data) {
       console.log('Setting value');
-      this.form.setValue(this.data);
+      this.form.patchValue(this.data);
     }
   }
 

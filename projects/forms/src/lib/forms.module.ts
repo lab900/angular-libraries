@@ -17,6 +17,10 @@ import { FormDialogDirective } from './directives/form-dialog.directive';
 import { ConfirmationDialogDirective } from './directives/confirmation-dialog.directive';
 import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
 import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
+import { DateFieldComponent } from './components/form-fields/date-field/date-field.component';
+import { WysiwygFieldComponent } from './components/form-fields/wysiwyg-field/wysiwyg-field.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,8 @@ import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-di
     FormDialogComponent,
     ConfirmationDialogComponent,
     AlertDialogComponent,
+    DateFieldComponent,
+    WysiwygFieldComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +46,8 @@ import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-di
     MatButtonModule,
     MatGridListModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [FormContainerComponent, FormDialogDirective, ConfirmationDialogDirective],
 })

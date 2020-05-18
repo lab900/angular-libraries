@@ -3,7 +3,7 @@ import { EditType } from '../../../../projects/forms/src/lib/models/editType';
 import { Form } from '../../../../projects/forms/src/lib/models/Form';
 import { FormSubmit } from '../../../../projects/forms/src/lib/models/FormSubmit';
 
-const EXAMPLE_DATA = { last: 'Cosemans', first: 'Johan' };
+const EXAMPLE_DATA = { last: 'Cosemans', first: 'Johan', postedOn: new Date(), content: '<strong>hello</strong> world' };
 
 @Component({
   selector: 'lab900-forms-showcase',
@@ -20,6 +20,8 @@ export class FormsShowcaseComponent implements OnInit {
       fields: [
         { attribute: 'first', editType: EditType.Input, title: 'First Name', options: { required: true } },
         { attribute: 'last', editType: EditType.Input, title: 'Last Name', options: { required: true } },
+        { attribute: 'postedOn', editType: EditType.Date, title: 'Posted On', options: { required: true } },
+        { attribute: 'content', editType: EditType.Wysiwyg, title: 'Message', options: { required: true } },
       ],
     };
     this.exampleData = EXAMPLE_DATA;
