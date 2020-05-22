@@ -1,7 +1,7 @@
 import { ComponentFactoryResolver, ComponentRef, Directive, Input, OnChanges, OnInit, Type, ViewContainerRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DateFieldComponent } from '../components/form-fields/date-field/date-field.component';
-import { ImageUploaderComponent } from '../components/form-fields/image-uploader/image-uploader.component';
+import { FileFieldComponent } from '../components/form-fields/file-field/file-field.component';
 import { InputFieldComponent } from '../components/form-fields/input-field/input-field.component';
 import { UnknownFieldComponent } from '../components/form-fields/unknown-field/unknown-field.component';
 import { WysiwygFieldComponent } from '../components/form-fields/wysiwyg-field/wysiwyg-field.component';
@@ -17,8 +17,8 @@ const mapToComponent = (field: FormField): Type<IFormComponent> => {
       return WysiwygFieldComponent;
     case EditType.Date:
       return DateFieldComponent;
-    case EditType.Image:
-      return ImageUploaderComponent;
+    case EditType.File:
+      return FileFieldComponent;
     default:
       return UnknownFieldComponent;
   }
