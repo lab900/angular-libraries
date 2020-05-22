@@ -14,30 +14,37 @@ import { BaseControlValueAccessor } from '../../../utils/BaseControlValueAccesso
 export class MatFileFieldComponent extends BaseControlValueAccessor<File> implements OnInit, OnDestroy, MatFormFieldControl<File> {
   static nextId = 0;
   @HostBinding() id = `lab900-file-field-${MatFileFieldComponent.nextId++}`;
-
-  @Input() formControlName: string;
-
   readonly controlType: string = 'lab900-file-field';
-  readonly disabled: boolean = false;
-  private placeholderStore: string;
-  readonly required: boolean = false;
   readonly stateChanges = new Subject<void>();
 
+  private placeholderStore: string;
+
   public focused = false;
+  readonly disabled: boolean = false;
+  readonly required: boolean = false;
+
+  open: boolean = false;
+
+  @Input() formControlName: string;
 
   constructor(private host: ElementRef, private fm: FocusMonitor, @Optional() @Self() public ngControl: NgControl) {
     super();
     this.host = host;
+
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
-    fm.monitor(host.nativeElement, true).subscribe((origin) => {
+
+    this.disabled = ngControl.disabled;
+    this.required = ngControl.hasError('required');
+  }
+
+  ngOnInit(): void {
+    this.fm.monitor(this.host.nativeElement, true).subscribe((origin) => {
       this.focused = !!origin;
       this.stateChanges.next();
     });
   }
-
-  ngOnInit(): void {}
 
   ngOnDestroy() {
     this.fm.stopMonitoring(this.host.nativeElement);
@@ -68,13 +75,16 @@ export class MatFileFieldComponent extends BaseControlValueAccessor<File> implem
   }
 
   get errorState(): boolean {
-    return false;
+    return !this.open && this.ngControl.touched && !!this.ngControl.errors;
   }
 
   onContainerClick(event: MouseEvent): void {
     const inputElement: HTMLElement = this.host.nativeElement.querySelector('input');
-
     inputElement.click();
+    this.focused = true;
+    this.open = true;
+    this.onTouched();
+    this.stateChanges.next();
   }
 
   setDescribedByIds(ids: string[]): void {}
@@ -83,6 +93,8 @@ export class MatFileFieldComponent extends BaseControlValueAccessor<File> implem
     const file = event && event.item(0);
     this.value = file;
     this.onChange(file);
+    this.focused = false;
+    this.open = false;
     this.stateChanges.next();
   }
 }
