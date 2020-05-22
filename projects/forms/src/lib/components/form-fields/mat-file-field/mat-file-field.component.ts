@@ -1,9 +1,9 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit, Optional, Self } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Component, ElementRef, HostListener, Input, Optional, Self } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
-import { Subject } from 'rxjs';
-import { BaseControlValueAccessor } from '../../../utils/BaseControlValueAccessor';
+import { AbstractMaterialReactiveFormControl } from '../../../models/forms/AbstractMaterialReactiveFormControl';
 
 @Component({
   selector: 'lab900-mat-file-field',
@@ -11,76 +11,17 @@ import { BaseControlValueAccessor } from '../../../utils/BaseControlValueAccesso
   styleUrls: ['./mat-file-field.component.scss'],
   providers: [{ provide: MatFormFieldControl, useExisting: MatFileFieldComponent }],
 })
-export class MatFileFieldComponent extends BaseControlValueAccessor<File> implements OnInit, OnDestroy, MatFormFieldControl<File> {
-  static nextId = 0;
-  @HostBinding() id = `lab900-file-field-${MatFileFieldComponent.nextId++}`;
-  readonly controlType: string = 'lab900-file-field';
-  readonly stateChanges = new Subject<void>();
-  @HostBinding('attr.aria-describedby') describedBy = '';
-
-  private placeholderStore: string;
-
-  public focused = false;
-  readonly disabled: boolean = false;
-  readonly required: boolean = false;
-
+export class MatFileFieldComponent extends AbstractMaterialReactiveFormControl<File> {
   open = false;
 
   @Input() formControlName: string;
 
-  constructor(private host: ElementRef, private fm: FocusMonitor, @Optional() @Self() public ngControl: NgControl) {
-    super();
-    this.host = host;
-
-    if (this.ngControl != null) {
-      this.ngControl.valueAccessor = this;
-    }
-
-    this.disabled = ngControl.disabled;
-    this.required = ngControl.hasError('required');
-  }
-
-  ngOnInit(): void {
-    this.fm.monitor(this.host.nativeElement, true).subscribe((origin) => {
-      this.focused = !!origin;
-      this.stateChanges.next();
-    });
-  }
-
-  ngOnDestroy() {
-    this.fm.stopMonitoring(this.host.nativeElement);
-    this.stateChanges.complete();
-  }
-
-  @HostBinding('class.mat-form-field-should-float')
-  get shouldLabelFloat() {
-    return this.focused || !this.empty || this.placeholderStore !== undefined;
-  }
-
-  setDescribedByIds(ids: string[]) {
-    this.describedBy = ids.join(' ');
-  }
-
-  @Input()
-  get placeholder() {
-    return this.placeholderStore;
-  }
-
-  set placeholder(plh: string) {
-    this.placeholderStore = plh;
-    this.stateChanges.next();
-  }
-
-  get autofilled(): boolean {
-    return false;
-  }
-
-  get empty(): boolean {
-    return !this.value;
+  constructor(host: ElementRef, fm: FocusMonitor, @Optional() @Self() ngControl: NgControl) {
+    super('lab900-file-field', host, fm, ngControl);
   }
 
   get errorState(): boolean {
-    return !this.open && this.ngControl.touched && !!this.ngControl.errors;
+    return !this.open && super.errorState;
   }
 
   onContainerClick(event: MouseEvent): void {
@@ -94,10 +35,18 @@ export class MatFileFieldComponent extends BaseControlValueAccessor<File> implem
 
   @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
     const file = event && event.item(0);
-    this.value = file;
-    this.onChange(file);
+    this.value = coerceBooleanProperty(this.value) && !coerceBooleanProperty(file) ? this.value : file;
+    this.onChange(this.value);
     this.focused = false;
     this.open = false;
+    this.stateChanges.next();
+  }
+
+  clear(event) {
+    event.stopPropagation();
+    this.value = null;
+    this.open = false;
+    this.focused = false;
     this.stateChanges.next();
   }
 }

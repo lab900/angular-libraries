@@ -1,8 +1,9 @@
+import { Input } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
 export class BaseControlValueAccessor<T> implements ControlValueAccessor {
-  public disabled = false;
   public value: T;
+  disabledStore: boolean;
 
   /**
    * Call when value has changed programmatically
@@ -28,5 +29,14 @@ export class BaseControlValueAccessor<T> implements ControlValueAccessor {
 
   public setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  @Input()
+  get disabled(): boolean {
+    return this.disabledStore;
+  }
+
+  set disabled(newValue: boolean) {
+    this.disabledStore = newValue;
   }
 }
