@@ -19,7 +19,7 @@ export class MatFileFieldComponent extends BaseControlValueAccessor<File> implem
 
   readonly controlType: string = 'lab900-file-field';
   readonly disabled: boolean = false;
-  private _placeholder: string;
+  private placeholderStore: string;
   readonly required: boolean = false;
   readonly stateChanges = new Subject<void>();
 
@@ -46,16 +46,16 @@ export class MatFileFieldComponent extends BaseControlValueAccessor<File> implem
 
   @HostBinding('class.mat-form-field-should-float')
   get shouldLabelFloat() {
-    return this.focused || !this.empty || this._placeholder !== undefined;
+    return this.focused || !this.empty || this.placeholderStore !== undefined;
   }
 
   @Input()
   get placeholder() {
-    return this._placeholder;
+    return this.placeholderStore;
   }
 
   set placeholder(plh: string) {
-    this._placeholder = plh;
+    this.placeholderStore = plh;
     this.stateChanges.next();
   }
 
