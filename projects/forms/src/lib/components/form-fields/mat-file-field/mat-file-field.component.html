@@ -1,0 +1,5 @@
+<div>
+    <span *ngIf="placeholder && empty">{{placeholder}}</span>
+    <span *ngIf="!empty">{{value.name}}</span>
+    <input hidden [id]="id" class="file-input" type="file">
+</div>

@@ -23,6 +23,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { ImageUploaderComponent } from './components/form-fields/image-uploader/image-uploader.component';
+import { MatFileFieldComponent } from './components/form-fields/mat-file-field/mat-file-field.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { CommonModule } from '@angular/common';
     AlertDialogComponent,
     DateFieldComponent,
     WysiwygFieldComponent,
+    ImageUploaderComponent,
+    MatFileFieldComponent,
   ],
   imports: [
     CommonModule,

@@ -1,12 +1,12 @@
 <form [formGroup]="form" class="form">
     <p *ngIf="schema.title">{{schema.title}}</p>
 
-        <div *ngFor="let field of schema.fields;">
-            <ng-container *ngIf="isFormField(field)">
-                <ng-container lab900FormField [schema]="field" [group]="form" class="form-field"></ng-container>
-            </ng-container>
-            <ng-container *ngIf="!isFormField(field)">
-                <p>Group</p>
-            </ng-container>
-        </div>
+    <div *ngFor="let field of schema.fields;">
+        <ng-container *ngIf="isFormField(field)">
+            <ng-container lab900FormField [schema]="field" [group]="form" class="form-field"></ng-container>
+        </ng-container>
+        <ng-container *ngIf="!isFormField(field)">
+            <p>Group</p>
+        </ng-container>
+    </div>
 </form>
