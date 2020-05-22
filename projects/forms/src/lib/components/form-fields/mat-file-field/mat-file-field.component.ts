@@ -16,6 +16,7 @@ export class MatFileFieldComponent extends BaseControlValueAccessor<File> implem
   @HostBinding() id = `lab900-file-field-${MatFileFieldComponent.nextId++}`;
   readonly controlType: string = 'lab900-file-field';
   readonly stateChanges = new Subject<void>();
+  @HostBinding('attr.aria-describedby') describedBy = '';
 
   private placeholderStore: string;
 
@@ -23,7 +24,7 @@ export class MatFileFieldComponent extends BaseControlValueAccessor<File> implem
   readonly disabled: boolean = false;
   readonly required: boolean = false;
 
-  open: boolean = false;
+  open = false;
 
   @Input() formControlName: string;
 
@@ -56,6 +57,10 @@ export class MatFileFieldComponent extends BaseControlValueAccessor<File> implem
     return this.focused || !this.empty || this.placeholderStore !== undefined;
   }
 
+  setDescribedByIds(ids: string[]) {
+    this.describedBy = ids.join(' ');
+  }
+
   @Input()
   get placeholder() {
     return this.placeholderStore;
@@ -86,8 +91,6 @@ export class MatFileFieldComponent extends BaseControlValueAccessor<File> implem
     this.onTouched();
     this.stateChanges.next();
   }
-
-  setDescribedByIds(ids: string[]): void {}
 
   @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
     const file = event && event.item(0);
