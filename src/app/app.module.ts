@@ -11,10 +11,11 @@ import { FormsShowcaseComponent } from './components/forms-showcase/forms-showca
 import { AdminShowcaseComponent } from './components/admin-showcase/admin-showcase.component';
 import { MatButtonModule } from '@angular/material/button';
 import { UiShowcaseComponent } from './components/ui-showcase/ui-showcase.component';
+import { AlertModule } from '../../projects/ui/src/lib/alert/alert.module';
 
 @NgModule({
   declarations: [AppComponent, AdminShowcaseComponent, FormsShowcaseComponent, UiShowcaseComponent],
-  imports: [BrowserModule, AdminModule, BrowserAnimationsModule, FormsModule, MatTabsModule, MatButtonModule, DialogModule],
+  imports: [BrowserModule, AdminModule, BrowserAnimationsModule, FormsModule, MatTabsModule, MatButtonModule, DialogModule, AlertModule],
   providers: [],
   bootstrap: [AppComponent],
 })
