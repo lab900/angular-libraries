@@ -1,0 +1,11 @@
+.file {
+  height: 18px;
+  &__placeholder {}
+  &__name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+  }
+}

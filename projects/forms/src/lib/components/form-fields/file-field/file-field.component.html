@@ -1,9 +1,8 @@
 <mat-form-field [formGroup]="group" appearance="standard"
                 [ngStyle]="schema?.options?.hide ? { 'display': 'none' } : {}">
     <mat-label>{{schema.title}}</mat-label>
-    <label>
-        <input matInput [placeholder]="schema?.options?.hint" [formControlName]="schema.attribute">
-    </label>
-    <mat-hint></mat-hint>
+    <lab900-mat-file-field #fileField [formControlName]="schema.attribute"></lab900-mat-file-field>
+    <mat-icon matSuffix>folder</mat-icon>
     <mat-error *ngIf="required">Field is required.</mat-error>
+    <mat-icon *ngIf="!fileField.empty" matSuffix (click)="fileField.clear($event)">close</mat-icon>
 </mat-form-field>
