@@ -20,7 +20,8 @@ export class FormsShowcaseComponent implements OnInit {
       fields: [
         { attribute: 'first', editType: EditType.Input, title: 'First Name', options: { hide: true } },
         { attribute: 'last', editType: EditType.Input, title: 'Last Name', options: { required: true } },
-        { attribute: 'file', editType: EditType.File, title: 'PDF', options: { required: true } },
+        { attribute: 'last2', editType: EditType.Input, title: 'Last Name', options: { required: true } },
+        { attribute: 'file', editType: EditType.File, title: 'Last Name', options: { required: true } },
         { attribute: 'postedOn', editType: EditType.Date, title: 'Posted On', options: { required: true } },
         { attribute: 'content', editType: EditType.Wysiwyg, title: 'Message', options: { required: true } },
       ],
