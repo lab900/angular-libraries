@@ -10,12 +10,9 @@ import { FormContainerComponent } from './components/form-container/form-contain
 import { InputFieldComponent } from './components/form-fields/input-field/input-field.component';
 import { UnknownFieldComponent } from './components/form-fields/unknown-field/unknown-field.component';
 import { FormFieldDirective } from './directives/form-field.directive';
-import { FormDialogComponent } from './components/dialogs/form-dialog/form-dialog.component';
+import { FormDialogComponent } from './components/form-dialog/form-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormDialogDirective } from './directives/form-dialog.directive';
-import { ConfirmationDialogDirective } from './directives/confirmation-dialog.directive';
-import { ConfirmationDialogComponent } from './components/dialogs/confirmation-dialog/confirmation-dialog.component';
-import { AlertDialogComponent } from './components/dialogs/alert-dialog/alert-dialog.component';
 import { DateFieldComponent } from './components/form-fields/date-field/date-field.component';
 import { WysiwygFieldComponent } from './components/form-fields/wysiwyg-field/wysiwyg-field.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -28,13 +25,10 @@ import { CommonModule } from '@angular/common';
   declarations: [
     FormFieldDirective,
     FormDialogDirective,
-    ConfirmationDialogDirective,
     UnknownFieldComponent,
     InputFieldComponent,
     FormContainerComponent,
     FormDialogComponent,
-    ConfirmationDialogComponent,
-    AlertDialogComponent,
     DateFieldComponent,
     WysiwygFieldComponent,
   ],
@@ -53,6 +47,6 @@ import { CommonModule } from '@angular/common';
     AngularEditorModule,
     HttpClientModule,
   ],
-  exports: [FormContainerComponent, FormDialogDirective, ConfirmationDialogDirective, AlertDialogComponent, ConfirmationDialogComponent],
+  exports: [FormContainerComponent, FormDialogDirective],
 })
 export class FormsModule {}

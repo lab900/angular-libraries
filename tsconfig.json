@@ -11,7 +11,10 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "lib": ["es2018", "dom"],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "paths": {
       "angular-libraries": [
         "dist/angular-libraries/angular-libraries",
@@ -20,6 +23,10 @@
       "forms": [
         "dist/forms/forms",
         "dist/forms"
+      ],
+      "ui": [
+        "dist/ui/ui",
+        "dist/ui"
       ]
     }
   },

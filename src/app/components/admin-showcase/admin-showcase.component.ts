@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../../projects/admin/src/lib/models/dataService';
 import { Item, Page } from '../../../../projects/admin/src/lib/models/page';
 import { Schema } from '../../../../projects/admin/src/lib/models/schema';
-import { EditType } from 'forms';
+import { EditType } from '../../../../projects/forms/src/lib/models/editType';
 
 const NEWS_ITEMS = [
   {

@@ -1,7 +1,7 @@
 ## Creating a new library
 
 1) from the folder /:
-ng generate library AngularAdmin
+ng generate library admin
 
 --> This will create the library on /projects/admin
 

@@ -1,6 +1,6 @@
 import { ComponentFactoryResolver, Directive, EventEmitter, HostListener, Input, Output, ViewContainerRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from '../components/dialogs/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
 
 @Directive({
   selector: '[lab900ConfirmationDialog]',

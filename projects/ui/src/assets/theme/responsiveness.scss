@@ -1,0 +1,23 @@
+/// @group grid
+
+$breakpoints: (
+				xsmall: 359px,
+				small: 599px,
+				medium: 959px,
+				large: 1279px,
+				xlarge: 1919px
+);
+
+$gutter: (
+				main: 5px,
+				secondary: 6px,
+	// the material value is the padding used by material components
+				material: 24px
+);
+
+$margin: (
+				default: 20px,
+				half: 10px
+);
+
+$grid-cols: 12;
