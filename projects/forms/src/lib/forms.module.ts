@@ -57,6 +57,6 @@ import { FormFieldDirective } from './directives/form-field.directive';
     AngularEditorModule,
     HttpClientModule,
   ],
-  exports: [FormContainerComponent, FormDialogDirective, ConfirmationDialogDirective],
+  exports: [FormContainerComponent, FormDialogDirective, ConfirmationDialogDirective, AlertDialogComponent, ConfirmationDialogComponent],
 })
 export class FormsModule {}

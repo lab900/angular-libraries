@@ -15,7 +15,7 @@ export class ConfirmationDialogComponent {
     if (data) {
       this.message = data.message || this.message;
       this.confirmButtonText = data.okButtonText || this.confirmButtonText;
-      this.cancelButtonText = data.cancelButtonText || this.confirmButtonText;
+      this.cancelButtonText = data.cancelButtonText || this.cancelButtonText;
     }
   }
 
