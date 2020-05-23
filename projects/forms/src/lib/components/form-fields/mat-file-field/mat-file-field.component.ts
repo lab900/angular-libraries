@@ -20,7 +20,7 @@ export class MatFileFieldComponent extends AbstractMaterialReactiveFormControl<F
     super('lab900-file-field', host, fm, ngControl);
   }
 
-  get errorState(): boolean {
+  public get errorState(): boolean {
     return !this.open && super.errorState;
   }
 

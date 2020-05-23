@@ -32,11 +32,11 @@ export class BaseControlValueAccessor<T> implements ControlValueAccessor {
   }
 
   @Input()
-  get disabled(): boolean {
+  public get disabled(): boolean {
     return this.disabledStore;
   }
 
-  set disabled(newValue: boolean) {
+  public set disabled(newValue: boolean) {
     this.disabledStore = newValue;
   }
 }

@@ -25,7 +25,7 @@ export class UiShowcaseComponent implements OnInit {
   alert(message: string) {
     this.dialog.open(AlertDialogComponent, {
       data: {
-        message: message,
+        message,
         okButtonText: 'Thanks!',
       },
     });
