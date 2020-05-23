@@ -24,6 +24,10 @@
         "dist/forms/forms",
         "dist/forms"
       ],
+      "image-uploader": [
+        "dist/image-uploader/image-uploader",
+        "dist/image-uploader"
+      ],
       "ui": [
         "dist/ui/ui",
         "dist/ui"

@@ -211,6 +211,46 @@
         }
       }
     },
+    "ImageUploader": {
+      "projectType": "library",
+      "root": "projects/image-uploader",
+      "sourceRoot": "projects/image-uploader/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/image-uploader/tsconfig.lib.json",
+            "project": "projects/image-uploader/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/image-uploader/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/image-uploader/src/test.ts",
+            "tsConfig": "projects/image-uploader/tsconfig.spec.json",
+            "karmaConfig": "projects/image-uploader/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/image-uploader/tsconfig.lib.json",
+              "projects/image-uploader/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "ui": {
       "projectType": "library",
       "root": "projects/ui",
@@ -252,8 +292,5 @@
       }
     }
   },
-  "defaultProject": "angular-libraries",
-  "cli": {
-    "analytics": false
-  }
+  "defaultProject": "angular-libraries"
 }
