@@ -74,7 +74,7 @@ export abstract class AbstractMaterialReactiveFormControl<T> extends BaseControl
   }
 
   set disabled(newValue: boolean) {
-    super.disabled = newValue;
+    this.disabledStore = newValue;
     this.stateChanges.next();
   }
 

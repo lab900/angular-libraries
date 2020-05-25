@@ -3,7 +3,7 @@ import { ControlValueAccessor } from '@angular/forms';
 
 export class BaseControlValueAccessor<T> implements ControlValueAccessor {
   public value: T;
-  disabledStore: boolean;
+  protected disabledStore: boolean;
 
   /**
    * Call when value has changed programmatically

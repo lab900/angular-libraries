@@ -21,7 +21,7 @@ export class MatFileFieldComponent extends AbstractMaterialReactiveFormControl<F
   }
 
   get errorState(): boolean {
-    return !this.open && super.errorState;
+    return !this.open && this.ngControl.touched && !!this.ngControl.errors;
   }
 
   onContainerClick(event: MouseEvent): void {
