@@ -45,48 +45,48 @@ export abstract class AbstractMaterialReactiveFormControl<T> extends BaseControl
   abstract onContainerClick(event: MouseEvent): void;
 
   @Input()
-  public get required(): boolean {
+  get required(): boolean {
     return this.requiredStore;
   }
 
-  public set required(newValue: boolean) {
+  set required(newValue: boolean) {
     this.requiredStore = newValue;
     this.stateChanges.next();
   }
 
   @HostBinding('class.mat-form-field-should-float')
-  public get shouldLabelFloat() {
+  get shouldLabelFloat() {
     return this.focused || !this.empty || this.placeholderStore !== undefined;
   }
 
-  public setDescribedByIds(ids: string[]) {
+  setDescribedByIds(ids: string[]) {
     this.describedBy = ids.join(' ');
   }
 
   @Input()
-  public get placeholder() {
+  get placeholder() {
     return this.placeholderStore;
   }
 
-  public set placeholder(plh: string) {
+  set placeholder(plh: string) {
     this.placeholderStore = plh;
     this.stateChanges.next();
   }
 
-  public set disabled(newValue: boolean) {
-    super.disabled = newValue;
+  set disabled(newValue: boolean) {
+    this.disabledStore = newValue;
     this.stateChanges.next();
   }
 
-  public get autofilled(): boolean {
+  get autofilled(): boolean {
     return false;
   }
 
-  public get empty(): boolean {
+  get empty(): boolean {
     return !this.value;
   }
 
-  public get errorState(): boolean {
+  get errorState(): boolean {
     return this.ngControl.touched && !!this.ngControl.errors;
   }
 }
