@@ -20,8 +20,8 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   public error: string;
   public loading = false;
   public editForm: Form;
+  public pageInfo: { currentPage: number; pageSize: number; hasMore?: boolean };
 
-  private pageInfo: { currentPage: number; pageSize: number };
   private subscriptions: Subscription[] = [];
 
   constructor(public dialog: MatDialog) {}
@@ -48,6 +48,7 @@ export class AdminPageComponent implements OnInit, OnDestroy {
       .getPage(this.pageInfo.currentPage, this.pageInfo.pageSize)
       .then((page) => {
         this.items = page.items;
+        this.pageInfo.hasMore = page.hasMore;
         this.loading = false;
       })
       .catch((err) => {

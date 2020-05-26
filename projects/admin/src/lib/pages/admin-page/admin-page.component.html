@@ -10,6 +10,7 @@
                 [editForm]="editForm"
                 [data]="items"
                 [editHandler]="editHandler"
+                [hasMore]="pageInfo.hasMore"
                 (pageEvent)="onPageEvent($event)"
                 (delete)="onDelete($event)"
         ></lab900-admin-table>

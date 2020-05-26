@@ -15,6 +15,7 @@ export class AdminTableComponent implements OnInit {
   @Input() editForm: Form;
   @Input() data: any[];
   @Input() editHandler: (data: any) => Promise<boolean>;
+  @Input() hasMore: boolean;
 
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
@@ -30,6 +31,7 @@ export class AdminTableComponent implements OnInit {
   public headers: string[];
   public columns: SchemaField[];
   public displayedColumns: string[];
+  public page = 1;
 
   ngOnInit(): void {
     this.columns = this.schema.fields.filter((value) => value.overviewOptions?.show).map((value, index) => value);

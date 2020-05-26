@@ -221,6 +221,7 @@ export class AdminShowcaseComponent implements OnInit {
             resolve({
               pageNumber: page,
               items: NEWS_ITEMS.slice((page - 1) * items, page * items),
+              hasMore: NEWS_ITEMS[page * items] ? true : false,
             }),
           300,
         );
