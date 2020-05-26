@@ -57,7 +57,5 @@ export class WysiwygFieldComponent extends FormComponent implements OnInit {
       toolbarHiddenButtons: [['bold', 'italic'], ['fontSize']],
       ...(this.schema?.options as WysiwygFieldOptions)?.editorConfig,
     };
-    console.log(this.schema);
-    console.log(this.editorConfig);
   }
 }
