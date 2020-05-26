@@ -1,0 +1,24 @@
+<div>
+    <div>
+        <h1>Alerts</h1>
+        <lab900-alert [type]="Error">This is an error!</lab900-alert> <br/>
+        <lab900-alert [type]="Warn">This is a warning!</lab900-alert> <br/>
+        <lab900-alert [type]="Success">This is a success message!</lab900-alert> <br/>
+        <lab900-alert [type]="Info">This is an info message!</lab900-alert>
+    </div>
+        <div>
+        <h1>Dialogs</h1>
+        <div>
+            <button mat-flat-button color="primary" lab900ConfirmationDialog
+                    okButtonText="yes please"
+                    cancelButtonText="cancel please"
+                    message="polite message"
+                    (confirmed)="log('confirmed!')"
+            >
+                polite confirmation dialog
+            </button>
+
+            <button mat-flat-button color="primary" (click)="alert('hello!')">Open alert</button>
+        </div>
+    </div>
+</div>

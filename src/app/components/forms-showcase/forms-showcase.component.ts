@@ -22,7 +22,18 @@ export class FormsShowcaseComponent implements OnInit {
         { attribute: 'last', editType: EditType.Input, title: 'Last Name', options: { required: true } },
         { attribute: 'file', editType: EditType.File, title: 'Attachment', options: { required: true } },
         { attribute: 'postedOn', editType: EditType.Date, title: 'Posted On', options: { required: true } },
-        { attribute: 'content', editType: EditType.Wysiwyg, title: 'Message', options: { required: true } },
+        {
+          attribute: 'content',
+          editType: EditType.Wysiwyg,
+          title: 'Message',
+          options: {
+            required: true,
+            editorConfig: {
+              uploadUrl: 'https://europe-west1-tournamentcenter-tools-dev.cloudfunctions.net/imageUpload',
+              uploadWithCredentials: true,
+            },
+          },
+        },
       ],
     };
     this.exampleData = EXAMPLE_DATA;

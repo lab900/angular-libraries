@@ -1,5 +1,5 @@
 import { ComponentFactoryResolver, Directive, HostListener, Input, ViewContainerRef } from '@angular/core';
-import { FormDialogComponent } from '../components/dialogs/form-dialog/form-dialog.component';
+import { FormDialogComponent } from '../components/form-dialog/form-dialog.component';
 import { Form } from '../models/Form';
 import { MatDialog } from '@angular/material/dialog';
 

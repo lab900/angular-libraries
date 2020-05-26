@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EditType } from '@lab900/forms';
 import { DataService } from '../../../../projects/admin/src/lib/models/dataService';
 import { Item, Page } from '../../../../projects/admin/src/lib/models/page';
 import { Schema } from '../../../../projects/admin/src/lib/models/schema';
+import { EditType } from '@lab900/forms';
 
 const NEWS_ITEMS = [
   {
@@ -185,6 +185,12 @@ export class AdminShowcaseComponent implements OnInit {
         title: 'Content',
         attribute: 'content',
         editType: EditType.Wysiwyg,
+        editOptions: {
+          editorConfig: {
+            uploadUrl: 'https://europe-west1-tournamentcenter-tools-dev.cloudfunctions.net/uploadImage',
+            uploadWithCredentials: true,
+          },
+        },
         overviewOptions: {
           show: true,
         },

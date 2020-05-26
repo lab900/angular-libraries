@@ -1,4 +1,5 @@
 import { EditType } from './editType';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 export interface FieldOptions {
   hide?: boolean;
@@ -6,9 +7,13 @@ export interface FieldOptions {
   required?: boolean;
 }
 
+export interface WysiwygFieldOptions extends FieldOptions {
+  editorConfig?: AngularEditorConfig;
+}
+
 export interface FormField {
   title: string;
   attribute: string;
   editType: EditType;
-  options?: FieldOptions;
+  options?: FieldOptions | WysiwygFieldOptions;
 }
