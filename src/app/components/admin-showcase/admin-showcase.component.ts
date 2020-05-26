@@ -185,6 +185,12 @@ export class AdminShowcaseComponent implements OnInit {
         title: 'Content',
         attribute: 'content',
         editType: EditType.Wysiwyg,
+        editOptions: {
+          editorConfig: {
+            uploadUrl: 'https://europe-west1-tournamentcenter-tools-dev.cloudfunctions.net/uploadImage',
+            uploadWithCredentials: true,
+          },
+        },
         overviewOptions: {
           show: true,
         },
