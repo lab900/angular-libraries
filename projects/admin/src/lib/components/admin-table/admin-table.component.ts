@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { SchemaField } from '../../models/schemaField';
-import { EditType, Form } from '@lab900/forms';
+import { Form } from '@lab900/forms';
 import { Schema } from '../../models/schema';
 
 @Component({
@@ -20,20 +20,13 @@ export class AdminTableComponent implements OnInit {
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
   @Output() pageEvent: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
-  public readonly Wysiwyg = EditType.Wysiwyg;
-  public readonly Date = EditType.Date;
-  public readonly Input = EditType.Input;
-  public readonly Checkbox = EditType.Checkbox;
-  public readonly TextArea = EditType.TextArea;
-  public readonly Image = EditType.Image;
-
   public headers: string[];
   public columns: SchemaField[];
   public displayedColumns: string[];
 
   ngOnInit(): void {
-    this.columns = this.schema.fields.filter((value) => value.overviewOptions?.show).map((value, index) => value);
-    this.displayedColumns = this.schema.fields.filter((value) => value.overviewOptions?.show).map((value, index) => value.attribute);
+    this.columns = this.schema.fields.filter((value) => !value.overviewOptions?.hide).map((value, index) => value);
+    this.displayedColumns = this.schema.fields.filter((value) => !value.overviewOptions?.hide).map((value, index) => value.attribute);
     this.displayedColumns.push('edit');
     this.displayedColumns.push('delete');
   }

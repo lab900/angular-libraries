@@ -9,13 +9,14 @@ export interface SchemaField {
 }
 
 export interface OverviewOptions {
-  show?: boolean;
+  hide?: boolean;
   sticky?: boolean;
+  onClick?: (column: SchemaField, value: any, row: any) => void;
   displayOptions?: DateDisplayOptions; // | CheckboxDisplayOptions | WysiwygDisplayOptions ...
 }
 export interface DisplayOptions {
   maxColumnWidth?: string;
-  customFormatter?: (data: any) => string;
+  customFormatter?: (column: SchemaField, cellValue: any, rowValue: any) => string;
 }
 
 export interface DateDisplayOptions extends DisplayOptions {
