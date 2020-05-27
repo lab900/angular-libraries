@@ -16,7 +16,7 @@ export interface OverviewOptions {
 }
 export interface DisplayOptions {
   maxColumnWidth?: string;
-  customFormatter?: (column: SchemaField, cellValue: any, rowValue: any) => string;
+  customFormatter?: (cellValue: any) => string;
 }
 
 export interface DateDisplayOptions extends DisplayOptions {
