@@ -20,6 +20,7 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   public error: string;
   public loading = false;
   public editForm: Form;
+  public createForm: Form;
 
   private pageInfo: { currentPage: number; pageSize: number };
   private subscriptions: Subscription[] = [];
@@ -32,7 +33,8 @@ export class AdminPageComponent implements OnInit, OnDestroy {
       pageSize: this.dataService.defaultPageSize(),
     };
 
-    this.editForm = SchemaConverter.toForm(this.schema);
+    this.editForm = SchemaConverter.toForm(this.schema, false);
+    this.createForm = SchemaConverter.toForm(this.schema, true);
 
     this.loadData();
   }

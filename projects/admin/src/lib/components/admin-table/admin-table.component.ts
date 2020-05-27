@@ -27,7 +27,11 @@ export class AdminTableComponent implements OnInit {
   ngOnInit(): void {
     this.columns = this.schema.fields.filter((value) => !value.overviewOptions?.hide).map((value, index) => value);
     this.displayedColumns = this.schema.fields.filter((value) => !value.overviewOptions?.hide).map((value, index) => value.attribute);
-    this.displayedColumns.push('edit');
-    this.displayedColumns.push('delete');
+    if (this.schema.editable) {
+      this.displayedColumns.push('edit');
+    }
+    if (this.schema.deletable) {
+      this.displayedColumns.push('delete');
+    }
   }
 }

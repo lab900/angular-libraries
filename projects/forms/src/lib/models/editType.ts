@@ -5,7 +5,9 @@ export enum EditType {
   Wysiwyg = 'Wysiwyg',
   Image = 'Image',
   Input = 'Input',
+  Number = 'Number',
   File = 'File',
+  Select = 'Select',
 }
 
 export const defaultValue = (editType: EditType): any => {

@@ -1,11 +1,12 @@
-import { EditType, FieldOptions, WysiwygFieldOptions } from '@lab900/forms';
+import { EditType, FieldOptions, SelectFieldOptions, WysiwygFieldOptions } from '@lab900/forms';
 
 export interface SchemaField {
   attribute: string;
   title: string;
   editType: EditType;
   overviewOptions?: OverviewOptions;
-  editOptions?: FieldOptions | WysiwygFieldOptions;
+  editOptions?: FieldOptions | WysiwygFieldOptions | SelectFieldOptions;
+  createOptions?: FieldOptions | WysiwygFieldOptions | SelectFieldOptions;
 }
 
 export interface OverviewOptions {

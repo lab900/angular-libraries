@@ -120,6 +120,9 @@ const NEWS_ITEMS = [
 export class AdminShowcaseComponent implements OnInit {
   public newsSchema: Schema = {
     name: 'News',
+    editable: true,
+    creatable: true,
+    deletable: true,
     fields: [
       {
         title: 'Id',

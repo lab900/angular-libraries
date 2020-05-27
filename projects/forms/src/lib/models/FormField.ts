@@ -10,10 +10,15 @@ export interface FieldOptions {
 export interface WysiwygFieldOptions extends FieldOptions {
   editorConfig?: AngularEditorConfig;
 }
+export interface SelectFieldOptions extends FieldOptions {
+  multiple?: boolean;
+  values?: { key: string; value: string }[];
+  valuesFn?: () => Promise<{ key: string; value: string }[]>;
+}
 
 export interface FormField {
   title: string;
   attribute: string;
   editType: EditType;
-  options?: FieldOptions | WysiwygFieldOptions;
+  options?: SelectFieldOptions | WysiwygFieldOptions | FieldOptions;
 }
