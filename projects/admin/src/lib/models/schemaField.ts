@@ -17,7 +17,7 @@ export interface OverviewOptions {
 }
 export interface DisplayOptions {
   maxColumnWidth?: string;
-  customFormatter?: (cellValue: any) => string;
+  customFormatter?: (cellValue: any, row: any) => string;
 }
 
 export interface DateDisplayOptions extends DisplayOptions {
