@@ -12,9 +12,11 @@ import { DateDisplayComponent } from './components/date-display/date-display.com
 import { ImageDisplayComponent } from './components/image-display/image-display.component';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@lab900/forms';
+import { DialogModule } from '@lab900/ui';
+import { AdminTableCellComponent } from './components/admin-table-cell/admin-table-cell.component';
 
 @NgModule({
-  declarations: [AdminPageComponent, AdminTableComponent, DateDisplayComponent, ImageDisplayComponent],
+  declarations: [AdminPageComponent, AdminTableComponent, DateDisplayComponent, ImageDisplayComponent, AdminTableCellComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -25,6 +27,7 @@ import { FormsModule } from '@lab900/forms';
     MatCardModule,
     MatProgressSpinnerModule,
     FormsModule,
+    DialogModule,
   ],
   exports: [AdminPageComponent],
 })

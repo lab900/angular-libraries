@@ -22,6 +22,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { NumberFieldComponent } from './components/form-fields/number-field/number-field.component';
+import { SelectFieldComponent } from './components/form-fields/select-field/select-field.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { CommonModule } from '@angular/common';
     FormDialogDirective,
     UnknownFieldComponent,
     InputFieldComponent,
+    NumberFieldComponent,
+    SelectFieldComponent,
     FormContainerComponent,
     FormDialogComponent,
     DateFieldComponent,
@@ -50,6 +55,7 @@ import { CommonModule } from '@angular/common';
     MatNativeDateModule,
     AngularEditorModule,
     HttpClientModule,
+    MatSelectModule,
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })

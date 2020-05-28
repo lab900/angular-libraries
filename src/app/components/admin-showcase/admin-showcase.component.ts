@@ -3,6 +3,7 @@ import { DataService } from '../../../../projects/admin/src/lib/models/dataServi
 import { Item, Page } from '../../../../projects/admin/src/lib/models/page';
 import { Schema } from '../../../../projects/admin/src/lib/models/schema';
 import { EditType } from '@lab900/forms';
+import { SchemaField } from '../../../../projects/admin/src/lib/models/schemaField';
 
 const NEWS_ITEMS = [
   {
@@ -119,13 +120,16 @@ const NEWS_ITEMS = [
 export class AdminShowcaseComponent implements OnInit {
   public newsSchema: Schema = {
     name: 'News',
+    editable: true,
+    creatable: true,
+    deletable: true,
     fields: [
       {
         title: 'Id',
         attribute: 'id',
         editType: EditType.Input,
         overviewOptions: {
-          show: false,
+          hide: true,
         },
       },
       {
@@ -133,8 +137,10 @@ export class AdminShowcaseComponent implements OnInit {
         attribute: 'title',
         editType: EditType.Input,
         overviewOptions: {
-          show: true,
           sticky: true,
+          onClick: (column: SchemaField, value: any, row: any) => {
+            alert('clicked on: ' + column.attribute);
+          },
         },
       },
       {
@@ -146,24 +152,17 @@ export class AdminShowcaseComponent implements OnInit {
         title: 'Author',
         attribute: 'author',
         editType: EditType.Input,
-        overviewOptions: {
-          show: true,
-        },
       },
       {
         title: 'Posted On',
         editType: EditType.Date,
         attribute: 'postedOn',
-        overviewOptions: {
-          show: true,
-        },
       },
       {
         title: 'Posted On',
         editType: EditType.Date,
         attribute: 'postedOnShort',
         overviewOptions: {
-          show: true,
           displayOptions: {
             pipeFormat: 'shortTime',
             maxColumnWidth: '90px',
@@ -175,7 +174,6 @@ export class AdminShowcaseComponent implements OnInit {
         attribute: 'postedBy',
         editType: EditType.Input,
         overviewOptions: {
-          show: true,
           displayOptions: {
             customFormatter: (data) => `custom <strong>formatted</strong> ${data}`,
           },
@@ -185,23 +183,20 @@ export class AdminShowcaseComponent implements OnInit {
         title: 'Content',
         attribute: 'content',
         editType: EditType.Wysiwyg,
+        overviewOptions: {
+          hide: true,
+        },
         editOptions: {
           editorConfig: {
             uploadUrl: 'https://europe-west1-tournamentcenter-tools-dev.cloudfunctions.net/uploadImage',
             uploadWithCredentials: true,
           },
         },
-        overviewOptions: {
-          show: true,
-        },
       },
       {
         title: 'Background',
         attribute: 'backgroundImageUrl',
         editType: EditType.Image,
-        overviewOptions: {
-          show: true,
-        },
       },
     ],
   };

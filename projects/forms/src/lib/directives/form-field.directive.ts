@@ -8,17 +8,24 @@ import { WysiwygFieldComponent } from '../components/form-fields/wysiwyg-field/w
 import { EditType } from '../models/editType';
 import { FormField } from '../models/FormField';
 import { IFormComponent } from '../models/IFormComponent';
+import { NumberFieldComponent } from '../components/form-fields/number-field/number-field.component';
+import { SelectFieldComponent } from '../components/form-fields/select-field/select-field.component';
 
 const mapToComponent = (field: FormField): Type<IFormComponent> => {
   switch (field.editType) {
     case EditType.Input:
+    case EditType.Image:
       return InputFieldComponent;
+    case EditType.Number:
+      return NumberFieldComponent;
     case EditType.Wysiwyg:
       return WysiwygFieldComponent;
     case EditType.Date:
       return DateFieldComponent;
     case EditType.File:
       return FileFieldComponent;
+    case EditType.Select:
+      return SelectFieldComponent;
     default:
       return UnknownFieldComponent;
   }
