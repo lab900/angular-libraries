@@ -4,7 +4,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../models/dataService';
-import { Item } from '../../models/page';
+import { Item, Page } from '../../models/page';
 import { Form } from '@lab900/forms';
 
 @Component({
@@ -16,14 +16,14 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   @Input() schema: Schema;
   @Input() dataService: DataService;
 
-  public items: any[];
   public error: string;
   public loading = false;
   public editForm: Form;
   public createForm: Form;
+  public pageInfo: { currentPage: number; pageSize: number; hasMore?: boolean };
 
-  private pageInfo: { currentPage: number; pageSize: number };
   private subscriptions: Subscription[] = [];
+  public currentPage: Page<Item>;
 
   constructor(public dialog: MatDialog) {}
 
@@ -45,11 +45,10 @@ export class AdminPageComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.loading = true;
-    this.items = [];
     this.dataService
       .getPage(this.pageInfo.currentPage, this.pageInfo.pageSize)
       .then((page) => {
-        this.items = page.items;
+        this.currentPage = page;
         this.loading = false;
       })
       .catch((err) => {

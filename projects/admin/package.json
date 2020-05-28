@@ -6,12 +6,14 @@
     "@angular/core": "^9.1.6",
     "tslib": "^1.10.0",
     "@angular/material": "^9.2.3",
-    "@lab900/forms": "^0.2.33",
-    "@lab900/ui": "^0.0.24"
+    "@lab900/forms": "^0.2.36",
+    "@lab900/ui": "^0.0.26"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/lab900/angular-libraries.git"
   },
-  "dependencies": {}
+  "dependencies": {
+
+  }
 }
