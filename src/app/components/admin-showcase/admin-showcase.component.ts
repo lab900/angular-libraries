@@ -202,6 +202,7 @@ export class AdminShowcaseComponent implements OnInit {
   };
 
   public dataService = new (class implements DataService {
+    private previousPage = 0;
     create(item: object): Promise<string> {
       throw new Error('Method not implemented.');
     }
@@ -211,12 +212,14 @@ export class AdminShowcaseComponent implements OnInit {
 
     getPage(page: number, items: number): Promise<Page<Item>> {
       return new Promise<Page<Item>>((resolve) => {
+        const hasmore = !!NEWS_ITEMS[page * items] || page < this.previousPage;
+        this.previousPage = page;
         setTimeout(
           () =>
             resolve({
               pageNumber: page,
               items: NEWS_ITEMS.slice((page - 1) * items, page * items),
-              hasMore: NEWS_ITEMS[page * items] ? true : false,
+              hasMore: hasmore,
             }),
           300,
         );

@@ -37,10 +37,10 @@ export class FormsShowcaseComponent implements OnInit {
           options: {
             required: true,
             multiple: true,
-            values: Promise.resolve([
+            values: [
               { key: 'cheese', value: 'Cheese' },
               { key: 'tomato', value: 'Tomato' },
-            ]),
+            ],
           },
         },
         {

@@ -8,9 +8,8 @@
                 [loading]="loading"
                 [schema]="schema"
                 [editForm]="editForm"
-                [data]="items"
+                [data]="currentPage"
                 [editHandler]="editHandler"
-                [hasMore]="pageInfo.hasMore"
                 (pageEvent)="onPageEvent($event)"
                 (delete)="onDelete($event)"
         ></lab900-admin-table>
