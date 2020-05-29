@@ -1,6 +1,6 @@
 {
   "name": "@lab900/admin",
-  "version": "0.1.49",
+  "version": "0.1.57",
   "peerDependencies": {
     "@angular/common": "^9.1.6",
     "@angular/core": "^9.1.6",
@@ -13,7 +13,5 @@
     "type": "git",
     "url": "git://github.com/lab900/angular-libraries.git"
   },
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }

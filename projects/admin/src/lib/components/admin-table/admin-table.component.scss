@@ -23,16 +23,14 @@
   }
 }
 
-
-
 ::ng-deep {
   .mat-paginator-range-label {
     display: none;
   }
   mat-cell:first-of-type {
-    padding-left: 10px !important;
+    padding-left: 20px !important;
   }
   mat-header-cell:first-of-type {
-    padding-left: 10px;
+    padding-left: 20px !important;
   }
 }

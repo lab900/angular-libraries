@@ -1,5 +1,5 @@
 <div class="mat-elevation-z8 table">
-    <mat-table [dataSource]="data.items">
+    <mat-table [dataSource]="data?.items">
         <ng-container *ngFor="let column of columns" matColumnDef="{{column.attribute}}" [sticky]="column?.overviewOptions?.sticky">
             <mat-header-cell *matHeaderCellDef
                              [ngStyle]="column?.overviewOptions?.displayOptions?.maxColumnWidth &&
@@ -48,5 +48,11 @@
                 mode="indeterminate">
         </mat-progress-spinner>
     </mat-card>
-    <mat-paginator hidePageSize [disabled]="loading" (page)="pageEvent.emit($event); page = $event.pageIndex + 1" [pageSize]="data.items.length" [pageIndex]="page - 1 " [length]="data.hasMore ? page*data.items.length + 1 : page*data.items.length"></mat-paginator>
+    <mat-paginator hidePageSize
+                   (page)="pageEvent.emit($event); page = $event.pageIndex + 1"
+                   [disabled]="loading || !data || !data?.items"
+                   [pageSize]="data?.items?.length"
+                   [pageIndex]="page - 1 "
+                   [length]="(data && data?.items) ? (data.hasMore ? page * data.items.length + 1 : page * data.items.length) : 0">
+    </mat-paginator>
 </div>
