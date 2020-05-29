@@ -1,11 +1,12 @@
-.cell {
+/*.cell {
+	//padding: 0 10px;
 	&__icon {
 		max-width: 40px;
 		min-width: 40px;
 	}
 	&__wrapper {
 		width: 100%;
-		padding-right: 20px;
+		//padding-right: 20px;
 		display: block;
 		box-sizing: border-box;
 		lab900-image-display {
@@ -14,10 +15,10 @@
 			align-items: center;
 		}
 		&__text {
-			display: block;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
+			overflow-wrap: anywhere;
 		}
 	}
+}
+*/
+.cell {
 }

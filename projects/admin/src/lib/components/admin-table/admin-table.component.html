@@ -1,13 +1,15 @@
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8 table">
     <mat-table [dataSource]="data.items">
         <ng-container *ngFor="let column of columns" matColumnDef="{{column.attribute}}" [sticky]="column?.overviewOptions?.sticky">
             <mat-header-cell *matHeaderCellDef
                              [ngStyle]="column?.overviewOptions?.displayOptions?.maxColumnWidth &&
-                                { 'max-width': column?.overviewOptions?.displayOptions?.maxColumnWidth }">
+                                { 'max-width': column?.overviewOptions?.displayOptions?.maxColumnWidth }"
+            class="table__header__cell">
                 {{column.title }} </mat-header-cell>
             <mat-cell *matCellDef="let element"
                       [ngStyle]="column?.overviewOptions?.displayOptions?.maxColumnWidth &&
-                                { 'max-width': column?.overviewOptions?.displayOptions?.maxColumnWidth }">
+                                { 'max-width': column?.overviewOptions?.displayOptions?.maxColumnWidth }"
+            class="table__row__cell">
                 <a *ngIf="column.overviewOptions?.onClick" href="javascript://" (click)="column.overviewOptions?.onClick(column, element[column.attribute], element)">
                     <lab900-admin-table-cell [column]="column" [row]="element"></lab900-admin-table-cell>
                 </a>
@@ -16,8 +18,8 @@
         </ng-container>
 
         <ng-container matColumnDef="edit" stickyEnd>
-            <mat-header-cell *matHeaderCellDef  class="table__row__icon"></mat-header-cell>
-            <mat-cell *matCellDef="let element" class="table__row__icon">
+            <mat-header-cell *matHeaderCellDef  class="table__header__cell table__header__cell-icon"></mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table__row__cell table__row__cell-icon">
                 <button mat-icon-button lab900FormDialog [data]="element" [schema]="editForm" [submitFormHandler]="editHandler">
                     <mat-icon>edit</mat-icon>
                 </button>
@@ -25,8 +27,8 @@
         </ng-container>
 
         <ng-container matColumnDef="delete" stickyEnd>
-            <mat-header-cell *matHeaderCellDef  class="table__row__icon"></mat-header-cell>
-            <mat-cell *matCellDef="let element" class="table__row__icon">
+            <mat-header-cell *matHeaderCellDef  class="table__header__cell table__header__cell-icon"></mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table__row__cell-icon">
                 <button mat-icon-button (confirmed)="delete.emit(element)" lab900ConfirmationDialog>
                     <mat-icon>delete</mat-icon>
                 </button>
