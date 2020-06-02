@@ -11,6 +11,7 @@ export class SelectFieldComponent extends FormComponent implements OnInit {
   @Input() schema: FormField;
 
   public options: SelectFieldOptions;
+  public values: { key: string; value: string }[];
 
   constructor() {
     super();
@@ -18,5 +19,16 @@ export class SelectFieldComponent extends FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.options = this.schema.options as SelectFieldOptions;
+    this.values = this.options.values || [];
+    if (this.options.valuesFn) {
+      this.loadValues();
+    }
+  }
+
+  loadValues() {
+    this.options
+      .valuesFn()
+      .then((values) => (this.values = values))
+      .catch((err) => console.log(err));
   }
 }

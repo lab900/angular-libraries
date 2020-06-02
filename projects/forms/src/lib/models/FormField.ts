@@ -13,7 +13,7 @@ export interface WysiwygFieldOptions extends FieldOptions {
 export interface SelectFieldOptions extends FieldOptions {
   multiple?: boolean;
   values?: { key: string; value: string }[];
-  valuesFn?: () => Promise<{ key: string; value: string }[]>;
+  valuesFn?: () => Promise<{ key: any; value: string }[]>;
 }
 
 export interface FormField {
