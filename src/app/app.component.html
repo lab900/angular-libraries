@@ -1,11 +1,17 @@
-<mat-tab-group>
-    <mat-tab label="Admin">
-        <lab900-admin-showcase></lab900-admin-showcase>
-    </mat-tab>
+<mat-tab-group  animationDuration="0ms">
     <mat-tab label="Forms">
-        <lab900-forms-showcase></lab900-forms-showcase>
+        <ng-template matTabContent>
+            <lab900-forms-showcase></lab900-forms-showcase>
+        </ng-template>
+    </mat-tab>
+    <mat-tab label="Admin">
+        <ng-template matTabContent>
+            <lab900-admin-showcase></lab900-admin-showcase>
+        </ng-template>
     </mat-tab>
     <mat-tab label="UI">
-        <lab900-ui-showcase></lab900-ui-showcase>
+        <ng-template matTabContent>
+            <lab900-ui-showcase></lab900-ui-showcase>
+        </ng-template>
     </mat-tab>
 </mat-tab-group>

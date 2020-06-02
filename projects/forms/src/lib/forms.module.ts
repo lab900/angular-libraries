@@ -25,6 +25,8 @@ import { CommonModule } from '@angular/common';
 import { NumberFieldComponent } from './components/form-fields/number-field/number-field.component';
 import { SelectFieldComponent } from './components/form-fields/select-field/select-field.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CheckboxFieldComponent } from './components/form-fields/checkbox-field/checkbox-field.component';
 
 @NgModule({
   declarations: [
@@ -40,11 +42,13 @@ import { MatSelectModule } from '@angular/material/select';
     WysiwygFieldComponent,
     MatFileFieldComponent,
     FileFieldComponent,
+    CheckboxFieldComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatCheckboxModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -52,10 +56,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatGridListModule,
     MatDialogModule,
     MatDatepickerModule,
+    MatSelectModule,
     MatNativeDateModule,
     AngularEditorModule,
     HttpClientModule,
-    MatSelectModule,
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })

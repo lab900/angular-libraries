@@ -11,12 +11,21 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DateDisplayComponent } from './components/date-display/date-display.component';
 import { ImageDisplayComponent } from './components/image-display/image-display.component';
 import { MatCardModule } from '@angular/material/card';
+import { AdminTableCellComponent } from './components/admin-table-cell/admin-table-cell.component';
+import { CheckboxDisplayComponent } from './components/checkbox-display/checkbox-display.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@lab900/forms';
 import { DialogModule } from '@lab900/ui';
-import { AdminTableCellComponent } from './components/admin-table-cell/admin-table-cell.component';
 
 @NgModule({
-  declarations: [AdminPageComponent, AdminTableComponent, DateDisplayComponent, ImageDisplayComponent, AdminTableCellComponent],
+  declarations: [
+    CheckboxDisplayComponent,
+    AdminPageComponent,
+    AdminTableComponent,
+    DateDisplayComponent,
+    ImageDisplayComponent,
+    AdminTableCellComponent,
+  ],
   imports: [
     CommonModule,
     MatTableModule,
@@ -28,6 +37,7 @@ import { AdminTableCellComponent } from './components/admin-table-cell/admin-tab
     MatProgressSpinnerModule,
     FormsModule,
     DialogModule,
+    MatCheckboxModule,
   ],
   exports: [AdminPageComponent],
 })

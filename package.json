@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve --port 4900",
     "build": "ng build",
+    "build-all": "ng build forms && ng build ui && ng build admin && ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -36,7 +37,6 @@
     "@angular/platform-browser-dynamic": "~9.1.3",
     "@angular/router": "~9.1.3",
     "@kolkov/angular-editor": "^1.1.2",
-    "@lab900/forms": "^0.2.8",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

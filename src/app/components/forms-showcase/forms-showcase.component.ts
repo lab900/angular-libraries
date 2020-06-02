@@ -10,6 +10,7 @@ const EXAMPLE_DATA = {
   number: 3,
   postedOn: new Date(),
   content: '<strong>hello</strong> world',
+  published: true,
 };
 
 @Component({
@@ -30,6 +31,7 @@ export class FormsShowcaseComponent implements OnInit {
         { attribute: 'number', editType: EditType.Number, title: 'Number', options: { required: true } },
         { attribute: 'file', editType: EditType.File, title: 'Attachment', options: { required: true } },
         { attribute: 'postedOn', editType: EditType.Date, title: 'Posted On', options: { required: true } },
+        { attribute: 'published', editType: EditType.Checkbox, title: 'Published', options: { required: true } },
         {
           attribute: 'pizzaToppings',
           editType: EditType.Select,

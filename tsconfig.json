@@ -27,6 +27,10 @@
       "ui": [
         "dist/ui/ui",
         "dist/ui"
+      ],
+      "admin": [
+        "dist/admin/admin",
+        "dist/admin"
       ]
     }
   },

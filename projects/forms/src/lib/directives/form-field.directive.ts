@@ -10,12 +10,15 @@ import { FormField } from '../models/FormField';
 import { IFormComponent } from '../models/IFormComponent';
 import { NumberFieldComponent } from '../components/form-fields/number-field/number-field.component';
 import { SelectFieldComponent } from '../components/form-fields/select-field/select-field.component';
+import { CheckboxFieldComponent } from '../components/form-fields/checkbox-field/checkbox-field.component';
 
 const mapToComponent = (field: FormField): Type<IFormComponent> => {
   switch (field.editType) {
     case EditType.Input:
     case EditType.Image:
       return InputFieldComponent;
+    case EditType.Checkbox:
+      return CheckboxFieldComponent;
     case EditType.Number:
       return NumberFieldComponent;
     case EditType.Wysiwyg:

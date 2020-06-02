@@ -1,6 +1,6 @@
 import { Schema } from '../../../../projects/admin/src/lib/models/schema';
-import { EditType } from '@lab900/forms';
 import { SchemaField } from '../../../../projects/admin/src/lib/models/schemaField';
+import { EditType } from '../../../../projects/forms/src/lib/models/editType';
 
 export const NEWS_SCHEMA: Schema = {
   name: 'News',
@@ -15,6 +15,11 @@ export const NEWS_SCHEMA: Schema = {
       overviewOptions: {
         hide: true,
       },
+    },
+    {
+      title: 'Published',
+      attribute: 'published',
+      editType: EditType.Checkbox,
     },
     {
       title: 'Title',
@@ -88,6 +93,7 @@ export const NEWS_SCHEMA: Schema = {
 export const NEWS_ITEMS = [
   {
     id: '1',
+    published: true,
     title: 'Combating the Lockdown: an insider’s experience on entering new marketing channels!',
     subTitle: 'Get your community to represent your store and take home the trophy.',
     author: 'Johan',
@@ -101,6 +107,7 @@ export const NEWS_ITEMS = [
   },
   {
     id: '2',
+    published: false,
     title: 'Interview with Michael Loizou – Owner of The Brotherhood Games Ltd',
     subTitle: '(Interview conducted at Sneak Attacks Regional Event on Saturday, 6th April, 2019)',
     author: 'Johan',
@@ -114,6 +121,7 @@ export const NEWS_ITEMS = [
   },
   {
     id: '3',
+    published: true,
     title: 'hello world',
     subTitle: 'hello world sub',
     author: 'Johan',
