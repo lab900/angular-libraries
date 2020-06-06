@@ -1,0 +1,42 @@
+:host {
+  width: 100%;
+  --prev-height: 40px;
+}
+
+.preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 8px;
+  height: var(--prev-height);
+  border: 1px solid gainsboro;
+  border-radius: 4px;
+
+  & img {
+    height: var(--prev-height);
+  }
+
+  &__information {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__metadata {
+    padding: 8px;
+
+    &:after{
+      margin-left: 8px;
+      content: "\002A";
+    }
+  }
+}
+
+.close-icon {
+  padding: calc(16px - 5px) 16px;
+  border: 1px solid gold;
+  &:after{
+    display: inline-block;
+    content: "\00d7"; /* This will render the 'X' */
+  }
+}

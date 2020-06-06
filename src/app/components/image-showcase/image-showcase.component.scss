@@ -1,0 +1,31 @@
+.centering {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.fullHeight {
+  height: 90vh;
+}
+
+.container {
+  padding: 16px;
+  border: 1px solid grey;
+  height: 60%;
+  width: 100%;
+
+}
+
+.host {
+  height: 100%;
+  width: 100%;
+}
