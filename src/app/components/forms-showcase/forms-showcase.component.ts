@@ -25,6 +25,7 @@ export class FormsShowcaseComponent implements OnInit {
   constructor() {
     this.formSchema = {
       title: 'Enter your name.',
+      columns: 2,
       fields: [
         { attribute: 'first', editType: EditType.Input, title: 'First Name', options: { hide: true } },
         { attribute: 'last', editType: EditType.Input, title: 'Last Name', options: { required: true } },
@@ -50,6 +51,7 @@ export class FormsShowcaseComponent implements OnInit {
           editType: EditType.Wysiwyg,
           title: 'Message',
           options: {
+            colspan: 2,
             required: true,
             editorConfig: {
               uploadUrl: 'https://europe-west1-tournamentcenter-tools-dev.cloudfunctions.net/imageUpload',

@@ -5,6 +5,7 @@ export interface FieldOptions {
   hide?: boolean;
   hint?: string;
   required?: boolean;
+  colspan?: number;
 }
 
 export interface WysiwygFieldOptions extends FieldOptions {
