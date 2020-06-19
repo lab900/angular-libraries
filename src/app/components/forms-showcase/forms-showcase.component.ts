@@ -20,14 +20,16 @@ const EXAMPLE_DATA = {
 })
 export class FormsShowcaseComponent implements OnInit {
   formSchema: Form;
+  formSchema2Columns: Form;
+  formSchema3Columns: Form;
   exampleData: any;
 
   constructor() {
     this.formSchema = {
       title: 'Enter your name.',
-      columns: 2,
+      columns: 1,
       fields: [
-        { attribute: 'first', editType: EditType.Input, title: 'First Name', options: { hide: true } },
+        { attribute: 'first', editType: EditType.Input, title: 'First Name', options: { hide: false } },
         { attribute: 'last', editType: EditType.Input, title: 'Last Name', options: { required: true } },
         { attribute: 'number', editType: EditType.Number, title: 'Number', options: { required: true } },
         { attribute: 'file', editType: EditType.File, title: 'Attachment', options: { required: true } },
@@ -61,6 +63,9 @@ export class FormsShowcaseComponent implements OnInit {
         },
       ],
     };
+
+    this.formSchema2Columns = { ...this.formSchema, columns: 2 };
+    this.formSchema3Columns = { ...this.formSchema, columns: 3 };
     this.exampleData = EXAMPLE_DATA;
   }
 

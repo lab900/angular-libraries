@@ -1,7 +1,7 @@
-::ng-deep .mat-form-field-suffix {
-	display: flex;
+mat-form-field {
+	width: 100%;
 }
-
 mat-icon {
 	color: rgba(0,0,0,.54);
+	display: inline-block !important;
 }
