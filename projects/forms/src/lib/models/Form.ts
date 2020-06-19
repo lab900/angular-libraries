@@ -3,6 +3,7 @@ import { FormGroup } from './FormGroup';
 
 export class Form {
   title?: string;
+  columns?: number;
   fields: (FormGroup | FormField)[];
 }
 

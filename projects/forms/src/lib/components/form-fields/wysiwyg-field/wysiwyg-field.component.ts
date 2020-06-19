@@ -16,7 +16,7 @@ export class WysiwygFieldComponent extends FormComponent implements OnInit {
   ngOnInit(): void {
     this.editorConfig = {
       editable: true,
-      sanitize: true,
+      sanitize: false,
 
       /*      editable: true,
             spellcheck: true,
