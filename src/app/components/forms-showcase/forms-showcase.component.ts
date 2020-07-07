@@ -30,8 +30,18 @@ export class FormsShowcaseComponent implements OnInit {
       columns: 1,
       fields: [
         { attribute: 'first', editType: EditType.Input, title: 'First Name', options: { hide: false } },
-        { attribute: 'last', editType: EditType.Input, title: 'Last Name', options: { required: true } },
-        { attribute: 'number', editType: EditType.Number, title: 'Number', options: { required: true } },
+        { attribute: 'last', editType: EditType.Input, title: 'Last Name', options: { required: true, maxLength: 12 } },
+        {
+          attribute: 'email',
+          editType: EditType.Input,
+          title: 'Email',
+          options: {
+            required: false,
+            pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            patternTitle: 'email address',
+          },
+        },
+        { attribute: 'number', editType: EditType.Number, title: 'Number', options: { required: true, min: 3 } },
         { attribute: 'file', editType: EditType.File, title: 'Attachment', options: { required: true } },
         { attribute: 'postedOn', editType: EditType.Date, title: 'Posted On', options: { required: true } },
         { attribute: 'published', editType: EditType.Checkbox, title: 'Published', options: { required: true } },
