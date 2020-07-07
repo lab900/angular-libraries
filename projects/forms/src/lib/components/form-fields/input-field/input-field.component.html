@@ -5,5 +5,5 @@
         <input matInput [placeholder]="schema?.options?.hint" [formControlName]="schema.attribute">
     </label>
     <mat-hint></mat-hint>
-    <mat-error *ngIf="required">Field is required.</mat-error>
+    <mat-error *ngIf="!valid">{{errorMessage}}</mat-error>
 </mat-form-field>

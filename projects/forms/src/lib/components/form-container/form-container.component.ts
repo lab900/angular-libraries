@@ -24,6 +24,11 @@ export class FormContainerComponent<T> implements OnInit {
         if (isFormField(field)) {
           formGroupObject[field.attribute] = new FormControl(defaultValue(field.editType), [
             field.options?.required ? Validators.required : () => null,
+            field.options?.minLength ? Validators.minLength(field.options.minLength) : () => null,
+            field.options?.maxLength ? Validators.maxLength(field.options.maxLength) : () => null,
+            field.options?.min ? Validators.min(field.options.min) : () => null,
+            field.options?.max ? Validators.max(field.options.max) : () => null,
+            field.options?.pattern ? Validators.pattern(field.options.pattern) : () => null,
           ]);
         }
         return formGroupObject;
