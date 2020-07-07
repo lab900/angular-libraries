@@ -1,41 +1,35 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2015",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": {
-      "angular-libraries": [
-        "dist/angular-libraries/angular-libraries",
-        "dist/angular-libraries"
-      ],
-      "forms": [
-        "dist/forms/forms",
-        "dist/forms"
-      ],
-      "ui": [
-        "dist/ui/ui",
-        "dist/ui"
-      ],
-      "admin": [
-        "dist/admin/admin",
-        "dist/admin"
-      ]
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/admin/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/admin/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/forms/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/forms/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ui/tsconfig.spec.json"
     }
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  }
+  ]
 }
