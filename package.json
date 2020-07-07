@@ -37,8 +37,6 @@
     "@angular/platform-browser-dynamic": "~10.0.2",
     "@angular/router": "~10.0.2",
     "@kolkov/angular-editor": "^1.1.2",
-    "@lab900/forms": "^0.2.44",
-    "@lab900/ui": "0.0.26",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
