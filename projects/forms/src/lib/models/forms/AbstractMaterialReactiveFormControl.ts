@@ -3,10 +3,10 @@ import { ElementRef, HostBinding, Input, OnDestroy, OnInit, Directive } from '@a
 import { NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Subject } from 'rxjs';
-import { BaseControlValueAccessor } from './BaseControlValueAccessor';
+import { BaseControlValueAccessorDirective } from './BaseControlValueAccessor';
 
 @Directive()
-export abstract class AbstractMaterialReactiveFormControl<T> extends BaseControlValueAccessor<T>
+export abstract class AbstractMaterialReactiveFormControlDirective<T> extends BaseControlValueAccessorDirective<T>
   implements MatFormFieldControl<T>, OnInit, OnDestroy {
   static nextId = 0;
   @HostBinding() readonly id: string;
@@ -23,7 +23,7 @@ export abstract class AbstractMaterialReactiveFormControl<T> extends BaseControl
     super();
     this.stateChanges = new Subject<void>();
     this.host = host;
-    this.id = `${id}-${AbstractMaterialReactiveFormControl.nextId++}`;
+    this.id = `${id}-${AbstractMaterialReactiveFormControlDirective.nextId++}`;
     this.controlType = `${id}`;
 
     if (this.ngControl != null) {
