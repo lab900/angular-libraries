@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lab900-unknown-field',
@@ -10,8 +11,8 @@ import { FormComponent } from '../../../models/IFormComponent';
   styles: [''],
 })
 export class UnknownFieldComponent extends FormComponent implements OnInit {
-  constructor() {
-    super();
+  constructor(translateService: TranslateService) {
+    super(translateService);
   }
 
   ngOnInit(): void {}

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { FormField, SelectFieldOptions } from '../../../models/FormField';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lab900-select-field',
@@ -13,8 +14,8 @@ export class SelectFieldComponent extends FormComponent implements OnInit {
   public options: SelectFieldOptions;
   public values: { key: string; value: string }[];
 
-  constructor() {
-    super();
+  constructor(translateService: TranslateService) {
+    super(translateService);
   }
 
   ngOnInit(): void {

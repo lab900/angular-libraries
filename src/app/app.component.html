@@ -1,15 +1,15 @@
 <mat-tab-group  animationDuration="0ms">
-    <mat-tab label="Forms">
+    <mat-tab [label]="'content.forms' | translate">
         <ng-template matTabContent>
             <lab900-forms-showcase></lab900-forms-showcase>
         </ng-template>
     </mat-tab>
-    <mat-tab label="Admin">
+    <mat-tab [label]="'content.admin' | translate">
         <ng-template matTabContent>
             <lab900-admin-showcase></lab900-admin-showcase>
         </ng-template>
     </mat-tab>
-    <mat-tab label="UI">
+    <mat-tab [label]="'content.ui' | translate">
         <ng-template matTabContent>
             <lab900-ui-showcase></lab900-ui-showcase>
         </ng-template>

@@ -1,3 +1,6 @@
 <div [formGroup]="group">
     <angular-editor [formControlName]="schema.attribute" [config]="editorConfig" ></angular-editor>
+    <div class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
+        <mat-error *ngIf="!valid">{{errorMessage | async}}</mat-error>
+    </div>
 </div>

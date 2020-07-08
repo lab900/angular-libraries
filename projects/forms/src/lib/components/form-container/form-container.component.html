@@ -1,5 +1,5 @@
 <div class="form-container">
-    <h5 *ngIf="schema.title">{{schema.title}}</h5>
+    <h5 *ngIf="schema.title">{{schema.title | translate}}</h5>
     <form [formGroup]="form" class="form">
         <div *ngFor="let field of schema.fields;"
              [ngStyle]="{ 'flex' : (schema.columns) ?

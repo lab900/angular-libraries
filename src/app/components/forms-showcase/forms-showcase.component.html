@@ -1,13 +1,24 @@
 <div>
 
+  <div>
+    <mat-form-field>
+      <mat-label>{{ 'language' | translate }}</mat-label>
+      <mat-select (valueChange)="languageChanged($event)" [(value)]="language">
+        <mat-option *ngFor="let lang of languages" [value]="lang">
+          {{ 'languages.' + lang | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
     <div>
-        <h1>Buttons</h1>
+        <h1>{{ 'content.buttons' | translate }}</h1>
 
         <div>
             <button mat-flat-button color="primary" lab900FormDialog
                     [schema]="formSchema"
                     [submitFormHandler]="submitForm">
-                Open dialog form
+                {{ 'label.open-dialog-form' | translate }}
             </button>
         </div>
         <br />
@@ -16,13 +27,13 @@
                     [schema]="formSchema"
                     [data]="exampleData"
                     [submitFormHandler]="submitForm">
-                Open dialog form with prefilled data
+                {{ 'label.open-dialog-form-prefilled' | translate }}
             </button>
         </div>
     </div>
 
     <div>
-        <h1>Form Element</h1>
+        <h1>{{ 'content.form-element' | translate }}</h1>
         <div>
             <lab900-form-container
                     [schema]="formSchema"

@@ -6,7 +6,8 @@
     "@angular/core": "~10.0.2",
     "@angular/material": "~10.0.1",
     "@lab900/forms": "^0.2.39",
-    "@lab900/ui": "^0.0.26"
+    "@lab900/ui": "^0.0.26",
+    "@ngx-translate/core": "^13.0.0"
   },
   "devDependencies": {
     "@lab900/forms": "^0.2.39",

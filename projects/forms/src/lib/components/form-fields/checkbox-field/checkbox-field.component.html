@@ -1,7 +1,10 @@
 <div [formGroup]="group"
                 [ngStyle]="schema?.options?.hide ? { 'display': 'none' } : {}">
-    <mat-label>{{schema.title}}</mat-label>
-    <mat-checkbox [formControlName]="schema.attribute"></mat-checkbox>
-    <mat-hint></mat-hint>
-    <mat-error *ngIf="!valid">{{errorMessage}}</mat-error>
+    <mat-checkbox [formControlName]="schema.attribute" [indeterminate]="indeterminate">
+      {{schema.title | translate}}
+    </mat-checkbox>
+    <div class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
+        <mat-hint></mat-hint>
+        <mat-error *ngIf="!valid">{{errorMessage | async}}</mat-error>
+    </div>
 </div>

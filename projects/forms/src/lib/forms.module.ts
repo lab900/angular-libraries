@@ -27,6 +27,7 @@ import { SelectFieldComponent } from './components/form-fields/select-field/sele
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CheckboxFieldComponent } from './components/form-fields/checkbox-field/checkbox-field.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { CheckboxFieldComponent } from './components/form-fields/checkbox-field/
     MatNativeDateModule,
     AngularEditorModule,
     HttpClientModule,
+    TranslateModule.forChild(),
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })

@@ -14,10 +14,9 @@ export interface FieldOptions {
   pattern?: RegExp;
 
   /**
-   * User-friendly representation of the regex. For invalid input,
-   * the user will receive an error message like "Please enter a valid ${regexName}."
+   * Error message/translation key shown when pattern is invalid.
    */
-  patternTitle?: string;
+  patternError?: string;
 }
 
 export interface WysiwygFieldOptions extends FieldOptions {

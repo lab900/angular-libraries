@@ -1,4 +1,7 @@
 import { FormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
+
 import { FormField } from './FormField';
 import { EditType } from './editType';
 
@@ -11,6 +14,8 @@ export class FormComponent implements IFormComponent {
   group: FormGroup;
   schema: FormField;
 
+  constructor(private translateService: TranslateService) {}
+
   get valid(): boolean {
     return this.group.get(this.schema.attribute).valid;
   }
@@ -19,7 +24,7 @@ export class FormComponent implements IFormComponent {
     return this.group.get(this.schema.attribute).hasError('required');
   }
 
-  get errorMessage(): string | null {
+  get errorMessage(): Observable<string> {
     if (this.valid) {
       return null;
     }
@@ -29,22 +34,22 @@ export class FormComponent implements IFormComponent {
     if (field.hasError('required')) {
       if (this.schema.editType === EditType.Number) {
         // When there's text in a [type=number] field, its value is ""
-        return `A valid number is required.`;
+        return this.translateService.get('forms.error.number-required');
       } else {
-        return `A value is required.`;
+        return this.translateService.get('forms.error.required');
       }
     } else if (field.hasError('minlength')) {
-      return `This field should contain at least ${this.schema.options.minLength} characters.`;
+      return this.translateService.get('forms.error.minlength', this.schema.options);
     } else if (field.hasError('maxlength')) {
-      return `This field should contain at most ${this.schema.options.maxLength} characters.`;
+      return this.translateService.get('forms.error.maxlength', this.schema.options);
     } else if (field.hasError('min')) {
-      return `This should be at least ${this.schema.options.min}.`;
+      return this.translateService.get('forms.error.min', this.schema.options);
     } else if (field.hasError('max')) {
-      return `This should be at most ${this.schema.options.max}.`;
+      return this.translateService.get('forms.error.max', this.schema.options);
     } else if (field.hasError('pattern')) {
-      return `Please enter a valid ${this.schema.options.patternTitle}.`;
+      return this.translateService.get(this.schema.options.patternError ?? 'forms.error.generic', this.schema.options);
     } else {
-      return `Field is invalid.`;
+      return this.translateService.get('forms.error.generic');
     }
   }
 }

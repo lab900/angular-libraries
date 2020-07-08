@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lab900-file-field',
@@ -7,7 +8,7 @@ import { FormComponent } from '../../../models/IFormComponent';
   styleUrls: ['./file-field.component.scss'],
 })
 export class FileFieldComponent extends FormComponent {
-  constructor() {
-    super();
+  constructor(translateService: TranslateService) {
+    super(translateService);
   }
 }

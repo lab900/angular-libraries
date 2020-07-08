@@ -1,17 +1,24 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { matFormFieldAnimations } from '@angular/material/form-field';
 import { FormComponent } from '../../../models/IFormComponent';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { FormField, WysiwygFieldOptions } from '../../../models/FormField';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lab900-wysiwyg-field',
   templateUrl: './wysiwyg-field.component.html',
   styleUrls: ['./wysiwyg-field.component.scss'],
+  animations: [matFormFieldAnimations.transitionMessages],
 })
 export class WysiwygFieldComponent extends FormComponent implements OnInit {
   @Input() schema: FormField;
 
   editorConfig: AngularEditorConfig;
+
+  constructor(translateService: TranslateService) {
+    super(translateService);
+  }
 
   ngOnInit(): void {
     this.editorConfig = {
