@@ -1,0 +1,58 @@
+<div class="mat-elevation-z8 table">
+    <mat-table [dataSource]="data?.items">
+        <ng-container *ngFor="let column of columns" matColumnDef="{{column.attribute}}" [sticky]="column?.overviewOptions?.sticky">
+            <mat-header-cell *matHeaderCellDef
+                             [ngStyle]="column?.overviewOptions?.displayOptions?.maxColumnWidth &&
+                                { 'max-width': column?.overviewOptions?.displayOptions?.maxColumnWidth }"
+            class="table__header__cell">
+                {{column.title }} </mat-header-cell>
+            <mat-cell *matCellDef="let element"
+                      [ngStyle]="column?.overviewOptions?.displayOptions?.maxColumnWidth &&
+                                { 'max-width': column?.overviewOptions?.displayOptions?.maxColumnWidth }"
+            class="table__row__cell">
+                <a *ngIf="column.overviewOptions?.onClick" href="javascript://" (click)="column.overviewOptions?.onClick(column, element[column.attribute], element)">
+                    <lab900-admin-table-cell [column]="column" [row]="element"></lab900-admin-table-cell>
+                </a>
+                <lab900-admin-table-cell *ngIf="!column.overviewOptions?.onClick" [column]="column" [row]="element"></lab900-admin-table-cell>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="edit" stickyEnd>
+            <mat-header-cell *matHeaderCellDef  class="table__header__cell table__header__cell-icon"></mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table__row__cell table__row__cell-icon">
+                <button mat-icon-button lab900FormDialog [data]="element" [schema]="editForm" [submitFormHandler]="editHandler">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="delete" stickyEnd>
+            <mat-header-cell *matHeaderCellDef  class="table__header__cell table__header__cell-icon"></mat-header-cell>
+            <mat-cell *matCellDef="let element" class="table__row__cell-icon">
+                <button mat-icon-button (confirmed)="delete.emit(element)" lab900ConfirmationDialog>
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" class="table__row">
+            <div *ngIf="!loading">
+                <mat-spinner></mat-spinner>
+            </div>
+        </mat-row>
+    </mat-table>
+    <mat-card *ngIf="loading" style="display: flex; justify-content: center; align-items: center">
+        <mat-progress-spinner
+                color="primary"
+                mode="indeterminate">
+        </mat-progress-spinner>
+    </mat-card>
+    <mat-paginator hidePageSize
+                   (page)="pageEvent.emit($event); page = $event.pageIndex + 1"
+                   [disabled]="loading || !data || !data?.items"
+                   [pageSize]="data?.items?.length"
+                   [pageIndex]="page - 1 "
+                   [length]="(data && data?.items) ? (data.hasMore ? page * data.items.length + 1 : page * data.items.length) : 0">
+    </mat-paginator>
+</div>

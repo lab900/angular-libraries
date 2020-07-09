@@ -1,0 +1,20 @@
+{
+  "name": "@lab900/admin",
+  "version": "0.1.59",
+  "peerDependencies": {
+    "@angular/common": "^9.1.6",
+    "@angular/core": "^9.1.6",
+    "tslib": "^1.10.0",
+    "@angular/material": "^9.2.3",
+    "@lab900/forms": "^0.2.39",
+    "@lab900/ui": "^0.0.26"
+  },
+  "devDependencies": {
+    "@lab900/forms": "^0.2.39",
+    "@lab900/ui": "^0.0.26"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lab900/angular-libraries.git"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@lab900/ui",
+  "version": "0.0.26",
+  "peerDependencies": {
+    "@angular/common": "^9.1.6",
+    "@angular/core": "^9.1.6",
+    "tslib": "^1.10.0",
+    "@angular/material": "^9.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lab900/angular-libraries.git"
+  },
+  "dependencies": {}
+}

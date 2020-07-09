@@ -1,0 +1,17 @@
+<div class="cell">
+
+    <span *ngIf="column?.overviewOptions?.displayOptions?.customFormatter" [innerHTML]="column.overviewOptions?.displayOptions.customFormatter(row[column.attribute], row)" ></span>
+
+    <span *ngIf="!column?.overviewOptions?.displayOptions?.customFormatter" [ngSwitch]="column.editType" class="cell__wrapper">
+        <span *ngSwitchCase="Date">
+            <lab900-date-display [data]="row[column.attribute]" [fieldType]="column"></lab900-date-display>
+        </span>
+        <span *ngSwitchCase="Image">
+            <lab900-image-display [data]="row[column.attribute]" [fieldType]="column"></lab900-image-display>
+        </span>
+        <span *ngSwitchCase="Checkbox">
+            <lab900-checkbox-display [data]="row[column.attribute]" [fieldType]="column"></lab900-checkbox-display>
+        </span>
+        <span *ngSwitchDefault class="cell__wrapper__text" >{{ row[column.attribute] }}</span>
+    </span>
+</div>
