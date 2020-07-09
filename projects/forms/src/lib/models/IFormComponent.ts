@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
-import { FormField } from './FormField';
 import { EditType } from './editType';
+import { FormField } from './FormField';
 
 export interface IFormComponent {
   schema: FormField;
@@ -11,6 +11,8 @@ export class FormComponent implements IFormComponent {
   group: FormGroup;
   schema: FormField;
 
+  errorMessage: string | null = null;
+
   get valid(): boolean {
     return this.group.get(this.schema.attribute).valid;
   }
@@ -19,32 +21,35 @@ export class FormComponent implements IFormComponent {
     return this.group.get(this.schema.attribute).hasError('required');
   }
 
-  get errorMessage(): string | null {
+  updateErrorMessage(): string | null {
+    console.log('updateErrorMessage()');
     if (this.valid) {
-      return null;
+      this.errorMessage = null;
+      return;
     }
 
     const field = this.group.get(this.schema.attribute);
 
+    let message = `Field is invalid.`;
     if (field.hasError('required')) {
       if (this.schema.editType === EditType.Number) {
         // When there's text in a [type=number] field, its value is ""
-        return `A valid number is required.`;
+        message = `A valid number is required.`;
       } else {
-        return `A value is required.`;
+        message = `A value is required.`;
       }
     } else if (field.hasError('minlength')) {
-      return `This field should contain at least ${this.schema.options.minLength} characters.`;
+      message = `This field should contain at least ${this.schema.options.minLength} characters.`;
     } else if (field.hasError('maxlength')) {
-      return `This field should contain at most ${this.schema.options.maxLength} characters.`;
+      message = `This field should contain at most ${this.schema.options.maxLength} characters.`;
     } else if (field.hasError('min')) {
-      return `This should be at least ${this.schema.options.min}.`;
+      message = `This should be at least ${this.schema.options.min}.`;
     } else if (field.hasError('max')) {
-      return `This should be at most ${this.schema.options.max}.`;
+      message = `This should be at most ${this.schema.options.max}.`;
     } else if (field.hasError('pattern')) {
-      return `Please enter a valid ${this.schema.options.patternTitle}.`;
-    } else {
-      return `Field is invalid.`;
+      message = `Please enter a valid ${this.schema.options.patternTitle}.`;
     }
+
+    this.errorMessage = message;
   }
 }
