@@ -3,7 +3,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Component, ElementRef, HostListener, Input, Optional, Self } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
-import { AbstractMaterialReactiveFormControl } from '../../../models/forms/AbstractMaterialReactiveFormControl';
+import { AbstractMaterialReactiveFormControlDirective } from '../../../models/forms/AbstractMaterialReactiveFormControl';
 
 @Component({
   selector: 'lab900-mat-file-field',
@@ -11,7 +11,7 @@ import { AbstractMaterialReactiveFormControl } from '../../../models/forms/Abstr
   styleUrls: ['./mat-file-field.component.scss'],
   providers: [{ provide: MatFormFieldControl, useExisting: MatFileFieldComponent }],
 })
-export class MatFileFieldComponent extends AbstractMaterialReactiveFormControl<File> {
+export class MatFileFieldComponent extends AbstractMaterialReactiveFormControlDirective<File> {
   open = false;
 
   @Input() formControlName: string;

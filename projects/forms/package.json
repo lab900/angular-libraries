@@ -2,16 +2,17 @@
   "name": "@lab900/forms",
   "version": "0.2.43",
   "peerDependencies": {
-    "@angular/common": "^9.1.7",
-    "@angular/core": "^9.1.7",
-    "@angular/forms": "^9.1.7",
-    "@angular/material": "^9.2.3",
-    "tslib": "^1.10.0",
+    "@angular/common": "~10.0.2",
+    "@angular/core": "~10.0.2",
+    "@angular/forms": "~10.0.2",
+    "@angular/material": "~10.0.1",
     "@kolkov/angular-editor": "^1.1.2"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/lab900/angular-libraries.git"
   },
-  "dependencies": {}
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
 }

@@ -1,7 +1,8 @@
-import { Input } from '@angular/core';
+import { Input, Directive } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 
-export class BaseControlValueAccessor<T> implements ControlValueAccessor {
+@Directive()
+export class BaseControlValueAccessorDirective<T> implements ControlValueAccessor {
   public value: T;
   protected disabledStore: boolean;
 
