@@ -18,7 +18,14 @@
     "cheese": "Cheese",
     "tomato": "Tomato",
     "must-agree": "I like pizza",
-    "pizza-error": "That is not a valid answer."
+    "pizza-error": "That is not a valid answer.",
+    "id": "ID",
+    "title": "Title",
+    "subtitle": "Subtitle",
+    "author": "Author",
+    "posted-by": "Posted By",
+    "content": "Content",
+    "background": "Background"
   },
   "content": {
     "buttons": "Buttons",

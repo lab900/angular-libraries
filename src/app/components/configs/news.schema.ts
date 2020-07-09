@@ -9,7 +9,7 @@ export const NEWS_SCHEMA: Schema = {
   deletable: true,
   fields: [
     {
-      title: 'Id',
+      title: 'label.id',
       attribute: 'id',
       editType: EditType.Input,
       overviewOptions: {
@@ -22,7 +22,7 @@ export const NEWS_SCHEMA: Schema = {
       editType: EditType.Checkbox,
     },
     {
-      title: 'Title',
+      title: 'label.title',
       attribute: 'title',
       editType: EditType.Input,
       overviewOptions: {
@@ -33,22 +33,22 @@ export const NEWS_SCHEMA: Schema = {
       },
     },
     {
-      title: 'Subtitle',
+      title: 'label.subtitle',
       attribute: 'subTitle',
       editType: EditType.Input,
     },
     {
-      title: 'Author',
+      title: 'label.author',
       attribute: 'author',
       editType: EditType.Input,
     },
     {
-      title: 'Posted On',
+      title: 'label.posted-on',
       editType: EditType.Date,
       attribute: 'postedOn',
     },
     {
-      title: 'Posted On',
+      title: 'label.posted-on',
       editType: EditType.Date,
       attribute: 'postedOnShort',
       overviewOptions: {
@@ -59,7 +59,7 @@ export const NEWS_SCHEMA: Schema = {
       },
     },
     {
-      title: 'Posted By',
+      title: 'label.posted-by',
       attribute: 'postedBy',
       editType: EditType.Input,
       overviewOptions: {
@@ -69,7 +69,7 @@ export const NEWS_SCHEMA: Schema = {
       },
     },
     {
-      title: 'Content',
+      title: 'label.content',
       attribute: 'content',
       editType: EditType.Wysiwyg,
       overviewOptions: {
@@ -83,7 +83,7 @@ export const NEWS_SCHEMA: Schema = {
       },
     },
     {
-      title: 'Background',
+      title: 'label.background',
       attribute: 'backgroundImageUrl',
       editType: EditType.Image,
     },

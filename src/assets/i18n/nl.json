@@ -17,7 +17,14 @@
     "cheese": "Kaas",
     "tomato": "Tomaat",
     "must-agree": "Ik eet graag pizza",
-    "pizza-error": "Dat kan niet."
+    "pizza-error": "Dat kan niet.",
+    "id": "ID",
+    "title": "Titel",
+    "subtitle": "Ondertitel",
+    "author": "Auteur",
+    "posted-by": "Geplaatst door",
+    "content": "Inhoud",
+    "background": "Achtergrond"
   },
   "content": {
     "buttons": "Knoppen",
@@ -26,14 +33,5 @@
     "admin": "Admin",
     "ui": "UI",
     "form-title": "Vul je gegevens hieronder in."
-  },
-
-  "Published": "Gepubliceerd",
-  "Title": "Titel",
-  "Subtitle": "Ondertitel",
-  "Author": "Auteur",
-  "Posted On": "Geplaatst op",
-  "Posted By": "Geplaatst door",
-  "Content": "Inhoud",
-  "Background": "Achtergrond"
+  }
 }
