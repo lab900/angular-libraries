@@ -41,7 +41,7 @@ export class FormsShowcaseComponent implements OnInit {
           options: {
             required: false,
             pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            patternError: 'email-error',
+            patternError: 'label.email-error',
           },
         },
         { attribute: 'number', editType: EditType.Number, title: 'label.number', options: { required: true, min: 3 } },

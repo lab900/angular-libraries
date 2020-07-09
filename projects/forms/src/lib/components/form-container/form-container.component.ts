@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup as NgFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup as NgFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { defaultValue } from '../../models/editType';
 import { Form, isFormField } from '../../models/Form';
 import { FormField } from '../../models/FormField';
@@ -22,14 +22,27 @@ export class FormContainerComponent<T> implements OnInit {
     this.form = this.fb.group(
       this.schema.fields.reduce((formGroupObject, field) => {
         if (isFormField(field)) {
-          formGroupObject[field.attribute] = new FormControl(defaultValue(field.editType), [
-            field.options?.required ? Validators.required : () => null,
-            field.options?.minLength ? Validators.minLength(field.options.minLength) : () => null,
-            field.options?.maxLength ? Validators.maxLength(field.options.maxLength) : () => null,
-            field.options?.min ? Validators.min(field.options.min) : () => null,
-            field.options?.max ? Validators.max(field.options.max) : () => null,
-            field.options?.pattern ? Validators.pattern(field.options.pattern) : () => null,
-          ]);
+          const validators: ValidatorFn[] = [];
+          if (field.options?.required) {
+            validators.push(Validators.required);
+          }
+          if (field.options?.minLength) {
+            validators.push(Validators.minLength(field.options.minLength));
+          }
+          if (field.options?.maxLength) {
+            validators.push(Validators.maxLength(field.options.maxLength));
+          }
+          if (field.options?.min) {
+            validators.push(Validators.min(field.options.min));
+          }
+          if (field.options?.max) {
+            validators.push(Validators.max(field.options.max));
+          }
+          if (field.options?.pattern) {
+            validators.push(Validators.pattern(field.options.pattern));
+          }
+
+          formGroupObject[field.attribute] = new FormControl(defaultValue(field.editType), validators);
         }
         return formGroupObject;
       }, {}),
