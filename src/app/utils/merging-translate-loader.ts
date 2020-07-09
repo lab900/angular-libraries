@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateLoader } from '@ngx-translate/core';
 
 import formsTranslations from '../../../projects/forms/src/assets/i18n';
+import adminTranslations from '../../../projects/forms/src/assets/i18n';
 
 /**
  * Custom ngx-translate translation loader that combines translation files from subprojects with translations from this
@@ -19,6 +20,7 @@ export class MergingTranslateLoader implements TranslateLoader {
     return this.http.get(`${this.prefix}${lang}${this.suffix}`).pipe(
       map((translations) => ({
         ...formsTranslations[lang],
+        ...adminTranslations[lang],
         ...translations,
       })),
     );
