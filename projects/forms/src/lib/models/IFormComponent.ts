@@ -27,7 +27,7 @@ export class FormComponent implements IFormComponent {
     return this.group.get(this.schema.attribute).hasError('required');
   }
 
-  updateErrorMessage(): string | null {
+  updateErrorMessage() {
     if (this.valid) {
       this.errorMessage.next(null);
       return;
@@ -39,7 +39,7 @@ export class FormComponent implements IFormComponent {
     if (field.hasError('required')) {
       if (this.schema.editType === EditType.Number) {
         // When there's text in a [type=number] field, its value is ""
-        this.translateService.get('forms.error.number-required');
+        message$ = this.translateService.get('forms.error.number-required');
       } else {
         message$ = this.translateService.get('forms.error.required');
       }

@@ -22,7 +22,6 @@ import { WysiwygFieldComponent } from '../components/form-fields/wysiwyg-field/w
 import { EditType } from '../models/editType';
 import { FormField } from '../models/FormField';
 import { FormComponent, IFormComponent } from '../models/IFormComponent';
-import { distinctUntilChanged } from 'rxjs/operators';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -72,12 +71,9 @@ export class FormFieldDirective implements IFormComponent, OnChanges, OnInit, On
     this.component.instance.schema = this.schema;
     this.component.instance.group = this.group;
 
-    this.statusChangeSubscription = this.group
-      .get(this.schema.attribute)
-      .statusChanges.pipe(distinctUntilChanged())
-      .subscribe(() => {
-        this.component.instance.updateErrorMessage();
-      });
+    this.statusChangeSubscription = this.group.get(this.schema.attribute).statusChanges.subscribe(() => {
+      this.component.instance.updateErrorMessage();
+    });
     this.component.instance.updateErrorMessage();
   }
 
