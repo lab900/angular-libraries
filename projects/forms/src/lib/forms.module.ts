@@ -29,6 +29,8 @@ import { CheckboxFieldComponent } from './components/form-fields/checkbox-field/
 import { FormModuleSettings, defaultFormModuleSettings } from './models/FormModuleSettings';
 import { TextareaFieldComponent } from './components/form-fields/textarea-field/textarea-field.component';
 import { FormRowComponent } from './components/form-row/form-row.component';
+import { RepeaterFieldComponent } from './components/form-fields/repeater-field/repeater-field.component';
+import { Lab900FormBuilderService } from './services/form-builder.service';
 
 const customFields = [
   UnknownFieldComponent,
@@ -39,6 +41,7 @@ const customFields = [
   DateFieldComponent,
   WysiwygFieldComponent,
   TextareaFieldComponent,
+  RepeaterFieldComponent,
   FormRowComponent,
 ];
 
@@ -75,6 +78,7 @@ export class FormsModule {
     return {
       ngModule: FormsModule,
       providers: [
+        Lab900FormBuilderService,
         {
           provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
           useValue: settings.formField,

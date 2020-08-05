@@ -1,0 +1,23 @@
+<div [formGroup]="group" [hidden]="hide" class="repeater-field" [class.fixed-list]="fixedList">
+    <div [formArrayName]="schema.attribute">
+        <h3>{{schema.title}}</h3>
+        <div *ngFor="let alias of repeaterArray.controls; let i=index" class="repeater-row">
+            <div class="repeater-row__fields">
+                <ng-container 
+                    *ngFor="let field of schema.nestedFields;" 
+                    lab900FormField
+                    [schema]="field"
+                    [group]="repeaterArray.controls[i]"
+                ></ng-container>
+            </div>
+            <div *ngIf="!fixedList" class="repeater-row__actions">
+                <button *ngIf="(i + 1) > minRows" (click)="removeFromArray(i)" mat-mini-fab color="accent" aria-label="Delete">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+        <button *ngIf="!fixedList" mat-button color="primary" (click)="addToArray()" class="repeater-add">
+            {{ addLabel }}
+        </button>
+    </div>
+</div>

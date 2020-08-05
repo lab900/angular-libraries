@@ -29,13 +29,22 @@ export interface InputFieldOptions extends FieldOptions {
   type?: 'text' | 'number' | 'email' | 'password';
 }
 
+export interface RepeaterFieldOptions extends FieldOptions {
+  fixedList?: boolean;
+  addLabel?: string;
+  minRows?: number;
+  maxRows?: number;
+}
+
 export interface SelectFieldOptions extends FieldOptions {
   multiple?: boolean;
   values?: { key: string; value: string }[];
   valuesFn?: () => Promise<{ key: any; value: string }[]>;
 }
 
-export interface FormField<T extends FieldOptions = WysiwygFieldOptions | InputFieldOptions | SelectFieldOptions | FieldOptions> {
+export interface FormField<
+  T extends FieldOptions = WysiwygFieldOptions | InputFieldOptions | SelectFieldOptions | FieldOptions | RepeaterFieldOptions
+> {
   attribute: string;
   editType: EditType;
   title?: string;

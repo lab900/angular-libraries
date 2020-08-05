@@ -24,6 +24,7 @@ import { FormField, FieldOptions } from '../models/FormField';
 import { FormComponent, IFormComponent } from '../models/IFormComponent';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { FormRowComponent } from '../components/form-row/form-row.component';
+import { RepeaterFieldComponent } from '../components/form-fields/repeater-field/repeater-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -42,6 +43,8 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return SelectFieldComponent;
     case EditType.TextArea:
       return TextareaFieldComponent;
+    case EditType.Repeater:
+      return RepeaterFieldComponent;
     case EditType.Row:
       return FormRowComponent;
     default:
@@ -74,16 +77,6 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
     this.component = this.container.createComponent(component);
     this.component.instance.schema = this.schema;
     this.component.instance.group = this.group;
-
-    if (this.schema.attribute && this.schema.editType !== EditType.Row) {
-      this.statusChangeSubscription = this.group
-        .get(this.schema.attribute)
-        .statusChanges.pipe(distinctUntilChanged())
-        .subscribe(() => {
-          this.component.instance.updateErrorMessage();
-        });
-      this.component.instance.updateErrorMessage();
-    }
   }
 
   ngOnDestroy() {

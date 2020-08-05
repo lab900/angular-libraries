@@ -1,12 +1,10 @@
-<div class="form-container">
-    <form [formGroup]="form" class="form">
-        <div class="form__inner">
-            <ng-container 
-                *ngFor="let field of schema.fields;" 
-                lab900FormField
-                [schema]="field"
-                [group]="form"
-            ></ng-container>
-        </div>
-    </form>
-</div>
+<form [formGroup]="form" class="lab900-form">
+    <div class="lab900-form__inner">
+        <ng-container 
+            *ngFor="let field of schema.fields;" 
+            lab900FormField
+            [schema]="field"
+            [group]="form"
+        ></ng-container>
+    </div>
+</form>
