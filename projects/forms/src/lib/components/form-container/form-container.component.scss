@@ -15,14 +15,19 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin-right: -20px;
-  >div {
+
+  &__col {
     padding-right: 20px;
     box-sizing: border-box;
-  }
-}
 
-.form-field {
-  width: 100%;
+    ::ng-deep .lab900-form-field {
+      width: 100%;
+
+      .mat-form-field {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .form-button-group {
@@ -36,6 +41,7 @@
   padding: 8px;
 }
 
-mat-grid-tile {
+mat-grid-tile, 
+mat-form-field {
   width: 100%;
 }

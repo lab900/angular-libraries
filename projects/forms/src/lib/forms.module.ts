@@ -22,28 +22,32 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { NumberFieldComponent } from './components/form-fields/number-field/number-field.component';
 import { SelectFieldComponent } from './components/form-fields/select-field/select-field.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CheckboxFieldComponent } from './components/form-fields/checkbox-field/checkbox-field.component';
 import { FormModuleSettings, defaultFormModuleSettings } from './models/FormModuleSettings';
+import { TextareaFieldComponent } from './components/form-fields/textarea-field/textarea-field.component';
+
+const customFields = [
+  UnknownFieldComponent,
+  InputFieldComponent,
+  SelectFieldComponent,
+  FileFieldComponent,
+  CheckboxFieldComponent,
+  DateFieldComponent,
+  WysiwygFieldComponent,
+  TextareaFieldComponent,
+];
 
 @NgModule({
   declarations: [
     FormFieldDirective,
     FormDialogDirective,
-    UnknownFieldComponent,
-    InputFieldComponent,
-    NumberFieldComponent,
-    SelectFieldComponent,
     FormContainerComponent,
     FormDialogComponent,
-    DateFieldComponent,
-    WysiwygFieldComponent,
     MatFileFieldComponent,
-    FileFieldComponent,
-    CheckboxFieldComponent,
+    ...customFields,
   ],
   imports: [
     CommonModule,

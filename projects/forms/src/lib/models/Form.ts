@@ -1,4 +1,4 @@
-import { FormField } from './FormField';
+import { FormField, FieldOptions } from './FormField';
 import { FormGroup } from './FormGroup';
 
 export class Form {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 
 @Component({
@@ -7,12 +7,5 @@ import { FormComponent } from '../../../models/IFormComponent';
     <p>Unknown schema:</p>
     <pre>{{ schema | json }}</pre>
   </div>`,
-  styles: [''],
 })
-export class UnknownFieldComponent extends FormComponent implements OnInit {
-  constructor() {
-    super();
-  }
-
-  ngOnInit(): void {}
-}
+export class UnknownFieldComponent extends FormComponent {}

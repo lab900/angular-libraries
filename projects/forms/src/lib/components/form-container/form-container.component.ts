@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup as NgFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { defaultValue } from '../../models/editType';
 import { Form, isFormField } from '../../models/Form';
-import { FormField } from '../../models/FormField';
+import { FormField, FieldOptions } from '../../models/FormField';
 import { FormGroup } from '../../models/FormGroup';
 
 @Component({

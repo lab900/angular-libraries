@@ -1,6 +1,6 @@
 <mat-form-field [formGroup]="group" [hidden]="hide">
     <mat-label>{{ schema.title }}</mat-label>
-    <input matInput [type]="inputType" [placeholder]="placeholder" [formControlName]="schema.attribute">
+    <textarea matInput [placeholder]="placeholder" [formControlName]="schema.attribute"></textarea>
     <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
-    <mat-error *ngIf="!valid">{{errorMessage}}</mat-error>
+    <mat-error *ngIf="!valid">{{ errorMessage }}</mat-error>
 </mat-form-field>

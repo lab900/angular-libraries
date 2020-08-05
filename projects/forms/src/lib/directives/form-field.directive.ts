@@ -15,12 +15,12 @@ import { CheckboxFieldComponent } from '../components/form-fields/checkbox-field
 import { DateFieldComponent } from '../components/form-fields/date-field/date-field.component';
 import { FileFieldComponent } from '../components/form-fields/file-field/file-field.component';
 import { InputFieldComponent } from '../components/form-fields/input-field/input-field.component';
-import { NumberFieldComponent } from '../components/form-fields/number-field/number-field.component';
+import { TextareaFieldComponent } from '../components/form-fields/textarea-field/textarea-field.component';
 import { SelectFieldComponent } from '../components/form-fields/select-field/select-field.component';
 import { UnknownFieldComponent } from '../components/form-fields/unknown-field/unknown-field.component';
 import { WysiwygFieldComponent } from '../components/form-fields/wysiwyg-field/wysiwyg-field.component';
 import { EditType } from '../models/editType';
-import { FormField } from '../models/FormField';
+import { FormField, FieldOptions } from '../models/FormField';
 import { FormComponent, IFormComponent } from '../models/IFormComponent';
 import { distinctUntilChanged } from 'rxjs/operators';
 
@@ -31,8 +31,6 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return InputFieldComponent;
     case EditType.Checkbox:
       return CheckboxFieldComponent;
-    case EditType.Number:
-      return NumberFieldComponent;
     case EditType.Wysiwyg:
       return WysiwygFieldComponent;
     case EditType.Date:
@@ -41,6 +39,8 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return FileFieldComponent;
     case EditType.Select:
       return SelectFieldComponent;
+    case EditType.TextArea:
+      return TextareaFieldComponent;
     default:
       return UnknownFieldComponent;
   }
@@ -49,7 +49,7 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
 @Directive({
   selector: '[lab900FormField]',
 })
-export class FormFieldDirective implements IFormComponent, OnChanges, OnInit, OnDestroy {
+export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChanges, OnInit, OnDestroy {
   @Input() schema: FormField;
   @Input() group: FormGroup;
   component: ComponentRef<FormComponent>;
@@ -67,7 +67,7 @@ export class FormFieldDirective implements IFormComponent, OnChanges, OnInit, On
 
   ngOnInit() {
     this.validateType();
-    const component = this.resolver.resolveComponentFactory<FormComponent>(mapToComponent(this.schema));
+    const component = this.resolver.resolveComponentFactory<FormComponent<FieldOptions>>(mapToComponent(this.schema));
     this.component = this.container.createComponent(component);
     this.component.instance.schema = this.schema;
     this.component.instance.group = this.group;

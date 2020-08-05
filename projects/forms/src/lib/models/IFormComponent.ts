@@ -1,30 +1,54 @@
 import { FormGroup } from '@angular/forms';
-import { EditType } from './editType';
-import { FormField } from './FormField';
+import { FormField, FieldOptions } from './FormField';
+import { Input, Component, HostBinding } from '@angular/core';
 
-export interface IFormComponent {
-  schema: FormField;
+export interface IFormComponent<T extends FieldOptions> {
+  schema: FormField<T>;
   group: FormGroup;
 }
 
-export class FormComponent implements IFormComponent {
-  group: FormGroup;
-  schema: FormField;
+@Component({
+  template: '',
+})
+export abstract class FormComponent<T extends FieldOptions = FieldOptions> implements IFormComponent<T> {
+  @HostBinding('class.lab900-form-field')
+  private hostClass = true;
 
-  errorMessage: string | null = null;
+  @Input()
+  public group: FormGroup;
 
-  get valid(): boolean {
+  @Input()
+  public schema: FormField<T>;
+
+  public errorMessage?: string;
+
+  public get valid(): boolean {
     return this.group.get(this.schema.attribute).valid;
   }
 
-  get required(): boolean {
+  public get required(): boolean {
     return this.group.get(this.schema.attribute).hasError('required');
   }
 
-  updateErrorMessage(): string | null {
-    console.log('updateErrorMessage()');
+  public get options(): T {
+    return this.schema && this.schema.options;
+  }
+
+  public get hide(): boolean {
+    return this.schema && this.schema.options && this.schema.options.hide;
+  }
+
+  public get hint(): string {
+    return this.schema && this.schema.options && this.schema.options.hint;
+  }
+
+  public get placeholder(): string {
+    return this.schema && this.schema.options && this.schema.options.placeholder;
+  }
+
+  public updateErrorMessage(): string | null {
     if (this.valid) {
-      this.errorMessage = null;
+      this.errorMessage = undefined;
       return;
     }
 
@@ -32,12 +56,7 @@ export class FormComponent implements IFormComponent {
 
     let message = `Field is invalid.`;
     if (field.hasError('required')) {
-      if (this.schema.editType === EditType.Number) {
-        // When there's text in a [type=number] field, its value is ""
-        message = `A valid number is required.`;
-      } else {
-        message = `A value is required.`;
-      }
+      message = `A value is required.`;
     } else if (field.hasError('minlength')) {
       message = `This field should contain at least ${this.schema.options.minLength} characters.`;
     } else if (field.hasError('maxlength')) {

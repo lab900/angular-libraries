@@ -1,15 +1,15 @@
 <div class="form-container">
     <h5 *ngIf="schema.title">{{schema.title}}</h5>
     <form [formGroup]="form" class="form">
-        <div *ngFor="let field of schema.fields;"
+        <div *ngFor="let field of schema.fields;" class="form__col"
              [ngStyle]="{ 'flex' : (schema.columns) ?
                                         ( (100*(field.options?.colspan || 1)/schema.columns) + ' 1 ' + (100*(field.options?.colspan || 1)/schema.columns) + '%')
                                         : '1 1 auto'}">
-             <ng-container lab900FormField
-                              [schema]="field"
-                              [group]="form"
-                              class="form-field">
-             </ng-container>
+            <ng-container 
+                lab900FormField
+                [schema]="field"
+                [group]="form"
+            ></ng-container>
         </div>
     </form>
 </div>

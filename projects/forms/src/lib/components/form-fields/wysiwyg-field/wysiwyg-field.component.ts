@@ -1,19 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { FormField, WysiwygFieldOptions } from '../../../models/FormField';
+import { WysiwygFieldOptions } from '../../../models/FormField';
 
 @Component({
   selector: 'lab900-wysiwyg-field',
-  templateUrl: './wysiwyg-field.component.html',
-  styleUrls: ['./wysiwyg-field.component.scss'],
+  template: `
+    <div [formGroup]="group">
+      <angular-editor [formControlName]="schema.attribute" [config]="editorConfig" ></angular-editor>
+    </div>
+  `,
 })
-export class WysiwygFieldComponent extends FormComponent implements OnInit {
-  @Input() schema: FormField;
+export class WysiwygFieldComponent extends FormComponent<WysiwygFieldOptions> implements OnInit {
+  public editorConfig: AngularEditorConfig;
 
-  editorConfig: AngularEditorConfig;
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.editorConfig = {
       editable: true,
       sanitize: false,

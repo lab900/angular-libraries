@@ -1,8 +1,0 @@
-<mat-form-field [formGroup]="group" appearance="standard" [ngStyle]="schema?.options?.hide ? { 'display': 'none' } : {}">
-    <mat-label>{{schema.title}}</mat-label>
-    <label>
-        <input matInput type="number" [placeholder]="schema?.options?.hint" [formControlName]="schema.attribute">
-    </label>
-    <mat-hint></mat-hint>
-    <mat-error *ngIf="!valid">{{errorMessage}}</mat-error>
-</mat-form-field>

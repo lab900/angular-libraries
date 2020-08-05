@@ -29,7 +29,7 @@ export class FormsShowcaseComponent implements OnInit {
       title: 'Enter your name.',
       columns: 1,
       fields: [
-        { attribute: 'first', editType: EditType.Input, title: 'First Name', options: { hide: false } },
+        { attribute: 'first', editType: EditType.TextArea, title: 'First Name', options: { hide: false } },
         { attribute: 'last', editType: EditType.Input, title: 'Last Name', options: { required: true, maxLength: 12 } },
         {
           attribute: 'email',
@@ -41,7 +41,7 @@ export class FormsShowcaseComponent implements OnInit {
             patternTitle: 'email address',
           },
         },
-        { attribute: 'number', editType: EditType.Number, title: 'Number', options: { required: true, min: 3 } },
+        { attribute: 'number', editType: EditType.Input, title: 'Number', options: { type: 'number', required: true, min: 3 } },
         { attribute: 'file', editType: EditType.File, title: 'Attachment', options: { required: true } },
         { attribute: 'postedOn', editType: EditType.Date, title: 'Posted On', options: { required: true } },
         { attribute: 'published', editType: EditType.Checkbox, title: 'Published', options: { required: true } },

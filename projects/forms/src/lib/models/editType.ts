@@ -5,7 +5,6 @@ export enum EditType {
   Wysiwyg = 'Wysiwyg',
   Image = 'Image',
   Input = 'Input',
-  Number = 'Number',
   File = 'File',
   Select = 'Select',
 }

@@ -6,8 +6,4 @@ import { FormComponent } from '../../../models/IFormComponent';
   templateUrl: './file-field.component.html',
   styleUrls: ['./file-field.component.scss'],
 })
-export class FileFieldComponent extends FormComponent {
-  constructor() {
-    super();
-  }
-}
+export class FileFieldComponent extends FormComponent {}
