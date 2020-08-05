@@ -1,0 +1,23 @@
+.showcase-nav {
+  min-width: 340px;
+}
+
+.showcase-nav-group {
+  padding: 50px 0;
+
+  > span {
+    padding: 0 16px;
+    font-weight: bold;
+    font-size: 20px;
+    display: block;
+    margin: 0 0 16px;
+  }
+
+  .mat-list-item-child ::ng-deep .mat-list-item-content {
+    padding-left: 16 * 2px;
+  }
+
+  .mat-list-item.active {
+    font-weight: bold;
+  }
+}

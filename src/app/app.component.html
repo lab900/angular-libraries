@@ -1,17 +1,20 @@
-<mat-tab-group  animationDuration="0ms">
-    <mat-tab label="Forms">
-        <ng-template matTabContent>
-            <lab900-forms-showcase></lab900-forms-showcase>
-        </ng-template>
-    </mat-tab>
-    <mat-tab label="Admin">
-        <ng-template matTabContent>
-            <lab900-admin-showcase></lab900-admin-showcase>
-        </ng-template>
-    </mat-tab>
-    <mat-tab label="UI">
-        <ng-template matTabContent>
-            <lab900-ui-showcase></lab900-ui-showcase>
-        </ng-template>
-    </mat-tab>
-</mat-tab-group>
+<div class="lab900-showcase">
+    <mat-toolbar class="lab900-showcase__header">
+        <div>
+            <img src="../assets/images/logo-duo-dark.svg">
+            <h1>Angular Libraries</h1>
+        </div>
+    </mat-toolbar>
+    <div class="lab900-showcase__content">
+        <mat-drawer-container class="example-container">
+            <mat-drawer mode="side" opened>
+                <lab900-showcase-navigation></lab900-showcase-navigation>
+            </mat-drawer>
+            <mat-drawer-content>
+                <main>
+                    <router-outlet></router-outlet>
+                </main>
+            </mat-drawer-content>
+        </mat-drawer-container>
+    </div>
+</div>

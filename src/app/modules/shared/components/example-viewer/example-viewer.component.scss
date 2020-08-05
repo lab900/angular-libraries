@@ -1,0 +1,17 @@
+.lab900-pretty-print {
+  margin: 0;
+  padding: 30px;
+  background: rgba(#000, 0.1);
+
+  pre,
+  pre[class*="language-"] > code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  // Typography fix
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+}

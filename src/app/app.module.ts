@@ -7,27 +7,22 @@ import { FormsModule } from '../../projects/forms/src/lib/forms.module';
 import { DialogModule } from '../../projects/ui/src/lib/dialog/dialog.module';
 
 import { AppComponent } from './app.component';
-import { FormsShowcaseComponent } from './components/forms-showcase/forms-showcase.component';
-import { AdminShowcaseComponent } from './components/admin-showcase/admin-showcase.component';
-import { MatButtonModule } from '@angular/material/button';
-import { UiShowcaseComponent } from './components/ui-showcase/ui-showcase.component';
-import { AlertModule } from '../../projects/ui/src/lib/alert/alert.module';
+import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './modules/shared/shared.module';
+import { ShowcaseNavigationComponent } from './components/showcase-navigation/showcase-navigation.component';
 
 @NgModule({
-  declarations: [AppComponent, AdminShowcaseComponent, FormsShowcaseComponent, UiShowcaseComponent],
+  declarations: [AppComponent, ShowcaseNavigationComponent],
   imports: [
     BrowserModule,
-    AdminModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    SharedModule,
     FormsModule.forRoot({
       formField: {
         appearance: 'outline',
       },
     }),
-    MatTabsModule,
-    MatButtonModule,
-    DialogModule,
-    AlertModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
