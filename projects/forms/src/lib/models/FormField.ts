@@ -47,7 +47,13 @@ export interface RadioButtonsFieldOptions extends FieldOptions {
 }
 
 export interface FormField<
-  T extends FieldOptions = WysiwygFieldOptions | InputFieldOptions | SelectFieldOptions | FieldOptions | RepeaterFieldOptions | RadioButtonsFieldOptions
+  T extends FieldOptions =
+    | WysiwygFieldOptions
+    | InputFieldOptions
+    | SelectFieldOptions
+    | FieldOptions
+    | RepeaterFieldOptions
+    | RadioButtonsFieldOptions
 > {
   attribute: string;
   editType: EditType;

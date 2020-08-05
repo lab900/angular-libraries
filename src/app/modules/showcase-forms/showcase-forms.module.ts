@@ -16,7 +16,13 @@ import { FormFieldInputsExampleComponent } from './examples/form-field-inputs-ex
 import { FormFieldTextareaExampleComponent } from './examples/form-field-textarea-example/form-field-textarea-example.component';
 import { FormFieldRadioButtonsExampleComponent } from './examples/form-field-radio-buttons-example/form-field-radio-buttons-example.component';
 
-const pages = [FormFieldRepeaterPageComponent, FormFieldInputPageComponent, FormFieldDatepickerPageComponent, FormContainerPageComponent, FormFieldRadioButtonsPageComponent];
+const pages = [
+  FormFieldRepeaterPageComponent,
+  FormFieldInputPageComponent,
+  FormFieldDatepickerPageComponent,
+  FormContainerPageComponent,
+  FormFieldRadioButtonsPageComponent,
+];
 
 const examples = [
   FormFieldRepeaterExampleComponent,
