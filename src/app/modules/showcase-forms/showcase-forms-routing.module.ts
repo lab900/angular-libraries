@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormFieldRepeaterPageComponent } from './pages/form-field-repeater-page/form-field-repeater-page.component';
 import { FormFieldDatepickerPageComponent } from './pages/form-field-datepicker-page/form-field-datepicker-page.component';
 import { FormFieldInputPageComponent } from './pages/form-field-input-page/form-field-input-page.component';
+import { FormContainerPageComponent } from './pages/form-container-page/form-container-page.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
     path: 'form-field-input',
     component: FormFieldInputPageComponent,
     data: { pageTitle: 'Form Fields: Input & Textarea' },
+  },
+  {
+    path: 'form-container',
+    component: FormContainerPageComponent,
+    data: { pageTitle: 'Form container' },
   },
 ];
 

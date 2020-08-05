@@ -16,8 +16,17 @@ interface ShowcaseNavGroup {
 
 const sections: ShowcaseNavGroup[] = [
   {
-    title: 'Dynamic forms',
+    title: 'Lab900 - Forms',
     children: [
+      {
+        title: 'Components',
+        children: [
+          {
+            title: 'Form container',
+            route: 'forms/form-container',
+          },
+        ],
+      },
       {
         title: 'Form Fields',
         children: [

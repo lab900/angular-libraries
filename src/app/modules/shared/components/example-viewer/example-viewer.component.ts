@@ -44,8 +44,8 @@ export class ExampleViewerComponent implements OnInit {
 
   private fetchExampleFiles(): void {
     for (const extension of this.extensions) {
-      this.fileService.fetchFile(this.examplesFolder + this.filesPath + '.' + extension.toLowerCase()).subscribe(
-        (data: string) => this.exampleFiles.push({
+      this.fileService.fetchFile(this.examplesFolder + this.filesPath + '.' + extension.toLowerCase()).subscribe((data: string) =>
+        this.exampleFiles.push({
           extension,
           data,
           format: this.translateExtensionToFormat(extension),

@@ -36,7 +36,6 @@ export class RepeaterFieldComponent extends FormComponent<RepeaterFieldOptions> 
 
   public ngOnInit(): void {
     if (this.minRows) {
-      console.log(this.minRows);
       for (let index = 0; index < this.minRows; index++) {
         this.addToArray();
       }
