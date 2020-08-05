@@ -1,8 +1,5 @@
-.showcase-nav {
-  min-width: 340px;
-}
 
-.showcase-nav-group {
+.nav-list-group {
   padding: 50px 0;
 
   > span {
@@ -17,7 +14,5 @@
     padding-left: 16 * 2px;
   }
 
-  .mat-list-item.active {
-    font-weight: bold;
-  }
+
 }

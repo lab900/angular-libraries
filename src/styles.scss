@@ -44,6 +44,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-drawer-side {
   border-right: solid 2px #c0eae8;
+  min-width: 340px;
 }
 
 .mat-card.lab900-card {

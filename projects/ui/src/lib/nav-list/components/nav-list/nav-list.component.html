@@ -1,0 +1,9 @@
+<div class="lab900-nav-list" *ngIf="navItemGroups?.length">
+    <div *ngFor="let group of navItemGroups" class="nav-list-group">
+        <span mat-list-item>{{ group.label }} </span>
+        <mat-nav-list>
+            <lab900-nav-item *ngFor="let item of group.items" [item]="item"></lab900-nav-item>
+        </mat-nav-list>
+    </div>
+
+</div>

@@ -7,9 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
 
 import { FormsModule } from 'projects/forms/src/lib/forms.module';
+import { NavListModule } from 'projects/ui/src/lib/nav-list/nav-list.module';
 
 import { ExampleViewerComponent } from './components/example-viewer/example-viewer.component';
 
@@ -21,12 +21,11 @@ const material = [
   FlexLayoutModule,
   MatToolbarModule,
   MatSidenavModule,
-  MatListModule,
 ];
 
 @NgModule({
   declarations: [ExampleViewerComponent],
-  exports: [ExampleViewerComponent, FormsModule, ...material],
-  imports: [CommonModule, FormsModule, ...material],
+  exports: [ExampleViewerComponent, FormsModule, NavListModule, ...material],
+  imports: [CommonModule, FormsModule, NavListModule, ...material],
 })
 export class SharedModule {}

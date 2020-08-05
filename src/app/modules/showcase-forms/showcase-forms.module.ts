@@ -16,7 +16,12 @@ import { FormFieldTextareaExampleComponent } from './examples/form-field-textare
 
 const pages = [FormFieldRepeaterPageComponent, FormFieldInputPageComponent, FormFieldDatepickerPageComponent, FormContainerPageComponent];
 
-const examples = [FormFieldRepeaterExampleComponent, FormFieldRepeaterFixedExampleComponent, FormFieldInputsExampleComponent, FormFieldTextareaExampleComponent];
+const examples = [
+  FormFieldRepeaterExampleComponent,
+  FormFieldRepeaterFixedExampleComponent,
+  FormFieldInputsExampleComponent,
+  FormFieldTextareaExampleComponent,
+];
 
 @NgModule({
   declarations: [...pages, ...examples],

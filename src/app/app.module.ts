@@ -9,10 +9,9 @@ import { DialogModule } from '../../projects/ui/src/lib/dialog/dialog.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './modules/shared/shared.module';
-import { ShowcaseNavigationComponent } from './components/showcase-navigation/showcase-navigation.component';
 
 @NgModule({
-  declarations: [AppComponent, ShowcaseNavigationComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
