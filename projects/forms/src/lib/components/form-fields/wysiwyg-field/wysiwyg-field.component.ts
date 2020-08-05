@@ -7,7 +7,7 @@ import { WysiwygFieldOptions } from '../../../models/FormField';
   selector: 'lab900-wysiwyg-field',
   template: `
     <div [formGroup]="group">
-      <angular-editor [formControlName]="schema.attribute" [config]="editorConfig" ></angular-editor>
+      <angular-editor [formControlName]="schema.attribute" [config]="editorConfig"></angular-editor>
     </div>
   `,
 })

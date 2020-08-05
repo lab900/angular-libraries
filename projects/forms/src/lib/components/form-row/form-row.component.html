@@ -1,0 +1,13 @@
+<div class="form-row" *ngIf="schema.nestedFields">
+    <div 
+        *ngFor="let field of schema.nestedFields;" 
+        class="form-col"
+        [style.flex]="( (100*(field.options?.colspan || 1)/12) + ' 1 ' + (100*(field.options?.colspan || 1)/12) + '%')"
+    >
+        <ng-container 
+            lab900FormField
+            [schema]="field"
+            [group]="group"
+        ></ng-container>
+    </div>
+</div>

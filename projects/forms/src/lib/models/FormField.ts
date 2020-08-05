@@ -36,8 +36,9 @@ export interface SelectFieldOptions extends FieldOptions {
 }
 
 export interface FormField<T extends FieldOptions = WysiwygFieldOptions | InputFieldOptions | SelectFieldOptions | FieldOptions> {
-  title: string;
   attribute: string;
   editType: EditType;
+  title?: string;
   options?: T;
+  nestedFields?: FormField[];
 }

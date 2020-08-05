@@ -11,7 +11,7 @@ export const NEWS_SCHEMA: Schema = {
     {
       title: 'Id',
       attribute: 'id',
-      editType: EditType.Input,
+      editType: EditType.Input as any,
       overviewOptions: {
         hide: true,
       },
@@ -19,12 +19,12 @@ export const NEWS_SCHEMA: Schema = {
     {
       title: 'Published',
       attribute: 'published',
-      editType: EditType.Checkbox,
+      editType: EditType.Checkbox as any,
     },
     {
       title: 'Title',
       attribute: 'title',
-      editType: EditType.Input,
+      editType: EditType.Input as any,
       overviewOptions: {
         sticky: true,
         onClick: (column: SchemaField, value: any, row: any) => {
@@ -35,21 +35,21 @@ export const NEWS_SCHEMA: Schema = {
     {
       title: 'Subtitle',
       attribute: 'subTitle',
-      editType: EditType.Input,
+      editType: EditType.Input as any,
     },
     {
       title: 'Author',
       attribute: 'author',
-      editType: EditType.Input,
+      editType: EditType.Input as any,
     },
     {
       title: 'Posted On',
-      editType: EditType.Date,
+      editType: EditType.Date as any,
       attribute: 'postedOn',
     },
     {
       title: 'Posted On',
-      editType: EditType.Date,
+      editType: EditType.Date as any,
       attribute: 'postedOnShort',
       overviewOptions: {
         displayOptions: {
@@ -61,7 +61,7 @@ export const NEWS_SCHEMA: Schema = {
     {
       title: 'Posted By',
       attribute: 'postedBy',
-      editType: EditType.Input,
+      editType: EditType.Input as any,
       overviewOptions: {
         displayOptions: {
           customFormatter: (data) => `custom <strong>formatted</strong> ${data}`,
@@ -71,7 +71,7 @@ export const NEWS_SCHEMA: Schema = {
     {
       title: 'Content',
       attribute: 'content',
-      editType: EditType.Wysiwyg,
+      editType: EditType.Wysiwyg as any,
       overviewOptions: {
         hide: true,
       },

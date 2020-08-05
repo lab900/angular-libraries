@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup as NgFormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { defaultValue } from '../../models/editType';
-import { Form, isFormField } from '../../models/Form';
-import { FormField, FieldOptions } from '../../models/FormField';
-import { FormGroup } from '../../models/FormGroup';
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { defaultValue, EditType } from '../../models/editType';
+import { Form } from '../../models/Form';
+import { FormField } from '../../models/FormField';
 
 @Component({
   selector: 'lab900-form-container',
@@ -11,57 +10,64 @@ import { FormGroup } from '../../models/FormGroup';
   styleUrls: ['./form-container.component.scss'],
 })
 export class FormContainerComponent<T> implements OnInit {
-  @Input() schema: Form;
-  @Input() data: T;
+  @Input()
+  public schema: Form;
 
-  form: NgFormGroup;
+  @Input()
+  public data: T;
 
-  constructor(private fb: FormBuilder) {}
+  public form: FormGroup;
 
-  ngOnInit(): void {
-    this.form = this.fb.group(
-      this.schema.fields.reduce((formGroupObject, field) => {
-        if (isFormField(field)) {
-          const validators: ValidatorFn[] = [];
-          if (field.options?.required) {
-            validators.push(Validators.required);
-          }
-          if (field.options?.minLength) {
-            validators.push(Validators.minLength(field.options.minLength));
-          }
-          if (field.options?.maxLength) {
-            validators.push(Validators.maxLength(field.options.maxLength));
-          }
-          if (field.options?.min) {
-            validators.push(Validators.min(field.options.min));
-          }
-          if (field.options?.max) {
-            validators.push(Validators.max(field.options.max));
-          }
-          if (field.options?.pattern) {
-            validators.push(Validators.pattern(field.options.pattern));
-          }
+  public get valid() {
+    return this.form.valid;
+  }
 
-          formGroupObject[field.attribute] = new FormControl(defaultValue(field.editType), validators);
-        }
-        return formGroupObject;
-      }, {}),
-    );
+  public get value(): T {
+    return this.form.value as T;
+  }
 
+  public constructor(private fb: FormBuilder) {}
+
+  public ngOnInit(): void {
+    this.form = this.createFormGroup(this.schema.fields);
+    console.log(this.form);
     if (this.data) {
       this.form.patchValue(this.data);
     }
   }
 
-  isFormField(formField: FormGroup | FormField): boolean {
-    return isFormField(formField);
+  private createFormGroup(fields: FormField[], group?: FormGroup): FormGroup {
+    let formGroup = group ? group : this.fb.group({});
+    fields.forEach((field) => {
+      if (field.editType === EditType.Row && field.nestedFields) {
+        formGroup = this.createFormGroup(field.nestedFields, formGroup);
+      } else {
+        formGroup.addControl(field.attribute, new FormControl(defaultValue(field.editType), this.addValidators(field)));
+      }
+    });
+    return formGroup;
   }
 
-  get valid() {
-    return this.form.valid;
-  }
-
-  get value(): T {
-    return this.form.value as T;
-  }
+  private addValidators(field: FormField): ValidatorFn[] {
+    const validators: ValidatorFn[] = [];
+    if (field.options?.required) {
+      validators.push(Validators.required);
+    }
+    if (field.options?.minLength) {
+      validators.push(Validators.minLength(field.options.minLength));
+    }
+    if (field.options?.maxLength) {
+      validators.push(Validators.maxLength(field.options.maxLength));
+    }
+    if (field.options?.min) {
+      validators.push(Validators.min(field.options.min));
+    }
+    if (field.options?.max) {
+      validators.push(Validators.max(field.options.max));
+    }
+    if (field.options?.pattern) {
+      validators.push(Validators.pattern(field.options.pattern));
+    }
+    return validators;
+;  }
 }

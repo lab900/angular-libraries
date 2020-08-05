@@ -28,6 +28,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CheckboxFieldComponent } from './components/form-fields/checkbox-field/checkbox-field.component';
 import { FormModuleSettings, defaultFormModuleSettings } from './models/FormModuleSettings';
 import { TextareaFieldComponent } from './components/form-fields/textarea-field/textarea-field.component';
+import { FormRowComponent } from './components/form-row/form-row.component';
 
 const customFields = [
   UnknownFieldComponent,
@@ -38,6 +39,7 @@ const customFields = [
   DateFieldComponent,
   WysiwygFieldComponent,
   TextareaFieldComponent,
+  FormRowComponent,
 ];
 
 @NgModule({

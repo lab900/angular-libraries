@@ -7,6 +7,7 @@ export enum EditType {
   Input = 'Input',
   File = 'File',
   Select = 'Select',
+  Row = 'Row',
 }
 
 export const defaultValue = (editType: EditType): any => {

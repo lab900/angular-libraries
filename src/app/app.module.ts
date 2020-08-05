@@ -19,7 +19,11 @@ import { AlertModule } from '../../projects/ui/src/lib/alert/alert.module';
     BrowserModule,
     AdminModule,
     BrowserAnimationsModule,
-    FormsModule.forRoot(),
+    FormsModule.forRoot({
+      formField: {
+        appearance: 'outline',
+      },
+    }),
     MatTabsModule,
     MatButtonModule,
     DialogModule,
