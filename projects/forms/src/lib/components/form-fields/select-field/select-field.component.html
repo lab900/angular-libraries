@@ -1,5 +1,4 @@
-<mat-form-field [formGroup]="group" appearance="standard"
-                [ngStyle]="schema?.options?.hide ? { 'display': 'none' } : {}">
+<mat-form-field [formGroup]="group" appearance="standard" [ngStyle]="schema?.options?.hide ? { 'display': 'none' } : {}">
     <mat-label>{{schema.title}}</mat-label>
     <mat-select [formControlName]="schema.attribute" [multiple]="options?.multiple">
         <mat-option *ngFor="let item of values" [value]="item.key">{{item.value}}</mat-option>

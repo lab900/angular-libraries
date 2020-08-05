@@ -1,5 +1,4 @@
-<mat-form-field [formGroup]="group" appearance="standard"
-                [ngStyle]="schema?.options?.hide ? { 'display': 'none' } : {}">
+<mat-form-field [formGroup]="group" [ngStyle]="schema?.options?.hide ? { 'display': 'none' } : {}">
     <mat-label>{{schema.title}}</mat-label>
     <label>
         <input matInput [placeholder]="schema?.options?.hint" [formControlName]="schema.attribute">

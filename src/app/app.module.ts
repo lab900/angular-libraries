@@ -15,7 +15,16 @@ import { AlertModule } from '../../projects/ui/src/lib/alert/alert.module';
 
 @NgModule({
   declarations: [AppComponent, AdminShowcaseComponent, FormsShowcaseComponent, UiShowcaseComponent],
-  imports: [BrowserModule, AdminModule, BrowserAnimationsModule, FormsModule, MatTabsModule, MatButtonModule, DialogModule, AlertModule],
+  imports: [
+    BrowserModule,
+    AdminModule,
+    BrowserAnimationsModule,
+    FormsModule.forRoot(),
+    MatTabsModule,
+    MatButtonModule,
+    DialogModule,
+    AlertModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
