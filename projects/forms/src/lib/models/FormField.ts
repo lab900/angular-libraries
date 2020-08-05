@@ -42,8 +42,12 @@ export interface SelectFieldOptions extends FieldOptions {
   valuesFn?: () => Promise<{ key: any; value: string }[]>;
 }
 
+export interface RadioButtonsFieldOptions extends FieldOptions {
+  values: { value: any; label: string }[];
+}
+
 export interface FormField<
-  T extends FieldOptions = WysiwygFieldOptions | InputFieldOptions | SelectFieldOptions | FieldOptions | RepeaterFieldOptions
+  T extends FieldOptions = WysiwygFieldOptions | InputFieldOptions | SelectFieldOptions | FieldOptions | RepeaterFieldOptions | RadioButtonsFieldOptions
 > {
   attribute: string;
   editType: EditType;

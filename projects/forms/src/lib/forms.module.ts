@@ -6,6 +6,7 @@ import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/mat
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { FormContainerComponent } from './components/form-container/form-container.component';
 import { FileFieldComponent } from './components/form-fields/file-field/file-field.component';
 import { InputFieldComponent } from './components/form-fields/input-field/input-field.component';
@@ -31,6 +32,7 @@ import { TextareaFieldComponent } from './components/form-fields/textarea-field/
 import { FormRowComponent } from './components/form-row/form-row.component';
 import { RepeaterFieldComponent } from './components/form-fields/repeater-field/repeater-field.component';
 import { Lab900FormBuilderService } from './services/form-builder.service';
+import { RadioButtonsFieldComponent } from './components/form-fields/radio-buttons-field/radio-buttons-field.component';
 
 const customFields = [
   UnknownFieldComponent,
@@ -43,6 +45,7 @@ const customFields = [
   TextareaFieldComponent,
   RepeaterFieldComponent,
   FormRowComponent,
+  RadioButtonsFieldComponent,
 ];
 
 @NgModule({
@@ -63,6 +66,7 @@ const customFields = [
     MatIconModule,
     MatInputModule,
     MatButtonModule,
+    MatRadioModule,
     MatGridListModule,
     MatDialogModule,
     MatDatepickerModule,

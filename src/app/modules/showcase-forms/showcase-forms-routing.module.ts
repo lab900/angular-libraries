@@ -4,6 +4,7 @@ import { FormFieldRepeaterPageComponent } from './pages/form-field-repeater-page
 import { FormFieldDatepickerPageComponent } from './pages/form-field-datepicker-page/form-field-datepicker-page.component';
 import { FormFieldInputPageComponent } from './pages/form-field-input-page/form-field-input-page.component';
 import { FormContainerPageComponent } from './pages/form-container-page/form-container-page.component';
+import { FormFieldRadioButtonsPageComponent } from './pages/form-field-radio-buttons-page/form-field-radio-buttons-page.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'form-container',
     component: FormContainerPageComponent,
     data: { pageTitle: 'Form container' },
+  },
+  {
+    path: 'form-field-radio-buttons',
+    component: FormFieldRadioButtonsPageComponent,
+    data: { pageTitle: 'Form Fields: Radio Buttons' },
   },
 ];
 

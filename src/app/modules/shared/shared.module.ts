@@ -13,15 +13,7 @@ import { NavListModule } from 'projects/ui/src/lib/nav-list/nav-list.module';
 
 import { ExampleViewerComponent } from './components/example-viewer/example-viewer.component';
 
-const material = [
-  MatCardModule,
-  MatButtonModule,
-  MatTabsModule,
-  MatIconModule,
-  FlexLayoutModule,
-  MatToolbarModule,
-  MatSidenavModule,
-];
+const material = [MatCardModule, MatButtonModule, MatTabsModule, MatIconModule, FlexLayoutModule, MatToolbarModule, MatSidenavModule];
 
 @NgModule({
   declarations: [ExampleViewerComponent],

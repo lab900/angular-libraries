@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { defaultValue, EditType } from '../../models/editType';
+import { FormGroup } from '@angular/forms';
 import { Form } from '../../models/Form';
-import { FormField } from '../../models/FormField';
 import { Lab900FormBuilderService } from '../../services/form-builder.service';
 
 @Component({

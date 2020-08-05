@@ -8,6 +8,7 @@ export enum EditType {
   File = 'File',
   Select = 'Select',
   Repeater = 'Repeater',
+  RadioButtons = 'RadioButtons',
   Row = 'Row',
 }
 

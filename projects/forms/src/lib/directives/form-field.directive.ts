@@ -22,9 +22,9 @@ import { WysiwygFieldComponent } from '../components/form-fields/wysiwyg-field/w
 import { EditType } from '../models/editType';
 import { FormField, FieldOptions } from '../models/FormField';
 import { FormComponent, IFormComponent } from '../models/IFormComponent';
-import { distinctUntilChanged } from 'rxjs/operators';
 import { FormRowComponent } from '../components/form-row/form-row.component';
 import { RepeaterFieldComponent } from '../components/form-fields/repeater-field/repeater-field.component';
+import { RadioButtonsFieldComponent } from '../components/form-fields/radio-buttons-field/radio-buttons-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -45,6 +45,8 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return TextareaFieldComponent;
     case EditType.Repeater:
       return RepeaterFieldComponent;
+    case EditType.RadioButtons:
+      return RadioButtonsFieldComponent;
     case EditType.Row:
       return FormRowComponent;
     default:

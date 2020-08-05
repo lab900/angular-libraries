@@ -6,14 +6,28 @@
 .lab900-form {
   width: 100%; 
 
-  ::ng-deep .lab900-form-field {
-		width: 100%;
+  ::ng-deep {
+    .lab900-form-field {
+      width: 100%;
+  
+      .mat-form-field {
+        width: 100%;
+      }
+    }
 
-		.mat-form-field {
-			width: 100%;
-		}
-	}
+    .lab900-form-field-label {
+      display: block;
+      margin: 0 0 16px;
+      font-weight: 500;
+    }
+  
+    .mat-radio-button ~ .mat-radio-button {
+      margin-left: 16px;
+    }
+  }
 }
+
+
 
 .form-button-group {
   width: 100%;

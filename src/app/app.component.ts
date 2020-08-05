@@ -27,6 +27,10 @@ export class AppComponent {
               route: 'forms/form-field-input',
             },
             {
+              label: 'Radio Buttons',
+              route: 'forms/form-field-radio-buttons',
+            },
+            {
               label: 'Repeater',
               route: 'forms/form-field-repeater',
             },
@@ -39,5 +43,4 @@ export class AppComponent {
       ],
     },
   ];
-
 }
