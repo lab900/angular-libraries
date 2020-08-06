@@ -3,6 +3,8 @@
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 @import '../projects/forms/lab900-forms.scss';
+@import './assets/styles/green.palette';
+@import './assets/styles/grey.palette';
 
 // Plus imports for other components in your app.
 
@@ -14,8 +16,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$angular-libraries-primary: mat-palette($mat-indigo);
-$angular-libraries-accent: mat-palette($mat-pink, A200, A100, A400);
+$angular-libraries-primary: mat-palette($mat-lab900green);
+$angular-libraries-accent: mat-palette($mat-lab900grey);
 
 // The warn palette is optional (defaults to red).
 $angular-libraries-warn: mat-palette($mat-red);
@@ -41,13 +43,13 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-drawer-content {
-  background: rgba(#c0eae8, 0.1); 
+  background: rgba($palette-lab900green-100, 0.1); 
   height: calc(100vh - 64px) !important;
   padding: 0 30px;
 }
 
 .mat-drawer-side {
-  border-right: solid 2px #c0eae8;
+  border-right: solid 2px $palette-lab900green-100;
   min-width: 340px;
 }
 
@@ -59,7 +61,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
   .mat-card-header {
     padding: 8px;
-    background: #c0eae8;
+    background: $palette-lab900green-100;
 
     .mat-card-title {
       margin: 0;

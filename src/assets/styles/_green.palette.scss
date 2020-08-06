@@ -1,0 +1,64 @@
+$palette-lab900green:
+  rgb(225, 245, 244)
+  rgb(179, 230, 228)
+  rgb(129, 214, 210)
+  rgb(79, 198, 192)
+  rgb(41, 185, 179)
+  rgb(3, 173, 165)
+  rgb(3, 166, 157)
+  rgb(2, 156, 147)
+  rgb(2, 147, 138)
+  rgb(1, 131, 121)
+  rgb(176, 255, 248)
+  rgb(125, 255, 243)
+  rgb(74, 255, 238)
+  rgb(48, 255, 236)
+;
+
+$palette-lab900green-50: nth($palette-lab900green, 1);
+$palette-lab900green-100: nth($palette-lab900green, 2);
+$palette-lab900green-200: nth($palette-lab900green, 3);
+$palette-lab900green-300: nth($palette-lab900green, 4);
+$palette-lab900green-400: nth($palette-lab900green, 5);
+$palette-lab900green-500: nth($palette-lab900green, 6);
+$palette-lab900green-600: nth($palette-lab900green, 7);
+$palette-lab900green-700: nth($palette-lab900green, 8);
+$palette-lab900green-800: nth($palette-lab900green, 9);
+$palette-lab900green-900: nth($palette-lab900green, 10);
+$palette-lab900green-A100: nth($palette-lab900green, 11);
+$palette-lab900green-A200: nth($palette-lab900green, 12);
+$palette-lab900green-A400: nth($palette-lab900green, 13);
+$palette-lab900green-A700: nth($palette-lab900green, 14);
+
+$mat-lab900green: (
+    50 : #e1f5f4,
+    100 : #b3e6e4,
+    200 : #81d6d2,
+    300 : #4fc6c0,
+    400 : #29b9b3,
+    500 : #03ada5,
+    600 : #03a69d,
+    700 : #029c93,
+    800 : #02938a,
+    900 : #018379,
+    A100 : #b0fff8,
+    A200 : #7dfff3,
+    A400 : #4affee,
+    A700 : #30ffec,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);

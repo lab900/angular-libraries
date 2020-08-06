@@ -24,7 +24,7 @@ const pages = [
   FormFieldDatepickerPageComponent,
   FormContainerPageComponent,
   FormFieldRadioButtonsPageComponent,
-  FormFieldRangeSliderPageComponent
+  FormFieldRangeSliderPageComponent,
 ];
 
 const examples = [
