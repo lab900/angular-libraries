@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { FormComponent } from '../../models/IFormComponent';
 
 @Component({
@@ -6,4 +6,7 @@ import { FormComponent } from '../../models/IFormComponent';
   templateUrl: './form-row.component.html',
   styleUrls: ['./form-row.component.scss'],
 })
-export class FormRowComponent extends FormComponent {}
+export class FormRowComponent extends FormComponent {
+  @HostBinding('class')
+  public classList = 'lab900-form-field';
+}

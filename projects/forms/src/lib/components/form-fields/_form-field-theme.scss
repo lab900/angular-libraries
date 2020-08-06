@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+
+@mixin lab900-form-field($config-or-theme) {
+  $configTypo: mat-typography-config();
+
+  .lab900-form-field {
+    width: 100%;
+
+    .mat-form-field {
+      width: 100%;
+    }
+
+    .lab900-form-field-label {
+      display: block;
+      margin-bottom: 16px;
+      @include mat-typography-level-to-styles($configTypo, subheading-2);
+    }
+
+    .radio-buttons-field {
+      margin: 0.25em 0;
+      padding-bottom: 1.34375em;
+    }
+  
+    .mat-radio-button ~ .mat-radio-button {
+      margin-left: 16px;
+    }
+
+    & + .lab900-form-field .lab900-form-field-label {
+      margin-top: 16px;
+    }
+  }
+}
