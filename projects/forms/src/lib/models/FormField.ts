@@ -1,5 +1,6 @@
 import { EditType } from './editType';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { ThemePalette } from '@angular/material/core';
 
 export interface FieldOptions {
   hide?: boolean;
@@ -44,6 +45,7 @@ export interface SelectFieldOptions extends FieldOptions {
 
 export interface RadioButtonsFieldOptions extends FieldOptions {
   values: { value: any; label: string }[];
+  color?: ThemePalette;
 }
 
 export interface RangeSliderFieldOptions extends FieldOptions {
