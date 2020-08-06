@@ -1,17 +1,14 @@
-import { Component, Input, OnInit, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Form } from '../../models/Form';
 import { Lab900FormBuilderService } from '../../services/form-builder.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'lab900-form-container',
   templateUrl: './form-container.component.html',
   styleUrls: ['./form-container.component.scss'],
 })
-export class FormContainerComponent<T> implements OnInit, OnDestroy {
-  private sub: Subscription;
-
+export class FormContainerComponent<T> implements OnInit {
   @Input()
   public schema: Form;
 
@@ -35,9 +32,5 @@ export class FormContainerComponent<T> implements OnInit, OnDestroy {
     if (this.data) {
       this.form.patchValue(this.data);
     }
-  }
-
-  public ngOnDestroy(): void {
-    this.sub.unsubscribe();
   }
 }

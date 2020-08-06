@@ -40,6 +40,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-drawer-content {
   background: rgba(#c0eae8, 0.1); 
   height: calc(100vh - 64px) !important;
+  padding: 0 30px;
 }
 
 .mat-drawer-side {

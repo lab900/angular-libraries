@@ -1,40 +1,22 @@
 import { Component } from '@angular/core';
 import { Form, EditType } from '@lab900/forms';
 
+
 @Component({
-  selector: 'lab900-form-field-inputs-example',
+  selector: 'lab900-form-field-range-slider-example',
   template: '<lab900-form-container [schema]="formSchema"></lab900-form-container>',
 })
-export class FormFieldInputsExampleComponent {
+export class FormFieldRangeSliderExampleComponent {
   public formSchema: Form = {
     fields: [
       {
-        attribute: 'textInput',
-        title: 'Text Input',
-        editType: EditType.Input,
-      },
-      {
-        attribute: 'emailInput',
-        title: 'Email Input',
-        editType: EditType.Input,
+        attribute: 'range',
+        title: 'Range with inputs',
+        editType: EditType.RangeSlider,
         options: {
-          type: 'email',
-        },
-      },
-      {
-        attribute: 'emailInput',
-        title: 'Number Input',
-        editType: EditType.Input,
-        options: {
-          type: 'number',
-        },
-      },
-      {
-        attribute: 'emailInput',
-        title: 'Password Input',
-        editType: EditType.Input,
-        options: {
-          type: 'password',
+          min: 0,
+          max: 100,
+          steps: 1,
         },
       },
     ],
