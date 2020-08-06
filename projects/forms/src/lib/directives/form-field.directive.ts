@@ -25,6 +25,7 @@ import { FormComponent, IFormComponent } from '../models/IFormComponent';
 import { FormRowComponent } from '../components/form-row/form-row.component';
 import { RepeaterFieldComponent } from '../components/form-fields/repeater-field/repeater-field.component';
 import { RadioButtonsFieldComponent } from '../components/form-fields/radio-buttons-field/radio-buttons-field.component';
+import { RangeSliderFieldComponent } from '../components/form-fields/range-slider-field/range-slider-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -49,6 +50,8 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return RadioButtonsFieldComponent;
     case EditType.Row:
       return FormRowComponent;
+    case EditType.RangeSlider:
+      return RangeSliderFieldComponent;
     default:
       return UnknownFieldComponent;
   }

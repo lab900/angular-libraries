@@ -46,6 +46,13 @@ export interface RadioButtonsFieldOptions extends FieldOptions {
   values: { value: any; label: string }[];
 }
 
+export interface RangeSliderFieldOptions extends FieldOptions {
+  fromLabel?: string;
+  toLabel?: string;
+  enabledInputs?: boolean;
+  steps?: number;
+}
+
 export interface FormField<
   T extends FieldOptions =
     | WysiwygFieldOptions
@@ -54,6 +61,7 @@ export interface FormField<
     | FieldOptions
     | RepeaterFieldOptions
     | RadioButtonsFieldOptions
+    | RangeSliderFieldOptions
 > {
   attribute: string;
   editType: EditType;

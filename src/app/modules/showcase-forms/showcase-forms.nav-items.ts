@@ -33,6 +33,10 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
             // route: 'forms/form-field-select',
           },
           {
+            label: 'Range slider',
+            route: 'forms/form-field-range-slider',
+          },
+          {
             label: 'Repeater',
             route: 'forms/form-field-repeater',
           },

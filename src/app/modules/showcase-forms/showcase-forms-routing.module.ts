@@ -5,6 +5,7 @@ import { FormFieldDatepickerPageComponent } from './pages/form-field-datepicker-
 import { FormFieldInputPageComponent } from './pages/form-field-input-page/form-field-input-page.component';
 import { FormContainerPageComponent } from './pages/form-container-page/form-container-page.component';
 import { FormFieldRadioButtonsPageComponent } from './pages/form-field-radio-buttons-page/form-field-radio-buttons-page.component';
+import { FormFieldRangeSliderPageComponent } from './pages/form-field-range-slider-page/form-field-range-slider-page.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
   {
     path: 'form-field-input',
     component: FormFieldInputPageComponent,
-    data: { pageTitle: 'Form Fields: Input & Textarea' },
+    data: { pageTitle: 'Form Fields: Input & textarea' },
   },
   {
     path: 'form-container',
@@ -35,7 +36,12 @@ const routes: Routes = [
   {
     path: 'form-field-radio-buttons',
     component: FormFieldRadioButtonsPageComponent,
-    data: { pageTitle: 'Form Fields: Radio Buttons' },
+    data: { pageTitle: 'Form Fields: Radio buttons' },
+  },
+  {
+    path: 'form-field-range-slider',
+    component: FormFieldRangeSliderPageComponent,
+    data: { pageTitle: 'Form Fields: Range slider' },
   },
 ];
 

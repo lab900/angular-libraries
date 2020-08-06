@@ -3,7 +3,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from '../../projects/admin/src/lib/admin.module';
-import { FormsModule } from '../../projects/forms/src/lib/forms.module';
+import { Lab900FormsModule } from '../../projects/forms/src/lib/forms.module';
 import { DialogModule } from '../../projects/ui/src/lib/dialog/dialog.module';
 
 import { AppComponent } from './app.component';
@@ -17,7 +17,7 @@ import { SharedModule } from './modules/shared/shared.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    FormsModule.forRoot({
+    Lab900FormsModule.forRoot({
       formField: {
         appearance: 'outline',
       },

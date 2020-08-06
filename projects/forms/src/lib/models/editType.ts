@@ -9,6 +9,7 @@ export enum EditType {
   Select = 'Select',
   Repeater = 'Repeater',
   RadioButtons = 'RadioButtons',
+  RangeSlider = 'RangeSlider',
   Row = 'Row',
 }
 

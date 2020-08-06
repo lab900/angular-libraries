@@ -1,0 +1,20 @@
+<div class="range-slider">
+    <div>
+        <div class="range-slider__input">
+            <mat-form-field>
+                <mat-label>From</mat-label>
+                <input matInput [value]="value[0]" [min]="min" [max]="max" (change)="updateFromValue($event)" type="number">
+            </mat-form-field>
+        </div>
+        <div class="range-slider__slider">
+            <div><div class="noUiSlider"></div></div>
+
+        </div>
+        <div class="range-slider__input">
+            <mat-form-field>
+                <mat-label>To</mat-label>
+                <input matInput [value]="value[1]" [min]="min" [max]="max" (change)="updateToValue($event)" type="number">
+            </mat-form-field>
+        </div>
+    </div>
+</div>

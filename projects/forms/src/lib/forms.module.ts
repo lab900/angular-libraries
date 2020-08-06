@@ -1,5 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
@@ -33,6 +33,8 @@ import { FormRowComponent } from './components/form-row/form-row.component';
 import { RepeaterFieldComponent } from './components/form-fields/repeater-field/repeater-field.component';
 import { Lab900FormBuilderService } from './services/form-builder.service';
 import { RadioButtonsFieldComponent } from './components/form-fields/radio-buttons-field/radio-buttons-field.component';
+import { RangeSliderFieldComponent } from './components/form-fields/range-slider-field/range-slider-field.component';
+import { MatRangeSliderFieldComponent } from './components/form-fields/range-slider-field/mat-range-slider-field/mat-range-slider-field.component';
 
 const customFields = [
   UnknownFieldComponent,
@@ -46,6 +48,7 @@ const customFields = [
   RepeaterFieldComponent,
   FormRowComponent,
   RadioButtonsFieldComponent,
+  RangeSliderFieldComponent,
 ];
 
 @NgModule({
@@ -55,11 +58,13 @@ const customFields = [
     FormContainerComponent,
     FormDialogComponent,
     MatFileFieldComponent,
+    MatRangeSliderFieldComponent,
     ...customFields,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
@@ -77,10 +82,10 @@ const customFields = [
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })
-export class FormsModule {
+export class Lab900FormsModule {
   public static forRoot(settings: FormModuleSettings = defaultFormModuleSettings): ModuleWithProviders<FormsModule> {
     return {
-      ngModule: FormsModule,
+      ngModule: Lab900FormsModule,
       providers: [
         Lab900FormBuilderService,
         {
