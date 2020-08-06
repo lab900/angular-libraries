@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Form } from 'projects/forms/src/lib/models/Form';
 import { EditType } from 'projects/forms/src/lib/models/editType';
 
-
 export const jobInfoForm: Form = {
   fields: [
     {
@@ -19,7 +18,7 @@ export const jobInfoForm: Form = {
             min: 10000,
             max: 200000,
             steps: 1000,
-          }
+          },
         },
       ],
     },
@@ -32,7 +31,7 @@ export const jobInfoForm: Form = {
           attribute: 'facetedSearch',
           title: '',
           editType: EditType.Input,
-          options: { colspan: 12 }
+          options: { colspan: 12 },
         },
       ],
     },
@@ -48,10 +47,10 @@ export const jobInfoForm: Form = {
           options: {
             colspan: 12,
             values: [
-              { value: true, label: 'Yes'},
-              { value: false, label: 'No'}
-            ]
-          }
+              { value: true, label: 'Yes' },
+              { value: false, label: 'No' },
+            ],
+          },
         },
       ],
     },
@@ -68,9 +67,9 @@ export const jobInfoForm: Form = {
           title: '',
           editType: EditType.Input,
         },
-      ]
+      ],
     },
-  ]
+  ],
 };
 
 @Component({

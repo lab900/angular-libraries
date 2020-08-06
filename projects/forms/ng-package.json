@@ -9,7 +9,8 @@
     }
   },
   "assets": [
-    "./lab900-forms.scss"
+    "./scss/*.scss",
+    "./_theming.scss"
   ],
   "whitelistedNonPeerDependencies": ["lab900", "@types/nouislider", "nouislider", "@kolkov/angular-editor"]
 }
