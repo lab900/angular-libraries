@@ -1,4 +1,5 @@
 <div [formGroup]="group" [hidden]="hide">
+    <span class="lab900-form-field-label">{{ schema.title }}</span>
     <lab900-mat-range-slider-field 
         [formControlName]="schema.attribute" 
         [min]="options?.min" 
