@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Form } from '../../models/Form';
 import { Lab900FormBuilderService } from '../../services/form-builder.service';
@@ -8,7 +8,7 @@ import { Lab900FormBuilderService } from '../../services/form-builder.service';
   templateUrl: './form-container.component.html',
   styleUrls: ['./form-container.component.scss'],
 })
-export class FormContainerComponent<T> implements OnInit {
+export class FormContainerComponent<T> implements OnChanges {
   @Input()
   public schema: Form;
 
@@ -27,9 +27,11 @@ export class FormContainerComponent<T> implements OnInit {
 
   public constructor(private fb: Lab900FormBuilderService) {}
 
-  public ngOnInit(): void {
-    this.form = this.fb.createFormGroup(this.schema.fields);
-    if (this.data) {
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.schema) {
+      this.form = this.fb.createFormGroup(this.schema.fields);
+    }
+    if (changes.data && this.data) {
       this.form.patchValue(this.data);
     }
   }
