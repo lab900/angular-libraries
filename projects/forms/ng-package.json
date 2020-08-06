@@ -4,5 +4,8 @@
   "lib": {
     "entryFile": "src/public-api.ts"
   },
+  "assets": [
+    "./lab900-forms.scss"
+  ],
   "whitelistedNonPeerDependencies": ["lab900", "nouislider"]
 }

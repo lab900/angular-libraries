@@ -1,0 +1,5 @@
+@import "./src/lib/components/form-fields/range-slider-field/range-slider-theme";
+
+@mixin lab900-forms($config-or-theme) {
+  @include lab900-range-slider($config-or-theme);
+}
