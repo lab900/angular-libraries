@@ -5,16 +5,16 @@
     "@angular/common": "~10.0.2",
     "@angular/core": "~10.0.2",
     "@angular/forms": "~10.0.2",
-    "@angular/material": "~10.0.1",
-    "@kolkov/angular-editor": "^1.1.2"
+    "@angular/material": "~10.0.1"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/lab900/angular-libraries.git"
   },
   "dependencies": {
-    "@types/nouislider": "^9.0.7",
     "nouislider": "^14.6.0",
+    "@kolkov/angular-editor": "^1.1.2",
+    "@types/nouislider": "^9.0.7",
     "tslib": "^2.0.0"
   }
 }

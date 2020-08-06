@@ -61,8 +61,12 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
   selector: '[lab900FormField]',
 })
 export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChanges, OnInit, OnDestroy {
-  @Input() schema: FormField;
-  @Input() group: FormGroup;
+  @Input()
+  public schema: FormField;
+
+  @Input()
+  public group: FormGroup;
+
   component: ComponentRef<FormComponent>;
 
   statusChangeSubscription: Subscription;

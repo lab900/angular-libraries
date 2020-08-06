@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { RadioButtonsFieldOptions } from '../../../models/FormField';
 
@@ -6,4 +6,7 @@ import { RadioButtonsFieldOptions } from '../../../models/FormField';
   selector: 'lab900-radio-buttons-field',
   templateUrl: './radio-buttons-field.component.html',
 })
-export class RadioButtonsFieldComponent extends FormComponent<RadioButtonsFieldOptions> {}
+export class RadioButtonsFieldComponent extends FormComponent<RadioButtonsFieldOptions> {
+  @HostBinding('class')
+  public classList = 'lab900-form-field';
+}

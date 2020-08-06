@@ -1,4 +1,3 @@
-@import "https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.0/nouislider.css"; // todo fix 3th party imports
 @import '~@angular/material/theming';
 
 @mixin lab900-range-slider($config-or-theme) {
@@ -39,7 +38,7 @@
       background-color: mat-color($primary);
     }
 
-    .noUi-handle {
+    .noUiSlider .noUi-handle {
       top: -11px;
       width: 30px;
       height: 30px;

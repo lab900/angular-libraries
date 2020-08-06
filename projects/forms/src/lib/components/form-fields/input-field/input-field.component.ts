@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { InputFieldOptions } from '../../../models/FormField';
 
@@ -7,6 +7,9 @@ import { InputFieldOptions } from '../../../models/FormField';
   templateUrl: './input-field.component.html',
 })
 export class InputFieldComponent extends FormComponent<InputFieldOptions> {
+  @HostBinding('class')
+  public classList = 'lab900-form-field';
+
   public get inputType(): 'text' | 'number' | 'email' | 'password' {
     return (this.options && this.options.type) || 'text';
   }

@@ -1,19 +1,14 @@
 import { FormGroup } from '@angular/forms';
 import { FormField, FieldOptions } from './FormField';
-import { Input, Component, HostBinding } from '@angular/core';
+import { Input, Injectable } from '@angular/core';
 
 export interface IFormComponent<T extends FieldOptions> {
   schema: FormField<T>;
   group: FormGroup;
 }
 
-@Component({
-  template: '',
-})
+@Injectable()
 export abstract class FormComponent<T extends FieldOptions = FieldOptions> implements IFormComponent<T> {
-  @HostBinding('class.lab900-form-field')
-  private hostClass = true;
-
   @Input()
   public group: FormGroup;
 

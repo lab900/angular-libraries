@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { WysiwygFieldOptions } from '../../../models/FormField';
@@ -12,6 +12,9 @@ import { WysiwygFieldOptions } from '../../../models/FormField';
   `,
 })
 export class WysiwygFieldComponent extends FormComponent<WysiwygFieldOptions> implements OnInit {
+  @HostBinding('class')
+  public classList = 'lab900-form-field';
+
   public editorConfig: AngularEditorConfig;
 
   public ngOnInit(): void {

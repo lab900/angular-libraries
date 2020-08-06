@@ -1,8 +1,12 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/admin",
+  "dest": "../../dist/@lab900/admin",
   "lib": {
-    "entryFile": "src/public-api.ts"
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "@lab900/forms": "@lab900/forms",
+      "@lab900/ui": "@lab900/ui"
+    }
   },
   "whitelistedNonPeerDependencies": ["lab900"]
 }

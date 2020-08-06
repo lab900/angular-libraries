@@ -1,12 +1,14 @@
-import { Component, ElementRef, Input, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, SimpleChanges, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BaseControlValueAccessorDirective } from 'projects/forms/src/lib/models/forms/BaseControlValueAccessor';
 import * as noUiSlider from 'nouislider';
+import { BaseControlValueAccessorDirective } from '../../../../models/forms/BaseControlValueAccessor';
 
 @Component({
   selector: 'lab900-mat-range-slider-field',
   templateUrl: './mat-range-slider-field.component.html',
+  styleUrls: ['./mat-range-slider-field.component.scss'],
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: MatRangeSliderFieldComponent, multi: true }],
+  encapsulation: ViewEncapsulation.None,
 })
 export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirective<number[]> implements AfterViewInit, OnChanges {
   private rangeSlider: noUiSlider.noUiSlider;

@@ -2,6 +2,6 @@
 cd projects/ui/
 npm version patch
 cd ../..
-ng build ui --prod
-cd dist/ui
+npm run build:ui:prod
+cd dist/@lab900/ui
 npm publish

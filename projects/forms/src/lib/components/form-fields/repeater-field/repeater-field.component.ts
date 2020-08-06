@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { FormArray } from '@angular/forms';
 import { RepeaterFieldOptions } from '../../../models/FormField';
@@ -10,6 +10,9 @@ import { Lab900FormBuilderService } from '../../../services/form-builder.service
   styleUrls: ['./repeater-field.component.scss'],
 })
 export class RepeaterFieldComponent extends FormComponent<RepeaterFieldOptions> implements OnInit {
+  @HostBinding('class')
+  public classList = 'lab900-form-field';
+
   public get addLabel(): string {
     return (this.options && this.options.addLabel) || 'Add new';
   }

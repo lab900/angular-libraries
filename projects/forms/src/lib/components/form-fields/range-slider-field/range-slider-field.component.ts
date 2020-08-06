@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { RangeSliderFieldOptions } from '../../../models/FormField';
 
@@ -6,4 +6,7 @@ import { RangeSliderFieldOptions } from '../../../models/FormField';
   selector: 'lab900-range-slider-field',
   templateUrl: './range-slider-field.component.html',
 })
-export class RangeSliderFieldComponent extends FormComponent<RangeSliderFieldOptions> {}
+export class RangeSliderFieldComponent extends FormComponent<RangeSliderFieldOptions> {
+  @HostBinding('class')
+  public classList = 'lab900-form-field';
+}

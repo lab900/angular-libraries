@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions } from '../../../models/FormField';
 
@@ -7,6 +7,9 @@ import { SelectFieldOptions } from '../../../models/FormField';
   templateUrl: './select-field.component.html',
 })
 export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit {
+  @HostBinding('class')
+  public classList = 'lab900-form-field';
+
   public values: { key: string; value: string }[];
 
   public ngOnInit(): void {
