@@ -1,6 +1,6 @@
 import { ValidatorFn, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormField } from '../models/FormField';
-import { EditType, defaultValue } from '../models/editType';
+import { EditType } from '../models/editType';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class Lab900FormBuilderService {
       } else if (field.editType === EditType.Repeater) {
         formGroup.addControl(field.attribute, this.fb.array([]));
       } else {
-        formGroup.addControl(field.attribute, new FormControl(defaultValue(field.editType), this.addValidators(field)));
+        formGroup.addControl(field.attribute, new FormControl(null, this.addValidators(field)));
       }
     });
     return formGroup;

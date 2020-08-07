@@ -12,12 +12,3 @@ export enum EditType {
   RangeSlider = 'RangeSlider',
   Row = 'Row',
 }
-
-export const defaultValue = (editType: EditType): any => {
-  switch (editType) {
-    case EditType.Input:
-    case EditType.TextArea:
-    case EditType.Wysiwyg:
-      return '';
-  }
-};

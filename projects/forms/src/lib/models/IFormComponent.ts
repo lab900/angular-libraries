@@ -21,10 +21,6 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     return this.group.get(this.schema.attribute).valid;
   }
 
-  public get required(): boolean {
-    return this.group.get(this.schema.attribute).hasError('required');
-  }
-
   public get options(): T {
     return this.schema && this.schema.options;
   }
@@ -41,29 +37,37 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     return this.schema && this.schema.options && this.schema.options.placeholder;
   }
 
-  public updateErrorMessage(): string | null {
-    if (this.valid) {
-      this.errorMessage = undefined;
-      return;
-    }
-
+  public getErrorMessage(): string {
     const field = this.group.get(this.schema.attribute);
-
     let message = `Field is invalid.`;
-    if (field.hasError('required')) {
-      message = `A value is required.`;
-    } else if (field.hasError('minlength')) {
-      message = `This field should contain at least ${this.schema.options.minLength} characters.`;
-    } else if (field.hasError('maxlength')) {
-      message = `This field should contain at most ${this.schema.options.maxLength} characters.`;
-    } else if (field.hasError('min')) {
-      message = `This should be at least ${this.schema.options.min}.`;
-    } else if (field.hasError('max')) {
-      message = `This should be at most ${this.schema.options.max}.`;
-    } else if (field.hasError('pattern')) {
-      message = `Please enter a valid ${this.schema.options.patternTitle}.`;
-    }
+    Object.keys(field.errors).forEach((key: string) => {
+      if (field.hasError(key)) {
+        if (this.schema.errorMessages && Object.keys(this.schema.errorMessages).includes(key)) {
+          message = this.schema.errorMessages[key];
+        } else {
+          message = this.getDefaultErrorMessage(key);
+        }
+      }
+    });
+    return message;
+  }
 
-    this.errorMessage = message;
+  private getDefaultErrorMessage(key: string): string {
+    switch (key) {
+      case 'required':
+        return `A value is required.`;
+      case 'minlength':
+        return `This field should contain at least ${this.options.minLength} characters.`;
+      case 'maxlength':
+        return `This field should contain at most ${this.options.maxLength} characters.`;
+      case 'min':
+        return `This should be at least ${this.options.min}.`;
+      case 'max':
+        return `This should be at most ${this.options.max}.`;
+      case 'pattern':
+        return `Please enter a valid ${this.options.patternTitle}.`;
+      default:
+        return `Field is invalid.`;
+    }
   }
 }

@@ -69,5 +69,6 @@ export interface FormField<
   editType: EditType;
   title?: string;
   options?: T;
+  errorMessages?: { [key: string]: string };
   nestedFields?: FormField[];
 }
