@@ -21,6 +21,12 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
   public min = 0;
 
   @Input()
+  public fromLabel = 'From';
+
+  @Input()
+  public toLabel = 'To';
+
+  @Input()
   public steps?: number;
 
   @Input()
