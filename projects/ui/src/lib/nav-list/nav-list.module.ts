@@ -9,4 +9,4 @@ import { NavListComponent } from './components/nav-list/nav-list.component';
   imports: [CommonModule, MatListModule],
   exports: [NavListComponent],
 })
-export class NavListModule {}
+export class Lab900NavListModule {}

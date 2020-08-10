@@ -9,7 +9,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { Lab900FormsModule } from 'projects/forms/src/lib/forms.module';
-import { NavListModule } from 'projects/ui/src/lib/nav-list/nav-list.module';
+
+import { Lab900NavListModule } from 'projects/ui/src/lib/nav-list/nav-list.module';
 
 import { ExampleViewerComponent } from './components/example-viewer/example-viewer.component';
 
@@ -17,7 +18,7 @@ const material = [MatCardModule, MatButtonModule, MatTabsModule, MatIconModule, 
 
 @NgModule({
   declarations: [ExampleViewerComponent],
-  exports: [ExampleViewerComponent, Lab900FormsModule, NavListModule, ...material],
-  imports: [CommonModule, Lab900FormsModule, NavListModule, ...material],
+  exports: [ExampleViewerComponent, Lab900FormsModule, Lab900NavListModule, ...material],
+  imports: [CommonModule, Lab900FormsModule, Lab900NavListModule, ...material],
 })
 export class SharedModule {}

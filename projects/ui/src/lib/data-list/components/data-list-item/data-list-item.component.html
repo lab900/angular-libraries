@@ -1,0 +1,19 @@
+<div class="data-list-item" *ngIf="data" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="data-list-item__info" *ngIf="dataListItemInfoTemplate">
+        <ng-container *ngTemplateOutlet="dataListItemInfoTemplate; context: { $implicit: data }"></ng-container>
+    </div>
+    <div class="data-list-item__actions" *ngIf="actions?.length">
+        <ng-container *ngFor="let action of actions">
+            <button *ngIf="action.action" mat-icon-button (click)="action.action(data)"><mat-icon>{{action.icon}}</mat-icon></button>
+            <ng-container *ngIf="action.subActions?.length">
+                <button mat-icon-button [matMenuTriggerFor]="actionMenu"><mat-icon>{{action.icon}}</mat-icon></button>
+                <mat-menu #actionMenu="matMenu">
+                    <button *ngFor="let sub of action.subActions" mat-menu-item (click)="sub.action ? sub.action(data) : ''">
+                        <mat-icon>{{sub.icon}}</mat-icon>
+                        <span translate>{{sub.label}}</span>
+                    </button>
+                </mat-menu>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

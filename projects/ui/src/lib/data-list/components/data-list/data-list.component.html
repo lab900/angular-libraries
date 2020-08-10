@@ -1,0 +1,17 @@
+<mat-card class="lab900-data-list">
+    <div class="lab900-data-list__content" *ngIf="data?.length">
+        <div *ngFor="let d of data" class="lab900-data-list__item">
+            <lab900-data-list-item 
+                [data]="d" 
+                [actions]="actions" 
+                [dataListItemInfoTemplate]="dataListItemInfoTemplate"
+            ></lab900-data-list-item>
+        </div>
+    </div>
+    <div class="lab900-data-list__empty" *ngIf="!data?.length">
+        <ng-container *ngIf="emptyListTemplate">
+            <ng-container *ngTemplateOutlet="emptyListTemplate"></ng-container>
+        </ng-container>
+        <p *ngIf="!emptyListTemplate" translate>{{ emptyListLabel }}</p>
+    </div>
+</mat-card>

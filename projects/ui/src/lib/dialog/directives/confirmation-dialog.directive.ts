@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, Directive, EventEmitter, HostListener, Input, Output, ViewContainerRef } from '@angular/core';
+import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
 
@@ -13,7 +13,7 @@ export class ConfirmationDialogDirective {
   @Output() confirmed: EventEmitter<void> = new EventEmitter<void>();
   @Output() cancelled: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef, public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {}
 
   @HostListener('click') onMouseEnter() {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {

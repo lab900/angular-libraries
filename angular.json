@@ -138,7 +138,7 @@
       },
       "root": "projects/admin",
       "sourceRoot": "projects/admin/src",
-      "prefix": "lib",
+      "prefix": "lab900",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -176,9 +176,14 @@
     },
     "forms": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/forms",
       "sourceRoot": "projects/forms/src",
-      "prefix": "lib",
+      "prefix": "lab900",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -216,9 +221,14 @@
     },
     "ui": {
       "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "projects/ui",
       "sourceRoot": "projects/ui/src",
-      "prefix": "lib",
+      "prefix": "lab900",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",

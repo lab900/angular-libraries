@@ -12,6 +12,10 @@ export const showcaseUiNavItems: NavItemGroup[] = [
             // route: 'ui/nav-list',
           },
           {
+            label: 'Data List',
+            route: 'ui/data-list',
+          },
+          {
             label: 'Alerts',
             // route: 'ui/alerts',
           },
