@@ -5,12 +5,12 @@ import { DataListPageComponent } from './pages/data-list-page/data-list-page.com
 const routes: Routes = [
   {
     path: 'data-list',
-    component: DataListPageComponent
-  }
+    component: DataListPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ShowcaseUiRoutingModule { }
+export class ShowcaseUiRoutingModule {}

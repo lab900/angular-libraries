@@ -1,6 +1,8 @@
+type propFunction<T> = (data: T) => string;
+
 export interface DataListItemAction<T = any> {
-  icon: string;
-  label?: string;
+  icon: propFunction<T> | string;
+  label?: propFunction<T> | string;
   action?: (data: T) => any;
   subActions?: DataListItemAction<T>[];
 }

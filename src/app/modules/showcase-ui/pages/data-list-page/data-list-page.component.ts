@@ -6,10 +6,7 @@ import { DataListItemAction } from 'projects/ui/src/lib/data-list/models/data-li
   templateUrl: './data-list-page.component.html',
 })
 export class DataListPageComponent {
-  public dummyData = [
-    { title: 'Dummy' },
-    { title: 'Dummy2' },
-  ];
+  public dummyData = [{ title: 'Dummy' }, { title: 'Dummy2' }];
 
   public actions: DataListItemAction[] = [
     {
@@ -21,7 +18,7 @@ export class DataListPageComponent {
       subActions: [
         {
           icon: 'edit',
-          label: 'test',
+          label: (data: any) => data.title,
         },
       ],
     },

@@ -2,7 +2,7 @@
  * Public API Surface of ui
  */
 
- // dialogs
+// dialogs
 export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/components/alert-dialog/alert-dialog.component';
 export * from './lib/dialog/components/confirmation-dialog/confirmation-dialog.component';

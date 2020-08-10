@@ -16,4 +16,18 @@ export class Lab900DataListItemComponent {
 
   @Input()
   public dataListItemInfoTemplate?: Lab900DataListItemInfoDirective;
+
+  public getLabel(action: DataListItemAction): string {
+    if (typeof action.label === 'function') {
+      return action.label(this.data);
+    }
+    return action.label;
+  }
+
+  public getIcon(action: DataListItemAction): string {
+    if (typeof action.icon === 'function') {
+      return action.icon(this.data);
+    }
+    return action.icon;
+  }
 }
