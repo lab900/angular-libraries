@@ -17,6 +17,10 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
         label: 'Form Fields',
         children: [
           {
+            label: 'Autocomplete',
+            route: 'forms/form-field-autocomplete',
+          },
+          {
             label: 'Input & Textarea',
             route: 'forms/form-field-input',
           },

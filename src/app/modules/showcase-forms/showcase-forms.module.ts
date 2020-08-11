@@ -10,6 +10,7 @@ import { FormFieldDatepickerPageComponent } from './pages/form-field-datepicker-
 import { FormFieldRadioButtonsPageComponent } from './pages/form-field-radio-buttons-page/form-field-radio-buttons-page.component';
 import { FormContainerPageComponent } from './pages/form-container-page/form-container-page.component';
 import { FormFieldRangeSliderPageComponent } from './pages/form-field-range-slider-page/form-field-range-slider-page.component';
+import { FormFieldAutocompletePageComponent } from './pages/form-field-autocomplete-page/form-field-autocomplete-page.component';
 
 import { FormFieldRepeaterExampleComponent } from './examples/form-field-repeater-example/form-field-repeater-example.component';
 import { FormFieldRepeaterFixedExampleComponent } from './examples/form-field-repeater-fixed-example/form-field-repeater-fixed-xample.component';
@@ -17,6 +18,7 @@ import { FormFieldInputsExampleComponent } from './examples/form-field-inputs-ex
 import { FormFieldTextareaExampleComponent } from './examples/form-field-textarea-example/form-field-textarea-example.component';
 import { FormFieldRadioButtonsExampleComponent } from './examples/form-field-radio-buttons-example/form-field-radio-buttons-example.component';
 import { FormFieldRangeSliderExampleComponent } from './examples/form-field-range-slider-example/form-field-range-slider-example.component';
+import { FormFieldAutocompleteExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-example.component';
 
 const pages = [
   FormFieldRepeaterPageComponent,
@@ -25,6 +27,7 @@ const pages = [
   FormContainerPageComponent,
   FormFieldRadioButtonsPageComponent,
   FormFieldRangeSliderPageComponent,
+  FormFieldAutocompletePageComponent,
 ];
 
 const examples = [
@@ -34,6 +37,7 @@ const examples = [
   FormFieldTextareaExampleComponent,
   FormFieldRadioButtonsExampleComponent,
   FormFieldRangeSliderExampleComponent,
+  FormFieldAutocompleteExampleComponent,
 ];
 
 @NgModule({

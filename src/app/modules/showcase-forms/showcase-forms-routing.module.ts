@@ -6,12 +6,18 @@ import { FormFieldInputPageComponent } from './pages/form-field-input-page/form-
 import { FormContainerPageComponent } from './pages/form-container-page/form-container-page.component';
 import { FormFieldRadioButtonsPageComponent } from './pages/form-field-radio-buttons-page/form-field-radio-buttons-page.component';
 import { FormFieldRangeSliderPageComponent } from './pages/form-field-range-slider-page/form-field-range-slider-page.component';
+import { FormFieldAutocompletePageComponent } from './pages/form-field-autocomplete-page/form-field-autocomplete-page.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'form-field-repeater',
     pathMatch: 'full',
+  },
+  {
+    path: 'form-field-autocomplete',
+    component: FormFieldAutocompletePageComponent,
+    data: { pageTitle: 'Form Fields: Autocomplete' },
   },
   {
     path: 'form-field-repeater',

@@ -9,7 +9,7 @@ import { Lab900SharingModule } from 'projects/ui/src/lib/sharing/sharing.module'
 import { ShowcaseUiRoutingModule } from './showcase-ui-routing.module';
 
 @NgModule({
-  declarations: [DataListPageComponent,  SharingPageComponent],
+  declarations: [DataListPageComponent, SharingPageComponent],
   imports: [CommonModule, ShowcaseUiRoutingModule, Lab900DataListModule, Lab900SharingModule],
 })
 export class ShowcaseUiModule {}

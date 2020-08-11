@@ -35,6 +35,8 @@ import { Lab900FormBuilderService } from './services/form-builder.service';
 import { RadioButtonsFieldComponent } from './components/form-fields/radio-buttons-field/radio-buttons-field.component';
 import { RangeSliderFieldComponent } from './components/form-fields/range-slider-field/range-slider-field.component';
 import { MatRangeSliderFieldComponent } from './components/form-fields/range-slider-field/mat-range-slider-field/mat-range-slider-field.component';
+import { AutocompleteFieldComponent } from './components/form-fields/autocomplete-field/autocomplete-field.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const customFields = [
   UnknownFieldComponent,
@@ -49,6 +51,7 @@ const customFields = [
   FormRowComponent,
   RadioButtonsFieldComponent,
   RangeSliderFieldComponent,
+  AutocompleteFieldComponent,
 ];
 
 @NgModule({
@@ -77,6 +80,7 @@ const customFields = [
     MatDatepickerModule,
     MatSelectModule,
     MatNativeDateModule,
+    MatAutocompleteModule,
     AngularEditorModule,
     HttpClientModule,
   ],

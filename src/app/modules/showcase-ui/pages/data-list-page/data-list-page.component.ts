@@ -10,11 +10,15 @@ export class DataListPageComponent {
     {
       title: 'Dummy',
       sharedWith: [
-        {username: 'testUser', profileImage: 'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fpng%2FLAB900_18.png?alt=media'},
-        {username: 'testUser2'},
-        {username: 'testUser'},
-        {username: 'testUser'},
-      ]
+        {
+          username: 'testUser',
+          profileImage:
+            'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fpng%2FLAB900_18.png?alt=media',
+        },
+        { username: 'testUser2' },
+        { username: 'testUser' },
+        { username: 'testUser' },
+      ],
     },
     {
       title: 'Dummy2',
@@ -38,7 +42,7 @@ export class DataListPageComponent {
   ];
 
   public userLabelFn = (user: any) => user.username;
-  
+
   public userImageFn = (user: any) => user.profileImage || '';
 
   public sharedUsersFn = (data: any) => (data && data.sharedWith) || [];

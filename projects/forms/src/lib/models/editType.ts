@@ -11,4 +11,5 @@ export enum EditType {
   RadioButtons = 'RadioButtons',
   RangeSlider = 'RangeSlider',
   Row = 'Row',
+  Autocomplete = 'Autocomplete',
 }

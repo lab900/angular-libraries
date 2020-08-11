@@ -1,6 +1,7 @@
 import { EditType } from './editType';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ThemePalette } from '@angular/material/core';
+import { Observable } from 'rxjs';
 
 export interface FieldOptions {
   hide?: boolean;
@@ -43,6 +44,12 @@ export interface SelectFieldOptions extends FieldOptions {
   valuesFn?: () => Promise<{ key: any; value: string }[]>;
 }
 
+export interface AutocompleteOptions extends FieldOptions {
+  displayInputFn: (option: any) => string;
+  displayOptionFn: (option: any) => string;
+  getOptionsFn: (searchTerm: string) => any[] | Observable<any[]>;
+}
+
 export interface RadioButtonsFieldOptions extends FieldOptions {
   values: { value: any; label: string }[];
   color?: ThemePalette;
@@ -64,6 +71,7 @@ export interface FormField<
     | RepeaterFieldOptions
     | RadioButtonsFieldOptions
     | RangeSliderFieldOptions
+    | AutocompleteOptions
 > {
   attribute: string;
   editType: EditType;
