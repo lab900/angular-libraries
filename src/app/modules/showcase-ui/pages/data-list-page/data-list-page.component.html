@@ -1,4 +1,4 @@
-<lab900-data-list [data]="dummyData" [actions]="actions">
+<lab900-data-list [data]="dummyData" [actions]="actions" [sharedUsersFn]="sharedUsersFn" [userLabelFn]="userLabelFn" [userImageFn]="userImageFn">
     <div *lab900DataListEmpty>trolododofd</div>
-    <div *lab900DataListItemInfo="let data">{{data | json}}</div>
+    <div *lab900DataListItemInfo="let data">{{data.title}}</div>
 </lab900-data-list>

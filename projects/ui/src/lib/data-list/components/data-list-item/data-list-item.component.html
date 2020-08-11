@@ -1,19 +1,24 @@
-<div class="data-list-item" *ngIf="data" fxLayout="row" fxLayoutAlign="space-between center">
+<div class="data-list-item" *ngIf="data" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
     <div class="data-list-item__info" *ngIf="dataListItemInfoTemplate">
         <ng-container *ngTemplateOutlet="dataListItemInfoTemplate; context: { $implicit: data }"></ng-container>
     </div>
-    <div class="data-list-item__actions" *ngIf="actions?.length">
-        <ng-container *ngFor="let action of actions">
-            <button *ngIf="action.action" mat-icon-button (click)="action.action(data)"><mat-icon>{{ getIcon(action) }}</mat-icon></button>
-            <ng-container *ngIf="action.subActions?.length">
-                <button mat-icon-button [matMenuTriggerFor]="actionMenu"><mat-icon>{{ getIcon(action) }}</mat-icon></button>
-                <mat-menu #actionMenu="matMenu">
-                    <button *ngFor="let sub of action.subActions" mat-menu-item (click)="sub.action ? sub.action(data) : ''">
-                        <mat-icon>{{ getIcon(sub) }}</mat-icon>
-                        <span translate>{{ getLabel(sub) }}</span>
-                    </button>
-                </mat-menu>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+        <div class="data-list-item__share" *ngIf="sharedUsersFn">
+            <lab900-sharing [users]="sharedUsersFn(data)" [userImageFn]="userImageFn" [userLabelFn]="userLabelFn"></lab900-sharing>
+        </div>
+        <div class="data-list-item__actions" *ngIf="actions?.length">
+            <ng-container *ngFor="let action of actions">
+                <button *ngIf="action.action" mat-icon-button (click)="action.action(data)"><mat-icon>{{ getIcon(action) }}</mat-icon></button>
+                <ng-container *ngIf="action.subActions?.length">
+                    <button mat-icon-button [matMenuTriggerFor]="actionMenu"><mat-icon>{{ getIcon(action) }}</mat-icon></button>
+                    <mat-menu #actionMenu="matMenu">
+                        <button *ngFor="let sub of action.subActions" mat-menu-item (click)="sub.action ? sub.action(data) : ''">
+                            <mat-icon>{{ getIcon(sub) }}</mat-icon>
+                            <span translate>{{ getLabel(sub) }}</span>
+                        </button>
+                    </mat-menu>
+                </ng-container>
             </ng-container>
-        </ng-container>
+        </div>
     </div>
 </div>

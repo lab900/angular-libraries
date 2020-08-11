@@ -10,10 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { Lab900SharingModule } from '../sharing/sharing.module';
 
 @NgModule({
   declarations: [Lab900DataListComponent, Lab900DataListItemComponent, Lab900DataListEmptyDirective, Lab900DataListItemInfoDirective],
   exports: [Lab900DataListComponent, Lab900DataListEmptyDirective, Lab900DataListItemInfoDirective],
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, FlexLayoutModule, MatMenuModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule, FlexLayoutModule, MatMenuModule, Lab900SharingModule],
 })
 export class Lab900DataListModule {}

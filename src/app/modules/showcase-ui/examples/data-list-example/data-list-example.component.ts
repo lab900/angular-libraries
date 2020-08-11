@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
-import { DataListItemAction } from 'projects/ui/src/lib/data-list/models/data-list.model';
+import { DataListItemAction } from '../../../../../../projects/ui/src/lib/sharing/models/data-list.model';
 
 @Component({
-  selector: 'lab900-data-list-page',
-  templateUrl: './data-list-page.component.html',
+  selector: 'lab900-data-list-example',
+  template: `
+  <lab900-data-list [data]="dummyData" [actions]="actions" [sharedUsersFn]="sharedUsersFn" [userLabelFn]="userLabelFn" [userImageFn]="userImageFn">
+    <div *lab900DataListEmpty>
+      if this list is empty this appears
+    </div>
+    <div *lab900DataListItemInfo="let data">
+      {{data.title}}
+    </div>
+  </lab900-data-list>
+  `,
 })
-export class DataListPageComponent {
+export class DataListExampleComponent {
   public dummyData = [
     {
       title: 'Dummy',

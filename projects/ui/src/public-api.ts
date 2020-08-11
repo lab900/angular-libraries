@@ -24,3 +24,7 @@ export * from './lib/data-list/models/data-list.model';
 export * from './lib/data-list/components/data-list/data-list.component';
 export * from './lib/data-list/directives/data-list-empty.directive';
 export * from './lib/data-list/directives/data-list-item-info.directive';
+
+// sharing
+export * from './lib/sharing/sharing.module';
+export * from './lib/sharing/components/sharing/sharing.component';

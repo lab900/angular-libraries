@@ -18,6 +18,15 @@ export class Lab900DataListComponent {
   @Input()
   public actions: DataListItemAction[] = [];
 
+  @Input()
+  public userLabelFn: (user: any) => string;
+
+  @Input()
+  public userImageFn: (user: any) => string;
+
+  @Input()
+  public sharedUsersFn: (data: any) => any[];
+
   @ContentChild(Lab900DataListEmptyDirective, { read: TemplateRef })
   public emptyListTemplate?: Lab900DataListEmptyDirective;
 

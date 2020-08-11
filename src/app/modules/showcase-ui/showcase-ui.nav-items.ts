@@ -16,6 +16,10 @@ export const showcaseUiNavItems: NavItemGroup[] = [
             route: 'ui/data-list',
           },
           {
+            label: 'Sharing',
+            route: 'ui/sharing',
+          },
+          {
             label: 'Alerts',
             // route: 'ui/alerts',
           },

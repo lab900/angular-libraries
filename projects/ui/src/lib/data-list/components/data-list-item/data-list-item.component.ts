@@ -17,6 +17,15 @@ export class Lab900DataListItemComponent {
   @Input()
   public dataListItemInfoTemplate?: Lab900DataListItemInfoDirective;
 
+  @Input()
+  public userLabelFn: (user: any) => string;
+
+  @Input()
+  public userImageFn: (user: any) => string;
+
+  @Input()
+  public sharedUsersFn: (data: any) => any[];
+
   public getLabel(action: DataListItemAction): string {
     if (typeof action.label === 'function') {
       return action.label(this.data);
