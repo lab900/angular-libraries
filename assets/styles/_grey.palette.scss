@@ -1,0 +1,33 @@
+$mat-lab900grey-text: darken(#B4C2D1, 0.4);
+$mat-lab900grey: (
+    50 : #fcfcfd,
+    100 : #f6f9fb,
+    200 : #f1f5f8,
+    300 : #ebf0f5,
+    400 : #e6edf2,
+    500 : #e2eaf0,
+    600 : #dfe7ee,
+    700 : #dae4ec,
+    800 : #d6e1e9,
+    900 : #cfdbe5,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+    contrast: (
+        50 : $mat-lab900grey-text,
+        100 : $mat-lab900grey-text,
+        200 : $mat-lab900grey-text,
+        300 : $mat-lab900grey-text,
+        400 : $mat-lab900grey-text,
+        500 : $mat-lab900grey-text,
+        600 : $mat-lab900grey-text,
+        700 : $mat-lab900grey-text,
+        800 : $mat-lab900grey-text,
+        900 : $mat-lab900grey-text,
+        A100 : $mat-lab900grey-text,
+        A200 : $mat-lab900grey-text,
+        A400 : $mat-lab900grey-text,
+        A700 : $mat-lab900grey-text,
+    )
+);
