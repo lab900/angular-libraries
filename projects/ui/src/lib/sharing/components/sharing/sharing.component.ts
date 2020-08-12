@@ -10,6 +10,9 @@ import { ComponentType } from '@angular/cdk/portal';
 })
 export class Lab900SharingComponent {
   @Input()
+  public shareObject: any;
+
+  @Input()
   public users: any[] = [];
 
   @Input()
@@ -28,7 +31,7 @@ export class Lab900SharingComponent {
   public userImageFn: (user: any) => string;
 
   @Input()
-  public onShareFn?: (data: any) => any;
+  public onShareFn?: (shareObject: any, users: any[]) => any;
 
   public get toDisplay(): any[] {
     return this.users.slice(0, this.previewCount);
@@ -44,6 +47,7 @@ export class Lab900SharingComponent {
   public openDialog(): void {
     const data: SharingDialogData = {
       users: this.users,
+      shareObject: this.shareObject,
       onShareFn: this.onShareFn,
       userImageFn: this.userImageFn,
       userLabelFn: this.userLabelFn,

@@ -1,16 +1,11 @@
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Inject } from '@angular/core';
-
 export interface SharingDialogData {
-  users?: any[];
-  onShareFn?: (data: any) => any;
+  users: any[];
+  shareObject: any;
+  onShareFn: (shareObject: any, users: any[]) => any;
   userLabelFn?: (user: any) => string;
   userImageFn?: (user: any) => string;
 }
 
 export abstract class ShareDialogComponent {
-  public constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public data: SharingDialogData,
-  ) {}
+  public constructor(public data: SharingDialogData) {}
 }
