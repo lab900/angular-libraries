@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormArray } from '@angular/forms';
 import { Form } from '../../models/Form';
 import { Lab900FormBuilderService } from '../../services/form-builder.service';
+import { FormField } from '../../models/FormField';
 
 @Component({
   selector: 'lab900-form-container',
@@ -32,7 +33,22 @@ export class FormContainerComponent<T> implements OnChanges {
       this.form = this.fb.createFormGroup(this.schema.fields, null, this.data);
     }
     if (changes.data && this.data) {
-      setTimeout(() => this.form.patchValue(this.data), 0);
+      setTimeout(() => this.patchValues(this.data), 0);
     }
+  }
+
+  public patchValues(data: T) {
+    Object.keys(data).forEach((key: string) => {
+      const control = this.form.controls[key];
+      if (control) {
+        if (control instanceof FormArray) {
+          const fieldSchema = this.schema.fields.find((field: FormField) => field.attribute === key);
+          if (data[key] && fieldSchema) {
+            this.fb.createFormArray(data, fieldSchema, control);
+          }
+        }
+        control.patchValue(data[key]);
+      }
+    });
   }
 }

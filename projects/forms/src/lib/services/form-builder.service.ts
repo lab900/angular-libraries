@@ -1,4 +1,4 @@
-import { ValidatorFn, FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ValidatorFn, FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { FormField } from '../models/FormField';
 import { EditType } from '../models/editType';
 import { Injectable } from '@angular/core';
@@ -13,18 +13,23 @@ export class Lab900FormBuilderService {
       if (field.editType === EditType.Row && field.nestedFields) {
         formGroup = this.createFormGroup(field.nestedFields, formGroup, data && data[field.attribute]);
       } else if (field.editType === EditType.Repeater) {
-        const repeaterArray = this.fb.array([]);
-        if (data && data[field.attribute] && data[field.attribute].length) {
-          data[field.attribute].forEach(() => {
-            repeaterArray.push(this.createFormGroup(field.nestedFields));
-          });
-        }
+        const repeaterArray = this.createFormArray(data, field);
         formGroup.addControl(field.attribute, repeaterArray);
       } else {
         formGroup.addControl(field.attribute, new FormControl(null, this.addValidators(field)));
       }
     });
     return formGroup;
+  }
+
+  public createFormArray(data: any, schema: FormField, formArray: FormArray = this.fb.array([])): FormArray {
+    if (data && data[schema.attribute] && data[schema.attribute].length) {
+      formArray.clear();
+      data[schema.attribute].forEach(() => {
+        formArray.push(this.createFormGroup(schema.nestedFields));
+      });
+    }
+    return formArray;
   }
 
   public addValidators(field: FormField): ValidatorFn[] {
