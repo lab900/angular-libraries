@@ -18,7 +18,7 @@ export class FormContainerComponent<T> implements OnChanges {
 
   public form: FormGroup;
 
-  public get valid() {
+  public get valid(): boolean {
     return this.form.valid;
   }
 
@@ -37,7 +37,7 @@ export class FormContainerComponent<T> implements OnChanges {
     }
   }
 
-  public patchValues(data: T) {
+  public patchValues(data: T): void {
     Object.keys(data).forEach((key: string) => {
       const control = this.form.controls[key];
       if (control) {

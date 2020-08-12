@@ -15,8 +15,6 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   @Input()
   public schema: FormField<T>;
 
-  public errorMessage?: string;
-
   public get valid(): boolean {
     return this.group.get(this.schema.attribute).valid;
   }

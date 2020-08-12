@@ -1,9 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {
-  DataListItemAction, DataListPaging,
-  DataListSharing
-} from "projects/ui/src/lib/data-list/models/data-list.model";
-import {PageEvent} from "@angular/material/paginator";
+import { Component, OnInit } from '@angular/core';
+import { DataListItemAction, DataListPaging, DataListSharing } from 'projects/ui/src/lib/data-list/models/data-list.model';
+import { PageEvent } from '@angular/material/paginator';
 
 const dummyData: any[] = [
   {
@@ -12,7 +9,7 @@ const dummyData: any[] = [
       {
         username: 'testUser',
         profileImage:
-            'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fpng%2FLAB900_18.png?alt=media',
+          'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fpng%2FLAB900_18.png?alt=media',
       },
       { username: 'testUser2' },
       { username: 'testUser' },
@@ -28,7 +25,7 @@ const dummyData: any[] = [
       {
         username: 'testUser',
         profileImage:
-            'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fpng%2FLAB900_18.png?alt=media',
+          'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fpng%2FLAB900_18.png?alt=media',
       },
       { username: 'testUser2' },
       { username: 'testUser' },
@@ -44,7 +41,7 @@ const dummyData: any[] = [
       {
         username: 'testUser',
         profileImage:
-            'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fpng%2FLAB900_18.png?alt=media',
+          'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fpng%2FLAB900_18.png?alt=media',
       },
       { username: 'testUser2' },
       { username: 'testUser' },
@@ -64,7 +61,7 @@ const dummyData: any[] = [
         if this list is empty this appears
       </div>
       <div *lab900DataListItemInfo="let data">
-        {{data.title}}
+        {{ data.title }}
       </div>
     </lab900-data-list>
   `,
@@ -75,8 +72,8 @@ export class DataListExampleComponent implements OnInit {
   public paging: DataListPaging = {
     pageIndex: 0,
     pageSize: 5,
-    totalItems: dummyData.length
-  }
+    totalItems: dummyData.length,
+  };
 
   public actions: DataListItemAction[] = [
     {

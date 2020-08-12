@@ -70,20 +70,20 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
   @Input()
   public group: FormGroup;
 
-  component: ComponentRef<FormComponent>;
+  public component: ComponentRef<FormComponent>;
 
-  statusChangeSubscription: Subscription;
+  public statusChangeSubscription: Subscription;
 
-  constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
+  public constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
 
-  ngOnChanges() {
+  public ngOnChanges(): void {
     if (this.component) {
       this.component.instance.schema = this.schema;
       this.component.instance.group = this.group;
     }
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.validateType();
     const component = this.resolver.resolveComponentFactory<FormComponent<FieldOptions>>(mapToComponent(this.schema));
     this.component = this.container.createComponent(component);
@@ -91,7 +91,7 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
     this.component.instance.group = this.group;
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy(): void {
     if (this.statusChangeSubscription) {
       this.statusChangeSubscription.unsubscribe();
     }

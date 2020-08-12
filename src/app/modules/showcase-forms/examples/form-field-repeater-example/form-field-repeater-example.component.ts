@@ -4,8 +4,7 @@ import { EditType } from 'projects/forms/src/lib/models/editType';
 
 @Component({
   selector: 'lab900-form-field-repeater-example',
-  template:
-    '<lab900-form-container [schema]="formSchema"></lab900-form-container>',
+  template: '<lab900-form-container [schema]="formSchema"></lab900-form-container>',
 })
 export class FormFieldRepeaterExampleComponent {
   public formSchema: Form = {

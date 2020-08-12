@@ -1,7 +1,7 @@
 <mat-form-field [formGroup]="group" [hidden]="hide">
-    <mat-label translate>{{ schema.title }}</mat-label>
-    <input matInput #input [type]="inputType" [placeholder]="placeholder" [formControlName]="schema.attribute" [required]="options?.required">
-    <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
+    <mat-label [translate]="schema.title"></mat-label>
+    <input matInput #input [type]="inputType" placeholder="{{ placeholder | translate }}" [formControlName]="schema.attribute" [required]="options?.required">
+    <mat-hint *ngIf="hint" [translate]="hint"></mat-hint>
     <mat-hint align="end" *ngIf="options?.maxLength">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
-    <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="!valid" [translate]="getErrorMessage()"></mat-error>
 </mat-form-field>

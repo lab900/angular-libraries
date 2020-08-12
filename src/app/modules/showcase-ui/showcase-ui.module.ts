@@ -7,8 +7,8 @@ import { Lab900DataListModule } from 'projects/ui/src/lib/data-list/data-list.mo
 import { Lab900SharingModule } from 'projects/ui/src/lib/sharing/sharing.module';
 
 import { ShowcaseUiRoutingModule } from './showcase-ui-routing.module';
-import { DataListExampleComponent } from "./examples/data-list-example/data-list-example.component";
-import {SharedModule} from "../shared/shared.module";
+import { DataListExampleComponent } from './examples/data-list-example/data-list-example.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [DataListPageComponent, SharingPageComponent, DataListExampleComponent],

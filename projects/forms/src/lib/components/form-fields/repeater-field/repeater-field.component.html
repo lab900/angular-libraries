@@ -1,13 +1,13 @@
 <div [formGroup]="group" [hidden]="hide" class="repeater-field" [class.fixed-list]="fixedList">
     <div [formArrayName]="schema.attribute">
         <span *ngIf="schema.title" class="lab900-form-field-label">{{ schema.title | translate }}</span>
-        <div *ngFor="let alias of repeaterArray.controls; let i=index" class="repeater-row">
+        <div *ngFor="let control of repeaterArray.controls; let i=index" class="repeater-row">
             <div class="repeater-row__fields">
                 <ng-container 
                     *ngFor="let field of schema.nestedFields;" 
                     lab900FormField
                     [schema]="field"
-                    [group]="repeaterArray.controls[i]"
+                    [group]="control"
                 ></ng-container>
             </div>
             <div *ngIf="!fixedList" class="repeater-row__actions">
@@ -17,9 +17,7 @@
             </div>
         </div>
         <div *ngIf="!fixedList" class="repeater-field__actions">
-            <button mat-button color="primary" (click)="addToArray()" class="repeater-add">
-                {{ addLabel | translate }}
-            </button>
+            <button mat-button color="primary" (click)="addToArray()" class="repeater-add">{{ addLabel | translate }}</button>
         </div>
     </div>
 </div>

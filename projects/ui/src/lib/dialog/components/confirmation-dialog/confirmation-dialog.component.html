@@ -1,7 +1,7 @@
 <mat-dialog-content>
-    <p>{{message}}</p>
+    <p>{{message | translate}}</p>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
-    <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">{{confirmButtonText}}</button>
+    <button mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonText | translate}}</button>
+    <button mat-raised-button color="primary" (click)="onConfirmClick()" tabindex="1">{{confirmButtonText | translate}}</button>
 </mat-dialog-actions>
