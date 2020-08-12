@@ -37,6 +37,7 @@ import { RangeSliderFieldComponent } from './components/form-fields/range-slider
 import { MatRangeSliderFieldComponent } from './components/form-fields/range-slider-field/mat-range-slider-field/mat-range-slider-field.component';
 import { AutocompleteFieldComponent } from './components/form-fields/autocomplete-field/autocomplete-field.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { TranslateModule } from '@ngx-translate/core';
 
 const customFields = [
   UnknownFieldComponent,
@@ -83,6 +84,7 @@ const customFields = [
     MatAutocompleteModule,
     AngularEditorModule,
     HttpClientModule,
+    TranslateModule,
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })

@@ -6,6 +6,7 @@ import { Lab900FormsModule } from '../../projects/forms/src/lib/forms.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { SharedModule } from './modules/shared/shared.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
+    TranslateModule.forRoot(),
     Lab900FormsModule.forRoot({
       formField: {
         appearance: 'outline',

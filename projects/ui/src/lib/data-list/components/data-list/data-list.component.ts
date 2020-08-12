@@ -27,6 +27,9 @@ export class Lab900DataListComponent {
   @Input()
   public sharedUsersFn: (data: any) => any[];
 
+  @Input()
+  public shareDialogTemplate: any;
+
   @ContentChild(Lab900DataListEmptyDirective, { read: TemplateRef })
   public emptyListTemplate?: Lab900DataListEmptyDirective;
 

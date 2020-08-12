@@ -29,10 +29,10 @@ export class FormContainerComponent<T> implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.schema) {
-      this.form = this.fb.createFormGroup(this.schema.fields);
+      this.form = this.fb.createFormGroup(this.schema.fields, null, this.data);
     }
     if (changes.data && this.data) {
-      this.form.patchValue(this.data);
+      setTimeout(() => this.form.patchValue(this.data), 0);
     }
   }
 }

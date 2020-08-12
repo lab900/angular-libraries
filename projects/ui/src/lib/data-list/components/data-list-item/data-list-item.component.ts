@@ -26,6 +26,9 @@ export class Lab900DataListItemComponent {
   @Input()
   public sharedUsersFn: (data: any) => any[];
 
+  @Input()
+  public shareDialogTemplate: any;
+
   public getLabel(action: DataListItemAction): string {
     if (typeof action.label === 'function') {
       return action.label(this.data);

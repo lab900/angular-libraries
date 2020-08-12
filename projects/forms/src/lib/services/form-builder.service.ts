@@ -7,13 +7,19 @@ import { Injectable } from '@angular/core';
 export class Lab900FormBuilderService {
   public constructor(private fb: FormBuilder) {}
 
-  public createFormGroup(fields: FormField[], group?: FormGroup): FormGroup {
+  public createFormGroup(fields: FormField[], group?: FormGroup, data?: any): FormGroup {
     let formGroup = group ? group : this.fb.group({});
     fields.forEach((field) => {
       if (field.editType === EditType.Row && field.nestedFields) {
-        formGroup = this.createFormGroup(field.nestedFields, formGroup);
+        formGroup = this.createFormGroup(field.nestedFields, formGroup, data && data[field.attribute]);
       } else if (field.editType === EditType.Repeater) {
-        formGroup.addControl(field.attribute, this.fb.array([]));
+        const repeaterArray = this.fb.array([]);
+        if (data && data[field.attribute] && data[field.attribute].length) {
+          data[field.attribute].forEach(() => {
+            repeaterArray.push(this.createFormGroup(field.nestedFields));
+          });
+        }
+        formGroup.addControl(field.attribute, repeaterArray);
       } else {
         formGroup.addControl(field.attribute, new FormControl(null, this.addValidators(field)));
       }
