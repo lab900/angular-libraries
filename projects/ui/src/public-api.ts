@@ -28,3 +28,4 @@ export * from './lib/data-list/directives/data-list-item-info.directive';
 // sharing
 export * from './lib/sharing/sharing.module';
 export * from './lib/sharing/components/sharing/sharing.component';
+export * from './lib/sharing/models/share-dialog-component.abstract';

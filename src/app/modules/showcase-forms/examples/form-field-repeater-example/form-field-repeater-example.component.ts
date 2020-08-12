@@ -8,12 +8,8 @@ import { EditType } from 'projects/forms/src/lib/models/editType';
 })
 export class FormFieldRepeaterExampleComponent {
   public data = {
-    repeater: [
-      {value: 'dummy field'},
-      {value: 'dummy field 2'},
-      {value: 'dummy field 3'},
-    ]
-  }
+    repeater: [{ value: 'dummy field' }, { value: 'dummy field 2' }, { value: 'dummy field 3' }],
+  };
 
   public formSchema: Form = {
     fields: [
