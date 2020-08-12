@@ -5,6 +5,7 @@ export interface DataListItemAction<T = any> {
   label?: propFunction<T> | string;
   action?: (data: T) => any;
   subActions?: DataListItemAction<T>[];
+  hide?: boolean;
 }
 
 export interface DataListSharing {
@@ -13,4 +14,10 @@ export interface DataListSharing {
   sharedUsersFn: (data: any) => any[];
   onShareFn?: (shareObject: any, users: any[]) => any;
   shareDialogTemplate?: any;
+}
+
+export interface DataListPaging {
+  pageSize: number;
+  pageIndex: number;
+  totalItems: number;
 }

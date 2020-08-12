@@ -1,5 +1,5 @@
 <mat-card class="lab900-data-list">
-    <div class="lab900-data-list__content" *ngIf="data?.length">
+    <div class="lab900-data-list__content" *ngIf="data?.length && !loading">
         <div *ngFor="let d of data" class="lab900-data-list__item">
             <lab900-data-list-item 
                 [data]="d" 
@@ -8,11 +8,23 @@
                 [dataListSharing]="dataListSharing"
             ></lab900-data-list-item>
         </div>
+        <div class="lab900-data-list__content__paging" *ngIf="paging">
+            <mat-paginator
+                hidePageSize
+                [length]="paging.totalItems"
+                [pageSize]="paging.pageSize"
+                [pageIndex]="paging.pageIndex"
+                (page)="pageChange.emit($event)"
+            ></mat-paginator>
+        </div>
     </div>
-    <div class="lab900-data-list__empty" *ngIf="!data?.length">
+    <div class="lab900-data-list__empty" *ngIf="!data?.length && !loading">
         <ng-container *ngIf="emptyListTemplate">
             <ng-container *ngTemplateOutlet="emptyListTemplate"></ng-container>
         </ng-container>
         <p *ngIf="!emptyListTemplate" translate>{{ emptyListLabel }}</p>
+    </div>
+    <div class="lab900-data-list__loading" *ngIf="loading">
+        <mat-spinner diameter="50"></mat-spinner>
     </div>
 </mat-card>

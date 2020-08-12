@@ -4,7 +4,10 @@
 
   &__item:not(:last-of-type) {
     border-bottom: 1px solid rgba(#000, 0.1);
+  }
 
+  &__content__paging {
+    // border-top: 1px solid rgba(#000, 0.1);
   }
 
   &__empty {
@@ -15,5 +18,11 @@
       font-weight: 500;
       margin: 0;
     }
+  }
+
+  &__loading {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
   }
 }
