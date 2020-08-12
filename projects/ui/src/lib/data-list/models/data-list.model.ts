@@ -6,3 +6,11 @@ export interface DataListItemAction<T = any> {
   action?: (data: T) => any;
   subActions?: DataListItemAction<T>[];
 }
+
+export interface DataListSharing {
+  userLabelFn: (user: any) => string;
+  userImageFn: (user: any) => string;
+  sharedUsersFn: (data: any) => any[];
+  onShareFn?: (data: any) => any;
+  shareDialogTemplate?: any;
+}

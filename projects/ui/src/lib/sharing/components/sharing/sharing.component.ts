@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ShareDialogComponent, SharingDialogData } from '../../models/share-dialog-component.abstract';
+import { ComponentType } from '@angular/cdk/portal';
 
 @Component({
   selector: 'lab900-sharing',
@@ -17,13 +19,16 @@ export class Lab900SharingComponent {
   public openShareDialogIcon = 'add_circle_outline';
 
   @Input()
-  public shareDialogTemplate: any;
+  public shareDialogTemplate: ComponentType<ShareDialogComponent>;
 
   @Input()
   public userLabelFn: (user: any) => string;
 
   @Input()
   public userImageFn: (user: any) => string;
+
+  @Input()
+  public onShareFn?: (data: any) => any;
 
   public get toDisplay(): any[] {
     return this.users.slice(0, this.previewCount);
@@ -37,6 +42,12 @@ export class Lab900SharingComponent {
   public constructor(private matDialog: MatDialog) {}
 
   public openDialog(): void {
-    this.matDialog.open(this.shareDialogTemplate);
+    const data: SharingDialogData = {
+      users: this.users,
+      onShareFn: this.onShareFn,
+      userImageFn: this.userImageFn,
+      userLabelFn: this.userLabelFn,
+    };
+    this.matDialog.open(this.shareDialogTemplate, { data });
   }
 }

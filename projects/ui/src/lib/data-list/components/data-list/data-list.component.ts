@@ -1,6 +1,6 @@
 import { Component, Input, TemplateRef, ContentChild } from '@angular/core';
 import { Lab900DataListEmptyDirective } from '../../directives/data-list-empty.directive';
-import { DataListItemAction } from '../../models/data-list.model';
+import { DataListItemAction, DataListSharing } from '../../models/data-list.model';
 import { Lab900DataListItemInfoDirective } from '../../directives/data-list-item-info.directive';
 
 @Component({
@@ -19,16 +19,7 @@ export class Lab900DataListComponent {
   public actions: DataListItemAction[] = [];
 
   @Input()
-  public userLabelFn: (user: any) => string;
-
-  @Input()
-  public userImageFn: (user: any) => string;
-
-  @Input()
-  public sharedUsersFn: (data: any) => any[];
-
-  @Input()
-  public shareDialogTemplate: any;
+  public dataListSharing?: DataListSharing;
 
   @ContentChild(Lab900DataListEmptyDirective, { read: TemplateRef })
   public emptyListTemplate?: Lab900DataListEmptyDirective;

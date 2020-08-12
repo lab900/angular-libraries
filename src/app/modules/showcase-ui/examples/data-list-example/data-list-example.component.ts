@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { DataListItemAction } from '../../../../../../projects/ui/src/lib/sharing/models/data-list.model';
+import { DataListItemAction, DataListSharing } from '../../../../../../projects/ui/src/lib/sharing/models/data-list.model';
 
 @Component({
   selector: 'lab900-data-list-example',
   template: `
-  <lab900-data-list [data]="dummyData" [actions]="actions" [sharedUsersFn]="sharedUsersFn" [userLabelFn]="userLabelFn" [userImageFn]="userImageFn">
+  <lab900-data-list [data]="dummyData" [actions]="actions" [dataListSharing]="sharing">
     <div *lab900DataListEmpty>
       if this list is empty this appears
     </div>
@@ -46,9 +46,9 @@ export class DataListExampleComponent {
     },
   ];
 
-  public userLabelFn = (user: any) => user.username;
-  
-  public userImageFn = (user: any) => user.profileImage || '';
-
-  public sharedUsersFn = (data: any) => (data && data.sharedWith) || [];
+  public sharing: DataListSharing = {
+    userLabelFn: (user: any) => user.username,
+    userImageFn: (user: any) => user.profileImage || '',
+    sharedUsersFn: (data: any) => (data && data.sharedWith) || [],
+  };
 }

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DataListItemAction } from '../../models/data-list.model';
+import { DataListItemAction, DataListSharing } from '../../models/data-list.model';
 import { Lab900DataListItemInfoDirective } from '../../directives/data-list-item-info.directive';
 
 @Component({
@@ -18,16 +18,7 @@ export class Lab900DataListItemComponent {
   public dataListItemInfoTemplate?: Lab900DataListItemInfoDirective;
 
   @Input()
-  public userLabelFn: (user: any) => string;
-
-  @Input()
-  public userImageFn: (user: any) => string;
-
-  @Input()
-  public sharedUsersFn: (data: any) => any[];
-
-  @Input()
-  public shareDialogTemplate: any;
+  public dataListSharing?: DataListSharing;
 
   public getLabel(action: DataListItemAction): string {
     if (typeof action.label === 'function') {

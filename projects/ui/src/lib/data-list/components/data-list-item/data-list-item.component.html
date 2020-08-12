@@ -3,8 +3,13 @@
         <ng-container *ngTemplateOutlet="dataListItemInfoTemplate; context: { $implicit: data }"></ng-container>
     </div>
     <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-        <div class="data-list-item__share" *ngIf="sharedUsersFn">
-            <lab900-sharing [users]="sharedUsersFn(data)" [shareDialogTemplate]="shareDialogTemplate" [userImageFn]="userImageFn" [userLabelFn]="userLabelFn"></lab900-sharing>
+        <div class="data-list-item__share" *ngIf="dataListSharing">
+            <lab900-sharing 
+                [users]="dataListSharing.sharedUsersFn(data)"
+                [shareDialogTemplate]="dataListSharing.shareDialogTemplate"
+                [userImageFn]="dataListSharing.userImageFn"
+                [userLabelFn]="dataListSharing.userLabelFn"
+            ></lab900-sharing>
         </div>
         <div class="data-list-item__actions" *ngIf="actions?.length">
             <ng-container *ngFor="let action of actions">
