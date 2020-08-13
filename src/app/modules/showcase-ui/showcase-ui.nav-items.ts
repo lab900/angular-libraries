@@ -9,7 +9,7 @@ export const showcaseUiNavItems: NavItemGroup[] = [
         children: [
           {
             label: 'Nav List',
-            // route: 'ui/nav-list',
+            route: 'ui/nav-list',
           },
           {
             label: 'Data List',
@@ -21,11 +21,7 @@ export const showcaseUiNavItems: NavItemGroup[] = [
           },
           {
             label: 'Alerts',
-            // route: 'ui/alerts',
-          },
-          {
-            label: 'Dialogs',
-            // route: 'ui/dialogs',
+            route: 'ui/alerts',
           },
         ],
       },

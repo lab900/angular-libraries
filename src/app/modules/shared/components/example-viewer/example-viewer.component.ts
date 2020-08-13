@@ -22,17 +22,13 @@ export class ExampleViewerComponent implements OnInit {
   @Input()
   public exampleTitle: string;
 
-  public exampleFiles: ExampleFile[] = [];
-
   public examplesFolder = 'assets/examples/';
 
   public showSource = false;
 
   public constructor(private fileService: FileService) {}
 
-  public ngOnInit(): void {
-    this.fetchExampleFiles();
-  }
+  public ngOnInit(): void {}
 
   public trackExampleFile(index: number, file: ExampleFile): string {
     return file.extension;
@@ -40,28 +36,5 @@ export class ExampleViewerComponent implements OnInit {
 
   public toggleSourceView(): void {
     this.showSource = !this.showSource;
-  }
-
-  private fetchExampleFiles(): void {
-    for (const extension of this.extensions) {
-      this.fileService.fetchFile(this.examplesFolder + this.filesPath + '.' + extension.toLowerCase()).subscribe((data: string) =>
-        this.exampleFiles.push({
-          extension,
-          data,
-          format: this.translateExtensionToFormat(extension),
-        }),
-      );
-    }
-  }
-
-  private translateExtensionToFormat(extension: string): string {
-    switch (extension.toLowerCase()) {
-      case 'js':
-        return 'javascript';
-      case 'ts':
-        return 'typescript';
-      default:
-        return extension;
-    }
   }
 }

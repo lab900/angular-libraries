@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataListItemAction, DataListPaging, DataListSharing } from 'projects/ui/src/lib/data-list/models/data-list.model';
+import { DataListItemAction, DataListPaging, DataListSharing } from '@lab900/ui';
 import { PageEvent } from '@angular/material/paginator';
 
 const dummyData: any[] = [

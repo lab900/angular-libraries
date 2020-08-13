@@ -1,0 +1,22 @@
+<div *ngIf="data$ | async as data">
+    <h1>{{ data.title }}</h1>
+
+
+    <mat-tab-group [selectedIndex]="1">
+        <mat-tab [label]="'API'">
+            In progress
+        </mat-tab>
+        <mat-tab [label]="'EXAMPLES'" *ngIf="data.examples">
+            <div *ngFor="let example of data.examples" style="padding: 30px 0">
+                <lab900-example-viewer
+                        [extensions]="example.extensions"
+                        [filesPath]="example.filesPath"
+                        [exampleTitle]="example.title"
+                >
+                    <ng-container [lab900ComponentLoader]="example.component"></ng-container>
+                </lab900-example-viewer>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>

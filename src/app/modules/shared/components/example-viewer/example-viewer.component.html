@@ -10,10 +10,8 @@
 	<mat-card-content>
 		<div class="example-source-wrapper" *ngIf="showSource">
 			<mat-tab-group>
-				<mat-tab *ngFor="let file of exampleFiles; trackBy: trackExampleFile" [label]="file.extension">
-					<div class="lab900-pretty-print">
-                        <pre><code>{{ file.data }}</code></pre>
-					</div>
+				<mat-tab *ngFor="let ext of extensions;" [label]="ext">
+					<markdown lineNumbers [src]="examplesFolder + filesPath + '.' + (ext | lowercase)" [start]="0"></markdown>
 				</mat-tab>
 			</mat-tab-group>
         </div>

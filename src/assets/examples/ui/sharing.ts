@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lab900-sharing-page',
-  templateUrl: './sharing-page.component.html',
+  selector: 'lab900-sharing-example',
+  template: `<lab900-sharing [users]="users" [userLabelFn]="userLabelFn" [userImageFn]="userImageFn"></lab900-sharing>`,
 })
-export class SharingPageComponent {
+export class SharingExampleComponent {
   public users = [
     {
       username: 'testUser',

@@ -74,3 +74,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     }
   }
 }
+
+pre[class*="language-"] {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}

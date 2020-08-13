@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
     AppRoutingModule,
     SharedModule,
     TranslateModule.forRoot(),
+    MarkdownModule.forRoot(),
     Lab900FormsModule.forRoot({
       formField: {
         appearance: 'outline',

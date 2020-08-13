@@ -7,18 +7,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { RouterModule } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { Lab900FormsModule } from 'projects/forms/src/lib/forms.module';
-
 import { Lab900NavListModule } from 'projects/ui/src/lib/nav-list/nav-list.module';
 
 import { ExampleViewerComponent } from './components/example-viewer/example-viewer.component';
+import { ShowcasePageComponent } from './components/showcase-page/showcase-page.component';
+import { ComponentLoaderDirective } from './directives/component-loader.directive';
 
 const material = [MatCardModule, MatButtonModule, MatTabsModule, MatIconModule, FlexLayoutModule, MatToolbarModule, MatSidenavModule];
 
 @NgModule({
-  declarations: [ExampleViewerComponent],
-  exports: [ExampleViewerComponent, Lab900FormsModule, Lab900NavListModule, ...material],
-  imports: [CommonModule, Lab900FormsModule, Lab900NavListModule, ...material],
+  declarations: [ExampleViewerComponent, ShowcasePageComponent, ComponentLoaderDirective],
+  exports: [ExampleViewerComponent, ShowcasePageComponent, Lab900FormsModule, Lab900NavListModule, ...material],
+  imports: [CommonModule, Lab900FormsModule, Lab900NavListModule, MarkdownModule, RouterModule, ...material],
 })
 export class SharedModule {}

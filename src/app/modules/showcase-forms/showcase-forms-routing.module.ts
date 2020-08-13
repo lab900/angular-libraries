@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormFieldRepeaterPageComponent } from './pages/form-field-repeater-page/form-field-repeater-page.component';
-import { FormFieldDatepickerPageComponent } from './pages/form-field-datepicker-page/form-field-datepicker-page.component';
-import { FormFieldInputPageComponent } from './pages/form-field-input-page/form-field-input-page.component';
-import { FormContainerPageComponent } from './pages/form-container-page/form-container-page.component';
-import { FormFieldRadioButtonsPageComponent } from './pages/form-field-radio-buttons-page/form-field-radio-buttons-page.component';
-import { FormFieldRangeSliderPageComponent } from './pages/form-field-range-slider-page/form-field-range-slider-page.component';
-import { FormFieldAutocompletePageComponent } from './pages/form-field-autocomplete-page/form-field-autocomplete-page.component';
+import { ShowcaseRoute } from '../shared/models/showcase-route.model';
+import { ShowcaseExample } from '../shared/models/showcase-example.model';
+import { FormFieldAutocompleteExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-example.component';
+import { FormFieldRepeaterExampleComponent } from './examples/form-field-repeater-example/form-field-repeater-example.component';
+import { FormFieldRepeaterFixedExampleComponent } from './examples/form-field-repeater-fixed-example/form-field-repeater-fixed-xample.component';
+import { FormFieldInputsExampleComponent } from './examples/form-field-inputs-example/form-field-inputs-example.component';
+import { FormFieldTextareaExampleComponent } from './examples/form-field-textarea-example/form-field-textarea-example.component';
+import { FormFieldRadioButtonsExampleComponent } from './examples/form-field-radio-buttons-example/form-field-radio-buttons-example.component';
+import { FormFieldRangeSliderExampleComponent } from './examples/form-field-range-slider-example/form-field-range-slider-example.component';
 
 const routes: Routes = [
   {
@@ -14,41 +16,25 @@ const routes: Routes = [
     redirectTo: 'form-field-repeater',
     pathMatch: 'full',
   },
-  {
-    path: 'form-field-autocomplete',
-    component: FormFieldAutocompletePageComponent,
-    data: { pageTitle: 'Form Fields: Autocomplete' },
-  },
-  {
-    path: 'form-field-repeater',
-    component: FormFieldRepeaterPageComponent,
-    data: { pageTitle: 'Form Fields: Repeater' },
-  },
-  {
-    path: 'form-field-datepicker',
-    component: FormFieldDatepickerPageComponent,
-    data: { pageTitle: 'Form Fields: Datepicker' },
-  },
-  {
-    path: 'form-field-input',
-    component: FormFieldInputPageComponent,
-    data: { pageTitle: 'Form Fields: Input & textarea' },
-  },
-  {
-    path: 'form-container',
-    component: FormContainerPageComponent,
-    data: { pageTitle: 'Form container' },
-  },
-  {
-    path: 'form-field-radio-buttons',
-    component: FormFieldRadioButtonsPageComponent,
-    data: { pageTitle: 'Form Fields: Radio buttons' },
-  },
-  {
-    path: 'form-field-range-slider',
-    component: FormFieldRangeSliderPageComponent,
-    data: { pageTitle: 'Form Fields: Range slider' },
-  },
+  new ShowcaseRoute('form-field-autocomplete', 'Form Fields: Autocomplete', [
+    new ShowcaseExample(FormFieldAutocompleteExampleComponent, 'Autocomplete', ['TS'], 'form-fields/form-field-autocomplete'),
+  ]),
+  new ShowcaseRoute('form-field-repeater', 'Form Fields: Repeater', [
+    new ShowcaseExample(FormFieldRepeaterExampleComponent, 'Repeater', ['TS'], 'form-fields/form-field-repeater-editable'),
+    new ShowcaseExample(FormFieldRepeaterFixedExampleComponent, 'Repeater fixed', ['TS'], 'form-fields/form-field-repeater-fixed'),
+  ]),
+  new ShowcaseRoute('form-field-datepicker', 'Form Fields: Datepicker', []),
+  new ShowcaseRoute('form-field-input', 'Form Fields: Input & Textarea', [
+    new ShowcaseExample(FormFieldInputsExampleComponent, 'Input', ['TS'], 'form-fields/form-field-inputs'),
+    new ShowcaseExample(FormFieldTextareaExampleComponent, 'Textarea', ['TS'], 'form-fields/form-field-textarea'),
+  ]),
+  new ShowcaseRoute('form-field-container', 'Form container', []),
+  new ShowcaseRoute('form-field-radio-buttons', 'Form Fields: Radio buttons', [
+    new ShowcaseExample(FormFieldRadioButtonsExampleComponent, 'Radio buttons', ['TS'], 'form-fields/form-field-radio-buttons'),
+  ]),
+  new ShowcaseRoute('form-field-range-slider', 'Form Fields: Range slider', [
+    new ShowcaseExample(FormFieldRangeSliderExampleComponent, 'Range slider', ['TS'], 'form-fields/form-field-range-slider'),
+  ]),
 ];
 
 @NgModule({
