@@ -23,6 +23,14 @@ export const showcaseUiNavItems: NavItemGroup[] = [
             label: 'Alerts',
             route: 'ui/alerts',
           },
+          {
+            label: 'Table',
+            route: 'ui/table',
+          },
+          {
+            label: 'Page header',
+            route: 'ui/page-header',
+          },
         ],
       },
     ],

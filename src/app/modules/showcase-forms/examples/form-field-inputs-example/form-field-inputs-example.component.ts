@@ -13,6 +13,7 @@ export class FormFieldInputsExampleComponent {
         attribute: 'textInput',
         title: 'Text Input',
         editType: EditType.Input,
+        options: { hide: true },
       },
       {
         attribute: 'emailInput',

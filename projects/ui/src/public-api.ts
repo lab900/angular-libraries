@@ -29,3 +29,16 @@ export * from './lib/data-list/directives/data-list-item-info.directive';
 export * from './lib/sharing/sharing.module';
 export * from './lib/sharing/components/sharing/sharing.component';
 export * from './lib/sharing/models/share-dialog-component.abstract';
+
+// table
+export * from './lib/table/table.module';
+export * from './lib/table/components/table/table.component';
+export * from './lib/table/directives/table-empty.directive';
+export * from './lib/table/models/table-action.model';
+export * from './lib/table/models/table-cell.model';
+
+// page header
+export * from './lib/page-header/page-header.module';
+export * from './lib/page-header/components/page-header/page-header.component';
+export * from './lib/page-header/models/page-header-actions.model';
+export * from './lib/page-header/models/page-header-nav.model';

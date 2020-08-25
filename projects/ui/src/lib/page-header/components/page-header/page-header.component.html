@@ -1,0 +1,20 @@
+<header class="lab900-page-header">
+  <div class="lab900-page-header__main" fxLayout.gt-sm="row" fxLayoutGap="16px" fxLayoutAlign.gt-sm="space-between center">
+    <h1 *ngIf="pageTitle">{{ pageTitle | translate:pageTitleArgs }}</h1>
+    <div class="lab900-page-header__actions" *ngIf="actions?.length" fxLayout="row" fxLayoutGap="16px" fxLayoutAlign.lt-md="center">
+      <ng-container *ngFor="let action of actions">
+        <button *ngIf="action.type === 'main'" mat-flat-button color="primary" (click)="action.action(data)">{{ getLabel(action) | translate }}</button>
+        <button *ngIf="action.type === 'sub'" mat-stroked-button color="primary" (click)="action.action(data)">{{ getLabel(action) | translate }}</button>
+      </ng-container>
+    </div>
+  </div>
+  <nav *ngIf="navItems?.length" class="lab900-page-header__nav" mat-tab-nav-bar>
+    <a *ngFor="let link of navItems"
+       mat-tab-link
+       routerLinkActive
+       [routerLink]="getRoute(link)"
+       #rla="routerLinkActive"
+       [active]="rla.isActive"
+    >{{ getLabel(link) | translate }}</a>
+  </nav>
+</header>
