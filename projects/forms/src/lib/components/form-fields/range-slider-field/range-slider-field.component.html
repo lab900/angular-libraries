@@ -1,0 +1,12 @@
+<div [formGroup]="group" [hidden]="hide">
+    <span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
+    <lab900-mat-range-slider-field 
+        [formControlName]="schema.attribute" 
+        [fromLabel]="options?.fromLabel || 'To'"
+        [toLabel]="options?.toLabel || 'From'"
+        [min]="options?.min" 
+        [max]="options?.max"
+        [steps]="options?.steps"
+        [required]="options?.required"
+    ></lab900-mat-range-slider-field>
+</div>

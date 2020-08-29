@@ -17,21 +17,17 @@
     ],
     "paths": {
       "angular-libraries": [
-        "dist/angular-libraries/angular-libraries",
         "dist/angular-libraries"
       ],
-      "forms": [
-        "dist/forms/forms",
-        "dist/forms"
+      "@lab900/forms": [
+        "dist/@lab900/forms",
       ],
-      "ui": [
-        "dist/ui/ui",
-        "dist/ui"
+      "@lab900/admin": [
+        "dist/@lab900/admin",
       ],
-      "admin": [
-        "dist/admin/admin",
-        "dist/admin"
-      ]
+      "@lab900/ui": [
+        "dist/@lab900/ui",
+      ],
     }
   },
   "angularCompilerOptions": {

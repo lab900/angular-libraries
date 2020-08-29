@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { FormContainerComponent } from './components/form-container/form-container.component';
 import { FileFieldComponent } from './components/form-fields/file-field/file-field.component';
 import { InputFieldComponent } from './components/form-fields/input-field/input-field.component';
@@ -22,45 +23,82 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { NumberFieldComponent } from './components/form-fields/number-field/number-field.component';
 import { SelectFieldComponent } from './components/form-fields/select-field/select-field.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CheckboxFieldComponent } from './components/form-fields/checkbox-field/checkbox-field.component';
+import { FormModuleSettings, defaultFormModuleSettings } from './models/FormModuleSettings';
+import { TextareaFieldComponent } from './components/form-fields/textarea-field/textarea-field.component';
+import { FormRowComponent } from './components/form-row/form-row.component';
+import { RepeaterFieldComponent } from './components/form-fields/repeater-field/repeater-field.component';
+import { Lab900FormBuilderService } from './services/form-builder.service';
+import { RadioButtonsFieldComponent } from './components/form-fields/radio-buttons-field/radio-buttons-field.component';
+import { RangeSliderFieldComponent } from './components/form-fields/range-slider-field/range-slider-field.component';
+import { MatRangeSliderFieldComponent } from './components/form-fields/range-slider-field/mat-range-slider-field/mat-range-slider-field.component';
+import { AutocompleteFieldComponent } from './components/form-fields/autocomplete-field/autocomplete-field.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { TranslateModule } from '@ngx-translate/core';
+
+const customFields = [
+  UnknownFieldComponent,
+  InputFieldComponent,
+  SelectFieldComponent,
+  FileFieldComponent,
+  CheckboxFieldComponent,
+  DateFieldComponent,
+  WysiwygFieldComponent,
+  TextareaFieldComponent,
+  RepeaterFieldComponent,
+  FormRowComponent,
+  RadioButtonsFieldComponent,
+  RangeSliderFieldComponent,
+  AutocompleteFieldComponent,
+];
 
 @NgModule({
   declarations: [
     FormFieldDirective,
     FormDialogDirective,
-    UnknownFieldComponent,
-    InputFieldComponent,
-    NumberFieldComponent,
-    SelectFieldComponent,
     FormContainerComponent,
     FormDialogComponent,
-    DateFieldComponent,
-    WysiwygFieldComponent,
     MatFileFieldComponent,
-    FileFieldComponent,
-    CheckboxFieldComponent,
+    MatRangeSliderFieldComponent,
+    ...customFields,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     MatCardModule,
     MatCheckboxModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatButtonModule,
+    MatRadioModule,
     MatGridListModule,
     MatDialogModule,
     MatDatepickerModule,
     MatSelectModule,
     MatNativeDateModule,
+    MatAutocompleteModule,
     AngularEditorModule,
     HttpClientModule,
+    TranslateModule,
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })
-export class FormsModule {}
+export class Lab900FormsModule {
+  public static forRoot(settings: FormModuleSettings = defaultFormModuleSettings): ModuleWithProviders<FormsModule> {
+    return {
+      ngModule: Lab900FormsModule,
+      providers: [
+        Lab900FormBuilderService,
+        {
+          provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+          useValue: settings.formField,
+        },
+      ],
+    };
+  }
+}

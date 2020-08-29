@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 
 @Component({
@@ -7,7 +7,6 @@ import { FormComponent } from '../../../models/IFormComponent';
   styleUrls: ['./file-field.component.scss'],
 })
 export class FileFieldComponent extends FormComponent {
-  constructor() {
-    super();
-  }
+  @HostBinding('class')
+  public classList = 'lab900-form-field';
 }

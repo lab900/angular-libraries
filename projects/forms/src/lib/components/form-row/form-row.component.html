@@ -1,0 +1,14 @@
+<span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
+<div class="form-row">
+    <div 
+        *ngFor="let field of schema.nestedFields;" 
+        class="form-col"
+        [style.flex]="( (100*(field.options?.colspan || 1)/12) + ' 1 ' + (100*(field.options?.colspan || 1)/12) + '%')"
+    >
+        <ng-container 
+            lab900FormField
+            [schema]="field"
+            [group]="group"
+        ></ng-container>
+    </div>
+</div>

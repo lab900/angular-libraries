@@ -15,14 +15,18 @@ import { CheckboxFieldComponent } from '../components/form-fields/checkbox-field
 import { DateFieldComponent } from '../components/form-fields/date-field/date-field.component';
 import { FileFieldComponent } from '../components/form-fields/file-field/file-field.component';
 import { InputFieldComponent } from '../components/form-fields/input-field/input-field.component';
-import { NumberFieldComponent } from '../components/form-fields/number-field/number-field.component';
+import { TextareaFieldComponent } from '../components/form-fields/textarea-field/textarea-field.component';
 import { SelectFieldComponent } from '../components/form-fields/select-field/select-field.component';
 import { UnknownFieldComponent } from '../components/form-fields/unknown-field/unknown-field.component';
 import { WysiwygFieldComponent } from '../components/form-fields/wysiwyg-field/wysiwyg-field.component';
 import { EditType } from '../models/editType';
-import { FormField } from '../models/FormField';
+import { FormField, FieldOptions } from '../models/FormField';
 import { FormComponent, IFormComponent } from '../models/IFormComponent';
-import { distinctUntilChanged } from 'rxjs/operators';
+import { FormRowComponent } from '../components/form-row/form-row.component';
+import { RepeaterFieldComponent } from '../components/form-fields/repeater-field/repeater-field.component';
+import { RadioButtonsFieldComponent } from '../components/form-fields/radio-buttons-field/radio-buttons-field.component';
+import { RangeSliderFieldComponent } from '../components/form-fields/range-slider-field/range-slider-field.component';
+import { AutocompleteFieldComponent } from '../components/form-fields/autocomplete-field/autocomplete-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -31,8 +35,6 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return InputFieldComponent;
     case EditType.Checkbox:
       return CheckboxFieldComponent;
-    case EditType.Number:
-      return NumberFieldComponent;
     case EditType.Wysiwyg:
       return WysiwygFieldComponent;
     case EditType.Date:
@@ -41,6 +43,18 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return FileFieldComponent;
     case EditType.Select:
       return SelectFieldComponent;
+    case EditType.TextArea:
+      return TextareaFieldComponent;
+    case EditType.Repeater:
+      return RepeaterFieldComponent;
+    case EditType.RadioButtons:
+      return RadioButtonsFieldComponent;
+    case EditType.Row:
+      return FormRowComponent;
+    case EditType.RangeSlider:
+      return RangeSliderFieldComponent;
+    case EditType.Autocomplete:
+      return AutocompleteFieldComponent;
     default:
       return UnknownFieldComponent;
   }
@@ -49,40 +63,38 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
 @Directive({
   selector: '[lab900FormField]',
 })
-export class FormFieldDirective implements IFormComponent, OnChanges, OnInit, OnDestroy {
-  @Input() schema: FormField;
-  @Input() group: FormGroup;
-  component: ComponentRef<FormComponent>;
+export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChanges, OnInit, OnDestroy {
+  @Input()
+  public schema: FormField;
 
-  statusChangeSubscription: Subscription;
+  @Input()
+  public group: FormGroup;
 
-  constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
+  public component: ComponentRef<FormComponent>;
 
-  ngOnChanges() {
+  public statusChangeSubscription: Subscription;
+
+  public constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
+
+  public ngOnChanges(): void {
     if (this.component) {
       this.component.instance.schema = this.schema;
       this.component.instance.group = this.group;
     }
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.validateType();
-    const component = this.resolver.resolveComponentFactory<FormComponent>(mapToComponent(this.schema));
+    const component = this.resolver.resolveComponentFactory<FormComponent<FieldOptions>>(mapToComponent(this.schema));
     this.component = this.container.createComponent(component);
     this.component.instance.schema = this.schema;
     this.component.instance.group = this.group;
-
-    this.statusChangeSubscription = this.group
-      .get(this.schema.attribute)
-      .statusChanges.pipe(distinctUntilChanged())
-      .subscribe(() => {
-        this.component.instance.updateErrorMessage();
-      });
-    this.component.instance.updateErrorMessage();
   }
 
-  ngOnDestroy() {
-    this.statusChangeSubscription.unsubscribe();
+  public ngOnDestroy(): void {
+    if (this.statusChangeSubscription) {
+      this.statusChangeSubscription.unsubscribe();
+    }
   }
 
   private validateType() {

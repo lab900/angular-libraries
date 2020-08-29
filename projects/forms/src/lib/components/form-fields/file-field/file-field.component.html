@@ -1,8 +1,8 @@
-<mat-form-field [formGroup]="group" appearance="standard"
-                [ngStyle]="schema?.options?.hide ? { 'display': 'none' } : {}">
-    <mat-label>{{schema.title}}</mat-label>
+<mat-form-field [formGroup]="group" [hidden]="hide">
+    <mat-label translate>{{schema.title}}</mat-label>
     <lab900-mat-file-field #fileField [formControlName]="schema.attribute"></lab900-mat-file-field>
     <mat-icon matSuffix class="flex">folder</mat-icon>
-    <mat-error *ngIf="!valid">{{errorMessage}}</mat-error>
     <mat-icon *ngIf="!fileField.empty" matSuffix (click)="fileField.clear($event)">close</mat-icon>
+    <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
+    <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
 </mat-form-field>

@@ -1,7 +1,16 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/forms",
+  "dest": "../../dist/@lab900/forms",
   "lib": {
-    "entryFile": "src/public-api.ts"
-  }
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "nouislider": "nouislider",
+      "@kolkov/angular-editor": "@kolkov/angular-editor"
+    }
+  },
+  "assets": [
+    "./scss/*.scss",
+    "./_theming.scss"
+  ],
+  "whitelistedNonPeerDependencies": ["lab900", "@types/nouislider", "nouislider", "@kolkov/angular-editor"]
 }

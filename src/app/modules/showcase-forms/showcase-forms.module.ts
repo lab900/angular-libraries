@@ -1,0 +1,30 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { ShowcaseFormsRoutingModule } from './showcase-forms-routing.module';
+import { SharedModule } from '../shared/shared.module';
+
+import { FormFieldRepeaterExampleComponent } from './examples/form-field-repeater-example/form-field-repeater-example.component';
+import { FormFieldRepeaterFixedExampleComponent } from './examples/form-field-repeater-fixed-example/form-field-repeater-fixed-xample.component';
+import { FormFieldInputsExampleComponent } from './examples/form-field-inputs-example/form-field-inputs-example.component';
+import { FormFieldTextareaExampleComponent } from './examples/form-field-textarea-example/form-field-textarea-example.component';
+import { FormFieldRadioButtonsExampleComponent } from './examples/form-field-radio-buttons-example/form-field-radio-buttons-example.component';
+import { FormFieldRangeSliderExampleComponent } from './examples/form-field-range-slider-example/form-field-range-slider-example.component';
+// tslint:disable-next-line:max-line-length
+import { FormFieldAutocompleteExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-example.component';
+
+const examples = [
+  FormFieldRepeaterExampleComponent,
+  FormFieldRepeaterFixedExampleComponent,
+  FormFieldInputsExampleComponent,
+  FormFieldTextareaExampleComponent,
+  FormFieldRadioButtonsExampleComponent,
+  FormFieldRangeSliderExampleComponent,
+  FormFieldAutocompleteExampleComponent,
+];
+
+@NgModule({
+  declarations: examples,
+  imports: [CommonModule, SharedModule, ShowcaseFormsRoutingModule],
+})
+export class ShowcaseFormsModule {}

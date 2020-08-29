@@ -1,0 +1,16 @@
+.data-list-item  {
+  @media screen and (min-width: 960px) {
+    padding: 30px;
+  }
+
+  @media screen and (max-width: 959px) {
+    &__info {
+      padding: 30px;
+
+      & + div {
+        padding: 16px 30px;
+        background: rgba(#000, 0.05);
+      }
+    }
+  }
+}

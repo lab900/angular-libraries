@@ -1,7 +1,8 @@
-<mat-form-field [formGroup]="group" appearance="standard">
-    <mat-label>{{schema.title}}</mat-label>
-    <input matInput [matDatepicker]="picker" [formControlName]="schema.attribute">
+<mat-form-field [formGroup]="group" [hidden]="hide">
+    <mat-label translate>{{ schema.title }}</mat-label>
+    <input matInput [matDatepicker]="picker" [formControlName]="schema.attribute" [required]="options?.required">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-    <mat-error *ngIf="!valid">{{errorMessage}}</mat-error>
+    <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
+    <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
 </mat-form-field>

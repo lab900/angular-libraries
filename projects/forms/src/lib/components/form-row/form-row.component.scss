@@ -1,0 +1,13 @@
+.form-row {
+	margin: 0 -10px;
+
+	@media screen and (min-width: 600px) {
+		display: flex;
+		flex-flow: row wrap;	
+	}
+}
+
+.form-col {
+	padding: 0 10px;
+	box-sizing: border-box;
+}

@@ -1,0 +1,8 @@
+.mat-list-item.active {
+	font-weight: bold;
+}
+
+::ng-deep .mat-list-item-disabled {
+	background: transparent;
+	opacity: 0.4;
+}

@@ -14,7 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { AdminTableCellComponent } from './components/admin-table-cell/admin-table-cell.component';
 import { CheckboxDisplayComponent } from './components/checkbox-display/checkbox-display.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule } from '@lab900/forms';
+import { Lab900FormsModule } from '@lab900/forms';
 import { DialogModule } from '@lab900/ui';
 
 @NgModule({
@@ -35,7 +35,7 @@ import { DialogModule } from '@lab900/ui';
     MatDialogModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    FormsModule,
+    Lab900FormsModule,
     DialogModule,
     MatCheckboxModule,
   ],

@@ -1,0 +1,6 @@
+<ng-container *ngIf="item">
+    <a mat-list-item [disabled]="disabled" (click)="onItemSelected()" [ngStyle]="{'padding-left': (depth * 12) + 'px'}" [ngClass]="{'active': item.route ? router.isActive(item.route, true) : false, 'expanded': expanded}">{{ item.label }}</a>
+    <div *ngIf="item?.children && expanded">
+        <lab900-nav-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1"></lab900-nav-item>
+    </div>
+</ng-container>

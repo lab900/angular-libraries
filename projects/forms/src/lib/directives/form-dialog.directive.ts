@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, Directive, HostListener, Input, ViewContainerRef } from '@angular/core';
+import { Directive, HostListener, Input } from '@angular/core';
 import { FormDialogComponent } from '../components/form-dialog/form-dialog.component';
 import { Form } from '../models/Form';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,13 +7,18 @@ import { MatDialog } from '@angular/material/dialog';
   selector: '[lab900FormDialog]',
 })
 export class FormDialogDirective<T> {
-  @Input() schema: Form;
-  @Input() data: T;
-  @Input() submitFormHandler: (data: T) => Promise<boolean>;
+  @Input()
+  public schema: Form;
 
-  constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef, public dialog: MatDialog) {}
+  @Input()
+  public data: T;
 
-  @HostListener('click') onMouseEnter() {
+  @Input()
+  public submitFormHandler: (data: T) => Promise<boolean>;
+
+  public constructor(public dialog: MatDialog) {}
+
+  @HostListener('click') onMouseEnter(): void {
     const dialog = this.dialog.open(FormDialogComponent, {
       data: {
         schema: this.schema,
@@ -21,7 +26,6 @@ export class FormDialogDirective<T> {
         submit: this.submitFormHandler,
       },
     });
-
     dialog.beforeClosed().subscribe((data) => {});
   }
 }

@@ -1,4 +1,81 @@
-/* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; width: 100% }
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+@import '../projects/forms/theming';
+@import './assets/styles/green.palette';
+@import './assets/styles/grey.palette';
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$angular-libraries-primary: mat-palette($mat-lab900green);
+$angular-libraries-accent: mat-palette($mat-lab900grey);
+
+// The warn palette is optional (defaults to red).
+$angular-libraries-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$angular-libraries-theme: mat-light-theme((
+  color: (
+    primary: $angular-libraries-primary,
+    accent: $angular-libraries-accent,
+    warn: $angular-libraries-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($angular-libraries-theme);
+@include lab900-forms($angular-libraries-theme);
+
+/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-drawer-content {
+  background: rgba($palette-lab900green-100, 0.1); 
+  height: calc(100vh - 64px) !important;
+  padding: 0 30px;
+}
+
+.mat-drawer-side {
+  border-right: solid 2px $palette-lab900green-100;
+  min-width: 340px;
+}
+
+.mat-card.lab900-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+  padding: 0;
+
+  .mat-card-header {
+    padding: 8px;
+    background: $palette-lab900green-100;
+
+    .mat-card-title {
+      margin: 0;
+      padding: 0;
+    
+      h3 {
+        margin: 0;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+pre[class*="language-"] {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}

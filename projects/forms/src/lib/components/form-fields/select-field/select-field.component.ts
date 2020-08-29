@@ -1,31 +1,25 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
-import { FormField, SelectFieldOptions } from '../../../models/FormField';
+import { SelectFieldOptions } from '../../../models/FormField';
 
 @Component({
   selector: 'lab900-select-field',
   templateUrl: './select-field.component.html',
-  styleUrls: ['./select-field.component.css'],
 })
-export class SelectFieldComponent extends FormComponent implements OnInit {
-  @Input() schema: FormField;
+export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit {
+  @HostBinding('class')
+  public classList = 'lab900-form-field';
 
-  public options: SelectFieldOptions;
   public values: { key: string; value: string }[];
 
-  constructor() {
-    super();
-  }
-
-  ngOnInit(): void {
-    this.options = this.schema.options as SelectFieldOptions;
-    this.values = this.options.values || [];
+  public ngOnInit(): void {
+    this.values = (this.options && this.options.values) || [];
     if (this.options.valuesFn) {
       this.loadValues();
     }
   }
 
-  loadValues() {
+  public loadValues() {
     this.options
       .valuesFn()
       .then((values) => (this.values = values))

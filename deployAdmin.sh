@@ -2,6 +2,6 @@
 cd projects/admin/
 npm version patch
 cd ../..
-ng build admin --prod
-cd dist/admin
+npm run build:admin:prod
+cd dist/@lab900/admin
 npm publish

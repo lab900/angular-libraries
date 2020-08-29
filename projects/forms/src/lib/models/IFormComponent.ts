@@ -1,55 +1,71 @@
 import { FormGroup } from '@angular/forms';
-import { EditType } from './editType';
-import { FormField } from './FormField';
+import { FormField, FieldOptions } from './FormField';
+import { Input, Injectable } from '@angular/core';
 
-export interface IFormComponent {
-  schema: FormField;
+export interface IFormComponent<T extends FieldOptions> {
+  schema: FormField<T>;
   group: FormGroup;
 }
 
-export class FormComponent implements IFormComponent {
-  group: FormGroup;
-  schema: FormField;
+@Injectable()
+export abstract class FormComponent<T extends FieldOptions = FieldOptions> implements IFormComponent<T> {
+  @Input()
+  public group: FormGroup;
 
-  errorMessage: string | null = null;
+  @Input()
+  public schema: FormField<T>;
 
-  get valid(): boolean {
+  public get valid(): boolean {
     return this.group.get(this.schema.attribute).valid;
   }
 
-  get required(): boolean {
-    return this.group.get(this.schema.attribute).hasError('required');
+  public get options(): T {
+    return this.schema && this.schema.options;
   }
 
-  updateErrorMessage(): string | null {
-    console.log('updateErrorMessage()');
-    if (this.valid) {
-      this.errorMessage = null;
-      return;
-    }
+  public get hide(): boolean {
+    return this.schema && this.schema.options && this.schema.options.hide;
+  }
 
+  public get hint(): string {
+    return this.schema && this.schema.options && this.schema.options.hint;
+  }
+
+  public get placeholder(): string {
+    return this.schema && this.schema.options && this.schema.options.placeholder;
+  }
+
+  public getErrorMessage(): string {
     const field = this.group.get(this.schema.attribute);
-
     let message = `Field is invalid.`;
-    if (field.hasError('required')) {
-      if (this.schema.editType === EditType.Number) {
-        // When there's text in a [type=number] field, its value is ""
-        message = `A valid number is required.`;
-      } else {
-        message = `A value is required.`;
+    Object.keys(field.errors).forEach((key: string) => {
+      if (field.hasError(key)) {
+        if (this.schema.errorMessages && Object.keys(this.schema.errorMessages).includes(key)) {
+          message = this.schema.errorMessages[key];
+        } else {
+          message = this.getDefaultErrorMessage(key);
+        }
       }
-    } else if (field.hasError('minlength')) {
-      message = `This field should contain at least ${this.schema.options.minLength} characters.`;
-    } else if (field.hasError('maxlength')) {
-      message = `This field should contain at most ${this.schema.options.maxLength} characters.`;
-    } else if (field.hasError('min')) {
-      message = `This should be at least ${this.schema.options.min}.`;
-    } else if (field.hasError('max')) {
-      message = `This should be at most ${this.schema.options.max}.`;
-    } else if (field.hasError('pattern')) {
-      message = `Please enter a valid ${this.schema.options.patternTitle}.`;
-    }
+    });
+    return message;
+  }
 
-    this.errorMessage = message;
+  private getDefaultErrorMessage(key: string): string {
+    switch (key) {
+      case 'required':
+        return `A value is required.`;
+      case 'minlength':
+        return `This field should contain at least ${this.options.minLength} characters.`;
+      case 'maxlength':
+        return `This field should contain at most ${this.options.maxLength} characters.`;
+      case 'min':
+        return `This should be at least ${this.options.min}.`;
+      case 'max':
+        return `This should be at most ${this.options.max}.`;
+      case 'pattern':
+        return `Please enter a valid ${this.options.patternTitle}.`;
+      default:
+        return `Field is invalid.`;
+    }
   }
 }

@@ -1,7 +1,6 @@
-<div [formGroup]="group"
-                [ngStyle]="schema?.options?.hide ? { 'display': 'none' } : {}">
-    <mat-label>{{schema.title}}</mat-label>
-    <mat-checkbox [formControlName]="schema.attribute"></mat-checkbox>
-    <mat-hint></mat-hint>
-    <mat-error *ngIf="!valid">{{errorMessage}}</mat-error>
+<div [formGroup]="group" [hidden]="hide">
+    <mat-label translate>{{schema.title}}</mat-label>
+    <mat-checkbox [formControlName]="schema.attribute" [required]="options?.required"></mat-checkbox>
+    <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
+    <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
 </div>
