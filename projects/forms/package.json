@@ -7,14 +7,15 @@
     "@angular/forms": "~10.0.2",
     "@angular/material": "~10.0.1",
     "@ngx-translate/core": "^13.0.0",
-    "@kolkov/angular-editor": "^1.1.2"
+    "@kolkov/angular-editor": "^1.1.2",
+    "@types/nouislider": "^9.0.7",
+    "nouislider": "^14.6.0"
+
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/lab900/angular-libraries.git"
   },
   "dependencies": {
-    "@types/nouislider": "^9.0.7",
-    "nouislider": "^14.6.0"
   }
 }

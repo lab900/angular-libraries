@@ -57,6 +57,7 @@
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2",
     "@kolkov/angular-editor": "^1.1.2",
+    "@types/nouislider": "^9.0.7",
     "nouislider": "^14.6.0"
   },
   "devDependencies": {
