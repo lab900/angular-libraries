@@ -6,7 +6,7 @@ import { BaseControlValueAccessorDirective } from '../../../../models/forms/Base
 @Component({
   selector: 'lab900-mat-range-slider-field',
   templateUrl: './mat-range-slider-field.component.html',
-  styleUrls: ['nouislider.css'],
+  styleUrls: ['./nouislider.scss', './mat-range-slider-field.component.scss'],
   providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: MatRangeSliderFieldComponent, multi: true }],
   encapsulation: ViewEncapsulation.None,
 })
