@@ -3,4 +3,7 @@
     <mat-radio-group [formControlName]="schema.attribute" [color]="options?.color || 'primary'" [required]="options?.required">
         <mat-radio-button *ngFor="let value of options?.values" [value]="value.value">{{ value.label | translate }}</mat-radio-button>
     </mat-radio-group>
+    <div class="radio-buttons-field__error">
+        <mat-error *ngIf="!valid" [translate]="getErrorMessage()"></mat-error>
+    </div>
 </div>

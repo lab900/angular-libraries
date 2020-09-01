@@ -9,4 +9,7 @@
         [steps]="options?.steps"
         [required]="options?.required"
     ></lab900-mat-range-slider-field>
+    <div class="radio-buttons-field__error">
+        <mat-error *ngIf="!valid" [translate]="getErrorMessage()"></mat-error>
+    </div>
 </div>

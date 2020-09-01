@@ -17,6 +17,7 @@ export class FormFieldRepeaterFixedExampleComponent {
         options: {
           minRows: 3,
           fixedList: true,
+          required: true,
         },
       },
     ],

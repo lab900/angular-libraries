@@ -14,9 +14,10 @@ export class FormFieldRangeSliderExampleComponent {
         title: 'Range with inputs',
         editType: EditType.RangeSlider,
         options: {
-          min: 0,
-          max: 100,
-          steps: 1,
+          required: true,
+          min: 10000,
+          max: 200000,
+          steps: 5000,
         },
       },
     ],

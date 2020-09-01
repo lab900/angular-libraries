@@ -17,7 +17,7 @@
     }
 
     @media screen and (min-width: 960px) {
-      width: calc(100% - (80px * 2));
+      width: calc(100% - (90px * 2));
       padding: 0 30px 1.34375em;
       order: 1;
     }
@@ -59,7 +59,7 @@
       }
     }
     @media screen and (min-width: 960px) {
-      width: 80px;
+      width: 90px;
 
       &--from {
         order: 0;
