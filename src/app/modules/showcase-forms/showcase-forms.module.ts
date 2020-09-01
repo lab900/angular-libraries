@@ -12,9 +12,11 @@ import { FormFieldRadioButtonsExampleComponent } from './examples/form-field-rad
 import { FormFieldRangeSliderExampleComponent } from './examples/form-field-range-slider-example/form-field-range-slider-example.component';
 // tslint:disable-next-line:max-line-length
 import { FormFieldAutocompleteExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-example.component';
+import { FormFieldRepeaterAdvancedExampleComponent } from './examples/form-field-repeater-advanced-example/form-field-repeater-advanced-example.component';
 
 const examples = [
   FormFieldRepeaterExampleComponent,
+  FormFieldRepeaterAdvancedExampleComponent,
   FormFieldRepeaterFixedExampleComponent,
   FormFieldInputsExampleComponent,
   FormFieldTextareaExampleComponent,

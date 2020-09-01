@@ -10,6 +10,7 @@ import { FormFieldInputsExampleComponent } from './examples/form-field-inputs-ex
 import { FormFieldTextareaExampleComponent } from './examples/form-field-textarea-example/form-field-textarea-example.component';
 import { FormFieldRadioButtonsExampleComponent } from './examples/form-field-radio-buttons-example/form-field-radio-buttons-example.component';
 import { FormFieldRangeSliderExampleComponent } from './examples/form-field-range-slider-example/form-field-range-slider-example.component';
+import { FormFieldRepeaterAdvancedExampleComponent } from './examples/form-field-repeater-advanced-example/form-field-repeater-advanced-example.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     new ShowcaseExample(FormFieldAutocompleteExampleComponent, 'Autocomplete', ['TS'], 'form-fields/form-field-autocomplete'),
   ]),
   new ShowcaseRoute('form-field-repeater', 'Form Fields: Repeater', [
+    new ShowcaseExample(FormFieldRepeaterAdvancedExampleComponent, 'Repeater (nested)', ['TS'], 'form-fields/form-field-repeater-editable'),
     new ShowcaseExample(FormFieldRepeaterExampleComponent, 'Repeater', ['TS'], 'form-fields/form-field-repeater-editable'),
     new ShowcaseExample(FormFieldRepeaterFixedExampleComponent, 'Repeater fixed', ['TS'], 'form-fields/form-field-repeater-fixed'),
   ]),

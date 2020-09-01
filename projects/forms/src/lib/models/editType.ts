@@ -12,4 +12,5 @@ export enum EditType {
   RangeSlider = 'RangeSlider',
   Row = 'Row',
   Autocomplete = 'Autocomplete',
+  Icon = 'Icon',
 }

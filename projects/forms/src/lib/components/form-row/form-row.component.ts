@@ -9,4 +9,8 @@ import { FormComponent } from '../../models/IFormComponent';
 export class FormRowComponent extends FormComponent {
   @HostBinding('class')
   public classList = 'lab900-form-field';
+
+  colspan(options: any) {
+    return options == null || !options.colspan ? {} : { flex: `${(100 * (options.colspan || 1)) / 12} 1 auto` };
+  }
 }
