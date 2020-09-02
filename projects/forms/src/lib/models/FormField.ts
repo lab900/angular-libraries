@@ -61,6 +61,9 @@ export interface RangeSliderFieldOptions extends FieldOptions {
   enabledInputs?: boolean;
   steps?: number;
 }
+export interface IconFieldOptions extends FieldOptions {
+  icon?: string;
+}
 
 export interface FormField<
   T extends FieldOptions =
@@ -72,8 +75,9 @@ export interface FormField<
     | RadioButtonsFieldOptions
     | RangeSliderFieldOptions
     | AutocompleteOptions
+    | IconFieldOptions
 > {
-  attribute: string;
+  attribute?: string;
   editType: EditType;
   title?: string;
   options?: T;

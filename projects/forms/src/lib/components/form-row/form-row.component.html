@@ -3,7 +3,7 @@
     <div 
         *ngFor="let field of schema.nestedFields;" 
         class="form-col"
-        [style.flex]="( (100*(field.options?.colspan || 1)/12) + ' 1 ' + (100*(field.options?.colspan || 1)/12) + '%')"
+        [ngStyle]="colspan(field?.options)"
     >
         <ng-container 
             lab900FormField

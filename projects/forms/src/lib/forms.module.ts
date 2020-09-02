@@ -1,8 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -27,7 +27,7 @@ import { SelectFieldComponent } from './components/form-fields/select-field/sele
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CheckboxFieldComponent } from './components/form-fields/checkbox-field/checkbox-field.component';
-import { FormModuleSettings, defaultFormModuleSettings } from './models/FormModuleSettings';
+import { defaultFormModuleSettings, FormModuleSettings } from './models/FormModuleSettings';
 import { TextareaFieldComponent } from './components/form-fields/textarea-field/textarea-field.component';
 import { FormRowComponent } from './components/form-row/form-row.component';
 import { RepeaterFieldComponent } from './components/form-fields/repeater-field/repeater-field.component';
@@ -38,6 +38,7 @@ import { MatRangeSliderFieldComponent } from './components/form-fields/range-sli
 import { AutocompleteFieldComponent } from './components/form-fields/autocomplete-field/autocomplete-field.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
+import { IconFieldComponent } from './components/form-fields/icon-field/icon-field.component';
 
 const customFields = [
   UnknownFieldComponent,
@@ -53,6 +54,7 @@ const customFields = [
   RadioButtonsFieldComponent,
   RangeSliderFieldComponent,
   AutocompleteFieldComponent,
+  IconFieldComponent,
 ];
 
 @NgModule({
