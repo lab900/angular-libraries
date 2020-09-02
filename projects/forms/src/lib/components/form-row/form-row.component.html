@@ -1,14 +1,16 @@
-<span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
-<div class="form-row">
-    <div 
-        *ngFor="let field of schema.nestedFields;" 
-        class="form-col"
-        [ngStyle]="colspan(field?.options)"
-    >
-        <ng-container 
-            lab900FormField
-            [schema]="field"
-            [group]="group"
-        ></ng-container>
+<ng-container *ngIf="visible">
+    <span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
+    <div class="form-row">
+        <div
+            *ngFor="let field of schema.nestedFields;"
+            class="form-col"
+            [ngStyle]="colspan(field?.options)"
+        >
+            <ng-container
+                lab900FormField
+                [schema]="field"
+                [group]="group"
+            ></ng-container>
+        </div>
     </div>
-</div>
+</ng-container>

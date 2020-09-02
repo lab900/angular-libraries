@@ -2,6 +2,7 @@ import { EditType } from './editType';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ThemePalette } from '@angular/material/core';
 import { Observable } from 'rxjs';
+import { IFormComponent } from './IFormComponent';
 
 export interface FieldOptions {
   hide?: boolean;
@@ -21,6 +22,8 @@ export interface FieldOptions {
    * the user will receive an error message like "Please enter a valid ${regexName}."
    */
   patternTitle?: string;
+
+  visibleFn?: (item: IFormComponent<any>) => boolean;
 }
 
 export interface WysiwygFieldOptions extends FieldOptions {
