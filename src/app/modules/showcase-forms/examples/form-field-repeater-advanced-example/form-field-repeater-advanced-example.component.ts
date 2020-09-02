@@ -19,7 +19,7 @@ export class FormFieldRepeaterAdvancedExampleComponent {
             editType: EditType.Row,
             nestedFields: [
               { editType: EditType.Icon, options: { icon: 'arrow_downward' } },
-              { attribute: 'two', editType: EditType.Input, title: 'Repeated field', options: { colspan: 12 } },
+              { attribute: 'two', editType: EditType.Input, title: 'Repeated field', options: { colspan: 1 } },
             ],
           },
         ],

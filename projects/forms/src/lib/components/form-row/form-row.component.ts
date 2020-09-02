@@ -11,6 +11,8 @@ export class FormRowComponent extends FormComponent {
   public classList = 'lab900-form-field';
 
   colspan(options: any) {
-    return options == null || !options.colspan ? {} : { flex: `${(100 * (options.colspan || 1)) / 12} 1 auto` };
+    return options == null || !options.colspan
+      ? {}
+      : { flex: `${(100 * (options.colspan || 1)) / 12} 1 ${options.colspan === 12 ? '100%' : 'auto'}` };
   }
 }
