@@ -32,6 +32,9 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
   @Input()
   public max = 100;
 
+  @Input()
+  public format = 'DEFAULT';
+
   public constructor(private el: ElementRef) {
     super();
   }
@@ -82,8 +85,24 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
     this.updateSliderInstanceValues(1, newValue <= this.max ? newValue : this.max);
   }
 
+  public formatValue(value: number) {
+    switch (this.format) {
+      case 'K-M':
+        if (Math.abs(value) > 999999) {
+          return Math.sign(value) * (Math.abs(value) / 1000000) + ' m';
+        } else if (Math.abs(value) > 999) {
+          return Math.sign(value) * (Math.abs(value) / 1000) + ' k';
+        } else {
+          return Math.sign(value) * Math.abs(value);
+        }
+      default:
+        return `${value}`;
+    }
+  }
+
   public attachSliderInstanceUpdateHandler(): void {
     this.rangeSlider.on('update', (values: string[], handle: number, unencodedValues: number[]) => {
+      unencodedValues = unencodedValues.map((value) => Math.round(value));
       if (unencodedValues[0] !== this.latestUnencodedValues[0] || unencodedValues[1] !== this.latestUnencodedValues[1]) {
         this.value = unencodedValues;
         this.latestUnencodedValues = this.value;

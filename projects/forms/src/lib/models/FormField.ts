@@ -60,6 +60,7 @@ export interface RangeSliderFieldOptions extends FieldOptions {
   toLabel?: string;
   enabledInputs?: boolean;
   steps?: number;
+  format?: 'K-M' | 'DEFAULT';
 }
 export interface IconFieldOptions extends FieldOptions {
   icon?: string;

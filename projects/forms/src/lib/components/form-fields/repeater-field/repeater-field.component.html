@@ -17,7 +17,7 @@
             </div>
         </div>
         <div *ngIf="!fixedList" class="repeater-field__actions">
-            <button mat-button color="primary" (click)="addToArray()" class="repeater-add">{{ addLabel | translate }}</button>
+            <button mat-button color="primary" [disabled]="!!maxRows && repeaterArray.length >= maxRows" (click)="addToArray()" class="repeater-add">{{ addLabel | translate }}</button>
         </div>
     </div>
 </div>

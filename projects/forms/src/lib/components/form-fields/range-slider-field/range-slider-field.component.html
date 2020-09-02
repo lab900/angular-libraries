@@ -2,11 +2,12 @@
     <span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
     <lab900-mat-range-slider-field 
         [formControlName]="schema.attribute" 
-        [fromLabel]="options?.fromLabel || 'To'"
-        [toLabel]="options?.toLabel || 'From'"
+        [fromLabel]="options?.fromLabel || 'From'"
+        [toLabel]="options?.toLabel || 'To'"
         [min]="options?.min" 
         [max]="options?.max"
         [steps]="options?.steps"
+        [format]="options?.format"
         [required]="options?.required"
     ></lab900-mat-range-slider-field>
     <div class="radio-buttons-field__error">

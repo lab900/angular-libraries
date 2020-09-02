@@ -11,13 +11,23 @@ export class FormFieldRangeSliderExampleComponent {
     fields: [
       {
         attribute: 'range',
-        title: 'Range with inputs',
+        title: 'Large range with inputs',
         editType: EditType.RangeSlider,
         options: {
-          required: true,
           min: 10000,
-          max: 200000,
+          max: 2000000,
+          format: 'K-M',
           steps: 5000,
+        },
+      },
+      {
+        attribute: 'range-small',
+        title: 'Small range with inputs',
+        editType: EditType.RangeSlider,
+        options: {
+          min: 1,
+          max: 10,
+          steps: 1,
         },
       },
     ],
