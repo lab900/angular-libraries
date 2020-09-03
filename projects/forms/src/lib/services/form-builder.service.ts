@@ -1,5 +1,5 @@
-import { ValidatorFn, FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { FormField } from '../models/FormField';
+import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormField, RepeaterFieldOptions } from '../models/FormField';
 import { EditType } from '../models/editType';
 import { Injectable } from '@angular/core';
 
@@ -14,6 +14,15 @@ export class Lab900FormBuilderService {
         formGroup = this.createFormGroup(field.nestedFields, formGroup, data && data[field.attribute]);
       } else if (field.editType === EditType.Repeater) {
         const repeaterArray = this.createFormArray(data, field);
+        const repeaterOptions = field.options as RepeaterFieldOptions;
+        if (data && data[field.attribute]) {
+          const dataRows = data[field.attribute].length;
+          if (repeaterOptions?.minRows && dataRows < repeaterOptions.minRows) {
+            for (let i = 0; i < repeaterOptions.minRows - dataRows; i++) {
+              data[field.attribute].push({});
+            }
+          }
+        }
         formGroup.addControl(field.attribute, repeaterArray);
       } else {
         formGroup.addControl(field.attribute, new FormControl(null, this.addValidators(field)));
