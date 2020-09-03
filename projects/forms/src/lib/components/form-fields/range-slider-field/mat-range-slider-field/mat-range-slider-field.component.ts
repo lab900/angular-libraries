@@ -76,13 +76,23 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
   }
 
   public updateFromValue(event: InputEvent): void {
-    const newValue = (event.target as any).value;
+    const newValue = this.parseValue((event.target as any).value);
     this.updateSliderInstanceValues(0, newValue >= this.min ? newValue : this.min);
   }
 
   public updateToValue(event: InputEvent): void {
-    const newValue = (event.target as any).value;
+    const newValue = this.parseValue((event.target as any).value);
     this.updateSliderInstanceValues(1, newValue <= this.max ? newValue : this.max);
+  }
+
+  public parseValue(value: string) {
+    switch (this.format) {
+      case 'K-M':
+        value = `${value}`.toLowerCase().replace('k', '000');
+        value = value.replace('m', '000000');
+        value = value.replace(' ', '');
+    }
+    return Number(value) || 0;
   }
 
   public formatValue(value: number) {
