@@ -16,6 +16,12 @@ export class FormFieldInputsExampleComponent {
         options: { hide: true },
       },
       {
+        attribute: 'textInput',
+        title: 'Text Input',
+        editType: EditType.Input,
+        icon: { name: 'search', position: 'left' },
+      },
+      {
         attribute: 'emailInput',
         title: 'Email Input',
         editType: EditType.Input,
