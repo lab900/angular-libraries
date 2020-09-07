@@ -88,4 +88,5 @@ export interface FormField<
   errorMessages?: { [key: string]: string };
   nestedFields?: FormField[];
   icon?: { name: string; position: 'left' | 'right' };
+  readonly?: boolean;
 }
