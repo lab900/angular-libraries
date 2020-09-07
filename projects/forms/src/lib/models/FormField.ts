@@ -10,6 +10,7 @@ export interface FieldOptions {
   placeholder?: string;
   colspan?: number;
   required?: boolean;
+  readonly?: boolean;
   minLength?: number;
   maxLength?: number;
   min?: number;
@@ -88,5 +89,4 @@ export interface FormField<
   errorMessages?: { [key: string]: string };
   nestedFields?: FormField[];
   icon?: { name: string; position: 'left' | 'right' };
-  readonly?: boolean;
 }
