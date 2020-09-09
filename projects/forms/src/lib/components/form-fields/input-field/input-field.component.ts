@@ -5,6 +5,7 @@ import { InputFieldOptions } from '../../../models/FormField';
 @Component({
   selector: 'lab900-input-field',
   templateUrl: './input-field.component.html',
+  styleUrls: ['./input-field.component.scss'],
 })
 export class InputFieldComponent extends FormComponent<InputFieldOptions> {
   @HostBinding('class')

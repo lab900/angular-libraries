@@ -22,6 +22,12 @@ export class FormFieldInputsExampleComponent {
         icon: { name: 'search', position: 'left' },
       },
       {
+        attribute: 'textInput',
+        title: 'Text Input',
+        editType: EditType.Input,
+        icon: { name: 'search', position: 'right' },
+      },
+      {
         attribute: 'emailInput',
         title: 'Email Input',
         editType: EditType.Input,
