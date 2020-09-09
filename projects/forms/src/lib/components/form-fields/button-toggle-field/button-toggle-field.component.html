@@ -1,4 +1,4 @@
-<div [formGroup]="group" [hidden]="hide" class="button-toggle-field">
+<div [formGroup]="group" [hidden]="hide" class="button-toggle-field mat-form-field-wrapper">
     <div *ngIf="schema.title"><mat-label [translate]="schema.title"></mat-label></div>
     <mat-button-toggle-group [formControlName]="schema.attribute" [required]="options?.required">
         <mat-button-toggle *ngFor="let value of options?.values" [value]="value.value">
@@ -13,7 +13,5 @@
             </ng-container>
         </mat-button-toggle>
     </mat-button-toggle-group>
-    <div class="button-toggle-field__error">
-        <mat-error *ngIf="!valid" [translate]="getErrorMessage()"></mat-error>
-    </div>
+    <mat-error class="mat-form-field-subscript-wrapper" *ngIf="!valid" [translate]="getErrorMessage()"></mat-error>
 </div>

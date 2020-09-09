@@ -39,6 +39,7 @@ export class FormFieldButtonToggleExampleComponent {
             attribute: 'buttonGroupAttribute2',
             editType: EditType.ButtonToggle,
             options: {
+              required: true,
               values: [
                 {
                   value: 'edit',
