@@ -4,6 +4,20 @@
     <mat-hint *ngIf="hint" [translate]="hint"></mat-hint>
     <mat-hint align="end" *ngIf="options?.maxLength">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
     <mat-error *ngIf="!valid" [translate]="getErrorMessage()"></mat-error>
-    <mat-icon *ngIf="schema?.icon?.position === 'left'" matPrefix class="input-field__icon-left">{{ schema.icon.name }}</mat-icon>
-    <mat-icon *ngIf="schema?.icon?.position === 'right'" matSuffix>{{ schema.icon.name }}</mat-icon>
+    <mat-icon *ngIf="schema?.icon?.position === 'left'" matPrefix class="input-field__icon-left">
+        <ng-container *ngIf="schema.icon?.name">
+            <mat-icon>{{ schema.icon.name }}</mat-icon>
+        </ng-container>
+        <ng-container *ngIf="schema.icon?.svgName">
+            <mat-icon [svgIcon]="schema.icon.svgName"></mat-icon>
+        </ng-container>
+    </mat-icon>
+    <mat-icon *ngIf="schema?.icon?.position === 'right'" matSuffix>
+        <ng-container *ngIf="schema.icon?.name">
+            <mat-icon>{{ schema.icon.name }}</mat-icon>
+        </ng-container>
+        <ng-container *ngIf="schema.icon?.svgName">
+            <mat-icon [svgIcon]="schema.icon.svgName"></mat-icon>
+        </ng-container>
+    </mat-icon>
 </mat-form-field>

@@ -66,9 +66,15 @@ export interface RangeSliderFieldOptions extends FieldOptions {
   format?: 'K-M' | 'DEFAULT';
 }
 export interface IconFieldOptions extends FieldOptions {
-  icon?: string;
+  icon?: Icon;
 }
-
+export interface ButtonToggleFieldOptions extends FieldOptions {
+  values: { value: any; label?: string; icon?: Icon }[];
+}
+export interface Icon {
+  name?: string;
+  svgName?: string;
+}
 export interface FormField<
   T extends FieldOptions =
     | WysiwygFieldOptions
@@ -80,6 +86,7 @@ export interface FormField<
     | RangeSliderFieldOptions
     | AutocompleteOptions
     | IconFieldOptions
+    | ButtonToggleFieldOptions
 > {
   attribute?: string;
   editType: EditType;
@@ -87,5 +94,5 @@ export interface FormField<
   options?: T;
   errorMessages?: { [key: string]: string };
   nestedFields?: FormField[];
-  icon?: { name: string; position: 'left' | 'right' };
+  icon?: Icon & { position: 'left' | 'right' };
 }

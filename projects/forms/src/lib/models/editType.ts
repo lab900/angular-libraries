@@ -13,4 +13,5 @@ export enum EditType {
   Row = 'Row',
   Autocomplete = 'Autocomplete',
   Icon = 'Icon',
+  ButtonToggle = 'ButtonToggle',
 }

@@ -29,6 +29,10 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
             route: 'forms/form-field-radio-buttons',
           },
           {
+            label: 'Button Toggle',
+            route: 'forms/form-field-button-toggle',
+          },
+          {
             label: 'Checkboxes',
             // route: 'forms/form-field-checkboxes',
           },

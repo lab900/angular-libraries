@@ -14,7 +14,7 @@ export class FormRowComponent extends FormComponent<FieldOptions> {
   colspan(options: FieldOptions) {
     return options == null || !options.colspan
       ? {}
-      : { flex: `${(100 * (options.colspan || 1)) / 12} 1 ${options.colspan === 12 ? '100%' : 'auto'}` };
+      : { flex: `${(100 * (options.colspan || 1)) / 12} 1 ${options.colspan === 12 ? '100%' : `${(100 * (options.colspan || 1)) / 12}%`}` };
   }
 
   get visible(): boolean {
