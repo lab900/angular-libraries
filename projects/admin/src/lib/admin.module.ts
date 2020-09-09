@@ -35,9 +35,13 @@ import { DialogModule } from '@lab900/ui';
     MatDialogModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    Lab900FormsModule,
     DialogModule,
     MatCheckboxModule,
+    Lab900FormsModule.forRoot({
+      formField: {
+        appearance: 'outline',
+      },
+    }),
   ],
   exports: [AdminPageComponent],
 })

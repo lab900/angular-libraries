@@ -24,7 +24,6 @@ import { MarkdownModule } from 'ngx-markdown';
       },
     }),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

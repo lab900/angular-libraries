@@ -9,7 +9,7 @@ export const showcaseAdminNavItems: NavItemGroup[] = [
         children: [
           {
             label: 'Admin page',
-            // route: 'admin/admin-page',
+            route: 'admin/admin-page',
           },
         ],
       },

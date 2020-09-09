@@ -1,5 +1,5 @@
 import { SchemaField } from './schemaField';
-import { Form } from '@lab900/forms';
+import { Form } from '../../../../forms/src/lib/models/Form';
 
 export interface Schema {
   name: string;
