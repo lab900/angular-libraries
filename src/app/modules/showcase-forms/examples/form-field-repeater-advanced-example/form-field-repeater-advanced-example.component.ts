@@ -20,31 +20,24 @@ export class FormFieldRepeaterAdvancedExampleComponent {
             attribute: 'value',
             editType: EditType.Row,
             options: { colspan: 12 },
-            nestedFields: [
-              {
-                attribute: 'value',
-                editType: EditType.Row,
-                options: { colspan: 12 },
-                nestedFields: [{ attribute: 'two', editType: EditType.Input, title: 'Repeated field', options: { colspan: 1 } }],
+            nestedFields: [{ attribute: 'two', editType: EditType.Input, title: 'Repeated field' }],
+          },
+          {
+            attribute: 'value',
+            editType: EditType.Row,
+            options: {
+              colspan: 12,
+              visibleFn: (item: IFormComponent<any>) => {
+                if (
+                  (item.group.parent.controls as Array<any>).indexOf(item.group) ===
+                  (item.group.parent.controls as Array<any>).length - 1
+                ) {
+                  return false;
+                }
+                return true;
               },
-              {
-                attribute: 'value',
-                editType: EditType.Row,
-                options: {
-                  colspan: 12,
-                  visibleFn: (item: IFormComponent<any>) => {
-                    if (
-                      (item.group.parent.controls as Array<any>).indexOf(item.group) ===
-                      (item.group.parent.controls as Array<any>).length - 1
-                    ) {
-                      return false;
-                    }
-                    return true;
-                  },
-                },
-                nestedFields: [{ editType: EditType.Icon, options: { icon: { name: 'arrow_downward' } } }],
-              },
-            ],
+            },
+            nestedFields: [{ editType: EditType.Icon, options: { icon: { name: 'arrow_downward' }, colspan: 12 } }],
           },
         ],
       },

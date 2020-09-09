@@ -94,5 +94,5 @@ export interface FormField<
   options?: T;
   errorMessages?: { [key: string]: string };
   nestedFields?: FormField[];
-  icon?: { Icon; position: 'left' | 'right' };
+  icon?: Icon & { position: 'left' | 'right' };
 }

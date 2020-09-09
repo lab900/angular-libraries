@@ -31,5 +31,9 @@
     & + .lab900-form-field .lab900-form-field-label {
       margin-top: 16px;
     }
+
+    .mat-form-field-prefix .mat-icon, .mat-form-field-suffix .mat-icon {
+      font-size: 1.25em;
+    }
   }
 }
