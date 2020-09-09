@@ -31,25 +31,37 @@ export class FormFieldButtonToggleExampleComponent {
         },
       },
       {
-        attribute: 'buttonGroupAttribute2',
-        title: 'Select edit or delete',
-        editType: EditType.ButtonToggle,
-        options: {
-          required: true,
-          values: [
-            {
-              value: 'edit',
-              icon: { name: 'edit' },
+        attribute: 'value',
+        editType: EditType.Row,
+        options: { colspan: 12 },
+        nestedFields: [
+          {
+            attribute: 'buttonGroupAttribute2',
+            editType: EditType.ButtonToggle,
+            options: {
+              values: [
+                {
+                  value: 'edit',
+                  icon: { name: 'edit' },
+                },
+                {
+                  value: 'delete',
+                  icon: { name: 'delete' },
+                },
+              ],
             },
-            {
-              value: 'delete',
-              icon: { name: 'delete' },
-            },
-          ],
-        },
+          },
+          {
+            attribute: 'textInput',
+            title: 'Text Input',
+            editType: EditType.Input,
+            options: { colspan: 10 },
+          },
+        ],
       },
     ],
   };
+
   logValue() {
     console.log(this.form.value);
   }

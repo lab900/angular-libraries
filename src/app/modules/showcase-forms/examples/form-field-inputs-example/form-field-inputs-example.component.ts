@@ -10,19 +10,20 @@ export class FormFieldInputsExampleComponent {
   public formSchema: Form = {
     fields: [
       {
-        attribute: 'textInput',
+        attribute: 'textInput1',
         title: 'Text Input',
         editType: EditType.Input,
         options: { hide: true },
       },
       {
-        attribute: 'textInput',
+        attribute: 'textInput2',
         title: 'Text Input',
         editType: EditType.Input,
+        options: { required: true },
         icon: { name: 'search', position: 'left' },
       },
       {
-        attribute: 'textInput',
+        attribute: 'textInput3',
         title: 'Text Input',
         editType: EditType.Input,
         icon: { name: 'search', position: 'right' },
