@@ -68,6 +68,9 @@ export interface RangeSliderFieldOptions extends FieldOptions {
 export interface IconFieldOptions extends FieldOptions {
   icon?: string;
 }
+export interface ButtonToggleFieldOptions extends FieldOptions {
+  values: { value: any; label?: string; icon?: string }[];
+}
 
 export interface FormField<
   T extends FieldOptions =
@@ -80,6 +83,7 @@ export interface FormField<
     | RangeSliderFieldOptions
     | AutocompleteOptions
     | IconFieldOptions
+    | ButtonToggleFieldOptions
 > {
   attribute?: string;
   editType: EditType;

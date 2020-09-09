@@ -28,6 +28,7 @@ import { RadioButtonsFieldComponent } from '../components/form-fields/radio-butt
 import { RangeSliderFieldComponent } from '../components/form-fields/range-slider-field/range-slider-field.component';
 import { AutocompleteFieldComponent } from '../components/form-fields/autocomplete-field/autocomplete-field.component';
 import { IconFieldComponent } from '../components/form-fields/icon-field/icon-field.component';
+import { ButtonToggleFieldComponent } from '../components/form-fields/button-toggle-field/button-toggle-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -58,6 +59,8 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return AutocompleteFieldComponent;
     case EditType.Icon:
       return IconFieldComponent;
+    case EditType.ButtonToggle:
+      return ButtonToggleFieldComponent;
     default:
       return UnknownFieldComponent;
   }

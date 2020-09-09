@@ -1,0 +1,16 @@
+<div [formGroup]="group" [hidden]="hide" class="radio-buttons-field">
+    <span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
+    <mat-button-toggle-group [formControlName]="schema.attribute" [required]="options?.required">
+        <mat-button-toggle *ngFor="let value of options?.values" [value]="value.value">
+            <ng-container *ngIf="value.label">
+                {{ value.label | translate }}
+            </ng-container>
+            <ng-container *ngIf="value.icon">
+                <mat-icon>{{ value.icon }}</mat-icon>
+            </ng-container>
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="radio-buttons-field__error">
+        <mat-error *ngIf="!valid" [translate]="getErrorMessage()"></mat-error>
+    </div>
+</div>
