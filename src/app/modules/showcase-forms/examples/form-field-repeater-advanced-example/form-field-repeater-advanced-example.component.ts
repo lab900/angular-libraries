@@ -42,7 +42,7 @@ export class FormFieldRepeaterAdvancedExampleComponent {
                     return true;
                   },
                 },
-                nestedFields: [{ editType: EditType.Icon, options: { icon: 'arrow_downward' } }],
+                nestedFields: [{ editType: EditType.Icon, options: { icon: { name: 'arrow_downward' } } }],
               },
             ],
           },

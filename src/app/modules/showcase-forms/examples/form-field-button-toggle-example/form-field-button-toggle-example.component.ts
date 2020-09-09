@@ -31,7 +31,7 @@ export class FormFieldButtonToggleExampleComponent {
         },
       },
       {
-        attribute: 'buttonGroupAttribute',
+        attribute: 'buttonGroupAttribute2',
         title: 'Select edit or delete',
         editType: EditType.ButtonToggle,
         options: {
@@ -39,11 +39,11 @@ export class FormFieldButtonToggleExampleComponent {
           values: [
             {
               value: 'edit',
-              icon: 'edit',
+              icon: { name: 'edit' },
             },
             {
               value: 'delete',
-              icon: 'delete',
+              icon: { name: 'delete' },
             },
           ],
         },
