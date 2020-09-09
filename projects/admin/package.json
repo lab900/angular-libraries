@@ -8,10 +8,6 @@
     "@lab900/forms": "^2.0.26",
     "@lab900/ui": "^2.0.10"
   },
-  "devDependencies": {
-    "@lab900/forms": "^0.2.39",
-    "@lab900/ui": "^0.0.26"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/lab900/angular-libraries.git"
