@@ -13,6 +13,7 @@ import { FormFieldRangeSliderExampleComponent } from './examples/form-field-rang
 // tslint:disable-next-line:max-line-length
 import { FormFieldAutocompleteExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-example.component';
 import { FormFieldRepeaterAdvancedExampleComponent } from './examples/form-field-repeater-advanced-example/form-field-repeater-advanced-example.component';
+import { FormFieldButtonToggleExampleComponent } from './examples/form-field-button-toggle-example/form-field-button-toggle-example.component';
 
 const examples = [
   FormFieldRepeaterExampleComponent,
@@ -23,6 +24,7 @@ const examples = [
   FormFieldRadioButtonsExampleComponent,
   FormFieldRangeSliderExampleComponent,
   FormFieldAutocompleteExampleComponent,
+  FormFieldButtonToggleExampleComponent,
 ];
 
 @NgModule({
