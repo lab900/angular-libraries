@@ -13,9 +13,10 @@ import { Item, Page } from '../../models/page';
 export class AdminTableComponent implements OnInit {
   @Input() loading = false;
   @Input() schema: Schema;
-  @Input() editForm: Form;
   @Input() data: Page<Item>;
   @Input() editHandler: (data: any) => Promise<boolean>;
+  @Input()
+  public getHandler: (id: any, language: string) => Promise<any>;
 
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();

@@ -16,6 +16,9 @@ import { CheckboxDisplayComponent } from './components/checkbox-display/checkbox
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Lab900FormsModule } from '@lab900/forms';
 import { DialogModule } from '@lab900/ui';
+import { TranslatableFormDialogComponent } from './components/translatable-form-dialog/translatable-form-dialog.component';
+import { TranslatableFormDialogDirective } from './directives/translatable-form-dialog.directive';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,8 @@ import { DialogModule } from '@lab900/ui';
     DateDisplayComponent,
     ImageDisplayComponent,
     AdminTableCellComponent,
+    TranslatableFormDialogComponent,
+    TranslatableFormDialogDirective,
   ],
   imports: [
     CommonModule,
@@ -42,6 +47,8 @@ import { DialogModule } from '@lab900/ui';
         appearance: 'outline',
       },
     }),
+    Lab900FormsModule,
+    MatSelectModule,
   ],
   exports: [AdminPageComponent],
 })

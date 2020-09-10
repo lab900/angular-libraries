@@ -1,12 +1,16 @@
 import { Schema } from '../../../../../../projects/admin/src/lib/models/schema';
-import { EditType } from '../../../../../../projects/forms/src/lib/models/editType';
 import { SchemaField } from '../../../../../../projects/admin/src/lib/models/schemaField';
+import { EditType } from '../../../../../../projects/forms/src/lib/models/editType';
 
 export const NEWS_SCHEMA: Schema = {
   name: 'News',
   editable: true,
   creatable: true,
   deletable: true,
+  languages: new Map([
+    ['en', 'english'],
+    ['fr', 'french'],
+  ]),
   fields: [
     {
       title: 'Id',
@@ -31,6 +35,7 @@ export const NEWS_SCHEMA: Schema = {
           alert('clicked on: ' + column.attribute);
         },
       },
+      translatable: true,
     },
     {
       title: 'Subtitle',

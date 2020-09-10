@@ -3,13 +3,13 @@
 </div>
 <div *ngIf="!error">
     <div class="admin-page">
-        <button *ngIf="schema.creatable" mat-raised-button color="primary" lab900FormDialog [schema]="createForm" [submitFormHandler]="createHandler">Create</button>
+        <button *ngIf="schema.creatable" mat-raised-button color="primary" lab900TranslatableFormDialog [schema]="schema" [submitFormHandler]="createHandler" [create]="true" [getHandler]="getHandler">Create</button>
         <lab900-admin-table
                 [loading]="loading"
                 [schema]="schema"
-                [editForm]="editForm"
                 [data]="currentPage"
                 [editHandler]="editHandler"
+                [getHandler]="getHandler"
                 (pageEvent)="onPageEvent($event)"
                 (delete)="onDelete($event)"
         ></lab900-admin-table>

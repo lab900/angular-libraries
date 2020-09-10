@@ -1,11 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Schema, SchemaConverter } from '../../models/schema';
+import { Schema } from '../../models/schema';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../models/dataService';
 import { Item, Page } from '../../models/page';
-import { Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-admin-page',
@@ -18,8 +17,6 @@ export class AdminPageComponent implements OnInit, OnDestroy {
 
   public error: string;
   public loading = false;
-  public editForm: Form;
-  public createForm: Form;
   public pageInfo: { currentPage: number; pageSize: number; hasMore?: boolean };
 
   private subscriptions: Subscription[] = [];
@@ -32,9 +29,6 @@ export class AdminPageComponent implements OnInit, OnDestroy {
       currentPage: 1,
       pageSize: this.dataService.defaultPageSize(),
     };
-
-    this.editForm = SchemaConverter.toForm(this.schema, false);
-    this.createForm = SchemaConverter.toForm(this.schema, true);
 
     this.loadData();
   }
@@ -75,6 +69,13 @@ export class AdminPageComponent implements OnInit, OnDestroy {
     const newId = await this.dataService.create(item);
     this.loadData();
     return newId;
+  };
+
+  getHandler = async (id: any, language: string): Promise<object> => {
+    this.loading = true;
+    const object = await this.dataService.getByIdAndLanguage(id, language);
+    this.loading = false;
+    return object;
   };
 
   onDelete(item: any) {

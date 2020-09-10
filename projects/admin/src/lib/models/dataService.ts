@@ -6,6 +6,8 @@ export interface DataService {
   create(item: object): Promise<string>;
   delete(item: Item): Promise<void>;
 
+  getByIdAndLanguage(id: any, language: string);
+
   /* Paginated methods */
   getPage(page: number, items: number): Promise<Page<Item>>;
   defaultPageSize(): number;

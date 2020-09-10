@@ -7,6 +7,7 @@ export interface Schema {
   editable: boolean;
   deletable: boolean;
   fields: SchemaField[];
+  languages?: Map<string, string>;
 }
 
 /* Converts an admin schema into a form configuration */
