@@ -15,6 +15,15 @@ export class NavListExampleComponent {
       label: 'Nav group 1',
       items: [
         {
+          label: 'External link',
+          href: { url: 'https://www.google.be', target: '_blank' },
+          icon: { name: 'open_in_new', position: 'right' },
+        },
+        {
+          label: 'External link',
+          href: { url: 'https://www.google.be', target: '_self' },
+        },
+        {
           icon: {
             name: 'edit',
           },
@@ -39,7 +48,7 @@ export class NavListExampleComponent {
           children: [
             {
               label: 'Actual link',
-              route: '/ui/nav-list',
+              href: { url: 'https://www.google.be', target: '_blank' },
             },
             {
               label: 'Actual link',

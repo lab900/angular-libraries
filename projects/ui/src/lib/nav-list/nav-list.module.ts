@@ -7,10 +7,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IconComponent } from './components/icon/icon.component';
 import { FlexModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [NavListComponent, NavItemComponent, IconComponent],
-  imports: [CommonModule, MatListModule, TranslateModule, FlexModule, MatIconModule],
+  imports: [CommonModule, MatListModule, TranslateModule, FlexModule, MatIconModule, RouterModule],
   exports: [NavListComponent],
 })
 export class Lab900NavListModule {}
