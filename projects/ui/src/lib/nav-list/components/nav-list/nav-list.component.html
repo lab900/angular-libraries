@@ -1,6 +1,10 @@
 <div class="lab900-nav-list" *ngIf="navItemGroups?.length">
     <div *ngFor="let group of navItemGroups" class="nav-list-group">
-        <span mat-list-item>{{ group.label }} </span>
+        <div fxLayout="row" fxLayoutAlign="start center" class="nav-list-group__wrapper">
+            <lab900-icon class="nav-list-group__icon-left" [icon]="group.icon" *ngIf="group.icon && (group.icon?.position === 'left' || !group.icon?.position)"></lab900-icon>
+            <span mat-list-item fxFlex="1 1 auto">{{ group.label }}</span>
+            <lab900-icon class="nav-list-group__icon-right" [icon]="group.icon" *ngIf="group.icon && group.icon?.position === 'right'"></lab900-icon>
+        </div>
         <mat-nav-list>
             <lab900-nav-item *ngFor="let item of group.items" [item]="item"></lab900-nav-item>
         </mat-nav-list>

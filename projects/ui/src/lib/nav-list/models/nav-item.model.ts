@@ -1,5 +1,3 @@
-import { Icon } from '@lab900/forms';
-
 export interface NavItem {
   label: string;
   icon?: Icon;
@@ -11,4 +9,9 @@ export interface NavItemGroup {
   label: string;
   items: NavItem[];
   icon?: Icon;
+}
+export interface Icon {
+  name?: string;
+  svgName?: string;
+  position?: 'left' | 'right';
 }
