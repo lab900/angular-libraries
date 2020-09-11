@@ -6,3 +6,16 @@
 	background: transparent;
 	opacity: 0.4;
 }
+
+.nav-item {
+	&__link {
+		&__icon {
+			&-left {
+				margin-right: 0.5em;
+			}
+			&-right {
+
+			}
+		}
+	}
+}

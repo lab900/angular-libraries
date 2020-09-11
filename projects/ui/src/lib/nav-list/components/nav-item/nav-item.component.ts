@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd, Event } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Event, NavigationEnd, Router } from '@angular/router';
 import { NavItem } from '../../models/nav-item.model';
 import { Subscription } from 'rxjs';
 
@@ -25,7 +25,7 @@ export class NavItemComponent implements OnInit, OnDestroy {
   public constructor(public router: Router) {}
 
   public ngOnInit(): void {
-    if (!this.item.route && !this.item.children) {
+    if (!(this.item.route || this.item.href || this.item.children)) {
       this.disabled = true;
     } else {
       this.sub = this.router.events.subscribe((event: Event) => {

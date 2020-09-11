@@ -1,16 +1,20 @@
-.lab900-nav-list {
-  padding: 25px 0;
-}
-
 .nav-list-group {
   padding: 25px 0;
 
-  > span {
+  &__wrapper {
+    > span {
+      font-weight: bold;
+      font-size: 20px;
+      display: block;
+    }
     padding: 0 16px;
-    font-weight: bold;
-    font-size: 20px;
-    display: block;
     margin: 0 0 16px;
+  }
+
+  &__icon {
+    &-left {
+      margin-right: 0.25em;
+    }
   }
 
   .mat-list-item-child ::ng-deep .mat-list-item-content {

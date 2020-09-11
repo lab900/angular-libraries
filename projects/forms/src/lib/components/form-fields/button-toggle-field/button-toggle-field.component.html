@@ -1,0 +1,12 @@
+<div [formGroup]="group" [hidden]="hide" class="button-toggle-field mat-form-field-wrapper">
+    <div *ngIf="schema.title"><mat-label [translate]="schema.title"></mat-label></div>
+    <mat-button-toggle-group [formControlName]="schema.attribute" [required]="options?.required">
+        <mat-button-toggle *ngFor="let value of options?.values" [value]="value.value">
+            <ng-container *ngIf="value.label">
+                {{ value.label | translate }}
+            </ng-container>
+            <lab900-icon *ngIf="value.icon" [icon]="value.icon"></lab900-icon>
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-error class="mat-form-field-subscript-wrapper" *ngIf="!valid" [translate]="getErrorMessage()"></mat-error>
+</div>

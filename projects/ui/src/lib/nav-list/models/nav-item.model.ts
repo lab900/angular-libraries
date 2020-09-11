@@ -1,10 +1,18 @@
 export interface NavItem {
   label: string;
+  icon?: Icon;
   route?: string;
+  href?: { url: string; target?: '_self' | '_blank' };
   children?: NavItem[];
 }
 
 export interface NavItemGroup {
-  label: string;
+  label?: string;
   items: NavItem[];
+  icon?: Icon;
+}
+export interface Icon {
+  name?: string;
+  svgName?: string;
+  position?: 'left' | 'right';
 }

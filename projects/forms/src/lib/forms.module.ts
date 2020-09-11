@@ -39,6 +39,9 @@ import { AutocompleteFieldComponent } from './components/form-fields/autocomplet
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { TranslateModule } from '@ngx-translate/core';
 import { IconFieldComponent } from './components/form-fields/icon-field/icon-field.component';
+import { ButtonToggleFieldComponent } from './components/form-fields/button-toggle-field/button-toggle-field.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { IconComponent } from './components/icon/icon.component';
 
 const customFields = [
   UnknownFieldComponent,
@@ -55,6 +58,7 @@ const customFields = [
   RangeSliderFieldComponent,
   AutocompleteFieldComponent,
   IconFieldComponent,
+  ButtonToggleFieldComponent,
 ];
 
 @NgModule({
@@ -66,6 +70,7 @@ const customFields = [
     MatFileFieldComponent,
     MatRangeSliderFieldComponent,
     ...customFields,
+    IconComponent,
   ],
   imports: [
     CommonModule,
@@ -87,6 +92,7 @@ const customFields = [
     AngularEditorModule,
     HttpClientModule,
     TranslateModule,
+    MatButtonToggleModule,
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })
