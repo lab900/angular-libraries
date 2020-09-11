@@ -57,9 +57,7 @@ const dummyData: any[] = [
   selector: 'lab900-data-list-example',
   template: `
     <lab900-data-list [data]="data" [actions]="actions" [dataListSharing]="sharing" [paging]="paging" (pageChange)="changePage($event)">
-      <div *lab900DataListEmpty>
-        if this list is empty this appears
-      </div>
+      <div *lab900DataListEmpty>if this list is empty this appears</div>
       <div *lab900DataListItemInfo="let data">
         {{ data.title }}
       </div>

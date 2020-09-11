@@ -11,7 +11,7 @@ import { SchemaConverter } from '../../models/schema';
 })
 export class TranslatableFormDialogComponent<T> implements OnInit {
   public dialogAdminSchemaData: DialogAdminSchemaData<T>;
-  public formData: T;
+  public formData: any;
   public loading = false;
   public error: string;
   public formSchema: Form;
@@ -29,6 +29,18 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
 
   ngOnInit(): void {
     this.currentLanguage = Array.from(this.dialogAdminSchemaData.schema.languages.keys())[0];
+    this.loading = true;
+    this.dialogAdminSchemaData
+      .get(this.formData.id, this.currentLanguage)
+      .catch((error) => {
+        this.formData = {}; // Necessary to re-render the form
+      })
+      .then((value) => {
+        this.formData = value; // Necessary to re-render the form
+      })
+      .finally(() => {
+        this.loading = false;
+      });
   }
 
   submit(item: T) {
@@ -47,20 +59,27 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
     this.addToReturnObject(item);
     this.currentLanguage = language;
 
-    if (!!this.returnObject[language]) {
+    if (!!this.returnObject.translations[language]) {
       const translatables = {};
       this.data.schema.fields
         .filter((field) => field.translatable)
         .forEach((field) => {
-          translatables[field.attribute] = this.returnObject[language][field.attribute];
+          translatables[field.attribute] = this.returnObject.translations[language][field.attribute];
         });
       this.formData = { ...item, ...translatables }; // Necessary to re-render the form
-      console.log(this.formData);
       this.loading = false;
     } else {
       this.dialogAdminSchemaData
         .get(this.formData.id, language)
-        .catch((error) => (this.error = error))
+        .catch((error) => {
+          const translatables = {};
+          this.data.schema.fields
+            .filter((field) => field.translatable)
+            .forEach((field) => {
+              translatables[field.attribute] = null;
+            });
+          this.formData = { ...item, ...translatables }; // Necessary to re-render the form
+        })
         .then((value) => {
           const translatables = {};
           this.data.schema.fields
@@ -72,19 +91,21 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
         })
         .finally(() => {
           this.loading = false;
-          console.log(this.formData);
         });
     }
   }
 
   private addToReturnObject(item: T): void {
-    if (!this.returnObject[this.currentLanguage]) {
-      this.returnObject[this.currentLanguage] = {};
+    if (!this.returnObject.translations) {
+      this.returnObject.translations = {};
+    }
+    if (!this.returnObject.translations[this.currentLanguage]) {
+      this.returnObject.translations[this.currentLanguage] = {};
     }
     this.data.schema.fields
       .filter((field) => field.translatable)
       .forEach((field) => {
-        this.returnObject[this.currentLanguage][field.attribute] = item[field.attribute];
+        this.returnObject.translations[this.currentLanguage][field.attribute] = item[field.attribute];
       });
   }
 
