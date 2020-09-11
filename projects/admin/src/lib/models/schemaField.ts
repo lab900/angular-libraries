@@ -1,5 +1,4 @@
-import { EditType } from '../../../../forms/src/lib/models/editType';
-import { FieldOptions, SelectFieldOptions, WysiwygFieldOptions } from '../../../../forms/src/lib/models/FormField';
+import { EditType, FieldOptions, SelectFieldOptions, WysiwygFieldOptions } from '@lab900/forms';
 
 export interface SchemaField {
   attribute: string;

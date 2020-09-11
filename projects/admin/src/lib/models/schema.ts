@@ -1,5 +1,5 @@
 import { SchemaField } from './schemaField';
-import { Form } from '../../../../forms/src/lib/models/Form';
+import { Form } from '@lab900/forms';
 
 export interface Schema {
   name: string;
@@ -14,14 +14,27 @@ export interface Schema {
 export class SchemaConverter {
   static toForm(schema: Schema, create = false): Form {
     const form: Form = new Form();
-    form.fields = schema.fields.map((schemaField) => {
-      return {
-        title: schemaField.title,
-        editType: schemaField.editType,
-        attribute: schemaField.attribute,
-        options: create && schemaField.createOptions ? schemaField.createOptions : schemaField.editOptions,
-      };
-    });
+    form.fields = [];
+    schema.fields
+      .filter((field) => field.translatable)
+      .forEach((schemaField) => {
+        form.fields.push({
+          title: schemaField.title,
+          editType: schemaField.editType,
+          attribute: schemaField.attribute,
+          options: create && schemaField.createOptions ? schemaField.createOptions : schemaField.editOptions,
+        });
+      });
+    schema.fields
+      .filter((field) => !field.translatable)
+      .forEach((schemaField) => {
+        form.fields.push({
+          title: schemaField.title,
+          editType: schemaField.editType,
+          attribute: schemaField.attribute,
+          options: create && schemaField.createOptions ? schemaField.createOptions : schemaField.editOptions,
+        });
+      });
     return form;
   }
 }

@@ -3,7 +3,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogAdminSchemaData } from '../../models/dialogAdminSchemaData';
 import { Form } from '@lab900/forms';
 import { SchemaConverter } from '../../models/schema';
-import { Item } from '../../models/page';
 
 @Component({
   selector: 'lab900-translatable-form-dialog',
@@ -12,7 +11,7 @@ import { Item } from '../../models/page';
 })
 export class TranslatableFormDialogComponent<T> implements OnInit {
   public dialogAdminSchemaData: DialogAdminSchemaData<T>;
-  public formData: Item;
+  public formData: T;
   public loading = false;
   public error: string;
   public formSchema: Form;
@@ -25,7 +24,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
   ) {
     this.dialogAdminSchemaData = data;
     this.formSchema = SchemaConverter.toForm(data.schema, data.create);
-    this.formData = !!this.dialogAdminSchemaData.data ? this.dialogAdminSchemaData.data : {};
+    this.formData = !!this.dialogAdminSchemaData.data ? this.dialogAdminSchemaData.data : ({} as T);
   }
 
   ngOnInit(): void {
@@ -56,6 +55,8 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
           translatables[field.attribute] = this.returnObject[language][field.attribute];
         });
       this.formData = { ...item, ...translatables }; // Necessary to re-render the form
+      console.log(this.formData);
+      this.loading = false;
     } else {
       this.dialogAdminSchemaData
         .get(this.formData.id, language)
@@ -69,7 +70,10 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
             });
           this.formData = { ...item, ...translatables }; // Necessary to re-render the form
         })
-        .finally(() => (this.loading = false));
+        .finally(() => {
+          this.loading = false;
+          console.log(this.formData);
+        });
     }
   }
 
@@ -82,5 +86,16 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
       .forEach((field) => {
         this.returnObject[this.currentLanguage][field.attribute] = item[field.attribute];
       });
+  }
+
+  clearLanguage() {
+    const translatables = {} as T;
+    this.data.schema.fields
+      .filter((field) => field.translatable)
+      .forEach((field) => {
+        translatables[field.attribute] = null;
+      });
+    this.addToReturnObject(translatables);
+    this.formData = { ...this.formData, ...translatables };
   }
 }

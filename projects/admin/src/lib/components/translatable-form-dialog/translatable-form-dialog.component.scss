@@ -1,0 +1,22 @@
+mat-dialog-content {
+  min-width: 600px;
+}
+
+.language-select-container {
+  :host {
+    display: flex;
+    padding: 16px;
+  }
+  padding: 0 16px;
+  flex-direction: row;
+  display: flex;
+
+  &__languages {
+    align-self: center;
+    width: 100px;
+
+  }
+  &__spacer {
+    flex-grow: 1;
+  }
+}

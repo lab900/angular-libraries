@@ -41,6 +41,7 @@ export const NEWS_SCHEMA: Schema = {
       title: 'Subtitle',
       attribute: 'subTitle',
       editType: EditType.Input,
+      translatable: true,
     },
     {
       title: 'Author',
@@ -86,6 +87,7 @@ export const NEWS_SCHEMA: Schema = {
           uploadWithCredentials: true,
         },
       },
+      translatable: true,
     },
     {
       title: 'Background',
