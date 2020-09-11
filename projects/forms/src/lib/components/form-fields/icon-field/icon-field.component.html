@@ -1,8 +1,3 @@
 <div class="icon-field mat-form-field-wrapper" *ngIf="options?.icon">
-    <ng-container *ngIf="options.icon?.name">
-        <mat-icon>{{ options.icon.name }}</mat-icon>
-    </ng-container>
-    <ng-container *ngIf="options.icon?.svgName">
-        <mat-icon [svgIcon]="options.icon.svgName"></mat-icon>
-    </ng-container>
+    <lab900-icon [icon]="options.icon"></lab900-icon>
 </div>

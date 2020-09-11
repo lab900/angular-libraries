@@ -1,6 +1,48 @@
-<ng-container *ngIf="item">
-    <a mat-list-item [disabled]="disabled" (click)="onItemSelected()" [ngStyle]="{'padding-left': (depth * 12) + 'px'}" [ngClass]="{'active': item.route ? router.isActive(item.route, true) : false, 'expanded': expanded}">{{ item.label }}</a>
-    <div *ngIf="item?.children && expanded">
+<div fxLayout="column" *ngIf="item" class="nav-item">
+    <!-- Has Children -->
+    <a fxFlex="1 1 auto"
+       mat-list-item
+       class="nav-item__link"
+       [disabled]="disabled"
+       (click)="onItemSelected()"
+       *ngIf="item.children"
+       [ngStyle]="{'padding-left': (depth * 12) + 'px'}"
+       [ngClass]="{'expanded': expanded}">
+        <lab900-icon class="nav-item__link__icon-left" [icon]="item.icon" *ngIf="item.icon && (item.icon?.position === 'left' || !item.icon?.position)"></lab900-icon>
+        <span fxFlex="1 1 auto">{{ item.label }}</span>
+        <lab900-icon class="nav-item__link__icon-right" [icon]="item.icon" *ngIf="item.icon && item.icon?.position === 'right'"></lab900-icon>
+    </a>
+
+    <!-- Has route -->
+    <a fxFlex="1 1 auto"
+       mat-list-item
+       class="nav-item__link"
+       *ngIf="item.route"
+       [disabled]="disabled"
+       [routerLink]="item.route"
+       [ngStyle]="{'padding-left': (depth * 12) + 'px'}"
+       [ngClass]="{'active': router.isActive(item.route, true)}">
+        <lab900-icon class="nav-item__link__icon-left" [icon]="item.icon" *ngIf="item.icon && (item.icon?.position === 'left' || !item.icon?.position)"></lab900-icon>
+        <span fxFlex="1 1 auto">{{ item.label }}</span>
+        <lab900-icon class="nav-item__link__icon-right" [icon]="item.icon" *ngIf="item.icon && item.icon?.position === 'right'"></lab900-icon>
+    </a>
+
+    <!-- Has Href -->
+    <a fxFlex="1 1 auto"
+       mat-list-item
+       class="nav-item__link"
+       *ngIf="item.href"
+       [href]="item.href.url"
+       [target]="item.href.target || '_blank'"
+       [disabled]="disabled"
+       [ngStyle]="{'padding-left': (depth * 12) + 'px'}">
+        <lab900-icon class="nav-item__link__icon-left" [icon]="item.icon" *ngIf="item.icon && (item.icon?.position === 'left' || !item.icon?.position)"></lab900-icon>
+        <span fxFlex="1 1 auto">{{ item.label }}</span>
+        <lab900-icon class="nav-item__link__icon-right" [icon]="item.icon" *ngIf="item.icon && item.icon?.position === 'right'"></lab900-icon>
+    </a>
+
+    <!-- Children -->
+    <div fxLayout="column" *ngIf="item?.children && expanded">
         <lab900-nav-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1"></lab900-nav-item>
     </div>
-</ng-container>
+</div>
