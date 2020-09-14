@@ -10,10 +10,11 @@ import { Lab900TableComponent } from './components/table/table.component';
 import { Lab900TableEmptyDirective } from './directives/table-empty.directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
+import { Lab900TableDisableDirective } from './directives/table-disable.directive';
 
 @NgModule({
-  declarations: [Lab900TableComponent, Lab900TableEmptyDirective],
-  exports: [Lab900TableComponent, Lab900TableEmptyDirective],
+  declarations: [Lab900TableComponent, Lab900TableEmptyDirective, Lab900TableDisableDirective],
+  exports: [Lab900TableComponent, Lab900TableEmptyDirective, Lab900TableDisableDirective],
   imports: [
     CommonModule,
     MatFormFieldModule,
