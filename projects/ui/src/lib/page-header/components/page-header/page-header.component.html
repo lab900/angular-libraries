@@ -19,12 +19,20 @@
     </div>
   </div>
   <nav *ngIf="navItems?.length" class="lab900-page-header__nav" mat-tab-nav-bar>
-    <a *ngFor="let link of navItems"
-       mat-tab-link
-       routerLinkActive
-       [routerLink]="getRoute(link)"
-       #rla="routerLinkActive"
-       [active]="rla.isActive"
-    >{{ getLabel(link) | translate }}</a>
+    <ng-container *ngFor="let link of navItems">
+      <a *ngIf="link.route !== undefined"
+         mat-tab-link
+         routerLinkActive
+         [routerLink]="getRoute(link)"
+         #rla="routerLinkActive"
+         [active]="rla.isActive"
+      >{{ getLabel(link) | translate }}</a>
+
+      <a *ngIf="link.queryParams"
+         mat-tab-link
+         (click)="onClick(link)"
+         [active]="currentSelected === link"
+      >{{ getLabel(link) | translate }}</a>
+    </ng-container>
   </nav>
 </header>
