@@ -7,13 +7,13 @@
                 mat-flat-button
                 color="primary"
                 (click)="action.action(data)"
-                [disabled]="action.disabled"
+                [disabled]="action?.disabled"
         >{{ getLabel(action) | translate }}</button>
         <button *ngIf="action.type === 'sub'"
                 mat-stroked-button
                 color="primary"
                 (click)="action.action(data)"
-                [disabled]="action.disabled"
+                [disabled]="action?.disabled"
         >{{ getLabel(action) | translate }}</button>
       </ng-container>
     </div>
