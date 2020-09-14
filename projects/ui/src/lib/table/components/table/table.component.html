@@ -1,5 +1,5 @@
 <div class="lab900-table {{tableClass}}">
-  <mat-table *ngIf="(data?.length || neverHideTable) && tableCells?.length" [dataSource]="data" class="mat-elevation-z0">
+  <mat-table *ngIf="(data?.length || neverHideTable) && tableCells?.length && !disabled" [dataSource]="data" class="mat-elevation-z0">
 
     <ng-container *ngFor="let cell of tableCells" [matColumnDef]="cell.key">
       <mat-header-cell *matHeaderCellDef="let element">{{ getCellLabel(element, cell) | translate }}</mat-header-cell>
@@ -23,13 +23,23 @@
 
   </mat-table>
 
-  <div class="lab900-table__empty" *ngIf="data && !data.length">
+  <div class="lab900-table__empty" *ngIf="data && !data.length && !disabled">
     <ng-container *ngIf="emptyTableTemplate">
       <ng-container *ngTemplateOutlet="emptyTableTemplate"></ng-container>
     </ng-container>
     <ng-container *ngIf="!emptyTableTemplate">
       <h3>{{'GENERAL.NO_RESULTS.TITLE' | translate}}</h3>
       <p>{{'GENERAL.NO_RESULTS.DESC' | translate}}</p>
+    </ng-container>
+  </div>
+
+  <div *ngIf="disabled">
+    <ng-container *ngIf="disabledTableTemplate">
+      <ng-container *ngTemplateOutlet="disabledTableTemplate"></ng-container>
+    </ng-container>
+    <ng-container *ngIf="!disabledTableTemplate">
+      <h3>{{'GENERAL.DISABLED.TITLE' | translate}}</h3>
+      <p>{{'GENERAL.DISABLED.DESC' | translate}}</p>
     </ng-container>
   </div>
 

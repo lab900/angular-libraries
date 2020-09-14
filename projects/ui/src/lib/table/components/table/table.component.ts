@@ -2,6 +2,7 @@ import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import { Lab900TableEmptyDirective } from '../../directives/table-empty.directive';
 import { TableCell } from '../../models/table-cell.model';
 import { TableAction } from '../../models/table-action.model';
+import { Lab900TableDisabledDirective } from '../../directives/table-disabled.directive';
 
 @Component({
   selector: 'lab900-table',
@@ -27,8 +28,14 @@ export class Lab900TableComponent {
   @Input()
   public neverHideTable = false;
 
+  @Input()
+  public disabled = false;
+
   @ContentChild(Lab900TableEmptyDirective, { read: TemplateRef })
   public emptyTableTemplate?: Lab900TableEmptyDirective;
+
+  @ContentChild(Lab900TableDisabledDirective, { read: TemplateRef })
+  public disabledTableTemplate?: Lab900TableDisabledDirective;
 
   public get displayedColumns(): string[] {
     const keys = this.tableCells && this.tableCells.map((cell: TableCell) => cell.key);
