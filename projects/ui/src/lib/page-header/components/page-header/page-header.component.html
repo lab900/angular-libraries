@@ -3,8 +3,18 @@
     <h1 *ngIf="pageTitle">{{ pageTitle | translate:pageTitleArgs }}</h1>
     <div class="lab900-page-header__actions" *ngIf="actions?.length" fxLayout="row" fxLayoutGap="16px" fxLayoutAlign.lt-md="center">
       <ng-container *ngFor="let action of actions">
-        <button *ngIf="action.type === 'main'" mat-flat-button color="primary" (click)="action.action(data)">{{ getLabel(action) | translate }}</button>
-        <button *ngIf="action.type === 'sub'" mat-stroked-button color="primary" (click)="action.action(data)">{{ getLabel(action) | translate }}</button>
+        <button *ngIf="action.type === 'main'"
+                mat-flat-button
+                color="primary"
+                (click)="action.action(data)"
+                [disabled]="action?.disabled"
+        >{{ getLabel(action) | translate }}</button>
+        <button *ngIf="action.type === 'sub'"
+                mat-stroked-button
+                color="primary"
+                (click)="action.action(data)"
+                [disabled]="action?.disabled"
+        >{{ getLabel(action) | translate }}</button>
       </ng-container>
     </div>
   </div>
