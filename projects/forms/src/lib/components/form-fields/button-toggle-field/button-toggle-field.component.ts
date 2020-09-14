@@ -1,4 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { ButtonToggleFieldOptions } from '../../../models/FormField';
 
@@ -9,4 +10,8 @@ import { ButtonToggleFieldOptions } from '../../../models/FormField';
 export class ButtonToggleFieldComponent extends FormComponent<ButtonToggleFieldOptions> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
+
+  constructor(translateService: TranslateService) {
+    super(translateService);
+  }
 }

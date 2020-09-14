@@ -93,6 +93,7 @@ const customFields = [
     HttpClientModule,
     TranslateModule,
     MatButtonToggleModule,
+    TranslateModule.forChild(),
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })
