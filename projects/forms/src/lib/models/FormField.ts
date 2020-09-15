@@ -32,7 +32,7 @@ export interface WysiwygFieldOptions extends FieldOptions {
 }
 
 export interface InputFieldOptions extends FieldOptions {
-  type?: 'text' | 'number' | 'email' | 'password';
+  type?: 'text' | 'number' | 'email' | 'password' | 'tel';
 }
 
 export interface RepeaterFieldOptions extends FieldOptions {
