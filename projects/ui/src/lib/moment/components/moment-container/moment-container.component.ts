@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './moment-container.component.html',
   styleUrls: ['./moment-container.component.scss'],
 })
-export class MomentContainerComponent {}
+export class MomentContainerComponent {
+  public moments: Date[] = [new Date(Date.now()), new Date(Date.now())];
+}
