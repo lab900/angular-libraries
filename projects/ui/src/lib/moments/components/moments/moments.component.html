@@ -4,7 +4,7 @@
          fxLayoutAlign="center center"
          fxLayoutGap="10px"
     >
-        <p>{{ moment.getDate() }}/{{ moment.getMonth() }}/{{ moment.getFullYear() }} - {{ moment.getHours() }}:{{ moment.getMinutes() }}:{{ moment.getSeconds() }}</p>
+        <p>{{ getFormattedDate(moment) }}</p>
         <mat-icon class="moments-container__moment__close" (click)="removeMoment.emit(moment)">close</mat-icon>
     </div>
 
