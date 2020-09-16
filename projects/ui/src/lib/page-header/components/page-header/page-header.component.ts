@@ -45,6 +45,10 @@ export class Lab900PageHeaderComponent implements OnInit {
     return item.label;
   }
 
+  public getDisabled(item: PageHeaderAction): boolean {
+    return item.disabled ?? false;
+  }
+
   public hasRequestParams(params: { [key: string]: any }) {
     const paramMap = this.activatedRoute.snapshot.queryParamMap;
     if (!paramMap || !params) {
