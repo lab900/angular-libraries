@@ -1,0 +1,15 @@
+<div class="moments-container">
+    <div *ngFor="let moment of moments"
+         class="moments-container__moment"
+         fxLayoutAlign="center center"
+         fxLayoutGap="10px"
+    >
+        <p>{{ moment.getDate() }}/{{ moment.getMonth() }}/{{ moment.getFullYear() }} - {{ moment.getHours() }}: {{ moment.getMinutes() }}</p>
+        <mat-icon class="moments-container__moment__close" (click)="removeMoment.emit(moment)">close</mat-icon>
+    </div>
+
+    <div class="moments-container__add" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <mat-icon>add</mat-icon>
+        <p>Contact moment toevoegen</p> <!-- ToDo: Translation -->
+    </div>
+</div>

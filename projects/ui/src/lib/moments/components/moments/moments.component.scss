@@ -1,0 +1,28 @@
+.moments-container {
+  p {
+    margin: 0;
+  }
+
+  &__moment {
+    width: max-content;
+    padding: 0.5rem;
+    border-radius: 3px;
+    background: rgba(0, 61, 82, 0.13);
+    color: #00274D;
+    margin-bottom: 1rem;
+
+     &__close {
+       font-size: 15px;
+       font-weight: bold;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+     }
+  }
+
+  &__add {
+    color: #438873;
+    font-weight: bold;
+    width: max-content;
+  }
+}
