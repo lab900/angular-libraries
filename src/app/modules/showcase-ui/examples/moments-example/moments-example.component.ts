@@ -13,7 +13,7 @@ export class MomentsExampleComponent {
   public moments: Date[] = [new Date(Date.now())];
 
   public removeMoment(moment: Date): void {
-    this.moments.splice(this.moments.indexOf(moment));
+    this.moments.splice(this.moments.indexOf(moment), 1);
   }
 
   public addMoment(now: Date): void {

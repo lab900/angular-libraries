@@ -32,8 +32,8 @@ export const showcaseUiNavItems: NavItemGroup[] = [
             route: 'ui/page-header',
           },
           {
-            label: 'Moment container',
-            route: 'ui/moment-container',
+            label: 'Moments',
+            route: 'ui/moments',
           },
         ],
       },
