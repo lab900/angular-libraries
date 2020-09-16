@@ -9,6 +9,9 @@ export class MomentsComponent {
   @Input()
   public moments: Date[];
 
+  @Input()
+  addMomentText: string;
+
   @Output()
   public removeMoment: EventEmitter<Date> = new EventEmitter<Date>();
 

@@ -17,6 +17,7 @@ import { PageHeaderExampleComponent } from './examples/page-header-example/page-
 import { TableExampleComponent } from './examples/table-example/table-example.component';
 import { PageHeaderParamsExampleComponent } from './examples/page-header-params-example/page-header-params-example.component';
 import { MomentsExampleComponent } from './examples/moments-example/moments-example.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 const examples = [
   SharingExampleComponent,
@@ -41,6 +42,7 @@ const examples = [
     Lab900TableModule,
     Lab900PageHeaderModule,
     MomentsModule,
+    TranslateModule,
   ],
 })
 export class ShowcaseUiModule {}
