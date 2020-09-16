@@ -11,4 +11,11 @@ export class MomentsComponent {
 
   @Output()
   public removeMoment: EventEmitter<Date> = new EventEmitter<Date>();
+
+  @Output()
+  public addMoment: EventEmitter<Date> = new EventEmitter<Date>();
+
+  public addCurrentMoment(): void {
+    this.addMoment.emit(new Date(Date.now()));
+  }
 }

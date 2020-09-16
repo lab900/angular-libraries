@@ -9,7 +9,7 @@
     border-radius: 3px;
     background: rgba(0, 61, 82, 0.13);
     color: #00274D;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 
      &__close {
        font-size: 15px;
@@ -17,6 +17,7 @@
        display: flex;
        align-items: center;
        justify-content: center;
+       cursor: pointer;
      }
   }
 
@@ -24,5 +25,6 @@
     color: #438873;
     font-weight: bold;
     width: max-content;
+    cursor: pointer;
   }
 }
