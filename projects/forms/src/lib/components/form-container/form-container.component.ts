@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormArray } from '@angular/forms';
 import { Form } from '../../models/Form';
 import { Lab900FormBuilderService } from '../../services/form-builder.service';
 import { FormField } from '../../models/FormField';
@@ -48,21 +48,6 @@ export class FormContainerComponent<T> implements OnChanges {
           }
         }
         control.patchValue(data[key]);
-      }
-    });
-  }
-
-  public touchAllFormFields(): void {
-    this.validateAllFormFields(this.form);
-  }
-
-  public validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(this.form.controls).forEach((field) => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
       }
     });
   }
