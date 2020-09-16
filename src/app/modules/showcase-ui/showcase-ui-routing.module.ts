@@ -21,7 +21,7 @@ const routes: Routes = [
     new ShowcaseExample(PageHeaderParamsExampleComponent, 'Page header from request params', ['TS'], 'ui/page-header'),
     new ShowcaseExample(PageHeaderExampleComponent, 'Page header', ['TS'], 'ui/page-header'),
   ]),
-  new ShowcaseRoute('moments', 'Moments', [new ShowcaseExample(MomentsExampleComponent, 'Moments', ['TS'], '')]),
+  new ShowcaseRoute('moments', 'Moments', [new ShowcaseExample(MomentsExampleComponent, 'Moments', ['TS'], 'ui/moments')]),
 ];
 
 @NgModule({
