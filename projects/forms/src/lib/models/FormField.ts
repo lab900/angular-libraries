@@ -15,7 +15,7 @@ export interface FieldOptions {
   maxLength?: number;
   min?: number;
   max?: number;
-
+  defaultValue?: any;
   pattern?: RegExp;
 
   /**

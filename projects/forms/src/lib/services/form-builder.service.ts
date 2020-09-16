@@ -25,7 +25,13 @@ export class Lab900FormBuilderService {
         }
         formGroup.addControl(field.attribute, repeaterArray);
       } else {
-        formGroup.addControl(field.attribute, new FormControl(null, this.addValidators(field)));
+        let controlValue: any | null = null;
+
+        if (field.options && field.options.defaultValue) {
+          controlValue = typeof field.options.defaultValue === 'function' ? field.options.defaultValue() : field.options.defaultValue;
+        }
+
+        formGroup.addControl(field.attribute, new FormControl(controlValue, this.addValidators(field)));
       }
     });
     return formGroup;
