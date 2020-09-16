@@ -102,6 +102,17 @@ export class FormContainerExampleComponent {
           },
         ],
       },
+      {
+        attribute: '',
+        title: 'Comments',
+        editType: EditType.Row,
+        nestedFields: [
+          {
+            attribute: 'comments',
+            editType: EditType.TextArea,
+          },
+        ],
+      },
     ],
   };
 
