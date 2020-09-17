@@ -7,7 +7,7 @@
         placeholder="{{ placeholder | translate }}"
         [formControlName]="schema.attribute"
         [required]="options?.required"
-        [readonly]="options?.readOnly"
+        [readonly]="options?.readOnly || readonly"
     >
     <mat-hint *ngIf="hint" [translate]="hint"></mat-hint>
     <mat-hint align="end" *ngIf="options?.maxLength">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
