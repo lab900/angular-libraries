@@ -11,7 +11,7 @@ export class InputFieldComponent extends FormComponent<InputFieldOptions> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  public get inputType(): 'text' | 'number' | 'email' | 'password' {
+  public get inputType(): 'text' | 'number' | 'email' | 'password' | 'tel' {
     return (this.options && this.options.type) || 'text';
   }
 }

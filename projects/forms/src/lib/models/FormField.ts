@@ -15,7 +15,7 @@ export interface FieldOptions {
   maxLength?: number;
   min?: number;
   max?: number;
-
+  defaultValue?: any;
   pattern?: RegExp;
 
   /**
@@ -32,11 +32,12 @@ export interface WysiwygFieldOptions extends FieldOptions {
 }
 
 export interface InputFieldOptions extends FieldOptions {
-  type?: 'text' | 'number' | 'email' | 'password';
+  type?: 'text' | 'number' | 'email' | 'password' | 'tel';
 }
 
 export interface RepeaterFieldOptions extends FieldOptions {
   fixedList?: boolean;
+  removeAll?: boolean;
   addLabel?: string;
   minRows?: number;
   maxRows?: number;
