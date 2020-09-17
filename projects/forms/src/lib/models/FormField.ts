@@ -10,7 +10,7 @@ export interface FieldOptions {
   placeholder?: string;
   colspan?: number;
   required?: boolean;
-  readOnly?: boolean;
+  readonly?: boolean;
   minLength?: number;
   maxLength?: number;
   min?: number;
