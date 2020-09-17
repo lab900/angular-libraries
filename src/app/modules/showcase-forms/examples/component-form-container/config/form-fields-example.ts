@@ -103,7 +103,7 @@ export const formFieldsExample: Form = {
         {
           attribute: 'registration',
           editType: EditType.Repeater,
-          options: { minRows: 2 },
+          options: { removeAll: true },
           nestedFields: [
             {
               attribute: 'value',
@@ -129,5 +129,11 @@ export const formFieldsExample: Form = {
 };
 
 const getFormattedDate = (date: Date): string => {
-  return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  return `${digits(date.getDate())}/${digits(date.getMonth())}/${date.getFullYear()} - ${digits(date.getHours())}:${digits(
+    date.getMinutes(),
+  )}:${digits(date.getSeconds())}`;
+};
+
+const digits = (value: number): string => {
+  return value > 10 ? `${value}` : `0${value}`;
 };

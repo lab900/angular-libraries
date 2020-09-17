@@ -37,6 +37,7 @@ export interface InputFieldOptions extends FieldOptions {
 
 export interface RepeaterFieldOptions extends FieldOptions {
   fixedList?: boolean;
+  removeAll?: boolean;
   addLabel?: string;
   minRows?: number;
   maxRows?: number;
