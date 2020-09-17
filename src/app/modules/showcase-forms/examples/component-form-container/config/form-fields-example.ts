@@ -1,15 +1,16 @@
-import { EditType, Form } from '@lab900/forms';
+import { Form } from '../../../../../../../projects/forms/src/lib/models/Form';
+import { EditType } from '../../../../../../../projects/forms/src/lib/models/editType';
 
 export const formFieldsExample: Form = {
   fields: [
     {
       attribute: '',
-      title: 'GENERAL.PERSONAL_INFO',
+      title: 'Personal Information',
       editType: EditType.Row,
       nestedFields: [
         {
           attribute: 'firstName',
-          title: 'GENERAL.FIRST_NAME',
+          title: 'Firstname',
           editType: EditType.Input,
           options: {
             colspan: 6,
@@ -18,7 +19,7 @@ export const formFieldsExample: Form = {
         },
         {
           attribute: 'lastName',
-          title: 'GENERAL.LAST_NAME',
+          title: 'Lastname',
           editType: EditType.Input,
           options: {
             colspan: 6,
@@ -27,7 +28,7 @@ export const formFieldsExample: Form = {
         },
         {
           attribute: 'birthday',
-          title: 'GENERAL.BIRTHDAY',
+          title: 'Birthday',
           editType: EditType.Date,
           options: {
             colspan: 5,
@@ -35,29 +36,8 @@ export const formFieldsExample: Form = {
           },
         },
         {
-          attribute: 'gender',
-          editType: EditType.ButtonToggle,
-          options: {
-            colspan: 5,
-            values: [
-              { value: 'male', icon: { svgName: 'male' } },
-              { value: 'female', icon: { svgName: 'female' } },
-              { value: 'other', icon: { svgName: 'male-female' } },
-              { value: 'unknown', icon: { svgName: 'unknown' } },
-            ],
-          },
-        },
-        {
           attribute: 'nationality',
-          title: 'GENERAL.NATIONALITY',
-          editType: EditType.Input,
-          options: {
-            colspan: 5,
-          },
-        },
-        {
-          attribute: 'spokenLanguages',
-          title: 'GENERAL.SPOKEN_LANGUAGES',
+          title: 'Nationality',
           editType: EditType.Input,
           options: {
             colspan: 5,
@@ -65,64 +45,70 @@ export const formFieldsExample: Form = {
         },
         {
           attribute: 'nationalInsuranceNumber',
-          title: 'GENERAL.NATIONAL_INSURANCE_NUMBER',
+          title: 'National Insurance Number',
           editType: EditType.Input,
-          errorMessages: {
-            pattern: 'ERRORS.INVALID.NATIONAL_INSURANCE_NUMBER',
-          },
           options: {
             colspan: 5,
-            pattern: new RegExp('^[0-9]{2}[.\\- ]{0,1}[0-9]{2}[.\\- ]{0,1}[0-9]{2}[.\\- ]{0,1}[0-9]{3}[.\\- ]{0,1}[0-9]{2}$'),
+            pattern: new RegExp('^[0-9]{2}[.\\- ]{0,1}[0-9]{2}[.\\- ]{0,1}[0-9]{2}[.\\- ]{0,1}[0-9]{3}[.\\- ]?[0-9]{2}$'),
+            patternTitle: 'national insurance number',
           },
         },
       ],
     },
     {
       attribute: '',
-      title: 'GENERAL.CONTACT_INFO',
+      title: 'Contact Information',
       editType: EditType.Row,
       nestedFields: [
         {
-          attribute: 'tel1',
-          title: 'GENERAL.PHONENR_1',
+          attribute: 'telMobile',
+          title: 'Phone',
           editType: EditType.Input,
           options: {
+            type: 'tel',
             colspan: 5,
+            pattern: new RegExp('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$'),
+            patternTitle: 'number',
           },
         },
         {
-          attribute: 'tel1',
-          title: 'GENERAL.PHONENR_2',
+          attribute: 'telHome',
+          title: 'Home',
           editType: EditType.Input,
           options: {
+            type: 'tel',
             colspan: 5,
+            pattern: new RegExp('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$'),
+            patternTitle: 'number',
           },
         },
         {
           attribute: 'email',
-          title: 'GENERAL.EMAIL',
+          title: 'Email',
           editType: EditType.Input,
           options: {
             colspan: 5,
             type: 'email',
+            pattern: new RegExp('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$'),
+            patternTitle: 'email',
           },
         },
       ],
     },
     {
       attribute: '',
-      title: 'GENERAL.CONTACT.MOMENTS',
+      title: 'Phone registration',
       editType: EditType.Row,
       nestedFields: [
         {
-          attribute: 'registrations',
+          attribute: 'registration',
           editType: EditType.Repeater,
           options: { removeAll: true },
           nestedFields: [
             {
               attribute: 'value',
               editType: EditType.Input,
-              options: { readOnly: true, defaultValue: () => getFormattedDate(new Date(Date.now())) },
+              options: { readonly: true, defaultValue: () => getFormattedDate(new Date(Date.now())) },
             },
           ],
         },
@@ -130,7 +116,7 @@ export const formFieldsExample: Form = {
     },
     {
       attribute: '',
-      title: 'GENERAL.EXTRA_COMMENTS',
+      title: 'Comment',
       editType: EditType.Row,
       nestedFields: [
         {
