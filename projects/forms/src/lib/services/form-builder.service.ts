@@ -15,7 +15,6 @@ export class Lab900FormBuilderService {
       } else if (field.editType === EditType.Repeater) {
         const repeaterArray = this.createFormArray(data, field);
         const repeaterOptions = field.options as RepeaterFieldOptions;
-        console.log(data);
         if (data && data[field.attribute]) {
           const dataRows = data[field.attribute].length;
           if (repeaterOptions?.minRows && dataRows < repeaterOptions.minRows) {
