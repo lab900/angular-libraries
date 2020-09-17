@@ -99,6 +99,7 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
     this.component = this.container.createComponent(component);
     this.component.instance.schema = this.schema;
     this.component.instance.group = this.group;
+    this.component.instance.readonly = this.readonly;
   }
 
   public ngOnDestroy(): void {
