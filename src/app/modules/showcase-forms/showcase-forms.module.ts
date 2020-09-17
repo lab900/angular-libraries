@@ -15,6 +15,7 @@ import { FormFieldAutocompleteExampleComponent } from './examples/form-field-aut
 import { FormFieldRepeaterAdvancedExampleComponent } from './examples/form-field-repeater-advanced-example/form-field-repeater-advanced-example.component';
 import { FormFieldButtonToggleExampleComponent } from './examples/form-field-button-toggle-example/form-field-button-toggle-example.component';
 import { FormContainerExampleComponent } from './examples/component-form-container/form-container-example.component';
+import { FormContainerReadonlyExampleComponent } from './examples/component-form-container/form-container-readonly-example.component';
 
 const examples = [
   FormFieldRepeaterExampleComponent,
@@ -27,6 +28,8 @@ const examples = [
   FormFieldAutocompleteExampleComponent,
   FormFieldButtonToggleExampleComponent,
   FormContainerExampleComponent,
+  FormContainerExampleComponent,
+  FormContainerReadonlyExampleComponent,
 ];
 
 @NgModule({

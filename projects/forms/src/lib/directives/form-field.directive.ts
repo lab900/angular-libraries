@@ -76,6 +76,9 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
   @Input()
   public group: FormGroup;
 
+  @Input()
+  public readonly = false;
+
   public component: ComponentRef<FormComponent>;
 
   public statusChangeSubscription: Subscription;
@@ -86,6 +89,7 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
     if (this.component) {
       this.component.instance.schema = this.schema;
       this.component.instance.group = this.group;
+      this.component.instance.readonly = this.readonly;
     }
   }
 

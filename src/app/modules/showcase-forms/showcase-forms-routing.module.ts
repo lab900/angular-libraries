@@ -13,6 +13,7 @@ import { FormFieldRangeSliderExampleComponent } from './examples/form-field-rang
 import { FormFieldRepeaterAdvancedExampleComponent } from './examples/form-field-repeater-advanced-example/form-field-repeater-advanced-example.component';
 import { FormFieldButtonToggleExampleComponent } from './examples/form-field-button-toggle-example/form-field-button-toggle-example.component';
 import { FormContainerExampleComponent } from './examples/component-form-container/form-container-example.component';
+import { FormContainerReadonlyExampleComponent } from './examples/component-form-container/form-container-readonly-example.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   new ShowcaseRoute('form-container', 'Components: Form Container', [
-    new ShowcaseExample(FormContainerExampleComponent, 'Form Container', ['TS'], 'form-fields/form-field-autocomplete'),
+    new ShowcaseExample(FormContainerExampleComponent, 'Form Container', ['TS'], ''),
+    new ShowcaseExample(FormContainerReadonlyExampleComponent, 'Form Container Readonly', ['TS'], ''),
   ]),
   new ShowcaseRoute('form-field-autocomplete', 'Form Fields: Autocomplete', [
     new ShowcaseExample(FormFieldAutocompleteExampleComponent, 'Autocomplete', ['TS'], 'form-fields/form-field-autocomplete'),
