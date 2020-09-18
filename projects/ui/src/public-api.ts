@@ -2,6 +2,9 @@
  * Public API Surface of ui
  */
 
+// common
+export * from './lib/common/models/paging.model';
+
 // dialogs
 export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/components/alert-dialog/alert-dialog.component';

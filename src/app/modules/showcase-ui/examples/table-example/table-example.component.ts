@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TableCell } from 'projects/ui/src/lib/table/models/table-cell.model';
 import { TableAction } from 'projects/ui/src/lib/table/models/table-action.model';
 import { Sort } from '@angular/material/sort';
+import { Paging } from '../../../../../../projects/ui/src/lib/common/models/paging.model';
 
 @Component({
   selector: 'lab900-table-example',
@@ -10,6 +11,7 @@ import { Sort } from '@angular/material/sort';
     [activeSort]="sort"
     (sort)="sortChange($event)"
     [data]="mockData"
+    [paging]="paging"
     [tableActions]="tableActions"
   >
     <div *lab900TableEmpty>
@@ -69,6 +71,12 @@ export class TableExampleComponent {
       id: 3,
     },
   ];
+
+  public paging: Paging = {
+    pageIndex: 0,
+    pageSize: 5,
+    totalItems: this.mockData.length,
+  };
 
   public tableCells: TableCell[] = [
     {

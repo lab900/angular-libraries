@@ -1,8 +1,9 @@
 import { Component, Input, TemplateRef, ContentChild, Output, EventEmitter } from '@angular/core';
 import { Lab900DataListEmptyDirective } from '../../directives/data-list-empty.directive';
-import { DataListItemAction, DataListPaging, DataListSharing } from '../../models/data-list.model';
+import { DataListItemAction, DataListSharing } from '../../models/data-list.model';
 import { Lab900DataListItemInfoDirective } from '../../directives/data-list-item-info.directive';
 import { PageEvent } from '@angular/material/paginator';
+import { Paging } from '../../../common/models/paging.model';
 
 @Component({
   selector: 'lab900-data-list',
@@ -26,7 +27,7 @@ export class Lab900DataListComponent {
   public dataListSharing?: DataListSharing;
 
   @Input()
-  public paging?: DataListPaging;
+  public paging?: Paging;
 
   @ContentChild(Lab900DataListEmptyDirective, { read: TemplateRef })
   public emptyListTemplate?: Lab900DataListEmptyDirective;

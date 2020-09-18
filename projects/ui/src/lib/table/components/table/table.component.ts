@@ -4,6 +4,8 @@ import { TableCell } from '../../models/table-cell.model';
 import { TableAction } from '../../models/table-action.model';
 import { Lab900TableDisabledDirective } from '../../directives/table-disabled.directive';
 import { Sort, SortDirection } from '@angular/material/sort';
+import { Paging } from '../../../common/models/paging.model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'lab900-table',
@@ -35,8 +37,14 @@ export class Lab900TableComponent {
   @Input()
   public activeSort: Sort;
 
+  @Input()
+  public paging?: Paging;
+
   @Output()
-  public sort: EventEmitter<Sort> = new EventEmitter<Sort>();
+  public readonly pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+
+  @Output()
+  public readonly sort: EventEmitter<Sort> = new EventEmitter<Sort>();
 
   @ContentChild(Lab900TableEmptyDirective, { read: TemplateRef })
   public emptyTableTemplate?: Lab900TableEmptyDirective;

@@ -15,6 +15,7 @@ import { TableActionComponent } from './components/table-action/table-action.com
 import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [Lab900TableComponent, Lab900TableEmptyDirective, Lab900TableDisabledDirective, TableActionComponent],
@@ -32,6 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     FlexLayoutModule,
     MatMenuModule,
     MatTooltipModule,
+    MatPaginatorModule,
   ],
 })
 export class Lab900TableModule {}

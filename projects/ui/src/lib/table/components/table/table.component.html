@@ -29,6 +29,15 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
+  <mat-paginator
+      *ngIf="data && paging"
+      hidePageSize
+      [length]="paging.totalItems"
+      [pageSize]="paging.pageSize"
+      [pageIndex]="paging.pageIndex"
+      (page)="pageChange.emit($event)"
+  ></mat-paginator>
+
   <div class="lab900-table__empty" *ngIf="data && !data.length && !disabled">
     <ng-container *ngIf="emptyTableTemplate">
       <ng-container *ngTemplateOutlet="emptyTableTemplate"></ng-container>
