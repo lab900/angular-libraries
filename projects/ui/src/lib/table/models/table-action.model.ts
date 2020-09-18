@@ -5,4 +5,5 @@ export interface TableAction<T = any> {
   action: (data?: T) => any;
   type: 'icon-btn' | 'btn';
   hide?: (data: T) => boolean;
+  subActions?: TableAction<T>[];
 }

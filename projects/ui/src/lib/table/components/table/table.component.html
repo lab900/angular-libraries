@@ -1,19 +1,24 @@
-<div class="lab900-table {{tableClass}}">
-  <mat-table *ngIf="(data?.length || neverHideTable) && tableCells?.length && !disabled" [dataSource]="data" class="mat-elevation-z0">
-
-    <ng-container *ngFor="let cell of tableCells" [matColumnDef]="cell.key">
-      <mat-header-cell *matHeaderCellDef="let element">{{ getCellLabel(element, cell) | translate }}</mat-header-cell>
-      <mat-cell [className]="getCellClass(element, cell)" *matCellDef="let element">{{ getCellValue(element, cell) | translate }}</mat-cell>
+<div class="lab900-table {{tableClass}}" *ngIf="tableCells?.length">
+  <mat-table
+    matSort
+    class="mat-elevation-z0"
+    *ngIf="(data?.length || neverHideTable) && !disabled"
+    matSortDisableClear="true"
+    [matSortActive]="activeSort?.active"
+    [matSortDirection]="activeSort?.direction"
+    [dataSource]="data"
+    (matSortChange)="sort.emit($event)"
+  >
+    <ng-container *ngFor="let cell of tableCells" [matColumnDef]="cell.key" [sticky]="cell?.sticky">
+      <mat-header-cell mat-sort-header [disabled]="!cell.sortable" *matHeaderCellDef="let element">{{ getCellLabel(element, cell) | translate }}</mat-header-cell>
+      <mat-cell *matCellDef="let element" [className]="getCellClass(element, cell)" >{{ getCellValue(element, cell) | translate }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions" stickyEnd>
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <div fxLayout="row" fxLayoutGap="8">
-          <ng-container *ngFor="let action of tableActions">
-            <button *ngIf="action.type === 'btn'" mat-flat-button color="primary" (click)="action.action(element)">{{ getActionLabel(element, action) | translate }}</button>
-            <button *ngIf="action.type === 'icon-btn'" mat-icon-button color="primary" (click)="action.action(element)"><mat-icon>{{ getActionLabel(element, action) }}</mat-icon></button>
-          </ng-container>
+        <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="end center" *ngIf="tableActions?.length">
+          <lab900-table-action *ngFor="let action of tableActions" [action]="action"></lab900-table-action>
         </div>
       </mat-cell>
     </ng-container>

@@ -34,6 +34,7 @@ export * from './lib/sharing/models/share-dialog-component.abstract';
 export * from './lib/table/table.module';
 export * from './lib/table/components/table/table.component';
 export * from './lib/table/directives/table-empty.directive';
+export * from './lib/table/directives/table-disabled.directive';
 export * from './lib/table/models/table-action.model';
 export * from './lib/table/models/table-cell.model';
 

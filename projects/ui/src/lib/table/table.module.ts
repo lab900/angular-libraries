@@ -11,9 +11,12 @@ import { Lab900TableEmptyDirective } from './directives/table-empty.directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { Lab900TableDisabledDirective } from './directives/table-disabled.directive';
+import { TableActionComponent } from './components/table-action/table-action.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-  declarations: [Lab900TableComponent, Lab900TableEmptyDirective, Lab900TableDisabledDirective],
+  declarations: [Lab900TableComponent, Lab900TableEmptyDirective, Lab900TableDisabledDirective, TableActionComponent],
   exports: [Lab900TableComponent, Lab900TableEmptyDirective, Lab900TableDisabledDirective],
   imports: [
     CommonModule,
@@ -22,9 +25,11 @@ import { Lab900TableDisabledDirective } from './directives/table-disabled.direct
     MatButtonModule,
     MatTableModule,
     MatIconModule,
+    MatSortModule,
     TranslateModule,
     RouterModule,
     FlexLayoutModule,
+    MatMenuModule,
   ],
 })
 export class Lab900TableModule {}

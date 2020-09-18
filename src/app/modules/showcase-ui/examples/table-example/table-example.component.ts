@@ -1,9 +1,17 @@
 import { Component } from '@angular/core';
 import { TableCell } from 'projects/ui/src/lib/table/models/table-cell.model';
+import { TableAction } from 'projects/ui/src/lib/table/models/table-action.model';
+import { Sort } from '@angular/material/sort';
 
 @Component({
   selector: 'lab900-table-example',
-  template: ` <lab900-table [tableCells]="tableCells" [data]="data">
+  template: ` <lab900-table
+    [tableCells]="tableCells"
+    [activeSort]="sort"
+    (sort)="sortChange($event)"
+    [data]="mockData"
+    [tableActions]="tableActions"
+  >
     <div *lab900TableEmpty>
       <div class="no-results">
         <p>No results template (can be anything)</p>
@@ -12,14 +20,49 @@ import { TableCell } from 'projects/ui/src/lib/table/models/table-cell.model';
   </lab900-table>`,
 })
 export class TableExampleComponent {
-  public data: any[] = [
+  public sort: Sort = { active: 'id', direction: 'asc' };
+  public tableActions: TableAction[] = [
     {
-      name: 'Example name',
-      birthday: new Date(),
+      label: 'remove_red_eye',
+      action: console.log,
+      type: 'icon-btn',
+    },
+    {
+      label: 'Button',
+      action: console.log,
+      type: 'btn',
+    },
+    {
+      label: 'more_horiz',
+      action: console.log,
+      type: 'icon-btn',
+      subActions: [
+        {
+          label: 'sub action',
+          action: console.log,
+          type: 'btn',
+        },
+        {
+          label: 'sub action 2',
+          action: console.log,
+          type: 'btn',
+        },
+      ],
+    },
+  ];
+
+  public mockData: any[] = [
+    {
+      name: 'A name',
+      id: 1,
+    },
+    {
+      name: 'B name',
+      id: 2,
     },
     {
       name: 'Example name 2',
-      birthday: new Date(),
+      id: 3,
     },
   ];
 
@@ -27,10 +70,18 @@ export class TableExampleComponent {
     {
       key: 'name',
       label: 'Name',
+      sortable: true,
     },
     {
-      key: 'birthday',
-      label: 'Birthday',
+      key: 'id',
+      label: 'Id',
+      sortable: true,
     },
   ];
+
+  public sortChange(sort: Sort): void {
+    this.sort = sort;
+    this.mockData.sort((a: any, b: any) => (a[sort.active] < b[sort.active] ? -1 : 1) * (sort.direction === 'asc' ? 1 : -1));
+    this.mockData = [...this.mockData];
+  }
 }
