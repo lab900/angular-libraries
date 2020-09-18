@@ -12,6 +12,7 @@ import { FormFieldRadioButtonsExampleComponent } from './examples/form-field-rad
 import { FormFieldRangeSliderExampleComponent } from './examples/form-field-range-slider-example/form-field-range-slider-example.component';
 // tslint:disable-next-line:max-line-length
 import { FormFieldAutocompleteExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-example.component';
+import { FormFieldAutocompleteMultipleExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-multiple-example.component';
 import { FormFieldRepeaterAdvancedExampleComponent } from './examples/form-field-repeater-advanced-example/form-field-repeater-advanced-example.component';
 import { FormFieldButtonToggleExampleComponent } from './examples/form-field-button-toggle-example/form-field-button-toggle-example.component';
 import { FormContainerExampleComponent } from './examples/component-form-container/form-container-example.component';
@@ -26,8 +27,8 @@ const examples = [
   FormFieldRadioButtonsExampleComponent,
   FormFieldRangeSliderExampleComponent,
   FormFieldAutocompleteExampleComponent,
+  FormFieldAutocompleteMultipleExampleComponent,
   FormFieldButtonToggleExampleComponent,
-  FormContainerExampleComponent,
   FormContainerExampleComponent,
   FormContainerReadonlyExampleComponent,
 ];

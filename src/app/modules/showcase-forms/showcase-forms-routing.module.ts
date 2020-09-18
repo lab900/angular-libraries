@@ -14,6 +14,7 @@ import { FormFieldRepeaterAdvancedExampleComponent } from './examples/form-field
 import { FormFieldButtonToggleExampleComponent } from './examples/form-field-button-toggle-example/form-field-button-toggle-example.component';
 import { FormContainerExampleComponent } from './examples/component-form-container/form-container-example.component';
 import { FormContainerReadonlyExampleComponent } from './examples/component-form-container/form-container-readonly-example.component';
+import { FormFieldAutocompleteMultipleExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-multiple-example.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
   ]),
   new ShowcaseRoute('form-field-autocomplete', 'Form Fields: Autocomplete', [
     new ShowcaseExample(FormFieldAutocompleteExampleComponent, 'Autocomplete', ['TS'], 'form-fields/form-field-autocomplete'),
+    new ShowcaseExample(FormFieldAutocompleteMultipleExampleComponent, 'Autocomplete Multiple', ['TS'], ''),
   ]),
   new ShowcaseRoute('form-field-repeater', 'Form Fields: Repeater', [
     new ShowcaseExample(FormFieldRepeaterAdvancedExampleComponent, 'Repeater (nested)', ['TS'], 'form-fields/form-field-repeater-editable'),
