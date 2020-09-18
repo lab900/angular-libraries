@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataListItemAction, DataListPaging, DataListSharing } from '@lab900/ui';
+import { DataListItemAction, Paging, DataListSharing } from '@lab900/ui';
 import { PageEvent } from '@angular/material/paginator';
 
 const dummyData: any[] = [
@@ -57,9 +57,7 @@ const dummyData: any[] = [
   selector: 'lab900-data-list-example',
   template: `
     <lab900-data-list [data]="data" [actions]="actions" [dataListSharing]="sharing" [paging]="paging" (pageChange)="changePage($event)">
-      <div *lab900DataListEmpty>
-        if this list is empty this appears
-      </div>
+      <div *lab900DataListEmpty>if this list is empty this appears</div>
       <div *lab900DataListItemInfo="let data">
         {{ data.title }}
       </div>
@@ -69,7 +67,7 @@ const dummyData: any[] = [
 export class DataListExampleComponent implements OnInit {
   public data: any[];
 
-  public paging: DataListPaging = {
+  public paging: Paging = {
     pageIndex: 0,
     pageSize: 5,
     totalItems: dummyData.length,

@@ -1,8 +1,11 @@
-import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { Lab900TableEmptyDirective } from '../../directives/table-empty.directive';
 import { TableCell } from '../../models/table-cell.model';
 import { TableAction } from '../../models/table-action.model';
 import { Lab900TableDisabledDirective } from '../../directives/table-disabled.directive';
+import { Sort, SortDirection } from '@angular/material/sort';
+import { Paging } from '../../../common/models/paging.model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'lab900-table',
@@ -31,6 +34,18 @@ export class Lab900TableComponent {
   @Input()
   public disabled = false;
 
+  @Input()
+  public activeSort: Sort;
+
+  @Input()
+  public paging?: Paging;
+
+  @Output()
+  public readonly pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+
+  @Output()
+  public readonly sort: EventEmitter<Sort> = new EventEmitter<Sort>();
+
   @ContentChild(Lab900TableEmptyDirective, { read: TemplateRef })
   public emptyTableTemplate?: Lab900TableEmptyDirective;
 
@@ -38,38 +53,22 @@ export class Lab900TableComponent {
   public disabledTableTemplate?: Lab900TableDisabledDirective;
 
   public get displayedColumns(): string[] {
-    const keys = this.tableCells && this.tableCells.map((cell: TableCell) => cell.key);
-    if (this.tableActions) {
+    const keys = this.tableCells?.map((cell: TableCell) => cell.key) ?? [];
+    if (this.tableActions?.length) {
       keys.push('actions');
     }
     return keys;
   }
 
   public getCellLabel(data: any, cell: TableCell): string {
-    if (typeof cell.label === 'function') {
-      return cell.label(data, cell);
-    }
-    return cell.label;
-  }
-
-  public getActionLabel(data: any, action: TableAction): string {
-    if (typeof action.label === 'function') {
-      return action.label(data);
-    }
-    return action.label;
+    return typeof cell.label === 'function' ? cell.label(data, cell) : cell.label;
   }
 
   public getCellValue(data: any, cell: TableCell): string {
-    if (cell.cellFormatter) {
-      return cell.cellFormatter(data, cell);
-    }
-    return data[cell.key];
+    return cell.cellFormatter ? cell.cellFormatter(data, cell) : data[cell.key];
   }
 
   public getCellClass(data: any, cell: TableCell): string {
-    if (typeof cell.cellClass === 'function') {
-      return cell.cellClass(data, cell);
-    }
-    return cell.cellClass || '';
+    return typeof cell.cellClass === 'function' ? cell.cellClass(data, cell) : cell.cellClass ?? '';
   }
 }
