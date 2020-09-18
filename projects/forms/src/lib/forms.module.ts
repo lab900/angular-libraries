@@ -44,6 +44,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { IconComponent } from './components/icon/icon.component';
 import { AutocompleteMultipleFieldComponent } from './components/form-fields/autocomplete-multiple-field/autocomplete-multiple-field.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { NgxMaskModule } from 'ngx-mask';
 
 const customFields = [
   UnknownFieldComponent,
@@ -97,6 +98,7 @@ const customFields = [
     TranslateModule,
     MatButtonToggleModule,
     MatChipsModule,
+    NgxMaskModule.forRoot(),
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })
