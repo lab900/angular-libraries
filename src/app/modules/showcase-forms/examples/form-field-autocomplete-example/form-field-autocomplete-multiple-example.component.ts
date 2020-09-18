@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 
 @Component({
   selector: 'lab900-form-field-autocomplete-multiple-example',
-  template: '<lab900-form-container [schema]="formSchema"></lab900-form-container>',
+  template: '<lab900-form-container #formContainer [schema]="formSchema"></lab900-form-container>',
 })
 export class FormFieldAutocompleteMultipleExampleComponent {
   public options: { name: string }[] = [{ name: 'Mary' }, { name: 'Shelley' }, { name: 'Igor' }];
@@ -15,7 +15,7 @@ export class FormFieldAutocompleteMultipleExampleComponent {
       {
         attribute: 'textInput',
         title: 'Search a value',
-        editType: EditType.Autocomplete,
+        editType: EditType.AutocompleteMultiple,
         options: {
           getOptionsFn: (value: string) => of(this.filter(value)),
           displayInputFn: (user: { name: string }) => (user && user.name) || '',

@@ -1,5 +1,6 @@
 import { Form } from '../../../../../../../projects/forms/src/lib/models/Form';
 import { EditType } from '../../../../../../../projects/forms/src/lib/models/editType';
+import { of } from 'rxjs';
 
 export const formFieldsExample: Form = {
   fields: [
@@ -48,9 +49,20 @@ export const formFieldsExample: Form = {
           title: 'National Insurance Number',
           editType: EditType.Input,
           options: {
-            colspan: 5,
+            colspan: 10,
             pattern: new RegExp('^[0-9]{2}[.\\- ]{0,1}[0-9]{2}[.\\- ]{0,1}[0-9]{2}[.\\- ]{0,1}[0-9]{3}[.\\- ]?[0-9]{2}$'),
             patternTitle: 'national insurance number',
+          },
+        },
+        {
+          attribute: 'languages',
+          title: 'Choose a language',
+          editType: EditType.AutocompleteMultiple,
+          options: {
+            colspan: 10,
+            getOptionsFn: (value: string) => of(filter(value)),
+            displayInputFn: (language: { value: string }) => (language && language.value) || '',
+            displayOptionFn: (language: { value: string }) => (language && language.value) || '',
           },
         },
       ],
@@ -137,3 +149,10 @@ const getFormattedDate = (date: Date): string => {
 const digits = (value: number): string => {
   return value > 10 ? `${value}` : `0${value}`;
 };
+
+const filter = (value: string): { value: string }[] => {
+  const filterValue = value.toLowerCase();
+  return options.filter((option: { value: string }) => option.value.toLowerCase().includes(filterValue));
+};
+
+const options: { value: string }[] = [{ value: 'Dutch' }, { value: 'English' }];
