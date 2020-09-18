@@ -17,6 +17,7 @@ export interface FieldOptions {
   max?: number;
   defaultValue?: any;
   pattern?: RegExp;
+  mask?: string;
 
   /**
    * User-friendly representation of the regex. For invalid input,
