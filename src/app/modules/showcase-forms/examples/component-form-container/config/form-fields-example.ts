@@ -120,7 +120,7 @@ export const formFieldsExample: Form = {
             {
               attribute: 'value',
               editType: EditType.Input,
-              options: { readOnly: true, defaultValue: () => getFormattedDate(new Date(Date.now())) },
+              options: { readonly: true, defaultValue: () => getFormattedDate(new Date(Date.now())) },
             },
           ],
         },

@@ -5,12 +5,12 @@ import { formFieldsExample } from './config/form-fields-example';
 import { formDataExample } from './config/form-data-example';
 
 @Component({
-  selector: 'lab900-form-container-example',
+  selector: 'lab900-form-container-readonly-example',
   template: `<lab900-form-container #lab900FormContainer [schema]="formFields" [data]="formData"></lab900-form-container>
     <button mat-stroked-button (click)="submitForm()" [disabled]="!lab900FormContainer.valid">Submit Form</button>`,
 })
-export class FormContainerExampleComponent {
-  public formFields: Form = formFieldsExample;
+export class FormContainerReadonlyExampleComponent {
+  public formFields: Form = { ...formFieldsExample, readonly: true };
   public formData = formDataExample;
 
   @ViewChild('lab900FormContainer') private formContainer: FormContainerComponent<any>;

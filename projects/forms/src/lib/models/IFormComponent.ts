@@ -15,6 +15,9 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   @Input()
   public schema: FormField<T>;
 
+  @Input()
+  public readonly = false;
+
   public get valid(): boolean {
     return this.group.get(this.schema.attribute).valid;
   }
