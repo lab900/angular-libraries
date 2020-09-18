@@ -3,7 +3,7 @@ import { Lab900TableEmptyDirective } from '../../directives/table-empty.directiv
 import { TableCell } from '../../models/table-cell.model';
 import { TableAction } from '../../models/table-action.model';
 import { Lab900TableDisabledDirective } from '../../directives/table-disabled.directive';
-import { Sort, SortDirection } from '@angular/material/sort';
+import { Sort } from '@angular/material/sort';
 import { Paging } from '../../../common/models/paging.model';
 import { PageEvent } from '@angular/material/paginator';
 

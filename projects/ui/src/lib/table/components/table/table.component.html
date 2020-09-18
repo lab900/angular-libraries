@@ -20,7 +20,7 @@
       <td mat-cell *matCellDef="let element">
 
         <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="end center" *ngIf="tableActions?.length">
-          <lab900-table-action *ngFor="let action of tableActions" [action]="action"></lab900-table-action>
+          <lab900-table-action *ngFor="let action of tableActions" [element]="element" [action]="action"></lab900-table-action>
         </div>
       </td>
     </ng-container>
