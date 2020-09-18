@@ -26,6 +26,7 @@ export class TableExampleComponent {
       label: 'remove_red_eye',
       action: console.log,
       type: 'icon-btn',
+      tooltip: { value: 'View this' },
     },
     {
       label: 'Button',

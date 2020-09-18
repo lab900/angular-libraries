@@ -14,6 +14,7 @@ import { Lab900TableDisabledDirective } from './directives/table-disabled.direct
 import { TableActionComponent } from './components/table-action/table-action.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [Lab900TableComponent, Lab900TableEmptyDirective, Lab900TableDisabledDirective, TableActionComponent],
@@ -30,6 +31,7 @@ import { MatMenuModule } from '@angular/material/menu';
     RouterModule,
     FlexLayoutModule,
     MatMenuModule,
+    MatTooltipModule,
   ],
 })
 export class Lab900TableModule {}
