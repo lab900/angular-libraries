@@ -55,14 +55,17 @@ export class TableExampleComponent {
   public mockData: any[] = [
     {
       name: 'A name',
+      nameLong: 'A name sdfdsfdsfdsfdsfdsf',
       id: 1,
     },
     {
       name: 'B name',
+      nameLong: 'A name sdfdsfdsfdsfdsfdsf',
       id: 2,
     },
     {
       name: 'Example name 2',
+      nameLong: 'A name sdfdsfdsfdsfdsfdsf sdfdsfdsfdsfdsfdsf',
       id: 3,
     },
   ];
@@ -72,11 +75,28 @@ export class TableExampleComponent {
       key: 'name',
       label: 'Name',
       sortable: true,
+      sticky: true,
     },
     {
       key: 'id',
       label: 'Id',
       sortable: true,
+    },
+    {
+      key: 'nameLong',
+      label: 'Name long',
+      sortable: true,
+    },
+    {
+      key: 'nameLong2',
+      label: 'Name long',
+      cellFormatter: () => 'trest',
+    },
+    {
+      key: 'namesdfdsfdsLong2',
+      label: 'Name long',
+      cellFormatter: () => 'trest',
+      width: '200px',
     },
   ];
 

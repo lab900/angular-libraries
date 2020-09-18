@@ -8,4 +8,5 @@ export interface TableCell<T = any> {
   hide?: (data: T, cell: TableCell) => boolean;
   sortable?: boolean;
   sticky?: boolean;
+  width?: string;
 }
