@@ -2,7 +2,6 @@ import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { AutocompleteOptions } from '../../../models/FormField';
 import { isObservable, Observable, of } from 'rxjs';
-import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
@@ -26,23 +25,6 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
     this.filteredOptions = isObservable(res) ? res : of(res);
   }
 
-  public add(event: MatChipInputEvent): void {
-    console.log(this.schema.attribute);
-    const input = event.input;
-    const value = event.value;
-
-    // Add option
-    if ((value || '').trim()) {
-      this.group.controls[this.schema.attribute].setValue([...this.group.controls[this.schema.attribute].value, value.trim()]);
-      this.group.controls[this.schema.attribute].updateValueAndValidity();
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-  }
-
   public remove(option: any): void {
     const index = this.selectedOptions.indexOf(option);
 
@@ -53,6 +35,8 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this.selectedOptions.push(event.option.viewValue);
+    this.group.controls[this.schema.attribute].setValue(this.selectedOptions);
+    this.group.controls[this.schema.attribute].updateValueAndValidity();
     this.input.nativeElement.value = '';
   }
 }

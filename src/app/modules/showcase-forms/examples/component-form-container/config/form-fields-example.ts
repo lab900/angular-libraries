@@ -61,7 +61,6 @@ export const formFieldsExample: Form = {
           options: {
             colspan: 10,
             getOptionsFn: (value: string) => of(filter(value)),
-            displayInputFn: (language: { value: string }) => (language && language.value) || '',
             displayOptionFn: (language: { value: string }) => (language && language.value) || '',
           },
         },
