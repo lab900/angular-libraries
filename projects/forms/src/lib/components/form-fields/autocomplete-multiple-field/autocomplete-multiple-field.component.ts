@@ -13,14 +13,16 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  @ViewChild('input') input: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+  @ViewChild('input')
+  private input: ElementRef<HTMLInputElement>;
+  @ViewChild('auto')
+  private matAutocomplete: MatAutocomplete;
 
   public filteredOptions: Observable<any[]>;
   public selectedOptions: any[] = []; // ToDo: Set values
   public separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  public inputChanged($event: Event) {
+  public inputChanged($event: Event): void {
     const res = this.options.getOptionsFn(($event.target as any).value);
     this.filteredOptions = isObservable(res) ? res : of(res);
   }
@@ -33,7 +35,7 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
     }
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
+  public selected(event: MatAutocompleteSelectedEvent): void {
     this.selectedOptions.push(event.option.viewValue);
     this.group.controls[this.schema.attribute].setValue(this.selectedOptions);
     this.group.controls[this.schema.attribute].updateValueAndValidity();
