@@ -1,6 +1,6 @@
 <div [formGroup]="group" [hidden]="hide">
     <mat-label translate>{{schema.title}}</mat-label>
-    <mat-checkbox [disabled]="readonly" [formControlName]="schema.attribute" [required]="options?.required"></mat-checkbox>
+    <mat-checkbox [attr.disabled]="readonly" [formControlName]="schema.attribute" [required]="options?.required"></mat-checkbox>
     <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
     <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
 </div>
