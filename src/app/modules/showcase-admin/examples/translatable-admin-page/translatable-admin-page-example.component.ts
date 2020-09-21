@@ -41,7 +41,7 @@ export class TranslatableAdminPageExampleComponent implements OnInit {
 
     async getByIdAndLanguage(id: any, language: string): Promise<object> {
       return new Promise<object>((resolve) => {
-        setTimeout(() => resolve(NEWS_ITEMS[0]), 300);
+        setTimeout(() => resolve(NEWS_ITEMS[0]), 1000);
       });
     }
 

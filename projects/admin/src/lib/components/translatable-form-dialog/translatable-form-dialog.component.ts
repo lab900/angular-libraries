@@ -47,6 +47,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
     this.loading = true;
     this.error = null;
     this.addToReturnObject(item);
+    item = this.removeTranslatableFieldsFromRootObject(item);
     this.dialogAdminSchemaData
       .submit({ ...item, ...this.returnObject })
       .then((result) => (result ? this.dialogRef.close() : (this.error = 'Oops. An error occured.')))
@@ -71,23 +72,17 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
     } else {
       this.dialogAdminSchemaData
         .get(this.formData.id, language)
-        .catch((error) => {
-          const translatables = {};
-          this.data.schema.fields
-            .filter((field) => field.translatable)
-            .forEach((field) => {
-              translatables[field.attribute] = null;
-            });
-          this.formData = { ...item, ...translatables }; // Necessary to re-render the form
-        })
         .then((value) => {
           const translatables = {};
           this.data.schema.fields
             .filter((field) => field.translatable)
             .forEach((field) => {
-              translatables[field.attribute] = value[field.attribute];
+              translatables[field.attribute] = !!value ? value[field.attribute] : null;
             });
           this.formData = { ...item, ...translatables }; // Necessary to re-render the form
+        })
+        .catch((error) => {
+          this.error = error;
         })
         .finally(() => {
           this.loading = false;
@@ -118,5 +113,14 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
       });
     this.addToReturnObject(translatables);
     this.formData = { ...this.formData, ...translatables };
+  }
+
+  private removeTranslatableFieldsFromRootObject(item: T) {
+    this.data.schema.fields
+      .filter((field) => field.translatable)
+      .forEach((field) => {
+        delete item[field.attribute];
+      });
+    return item;
   }
 }

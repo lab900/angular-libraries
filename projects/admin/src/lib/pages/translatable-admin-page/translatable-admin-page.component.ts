@@ -72,15 +72,12 @@ export class TranslatableAdminPageComponent implements OnInit, OnDestroy {
   };
 
   getHandler = async (id: any, language: string): Promise<object> => {
-    this.loading = true;
     try {
       const object = await this.dataService.getByIdAndLanguage(id, language);
-      this.loading = false;
       return object;
-    } finally {
-      this.loading = false;
+    } catch (e) {
+      return null;
     }
-    return null;
   };
 
   onDelete(item: any) {
