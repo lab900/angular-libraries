@@ -20,7 +20,7 @@
         <ng-container matColumnDef="edit" stickyEnd>
             <mat-header-cell *matHeaderCellDef  class="table__header__cell table__header__cell-icon"></mat-header-cell>
             <mat-cell *matCellDef="let element" class="table__row__cell table__row__cell-icon">
-                <button mat-icon-button lab900FormDialog [data]="element" [schema]="schema" [submitFormHandler]="editHandler">
+                <button mat-icon-button lab900TranslatableFormDialog [data]="element" [schema]="schema" [submitFormHandler]="editHandler" [getHandler]="getHandler" [create]="false">
                     <mat-icon>edit</mat-icon>
                 </button>
             </mat-cell>

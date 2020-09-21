@@ -11,6 +11,10 @@ export const showcaseAdminNavItems: NavItemGroup[] = [
             label: 'Admin page',
             route: 'admin/admin-page',
           },
+          {
+            label: 'Translatable admin page',
+            route: 'admin/translatable-admin-page',
+          },
         ],
       },
     ],

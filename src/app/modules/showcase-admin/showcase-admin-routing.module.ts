@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ShowcaseRoute } from '../shared/models/showcase-route.model';
 import { ShowcaseExample } from '../shared/models/showcase-example.model';
 import { AdminPageExampleComponent } from './examples/admin-page/admin-page-example.component';
+import { TranslatableAdminPageExampleComponent } from './examples/translatable-admin-page/translatable-admin-page-example.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   new ShowcaseRoute('admin-page', 'Admin Page', [new ShowcaseExample(AdminPageExampleComponent, 'Admin Page', ['TS'], '')]),
+  new ShowcaseRoute('translatable-admin-page', 'Translatable Admin Page', [
+    new ShowcaseExample(TranslatableAdminPageExampleComponent, 'Translatable Admin Page', ['TS'], ''),
+  ]),
 ];
 
 @NgModule({

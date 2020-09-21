@@ -3,14 +3,15 @@
 </div>
 <div *ngIf="!error">
     <div class="admin-page">
-        <button *ngIf="schema.creatable" mat-raised-button color="primary" lab900FormDialog [schema]="schema" [submitFormHandler]="createHandler">Create</button>
-        <lab900-admin-table
+        <button *ngIf="schema.creatable" mat-raised-button color="primary" lab900TranslatableFormDialog [schema]="schema" [submitFormHandler]="createHandler" [create]="true" [getHandler]="getHandler">Create</button>
+        <lab900-translatable-admin-table
                 [loading]="loading"
                 [schema]="schema"
                 [data]="currentPage"
                 [editHandler]="editHandler"
+                [getHandler]="getHandler"
                 (pageEvent)="onPageEvent($event)"
                 (delete)="onDelete($event)"
-        ></lab900-admin-table>
+        ></lab900-translatable-admin-table>
     </div>
 </div>

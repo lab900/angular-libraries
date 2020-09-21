@@ -19,12 +19,16 @@ import { DialogModule } from '@lab900/ui';
 import { TranslatableFormDialogComponent } from './components/translatable-form-dialog/translatable-form-dialog.component';
 import { TranslatableFormDialogDirective } from './directives/translatable-form-dialog.directive';
 import { MatSelectModule } from '@angular/material/select';
+import { TranslatableAdminPageComponent } from './pages/translatable-admin-page/translatable-admin-page.component';
+import { TranslatableAdminTableComponent } from './components/translatable-admin-table/translatable-admin-table.component';
 
 @NgModule({
   declarations: [
     CheckboxDisplayComponent,
+    TranslatableAdminPageComponent,
     AdminPageComponent,
     AdminTableComponent,
+    TranslatableAdminTableComponent,
     DateDisplayComponent,
     ImageDisplayComponent,
     AdminTableCellComponent,
@@ -50,6 +54,6 @@ import { MatSelectModule } from '@angular/material/select';
     Lab900FormsModule,
     MatSelectModule,
   ],
-  exports: [AdminPageComponent],
+  exports: [AdminPageComponent, TranslatableAdminPageComponent],
 })
 export class AdminModule {}

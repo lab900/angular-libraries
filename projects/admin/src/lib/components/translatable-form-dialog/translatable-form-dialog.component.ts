@@ -32,11 +32,11 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
     this.loading = true;
     this.dialogAdminSchemaData
       .get(this.formData.id, this.currentLanguage)
-      .catch((error) => {
-        this.formData = {}; // Necessary to re-render the form
-      })
       .then((value) => {
         this.formData = value; // Necessary to re-render the form
+      })
+      .catch((error) => {
+        this.formData = {}; // Necessary to re-render the form
       })
       .finally(() => {
         this.loading = false;
@@ -49,8 +49,8 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
     this.addToReturnObject(item);
     this.dialogAdminSchemaData
       .submit({ ...item, ...this.returnObject })
-      .catch((error) => (this.error = error))
       .then((result) => (result ? this.dialogRef.close() : (this.error = 'Oops. An error occured.')))
+      .catch((error) => (this.error = error))
       .finally(() => (this.loading = false));
   }
 

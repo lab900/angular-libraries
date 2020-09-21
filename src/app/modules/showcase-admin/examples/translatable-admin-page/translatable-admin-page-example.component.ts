@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { NEWS_ITEMS, NEWS_SCHEMA } from '../configs/news-schema.config';
-import { DataService } from '../../../../../../projects/admin/src/lib/models/dataService';
+import { TranslatableDataService } from '../../../../../../projects/admin/src/lib/models/translatableDataService';
 import { Item, Page } from '../../../../../../projects/admin/src/lib/models/page';
-import { of } from 'rxjs';
 
 @Component({
-  selector: 'lab900-admin-page-showcase',
-  templateUrl: './admin-page-example.component.html',
+  selector: 'lab900-translatable-admin-page-showcase',
+  templateUrl: './translatable-admin-page-example.component.html',
 })
-export class AdminPageExampleComponent implements OnInit {
+export class TranslatableAdminPageExampleComponent implements OnInit {
   public newsSchema = NEWS_SCHEMA;
 
-  public dataService = new (class implements DataService {
+  public dataService = new (class implements TranslatableDataService {
     private previousPage = 0;
     create(item: object): Promise<string> {
       console.log(item);
@@ -38,6 +37,12 @@ export class AdminPageExampleComponent implements OnInit {
 
     defaultPageSize(): number {
       return 3;
+    }
+
+    async getByIdAndLanguage(id: any, language: string): Promise<object> {
+      return new Promise<object>((resolve) => {
+        setTimeout(() => resolve(NEWS_ITEMS[0]), 300);
+      });
     }
 
     update(object: Item): Promise<void> {
