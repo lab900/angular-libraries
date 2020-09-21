@@ -15,9 +15,3 @@ export interface DataListSharing {
   onShareFn?: (shareObject: any, users: any[]) => any;
   shareDialogTemplate?: any;
 }
-
-export interface DataListPaging {
-  pageSize: number;
-  pageIndex: number;
-  totalItems: number;
-}

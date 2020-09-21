@@ -52,6 +52,14 @@ export class FormFieldInputsExampleComponent {
           type: 'password',
         },
       },
+      {
+        attribute: 'mask',
+        title: 'Mask',
+        editType: EditType.Input,
+        options: {
+          mask: '00.00.00-000.00',
+        },
+      },
     ],
   };
 }
