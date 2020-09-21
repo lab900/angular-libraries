@@ -1,17 +1,19 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions } from '../../../models/FormField';
-import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'lab900-select-field',
   templateUrl: './select-field.component.html',
 })
-export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit {
+export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit, OnDestroy {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
   public values: { value: any; label: string }[];
+
+  private subscriptions: Subscription[] = [];
 
   public ngOnInit(): void {
     this.values = (this.options && this.options.values) || [];
@@ -21,6 +23,10 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
   }
 
   public loadValues() {
-    this.options.valuesFn().pipe(map((value) => (this.values = value)));
+    this.subscriptions.push(this.options.valuesFn().subscribe((values) => (this.values = values)));
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.forEach((value) => value.unsubscribe());
   }
 }

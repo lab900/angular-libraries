@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Form } from 'projects/forms/src/lib/models/Form';
 import { EditType } from 'projects/forms/src/lib/models/editType';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'lab900-form-field-inputs-example',
@@ -58,6 +59,17 @@ export class FormFieldInputsExampleComponent {
         editType: EditType.Input,
         options: {
           mask: '00.00.00-000.00',
+        },
+      },
+      {
+        attribute: 'select',
+        editType: EditType.Select,
+        options: {
+          valuesFn: () =>
+            of([
+              { value: 1, label: '1' },
+              { value: 2, label: '2' },
+            ]),
         },
       },
     ],
