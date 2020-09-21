@@ -30,7 +30,7 @@
   </table>
 
   <mat-paginator
-      *ngIf="data && paging"
+      *ngIf="data?.length && paging"
       hidePageSize
       [length]="paging.totalItems"
       [pageSize]="paging.pageSize"
