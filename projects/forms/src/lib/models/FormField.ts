@@ -45,8 +45,8 @@ export interface RepeaterFieldOptions extends FieldOptions {
 
 export interface SelectFieldOptions extends FieldOptions {
   multiple?: boolean;
-  values?: { key: string; value: string }[];
-  valuesFn?: () => Promise<{ key: any; value: string }[]>;
+  values?: { value: any; label: string }[];
+  valuesFn?: () => Observable<{ value: any; label: string }[]>;
 }
 
 export interface AutocompleteOptions extends FieldOptions {

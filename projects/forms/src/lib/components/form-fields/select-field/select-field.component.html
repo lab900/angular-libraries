@@ -1,7 +1,7 @@
 <mat-form-field [formGroup]="group" [hidden]="hide">
     <mat-label translate>{{ schema.title }}</mat-label>
-    <mat-select [disabled]="readonly" [formControlName]="schema.attribute" [multiple]="options?.multiple" [required]="options?.required">
-        <mat-option *ngFor="let item of values" [value]="item.key" translate>{{item.value}}</mat-option>
+    <mat-select [attr.disabled]="readonly" [formControlName]="schema.attribute" [multiple]="options?.multiple" [required]="options?.required">
+        <mat-option *ngFor="let item of values" [value]="item.value" translate>{{ item.label | translate }}</mat-option>
     </mat-select>
     <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
     <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
