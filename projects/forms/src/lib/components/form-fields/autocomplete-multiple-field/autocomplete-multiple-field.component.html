@@ -4,8 +4,8 @@
     <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
     <mat-icon matSuffix>search</mat-icon>
     <mat-chip-list #chipList [formControlName]="schema.attribute">
-        <mat-chip *ngFor="let options of selectedOptions" selectable removable (removed)="remove(options)">
-            {{ options }}
+        <mat-chip *ngFor="let opt of selectedOptions" selectable removable (removed)="remove(options)">
+            {{ (options?.displayOptionFn(opt) || opt) | translate }}
             <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
         <input
@@ -19,7 +19,7 @@
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{ options.displayOptionFn(option) | translate }}
+            {{ (options?.displayOptionFn(option) || option) | translate }}
         </mat-option>
     </mat-autocomplete>
 </mat-form-field>

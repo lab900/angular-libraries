@@ -20,7 +20,7 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
   private matAutocomplete: MatAutocomplete;
 
   public filteredOptions: Observable<any[]>;
-  public selectedOptions: any[] = []; // ToDo: Set values
+  public selectedOptions: any[] = [];
   public separatorKeysCodes: number[] = [ENTER, COMMA];
 
   public constructor(translateService: TranslateService) {
@@ -41,7 +41,7 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
   }
 
   public selected(event: MatAutocompleteSelectedEvent): void {
-    this.selectedOptions.push(event.option.viewValue);
+    this.selectedOptions.push(event.option.value);
     this.group.controls[this.schema.attribute].setValue(this.selectedOptions);
     this.group.controls[this.schema.attribute].updateValueAndValidity();
     this.input.nativeElement.value = '';
