@@ -32,8 +32,11 @@ export const formFieldsExample: Form = {
           title: 'Birthday',
           editType: EditType.Date,
           options: {
+            placeholder: 'DD/MM/YYYY',
             colspan: 5,
             required: true,
+            startView: 'multi-year',
+            maxDate: new Date(),
           },
         },
         {

@@ -60,6 +60,12 @@ export interface RadioButtonsFieldOptions extends FieldOptions {
   color?: ThemePalette;
 }
 
+export interface DatepickerFieldOptions extends FieldOptions {
+  startView?: 'month' | 'year' | 'multi-year';
+  maxDate?: Date;
+  minDate?: Date;
+}
+
 export interface RangeSliderFieldOptions extends FieldOptions {
   fromLabel?: string;
   toLabel?: string;
@@ -89,6 +95,7 @@ export interface FormField<
     | AutocompleteOptions
     | IconFieldOptions
     | ButtonToggleFieldOptions
+    | DatepickerFieldOptions
 > {
   attribute?: string;
   editType: EditType;

@@ -2,13 +2,16 @@
     <mat-label translate>{{ schema.title }}</mat-label>
     <input
         matInput
+        placeholder="{{ placeholder | translate }}"
         [matDatepicker]="picker"
         [formControlName]="schema.attribute"
         [required]="options?.required"
         [readonly]="readonly || options?.readonly"
+        [max]="maxDate"
+        [min]="minDate"
     >
     <mat-datepicker-toggle [attr.disabled]="readonly" matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker #picker [startView]="startView"></mat-datepicker>
     <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
     <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
 </mat-form-field>
