@@ -4,6 +4,7 @@ import { AutocompleteOptions } from '../../../models/FormField';
 import { isObservable, Observable, of } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lab900-autocomplete-multiple-field',
@@ -21,6 +22,10 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
   public filteredOptions: Observable<any[]>;
   public selectedOptions: any[] = []; // ToDo: Set values
   public separatorKeysCodes: number[] = [ENTER, COMMA];
+
+  public constructor(translateService: TranslateService) {
+    super(translateService);
+  }
 
   public inputChanged($event: Event): void {
     const res = this.options.getOptionsFn(($event.target as any).value);

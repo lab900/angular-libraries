@@ -14,7 +14,7 @@ export class AutocompleteFieldComponent extends FormComponent<AutocompleteOption
 
   public filteredOptions: Observable<any[]>;
 
-  constructor(translateService: TranslateService) {
+  public constructor(translateService: TranslateService) {
     super(translateService);
   }
 
