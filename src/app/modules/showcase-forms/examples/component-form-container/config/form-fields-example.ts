@@ -113,7 +113,12 @@ export const formFieldsExample: Form = {
         {
           attribute: 'registration',
           editType: EditType.Repeater,
-          options: { removeAll: true },
+          options: {
+            removeAll: true,
+            readonlyDisplay: (data: any) => {
+              return (data?.registration || []).map((d) => d.value).join(', ');
+            },
+          },
           nestedFields: [
             {
               attribute: 'value',

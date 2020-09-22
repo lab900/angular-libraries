@@ -18,6 +18,8 @@ export interface FieldOptions {
   defaultValue?: any;
   pattern?: RegExp;
   mask?: string;
+  readonlyLabel?: string;
+  readonlyDisplay?: (data?: any) => any;
 
   /**
    * Translation key for the error to be shown when the pattern validation failed.
@@ -41,6 +43,7 @@ export interface RepeaterFieldOptions extends FieldOptions {
   addLabel?: string;
   minRows?: number;
   maxRows?: number;
+  buttonColor?: ThemePalette;
 }
 
 export interface SelectFieldOptions extends FieldOptions {
