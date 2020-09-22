@@ -7,13 +7,12 @@ import { Item, Page } from '../../../../../../projects/admin/src/lib/models/page
   selector: 'lab900-translatable-admin-page-showcase',
   templateUrl: './translatable-admin-page-example.component.html',
 })
-export class TranslatableAdminPageExampleComponent implements OnInit {
+export class TranslatableAdminPageExampleComponent {
   public newsSchema = NEWS_SCHEMA;
 
   public dataService = new (class implements TranslatableDataService {
     private previousPage = 0;
     create(item: object): Promise<string> {
-      console.log(item);
       throw new Error('Method not implemented.');
     }
     delete(item: Item): Promise<void> {
@@ -46,15 +45,9 @@ export class TranslatableAdminPageExampleComponent implements OnInit {
     }
 
     update(object: Item): Promise<void> {
-      console.log('data service is updating the item');
-      console.log(object);
       return new Promise<void>((resolve) => {
         setTimeout(() => resolve(), 1000);
       });
     }
   })();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

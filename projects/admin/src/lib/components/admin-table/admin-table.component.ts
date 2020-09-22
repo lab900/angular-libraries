@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { SchemaField } from '../../models/schemaField';
-import { Form } from '@lab900/forms';
 import { Schema } from '../../models/schema';
 import { Item, Page } from '../../models/page';
 
@@ -24,6 +23,10 @@ export class AdminTableComponent implements OnInit {
   public columns: SchemaField[];
   public displayedColumns: string[];
   public page = 1;
+
+  get length() {
+    return this.data?.items ? (this.data.hasMore ? this.page * this.data.items.length + 1 : this.page * this.data.items.length) : 0;
+  }
 
   ngOnInit(): void {
     this.columns = this.schema.fields.filter((value) => !value.overviewOptions?.hide).map((value, index) => value);

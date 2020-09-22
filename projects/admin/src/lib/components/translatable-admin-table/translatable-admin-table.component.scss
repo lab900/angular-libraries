@@ -3,8 +3,7 @@
     &__cell {
       padding: 0 10px;
       &-icon {
-        max-width: 40px;
-        min-width: 40px;
+        width: 40px;
       }
     }
   }
@@ -16,8 +15,7 @@
     &__cell {
       padding: 0 10px;
       &-icon {
-        max-width: 40px;
-        min-width: 40px;
+        width: 40px;
       }
     }
   }
@@ -27,10 +25,7 @@
   .mat-paginator-range-label {
     display: none;
   }
-  mat-cell:first-of-type {
-    padding-left: 20px !important;
-  }
-  mat-header-cell:first-of-type {
+  mat-cell:first-of-type, mat-header-cell:first-of-type {
     padding-left: 20px !important;
   }
 }

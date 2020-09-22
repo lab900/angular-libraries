@@ -2,19 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { NEWS_ITEMS, NEWS_SCHEMA } from '../configs/news-schema.config';
 import { DataService } from '../../../../../../projects/admin/src/lib/models/dataService';
 import { Item, Page } from '../../../../../../projects/admin/src/lib/models/page';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'lab900-admin-page-showcase',
   templateUrl: './admin-page-example.component.html',
 })
-export class AdminPageExampleComponent implements OnInit {
+export class AdminPageExampleComponent {
   public newsSchema = NEWS_SCHEMA;
 
   public dataService = new (class implements DataService {
     private previousPage = 0;
     create(item: object): Promise<string> {
-      console.log(item);
       throw new Error('Method not implemented.');
     }
     delete(item: Item): Promise<void> {
@@ -41,15 +39,9 @@ export class AdminPageExampleComponent implements OnInit {
     }
 
     update(object: Item): Promise<void> {
-      console.log('data service is updating the item');
-      console.log(object);
       return new Promise<void>((resolve) => {
         setTimeout(() => resolve(), 1000);
       });
     }
   })();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

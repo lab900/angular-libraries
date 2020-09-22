@@ -19,9 +19,7 @@ export class SchemaConverter {
       .sort((fieldA, fieldB) => (fieldA.translatable === fieldB.translatable ? 0 : fieldA.translatable ? -1 : 1))
       .forEach((schemaField) => {
         form.fields.push({
-          title: schemaField.title,
-          editType: schemaField.editType,
-          attribute: schemaField.attribute,
+          ...schemaField,
           options: create && schemaField.createOptions ? schemaField.createOptions : schemaField.editOptions,
         });
       });

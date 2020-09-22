@@ -34,6 +34,9 @@ export class TranslatableFormDialogDirective<T> {
         create: this.create,
       },
     });
-    dialog.beforeClosed().subscribe((data) => {});
+    dialog
+      .beforeClosed()
+      .subscribe((data) => {})
+      .unsubscribe();
   }
 }

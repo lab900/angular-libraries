@@ -50,9 +50,9 @@
     </mat-card>
     <mat-paginator hidePageSize
                    (page)="pageEvent.emit($event); page = $event.pageIndex + 1"
-                   [disabled]="loading || !data || !data?.items"
+                   [disabled]="loading || !data?.items"
                    [pageSize]="data?.items?.length"
                    [pageIndex]="page - 1 "
-                   [length]="(data && data?.items) ? (data.hasMore ? page * data.items.length + 1 : page * data.items.length) : 0">
+                   [length]="length">
     </mat-paginator>
 </div>

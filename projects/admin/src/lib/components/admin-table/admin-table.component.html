@@ -53,6 +53,6 @@
                    [disabled]="loading || !data || !data?.items"
                    [pageSize]="data?.items?.length"
                    [pageIndex]="page - 1 "
-                   [length]="(data && data?.items) ? (data.hasMore ? page * data.items.length + 1 : page * data.items.length) : 0">
+                   [length]="length">
     </mat-paginator>
 </div>

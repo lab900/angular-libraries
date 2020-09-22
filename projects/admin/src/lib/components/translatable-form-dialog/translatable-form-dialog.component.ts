@@ -69,7 +69,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
         });
       this.formData = { ...item, ...translatables }; // Necessary to re-render the form
       this.loading = false;
-    } else {
+    } else if (!!this.formData && !!this.formData.id) {
       this.dialogAdminSchemaData
         .get(this.formData.id, language)
         .then((value) => {
@@ -87,6 +87,14 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
         .finally(() => {
           this.loading = false;
         });
+    } else {
+      const translatables = {};
+      this.data.schema.fields
+        .filter((field) => field.translatable)
+        .forEach((field) => {
+          translatables[field.attribute] = null;
+        });
+      this.formData = { ...item, ...translatables };
     }
   }
 
