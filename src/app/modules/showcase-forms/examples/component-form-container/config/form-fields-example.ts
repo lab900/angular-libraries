@@ -1,17 +1,16 @@
-import { Form } from '../../../../../../../projects/forms/src/lib/models/Form';
 import { EditType } from '../../../../../../../projects/forms/src/lib/models/editType';
-import { of } from 'rxjs';
+import { Form } from '../../../../../../../projects/forms/src/lib/models/Form';
 
 export const formFieldsExample: Form = {
   fields: [
     {
       attribute: '',
-      title: 'Personal Information',
+      title: 'GENERAL.PERSONAL_INFO',
       editType: EditType.Row,
       nestedFields: [
         {
           attribute: 'firstName',
-          title: 'Firstname',
+          title: 'GENERAL.FIRST_NAME',
           editType: EditType.Input,
           options: {
             colspan: 6,
@@ -19,8 +18,8 @@ export const formFieldsExample: Form = {
           },
         },
         {
-          attribute: 'lastName',
-          title: 'Lastname',
+          attribute: 'name',
+          title: 'GENERAL.LAST_NAME',
           editType: EditType.Input,
           options: {
             colspan: 6,
@@ -28,8 +27,8 @@ export const formFieldsExample: Form = {
           },
         },
         {
-          attribute: 'birthday',
-          title: 'Birthday',
+          attribute: 'dateOfBirth',
+          title: 'GENERAL.BIRTHDAY',
           editType: EditType.Date,
           options: {
             placeholder: 'DD/MM/YYYY',
@@ -37,66 +36,86 @@ export const formFieldsExample: Form = {
             required: true,
             startView: 'multi-year',
             maxDate: new Date(),
+            readonlyDisplay: (data: any) => data?.dateOfBirth,
           },
         },
         {
-          attribute: 'nationality',
-          title: 'Nationality',
-          editType: EditType.Input,
+          attribute: 'gender',
+          editType: EditType.ButtonToggle,
           options: {
             colspan: 5,
+            values: [
+              { value: 'male', icon: { svgName: 'male' } },
+              { value: 'female', icon: { svgName: 'female' } },
+              { value: 'other', icon: { svgName: 'male-female' } },
+              { value: 'unknown', icon: { svgName: 'unknown' } },
+            ],
+            readonlyLabel: 'Gender',
           },
         },
         {
-          attribute: 'nationalInsuranceNumber',
-          title: 'National Insurance Number',
-          editType: EditType.Input,
-          options: {
-            colspan: 10,
-            pattern: new RegExp('^[0-9]{2}[.\\- ]{0,1}[0-9]{2}[.\\- ]{0,1}[0-9]{2}[.\\- ]{0,1}[0-9]{3}[.\\- ]?[0-9]{2}$'),
-          },
-        },
-        {
-          attribute: 'languages',
-          title: 'Choose a language',
+          attribute: 'spokenLanguages',
+          title: 'GENERAL.SPOKEN_LANGUAGES',
           editType: EditType.AutocompleteMultiple,
           options: {
             colspan: 10,
-            getOptionsFn: (value: string) => of(filter(value)),
-            displayOptionFn: (language: { value: string }) => (language && language.value) || '',
+            // displayOptionFn: (languageOption: KeyTranslation) => (languageOption && languageOption.valueI18n) || '',
           },
+        },
+        {
+          attribute: 'nationalities',
+          title: 'GENERAL.NATIONALITIES',
+          editType: EditType.AutocompleteMultiple,
+          options: {
+            colspan: 10,
+            // displayOptionFn: (nationalityOption: KeyTranslation) => (nationalityOption && nationalityOption.valueI18n) || '',
+          },
+        },
+        {
+          attribute: 'nationalRegistrationNumber',
+          title: 'GENERAL.NATIONAL_INSURANCE_NUMBER',
+          editType: EditType.Input,
+          options: {
+            colspan: 5,
+            mask: '00.00.00-000.00',
+          },
+        },
+        {
+          attribute: 'uniqueNumber',
+          title: 'GENERAL.UNIQUE_ID',
+          editType: EditType.Input,
+          options: { colspan: 5, readonly: true },
         },
       ],
     },
     {
       attribute: '',
-      title: 'Contact Information',
+      title: 'GENERAL.CONTACT_INFO',
       editType: EditType.Row,
       nestedFields: [
         {
-          attribute: 'telMobile',
-          title: 'Phone',
+          attribute: 'tel1',
+          title: 'GENERAL.PHONENR_1',
           editType: EditType.Input,
           options: {
-            type: 'tel',
             colspan: 5,
-            pattern: new RegExp('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$'),
           },
         },
         {
-          attribute: 'telHome',
-          title: 'Home',
+          attribute: 'tel1',
+          title: 'GENERAL.PHONENR_2',
           editType: EditType.Input,
           options: {
-            type: 'tel',
             colspan: 5,
-            pattern: new RegExp('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$'),
           },
         },
         {
           attribute: 'email',
-          title: 'Email',
+          title: 'GENERAL.EMAIL',
           editType: EditType.Input,
+          errorMessages: {
+            pattern: 'GENERAL.ENTER.VALID.EMAIL',
+          },
           options: {
             colspan: 5,
             type: 'email',
@@ -107,18 +126,81 @@ export const formFieldsExample: Form = {
     },
     {
       attribute: '',
-      title: 'Phone registration',
+      title: 'GENERAL.ADDRESS.INFORMATION',
       editType: EditType.Row,
       nestedFields: [
         {
-          attribute: 'registration',
+          attribute: 'country',
+          title: 'GENERAL.COUNTRY',
+          editType: EditType.Autocomplete,
+          options: {
+            colspan: 5,
+            displayOptionFn: (countryOption: KeyTranslation) => (countryOption && countryOption.valueI18n) || '',
+          },
+        },
+        {
+          attribute: 'street',
+          title: 'GENERAL.STREET',
+          editType: EditType.Input,
+          options: { colspan: 5 },
+        },
+        {
+          attribute: 'zip',
+          title: 'GENERAL.ZIP',
+          editType: EditType.Input,
+          options: { colspan: 5, mask: '0*' },
+        },
+        {
+          attribute: 'city',
+          title: 'GENERAL.CITY',
+          editType: EditType.Input,
+          options: { colspan: 5 },
+        },
+        {
+          attribute: 'incidentId',
+          title: 'GENERAL.INCIDENT',
+          editType: EditType.Select,
+          options: {
+            colspan: 10,
+            required: true,
+          },
+        },
+        {
+          attribute: 'registrationPointType',
+          title: 'GENERAL.REGISTRATION_POINT',
+          editType: EditType.Select,
+          options: {
+            colspan: 5,
+            hint: 'GENERAL.SELECT_INCIDENT',
+            required: true,
+            readonlyDisplay: () => 'test',
+          },
+        },
+        {
+          attribute: 'locationId',
+          title: 'GENERAL.LOCATION',
+          editType: EditType.Select,
+          options: {
+            colspan: 5,
+            hint: 'GENERAL.SELECT_REGISTRATION_POINT',
+            required: true,
+          },
+        },
+      ],
+    },
+    {
+      attribute: '',
+      title: 'GENERAL.CONTACT.MOMENTS',
+      editType: EditType.Row,
+      nestedFields: [
+        {
+          attribute: 'contactMoment',
           editType: EditType.Repeater,
           options: { removeAll: true },
           nestedFields: [
             {
               attribute: 'value',
               editType: EditType.Input,
-              options: { readonly: true, defaultValue: () => getFormattedDate(new Date(Date.now())) },
             },
           ],
         },
@@ -126,31 +208,14 @@ export const formFieldsExample: Form = {
     },
     {
       attribute: '',
-      title: 'Comment',
+      title: 'GENERAL.EXTRA_COMMENTS',
       editType: EditType.Row,
       nestedFields: [
         {
-          attribute: 'comments',
+          attribute: 'text',
           editType: EditType.TextArea,
         },
       ],
     },
   ],
 };
-
-const getFormattedDate = (date: Date): string => {
-  return `${digits(date.getDate())}/${digits(date.getMonth())}/${date.getFullYear()} - ${digits(date.getHours())}:${digits(
-    date.getMinutes(),
-  )}:${digits(date.getSeconds())}`;
-};
-
-const digits = (value: number): string => {
-  return value > 10 ? `${value}` : `0${value}`;
-};
-
-const filter = (value: string): { value: string }[] => {
-  const filterValue = value.toLowerCase();
-  return options.filter((option: { value: string }) => option.value.toLowerCase().includes(filterValue));
-};
-
-const options: { value: string }[] = [{ value: 'Dutch' }, { value: 'English' }];

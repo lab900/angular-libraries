@@ -45,6 +45,7 @@ import { IconComponent } from './components/icon/icon.component';
 import { AutocompleteMultipleFieldComponent } from './components/form-fields/autocomplete-multiple-field/autocomplete-multiple-field.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMaskModule } from 'ngx-mask';
+import { ReadonlyFieldComponent } from './components/form-fields/readonly-field/readonly-field.component';
 
 const customFields = [
   UnknownFieldComponent,
@@ -63,6 +64,7 @@ const customFields = [
   AutocompleteMultipleFieldComponent,
   IconFieldComponent,
   ButtonToggleFieldComponent,
+  ReadonlyFieldComponent,
 ];
 
 @NgModule({
