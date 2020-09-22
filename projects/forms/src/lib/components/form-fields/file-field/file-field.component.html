@@ -4,5 +4,5 @@
     <mat-icon matSuffix class="flex">folder</mat-icon>
     <mat-icon *ngIf="!fileField.empty" matSuffix (click)="fileField.clear($event)">close</mat-icon>
     <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
-    <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
 </mat-form-field>

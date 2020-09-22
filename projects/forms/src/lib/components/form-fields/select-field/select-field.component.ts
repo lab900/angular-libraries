@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions } from '../../../models/FormField';
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,6 +15,10 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
   public values: { value: any; label: string }[];
 
   private subscriptions: Subscription[] = [];
+
+  constructor(translateService: TranslateService) {
+    super(translateService);
+  }
 
   public ngOnInit(): void {
     this.values = (this.options && this.options.values) || [];

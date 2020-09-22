@@ -20,10 +20,9 @@ export interface FieldOptions {
   mask?: string;
 
   /**
-   * User-friendly representation of the regex. For invalid input,
-   * the user will receive an error message like "Please enter a valid ${regexName}."
+   * Translation key for the error to be shown when the pattern validation failed.
    */
-  patternTitle?: string;
+  patternError?: string;
 
   visibleFn?: (item: IFormComponent<any>) => boolean;
 }
