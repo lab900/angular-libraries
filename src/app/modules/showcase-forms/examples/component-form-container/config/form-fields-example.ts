@@ -51,7 +51,6 @@ export const formFieldsExample: Form = {
           options: {
             colspan: 10,
             pattern: new RegExp('^[0-9]{2}[.\\- ]{0,1}[0-9]{2}[.\\- ]{0,1}[0-9]{2}[.\\- ]{0,1}[0-9]{3}[.\\- ]?[0-9]{2}$'),
-            patternTitle: 'national insurance number',
           },
         },
         {
@@ -79,7 +78,6 @@ export const formFieldsExample: Form = {
             type: 'tel',
             colspan: 5,
             pattern: new RegExp('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$'),
-            patternTitle: 'number',
           },
         },
         {
@@ -90,7 +88,6 @@ export const formFieldsExample: Form = {
             type: 'tel',
             colspan: 5,
             pattern: new RegExp('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$'),
-            patternTitle: 'number',
           },
         },
         {
@@ -101,7 +98,6 @@ export const formFieldsExample: Form = {
             colspan: 5,
             type: 'email',
             pattern: new RegExp('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$'),
-            patternTitle: 'email',
           },
         },
       ],
