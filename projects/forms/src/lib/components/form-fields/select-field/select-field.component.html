@@ -4,5 +4,5 @@
         <mat-option *ngFor="let item of values" [value]="item.key" translate>{{item.value}}</mat-option>
     </mat-select>
     <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
-    <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
 </mat-form-field>

@@ -1,1 +1,3 @@
-<mat-checkbox *ngIf="data !== undefined" disabled="true"  [checked]="data"></mat-checkbox>
+<mat-checkbox *ngIf="data !== undefined" disabled="true"  [checked]="data">
+  {{fieldType.title | translate}}
+</mat-checkbox>

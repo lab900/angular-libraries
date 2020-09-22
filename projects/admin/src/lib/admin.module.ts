@@ -16,6 +16,7 @@ import { CheckboxDisplayComponent } from './components/checkbox-display/checkbox
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Lab900FormsModule } from '@lab900/forms';
 import { DialogModule } from '@lab900/ui';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DialogModule } from '@lab900/ui';
     Lab900FormsModule,
     DialogModule,
     MatCheckboxModule,
+    TranslateModule.forChild(),
   ],
   exports: [AdminPageComponent],
 })

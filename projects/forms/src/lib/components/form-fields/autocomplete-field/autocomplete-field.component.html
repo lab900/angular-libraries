@@ -10,7 +10,7 @@
            [readonly]="readonly"
     >
     <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
-    <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
     <mat-icon matSuffix>search</mat-icon>
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="options.displayInputFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">

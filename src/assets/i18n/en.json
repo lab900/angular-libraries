@@ -1,0 +1,31 @@
+{
+  "forms.error.somethingelse": "123",
+  "language": "Language",
+  "languages.en": "English",
+  "languages.nl": "Dutch",
+  "label": {
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "open-dialog-form": "Open dialog form",
+    "open-dialog-form-prefilled": "Open dialog form with prefilled data",
+    "email": "Email",
+    "email-error": "Please enter a valid email address.",
+    "number": "Number",
+    "attachment": "Attachment",
+    "posted-on": "Posted On",
+    "published": "Published",
+    "pizza-toppings": "Pizza Toppings",
+    "cheese": "Cheese",
+    "tomato": "Tomato",
+    "must-agree": "I like pizza",
+    "pizza-error": "That is not a valid answer."
+  },
+  "content": {
+    "buttons": "Buttons",
+    "form-element": "Form Element",
+    "forms": "Forms",
+    "admin": "Admin",
+    "ui": "UI",
+    "form-title": "Please enter your information below."
+  }
+}
