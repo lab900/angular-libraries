@@ -111,6 +111,7 @@ export const NEWS_ITEMS = [
     postedOnShort: new Date(),
     backgroundImageUrl:
       'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fproject-images%2Fradar%2Fradar-mockup.svg?alt=media&token=0b42563b-730f-4cf2-8828-17d957e30965',
+    languages: ['en', 'fr'],
   },
   {
     id: '2',

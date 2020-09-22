@@ -17,6 +17,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
   public formSchema: Form;
   public currentLanguage: string;
   private returnObject: any = {};
+  private rootObject: any;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: DialogAdminSchemaData<T>,
@@ -33,6 +34,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
     this.dialogAdminSchemaData
       .get(this.formData.id, this.currentLanguage)
       .then((value) => {
+        this.rootObject = value; // Necessary to not lose attributes which are not in the form
         this.formData = value; // Necessary to re-render the form
       })
       .catch((error) => {
@@ -49,7 +51,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
     this.addToReturnObject(item);
     item = this.removeTranslatableFieldsFromRootObject(item);
     this.dialogAdminSchemaData
-      .submit({ ...item, ...this.returnObject })
+      .submit({ ...this.rootObject, ...item, ...this.returnObject })
       .then((result) => (result ? this.dialogRef.close() : (this.error = 'Oops. An error occured.')))
       .catch((error) => (this.error = error))
       .finally(() => (this.loading = false));
