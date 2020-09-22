@@ -8,8 +8,8 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
         label: 'Components',
         children: [
           {
-            label: 'Form container',
-            // route: 'forms/form-container',
+            label: 'Form Container',
+            route: 'forms/form-container',
           },
         ],
       },

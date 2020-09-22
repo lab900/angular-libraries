@@ -17,7 +17,10 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   @Input()
   public schema: FormField<T>;
 
-  constructor(private translateService: TranslateService) {}
+  public constructor(private translateService: TranslateService) {}
+
+  @Input()
+  public readonly = false;
 
   public get valid(): boolean {
     return this.group.get(this.schema.attribute).valid;

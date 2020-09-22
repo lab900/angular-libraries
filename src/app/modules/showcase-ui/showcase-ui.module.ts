@@ -14,6 +14,7 @@ import { AlertsExampleComponent } from './examples/alerts-example/alerts-example
 import { NavListExampleComponent } from './examples/nav-list-example/nav-list-example.component';
 import { PageHeaderExampleComponent } from './examples/page-header-example/page-header-example.component';
 import { TableExampleComponent } from './examples/table-example/table-example.component';
+import { PageHeaderParamsExampleComponent } from './examples/page-header-params-example/page-header-params-example.component';
 
 const examples = [
   SharingExampleComponent,
@@ -21,6 +22,7 @@ const examples = [
   AlertsExampleComponent,
   NavListExampleComponent,
   PageHeaderExampleComponent,
+  PageHeaderParamsExampleComponent,
   TableExampleComponent,
 ];
 

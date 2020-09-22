@@ -29,6 +29,7 @@ import { RangeSliderFieldComponent } from '../components/form-fields/range-slide
 import { AutocompleteFieldComponent } from '../components/form-fields/autocomplete-field/autocomplete-field.component';
 import { IconFieldComponent } from '../components/form-fields/icon-field/icon-field.component';
 import { ButtonToggleFieldComponent } from '../components/form-fields/button-toggle-field/button-toggle-field.component';
+import { AutocompleteMultipleFieldComponent } from '../components/form-fields/autocomplete-multiple-field/autocomplete-multiple-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -57,6 +58,8 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return RangeSliderFieldComponent;
     case EditType.Autocomplete:
       return AutocompleteFieldComponent;
+    case EditType.AutocompleteMultiple:
+      return AutocompleteMultipleFieldComponent;
     case EditType.Icon:
       return IconFieldComponent;
     case EditType.ButtonToggle:
@@ -76,6 +79,9 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
   @Input()
   public group: FormGroup;
 
+  @Input()
+  public readonly = false;
+
   public component: ComponentRef<FormComponent>;
 
   public statusChangeSubscription: Subscription;
@@ -86,6 +92,7 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
     if (this.component) {
       this.component.instance.schema = this.schema;
       this.component.instance.group = this.group;
+      this.component.instance.readonly = this.readonly;
     }
   }
 
@@ -95,6 +102,7 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
     this.component = this.container.createComponent(component);
     this.component.instance.schema = this.schema;
     this.component.instance.group = this.group;
+    this.component.instance.readonly = this.readonly;
   }
 
   public ngOnDestroy(): void {

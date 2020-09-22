@@ -10,13 +10,14 @@ export interface FieldOptions {
   placeholder?: string;
   colspan?: number;
   required?: boolean;
-  readOnly?: boolean;
+  readonly?: boolean;
   minLength?: number;
   maxLength?: number;
   min?: number;
   max?: number;
-
+  defaultValue?: any;
   pattern?: RegExp;
+  mask?: string;
 
   /**
    * Translation key for the error to be shown when the pattern validation failed.
@@ -31,11 +32,12 @@ export interface WysiwygFieldOptions extends FieldOptions {
 }
 
 export interface InputFieldOptions extends FieldOptions {
-  type?: 'text' | 'number' | 'email' | 'password';
+  type?: 'text' | 'number' | 'email' | 'password' | 'tel';
 }
 
 export interface RepeaterFieldOptions extends FieldOptions {
   fixedList?: boolean;
+  removeAll?: boolean;
   addLabel?: string;
   minRows?: number;
   maxRows?: number;

@@ -16,7 +16,7 @@ export class InputFieldComponent extends FormComponent<InputFieldOptions> {
     super(translateService);
   }
 
-  public get inputType(): 'text' | 'number' | 'email' | 'password' {
+  public get inputType(): 'text' | 'number' | 'email' | 'password' | 'tel' {
     return (this.options && this.options.type) || 'text';
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@lab900/forms",
-  "version": "2.0.36",
+  "version": "2.0.46",
   "peerDependencies": {
     "@angular/common": "~10.0.2",
     "@angular/core": "~10.0.2",
@@ -9,7 +9,8 @@
     "@ngx-translate/core": "^13.0.0",
     "@kolkov/angular-editor": "^1.1.2",
     "@types/nouislider": "^9.0.7",
-    "nouislider": "^14.6.0"
+    "nouislider": "^14.6.0",
+    "ngx-mask": "^10.0.1"
   },
   "repository": {
     "type": "git",

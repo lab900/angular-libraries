@@ -1,5 +1,5 @@
 <div [formGroup]="group" [hidden]="hide">
-    <mat-checkbox [formControlName]="schema.attribute" [indeterminate]="indeterminate" [required]="options?.required">
+    <mat-checkbox [disabled]="readonly" [formControlName]="schema.attribute" [indeterminate]="indeterminate" [required]="options?.required">
       {{schema.title | translate}}
     </mat-checkbox>
     <div class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
