@@ -3,6 +3,7 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { FormArray } from '@angular/forms';
 import { RepeaterFieldOptions } from '../../../models/FormField';
 import { Lab900FormBuilderService } from '../../../services/form-builder.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lab900-repeater-field',
@@ -33,8 +34,8 @@ export class RepeaterFieldComponent extends FormComponent<RepeaterFieldOptions> 
     return this.group.get(this.schema.attribute) as FormArray;
   }
 
-  public constructor(private fb: Lab900FormBuilderService) {
-    super();
+  public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
+    super(translateService);
   }
 
   public ngOnInit(): void {

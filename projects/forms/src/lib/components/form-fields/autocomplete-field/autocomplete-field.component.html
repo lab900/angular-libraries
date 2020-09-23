@@ -1,8 +1,16 @@
 <mat-form-field [formGroup]="group" [hidden]="hide">
     <mat-label translate>{{ schema.title }}</mat-label>
-    <input matInput type="text" [matAutocomplete]="auto" (input)="inputChanged($event)" placeholder="{{ placeholder | translate }}" [formControlName]="schema.attribute" [required]="options?.required">
+    <input matInput
+           type="text"
+           [matAutocomplete]="auto"
+           (input)="inputChanged($event)"
+           placeholder="{{ placeholder | translate }}"
+           [formControlName]="schema.attribute"
+           [required]="options?.required"
+           [readonly]="readonly"
+    >
     <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
-    <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
+    <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
     <mat-icon matSuffix>search</mat-icon>
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="options.displayInputFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">

@@ -9,7 +9,7 @@
        [ngStyle]="{'padding-left': (depth * 12) + 'px'}"
        [ngClass]="{'expanded': expanded}">
         <lab900-icon class="nav-item__link__icon-left" [icon]="item.icon" *ngIf="item.icon && (item.icon?.position === 'left' || !item.icon?.position)"></lab900-icon>
-        <span fxFlex="1 1 auto">{{ item.label }}</span>
+        <span fxFlex="1 1 auto">{{ item.label | translate }}</span>
         <lab900-icon class="nav-item__link__icon-right" [icon]="item.icon" *ngIf="item.icon && item.icon?.position === 'right'"></lab900-icon>
     </a>
 

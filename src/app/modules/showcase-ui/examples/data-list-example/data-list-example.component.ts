@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataListItemAction, DataListPaging, DataListSharing } from 'projects/ui/src/lib/data-list/models/data-list.model';
+import { DataListItemAction, DataListSharing } from 'projects/ui/src/lib/data-list/models/data-list.model';
 import { PageEvent } from '@angular/material/paginator';
+import { Paging } from 'projects/ui/src/lib/common/models/paging.model';
 
 const dummyData: any[] = [
   {
@@ -67,7 +68,7 @@ const dummyData: any[] = [
 export class DataListExampleComponent implements OnInit {
   public data: any[];
 
-  public paging: DataListPaging = {
+  public paging: Paging = {
     pageIndex: 0,
     pageSize: 5,
     totalItems: dummyData.length,

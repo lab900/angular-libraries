@@ -10,18 +10,19 @@ export interface FieldOptions {
   placeholder?: string;
   colspan?: number;
   required?: boolean;
+  readonly?: boolean;
   minLength?: number;
   maxLength?: number;
   min?: number;
   max?: number;
-
+  defaultValue?: any;
   pattern?: RegExp;
+  mask?: string;
 
   /**
-   * User-friendly representation of the regex. For invalid input,
-   * the user will receive an error message like "Please enter a valid ${regexName}."
+   * Translation key for the error to be shown when the pattern validation failed.
    */
-  patternTitle?: string;
+  patternError?: string;
 
   visibleFn?: (item: IFormComponent<any>) => boolean;
 }
@@ -31,11 +32,12 @@ export interface WysiwygFieldOptions extends FieldOptions {
 }
 
 export interface InputFieldOptions extends FieldOptions {
-  type?: 'text' | 'number' | 'email' | 'password';
+  type?: 'text' | 'number' | 'email' | 'password' | 'tel';
 }
 
 export interface RepeaterFieldOptions extends FieldOptions {
   fixedList?: boolean;
+  removeAll?: boolean;
   addLabel?: string;
   minRows?: number;
   maxRows?: number;
@@ -43,8 +45,8 @@ export interface RepeaterFieldOptions extends FieldOptions {
 
 export interface SelectFieldOptions extends FieldOptions {
   multiple?: boolean;
-  values?: { key: string; value: string }[];
-  valuesFn?: () => Promise<{ key: any; value: string }[]>;
+  values?: { value: any; label: string }[];
+  valuesFn?: () => Observable<{ value: any; label: string }[]>;
 }
 
 export interface AutocompleteOptions extends FieldOptions {
@@ -56,6 +58,12 @@ export interface AutocompleteOptions extends FieldOptions {
 export interface RadioButtonsFieldOptions extends FieldOptions {
   values: { value: any; label: string }[];
   color?: ThemePalette;
+}
+
+export interface DatepickerFieldOptions extends FieldOptions {
+  startView?: 'month' | 'year' | 'multi-year';
+  maxDate?: Date;
+  minDate?: Date;
 }
 
 export interface RangeSliderFieldOptions extends FieldOptions {
@@ -87,6 +95,7 @@ export interface FormField<
     | AutocompleteOptions
     | IconFieldOptions
     | ButtonToggleFieldOptions
+    | DatepickerFieldOptions
 > {
   attribute?: string;
   editType: EditType;

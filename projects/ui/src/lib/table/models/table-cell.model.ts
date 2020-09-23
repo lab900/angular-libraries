@@ -6,4 +6,7 @@ export interface TableCell<T = any> {
   cellClass?: propFunction<T> | string;
   cellFormatter?: propFunction<T>;
   hide?: (data: T, cell: TableCell) => boolean;
+  sortable?: boolean;
+  sticky?: boolean;
+  width?: string;
 }

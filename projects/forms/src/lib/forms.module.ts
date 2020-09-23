@@ -42,6 +42,9 @@ import { IconFieldComponent } from './components/form-fields/icon-field/icon-fie
 import { ButtonToggleFieldComponent } from './components/form-fields/button-toggle-field/button-toggle-field.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { IconComponent } from './components/icon/icon.component';
+import { AutocompleteMultipleFieldComponent } from './components/form-fields/autocomplete-multiple-field/autocomplete-multiple-field.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { NgxMaskModule } from 'ngx-mask';
 
 const customFields = [
   UnknownFieldComponent,
@@ -57,6 +60,7 @@ const customFields = [
   RadioButtonsFieldComponent,
   RangeSliderFieldComponent,
   AutocompleteFieldComponent,
+  AutocompleteMultipleFieldComponent,
   IconFieldComponent,
   ButtonToggleFieldComponent,
 ];
@@ -93,6 +97,8 @@ const customFields = [
     HttpClientModule,
     TranslateModule,
     MatButtonToggleModule,
+    MatChipsModule,
+    NgxMaskModule.forRoot(),
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })

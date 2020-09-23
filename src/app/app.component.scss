@@ -29,6 +29,14 @@
 			font-weight: normal;
 		}
 	}
+
+	.language-selector {
+		font-size: .75rem;
+	}
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
 }
 
 main {

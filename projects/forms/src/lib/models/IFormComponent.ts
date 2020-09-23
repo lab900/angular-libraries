@@ -1,6 +1,8 @@
 import { FormGroup } from '@angular/forms';
 import { FormField, FieldOptions } from './FormField';
 import { Input, Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 
 export interface IFormComponent<T extends FieldOptions> {
   schema: FormField<T>;
@@ -14,6 +16,11 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
 
   @Input()
   public schema: FormField<T>;
+
+  public constructor(private translateService: TranslateService) {}
+
+  @Input()
+  public readonly = false;
 
   public get valid(): boolean {
     return this.group.get(this.schema.attribute).valid;
@@ -35,37 +42,39 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     return this.schema && this.schema.options && this.schema.options.placeholder;
   }
 
-  public getErrorMessage(): string {
+  public getErrorMessage(): Observable<string> {
     const field = this.group.get(this.schema.attribute);
-    let message = `Field is invalid.`;
+    let message = this.translateService.get('forms.error.generic');
+
     Object.keys(field.errors).forEach((key: string) => {
       if (field.hasError(key)) {
         if (this.schema.errorMessages && Object.keys(this.schema.errorMessages).includes(key)) {
-          message = this.schema.errorMessages[key];
+          message = this.translateService.get(this.schema.errorMessages[key]);
         } else {
           message = this.getDefaultErrorMessage(key);
         }
       }
     });
+
     return message;
   }
 
-  private getDefaultErrorMessage(key: string): string {
+  private getDefaultErrorMessage(key: string): Observable<string> {
     switch (key) {
       case 'required':
-        return `A value is required.`;
+        return this.translateService.get('forms.error.required');
       case 'minlength':
-        return `This field should contain at least ${this.options.minLength} characters.`;
+        return this.translateService.get('forms.error.minlength', this.schema.options);
       case 'maxlength':
-        return `This field should contain at most ${this.options.maxLength} characters.`;
+        return this.translateService.get('forms.error.maxlength', this.schema.options);
       case 'min':
-        return `This should be at least ${this.options.min}.`;
+        return this.translateService.get('forms.error.min', this.schema.options);
       case 'max':
-        return `This should be at most ${this.options.max}.`;
+        return this.translateService.get('forms.error.max', this.schema.options);
       case 'pattern':
-        return `Please enter a valid ${this.options.patternTitle}.`;
+        return this.translateService.get(this.schema.options.patternError ?? 'forms.error.generic', this.schema.options);
       default:
-        return `Field is invalid.`;
+        return this.translateService.get('forms.error.generic');
     }
   }
 }

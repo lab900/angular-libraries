@@ -21,6 +21,7 @@ import { TranslatableFormDialogDirective } from './directives/translatable-form-
 import { MatSelectModule } from '@angular/material/select';
 import { TranslatableAdminPageComponent } from './pages/translatable-admin-page/translatable-admin-page.component';
 import { TranslatableAdminTableComponent } from './components/translatable-admin-table/translatable-admin-table.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -51,8 +52,8 @@ import { TranslatableAdminTableComponent } from './components/translatable-admin
         appearance: 'outline',
       },
     }),
-    Lab900FormsModule,
     MatSelectModule,
+    TranslateModule.forChild(),
   ],
   exports: [AdminPageComponent, TranslatableAdminPageComponent],
 })

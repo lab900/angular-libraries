@@ -1,9 +1,9 @@
 <div [formGroup]="group" [hidden]="hide" class="radio-buttons-field">
     <span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
-    <mat-radio-group [formControlName]="schema.attribute" [color]="options?.color || 'primary'" [required]="options?.required">
+    <mat-radio-group [attr.disabled]="readonly" [formControlName]="schema.attribute" [color]="options?.color || 'primary'" [required]="options?.required">
         <mat-radio-button *ngFor="let value of options?.values" [value]="value.value">{{ value.label | translate }}</mat-radio-button>
     </mat-radio-group>
     <div class="radio-buttons-field__error">
-        <mat-error *ngIf="!valid" [translate]="getErrorMessage()"></mat-error>
+        <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
     </div>
 </div>

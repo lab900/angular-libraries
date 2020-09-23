@@ -1,4 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { FormComponent } from '../../models/IFormComponent';
 import { FieldOptions } from '../../models/FormField';
 
@@ -10,6 +11,10 @@ import { FieldOptions } from '../../models/FormField';
 export class FormRowComponent extends FormComponent<FieldOptions> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
+
+  constructor(translateService: TranslateService) {
+    super(translateService);
+  }
 
   colspan(options: FieldOptions) {
     return options == null || !options.colspan

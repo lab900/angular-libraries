@@ -10,10 +10,16 @@ import { Lab900TableComponent } from './components/table/table.component';
 import { Lab900TableEmptyDirective } from './directives/table-empty.directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
+import { Lab900TableDisabledDirective } from './directives/table-disabled.directive';
+import { TableActionComponent } from './components/table-action/table-action.component';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
-  declarations: [Lab900TableComponent, Lab900TableEmptyDirective],
-  exports: [Lab900TableComponent, Lab900TableEmptyDirective],
+  declarations: [Lab900TableComponent, Lab900TableEmptyDirective, Lab900TableDisabledDirective, TableActionComponent],
+  exports: [Lab900TableComponent, Lab900TableEmptyDirective, Lab900TableDisabledDirective],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -21,9 +27,13 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatTableModule,
     MatIconModule,
+    MatSortModule,
     TranslateModule,
     RouterModule,
     FlexLayoutModule,
+    MatMenuModule,
+    MatTooltipModule,
+    MatPaginatorModule,
   ],
 })
 export class Lab900TableModule {}

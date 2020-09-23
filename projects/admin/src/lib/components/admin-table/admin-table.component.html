@@ -5,7 +5,7 @@
                              [ngStyle]="column?.overviewOptions?.displayOptions?.maxColumnWidth &&
                                 { 'max-width': column?.overviewOptions?.displayOptions?.maxColumnWidth }"
             class="table__header__cell">
-                {{column.title }} </mat-header-cell>
+                {{ column.title | translate }} </mat-header-cell>
             <mat-cell *matCellDef="let element"
                       [ngStyle]="column?.overviewOptions?.displayOptions?.maxColumnWidth &&
                                 { 'max-width': column?.overviewOptions?.displayOptions?.maxColumnWidth }"

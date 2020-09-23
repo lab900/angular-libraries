@@ -1,0 +1,25 @@
+<mat-form-field [formGroup]="group" [hidden]="hide">
+    <mat-label translate>{{ schema.title }}</mat-label>
+    <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
+    <mat-error *ngIf="!valid" translate>{{getErrorMessage()}}</mat-error>
+    <mat-icon matSuffix>search</mat-icon>
+    <mat-chip-list #chipList [formControlName]="schema.attribute">
+        <mat-chip *ngFor="let opt of selectedOptions; let i = index" selectable removable (removed)="remove(i)">
+            {{ (options?.displayOptionFn(opt) || opt) | translate }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input
+            (input)="inputChanged($event)"
+            placeholder="{{ placeholder | translate }}"
+            #input
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        >
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{ (options?.displayOptionFn(option) || option) | translate }}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

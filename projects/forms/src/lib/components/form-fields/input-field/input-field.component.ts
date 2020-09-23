@@ -1,6 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { InputFieldOptions } from '../../../models/FormField';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'lab900-input-field',
@@ -11,7 +12,11 @@ export class InputFieldComponent extends FormComponent<InputFieldOptions> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  public get inputType(): 'text' | 'number' | 'email' | 'password' {
+  constructor(translateService: TranslateService) {
+    super(translateService);
+  }
+
+  public get inputType(): 'text' | 'number' | 'email' | 'password' | 'tel' {
     return (this.options && this.options.type) || 'text';
   }
 }

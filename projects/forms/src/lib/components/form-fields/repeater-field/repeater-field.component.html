@@ -8,10 +8,11 @@
                     lab900FormField
                     [schema]="field"
                     [group]="control"
+                    [readonly]="readonly"
                 ></ng-container>
             </div>
             <div *ngIf="!fixedList" class="repeater-row__actions">
-                <button *ngIf="(i + 1) > minRows" (click)="removeFromArray(i)" mat-mini-fab class="mat-elevation-z0" color="accent" aria-label="Delete">
+                <button *ngIf="(i + 1) > minRows || options?.removeAll" (click)="removeFromArray(i)" mat-mini-fab class="mat-elevation-z0" color="warn" aria-label="Delete">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
