@@ -40,20 +40,6 @@ export const formFieldsExample: Form = {
           },
         },
         {
-          attribute: 'gender',
-          editType: EditType.ButtonToggle,
-          options: {
-            colspan: 5,
-            values: [
-              { value: 'male', icon: { svgName: 'male' } },
-              { value: 'female', icon: { svgName: 'female' } },
-              { value: 'other', icon: { svgName: 'male-female' } },
-              { value: 'unknown', icon: { svgName: 'unknown' } },
-            ],
-            readonlyLabel: 'Gender',
-          },
-        },
-        {
           attribute: 'spokenLanguages',
           title: 'GENERAL.SPOKEN_LANGUAGES',
           editType: EditType.AutocompleteMultiple,
@@ -135,7 +121,7 @@ export const formFieldsExample: Form = {
           editType: EditType.Autocomplete,
           options: {
             colspan: 5,
-            displayOptionFn: (countryOption: KeyTranslation) => (countryOption && countryOption.valueI18n) || '',
+            // displayOptionFn: (countryOption: KeyTranslation) => (countryOption && countryOption.valueI18n) || '',
           },
         },
         {
