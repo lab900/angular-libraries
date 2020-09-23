@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'ui',
     loadChildren: () => import('./modules/showcase-ui/showcase-ui.module').then((m) => m.ShowcaseUiModule),
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./modules/showcase-admin/showcase-admin.module').then((m) => m.ShowcaseAdminModule),
+  },
 ];
 
 @NgModule({

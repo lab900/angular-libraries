@@ -7,6 +7,7 @@ export interface SchemaField {
   overviewOptions?: OverviewOptions;
   editOptions?: FieldOptions | WysiwygFieldOptions | SelectFieldOptions;
   createOptions?: FieldOptions | WysiwygFieldOptions | SelectFieldOptions;
+  translatable?: boolean;
 }
 
 export interface OverviewOptions {
