@@ -5,7 +5,7 @@
                              [ngStyle]="column?.overviewOptions?.displayOptions?.maxColumnWidth &&
                                 { 'max-width': column?.overviewOptions?.displayOptions?.maxColumnWidth }"
             class="table__header__cell">
-                {{ column.title | translate }} </mat-header-cell>
+                {{column.title }} </mat-header-cell>
             <mat-cell *matCellDef="let element"
                       [ngStyle]="column?.overviewOptions?.displayOptions?.maxColumnWidth &&
                                 { 'max-width': column?.overviewOptions?.displayOptions?.maxColumnWidth }"
@@ -20,7 +20,7 @@
         <ng-container matColumnDef="edit" stickyEnd>
             <mat-header-cell *matHeaderCellDef  class="table__header__cell table__header__cell-icon"></mat-header-cell>
             <mat-cell *matCellDef="let element" class="table__row__cell table__row__cell-icon">
-                <button mat-icon-button lab900FormDialog [data]="element" [schema]="schema" [submitFormHandler]="editHandler">
+                <button mat-icon-button lab900TranslatableFormDialog [data]="element" [schema]="schema" [submitFormHandler]="editHandler" [getHandler]="getHandler" [create]="false">
                     <mat-icon>edit</mat-icon>
                 </button>
             </mat-cell>
@@ -50,7 +50,7 @@
     </mat-card>
     <mat-paginator hidePageSize
                    (page)="pageEvent.emit($event); page = $event.pageIndex + 1"
-                   [disabled]="loading || !data || !data?.items"
+                   [disabled]="loading || !data?.items"
                    [pageSize]="data?.items?.length"
                    [pageIndex]="page - 1 "
                    [length]="length">

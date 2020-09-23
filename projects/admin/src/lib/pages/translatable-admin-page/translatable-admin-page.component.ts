@@ -3,17 +3,17 @@ import { Schema } from '../../models/schema';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { DataService } from '../../models/dataService';
+import { TranslatableDataService } from '../../models/translatableDataService';
 import { Item, Page } from '../../models/page';
 
 @Component({
-  selector: 'lab900-admin-page',
-  templateUrl: './admin-page.component.html',
-  styleUrls: ['./admin-page.component.scss'],
+  selector: 'lab900-translatable-admin-page',
+  templateUrl: './translatable-admin-page.component.html',
+  styleUrls: ['./translatable-admin-page.component.scss'],
 })
-export class AdminPageComponent implements OnInit, OnDestroy {
+export class TranslatableAdminPageComponent implements OnInit, OnDestroy {
   @Input() schema: Schema;
-  @Input() dataService: DataService;
+  @Input() dataService: TranslatableDataService;
 
   public error: string;
   public loading = false;
@@ -69,6 +69,15 @@ export class AdminPageComponent implements OnInit, OnDestroy {
     const newId = await this.dataService.create(item);
     this.loadData();
     return newId;
+  };
+
+  getHandler = async (id: any, language: string): Promise<object> => {
+    try {
+      const object = await this.dataService.getByIdAndLanguage(id, language);
+      return object;
+    } catch (e) {
+      return null;
+    }
   };
 
   onDelete(item: any) {

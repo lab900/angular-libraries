@@ -1,0 +1,22 @@
+<mat-dialog-content>
+    <div class="language-select-container" *ngIf="dialogAdminSchemaData.schema.languages">
+        <mat-select [value]="currentLanguage" align="end" class="language-select-container__languages">
+            <mat-option *ngFor="let language of dialogAdminSchemaData.schema.languages | keyvalue" [value]="language.key" (click)="onLanguageChange(language.key, lab900Form.value)" class="language-select-container__languages__option">
+                {{language.value}}
+            </mat-option>
+        </mat-select>
+        <div class="language-select-container__spacer"></div>
+        <button mat-raised-button (click)="clearLanguage()">
+            <mat-icon>
+                delete
+            </mat-icon>
+            Clear current language
+        </button>
+    </div>
+    <lab900-form-container #lab900Form [schema]="formSchema" [data]="formData">
+    </lab900-form-container>
+</mat-dialog-content>
+<mat-dialog-actions  align="end">
+    <button mat-raised-button mat-dialog-close tabindex="-1">Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="(!lab900Form.valid || loading || !!error)" (click)="submit(lab900Form.value)" tabindex="1">Ok</button>
+</mat-dialog-actions>

@@ -1,0 +1,15 @@
+.admin-page {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-content: stretch;
+
+    button {
+        margin-bottom: 20px;
+    }
+
+    lab900-admin-table {
+        flex: 1 1 auto;
+        align-self: stretch;
+    }
+}
