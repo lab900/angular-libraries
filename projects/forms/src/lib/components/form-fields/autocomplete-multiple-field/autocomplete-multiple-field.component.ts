@@ -20,8 +20,11 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
   private matAutocomplete: MatAutocomplete;
 
   public filteredOptions: Observable<any[]>;
-  public selectedOptions: any[] = []; // ToDo: Set values
   public separatorKeysCodes: number[] = [ENTER, COMMA];
+
+  public get selectedOptions(): any[] {
+    return this.group.controls[this.schema.attribute]?.value ?? [];
+  }
 
   public constructor(translateService: TranslateService) {
     super(translateService);
@@ -32,18 +35,24 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
     this.filteredOptions = isObservable(res) ? res : of(res);
   }
 
-  public remove(option: any): void {
-    const index = this.selectedOptions.indexOf(option);
-
+  public remove(index: number): void {
     if (index >= 0) {
-      this.selectedOptions.splice(index, 1);
+      const value = this.selectedOptions;
+      value.splice(index, 1);
+      this.updateControlValue(value);
+      this.input.nativeElement.value = '';
     }
   }
 
   public selected(event: MatAutocompleteSelectedEvent): void {
-    this.selectedOptions.push(event.option.viewValue);
-    this.group.controls[this.schema.attribute].setValue(this.selectedOptions);
-    this.group.controls[this.schema.attribute].updateValueAndValidity();
+    const value = this.selectedOptions;
+    value.push(event.option.value);
+    this.updateControlValue(value);
     this.input.nativeElement.value = '';
+  }
+
+  private updateControlValue(val: any[]): void {
+    this.group.controls[this.schema.attribute].setValue(val);
+    this.group.controls[this.schema.attribute].updateValueAndValidity();
   }
 }

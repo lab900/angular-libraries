@@ -16,16 +16,25 @@ import { CheckboxDisplayComponent } from './components/checkbox-display/checkbox
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Lab900FormsModule } from '@lab900/forms';
 import { DialogModule } from '@lab900/ui';
+import { TranslatableFormDialogComponent } from './components/translatable-form-dialog/translatable-form-dialog.component';
+import { TranslatableFormDialogDirective } from './directives/translatable-form-dialog.directive';
+import { MatSelectModule } from '@angular/material/select';
+import { TranslatableAdminPageComponent } from './pages/translatable-admin-page/translatable-admin-page.component';
+import { TranslatableAdminTableComponent } from './components/translatable-admin-table/translatable-admin-table.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
     CheckboxDisplayComponent,
+    TranslatableAdminPageComponent,
     AdminPageComponent,
     AdminTableComponent,
+    TranslatableAdminTableComponent,
     DateDisplayComponent,
     ImageDisplayComponent,
     AdminTableCellComponent,
+    TranslatableFormDialogComponent,
+    TranslatableFormDialogDirective,
   ],
   imports: [
     CommonModule,
@@ -36,11 +45,16 @@ import { TranslateModule } from '@ngx-translate/core';
     MatDialogModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    Lab900FormsModule,
     DialogModule,
     MatCheckboxModule,
+    Lab900FormsModule.forRoot({
+      formField: {
+        appearance: 'outline',
+      },
+    }),
+    MatSelectModule,
     TranslateModule.forChild(),
   ],
-  exports: [AdminPageComponent],
+  exports: [AdminPageComponent, TranslatableAdminPageComponent],
 })
 export class AdminModule {}
