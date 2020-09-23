@@ -35,7 +35,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   }
 
   public get hint(): string {
-    return this.schema && this.schema.options && this.schema.options.hint;
+    return this.schema && this.schema.options && this.schema.options.hint && this.schema.options.hint.value;
   }
 
   public get placeholder(): string {

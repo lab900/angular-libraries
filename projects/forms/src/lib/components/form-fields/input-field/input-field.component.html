@@ -9,7 +9,7 @@
            matInput
            placeholder="{{ placeholder | translate }}"
     >
-    <mat-hint *ngIf="hint &&!input.value">{{ hint | translate }}</mat-hint>
+    <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value)">{{ hint | translate }}</mat-hint>
     <mat-hint *ngIf="options?.maxLength" align="end">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
     <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
     <lab900-icon *ngIf="schema?.icon?.position === 'left'" [icon]="schema.icon" class="input-field__icon-left"
