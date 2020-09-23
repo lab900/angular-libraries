@@ -6,12 +6,12 @@
            (input)="inputChanged($event)"
            placeholder="{{ placeholder | translate }}"
            [formControlName]="schema.attribute"
-           [required]="options?.required"
+           [required]="required"
            [readonly]="readonly"
     >
-    <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
-    <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
-    <mat-icon matSuffix>search</mat-icon>
+    <mat-hint *ngIf="hint && !readonly" translate>{{ hint }}</mat-hint>
+    <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
+    <mat-icon matSuffix *ngIf="!readonly">search</mat-icon>
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="options.displayInputFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{ options.displayOptionFn(option) | translate }}

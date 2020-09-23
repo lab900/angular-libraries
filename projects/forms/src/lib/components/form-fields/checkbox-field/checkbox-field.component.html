@@ -1,8 +1,8 @@
 <div [formGroup]="group" [hidden]="hide">
-    <mat-checkbox [attr.disabled]="readonly" [formControlName]="schema.attribute" [indeterminate]="indeterminate" [required]="options?.required">
+    <mat-checkbox [attr.disabled]="readonly" [formControlName]="schema.attribute" [indeterminate]="indeterminate" [required]="required">
       {{schema.title | translate}}
     </mat-checkbox>
-    <div class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
+    <div *ngIf="!readonly" class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
         <mat-hint *ngIf="hint" translate>{{ hint }}</mat-hint>
         <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
     </div>

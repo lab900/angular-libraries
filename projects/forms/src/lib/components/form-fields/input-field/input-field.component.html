@@ -6,13 +6,13 @@
         [type]="inputType"
         placeholder="{{ placeholder | translate }}"
         [formControlName]="schema.attribute"
-        [required]="options?.required"
+        [required]="required"
         [readonly]="readonly || options?.readonly"
         [mask]="options?.mask"
     >
-    <mat-hint *ngIf="hint">{{ hint | translate }}</mat-hint>
-    <mat-hint align="end" *ngIf="options?.maxLength">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
-    <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
+    <mat-hint *ngIf="hint && !readonly">{{ hint | translate }}</mat-hint>
+    <mat-hint align="end" *ngIf="options?.maxLength && !readonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
+    <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
     <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'left'" matPrefix class="input-field__icon-left"></lab900-icon>
     <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'right'" matSuffix ></lab900-icon>
 </mat-form-field>
