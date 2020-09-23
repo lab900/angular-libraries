@@ -10,7 +10,7 @@
         [readonly]="readonly || options?.readonly"
         [mask]="options?.mask"
     >
-    <mat-hint *ngIf="hint && !readonly">{{ hint | translate }}</mat-hint>
+    <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !readonly">{{ hint | translate }}</mat-hint>
     <mat-hint align="end" *ngIf="options?.maxLength && !readonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
     <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
     <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'left'" matPrefix class="input-field__icon-left"></lab900-icon>

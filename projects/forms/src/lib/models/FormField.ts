@@ -6,7 +6,7 @@ import { IFormComponent } from './IFormComponent';
 
 export interface FieldOptions {
   hide?: boolean;
-  hint?: string;
+  hint?: { value: string; hideHintOnValidValue?: boolean };
   placeholder?: string;
   colspan?: number;
   required?: boolean;
