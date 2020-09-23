@@ -50,6 +50,7 @@ export interface SelectFieldOptions extends FieldOptions {
   multiple?: boolean;
   values?: { value: any; label: string }[];
   valuesFn?: () => Observable<{ value: any; label: string }[]>;
+  compareWith?: (o1: any, o2: any) => boolean;
 }
 
 export interface AutocompleteOptions extends FieldOptions {
