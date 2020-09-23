@@ -157,7 +157,7 @@ export const formFieldsExample: Form = {
           editType: EditType.Select,
           options: {
             colspan: 5,
-            hint: 'GENERAL.SELECT_INCIDENT',
+            hint: { value: 'GENERAL.SELECT_INCIDENT' },
             required: true,
             readonlyDisplay: () => 'test',
           },
@@ -168,7 +168,7 @@ export const formFieldsExample: Form = {
           editType: EditType.Select,
           options: {
             colspan: 5,
-            hint: 'GENERAL.SELECT_REGISTRATION_POINT',
+            hint: { value: 'GENERAL.SELECT_REGISTRATION_POINT' },
             required: true,
           },
         },
