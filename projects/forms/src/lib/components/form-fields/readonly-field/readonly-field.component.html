@@ -1,0 +1,4 @@
+<div class="lab900-readonly-field">
+    <span *ngIf="options?.readonlyLabel || schema.title" class="lab900-readonly-field__label">{{ (options?.readonlyLabel || schema.title) | translate }}</span>
+    <div [innerHTML]="(value || '-') | translate"></div>
+</div>

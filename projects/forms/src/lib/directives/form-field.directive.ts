@@ -30,6 +30,7 @@ import { AutocompleteFieldComponent } from '../components/form-fields/autocomple
 import { IconFieldComponent } from '../components/form-fields/icon-field/icon-field.component';
 import { ButtonToggleFieldComponent } from '../components/form-fields/button-toggle-field/button-toggle-field.component';
 import { AutocompleteMultipleFieldComponent } from '../components/form-fields/autocomplete-multiple-field/autocomplete-multiple-field.component';
+import { ReadonlyFieldComponent } from '../components/form-fields/readonly-field/readonly-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -98,7 +99,9 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
 
   public ngOnInit(): void {
     this.validateType();
-    const component = this.resolver.resolveComponentFactory<FormComponent<FieldOptions>>(mapToComponent(this.schema));
+
+    const c = this.readonly && this.schema.editType !== EditType.Row ? ReadonlyFieldComponent : mapToComponent(this.schema);
+    const component = this.resolver.resolveComponentFactory<FormComponent<FieldOptions>>(c);
     this.component = this.container.createComponent(component);
     this.component.instance.schema = this.schema;
     this.component.instance.group = this.group;

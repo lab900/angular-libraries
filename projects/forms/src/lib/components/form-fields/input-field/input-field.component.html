@@ -1,18 +1,18 @@
 <mat-form-field [formGroup]="group" [hidden]="hide" class="input-field">
     <mat-label>{{ schema.title | translate }}</mat-label>
-    <input #input
-           [formControlName]="schema.attribute"
-           [mask]="options?.mask"
-           [readonly]="readonly || options?.readonly"
-           [required]="options?.required"
-           [type]="inputType"
-           matInput
-           placeholder="{{ placeholder | translate }}"
+    <input
+        matInput
+        #input
+        [type]="inputType"
+        placeholder="{{ placeholder | translate }}"
+        [formControlName]="schema.attribute"
+        [required]="required"
+        [readonly]="readonly || options?.readonly"
+        [mask]="options?.mask"
     >
-    <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value)">{{ hint | translate }}</mat-hint>
-    <mat-hint *ngIf="options?.maxLength" align="end">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
-    <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
-    <lab900-icon *ngIf="schema?.icon?.position === 'left'" [icon]="schema.icon" class="input-field__icon-left"
-                 matPrefix></lab900-icon>
-    <lab900-icon *ngIf="schema?.icon?.position === 'right'" [icon]="schema.icon" matSuffix></lab900-icon>
+    <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !readonly">{{ hint | translate }}</mat-hint>
+    <mat-hint align="end" *ngIf="options?.maxLength && !readonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
+    <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
+    <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'left'" matPrefix class="input-field__icon-left"></lab900-icon>
+    <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'right'" matSuffix ></lab900-icon>
 </mat-form-field>

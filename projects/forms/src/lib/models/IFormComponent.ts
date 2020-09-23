@@ -17,7 +17,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   @Input()
   public schema: FormField<T>;
 
-  public constructor(private translateService: TranslateService) {}
+  protected constructor(private translateService: TranslateService) {}
 
   @Input()
   public readonly = false;
@@ -27,19 +27,23 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   }
 
   public get options(): T {
-    return this.schema && this.schema.options;
+    return this.schema?.options;
   }
 
   public get hide(): boolean {
-    return this.schema && this.schema.options && this.schema.options.hide;
+    return this.schema?.options?.hide ?? false;
+  }
+
+  public get required(): boolean {
+    return (!this.readonly && this.schema?.options?.required) ?? false;
   }
 
   public get hint(): string {
-    return this.schema && this.schema.options && this.schema.options.hint && this.schema.options.hint.value;
+    return this.schema?.options?.hint?.value;
   }
 
   public get placeholder(): string {
-    return this.schema && this.schema.options && this.schema.options.placeholder;
+    return this.schema?.options?.placeholder;
   }
 
   public getErrorMessage(): Observable<string> {
