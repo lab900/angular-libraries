@@ -1,5 +1,5 @@
 <div [formGroup]="group" [hidden]="hide">
-    <mat-checkbox #checkbox [attr.disabled]="readonly" [formControlName]="schema.attribute" [indeterminate]="indeterminate" [required]="required">
+    <mat-checkbox #checkbox [color]="options?.color || 'primary'" [attr.disabled]="readonly" [formControlName]="schema.attribute" [indeterminate]="indeterminate" [required]="required">
       {{schema.title | translate}}
     </mat-checkbox>
     <div *ngIf="!readonly" class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">

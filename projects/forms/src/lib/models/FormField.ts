@@ -20,6 +20,7 @@ export interface FieldOptions {
   mask?: string;
   readonlyLabel?: string;
   readonlyDisplay?: (data?: any) => any;
+  color?: ThemePalette;
 
   /**
    * Translation key for the error to be shown when the pattern validation failed.
@@ -61,7 +62,6 @@ export interface AutocompleteOptions extends FieldOptions {
 
 export interface RadioButtonsFieldOptions extends FieldOptions {
   values: { value: any; label: string }[];
-  color?: ThemePalette;
 }
 
 export interface DatepickerFieldOptions extends FieldOptions {
