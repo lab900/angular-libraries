@@ -29,6 +29,7 @@ export class TableExampleComponent {
       action: console.log,
       type: 'icon-btn',
       tooltip: { value: 'View this' },
+      disabled: (d) => d?.id === 1,
     },
     {
       label: 'Button',
