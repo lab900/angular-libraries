@@ -51,4 +51,19 @@ export class FormContainerComponent<T> implements OnChanges {
       }
     });
   }
+
+  public setValues(data: T): void {
+    Object.keys(data).forEach((key: string) => {
+      const control = this.form.controls[key];
+      if (control) {
+        if (control instanceof FormArray) {
+          const fieldSchema = this.schema.fields.find((field: FormField) => field.attribute === key);
+          if (data[key] && fieldSchema) {
+            this.fb.createFormArray(data, fieldSchema, control);
+          }
+        }
+        control.setValue(data[key]);
+      }
+    });
+  }
 }
