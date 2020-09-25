@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PageHeaderNavItem } from '../../models/page-header-nav.model';
 import { PageHeaderAction } from '../../models/page-header-actions.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'lab900-page-header',
@@ -26,7 +26,7 @@ export class Lab900PageHeaderComponent implements OnInit {
 
   public currentSelected: PageHeaderNavItem;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     // Set the initial item as selected
@@ -58,17 +58,13 @@ export class Lab900PageHeaderComponent implements OnInit {
     return true;
   }
 
-  public getRoute(item: PageHeaderNavItem): string {
-    if (typeof item.route === 'function') {
-      return item.route(this.data);
-    }
-    return item.route;
-  }
+  public getRoute(item: PageHeaderNavItem): string | void {
+    if (item.route) {
+      if (typeof item.route === 'function') {
+        return item.route(this.data);
+      }
 
-  public onClick(item: PageHeaderNavItem) {
-    this.currentSelected = item;
-    this.router.navigate([], {
-      queryParams: item.queryParams,
-    });
+      return item.route;
+    }
   }
 }
