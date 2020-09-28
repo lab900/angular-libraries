@@ -1,11 +1,11 @@
 <div class="lab900-object-merger">
     <lab900-object-merger-row>
         <ng-container secondary>
-            <p>{{ objectsToMerge.secondaryTitle }}</p>
+            <h2>{{ objectsToMerge.secondaryTitle }}</h2>
             <mat-radio-button color="primary" (change)="setBase('secondary')" [checked]="base === 'secondary'"></mat-radio-button>
         </ng-container>
         <ng-container primary>
-            <p>{{ objectsToMerge.primaryTitle }}</p>
+            <h2>{{ objectsToMerge.primaryTitle }}</h2>
             <mat-radio-button color="primary" (change)="setBase('primary')" [checked]="base === 'primary'"></mat-radio-button>
         </ng-container>
     </lab900-object-merger-row>
