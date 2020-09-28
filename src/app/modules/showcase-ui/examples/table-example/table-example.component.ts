@@ -30,32 +30,12 @@ export class TableExampleComponent {
 
   public tableHeaderActions: TableHeaderAction[] = [
     {
-      label: 'remove_red_eye',
-      action: console.log,
-      type: 'icon-btn',
-      tooltip: { value: 'View this' },
-    },
-    {
-      label: 'Button',
-      action: console.log,
+      label: 'Kies een locatie',
       type: 'btn',
     },
     {
-      label: 'more_horiz',
-      action: console.log,
-      type: 'icon-btn',
-      subActions: [
-        {
-          label: 'sub action',
-          action: console.log,
-          type: 'btn',
-        },
-        {
-          label: 'sub action 2',
-          action: console.log,
-          type: 'btn',
-        },
-      ],
+      label: 'Exporteer lijst',
+      type: 'btn-secondary',
     },
   ];
 
