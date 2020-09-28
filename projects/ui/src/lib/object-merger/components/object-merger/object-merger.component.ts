@@ -15,7 +15,7 @@ export class Lab900ObjectMergerComponent implements OnInit {
 
   public differences: ObjectMergerDifference;
 
-  public basis: 'primary' | 'secondary' = 'primary';
+  public base: 'primary' | 'secondary' = 'primary';
 
   public ngOnInit(): void {
     this.getDifferences();
@@ -57,9 +57,16 @@ export class Lab900ObjectMergerComponent implements OnInit {
     return !!this.differences[key];
   }
 
-  public setBasis(value: 'primary' | 'secondary'): void {
-    this.basis = value;
+  private getBaseObject(): object {
+    return this.base === 'primary' ? this.objectsToMerge.secondary : this.objectsToMerge.primary;
+  }
+
+  public setBase(value: 'primary' | 'secondary'): void {
+    this.base = value;
     this.mergedObject = this.getBaseObject();
+    Object.keys(this.differences).forEach((key) => {
+      this.differences[key].active = true;
+    });
   }
 
   public toggleKey(key: string, value: any, active: boolean): void {
@@ -69,9 +76,5 @@ export class Lab900ObjectMergerComponent implements OnInit {
     };
 
     this.differences[key].active = !this.differences[key].active;
-  }
-
-  private getBaseObject(): object {
-    return this.basis === 'primary' ? this.objectsToMerge.secondary : this.objectsToMerge.primary;
   }
 }
