@@ -14,7 +14,8 @@ export class ObjectMergerExampleComponent {
     secondary: {
       name: 'axelle',
       birthday: new Date(),
-      lastname: 'red',
+      lastname: 'blue',
+      favoriteFood: 'IceCream',
     },
   };
 }

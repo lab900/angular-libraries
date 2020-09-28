@@ -1,0 +1,5 @@
+<div>
+    <div *ngFor="let difference of differences | keyvalue">
+        <p>key: {{ difference.key }} primary: {{ difference.value.primary }} secondary: {{ difference.value.secondary }}</p>
+    </div>
+</div>
