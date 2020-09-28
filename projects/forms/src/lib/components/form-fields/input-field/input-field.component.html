@@ -8,6 +8,7 @@
         [formControlName]="schema.attribute"
         [required]="required"
         [readonly]="readonly || options?.readonly"
+        [ngClass]="{ 'readonly' : (readonly || options?.readonly) }"
         [mask]="options?.mask"
     >
     <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !readonly">{{ hint | translate }}</mat-hint>

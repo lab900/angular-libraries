@@ -15,6 +15,7 @@ export const formFieldsExample: Form = {
           options: {
             colspan: 6,
             required: true,
+            readonly: true,
           },
         },
         {
