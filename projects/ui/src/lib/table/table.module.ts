@@ -16,6 +16,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [Lab900TableComponent, Lab900TableEmptyDirective, Lab900TableDisabledDirective, TableActionComponent],
@@ -34,6 +35,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatMenuModule,
     MatTooltipModule,
     MatPaginatorModule,
+    MatCheckboxModule,
   ],
 })
 export class Lab900TableModule {}
