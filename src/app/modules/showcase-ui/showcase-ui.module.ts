@@ -5,6 +5,7 @@ import { Lab900SharingModule } from 'projects/ui/src/lib/sharing/sharing.module'
 import { Lab900TableModule } from 'projects/ui/src/lib/table/table.module';
 import { Lab900PageHeaderModule } from 'projects/ui/src/lib/page-header/page-header.module';
 import { AlertModule } from 'projects/ui/src/lib/alert/alert.module';
+import { Lab900ObjectMergerModule } from '../../../../projects/ui/src/lib/object-merger/object-merger.module';
 
 import { ShowcaseUiRoutingModule } from './showcase-ui-routing.module';
 import { SharedModule } from '../shared/shared.module';
@@ -37,6 +38,7 @@ const examples = [
     AlertModule,
     Lab900TableModule,
     Lab900PageHeaderModule,
+    Lab900ObjectMergerModule,
   ],
 })
 export class ShowcaseUiModule {}
