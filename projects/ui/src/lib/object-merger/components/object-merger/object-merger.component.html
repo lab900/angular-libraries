@@ -2,11 +2,11 @@
     <div fxLayout="rox" fxLayoutGap="24px">
         <div class="lab900-object-merger__difference__value" fxLayoutAlign="space-between center">
             <p>Anouk Hut - Gezochte</p>
-            <mat-checkbox color="primary" (change)="setBasis('secondary')" [checked]="basis === 'secondary'"></mat-checkbox>
+            <mat-radio-button color="primary" (change)="setBasis('secondary')" [checked]="basis === 'secondary'"></mat-radio-button>
         </div>
         <div class="lab900-object-merger__difference__value" fxLayoutAlign="space-between center">
             <p>Anouk Hut - Gezochte</p>
-            <mat-checkbox color="primary" (change)="setBasis('primary')" [checked]="basis === 'primary'"></mat-checkbox>
+            <mat-radio-button color="primary" (change)="setBasis('primary')" [checked]="basis === 'primary'"></mat-radio-button>
         </div>
     </div>
     <div *ngFor="let difference of differences | keyvalue" class="lab900-object-merger__difference" fxLayout="row">

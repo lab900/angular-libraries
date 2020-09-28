@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -26,7 +26,7 @@ const material = [
   FlexLayoutModule,
   MatToolbarModule,
   MatSidenavModule,
-  MatCheckboxModule,
+  MatRadioModule,
 ];
 
 @NgModule({
