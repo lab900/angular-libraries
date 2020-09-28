@@ -1,32 +1,31 @@
 <div class="lab900-object-merger">
-    <div class="lab900-object-merger__difference" fxLayout="rox">
-        <div class="lab900-object-merger__difference__value" fxLayoutAlign="space-between center">
+    <lab900-object-merger-row>
+        <ng-container secondary>
             <p>{{ objectsToMerge.secondaryTitle }}</p>
             <mat-radio-button color="primary" (change)="setBase('secondary')" [checked]="base === 'secondary'"></mat-radio-button>
-        </div>
-        <div class="lab900-object-merger__difference__middle"></div>
-        <div class="lab900-object-merger__difference__value" fxLayoutAlign="space-between center">
+        </ng-container>
+        <ng-container primary>
             <p>{{ objectsToMerge.primaryTitle }}</p>
             <mat-radio-button color="primary" (change)="setBase('primary')" [checked]="base === 'primary'"></mat-radio-button>
-        </div>
-    </div>
+        </ng-container>
+    </lab900-object-merger-row>
 
-    <div *ngFor="let difference of differences | keyvalue" class="lab900-object-merger__difference" fxLayout="row">
-        <div class="lab900-object-merger__difference__value" fxLayoutAlign="space-between center">
-            <p class="lab900-object-merger__difference__value__key">{{ difference.key }}</p>
+    <lab900-object-merger-row *ngFor="let difference of differences | keyvalue">
+        <ng-container secondary>
+            <p class="key">{{ difference.key }}</p>
             <p>{{ difference.value.secondary }}</p>
-        </div>
-         <div class="lab900-object-merger__difference__middle">
+        </ng-container>
+        <ng-container middle>
             <mat-icon
-                class="lab900-object-merger__difference__icon"
+                class="lab900-object-merger__arrow"
                 color="primary"
                 [ngClass]="{'rotate': base !== 'primary', 'not-active': !difference.value.active}"
                 (click)="toggleKey(difference.key, base === 'primary' ? difference.value.secondary: difference.value.primary, !difference.value.active)"
             >trending_flat</mat-icon>
-        </div>
-        <div class="lab900-object-merger__difference__value" fxLayoutAlign="space-between center">
-            <p class="lab900-object-merger__difference__value__key">{{ difference.key }}</p>
+        </ng-container>
+        <ng-container primary>
+            <p class="key">{{ difference.key }}</p>
             <p>{{ difference.value.primary }}</p>
-        </div>
-    </div>
+        </ng-container>
+    </lab900-object-merger-row>
 </div>
