@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TableCell } from 'projects/ui/src/lib/table/models/table-cell.model';
-import { TableAction } from 'projects/ui/src/lib/table/models/table-action.model';
+import { TableHeaderAction, TableRowAction } from 'projects/ui/src/lib/table/models/table-action.model';
 import { Sort } from '@angular/material/sort';
 import { Paging } from '../../../../../../projects/ui/src/lib/common/models/paging.model';
 
@@ -13,7 +13,11 @@ import { Paging } from '../../../../../../projects/ui/src/lib/common/models/pagi
     [data]="mockData"
     [paging]="paging"
     [tableActions]="tableActions"
+    [tableHeaderActions]="tableHeaderActions"
+    [toggleColumns]="true"
+    [selectableRows]="true"
   >
+    <div *lab900TableHeaderContent>Header can have custom elements</div>
     <div *lab900TableEmpty>
       <div class="no-results">
         <p>No results template (can be anything)</p>
@@ -23,7 +27,39 @@ import { Paging } from '../../../../../../projects/ui/src/lib/common/models/pagi
 })
 export class TableExampleComponent {
   public sort: Sort = { active: 'id', direction: 'asc' };
-  public tableActions: TableAction[] = [
+
+  public tableHeaderActions: TableHeaderAction[] = [
+    {
+      label: 'remove_red_eye',
+      action: console.log,
+      type: 'icon-btn',
+      tooltip: { value: 'View this' },
+    },
+    {
+      label: 'Button',
+      action: console.log,
+      type: 'btn',
+    },
+    {
+      label: 'more_horiz',
+      action: console.log,
+      type: 'icon-btn',
+      subActions: [
+        {
+          label: 'sub action',
+          action: console.log,
+          type: 'btn',
+        },
+        {
+          label: 'sub action 2',
+          action: console.log,
+          type: 'btn',
+        },
+      ],
+    },
+  ];
+
+  public tableActions: TableRowAction[] = [
     {
       label: 'remove_red_eye',
       action: console.log,

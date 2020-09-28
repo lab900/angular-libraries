@@ -1,4 +1,14 @@
 <div class="lab900-table {{tableClass}}" *ngIf="tableCells?.length">
+
+  <lab900-table-header
+      [tableHeaderActions]="tableHeaderActions"
+      [tableCells]="tableCells"
+      [toggleColumns]="toggleColumns"
+  >
+    <ng-container *ngIf="tableHeaderContent">
+      <ng-container *ngTemplateOutlet="tableHeaderContent"></ng-container>
+    </ng-container>
+  </lab900-table-header>
   <table
     mat-table
     matSort
@@ -24,8 +34,8 @@
     </ng-container>
 
     <ng-container *ngFor="let cell of tableCells" [matColumnDef]="cell.key" [sticky]="cell?.sticky">
-      <th mat-header-cell mat-sort-header [disabled]="!cell.sortable" *matHeaderCellDef="let element">{{ getCellLabel(element, cell) | translate }}</th>
-      <td [style.width]="cell?.width" mat-cell *matCellDef="let element"><span [className]="getCellClass(element, cell)">{{ getCellValue(element, cell) | translate }}</span></td>
+      <th mat-header-cell mat-sort-header [disabled]="!cell.sortable" *matHeaderCellDef="let element">{{ utils.getCellLabel(cell) | translate }}</th>
+      <td [style.width]="cell?.width" mat-cell *matCellDef="let element"><span [className]="utils.getCellClass(element, cell)">{{ utils.getCellValue(element, cell) | translate }}</span></td>
     </ng-container>
 
     <ng-container matColumnDef="actions-front">

@@ -1,21 +1,25 @@
-import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef } from '@angular/core';
 import { Lab900TableEmptyDirective } from '../../directives/table-empty.directive';
 import { TableCell } from '../../models/table-cell.model';
-import { TableAction } from '../../models/table-action.model';
+import { TableRowAction } from '../../models/table-action.model';
 import { Lab900TableDisabledDirective } from '../../directives/table-disabled.directive';
 import { Sort } from '@angular/material/sort';
 import { Paging } from '../../../common/models/paging.model';
 import { PageEvent } from '@angular/material/paginator';
 import { SelectionModel } from '@angular/cdk/collections';
+import { Lab900TableUtils } from '../../utils/table.utils';
+import { Lab900TableHeaderContentDirective } from '../../directives/table-header-content.directive';
 
 @Component({
   selector: 'lab900-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class Lab900TableComponent {
+export class Lab900TableComponent implements OnChanges {
+  public readonly utils = Lab900TableUtils;
+
   @Input()
-  public selection = new SelectionModel<any>(true, []);
+  public selection = new SelectionModel<any>(false, []);
 
   @Input()
   public data: any[];
@@ -34,19 +38,43 @@ export class Lab900TableComponent {
    * @use tableActionsBack or tableActionsFront
    */
   @Input()
-  public tableActions: TableAction[];
+  public tableActions: TableRowAction[];
 
+  /**
+   * Show a set of action at the top of the table
+   */
   @Input()
-  public tableActionsFront: TableAction[];
+  public tableHeaderActions: TableRowAction[];
 
+  /**
+   * Show a set of action at the start of each row
+   */
   @Input()
-  public tableActionsBack: TableAction[];
+  public tableActionsFront: TableRowAction[];
 
+  /**
+   * Show a set of action at the end of each row
+   */
+  @Input()
+  public tableActionsBack: TableRowAction[];
+
+  /**
+   * Enable checkboxes in front of the table rows
+   */
   @Input()
   public selectableRows: boolean;
 
   @Input()
+  public multiSelect: boolean;
+
+  @Input()
   public maxSelectableRows: number;
+
+  /**
+   * Show columns filter to hide/show columns
+   */
+  @Input()
+  public toggleColumns = false;
 
   @Input()
   public neverHideTable = false;
@@ -75,6 +103,9 @@ export class Lab900TableComponent {
   @ContentChild(Lab900TableDisabledDirective, { read: TemplateRef })
   public disabledTableTemplate?: Lab900TableDisabledDirective;
 
+  @ContentChild(Lab900TableHeaderContentDirective, { read: TemplateRef })
+  public tableHeaderContent?: Lab900TableHeaderContentDirective;
+
   public get selectCount(): number {
     return this.selection.selected.length;
   }
@@ -84,7 +115,7 @@ export class Lab900TableComponent {
   }
 
   public get displayedColumns(): string[] {
-    const keys = this.tableCells?.map((cell: TableCell) => cell.key) ?? [];
+    const keys = this.tableCells?.filter((cell: TableCell) => !cell.hide).map((cell: TableCell) => cell.key) ?? [];
     if (this.tableActionsFront?.length) {
       keys.unshift('actions-front');
     }
@@ -97,16 +128,10 @@ export class Lab900TableComponent {
     return keys;
   }
 
-  public getCellLabel(data: any, cell: TableCell): string {
-    return typeof cell.label === 'function' ? cell.label(data, cell) : cell.label;
-  }
-
-  public getCellValue(data: any, cell: TableCell): string {
-    return cell.cellFormatter ? cell.cellFormatter(data, cell) : data[cell.key];
-  }
-
-  public getCellClass(data: any, cell: TableCell): string {
-    return typeof cell.cellClass === 'function' ? cell.cellClass(data, cell) : cell.cellClass ?? '';
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.multiSelect) {
+      this.selection = new SelectionModel<any>(this.multiSelect, []);
+    }
   }
 
   public selectRow(row: any): void {
