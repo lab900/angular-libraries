@@ -1,10 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Schema } from '../../models/schema';
+import { Schema, SchemaConverter } from '../../models/schema';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../models/dataService';
 import { Item, Page } from '../../models/page';
+import { Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-admin-page',
@@ -18,6 +19,8 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   public error: string;
   public loading = false;
   public pageInfo: { currentPage: number; pageSize: number; hasMore?: boolean };
+  public editForm: Form;
+  public createForm: Form;
 
   private subscriptions: Subscription[] = [];
   public currentPage: Page<Item>;
@@ -29,6 +32,9 @@ export class AdminPageComponent implements OnInit, OnDestroy {
       currentPage: 1,
       pageSize: this.dataService.defaultPageSize(),
     };
+
+    this.editForm = SchemaConverter.toForm(this.schema, false);
+    this.createForm = SchemaConverter.toForm(this.schema, true);
 
     this.loadData();
   }

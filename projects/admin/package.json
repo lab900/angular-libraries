@@ -1,16 +1,17 @@
 {
   "name": "@lab900/admin",
-  "version": "2.0.8 ",
+  "version": "2.0.12",
   "peerDependencies": {
     "@angular/common": "~10.0.2",
     "@angular/core": "~10.0.2",
     "@angular/material": "~10.0.2",
-    "@lab900/forms": "^2.0.26",
-    "@lab900/ui": "^2.0.10"
+    "@lab900/forms": "2.0.43",
+    "@lab900/ui": "^2.0.10",
+    "ngx-mask": "^10.0.1"
   },
   "devDependencies": {
-    "@lab900/forms": "^2.0.26",
-    "@lab900/ui": "^2.0.10"
+    "@lab900/forms": "^2.1.7",
+    "@lab900/ui": "2.0.37"
   },
   "repository": {
     "type": "git",
