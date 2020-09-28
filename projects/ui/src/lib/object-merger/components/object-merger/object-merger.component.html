@@ -1,12 +1,12 @@
 <div class="lab900-object-merger">
     <div class="lab900-object-merger__difference" fxLayout="rox">
         <div class="lab900-object-merger__difference__value" fxLayoutAlign="space-between center">
-            <p>{{ objectsToMerge.secondary.title }}</p>
+            <p>{{ objectsToMerge.secondaryTitle }}</p>
             <mat-radio-button color="primary" (change)="setBase('secondary')" [checked]="base === 'secondary'"></mat-radio-button>
         </div>
         <div class="lab900-object-merger__difference__middle"></div>
         <div class="lab900-object-merger__difference__value" fxLayoutAlign="space-between center">
-            <p>{{ objectsToMerge.primary.title }}</p>
+            <p>{{ objectsToMerge.primaryTitle }}</p>
             <mat-radio-button color="primary" (change)="setBase('primary')" [checked]="base === 'primary'"></mat-radio-button>
         </div>
     </div>

@@ -1,5 +1,7 @@
 export interface ObjectMergerObjects {
-  primary: any & { title: string };
-  secondary: any & { title: string };
+  primary: any;
+  primaryTitle: string;
+  secondary: any;
+  secondaryTitle: string;
   // ToDo: Display formatter
 }
