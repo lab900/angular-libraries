@@ -21,7 +21,9 @@ const routes: Routes = [
     new ShowcaseExample(PageHeaderParamsExampleComponent, 'Page header from request params', ['TS'], 'ui/page-header'),
     new ShowcaseExample(PageHeaderExampleComponent, 'Page header', ['TS'], 'ui/page-header'),
   ]),
-  new ShowcaseRoute('object-merger', 'Object merger', [new ShowcaseExample(ObjectMergerExampleComponent, 'Object merger', ['TS'], '')]),
+  new ShowcaseRoute('object-merger', 'Object merger', [
+    new ShowcaseExample(ObjectMergerExampleComponent, 'Object merger', ['TS'], 'ui/object-merger'),
+  ]),
 ];
 
 @NgModule({
