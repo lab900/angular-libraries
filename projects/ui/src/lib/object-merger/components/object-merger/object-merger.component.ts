@@ -9,7 +9,7 @@ import { ObjectMergerDifference } from '../../models/object-merger-difference';
 })
 export class Lab900ObjectMergerComponent implements OnInit {
   @Input()
-  private objectsToMerge: ObjectMergerObjects;
+  public objectsToMerge: ObjectMergerObjects;
 
   public mergedObject: object;
 

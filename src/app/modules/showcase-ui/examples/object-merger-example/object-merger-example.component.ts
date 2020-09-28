@@ -9,11 +9,13 @@ export class ObjectMergerExampleComponent {
     primary: {
       name: 'axelle',
       lastname: 'red',
+      title: 'Axelle Red',
     },
     secondary: {
       name: 'axelle',
       lastname: 'blue',
       favoriteFood: 'IceCream',
+      title: 'Axelle Blue',
     },
   };
 }

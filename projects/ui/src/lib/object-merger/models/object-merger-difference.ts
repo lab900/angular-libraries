@@ -1,5 +1,7 @@
-import { ObjectMergerObjects } from './object-merger-objects';
-
 export interface ObjectMergerDifference {
-  [key: string]: ObjectMergerObjects & { active: boolean };
+  [key: string]: {
+    primary: any;
+    secondary: any;
+    active: boolean;
+  };
 }
