@@ -3,10 +3,10 @@
 </div>
 <div *ngIf="!error">
     <div class="admin-page">
-        <button *ngIf="schema.creatable" mat-raised-button color="primary" lab900FormDialog [schema]="schema" [submitFormHandler]="createHandler">Create</button>
+        <button *ngIf="schema.creatable" mat-raised-button color="primary" lab900FormDialog [schema]="createForm" [submitFormHandler]="createHandler">Create</button>
         <lab900-admin-table
                 [loading]="loading"
-                [schema]="schema"
+                [schema]="editForm"
                 [data]="currentPage"
                 [editHandler]="editHandler"
                 (pageEvent)="onPageEvent($event)"

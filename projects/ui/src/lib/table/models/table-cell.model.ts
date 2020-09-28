@@ -1,12 +1,40 @@
-type propFunction<T> = (data: T, cell: TableCell) => string;
+type propFunction<T, R = string> = (data: T, cell: TableCell) => R;
 
 export interface TableCell<T = any> {
+  /**
+   * Column key
+   */
   key: string;
-  label: propFunction<T> | string;
+  /**
+   * Column header label
+   */
+  label: ((cell: TableCell) => string) | string;
+  /**
+   * Custom cell class
+   */
   cellClass?: propFunction<T> | string;
+  /**
+   * Custom formatter to display data inside the cell
+   */
   cellFormatter?: propFunction<T>;
-  hide?: (data: T, cell: TableCell) => boolean;
+  /**
+   * Should show column in the table
+   */
+  hide?: boolean;
+  /**
+   * Can't hide the column
+   */
+  alwaysVisible?: boolean;
+  /**
+   * Column is sortable
+   */
   sortable?: boolean;
+  /**
+   * Column is sticky
+   */
   sticky?: boolean;
+  /**
+   * Column width
+   */
   width?: string;
 }

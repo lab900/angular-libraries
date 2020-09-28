@@ -36,10 +36,16 @@ export * from './lib/sharing/models/share-dialog-component.abstract';
 // table
 export * from './lib/table/table.module';
 export * from './lib/table/components/table/table.component';
+export * from './lib/table/components/table-header/lab900-table-header.component';
+export * from './lib/table/components/table-filter-menu/table-filter-menu.component';
+export * from './lib/table/components/table-header-action/table-header-action.component';
 export * from './lib/table/directives/table-empty.directive';
 export * from './lib/table/directives/table-disabled.directive';
+export * from './lib/table/directives/table-header-content.directive';
+
 export * from './lib/table/models/table-action.model';
 export * from './lib/table/models/table-cell.model';
+export * from './lib/table/utils/table.utils';
 
 // page header
 export * from './lib/page-header/page-header.module';
