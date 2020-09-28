@@ -97,6 +97,19 @@ export const NEWS_SCHEMA: Schema = {
       attribute: 'backgroundImageUrl',
       editType: EditType.Image,
     },
+    {
+      title: 'Games',
+      attribute: 'gameIds',
+      editType: EditType.Select,
+      editOptions: {
+        values: [{ value: 'pokemon', label: 'pokemon' }],
+        multiple: true,
+      },
+      createOptions: {
+        values: [{ value: 'pokemon', label: 'pokemon' }],
+        multiple: true,
+      },
+    },
   ],
 };
 
