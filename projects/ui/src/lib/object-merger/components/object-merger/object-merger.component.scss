@@ -1,0 +1,23 @@
+.lab900-object-merger {
+  &__difference {
+    &__value {
+      width: 100%;
+      border: 1px solid lightgray;
+      padding: 10px;
+      background-color: white;
+
+      p {
+        margin: 0;
+      }
+
+      &__key {
+        color: lightgray;
+      }
+    }
+
+    &__icon {
+      font-size: 70px;
+      display: inline-table;
+    }
+  }
+}

@@ -1,5 +1,19 @@
-<div>
-    <div *ngFor="let difference of differences | keyvalue">
-        <p>key: {{ difference.key }} primary: {{ difference.value.primary }} secondary: {{ difference.value.secondary }}</p>
+<div class="lab900-object-merger">
+    <div *ngFor="let difference of differences | keyvalue"
+         class="lab900-object-merger__difference"
+         fxLayout="row"
+         fxLayoutAlign="space-between center"
+    >
+        <div class="lab900-object-merger__difference__value" fxLayout="row" fxLayoutAlign="space-between center">
+            <p class="lab900-object-merger__difference__value__key">{{ difference.key }}</p>
+            <p>{{ difference.value.primary }}</p>
+        </div>
+
+        <mat-icon class="lab900-object-merger__difference__icon">trending_flat</mat-icon>
+
+        <div class="lab900-object-merger__difference__value" fxLayout="row" fxLayoutAlign="space-between center">
+            <p class="lab900-object-merger__difference__value__key">{{ difference.key }}</p>
+            <p>{{ difference.value.secondary }}</p>
+        </div>
     </div>
 </div>
