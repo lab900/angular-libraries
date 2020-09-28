@@ -69,7 +69,6 @@ export class Lab900ObjectMergerComponent implements OnInit {
     };
 
     this.differences[key].active = !this.differences[key].active;
-    console.log(this.mergedObject);
   }
 
   private getBaseObject(): object {
