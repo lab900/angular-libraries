@@ -1,4 +1,14 @@
 <div class="lab900-table {{tableClass}}" *ngIf="tableCells?.length">
+
+  <lab900-table-header
+      [tableHeaderActions]="tableHeaderActions"
+      [tableCells]="tableCells"
+      [toggleColumns]="toggleColumns"
+  >
+    <ng-container *ngIf="tableHeaderContent">
+      <ng-container *ngTemplateOutlet="tableHeaderContent"></ng-container>
+    </ng-container>
+  </lab900-table-header>
   <table
     mat-table
     matSort
@@ -10,17 +20,38 @@
     [dataSource]="data"
     (matSortChange)="sort.emit($event)"
   >
-    <ng-container *ngFor="let cell of tableCells" [matColumnDef]="cell.key" [sticky]="cell?.sticky">
-      <th mat-header-cell mat-sort-header [disabled]="!cell.sortable" *matHeaderCellDef="let element">{{ getCellLabel(element, cell) | translate }}</th>
-      <td [style.width]="cell?.width" mat-cell *matCellDef="let element"><span [className]="getCellClass(element, cell)">{{ getCellValue(element, cell) | translate }}</span></td>
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          color="primary"
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selectRow(row) : null"
+          [checked]="selection.isSelected(row)"
+          [disabled]="!selectEnabled"
+        ></mat-checkbox>
+      </td>
     </ng-container>
 
-    <ng-container matColumnDef="actions" stickyEnd>
+    <ng-container *ngFor="let cell of tableCells" [matColumnDef]="cell.key" [sticky]="cell?.sticky">
+      <th mat-header-cell mat-sort-header [disabled]="!cell.sortable" *matHeaderCellDef="let element">{{ utils.getCellLabel(cell) | translate }}</th>
+      <td [style.width]="cell?.width" mat-cell *matCellDef="let element"><span [className]="utils.getCellClass(element, cell)">{{ utils.getCellValue(element, cell) | translate }}</span></td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions-front">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
+        <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="end center" *ngIf="tableActionsFront?.length">
+          <lab900-table-action *ngFor="let action of tableActionsFront" [element]="element" [action]="action"></lab900-table-action>
+        </div>
+      </td>
+    </ng-container>
 
-        <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="end center" *ngIf="tableActions?.length">
-          <lab900-table-action *ngFor="let action of tableActions" [element]="element" [action]="action"></lab900-table-action>
+    <ng-container matColumnDef="actions-back" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="end center" *ngIf="tableActionsBack?.length || tableActions?.length">
+          <lab900-table-action *ngFor="let action of (tableActionsBack || tableActions)" [element]="element" [action]="action"></lab900-table-action>
         </div>
       </td>
     </ng-container>
