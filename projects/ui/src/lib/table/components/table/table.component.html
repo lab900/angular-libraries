@@ -9,6 +9,8 @@
       <ng-container *ngTemplateOutlet="tableHeaderContent"></ng-container>
     </ng-container>
   </lab900-table-header>
+
+  <div class="lab900-table-wrapper">
   <table
     mat-table
     matSort
@@ -59,6 +61,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  </div>
 
   <mat-paginator
       *ngIf="data?.length && paging"
