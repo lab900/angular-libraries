@@ -1,4 +1,4 @@
 export interface ObjectMergerObjects {
-  primary: any;
-  secondary: any;
+  primary: object;
+  secondary: object;
 }

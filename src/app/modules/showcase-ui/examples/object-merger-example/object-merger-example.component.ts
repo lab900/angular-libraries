@@ -8,12 +8,10 @@ export class ObjectMergerExampleComponent {
   public exampleObjects = {
     primary: {
       name: 'axelle',
-      birthday: new Date(),
       lastname: 'red',
     },
     secondary: {
       name: 'axelle',
-      birthday: new Date(),
       lastname: 'blue',
       favoriteFood: 'IceCream',
     },

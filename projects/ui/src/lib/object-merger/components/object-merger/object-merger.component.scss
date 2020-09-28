@@ -1,9 +1,11 @@
 .lab900-object-merger {
   &__difference {
+    width: 100%;
+
     &__value {
       width: 100%;
       border: 1px solid lightgray;
-      padding: 10px;
+      padding: 0 10px 0 10px;
       background-color: white;
 
       p {
@@ -16,8 +18,17 @@
     }
 
     &__icon {
-      font-size: 70px;
+      font-size: 50px;
       display: inline-table;
+      cursor: pointer;
     }
   }
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.not-active {
+  color: lightgray;
 }
