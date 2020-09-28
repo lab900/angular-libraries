@@ -55,7 +55,7 @@
     "@ngx-translate/core": "^13.0.0",
     "@types/nouislider": "^9.0.7",
     "ngx-markdown": "^10.1.0",
-    "ngx-mask": "^10.0.1",
+    "ngx-mask": "10.0.1",
     "nouislider": "^14.6.0",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",

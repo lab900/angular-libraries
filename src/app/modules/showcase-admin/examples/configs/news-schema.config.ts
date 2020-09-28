@@ -19,6 +19,9 @@ export const NEWS_SCHEMA: Schema = {
       overviewOptions: {
         hide: true,
       },
+      editOptions: {
+        hide: true,
+      },
     },
     {
       title: 'Published',

@@ -10,7 +10,7 @@
     "@kolkov/angular-editor": "^1.1.2",
     "@types/nouislider": "^9.0.7",
     "nouislider": "^14.6.0",
-    "ngx-mask": "^10.0.1"
+    "ngx-mask": "10.0.1"
   },
   "repository": {
     "type": "git",
