@@ -16,6 +16,7 @@ import { NavListExampleComponent } from './examples/nav-list-example/nav-list-ex
 import { PageHeaderExampleComponent } from './examples/page-header-example/page-header-example.component';
 import { TableExampleComponent } from './examples/table-example/table-example.component';
 import { PageHeaderParamsExampleComponent } from './examples/page-header-params-example/page-header-params-example.component';
+import { ObjectMergerExampleComponent } from './examples/object-merger-example/object-merger-example.component';
 
 const examples = [
   SharingExampleComponent,
@@ -25,6 +26,7 @@ const examples = [
   PageHeaderExampleComponent,
   PageHeaderParamsExampleComponent,
   TableExampleComponent,
+  ObjectMergerExampleComponent,
 ];
 
 @NgModule({
