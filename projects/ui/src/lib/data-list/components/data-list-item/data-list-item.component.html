@@ -14,18 +14,7 @@
             ></lab900-sharing>
         </div>
         <div class="data-list-item__actions" *ngIf="actions?.length">
-            <ng-container *ngFor="let action of actions">
-                <button *ngIf="action.action && !action.hide" mat-icon-button (click)="action.action(data)"><mat-icon>{{ getIcon(action) }}</mat-icon></button>
-                <ng-container *ngIf="action.subActions?.length && !action.hide">
-                    <button mat-icon-button [matMenuTriggerFor]="actionMenu"><mat-icon>{{ getIcon(action) }}</mat-icon></button>
-                    <mat-menu #actionMenu="matMenu">
-                        <button *ngFor="let sub of action.subActions" mat-menu-item (click)="sub.action ? sub.action(data) : ''">
-                            <mat-icon>{{ getIcon(sub) }}</mat-icon>
-                            <span>{{ getLabel(sub) | translate }}</span>
-                        </button>
-                    </mat-menu>
-                </ng-container>
-            </ng-container>
+            <lab900-action-button *ngFor="let action of actions" [action]="action" [data]="data"></lab900-action-button>
         </div>
     </div>
 </div>

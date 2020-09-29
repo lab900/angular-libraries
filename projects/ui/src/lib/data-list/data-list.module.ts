@@ -14,6 +14,7 @@ import { Lab900SharingModule } from '../sharing/sharing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { Lab900ButtonModule } from '../button/button.module';
 
 @NgModule({
   declarations: [Lab900DataListComponent, Lab900DataListItemComponent, Lab900DataListEmptyDirective, Lab900DataListItemInfoDirective],
@@ -29,6 +30,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     Lab900SharingModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    Lab900ButtonModule,
   ],
 })
 export class Lab900DataListModule {}

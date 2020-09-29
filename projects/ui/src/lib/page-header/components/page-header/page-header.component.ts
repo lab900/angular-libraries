@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { PageHeaderNavItem } from '../../models/page-header-nav.model';
-import { PageHeaderAction } from '../../models/page-header-actions.model';
+import { ActionButton } from '../../../button/models/action-button.model';
 
 @Component({
   selector: 'lab900-page-header',
@@ -18,12 +18,12 @@ export class Lab900PageHeaderComponent {
   public navItems: PageHeaderNavItem[];
 
   @Input()
-  public actions: PageHeaderAction[];
+  public actions: ActionButton[];
 
   @Input()
   public data?: any;
 
-  public getLabel(item: PageHeaderNavItem | PageHeaderAction): string {
+  public getLabel(item: PageHeaderNavItem): string {
     if (typeof item.label === 'function') {
       return item.label(this.data);
     }
@@ -35,7 +35,6 @@ export class Lab900PageHeaderComponent {
       if (typeof item.route === 'function') {
         return item.route(this.data);
       }
-
       return item.route;
     }
   }

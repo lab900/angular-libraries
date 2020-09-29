@@ -1,0 +1,26 @@
+button {
+  &.suffixIcon,
+  &.prefixIcon {
+    .mat-icon {
+      font-size: 18px;
+      height: 18px;
+      width: 18px;
+    }
+  }
+
+  &.suffixIcon {
+    padding-right: 10px;
+
+    .mat-icon {
+      padding-left: 3px;
+    }
+  }
+
+  &.prefixIcon {
+    padding-left: 10px;
+
+    .mat-icon {
+      padding-right: 3px;
+    }
+  }
+}

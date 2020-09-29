@@ -11,7 +11,6 @@ import { Lab900TableEmptyDirective } from './directives/table-empty.directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { Lab900TableDisabledDirective } from './directives/table-disabled.directive';
-import { Lab900TableActionComponent } from './components/table-action/table-action.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -19,10 +18,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 import { Lab900TableFilterMenuComponent } from './components/table-filter-menu/table-filter-menu.component';
-import { Lab900TableHeaderActionComponent } from './components/table-header-action/table-header-action.component';
 import { Lab900TableHeaderComponent } from './components/table-header/lab900-table-header.component';
 import { Lab900TableHeaderContentDirective } from './directives/table-header-content.directive';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { Lab900ButtonModule } from '../button/button.module';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     Lab900TableEmptyDirective,
     Lab900TableDisabledDirective,
     Lab900TableHeaderContentDirective,
-    Lab900TableActionComponent,
-    Lab900TableHeaderActionComponent,
     Lab900TableFilterMenuComponent,
     Lab900TableHeaderComponent,
   ],
@@ -40,7 +37,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     Lab900TableEmptyDirective,
     Lab900TableDisabledDirective,
     Lab900TableHeaderContentDirective,
-    Lab900TableHeaderActionComponent,
     Lab900TableFilterMenuComponent,
     Lab900TableHeaderComponent,
   ],
@@ -62,6 +58,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCheckboxModule,
     MatListModule,
     MatMenuModule,
+    Lab900ButtonModule,
   ],
 })
 export class Lab900TableModule {}

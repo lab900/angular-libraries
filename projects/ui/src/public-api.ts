@@ -38,24 +38,27 @@ export * from './lib/table/table.module';
 export * from './lib/table/components/table/table.component';
 export * from './lib/table/components/table-header/lab900-table-header.component';
 export * from './lib/table/components/table-filter-menu/table-filter-menu.component';
-export * from './lib/table/components/table-header-action/table-header-action.component';
 export * from './lib/table/directives/table-empty.directive';
 export * from './lib/table/directives/table-disabled.directive';
 export * from './lib/table/directives/table-header-content.directive';
-
-export * from './lib/table/models/table-action.model';
 export * from './lib/table/models/table-cell.model';
 export * from './lib/table/utils/table.utils';
 
 // page header
 export * from './lib/page-header/page-header.module';
 export * from './lib/page-header/components/page-header/page-header.component';
-export * from './lib/page-header/models/page-header-actions.model';
 export * from './lib/page-header/models/page-header-nav.model';
 
 // object merger
 export * from './lib/object-merger/object-merger.module';
-export * from './lib/object-merger/components/object-merger/object-merger.component';
 export * from './lib/object-merger/models/merge-difference.model';
 export * from './lib/object-merger/models/merge-object.model';
-export * from './lib/object-merger/models/merge-option.model';
+export * from './lib/object-merger/components/object-merger/object-merger.component';
+export * from './lib/object-merger/components/object-merger-row/object-merger-row.component';
+
+// buttons
+export * from './lib/button/button.module';
+export * from './lib/button/components/button/button.component';
+export * from './lib/button/components/action-button/lab900-action-button.component';
+export * from './lib/button/models/action-button.model';
+export * from './lib/button/models/button.model';
