@@ -8,7 +8,7 @@
     padding: 0 10px 0 10px;
     background-color: white;
 
-    p, h2 {
+    ::ng-deep p, h2 {
       margin: 0 !important;
     }
 
