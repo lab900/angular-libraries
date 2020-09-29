@@ -47,11 +47,7 @@ import { TranslateModule } from '@ngx-translate/core';
     MatProgressSpinnerModule,
     DialogModule,
     MatCheckboxModule,
-    Lab900FormsModule.forRoot({
-      formField: {
-        appearance: 'outline',
-      },
-    }),
+    Lab900FormsModule,
     MatSelectModule,
     TranslateModule.forChild(),
   ],
