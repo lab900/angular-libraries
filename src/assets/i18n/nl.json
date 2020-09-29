@@ -3,6 +3,7 @@
   "languages.en": "Engels",
   "languages.nl": "Nederlands",
   "label": {
+    "birthday": "Geboortedatum",
     "first-name": "Voornaam",
     "last-name": "Achternaam",
     "open-dialog-form": "Open vensterformulier",

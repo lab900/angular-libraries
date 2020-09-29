@@ -4,6 +4,7 @@
   "languages.en": "English",
   "languages.nl": "Dutch",
   "label": {
+    "birthday": "Birthday",
     "first-name": "First Name",
     "last-name": "Last Name",
     "open-dialog-form": "Open dialog form",

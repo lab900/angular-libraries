@@ -1,19 +1,19 @@
 <div class="lab900-object-merger">
     <lab900-object-merger-row>
         <ng-container secondary>
-            <h2>{{ objectsToMerge.secondary.title | translate }}</h2>
+            <h2>{{ objectsToMerge[1].title | translate }}</h2>
             <mat-radio-button
                 color="primary"
-                (change)="setBaseObject('secondary')"
-                [checked]="baseObject === 'secondary'"
+                (change)="switchSelectedIndex(1)"
+                [checked]="selectedIndex === 1"
             ></mat-radio-button>
         </ng-container>
         <ng-container primary>
-            <h2>{{ objectsToMerge.primary.title | translate }}</h2>
+            <h2>{{ objectsToMerge[0].title | translate }}</h2>
             <mat-radio-button
                 color="primary"
-                (change)="setBaseObject('primary')"
-                [checked]="baseObject === 'primary'"
+                (change)="switchSelectedIndex(0)"
+                [checked]="selectedIndex === 0"
             ></mat-radio-button>
         </ng-container>
     </lab900-object-merger-row>
@@ -27,8 +27,8 @@
             <mat-icon
                 class="lab900-object-merger__arrow"
                 color="primary"
-                [ngClass]="{'rotate': baseObject !== 'primary', 'not-active': !difference.value.active}"
-                (click)="toggleKey(difference.key, baseObject === 'primary' ? difference.value.secondary: difference.value.primary)"
+                [ngClass]="{'rotate': selectedIndex !== 0, 'not-active': !difference.value.active}"
+                (click)="toggleKey(difference.key, selectedIndex === 0 ? difference.value.secondary: difference.value.primary)"
             >trending_flat</mat-icon>
         </ng-container>
         <ng-container primary>
