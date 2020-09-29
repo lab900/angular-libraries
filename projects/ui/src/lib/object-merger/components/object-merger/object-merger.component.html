@@ -23,8 +23,8 @@
         [rowClass]="difference.value.rowClass"
     >
         <ng-container secondary>
-            <p class="key">{{ difference.value.label | translate }}</p>
-            <p>{{ difference.value.formatter ? difference.value.formatter(difference.value.secondary) : difference.value.secondary }}</p>
+            <p>{{ difference.value.label | translate }}</p>
+            <span>{{ difference.value.formatter ? difference.value.formatter(difference.value.secondary) : difference.value.secondary }}</span>
         </ng-container>
         <ng-container middle>
             <mat-icon
@@ -35,7 +35,7 @@
             >trending_flat</mat-icon>
         </ng-container>
         <ng-container primary>
-            <p class="key">{{ difference.value.label | translate }}</p>
+            <p>{{ difference.value.label | translate }}</p>
             <p>{{ difference.value.formatter ? difference.value.formatter(difference.value.primary) : difference.value.primary }}</p>
         </ng-container>
     </lab900-object-merger-row>
