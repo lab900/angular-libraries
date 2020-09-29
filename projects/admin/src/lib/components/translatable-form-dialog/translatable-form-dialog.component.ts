@@ -97,6 +97,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
           translatables[field.attribute] = null;
         });
       this.formData = { ...item, ...translatables };
+      this.loading = false;
     }
   }
 
