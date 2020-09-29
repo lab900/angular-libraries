@@ -13,10 +13,7 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
   public options: MergeOption<T>[];
 
   @Input()
-  public mergeObjectA: MergeObject<T>;
-
-  @Input()
-  public mergeObjectB: MergeObject<T>;
+  public objectsToMerge: { primary: MergeObject<T>; secondary: MergeObject<T> };
 
   public outcome: T;
 
@@ -31,15 +28,15 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
   private getDifferences(): void {
     for (const option of this.options) {
       if (
-        (this.mergeObjectA.data[option.attribute] || this.mergeObjectB.data[option.attribute]) &&
-        this.mergeObjectA.data[option.attribute] !== this.mergeObjectB.data[option.attribute]
+        (this.objectsToMerge.primary.data[option.attribute] || this.objectsToMerge.secondary.data[option.attribute]) &&
+        this.objectsToMerge.primary.data[option.attribute] !== this.objectsToMerge.secondary.data[option.attribute]
       ) {
         this.differences = {
           ...this.differences,
           [option.attribute]: {
             label: option.label,
-            primary: this.mergeObjectA.data[option.attribute],
-            secondary: this.mergeObjectB.data[option.attribute],
+            primary: this.objectsToMerge.primary.data[option.attribute],
+            secondary: this.objectsToMerge.secondary.data[option.attribute],
             active: true,
             rowClass: option.rowClass,
             formatter: option.formatter,
@@ -48,14 +45,10 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
       }
     }
 
-    this.outcome = this.mergeObjectA.data;
+    this.outcome = this.objectsToMerge.primary.data;
   }
 
-  private getBaseObject(): T {
-    return this.baseObject === 'primary' ? this.mergeObjectA.data : this.mergeObjectB.data;
-  }
-
-  public setBase(value: 'primary' | 'secondary'): void {
+  public setBaseObject(value: 'primary' | 'secondary'): void {
     this.baseObject = value;
     this.outcome = this.getBaseObject();
     Object.keys(this.differences).forEach((key) => {
@@ -63,11 +56,22 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
     });
   }
 
-  public toggleKey(attribute: string, value: T, active: boolean): void {
-    this.outcome = {
-      ...this.outcome,
-      [attribute]: active ? value : this.getBaseObject()[attribute],
-    };
+  private getBaseObject(): T {
+    return this.baseObject === 'primary' ? this.objectsToMerge.primary.data : this.objectsToMerge.secondary.data;
+  }
+
+  public toggleKey(attribute: string, value: any): void {
+    if (this.differences[attribute].active) {
+      this.outcome = {
+        ...this.outcome,
+        [attribute]: value,
+      };
+    } else {
+      this.outcome = {
+        ...this.outcome,
+        [attribute]: this.baseObject === this.getBaseObject()[attribute],
+      };
+    }
 
     this.differences[attribute].active = !this.differences[attribute].active;
   }

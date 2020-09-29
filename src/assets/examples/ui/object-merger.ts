@@ -1,22 +1,43 @@
 import { Component } from '@angular/core';
-import { ObjectMergerObjects } from '../../../../../../projects/ui/src/lib/object-merger/models/object-merger-objects';
+import { MergeObject } from '../../../../../../projects/ui/src/lib/object-merger/models/merge-object.model';
+import { MergeOption } from '../../../../../../projects/ui/src/lib/object-merger/models/merge-option.model';
 
 @Component({
   selector: 'lab900-object-merger-example',
-  template: `<lab900-object-merger [objectsToMerge]="exampleObjects"></lab900-object-merger>`,
+  template: `<lab900-object-merger [options]="options" [objectsToMerge]="objects"></lab900-object-merger>`,
 })
 export class ObjectMergerExampleComponent {
-  public exampleObjects: ObjectMergerObjects = {
+  public objects: { primary: MergeObject; secondary: MergeObject } = {
     primary: {
-      name: 'axelle',
-      lastname: 'red',
+      data: {
+        name: 'Axelle',
+        lastname: 'Red',
+      },
+      title: 'Axelle Red',
     },
-    primaryTitle: 'Axelle Red',
     secondary: {
-      name: 'axelle',
-      lastname: 'blue',
-      favoriteFood: 'IceCream',
+      data: {
+        name: 'Axelle',
+        lastname: 'Blue',
+        favoriteFood: 'IceCream',
+      },
+      title: 'Axelle Blue',
     },
-    secondaryTitle: 'Axelle Blue',
   };
+
+  public options: MergeOption[] = [
+    {
+      attribute: 'name',
+      label: 'Name',
+    },
+    {
+      attribute: 'lastname',
+      label: 'Lastname',
+      formatter: (data) => `${data} formatter works`,
+    },
+    {
+      attribute: 'favoriteFood',
+      label: 'Favorite food',
+    },
+  ];
 }
