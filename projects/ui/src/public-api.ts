@@ -55,7 +55,7 @@ export * from './lib/page-header/models/page-header-nav.model';
 
 // object merger
 export * from './lib/object-merger/object-merger.module';
-export * from './lib/object-merger/object-merger.module';
+export * from './lib/object-merger/components/object-merger/object-merger.component';
 export * from './lib/object-merger/models/merge-difference.model';
 export * from './lib/object-merger/models/merge-object.model';
 export * from './lib/object-merger/models/merge-option.model';
