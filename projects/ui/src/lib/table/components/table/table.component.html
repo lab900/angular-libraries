@@ -10,8 +10,10 @@
     </ng-container>
   </lab900-table-header>
 
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
   <div class="lab900-table-wrapper">
-  <table
+    <table
     mat-table
     matSort
     class="mat-elevation-z0"

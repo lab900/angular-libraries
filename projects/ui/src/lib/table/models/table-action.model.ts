@@ -8,6 +8,7 @@ export interface TableAction {
   type: 'icon-btn' | 'btn' | 'btn-secondary';
   tooltip?: { value: string; position?: TooltipPosition };
   color?: ThemePalette;
+  suffixIcon?: string;
 }
 
 export interface TableRowAction<T = any> extends TableAction {

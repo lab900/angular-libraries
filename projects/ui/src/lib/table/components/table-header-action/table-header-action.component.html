@@ -1,7 +1,13 @@
 <ng-container *ngIf="action && !action.hide">
     <ng-container *ngIf="!action?.subActions">
-        <button *ngIf="action.type === 'btn'" [disabled]="action?.disabled ? action?.disabled() : false" [matTooltip]="action?.tooltip?.value | translate" [matTooltipPosition]="tooltipPosition" mat-flat-button [color]="action?.color || 'primary'" (click)="action.action()">{{ actionLabel | translate }}</button>
-        <button *ngIf="action.type === 'btn-secondary'" [disabled]="action?.disabled ? action?.disabled() : false" [matTooltip]="action?.tooltip?.value | translate" [matTooltipPosition]="tooltipPosition" mat-stroked-button [color]="action?.color || 'primary'" (click)="action.action()">{{ actionLabel | translate }}</button>
+        <button [class.has-suffix-icon]="action?.suffixIcon" *ngIf="action.type === 'btn'" [disabled]="action?.disabled ? action?.disabled() : false" [matTooltip]="action?.tooltip?.value | translate" [matTooltipPosition]="tooltipPosition" mat-flat-button [color]="action?.color || 'primary'" (click)="action.action()">
+            {{ actionLabel | translate }}
+            <mat-icon *ngIf="action?.suffixIcon">{{action?.suffixIcon}}</mat-icon>
+        </button>
+        <button [class.has-suffix-icon]="action?.suffixIcon" *ngIf="action.type === 'btn-secondary'" [disabled]="action?.disabled ? action?.disabled() : false" [matTooltip]="action?.tooltip?.value | translate" [matTooltipPosition]="tooltipPosition" mat-stroked-button [color]="action?.color || 'primary'" (click)="action.action()">
+            {{ actionLabel | translate }}
+            <mat-icon *ngIf="action?.suffixIcon">{{action?.suffixIcon}}</mat-icon>
+        </button>
         <button *ngIf="action.type === 'icon-btn'" [disabled]="action?.disabled ? action?.disabled() : false" [matTooltip]="action?.tooltip?.value | translate" [matTooltipPosition]="tooltipPosition" mat-icon-button [color]="action?.color || 'primary'" (click)="action.action()"><mat-icon>{{ actionLabel }}</mat-icon></button>
     </ng-container>
     <ng-container *ngIf="action.subActions?.length">

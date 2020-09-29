@@ -6,7 +6,7 @@ import { Paging } from '../../../../../../projects/ui/src/lib/common/models/pagi
 
 @Component({
   selector: 'lab900-table-example',
-  template: ` <lab900-table
+  template: `<lab900-table
     [tableCells]="tableCells"
     [activeSort]="sort"
     (sort)="sortChange($event)"
@@ -32,6 +32,7 @@ export class TableExampleComponent {
     {
       label: 'Kies een locatie',
       type: 'btn',
+      suffixIcon: 'keyboard_arrow_down',
     },
     {
       label: 'Exporteer lijst',
@@ -76,11 +77,17 @@ export class TableExampleComponent {
       name: 'A name',
       nameLong: 'A name sdfdsfdsfdsfdsfdsf',
       id: 1,
+      nested: {
+        test: 'xxx',
+      },
     },
     {
       name: 'B name',
       nameLong: 'A name sdfdsfdsfdsfdsfdsf',
       id: 2,
+      nested: {
+        test: 'bbb',
+      },
     },
     {
       name: 'Example name 2',
@@ -98,30 +105,56 @@ export class TableExampleComponent {
   public tableCells: TableCell[] = [
     {
       key: 'name',
-      label: 'Name',
+      label: 'GENERAL.TYPE',
       sortable: true,
-      sticky: true,
-    },
-    {
-      key: 'id',
-      label: 'Id',
-      sortable: true,
+      cellFormatter: (d) => 'test: ' + d.name,
     },
     {
       key: 'nameLong',
-      label: 'Name long',
+      label: 'GENERAL.LOCATION',
       sortable: true,
     },
     {
-      key: 'nameLong2',
-      label: 'Name long',
-      cellFormatter: () => 'trest',
+      key: 'nested.test',
+      label: 'GENERAL.GROUP_CODE',
+      sortable: true,
     },
     {
-      key: 'namesdfdsfdsLong2',
-      label: 'Name long',
-      cellFormatter: () => 'trest',
-      width: '200px',
+      key: 'calls',
+      label: 'GENERAL.NUMBER_OF_CALL',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.firstName',
+      label: 'MISSING_PERSONS.FIRST_NAME',
+      cellClass: 'bold-cell',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.name',
+      label: 'MISSING_PERSONS.LAST_NAME',
+      cellClass: 'bold-cell',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.dateOfBirth',
+      label: 'MISSING_PERSONS.BIRTHDAY',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.relationship',
+      label: 'MISSING_PERSONS.RELATIONSHIP',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.found',
+      label: 'MISSING_PERSONS.STATUS',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.notified',
+      label: 'RELATED_PERSON.NOTIFIED',
+      sortable: true,
     },
   ];
 

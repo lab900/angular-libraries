@@ -6,7 +6,19 @@ export class Lab900TableUtils {
   }
 
   public static getCellValue(data: any, cell: TableCell): string {
-    return cell.cellFormatter ? cell.cellFormatter(data, cell) : data[cell.key];
+    if (cell.cellFormatter) {
+      return cell.cellFormatter(data, cell);
+    } else if (cell.key.includes('.')) {
+      const keys = cell.key.split('.');
+      let value = data?.[keys[0]] ?? '';
+      keys.forEach((key: string) => {
+        if (value?.[key]) {
+          value = value[key];
+        }
+      });
+      return value;
+    }
+    return data?.[cell.key] ?? '';
   }
 
   public static getCellClass(data: any, cell: TableCell): string {

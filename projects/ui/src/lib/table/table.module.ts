@@ -22,6 +22,7 @@ import { Lab900TableFilterMenuComponent } from './components/table-filter-menu/t
 import { Lab900TableHeaderActionComponent } from './components/table-header-action/table-header-action.component';
 import { Lab900TableHeaderComponent } from './components/table-header/lab900-table-header.component';
 import { Lab900TableHeaderContentDirective } from './directives/table-header-content.directive';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { Lab900TableHeaderContentDirective } from './directives/table-header-con
     MatTableModule,
     MatIconModule,
     MatSortModule,
+    MatProgressBarModule,
     TranslateModule,
     RouterModule,
     FlexLayoutModule,
