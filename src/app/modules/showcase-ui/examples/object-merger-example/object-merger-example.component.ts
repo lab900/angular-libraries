@@ -4,24 +4,25 @@ import { MergeOption } from '../../../../../../projects/ui/src/lib/object-merger
 
 @Component({
   selector: 'lab900-object-merger-example',
-  template: `<lab900-object-merger [options]="options" [mergeObjectA]="objectA" [mergeObjectB]="objectB"></lab900-object-merger>`,
+  template: `<lab900-object-merger [options]="options" [objectsToMerge]="objects"></lab900-object-merger>`,
 })
 export class ObjectMergerExampleComponent {
-  public objectA: MergeObject = {
-    data: {
-      name: 'Axelle',
-      lastname: 'Red',
+  public objects: { primary: MergeObject; secondary: MergeObject } = {
+    primary: {
+      data: {
+        name: 'Axelle',
+        lastname: 'Red',
+      },
+      title: 'Axelle Red',
     },
-    title: 'Axelle Red',
-  };
-
-  public objectB: MergeObject = {
-    data: {
-      name: 'Axelle',
-      lastname: 'Blue',
-      favoriteFood: 'IceCream',
+    secondary: {
+      data: {
+        name: 'Axelle',
+        lastname: 'Blue',
+        favoriteFood: 'IceCream',
+      },
+      title: 'Axelle Blue',
     },
-    title: 'Axelle Blue',
   };
 
   public options: MergeOption[] = [
