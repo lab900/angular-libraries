@@ -1,30 +1,30 @@
 <div class="lab900-object-merger">
     <lab900-object-merger-row>
         <ng-container secondary>
-            <h2>{{ objectsToMerge.secondaryTitle }}</h2>
-            <mat-radio-button color="primary" (change)="setBase('secondary')" [checked]="base === 'secondary'"></mat-radio-button>
+            <h2>{{ mergeObjectB.title | translate }}</h2>
+            <mat-radio-button color="primary" (change)="setBase('secondary')" [checked]="baseObject === 'secondary'"></mat-radio-button>
         </ng-container>
         <ng-container primary>
-            <h2>{{ objectsToMerge.primaryTitle }}</h2>
-            <mat-radio-button color="primary" (change)="setBase('primary')" [checked]="base === 'primary'"></mat-radio-button>
+            <h2>{{ mergeObjectA.title | translate }}</h2>
+            <mat-radio-button color="primary" (change)="setBase('primary')" [checked]="baseObject === 'primary'"></mat-radio-button>
         </ng-container>
     </lab900-object-merger-row>
 
     <lab900-object-merger-row *ngFor="let difference of differences | keyvalue">
         <ng-container secondary>
-            <p class="key">{{ difference.key }}</p>
+            <p class="key">{{ difference.value.label | translate }}</p>
             <p>{{ difference.value.secondary }}</p>
         </ng-container>
         <ng-container middle>
             <mat-icon
                 class="lab900-object-merger__arrow"
                 color="primary"
-                [ngClass]="{'rotate': base !== 'primary', 'not-active': !difference.value.active}"
-                (click)="toggleKey(difference.key, base === 'primary' ? difference.value.secondary: difference.value.primary, !difference.value.active)"
+                [ngClass]="{'rotate': baseObject !== 'primary', 'not-active': !difference.value.active}"
+                (click)="toggleKey(difference.key, baseObject === 'primary' ? difference.value.secondary: difference.value.primary, !difference.value.active)"
             >trending_flat</mat-icon>
         </ng-container>
         <ng-container primary>
-            <p class="key">{{ difference.key }}</p>
+            <p class="key">{{ difference.value.label | translate }}</p>
             <p>{{ difference.value.primary }}</p>
         </ng-container>
     </lab900-object-merger-row>

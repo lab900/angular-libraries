@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ObjectMergerObjects } from '../../models/object-merger-objects';
-import { ObjectMergerDifference } from '../../models/object-merger-difference';
+import { MergeOption } from '../../models/merge-option.model';
+import { MergeObject } from '../../models/merge-object.model';
+import { MergeDifference } from '../../models/merge-difference.model';
 
 @Component({
   selector: 'lab900-object-merger',
@@ -9,72 +10,61 @@ import { ObjectMergerDifference } from '../../models/object-merger-difference';
 })
 export class Lab900ObjectMergerComponent implements OnInit {
   @Input()
-  public objectsToMerge: ObjectMergerObjects;
+  public options: MergeOption[];
 
-  public mergedObject: object;
+  @Input()
+  public mergeObjectA: MergeObject;
 
-  public differences: ObjectMergerDifference;
+  @Input()
+  public mergeObjectB: MergeObject;
 
-  public base: 'primary' | 'secondary' = 'primary';
+  public outcome: object;
+
+  public differences: { [key: string]: MergeDifference };
+
+  public baseObject: 'primary' | 'secondary' = 'primary';
 
   public ngOnInit(): void {
     this.getDifferences();
   }
 
   private getDifferences(): void {
-    for (const [key, value] of Object.entries(this.objectsToMerge.primary)) {
-      if (this.objectsToMerge.secondary[key] !== value) {
+    for (const option of this.options) {
+      if (
+        (this.mergeObjectA.data[option.attribute] || this.mergeObjectB.data[option.attribute]) &&
+        this.mergeObjectA.data[option.attribute] !== this.mergeObjectB.data[option.attribute]
+      ) {
         this.differences = {
           ...this.differences,
-          [key]: {
-            primary: value,
-            secondary: this.objectsToMerge.secondary[key],
+          [option.attribute]: {
+            label: option.label,
+            primary: this.mergeObjectA.data[option.attribute],
+            secondary: this.mergeObjectB.data[option.attribute],
             active: true,
           },
         };
       }
     }
-
-    for (const [key, value] of Object.entries(this.objectsToMerge.secondary)) {
-      if (this.objectsToMerge.primary[key] !== value) {
-        if (!this.checkIfDifferenceAlreadyExist(key)) {
-          this.differences = {
-            ...this.differences,
-            [key]: {
-              primary: value,
-              secondary: this.objectsToMerge.primary[key],
-              active: true,
-            },
-          };
-        }
-      }
-    }
-
-    this.mergedObject = this.getBaseObject();
-  }
-
-  private checkIfDifferenceAlreadyExist(key: string): boolean {
-    return !!this.differences[key];
   }
 
   private getBaseObject(): object {
-    return this.base === 'primary' ? this.objectsToMerge.secondary : this.objectsToMerge.primary;
+    return this.baseObject === 'primary' ? this.mergeObjectA : this.mergeObjectB;
   }
 
   public setBase(value: 'primary' | 'secondary'): void {
-    this.base = value;
-    this.mergedObject = this.getBaseObject();
+    this.baseObject = value;
+    this.outcome = this.getBaseObject();
     Object.keys(this.differences).forEach((key) => {
       this.differences[key].active = true;
     });
   }
 
-  public toggleKey(key: string, value: any, active: boolean): void {
-    this.mergedObject = {
-      ...this.mergedObject,
-      [key]: active ? value : this.getBaseObject()[key],
+  public toggleKey(attribute: string, value: any, active: boolean): void {
+    this.outcome = {
+      ...this.outcome,
+      [attribute]: active ? value : this.getBaseObject()[attribute],
     };
 
-    this.differences[key].active = !this.differences[key].active;
+    this.differences[attribute].active = !this.differences[attribute].active;
   }
 }
