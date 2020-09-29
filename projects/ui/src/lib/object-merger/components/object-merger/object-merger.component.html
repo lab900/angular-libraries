@@ -2,15 +2,26 @@
     <lab900-object-merger-row>
         <ng-container secondary>
             <h2>{{ mergeObjectB.title | translate }}</h2>
-            <mat-radio-button color="primary" (change)="setBase('secondary')" [checked]="baseObject === 'secondary'"></mat-radio-button>
+            <mat-radio-button
+                color="primary"
+                (change)="setBase('secondary')"
+                [checked]="baseObject === 'secondary'"
+            ></mat-radio-button>
         </ng-container>
         <ng-container primary>
             <h2>{{ mergeObjectA.title | translate }}</h2>
-            <mat-radio-button color="primary" (change)="setBase('primary')" [checked]="baseObject === 'primary'"></mat-radio-button>
+            <mat-radio-button
+                color="primary"
+                (change)="setBase('primary')"
+                [checked]="baseObject === 'primary'"
+            ></mat-radio-button>
         </ng-container>
     </lab900-object-merger-row>
 
-    <lab900-object-merger-row *ngFor="let difference of differences | keyvalue">
+    <lab900-object-merger-row
+        *ngFor="let difference of differences | keyvalue"
+        [customClass]="difference.value.class"
+    >
         <ng-container secondary>
             <p class="key">{{ difference.value.label | translate }}</p>
             <p>{{ difference.value.secondary }}</p>

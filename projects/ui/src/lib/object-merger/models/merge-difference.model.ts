@@ -1,6 +1,8 @@
 export interface MergeDifference {
-  label: string;
   primary: any;
   secondary: any;
+  label: string;
   active: boolean;
+  formatter?: (data: any) => string;
+  class?: string;
 }
