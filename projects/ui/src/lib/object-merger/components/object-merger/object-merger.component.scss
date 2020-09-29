@@ -14,3 +14,9 @@
 .not-active {
   color: lightgray;
 }
+
+::ng-deep lab900-object-merger-row:last-of-type {
+  .lab900-object-merger-row__value {
+    border-bottom: 1px solid lightgray;
+  }
+}
