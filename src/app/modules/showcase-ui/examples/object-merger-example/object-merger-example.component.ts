@@ -32,6 +32,7 @@ export class ObjectMergerExampleComponent {
     {
       attribute: 'lastname',
       label: 'Lastname',
+      formatter: (data) => `${data} formatter works`,
     },
     {
       attribute: 'favoriteFood',

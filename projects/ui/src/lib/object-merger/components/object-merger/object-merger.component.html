@@ -24,7 +24,8 @@
     >
         <ng-container secondary>
             <p class="key">{{ difference.value.label | translate }}</p>
-            <p>{{ difference.value.secondary }}</p>
+            <p *ngIf="difference.value.formatter">{{ difference.value.formatter(difference.value.secondary) }}</p>
+            <p *ngIf="!difference.value.formatter">{{ difference.value.secondary }}</p>
         </ng-container>
         <ng-container middle>
             <mat-icon
@@ -36,7 +37,8 @@
         </ng-container>
         <ng-container primary>
             <p class="key">{{ difference.value.label | translate }}</p>
-            <p>{{ difference.value.primary }}</p>
+            <p *ngIf="difference.value.formatter">{{ difference.value.formatter(difference.value.primary) }}</p>
+            <p *ngIf="!difference.value.formatter">{{ difference.value.primary }}</p>
         </ng-container>
     </lab900-object-merger-row>
 </div>
