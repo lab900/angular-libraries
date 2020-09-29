@@ -46,7 +46,7 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
         <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="end center" *ngIf="tableActionsFront?.length">
-          <lab900-table-action *ngFor="let action of tableActionsFront" [element]="element" [action]="action"></lab900-table-action>
+          <lab900-action-button *ngFor="let action of tableActionsFront" [data]="element" [action]="action"></lab900-action-button>
         </div>
       </td>
     </ng-container>
@@ -54,8 +54,8 @@
     <ng-container matColumnDef="actions-back" stickyEnd>
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="end center" *ngIf="tableActionsBack?.length || tableActions?.length">
-          <lab900-table-action *ngFor="let action of (tableActionsBack || tableActions)" [element]="element" [action]="action"></lab900-table-action>
+        <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="end center" *ngIf="tableActionsBack?.length">
+          <lab900-action-button *ngFor="let action of tableActionsBack" [data]="element" [action]="action"></lab900-action-button>
         </div>
       </td>
     </ng-container>

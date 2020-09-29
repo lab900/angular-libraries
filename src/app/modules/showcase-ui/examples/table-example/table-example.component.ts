@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { TableCell } from 'projects/ui/src/lib/table/models/table-cell.model';
-import { TableHeaderAction, TableRowAction } from 'projects/ui/src/lib/table/models/table-action.model';
 import { Sort } from '@angular/material/sort';
-import { Paging } from '../../../../../../projects/ui/src/lib/common/models/paging.model';
+import { Paging } from 'projects/ui/src/lib/common/models/paging.model';
+import { ActionButton } from 'projects/ui/src/lib/button/models/action-button.model';
 
 @Component({
   selector: 'lab900-table-example',
@@ -12,7 +12,7 @@ import { Paging } from '../../../../../../projects/ui/src/lib/common/models/pagi
     (sort)="sortChange($event)"
     [data]="mockData"
     [paging]="paging"
-    [tableActions]="tableActions"
+    [tableActionsBack]="tableActions"
     [tableHeaderActions]="tableHeaderActions"
     [toggleColumns]="true"
     [selectableRows]="true"
@@ -28,45 +28,43 @@ import { Paging } from '../../../../../../projects/ui/src/lib/common/models/pagi
 export class TableExampleComponent {
   public sort: Sort = { active: 'id', direction: 'asc' };
 
-  public tableHeaderActions: TableHeaderAction[] = [
+  public tableHeaderActions: ActionButton[] = [
     {
       label: 'Kies een locatie',
-      type: 'btn',
-      suffixIcon: 'keyboard_arrow_down',
+      type: 'flat',
+      // suffixIcon: 'keyboard_arrow_down',
     },
     {
       label: 'Exporteer lijst',
-      type: 'btn-secondary',
+      type: 'stroked',
     },
   ];
 
-  public tableActions: TableRowAction[] = [
+  public tableActions: ActionButton[] = [
     {
       label: 'remove_red_eye',
       action: console.log,
-      type: 'icon-btn',
+      type: 'icon',
       tooltip: { value: 'View this' },
       disabled: (d) => d?.id === 1,
     },
     {
       label: 'Button',
       action: console.log,
-      type: 'btn',
+      type: 'flat',
     },
     {
       label: 'more_horiz',
       action: console.log,
-      type: 'icon-btn',
+      type: 'icon',
       subActions: [
         {
           label: 'sub action',
           action: console.log,
-          type: 'btn',
         },
         {
           label: 'sub action 2',
           action: console.log,
-          type: 'btn',
         },
       ],
     },

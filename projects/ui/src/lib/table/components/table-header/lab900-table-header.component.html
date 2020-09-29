@@ -1,7 +1,7 @@
 <div class="lab900-table-header" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
     <ng-content></ng-content>
     <div class="lab900-table-header__action" *ngIf="tableHeaderActions?.length" fxLayoutAlign="start center" fxLayoutGap="8px">
-        <lab900-table-header-action *ngFor="let action of tableHeaderActions" [action]="action"></lab900-table-header-action>
+        <lab900-action-button *ngFor="let action of tableHeaderActions" [action]="action"></lab900-action-button>
     </div>
     <lab900-table-filter-menu *ngIf="toggleColumns" [tableCells]="tableCells"></lab900-table-filter-menu>
 </div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DataListItemAction, DataListSharing } from 'projects/ui/src/lib/data-list/models/data-list.model';
+import { DataListSharing } from 'projects/ui/src/lib/data-list/models/data-list.model';
 import { PageEvent } from '@angular/material/paginator';
 import { Paging } from 'projects/ui/src/lib/common/models/paging.model';
+import { ActionButton } from 'projects/ui/src/lib/button/models/action-button.model';
 
 const dummyData: any[] = [
   {
@@ -74,16 +75,18 @@ export class DataListExampleComponent implements OnInit {
     totalItems: dummyData.length,
   };
 
-  public actions: DataListItemAction[] = [
+  public actions: ActionButton[] = [
     {
-      icon: 'chat_bubble_outline',
+      label: 'chat_bubble_outline',
+      type: 'icon',
       action: (data: any) => console.log(data),
     },
     {
-      icon: 'more_horiz',
+      label: 'more_horiz',
+      type: 'icon',
       subActions: [
         {
-          icon: 'edit',
+          prefixIcon: 'edit',
           label: 'edit',
         },
       ],

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { PageHeaderAction } from 'projects/ui/src/lib/page-header/models/page-header-actions.model';
 import { PageHeaderNavItem } from 'projects/ui/src/lib/page-header/models/page-header-nav.model';
+import { ActionButton } from 'projects/ui/src/lib/button/models/action-button.model';
 
 @Component({
   selector: 'lab900-page-header-example',
@@ -19,16 +19,19 @@ export class PageHeaderExampleComponent {
     },
   ];
 
-  public actions: PageHeaderAction[] = [
+  public actions: ActionButton[] = [
     {
       label: 'Cancel',
+      prefixIcon: 'edit',
       action: () => console.log('cancel'),
-      type: 'sub',
+      type: 'stroked',
     },
     {
       label: 'Save',
+      suffixIcon: 'keyboard_arrow_down',
+
       action: () => console.log('save'),
-      type: 'main',
+      type: 'flat',
     },
   ];
 }
