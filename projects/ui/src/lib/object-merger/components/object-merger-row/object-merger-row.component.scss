@@ -1,0 +1,31 @@
+.lab900-object-merger-row {
+  width: 100%;
+
+  &__value {
+    width: calc(50% - 30px);
+    height: 60px;
+    border: 1px solid lightgray;
+    padding: 0 10px 0 10px;
+    background-color: white;
+
+    p, h2 {
+      margin: 0;
+    }
+
+    .key {
+      color: lightgray;
+    }
+
+    .mat-radio-label-content {
+      display: none;
+    }
+  }
+
+  &__middle {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

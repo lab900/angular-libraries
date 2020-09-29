@@ -9,6 +9,7 @@ import { NavListExampleComponent } from './examples/nav-list-example/nav-list-ex
 import { TableExampleComponent } from './examples/table-example/table-example.component';
 import { PageHeaderExampleComponent } from './examples/page-header-example/page-header-example.component';
 import { PageHeaderParamsExampleComponent } from './examples/page-header-params-example/page-header-params-example.component';
+import { ObjectMergerExampleComponent } from './examples/object-merger-example/object-merger-example.component';
 
 const routes: Routes = [
   new ShowcaseRoute('sharing', 'Sharing', [new ShowcaseExample(SharingExampleComponent, 'Sharing list', ['TS'], 'ui/sharing')]),
@@ -19,6 +20,9 @@ const routes: Routes = [
   new ShowcaseRoute('page-header', 'Page header', [
     new ShowcaseExample(PageHeaderParamsExampleComponent, 'Page header from request params', ['TS'], 'ui/page-header'),
     new ShowcaseExample(PageHeaderExampleComponent, 'Page header', ['TS'], 'ui/page-header'),
+  ]),
+  new ShowcaseRoute('object-merger', 'Object merger', [
+    new ShowcaseExample(ObjectMergerExampleComponent, 'Object merger', ['TS'], 'ui/object-merger'),
   ]),
 ];
 

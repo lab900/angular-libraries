@@ -55,6 +55,7 @@ import { TranslateModule } from '@ngx-translate/core';
     }),
     MatSelectModule,
     TranslateModule.forChild(),
+    Lab900FormsModule,
   ],
   exports: [AdminPageComponent, TranslatableAdminPageComponent],
 })

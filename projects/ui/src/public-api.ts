@@ -52,3 +52,10 @@ export * from './lib/page-header/page-header.module';
 export * from './lib/page-header/components/page-header/page-header.component';
 export * from './lib/page-header/models/page-header-actions.model';
 export * from './lib/page-header/models/page-header-nav.model';
+
+// object merger
+export * from './lib/object-merger/object-merger.module';
+export * from './lib/object-merger/object-merger.module';
+export * from './lib/object-merger/models/merge-difference.model';
+export * from './lib/object-merger/models/merge-object.model';
+export * from './lib/object-merger/models/merge-option.model';

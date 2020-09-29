@@ -1,8 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Schema, SchemaConverter } from '../../models/schema';
 import { PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
 import { DataService } from '../../models/dataService';
 import { Item, Page } from '../../models/page';
 import { Form } from '@lab900/forms';
@@ -12,7 +11,7 @@ import { Form } from '@lab900/forms';
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.scss'],
 })
-export class AdminPageComponent implements OnInit, OnDestroy {
+export class AdminPageComponent implements OnInit {
   @Input() schema: Schema;
   @Input() dataService: DataService;
 
@@ -22,7 +21,6 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   public editForm: Form;
   public createForm: Form;
 
-  private subscriptions: Subscription[] = [];
   public currentPage: Page<Item>;
 
   constructor(public dialog: MatDialog) {}
@@ -37,10 +35,6 @@ export class AdminPageComponent implements OnInit, OnDestroy {
     this.createForm = SchemaConverter.toForm(this.schema, true);
 
     this.loadData();
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
   loadData() {
