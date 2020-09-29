@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatRadioModule } from '@angular/material/radio';
 import { RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
 
@@ -18,16 +17,7 @@ import { ExampleViewerComponent } from './components/example-viewer/example-view
 import { ShowcasePageComponent } from './components/showcase-page/showcase-page.component';
 import { ComponentLoaderDirective } from './directives/component-loader.directive';
 
-const material = [
-  MatCardModule,
-  MatButtonModule,
-  MatTabsModule,
-  MatIconModule,
-  FlexLayoutModule,
-  MatToolbarModule,
-  MatSidenavModule,
-  MatRadioModule,
-];
+const material = [MatCardModule, MatButtonModule, MatTabsModule, MatIconModule, FlexLayoutModule, MatToolbarModule, MatSidenavModule];
 
 @NgModule({
   declarations: [ExampleViewerComponent, ShowcasePageComponent, ComponentLoaderDirective],
