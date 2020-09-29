@@ -8,19 +8,19 @@ import { MergeDifference } from '../../models/merge-difference.model';
   templateUrl: './object-merger.component.html',
   styleUrls: ['./object-merger.component.scss'],
 })
-export class Lab900ObjectMergerComponent implements OnInit {
+export class Lab900ObjectMergerComponent<T> implements OnInit {
   @Input()
-  public options: MergeOption[];
-
-  @Input()
-  public mergeObjectA: MergeObject;
+  public options: MergeOption<T>[];
 
   @Input()
-  public mergeObjectB: MergeObject;
+  public mergeObjectA: MergeObject<T>;
 
-  public outcome: object;
+  @Input()
+  public mergeObjectB: MergeObject<T>;
 
-  public differences: { [key: string]: MergeDifference };
+  public outcome: T;
+
+  public differences: { [key: string]: MergeDifference<T> };
 
   public baseObject: 'primary' | 'secondary' = 'primary';
 
@@ -47,10 +47,12 @@ export class Lab900ObjectMergerComponent implements OnInit {
         };
       }
     }
+
+    this.outcome = this.mergeObjectA.data;
   }
 
-  private getBaseObject(): object {
-    return this.baseObject === 'primary' ? this.mergeObjectA : this.mergeObjectB;
+  private getBaseObject(): T {
+    return this.baseObject === 'primary' ? this.mergeObjectA.data : this.mergeObjectB.data;
   }
 
   public setBase(value: 'primary' | 'secondary'): void {
@@ -61,7 +63,7 @@ export class Lab900ObjectMergerComponent implements OnInit {
     });
   }
 
-  public toggleKey(attribute: string, value: any, active: boolean): void {
+  public toggleKey(attribute: string, value: T, active: boolean): void {
     this.outcome = {
       ...this.outcome,
       [attribute]: active ? value : this.getBaseObject()[attribute],
