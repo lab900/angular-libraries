@@ -79,3 +79,7 @@ pre[class*="language-"] {
   margin: 0 !important;
   border-radius: 0 !important;
 }
+
+.clickable-cell > a {
+  border-bottom: 1px solid  $palette-lab900green-500;
+}

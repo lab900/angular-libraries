@@ -19,7 +19,7 @@ export class Lab900TableComponent implements OnChanges {
   public readonly utils = Lab900TableUtils;
 
   @Input()
-  public selection = new SelectionModel<any>(false, []);
+  public selection = new SelectionModel<object>(false, []);
 
   @Input()
   public data: any[];
@@ -127,8 +127,23 @@ export class Lab900TableComponent implements OnChanges {
     }
   }
 
-  public selectRow(row: any): void {
+  public selectRow(row: object): void {
     this.selection.toggle(row);
     this.selectionChanged.emit(this.selection);
+  }
+
+  public getRowClasses(row: object, index: number): string {
+    const classes: string[] = [];
+
+    if (this.selection && this.selection.isSelected(row)) {
+      classes.push('lab900-row-selected');
+    }
+    if (index % 2 === 0) {
+      classes.push('lab900-row-even');
+    } else {
+      classes.push('lab900-row-odd');
+    }
+
+    return classes.join(' ') || '';
   }
 }

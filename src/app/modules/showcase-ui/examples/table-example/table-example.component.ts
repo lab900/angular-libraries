@@ -88,7 +88,7 @@ export class TableExampleComponent {
       },
     },
     {
-      name: 'Example name 2',
+      name: '',
       nameLong: 'A name sdfdsfdsfdsfdsfdsf sdfdsfdsfdsfdsfdsf',
       id: 3,
     },
@@ -105,7 +105,8 @@ export class TableExampleComponent {
       key: 'name',
       label: 'GENERAL.TYPE',
       sortable: true,
-      cellFormatter: (d) => 'test: ' + d.name,
+      click: (d) => alert(d.name),
+      cellClass: 'clickable-cell',
     },
     {
       key: 'nameLong',

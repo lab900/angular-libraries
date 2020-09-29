@@ -37,4 +37,8 @@ export interface TableCell<T = any> {
    * Column width
    */
   width?: string;
+  /**
+   * on click
+   */
+  click?: propFunction<T, any>;
 }
