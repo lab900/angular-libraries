@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class Lab900ObjectMergerRowComponent {
   @Input()
-  public customClass?: string;
+  public rowClass?: string;
 }

@@ -1,6 +1,6 @@
-export interface MergeOption {
+export interface MergeOption<T = any> {
   attribute: string;
   label: string;
-  formatter?: (data: any) => string;
-  class?: string;
+  formatter?: (data: T) => string;
+  rowClass?: string;
 }

@@ -1,8 +1,8 @@
-export interface MergeDifference {
-  primary: any;
-  secondary: any;
+export interface MergeDifference<T = any> {
+  primary: T;
+  secondary: T;
   label: string;
   active: boolean;
-  formatter?: (data: any) => string;
-  class?: string;
+  formatter?: (data: T) => string;
+  rowClass?: string;
 }

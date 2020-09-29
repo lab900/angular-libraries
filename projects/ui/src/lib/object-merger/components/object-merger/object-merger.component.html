@@ -20,12 +20,11 @@
 
     <lab900-object-merger-row
         *ngFor="let difference of differences | keyvalue"
-        [customClass]="difference.value.class"
+        [rowClass]="difference.value.rowClass"
     >
         <ng-container secondary>
             <p class="key">{{ difference.value.label | translate }}</p>
-            <p *ngIf="difference.value.formatter">{{ difference.value.formatter(difference.value.secondary) }}</p>
-            <p *ngIf="!difference.value.formatter">{{ difference.value.secondary }}</p>
+            <p>{{ difference.value.formatter ? difference.value.formatter(difference.value.secondary) : difference.value.secondary }}</p>
         </ng-container>
         <ng-container middle>
             <mat-icon
@@ -37,8 +36,7 @@
         </ng-container>
         <ng-container primary>
             <p class="key">{{ difference.value.label | translate }}</p>
-            <p *ngIf="difference.value.formatter">{{ difference.value.formatter(difference.value.primary) }}</p>
-            <p *ngIf="!difference.value.formatter">{{ difference.value.primary }}</p>
+            <p>{{ difference.value.formatter ? difference.value.formatter(difference.value.secondary) : difference.value.secondary }}</p>
         </ng-container>
     </lab900-object-merger-row>
 </div>

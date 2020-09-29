@@ -1,7 +1,7 @@
 .lab900-object-merger-row {
   width: 100%;
 
-  ::ng-deep &__value {
+  &__value {
     width: calc(50% - 30px);
     height: 60px;
     border: 1px solid lightgray;
