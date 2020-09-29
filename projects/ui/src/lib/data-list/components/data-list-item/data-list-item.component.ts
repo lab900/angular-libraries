@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { DataListItemAction, DataListSharing } from '../../models/data-list.model';
+import { DataListSharing } from '../../models/data-list.model';
 import { Lab900DataListItemInfoDirective } from '../../directives/data-list-item-info.directive';
+import { ActionButton } from '../../../button/models/action-button.model';
 
 @Component({
   selector: 'lab900-data-list-item',
@@ -12,25 +13,11 @@ export class Lab900DataListItemComponent {
   public data: any;
 
   @Input()
-  public actions: DataListItemAction[] = [];
+  public actions: ActionButton[] = [];
 
   @Input()
   public dataListItemInfoTemplate?: Lab900DataListItemInfoDirective;
 
   @Input()
   public dataListSharing?: DataListSharing;
-
-  public getLabel(action: DataListItemAction): string {
-    if (typeof action.label === 'function') {
-      return action.label(this.data);
-    }
-    return action.label;
-  }
-
-  public getIcon(action: DataListItemAction): string {
-    if (typeof action.icon === 'function') {
-      return action.icon(this.data);
-    }
-    return action.icon;
-  }
 }

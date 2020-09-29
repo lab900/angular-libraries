@@ -1,0 +1,39 @@
+<div class="lab900-object-merger">
+    <lab900-object-merger-row>
+        <ng-container secondary>
+            <h2>{{ objectsToMerge.secondary.title | translate }}</h2>
+            <mat-radio-button
+                color="primary"
+                (change)="setBaseObject('secondary')"
+                [checked]="baseObject === 'secondary'"
+            ></mat-radio-button>
+        </ng-container>
+        <ng-container primary>
+            <h2>{{ objectsToMerge.primary.title | translate }}</h2>
+            <mat-radio-button
+                color="primary"
+                (change)="setBaseObject('primary')"
+                [checked]="baseObject === 'primary'"
+            ></mat-radio-button>
+        </ng-container>
+    </lab900-object-merger-row>
+
+    <lab900-object-merger-row *ngFor="let difference of differences | keyvalue" [rowClass]="difference.value.rowClass">
+        <ng-container secondary>
+            <p>{{ difference.value.label | translate }}</p>
+            <span>{{ difference.value.formatter ? difference.value.formatter(difference.value.secondary) : difference.value.secondary }}</span>
+        </ng-container>
+        <ng-container middle>
+            <mat-icon
+                class="lab900-object-merger__arrow"
+                color="primary"
+                [ngClass]="{'rotate': baseObject !== 'primary', 'not-active': !difference.value.active}"
+                (click)="toggleKey(difference.key, baseObject === 'primary' ? difference.value.secondary: difference.value.primary)"
+            >trending_flat</mat-icon>
+        </ng-container>
+        <ng-container primary>
+            <p>{{ difference.value.label | translate }}</p>
+            <span>{{ difference.value.formatter ? difference.value.formatter(difference.value.primary) : difference.value.primary }}</span>
+        </ng-container>
+    </lab900-object-merger-row>
+</div>

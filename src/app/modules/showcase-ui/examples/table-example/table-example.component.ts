@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { TableCell } from 'projects/ui/src/lib/table/models/table-cell.model';
-import { TableHeaderAction, TableRowAction } from 'projects/ui/src/lib/table/models/table-action.model';
 import { Sort } from '@angular/material/sort';
-import { Paging } from '../../../../../../projects/ui/src/lib/common/models/paging.model';
+import { Paging } from 'projects/ui/src/lib/common/models/paging.model';
+import { ActionButton } from 'projects/ui/src/lib/button/models/action-button.model';
 
 @Component({
   selector: 'lab900-table-example',
-  template: ` <lab900-table
+  template: `<lab900-table
     [tableCells]="tableCells"
     [activeSort]="sort"
     (sort)="sortChange($event)"
     [data]="mockData"
     [paging]="paging"
-    [tableActions]="tableActions"
+    [tableActionsBack]="tableActions"
     [tableHeaderActions]="tableHeaderActions"
     [toggleColumns]="true"
     [selectableRows]="true"
@@ -28,44 +28,43 @@ import { Paging } from '../../../../../../projects/ui/src/lib/common/models/pagi
 export class TableExampleComponent {
   public sort: Sort = { active: 'id', direction: 'asc' };
 
-  public tableHeaderActions: TableHeaderAction[] = [
+  public tableHeaderActions: ActionButton[] = [
     {
       label: 'Kies een locatie',
-      type: 'btn',
+      type: 'flat',
+      // suffixIcon: 'keyboard_arrow_down',
     },
     {
       label: 'Exporteer lijst',
-      type: 'btn-secondary',
+      type: 'stroked',
     },
   ];
 
-  public tableActions: TableRowAction[] = [
+  public tableActions: ActionButton[] = [
     {
       label: 'remove_red_eye',
       action: console.log,
-      type: 'icon-btn',
+      type: 'icon',
       tooltip: { value: 'View this' },
       disabled: (d) => d?.id === 1,
     },
     {
       label: 'Button',
       action: console.log,
-      type: 'btn',
+      type: 'flat',
     },
     {
       label: 'more_horiz',
       action: console.log,
-      type: 'icon-btn',
+      type: 'icon',
       subActions: [
         {
           label: 'sub action',
           action: console.log,
-          type: 'btn',
         },
         {
           label: 'sub action 2',
           action: console.log,
-          type: 'btn',
         },
       ],
     },
@@ -76,14 +75,20 @@ export class TableExampleComponent {
       name: 'A name',
       nameLong: 'A name sdfdsfdsfdsfdsfdsf',
       id: 1,
+      nested: {
+        test: 'xxx',
+      },
     },
     {
       name: 'B name',
       nameLong: 'A name sdfdsfdsfdsfdsfdsf',
       id: 2,
+      nested: {
+        test: 'bbb',
+      },
     },
     {
-      name: 'Example name 2',
+      name: '',
       nameLong: 'A name sdfdsfdsfdsfdsfdsf sdfdsfdsfdsfdsfdsf',
       id: 3,
     },
@@ -98,30 +103,57 @@ export class TableExampleComponent {
   public tableCells: TableCell[] = [
     {
       key: 'name',
-      label: 'Name',
+      label: 'GENERAL.TYPE',
       sortable: true,
-      sticky: true,
-    },
-    {
-      key: 'id',
-      label: 'Id',
-      sortable: true,
+      click: (d) => alert(d.name),
+      cellClass: 'clickable-cell',
     },
     {
       key: 'nameLong',
-      label: 'Name long',
+      label: 'GENERAL.LOCATION',
       sortable: true,
     },
     {
-      key: 'nameLong2',
-      label: 'Name long',
-      cellFormatter: () => 'trest',
+      key: 'nested.test',
+      label: 'GENERAL.GROUP_CODE',
+      sortable: true,
     },
     {
-      key: 'namesdfdsfdsLong2',
-      label: 'Name long',
-      cellFormatter: () => 'trest',
-      width: '200px',
+      key: 'calls',
+      label: 'GENERAL.NUMBER_OF_CALL',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.firstName',
+      label: 'MISSING_PERSONS.FIRST_NAME',
+      cellClass: 'bold-cell',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.name',
+      label: 'MISSING_PERSONS.LAST_NAME',
+      cellClass: 'bold-cell',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.dateOfBirth',
+      label: 'MISSING_PERSONS.BIRTHDAY',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.relationship',
+      label: 'MISSING_PERSONS.RELATIONSHIP',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.found',
+      label: 'MISSING_PERSONS.STATUS',
+      sortable: true,
+    },
+    {
+      key: 'linkedDossier.notified',
+      label: 'RELATED_PERSON.NOTIFIED',
+      sortable: true,
     },
   ];
 

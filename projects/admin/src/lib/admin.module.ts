@@ -48,11 +48,6 @@ import { TranslateModule } from '@ngx-translate/core';
     DialogModule,
     MatCheckboxModule,
     Lab900FormsModule,
-    Lab900FormsModule.forRoot({
-      formField: {
-        appearance: 'outline',
-      },
-    }),
     MatSelectModule,
     TranslateModule.forChild(),
   ],

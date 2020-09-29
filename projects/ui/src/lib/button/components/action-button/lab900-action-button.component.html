@@ -1,0 +1,36 @@
+<ng-container *ngIf="action && !action?.hide">
+    <lab900-button
+        *ngIf="!action.subActions?.length"
+        [type]="action.type"
+        [color]="action?.color"
+        [disabled]="getDisabled(action)"
+        (click)="doAction($event, action)"
+        [label]="getLabel(action)"
+        [matTooltip]="action?.tooltip?.value | translate"
+        [prefixIcon]="getPrefixIcon(action)"
+        [suffixIcon]="getSuffixIcon(action)"
+        [matTooltipPosition]="tooltipPosition"
+    ></lab900-button>
+    <ng-container *ngIf="action.subActions?.length">
+        <lab900-button
+            [type]="action.type"
+            [color]="action?.color"
+            [disabled]="getDisabled(action)"
+            [label]="getLabel(action)"
+            [matMenuTriggerFor]="actionMenu"
+            [matTooltip]="action?.tooltip?.value | translate"
+            [prefixIcon]="getPrefixIcon(action)"
+            [suffixIcon]="getSuffixIcon(action)"
+            [matTooltipPosition]="tooltipPosition"
+        ></lab900-button>
+        <mat-menu #actionMenu="matMenu">
+            <ng-container *ngFor="let sub of action.subActions">
+                <button *ngIf="!sub?.hide" mat-menu-item (click)="doAction($event, sub)" [disabled]="getDisabled(sub)">
+                    <mat-icon *ngIf="sub?.prefixIcon">{{ getPrefixIcon(sub) }}</mat-icon>
+                    <span>{{ getLabel(sub) | translate }}</span>
+                    <mat-icon *ngIf="sub?.suffixIcon">{{ getSuffixIcon(sub) }}</mat-icon>
+                </button>
+            </ng-container>
+        </mat-menu>
+    </ng-container>
+</ng-container>

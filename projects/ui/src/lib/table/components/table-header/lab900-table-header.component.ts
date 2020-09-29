@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { TableRowAction } from '../../models/table-action.model';
 import { TableCell } from '../../models/table-cell.model';
+import { ActionButton } from '../../../button/models/action-button.model';
 
 @Component({
   selector: 'lab900-table-header',
@@ -11,7 +11,7 @@ export class Lab900TableHeaderComponent {
    * Show a set of action at the top of the table
    */
   @Input()
-  public tableHeaderActions: TableRowAction[];
+  public tableHeaderActions: ActionButton[];
 
   /**
    * Show columns filter to hide/show columns
