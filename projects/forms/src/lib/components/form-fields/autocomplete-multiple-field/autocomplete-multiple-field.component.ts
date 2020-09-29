@@ -49,6 +49,7 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
     value.push(event.option.value);
     this.updateControlValue(value);
     this.input.nativeElement.value = '';
+    this.group.markAsDirty();
   }
 
   private updateControlValue(val: any[]): void {
