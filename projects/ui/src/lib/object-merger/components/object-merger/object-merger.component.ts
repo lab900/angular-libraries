@@ -41,6 +41,8 @@ export class Lab900ObjectMergerComponent implements OnInit {
             primary: this.mergeObjectA.data[option.attribute],
             secondary: this.mergeObjectB.data[option.attribute],
             active: true,
+            class: option.class,
+            formatter: option.formatter,
           },
         };
       }
