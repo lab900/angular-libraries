@@ -20,6 +20,8 @@
        *ngIf="item.route"
        [disabled]="disabled"
        [routerLink]="item.route"
+       [queryParams]="item?.routeQueryParams"
+       [routerLinkActive]="'nav-item__link__active'"
        [ngStyle]="{'padding-left': (depth * 12) + 'px'}"
        [ngClass]="{'active': router.isActive(item.route, true)}">
         <lab900-icon class="nav-item__link__icon-left" [icon]="item.icon" *ngIf="item.icon && (item.icon?.position === 'left' || !item.icon?.position)"></lab900-icon>

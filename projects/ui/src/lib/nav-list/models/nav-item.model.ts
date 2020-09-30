@@ -2,6 +2,9 @@ export interface NavItem {
   label: string;
   icon?: Icon;
   route?: string;
+  routeQueryParams?: {
+    [k: string]: any;
+  };
   href?: { url: string; target?: '_self' | '_blank' };
   children?: NavItem[];
 }
