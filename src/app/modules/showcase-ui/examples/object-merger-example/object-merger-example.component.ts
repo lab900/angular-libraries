@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MergeObject } from '../../../../../../projects/ui/src/lib/object-merger/models/merge-object.model';
 import { MergeOption } from '../../../../../../projects/ui/src/lib/object-merger/models/merge-option.model';
 import * as moment from 'moment';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'lab900-object-merger-example',
@@ -45,6 +46,7 @@ export class ObjectMergerExampleComponent {
     {
       attribute: 'languages',
       label: 'language',
+      formatter: (data) => of(data),
     },
   ];
 }
