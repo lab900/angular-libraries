@@ -21,7 +21,7 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
 
   public selectedIndex = 0;
 
-  public ngOnInit() {
+  public ngOnInit(): void {
     this.getDifferences();
   }
 
