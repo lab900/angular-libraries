@@ -10,8 +10,10 @@ export class Lab900TableUtils {
       return cell.cellFormatter(data, cell);
     } else if (cell.key.includes('.')) {
       const keys = cell.key.split('.');
-      let value = data?.[keys[0]] ?? '';
-      keys.forEach((key: string) => (value = value?.[key] ?? ''));
+      let value = data;
+      for (const key of keys) {
+        value = value?.[key] ?? '';
+      }
       return value;
     }
     return data?.[cell.key] ?? '';

@@ -83,9 +83,7 @@ export class TableExampleComponent {
       name: 'B name',
       nameLong: 'A name sdfdsfdsfdsfdsfdsf',
       id: 2,
-      nested: {
-        test: 'bbb',
-      },
+      nested: {},
     },
     {
       name: '',
@@ -116,43 +114,6 @@ export class TableExampleComponent {
     {
       key: 'nested.test',
       label: 'GENERAL.GROUP_CODE',
-      sortable: true,
-    },
-    {
-      key: 'calls',
-      label: 'GENERAL.NUMBER_OF_CALL',
-      sortable: true,
-    },
-    {
-      key: 'linkedDossier.firstName',
-      label: 'MISSING_PERSONS.FIRST_NAME',
-      cellClass: 'bold-cell',
-      sortable: true,
-    },
-    {
-      key: 'linkedDossier.name',
-      label: 'MISSING_PERSONS.LAST_NAME',
-      cellClass: 'bold-cell',
-      sortable: true,
-    },
-    {
-      key: 'linkedDossier.dateOfBirth',
-      label: 'MISSING_PERSONS.BIRTHDAY',
-      sortable: true,
-    },
-    {
-      key: 'linkedDossier.relationship',
-      label: 'MISSING_PERSONS.RELATIONSHIP',
-      sortable: true,
-    },
-    {
-      key: 'linkedDossier.found',
-      label: 'MISSING_PERSONS.STATUS',
-      sortable: true,
-    },
-    {
-      key: 'linkedDossier.notified',
-      label: 'RELATED_PERSON.NOTIFIED',
       sortable: true,
     },
   ];
