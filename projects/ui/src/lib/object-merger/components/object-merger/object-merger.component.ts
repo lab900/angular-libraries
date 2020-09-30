@@ -21,34 +21,33 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
 
   public selectedIndex = 0;
 
-  public ngOnInit(): void {
-    // ToDo: Check when input changes it triggers again
-    if (this.objectsToMerge) {
-      this.getDifferences();
-    }
+  public ngOnInit() {
+    this.getDifferences();
   }
 
   private getDifferences(): void {
-    for (const option of this.options) {
-      if (
-        (this.objectsToMerge[0].data[option.attribute] || this.objectsToMerge[1].data[option.attribute]) &&
-        this.objectsToMerge[0].data[option.attribute] !== this.objectsToMerge[1].data[option.attribute]
-      ) {
-        this.differences = {
-          ...this.differences,
-          [option.attribute]: {
-            label: option.label,
-            primary: this.objectsToMerge[0].data[option.attribute],
-            secondary: this.objectsToMerge[1].data[option.attribute],
-            active: true,
-            rowClass: option.rowClass,
-            formatter: option.formatter,
-          },
-        };
+    if (this.objectsToMerge && this.objectsToMerge.length >= 2) {
+      for (const option of this.options) {
+        if (
+          (this.objectsToMerge[0].data[option.attribute] || this.objectsToMerge[1].data[option.attribute]) &&
+          this.objectsToMerge[0].data[option.attribute] !== this.objectsToMerge[1].data[option.attribute]
+        ) {
+          this.differences = {
+            ...this.differences,
+            [option.attribute]: {
+              label: option.label,
+              primary: this.objectsToMerge[0].data[option.attribute],
+              secondary: this.objectsToMerge[1].data[option.attribute],
+              active: true,
+              rowClass: option.rowClass,
+              formatter: option.formatter,
+            },
+          };
+        }
       }
-    }
 
-    this.outcome = this.objectsToMerge[0].data;
+      this.outcome = this.objectsToMerge[0].data;
+    }
   }
 
   public switchSelectedIndex(value: 0 | 1): void {

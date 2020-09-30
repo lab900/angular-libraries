@@ -1,4 +1,4 @@
-<div class="lab900-object-merger">
+<div class="lab900-object-merger" *ngIf="objectsToMerge && objectsToMerge.length >= 2">
     <lab900-object-merger-row>
         <ng-container secondary>
             <h2>{{ objectsToMerge[1].title | translate }}</h2>
