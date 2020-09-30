@@ -81,9 +81,6 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
 
   public getFormattedData(formatter: (data: T) => string | Observable<string>, value: T): Observable<string> {
     const formattedValue = formatter(value);
-    if (isObservable(formattedValue)) {
-      return formattedValue;
-    }
-    return of(formattedValue);
+    return isObservable(formattedValue) ? formattedValue : of(formattedValue);
   }
 }
