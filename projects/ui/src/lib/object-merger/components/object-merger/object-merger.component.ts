@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MergeOption } from '../../models/merge-option.model';
 import { MergeObject } from '../../models/merge-object.model';
 import { MergeDifference } from '../../models/merge-difference.model';
+import { isObservable, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'lab900-object-merger',
@@ -76,5 +77,13 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
     }
 
     this.differences[attribute].active = !this.differences[attribute].active;
+  }
+
+  public getFormattedData(formatter: (data: T) => string | Observable<string>, value: T): Observable<string> {
+    const formattedValue = formatter(value);
+    if (isObservable(formattedValue)) {
+      return formattedValue;
+    }
+    return of(formattedValue);
   }
 }
