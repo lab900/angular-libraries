@@ -11,11 +11,7 @@ export class Lab900TableUtils {
     } else if (cell.key.includes('.')) {
       const keys = cell.key.split('.');
       let value = data?.[keys[0]] ?? '';
-      keys.forEach((key: string) => {
-        if (value?.[key]) {
-          value = value[key];
-        }
-      });
+      keys.forEach((key: string) => (value = value?.[key] ?? ''));
       return value;
     }
     return data?.[cell.key] ?? '';
