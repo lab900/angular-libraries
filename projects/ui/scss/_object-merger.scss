@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+
+@mixin lab900-object-merger($config-or-theme) {
+  .selected {
+    border-left-color:  mat-color(map-get($config-or-theme, primary)) !important;
+    border-left-width: 2px !important;
+    border-right-color:  mat-color(map-get($config-or-theme, primary)) !important;
+    border-right-width: 2px !important;
+  }
+}

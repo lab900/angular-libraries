@@ -1,5 +1,5 @@
 <div class="lab900-object-merger" *ngIf="objectsToMerge && objectsToMerge.length >= 2">
-    <lab900-object-merger-row>
+    <lab900-object-merger-row [selected]="selected">
         <ng-container secondary>
             <h2>{{ objectsToMerge[1].title | translate }}</h2>
             <mat-radio-button
@@ -20,7 +20,7 @@
         </ng-container>
     </lab900-object-merger-row>
 
-    <lab900-object-merger-row *ngFor="let difference of differences | keyvalue" [rowClass]="difference.value.rowClass">
+    <lab900-object-merger-row *ngFor="let difference of differences | keyvalue" [rowClass]="difference.value.rowClass" [selected]="selected">
         <ng-container secondary>
             <p>{{ difference.value.label | translate }}</p>
             <span>{{ getDisplayValue(difference.key, difference.value, 'left' ) }}</span>
