@@ -44,7 +44,9 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
               right: this.objectsToMerge[0].data[option.attribute],
               left: this.objectsToMerge[1].data[option.attribute],
               active: false,
-              hidden: this.objectsToMerge[0].data[option.attribute] === this.objectsToMerge[1].data[option.attribute],
+              hidden:
+                JSON.stringify(this.objectsToMerge[0].data[option.attribute]) ===
+                JSON.stringify(this.objectsToMerge[1].data[option.attribute]),
               rowClass: option.rowClass,
               formatter: option.formatter,
             },
