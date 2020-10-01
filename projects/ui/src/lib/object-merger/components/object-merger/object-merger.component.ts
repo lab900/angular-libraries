@@ -19,26 +19,31 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
 
   public differences: { [key: string]: MergeDifference<T> };
 
-  public selectedIndex = 0;
+  public selected: 'left' | 'right' = 'right';
+
+  public fixed = false;
 
   public ngOnInit(): void {
+    if (this.objectsToMerge[0].fixed || this.objectsToMerge[1].fixed) {
+      this.fixed = true;
+      this.selected = this.objectsToMerge[0].fixed ? 'right' : 'left';
+    }
+
     this.getDifferences();
   }
 
   private getDifferences(): void {
     if (this.objectsToMerge && this.objectsToMerge.length >= 2) {
       for (const option of this.options) {
-        if (
-          (this.objectsToMerge[0].data[option.attribute] || this.objectsToMerge[1].data[option.attribute]) &&
-          this.objectsToMerge[0].data[option.attribute] !== this.objectsToMerge[1].data[option.attribute]
-        ) {
+        if (this.objectsToMerge[0].data[option.attribute] || this.objectsToMerge[1].data[option.attribute]) {
           this.differences = {
             ...this.differences,
             [option.attribute]: {
               label: option.label,
-              primary: this.objectsToMerge[0].data[option.attribute],
-              secondary: this.objectsToMerge[1].data[option.attribute],
-              active: true,
+              right: this.objectsToMerge[0].data[option.attribute],
+              left: this.objectsToMerge[1].data[option.attribute],
+              active: false,
+              hidden: this.objectsToMerge[0].data[option.attribute] === this.objectsToMerge[1].data[option.attribute],
               rowClass: option.rowClass,
               formatter: option.formatter,
             },
@@ -46,24 +51,24 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
         }
       }
 
-      this.outcome = this.objectsToMerge[0].data;
+      this.outcome = this.getBaseObject();
     }
   }
 
-  public switchSelectedIndex(value: 0 | 1): void {
-    this.selectedIndex = value;
+  public switchSelected(value: 'left' | 'right'): void {
+    this.selected = value;
     this.outcome = this.getBaseObject();
     Object.keys(this.differences).forEach((key) => {
-      this.differences[key].active = true;
+      this.differences[key].active = false;
     });
   }
 
   private getBaseObject(): T {
-    return this.selectedIndex === 0 ? this.objectsToMerge[0].data : this.objectsToMerge[1].data;
+    return this.selected === 'right' ? this.objectsToMerge[0].data : this.objectsToMerge[1].data;
   }
 
   public toggleKey(attribute: string, value: any): void {
-    if (this.differences[attribute].active) {
+    if (!this.differences[attribute].active) {
       this.outcome = {
         ...this.outcome,
         [attribute]: value,
@@ -78,8 +83,8 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
     this.differences[attribute].active = !this.differences[attribute].active;
   }
 
-  public getFormattedData(difference: MergeDifference, type: 'primary' | 'secondary'): string {
-    const value = difference[type];
+  public getDisplayValue(attribute: string, difference: MergeDifference, type: 'left' | 'right'): string {
+    const value = type === this.selected ? this.outcome[attribute] : difference[type];
     if (difference.formatter) {
       return difference.formatter(value);
     }
