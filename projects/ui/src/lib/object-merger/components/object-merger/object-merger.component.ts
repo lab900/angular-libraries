@@ -16,6 +16,7 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
   public objectsToMerge: MergeObject<T>[];
 
   public outcome: T;
+  public changedFields: object;
 
   public differences: { [key: string]: MergeDifference<T> };
 
@@ -73,11 +74,16 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
         ...this.outcome,
         [attribute]: value,
       };
+      this.changedFields = {
+        ...this.changedFields,
+        [attribute]: value,
+      };
     } else {
       this.outcome = {
         ...this.outcome,
         [attribute]: this.getBaseObject()[attribute],
       };
+      delete this.changedFields[attribute];
     }
 
     this.differences[attribute].active = !this.differences[attribute].active;
