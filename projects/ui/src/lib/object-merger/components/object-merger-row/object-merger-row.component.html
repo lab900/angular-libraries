@@ -1,5 +1,5 @@
 <div class="lab900-object-merger-row {{ rowClass }}" fxLayout="row">
-    <div class="lab900-object-merger-row__value" fxLayoutAlign="space-between center">
+    <div class="lab900-object-merger-row__value" fxLayoutAlign="space-between center" [ngClass]="{'selected': selected === 'left'}">
         <ng-content select="[secondary]"></ng-content>
     </div>
 
@@ -7,7 +7,7 @@
         <ng-content select="[middle]"></ng-content>
     </div>
 
-    <div class="lab900-object-merger-row__value" fxLayoutAlign="space-between center">
+    <div class="lab900-object-merger-row__value" fxLayoutAlign="space-between center" [ngClass]="{'selected': selected === 'right'}">
         <ng-content select="[primary]"></ng-content>
     </div>
 </div>

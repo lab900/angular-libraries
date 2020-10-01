@@ -3,5 +3,9 @@
   "dest": "../../dist/@lab900/ui",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "./scss/*.scss",
+    "./_theming.scss"
+  ]
 }

@@ -1,0 +1,5 @@
+@import "./scss/object-merger";
+
+@mixin lab900-ui($config-or-theme) {
+  @include lab900-object-merger($config-or-theme);
+}

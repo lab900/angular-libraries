@@ -3,6 +3,7 @@
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 @import '../projects/forms/theming';
+@import '../projects/ui/theming';
 @import './assets/styles/green.palette';
 @import './assets/styles/grey.palette';
 
@@ -37,6 +38,7 @@ $angular-libraries-theme: mat-light-theme((
 // that you are using.
 @include angular-material-theme($angular-libraries-theme);
 @include lab900-forms($angular-libraries-theme);
+@include lab900-ui($angular-libraries-theme);
 
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }

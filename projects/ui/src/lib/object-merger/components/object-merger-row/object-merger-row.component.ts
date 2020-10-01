@@ -7,5 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class Lab900ObjectMergerRowComponent {
   @Input()
+  public selected: 'left' | 'right' = 'right';
+
+  @Input()
   public rowClass?: string;
 }
