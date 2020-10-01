@@ -15,6 +15,9 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
   @Input()
   public objectsToMerge: MergeObject<T>[];
 
+  @Input()
+  public fixed = false;
+
   public outcome: T;
   public changedFields: object;
 
@@ -22,14 +25,7 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
 
   public selected: 'left' | 'right' = 'right';
 
-  public fixed = false;
-
   public ngOnInit(): void {
-    if (this.objectsToMerge[0].fixed || this.objectsToMerge[1].fixed) {
-      this.fixed = true;
-      this.selected = this.objectsToMerge[0].fixed ? 'right' : 'left';
-    }
-
     this.getDifferences();
   }
 
