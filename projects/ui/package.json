@@ -1,6 +1,6 @@
 {
   "name": "@lab900/ui",
-  "version": "2.1.28",
+  "version": "2.1.29",
   "peerDependencies": {
     "@angular/common": "~10.0.2",
     "@angular/core": "~10.0.2",

@@ -1,0 +1,17 @@
+<mat-menu #actionMenu>
+    <ng-container *ngFor="let action of actions">
+        <button *ngIf="!action.subActions; else nested" mat-menu-item (click)="doAction($event, action)" [disabled]="getDisabled(action)">
+            <mat-icon *ngIf="action?.prefixIcon">{{ getPrefixIcon(action) }}</mat-icon>
+            <span>{{ getLabel(action) | translate }}</span>
+            <mat-icon *ngIf="action?.suffixIcon">{{ getSuffixIcon(action) }}</mat-icon>
+        </button>
+        <ng-template #nested>
+            <button *ngIf="!action?.hide" mat-menu-item [matMenuTriggerFor]="innerMenu.actionMenu" [disabled]="getDisabled(action)">
+                <mat-icon *ngIf="action?.prefixIcon">{{ getPrefixIcon(action) }}</mat-icon>
+                <span>{{ getLabel(action) | translate }}</span>
+                <mat-icon *ngIf="action?.suffixIcon">{{ getSuffixIcon(action) }}</mat-icon>
+            </button>
+            <lab900-action-button-menu #innerMenu [actions]="action.subActions"></lab900-action-button-menu>
+        </ng-template>
+    </ng-container>
+</mat-menu>

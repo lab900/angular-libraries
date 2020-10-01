@@ -17,37 +17,37 @@ export class Lab900ActionButtonComponent {
     return this.action?.tooltip?.position ?? 'above';
   }
 
-  public getLabel(action: ActionButton): string {
-    if (typeof action.label === 'function') {
-      return action.label(this.data);
+  public getLabel(): string {
+    if (typeof this.action.label === 'function') {
+      return this.action.label(this.data);
     }
-    return action.label;
+    return this.action.label;
   }
 
-  public getDisabled(action: ActionButton): boolean {
-    if (typeof action.disabled === 'function') {
-      return action.disabled(this.data);
+  public getDisabled(): boolean {
+    if (typeof this.action.disabled === 'function') {
+      return this.action.disabled(this.data);
     }
-    return action.disabled;
+    return this.action.disabled;
   }
 
-  public doAction(e: Event, action: ActionButton): void {
-    if (action.action) {
-      action.action(this.data, e);
+  public doAction(e: Event): void {
+    if (this.action.action) {
+      this.action.action(this.data, e);
     }
   }
 
-  public getPrefixIcon(action: ActionButton): string {
-    if (typeof action.prefixIcon === 'function') {
-      return action.prefixIcon(this.data);
+  public getPrefixIcon(): string {
+    if (typeof this.action.prefixIcon === 'function') {
+      return this.action.prefixIcon(this.data);
     }
-    return action.prefixIcon;
+    return this.action.prefixIcon;
   }
 
-  public getSuffixIcon(action: ActionButton): string {
-    if (typeof action.suffixIcon === 'function') {
-      return action.suffixIcon(this.data);
+  public getSuffixIcon(): string {
+    if (typeof this.action.suffixIcon === 'function') {
+      return this.action.suffixIcon(this.data);
     }
-    return action.suffixIcon;
+    return this.action.suffixIcon;
   }
 }

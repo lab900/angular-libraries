@@ -61,6 +61,16 @@ export class TableExampleComponent {
         {
           label: 'sub action',
           action: console.log,
+          subActions: [
+            {
+              label: 'sub action',
+              action: console.log,
+            },
+            {
+              label: 'sub action 2',
+              action: console.log,
+            },
+          ],
         },
         {
           label: 'sub action 2',
