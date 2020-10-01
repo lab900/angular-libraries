@@ -34,9 +34,15 @@
                 (click)="toggleKey(difference.key, selected === 'right' ? difference.value.left: difference.value.right)"
             >trending_flat</mat-icon>
         </ng-container>
-        <ng-container primary>
+        <ng-container *ngIf="difference.value.nextLine; else oneLine" primary>
+            <div>
+                <p>{{ difference.value.label | translate }}</p>
+                <span>{{ getDisplayValue(difference.key, difference.value, 'right' ) }}</span>
+            </div>
+        </ng-container>
+        <ng-template #oneLine>
             <p>{{ difference.value.label | translate }}</p>
             <span>{{ getDisplayValue(difference.key, difference.value, 'right' ) }}</span>
-        </ng-container>
+        </ng-template>
     </lab900-object-merger-row>
 </div>

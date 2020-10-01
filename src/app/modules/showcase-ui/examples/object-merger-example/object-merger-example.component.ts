@@ -53,6 +53,7 @@ export class ObjectMergerExampleComponent {
       attribute: 'spokenLanguages',
       label: 'spoken-language',
       formatter: (data) => data.join(', '),
+      nextLine: true,
     },
   ];
 }

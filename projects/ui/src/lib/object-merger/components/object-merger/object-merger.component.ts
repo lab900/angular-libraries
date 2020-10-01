@@ -49,6 +49,7 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
                 JSON.stringify(this.objectsToMerge[1].data[option.attribute]),
               rowClass: option.rowClass,
               formatter: option.formatter,
+              nextLine: option.nextLine,
             },
           };
         }

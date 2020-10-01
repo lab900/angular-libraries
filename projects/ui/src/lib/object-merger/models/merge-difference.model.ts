@@ -6,4 +6,5 @@ export interface MergeDifference<T = any> {
   hidden: boolean;
   formatter?: (data: T) => string;
   rowClass?: string;
+  nextLine?: boolean;
 }

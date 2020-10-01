@@ -3,4 +3,5 @@ export interface MergeOption<T = any> {
   label: string;
   formatter?: (data: T) => string;
   rowClass?: string;
+  nextLine?: boolean;
 }
