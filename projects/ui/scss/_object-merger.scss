@@ -2,9 +2,35 @@
 
 @mixin lab900-object-merger($config-or-theme) {
   .selected {
-    border-left-color:  mat-color(map-get($config-or-theme, primary)) !important;
+    border-left-color: mat-color(map-get($config-or-theme, primary)) !important;
     border-left-width: 2px !important;
-    border-right-color:  mat-color(map-get($config-or-theme, primary)) !important;
+    border-right-color: mat-color(map-get($config-or-theme, primary)) !important;
     border-right-width: 2px !important;
+  }
+
+  lab900-object-merger-row {
+    &:first-of-type {
+      .lab900-object-merger-row__value {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+
+      .selected {
+        border-top-color: mat-color(map-get($config-or-theme, primary)) !important;
+        border-top-width: 2px !important;
+      }
+    }
+
+    &:last-of-type {
+      .lab900-object-merger-row__value {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+
+      .selected {
+        border-bottom-color: mat-color(map-get($config-or-theme, primary)) !important;
+        border-bottom-width: 2px !important;
+      }
+    }
   }
 }
