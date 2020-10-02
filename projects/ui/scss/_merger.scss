@@ -1,0 +1,24 @@
+@import '~@angular/material/theming';
+
+@mixin lab900-merger($config-or-theme) {
+  .selected {
+    border-left-color: mat-color(map-get($config-or-theme, primary)) !important;
+    border-left-width: 2px !important;
+    border-right-color: mat-color(map-get($config-or-theme, primary)) !important;
+    border-right-width: 2px !important;
+  }
+
+  .lab900-merger__row:first-of-type {
+    .selected {
+      border-top-color: mat-color(map-get($config-or-theme, primary)) !important;
+      border-top-width: 2px !important;
+    }
+  }
+
+  .lab900-merger__row:last-of-type {
+    .selected {
+      border-bottom-color: mat-color(map-get($config-or-theme, primary)) !important;
+      border-bottom-width: 2px !important;
+    }
+  }
+}
