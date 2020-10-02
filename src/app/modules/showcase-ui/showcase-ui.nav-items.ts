@@ -32,10 +32,6 @@ export const showcaseUiNavItems: NavItemGroup[] = [
             route: 'ui/page-header',
           },
           {
-            label: 'Object merger',
-            route: 'ui/object-merger',
-          },
-          {
             label: 'Merger',
             route: 'ui/merger',
           },
