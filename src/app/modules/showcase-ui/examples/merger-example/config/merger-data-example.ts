@@ -6,8 +6,6 @@ export const mergerDataExample: MergeObject[] = [
       name: 'Axelle',
       firstName: 'Red',
       languages: ['Nederlands', 'Duits'],
-      text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum nunc vel convallis malesuada. Suspendisse at tristique tortor, id elementum odio.',
     },
     title: 'Axelle Red',
   },
