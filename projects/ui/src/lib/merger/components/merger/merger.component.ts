@@ -15,7 +15,7 @@ export class Lab900MergerComponent<T> implements OnInit {
   public readonly rightObject: MergeObject<T>;
 
   @Input()
-  public schema: MergeConfig<T>[];
+  public schema: MergeConfig[];
 
   public loading: boolean;
 
@@ -34,7 +34,7 @@ export class Lab900MergerComponent<T> implements OnInit {
     return formatter ? formatter(value) : value;
   }
 
-  public toggleActive({ attribute, active }: MergeConfig<T>): void {
+  public toggleActive({ attribute, active }: MergeConfig): void {
     let base: T;
     if (active) {
       base = this.selected === 'right' ? this.rightObject.data : this.leftObject.data;

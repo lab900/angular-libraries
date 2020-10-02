@@ -1,4 +1,4 @@
-export interface MergeObject<T> {
+export interface MergeObject<T = any> {
   data: T;
   title: string;
 }

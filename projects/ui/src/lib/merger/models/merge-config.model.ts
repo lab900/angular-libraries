@@ -1,7 +1,7 @@
-export interface MergeConfig<T> {
+export interface MergeConfig {
   attribute: string;
   label: string;
-  formatter?: (data: T) => string;
+  formatter?: (data: any) => string;
   rowClass?: string;
   nextLine?: boolean;
   active?: boolean;
