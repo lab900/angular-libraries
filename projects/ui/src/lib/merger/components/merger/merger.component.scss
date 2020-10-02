@@ -1,7 +1,24 @@
 .lab900-merger {
   &__row {
+    &:last-of-type {
+      .lab900-merger__row__left, .lab900-merger__row__right {
+        border-bottom: 1px solid lightgray;
+        border-radius: 0 0 5px 5px;
+      }
+    }
+
+    &:first-of-type {
+      .lab900-merger__row__left, .lab900-merger__row__right {
+        border-radius: 5px 5px 0 0;
+      }
+    }
+
     &__left, &__right {
       width: 45%;
+      padding: 1rem;
+      border-top: 1px solid lightgray;
+      border-left: 1px solid lightgray;
+      border-right: 1px solid lightgray;
 
       p, h2 {
         margin: 0;
