@@ -17,6 +17,9 @@ export class Lab900MergerComponent<T> implements OnInit {
   @Input()
   public schema: MergeConfig[];
 
+  @Input()
+  public fixed = false;
+
   public loading: boolean;
 
   public selected: 'left' | 'right' = 'right';
