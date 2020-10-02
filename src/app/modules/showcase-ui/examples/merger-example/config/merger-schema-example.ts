@@ -1,7 +1,7 @@
 import { MergeConfig } from '../../../../../../../projects/ui/src/lib/merger/models/merge-config.model';
 import * as moment from 'moment';
 
-export const mergerSchemaExample: MergeConfig<any>[] = [
+export const mergerSchemaExample: MergeConfig[] = [
   {
     attribute: 'name',
     label: 'label.last-name',

@@ -16,8 +16,8 @@ import { Lab900MergerComponent } from '../../../../../../projects/ui/src/lib/mer
   `,
 })
 export class MergerExampleComponent {
-  public exampleData: MergeObject<any>[] = mergerDataExample;
-  public exampleSchema: MergeConfig<any>[] = mergerSchemaExample;
+  public exampleData: MergeObject[] = mergerDataExample;
+  public exampleSchema: MergeConfig[] = mergerSchemaExample;
 
   @ViewChild(Lab900MergerComponent)
   private mergerComponent: Lab900MergerComponent<any>;
