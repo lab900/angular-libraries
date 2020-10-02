@@ -32,7 +32,7 @@
             (click)="$event.stopPropagation()"
             (change)="$event ? selectRow(row) : null"
             [checked]="selection.isSelected(row)"
-            [disabled]="!selectEnabled"
+            [disabled]="selection.isSelected(row) ? false : !selectEnabled"
           ></mat-checkbox>
         </td>
       </ng-container>
