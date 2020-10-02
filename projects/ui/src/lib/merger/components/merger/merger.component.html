@@ -11,7 +11,7 @@
                 <mat-radio-button color="primary" [checked]="selected === 'right'" (change)="switchMaster()" [disabled]="fixed"></mat-radio-button>
             </div>
         </div>
-        <div *ngFor="let config of schema" class="lab900-merger__row" fxLayoutAlign="space-between center">
+        <div *ngFor="let config of schema" class="lab900-merger__row" fxLayoutAlign="space-between">
             <div
                 class="lab900-merger__row__left"
                 fxLayout="{{ config.nextLine ? 'column' : 'row' }}"
@@ -21,13 +21,14 @@
                 <p>{{ config.label | translate }}</p>
                 <span>{{ display(config.formatter, selected === 'left' ? result[config.attribute] : leftObject.data[config.attribute]) }}</span>
             </div>
-            <mat-icon
-                class="lab900-merger__row__icon"
-                color="primary"
-                [ngClass]="{'not-active': !config.active, 'rotate': selected !== 'right'}"
-                (click)="toggleActive(config)"
-                *ngIf="leftObject.data[config.attribute] !== rightObject.data[config.attribute]"
-            >trending_flat</mat-icon>
+            <div class="lab900-merger__row__icon">
+                <mat-icon
+                    color="primary"
+                    [ngClass]="{'not-active': !config.active, 'rotate': selected !== 'right'}"
+                    (click)="toggleActive(config)"
+                    *ngIf="leftObject.data[config.attribute] !== rightObject.data[config.attribute]"
+                >trending_flat</mat-icon>
+            </div>
             <div
                 class="lab900-merger__row__right"
                 fxLayout="{{ config.nextLine ? 'column' : 'row' }}"
