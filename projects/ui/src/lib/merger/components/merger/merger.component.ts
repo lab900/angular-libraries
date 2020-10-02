@@ -20,6 +20,7 @@ export class Lab900MergerComponent<T> implements OnInit {
   @Input()
   public fixed = false;
 
+  @Input()
   public loading: boolean;
 
   public selected: 'left' | 'right' = 'right';
