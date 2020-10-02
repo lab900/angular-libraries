@@ -1,0 +1,40 @@
+<div class="lab900-merger">
+    <mat-progress-bar *ngIf="loading; else mergerUI" mode="indeterminate"></mat-progress-bar>
+    <ng-template #mergerUI>
+        <div class="lab900-merger__row" fxLayoutAlign="space-between center">
+            <div class="lab900-merger__row__left" fxLayoutAlign="space-between center">
+                <h2>{{ leftObject.title }}</h2>
+                <mat-radio-button color="primary" [checked]="selected === 'left'" (change)="switchMaster()"></mat-radio-button>
+            </div>
+            <div class="lab900-merger__row__right" fxLayoutAlign="space-between center">
+                <h2>{{ rightObject.title }}</h2>
+                <mat-radio-button color="primary" [checked]="selected === 'right'" (change)="switchMaster()"></mat-radio-button>
+            </div>
+        </div>
+        <div *ngFor="let config of schema" class="lab900-merger__row" fxLayoutAlign="space-between center">
+            <div
+                class="lab900-merger__row__left"
+                fxLayout="{{ config.nextLine ? 'column' : 'row' }}"
+                fxLayoutAlign="{{ config.nextLine ? '' : 'space-between center' }}"
+            >
+                <p>{{ config.label | translate }}</p>
+                <span>{{ display(config.formatter, selected === 'left' ? result[config.attribute] : leftObject.data[config.attribute]) }}</span>
+            </div>
+            <mat-icon
+                class="lab900-merger__row__icon"
+                color="primary"
+                [ngClass]="{'not-active': !config.active, 'rotate': selected !== 'right'}"
+                (click)="toggleActive(config)"
+                *ngIf="leftObject.data[config.attribute] !== rightObject.data[config.attribute]"
+            >trending_flat</mat-icon>
+            <div
+                class="lab900-merger__row__right"
+                fxLayout="{{ config.nextLine ? 'column' : 'row' }}"
+                fxLayoutAlign="{{ config.nextLine ? '' : 'space-between center' }}"
+            >
+                <p>{{ config.label | translate }}</p>
+                <span>{{ display(config.formatter, selected === 'right' ? result[config.attribute] : rightObject.data[config.attribute]) }}</span>
+            </div>
+        </div>
+    </ng-template>
+</div>

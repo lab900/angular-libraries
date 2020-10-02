@@ -3,6 +3,7 @@ import { MergeOption } from '../../models/merge-option.model';
 import { MergeObject } from '../../models/merge-object.model';
 import { MergeDifference } from '../../models/merge-difference.model';
 
+/* This component should be able to have the result object<T> and the changes */
 @Component({
   selector: 'lab900-object-merger',
   templateUrl: './object-merger.component.html',
@@ -32,6 +33,11 @@ export class Lab900ObjectMergerComponent<T> implements OnInit {
   private getDifferences(): void {
     if (this.objectsToMerge && this.objectsToMerge.length >= 2) {
       for (const option of this.options) {
+        console.log(JSON.stringify(this.objectsToMerge[0].data[option.attribute]));
+        console.log(JSON.stringify(this.objectsToMerge[1].data[option.attribute]));
+        console.log(
+          JSON.stringify(this.objectsToMerge[0].data[option.attribute]) === JSON.stringify(this.objectsToMerge[1].data[option.attribute]),
+        );
         if (this.objectsToMerge[0].data[option.attribute] || this.objectsToMerge[1].data[option.attribute]) {
           this.differences = {
             ...this.differences,

@@ -14,7 +14,8 @@ export class ObjectMergerExampleComponent {
         name: 'Axelle',
         firstName: 'Red',
         languages: ['Nederlands', 'Duits'],
-        spokenLanguages: ['Nederlands', 'Frans'],
+        text:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum nunc vel convallis malesuada. Suspendisse at tristique tortor, id elementum odio.',
       },
       title: 'Axelle Red',
     },
@@ -23,7 +24,8 @@ export class ObjectMergerExampleComponent {
         name: 'Axelle',
         firstName: 'Blue',
         languages: ['Nederlands', 'Frans'],
-        spokenLanguages: ['Nederlands', 'Frans'],
+        text:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum nunc vel convallis malesuada. Suspendisse at tristique tortor, id elementum odio.',
         dateOfBirth: new Date(),
       },
       title: 'Axelle Blue',
@@ -48,12 +50,6 @@ export class ObjectMergerExampleComponent {
       attribute: 'languages',
       label: 'language',
       formatter: (data) => data.join(', '),
-    },
-    {
-      attribute: 'spokenLanguages',
-      label: 'spoken-language',
-      formatter: (data) => data.join(', '),
-      nextLine: true,
     },
   ];
 }

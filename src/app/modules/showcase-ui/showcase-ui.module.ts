@@ -6,6 +6,7 @@ import { Lab900TableModule } from 'projects/ui/src/lib/table/table.module';
 import { Lab900PageHeaderModule } from 'projects/ui/src/lib/page-header/page-header.module';
 import { AlertModule } from 'projects/ui/src/lib/alert/alert.module';
 import { Lab900ObjectMergerModule } from '../../../../projects/ui/src/lib/object-merger/object-merger.module';
+import { Lab900MergerModule } from '../../../../projects/ui/src/lib/merger/merger.module';
 
 import { ShowcaseUiRoutingModule } from './showcase-ui-routing.module';
 import { SharedModule } from '../shared/shared.module';
@@ -17,6 +18,7 @@ import { PageHeaderExampleComponent } from './examples/page-header-example/page-
 import { TableExampleComponent } from './examples/table-example/table-example.component';
 import { PageHeaderParamsExampleComponent } from './examples/page-header-params-example/page-header-params-example.component';
 import { ObjectMergerExampleComponent } from './examples/object-merger-example/object-merger-example.component';
+import { MergerExampleComponent } from './examples/merger-example/merger-example.component';
 
 const examples = [
   SharingExampleComponent,
@@ -27,6 +29,7 @@ const examples = [
   PageHeaderParamsExampleComponent,
   TableExampleComponent,
   ObjectMergerExampleComponent,
+  MergerExampleComponent,
 ];
 
 @NgModule({
@@ -41,6 +44,7 @@ const examples = [
     Lab900TableModule,
     Lab900PageHeaderModule,
     Lab900ObjectMergerModule,
+    Lab900MergerModule,
   ],
 })
 export class ShowcaseUiModule {}
