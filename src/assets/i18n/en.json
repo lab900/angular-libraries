@@ -28,5 +28,6 @@
     "admin": "Admin",
     "ui": "UI",
     "form-title": "Please enter your information below."
-  }
+  },
+  "reset": "Reset"
 }

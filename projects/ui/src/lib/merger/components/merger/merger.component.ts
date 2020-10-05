@@ -34,6 +34,25 @@ export class Lab900MergerComponent<T> implements OnInit {
   public ngOnInit(): void {
     this.loading = !this.leftObject || !this.rightObject || !this.schema;
     this.result = { ...this.rightObject.data };
+    this.schema.forEach((s) => {
+      if (s.active) {
+        this.result[s.attribute] = this.getBase(s.active)[s.attribute];
+        this.changes = {
+          ...this.changes,
+          [s.attribute]: this.getBase(s.active)[s.attribute],
+        };
+      }
+    });
+  }
+
+  public reset(): void {
+    this.result = { ...this.getBase() };
+    this.changes = {};
+    this.schema.forEach((s, index) => {
+      if (s.active) {
+        this.schema[index].active = false;
+      }
+    });
   }
 
   public display(formatter: (data: T) => string | Observable<string>, value: any): Observable<any> {
@@ -48,13 +67,18 @@ export class Lab900MergerComponent<T> implements OnInit {
     );
   }
 
+  private getBase(revert = false): T {
+    if (revert) {
+      return this.selected === 'right' ? this.leftObject.data : this.rightObject.data;
+    }
+    return this.selected === 'right' ? this.rightObject.data : this.leftObject.data;
+  }
+
   public toggleActive({ attribute, active }: MergeConfig): void {
-    let base: T;
+    const base: T = this.getBase(!active);
     if (active) {
-      base = this.selected === 'right' ? this.rightObject.data : this.leftObject.data;
       delete this.changes[attribute];
     } else {
-      base = this.selected === 'right' ? this.leftObject.data : this.rightObject.data;
       this.changes = { ...this.changes, [attribute]: base[attribute] };
     }
     this.result[attribute] = base[attribute];
@@ -65,11 +89,6 @@ export class Lab900MergerComponent<T> implements OnInit {
 
   public switchMaster(): void {
     this.selected = this.selected === 'right' ? 'left' : 'right';
-    this.result = this.selected === 'right' ? { ...this.rightObject.data } : { ...this.leftObject.data };
-    this.schema.forEach((s, index) => {
-      if (s.active) {
-        this.schema[index].active = false;
-      }
-    });
+    this.reset();
   }
 }
