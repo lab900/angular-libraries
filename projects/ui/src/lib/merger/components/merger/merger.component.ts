@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MergeObject } from '../../models/merge-object.model';
 import { MergeConfig } from '../../models/merge-config.model';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'lab900-merger',
@@ -36,6 +37,13 @@ export class Lab900MergerComponent<T> implements OnInit {
 
   public display(formatter: (data: T) => string, value: any): string {
     return formatter ? formatter(value) : value;
+  }
+
+  public compare(attribute: string): boolean {
+    return !_.isEqual(
+      Array.isArray(this.leftObject.data[attribute]) ? _.sortBy(this.leftObject.data[attribute]) : this.leftObject.data[attribute],
+      Array.isArray(this.rightObject.data[attribute]) ? _.sortBy(this.rightObject.data[attribute]) : this.rightObject.data[attribute],
+    );
   }
 
   public toggleActive({ attribute, active }: MergeConfig): void {

@@ -5,7 +5,7 @@ export const mergerDataExample: MergeObject[] = [
     data: {
       name: 'Axelle',
       firstName: 'Red',
-      languages: ['Nederlands', 'Duits'],
+      languages: ['Nederlands', 'Frans'],
     },
     title: 'Axelle Red',
   },
@@ -13,7 +13,7 @@ export const mergerDataExample: MergeObject[] = [
     data: {
       name: 'Axelle',
       firstName: 'Blue',
-      languages: ['Nederlands', 'Frans'],
+      languages: ['Frans', 'Nederlands'],
       text:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum nunc vel convallis malesuada. Suspendisse at tristique tortor, id elementum odio.',
       dateOfBirth: new Date(),

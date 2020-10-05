@@ -22,7 +22,10 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "allowedCommonJsDependencies": ["nouislider"],
+            "allowedCommonJsDependencies": [
+              "nouislider",
+              "lodash"
+            ],
             "aot": true,
             "assets": [
               "src/favicon.ico",
