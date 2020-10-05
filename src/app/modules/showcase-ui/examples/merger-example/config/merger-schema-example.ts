@@ -1,5 +1,6 @@
 import { MergeConfig } from '../../../../../../../projects/ui/src/lib/merger/models/merge-config.model';
 import * as moment from 'moment';
+import { of } from 'rxjs';
 
 export const mergerSchemaExample: MergeConfig[] = [
   {
@@ -18,7 +19,7 @@ export const mergerSchemaExample: MergeConfig[] = [
   {
     attribute: 'languages',
     label: 'language',
-    formatter: (data) => data.join(', '),
+    formatter: (data) => of(data.sort().join(', ')),
   },
   {
     attribute: 'text',

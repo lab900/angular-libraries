@@ -19,7 +19,7 @@
                 [ngClass]="{'selected': selected === 'left'}"
             >
                 <p>{{ config.label | translate }}</p>
-                <span>{{ display(config.formatter, selected === 'left' ? result[config.attribute] : leftObject.data[config.attribute]) }}</span>
+                <span>{{ display(config.formatter, selected === 'left' ? result[config.attribute] : leftObject.data[config.attribute]) | async }}</span>
             </div>
             <div class="lab900-merger__row__icon">
                 <mat-icon
@@ -36,7 +36,7 @@
                 [ngClass]="{'selected': selected === 'right'}"
             >
                 <p>{{ config.label | translate }}</p>
-                <span>{{ display(config.formatter, selected === 'right' ? result[config.attribute] : rightObject.data[config.attribute]) }}</span>
+                <span>{{ display(config.formatter, selected === 'right' ? result[config.attribute] : rightObject.data[config.attribute]) | async }}</span>
             </div>
         </div>
     </ng-template>
