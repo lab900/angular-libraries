@@ -8,6 +8,9 @@ import { Lab900MergerComponent } from '../../../../../../projects/ui/src/lib/mer
 @Component({
   selector: 'lab900-merger-example',
   template: `
+    <div fxLayoutAlign="flex-end center" style="margin-bottom: 1rem">
+      <button mat-flat-button color="primary" (click)="mergerComponent.reset()">{{ 'reset' | translate }}</button>
+    </div>
     <lab900-merger [leftObject]="exampleData[0]" [rightObject]="exampleData[1]" [schema]="exampleSchema"></lab900-merger>
     <div fxLayoutAlign="center center" style="margin-top: 2rem">
       <button style="margin-right: 1rem" mat-raised-button color="primary" (click)="showResult()">Log Result</button>
@@ -20,7 +23,7 @@ export class MergerExampleComponent {
   public exampleSchema: MergeConfig[] = mergerSchemaExample;
 
   @ViewChild(Lab900MergerComponent)
-  private mergerComponent: Lab900MergerComponent<any>;
+  public mergerComponent: Lab900MergerComponent<any>;
 
   public showResult(): void {
     console.log(this.mergerComponent.result);

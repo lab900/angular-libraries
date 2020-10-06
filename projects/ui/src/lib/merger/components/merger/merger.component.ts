@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MergeObject } from '../../models/merge-object.model';
 import { MergeConfig } from '../../models/merge-config.model';
 import * as _ from 'lodash';
+import { isObservable, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'lab900-merger',
@@ -33,10 +34,30 @@ export class Lab900MergerComponent<T> implements OnInit {
   public ngOnInit(): void {
     this.loading = !this.leftObject || !this.rightObject || !this.schema;
     this.result = { ...this.rightObject.data };
+    this.schema.forEach((s) => {
+      if (s.active) {
+        this.result[s.attribute] = this.getBase(s.active)[s.attribute];
+        this.changes = {
+          ...this.changes,
+          [s.attribute]: this.getBase(s.active)[s.attribute],
+        };
+      }
+    });
   }
 
-  public display(formatter: (data: T) => string, value: any): string {
-    return formatter ? formatter(value) : value;
+  public reset(): void {
+    this.result = { ...this.getBase() };
+    this.changes = {};
+    this.schema.forEach((s, index) => {
+      if (s.active) {
+        this.schema[index].active = false;
+      }
+    });
+  }
+
+  public display(formatter: (data: any) => Observable<string> | string, value: any): Observable<string> {
+    const formattedValue: Observable<string> | string = formatter ? formatter(value) : value;
+    return isObservable(formattedValue) ? formattedValue : of(formattedValue);
   }
 
   public compare(attribute: string): boolean {
@@ -46,13 +67,18 @@ export class Lab900MergerComponent<T> implements OnInit {
     );
   }
 
+  private getBase(revert = false): T {
+    if (revert) {
+      return this.selected === 'right' ? this.leftObject.data : this.rightObject.data;
+    }
+    return this.selected === 'right' ? this.rightObject.data : this.leftObject.data;
+  }
+
   public toggleActive({ attribute, active }: MergeConfig): void {
-    let base: T;
+    const base: T = this.getBase(!active);
     if (active) {
-      base = this.selected === 'right' ? this.rightObject.data : this.leftObject.data;
       delete this.changes[attribute];
     } else {
-      base = this.selected === 'right' ? this.leftObject.data : this.rightObject.data;
       this.changes = { ...this.changes, [attribute]: base[attribute] };
     }
     this.result[attribute] = base[attribute];
@@ -63,11 +89,6 @@ export class Lab900MergerComponent<T> implements OnInit {
 
   public switchMaster(): void {
     this.selected = this.selected === 'right' ? 'left' : 'right';
-    this.result = this.selected === 'right' ? { ...this.rightObject.data } : { ...this.leftObject.data };
-    this.schema.forEach((s, index) => {
-      if (s.active) {
-        this.schema[index].active = false;
-      }
-    });
+    this.reset();
   }
 }
