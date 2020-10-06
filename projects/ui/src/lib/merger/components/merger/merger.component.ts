@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { MergeObject } from '../../models/merge-object.model';
 import { MergeConfig } from '../../models/merge-config.model';
 import * as _ from 'lodash';
@@ -8,6 +8,7 @@ import { isObservable, Observable, of } from 'rxjs';
   selector: 'lab900-merger',
   templateUrl: './merger.component.html',
   styleUrls: ['./merger.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Lab900MergerComponent<T> implements OnInit {
   @Input()
