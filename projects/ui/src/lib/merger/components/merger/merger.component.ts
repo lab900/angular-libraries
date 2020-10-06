@@ -55,8 +55,8 @@ export class Lab900MergerComponent<T> implements OnInit {
     });
   }
 
-  public display(formatter: (data: T) => string | Observable<string>, value: any): Observable<any> {
-    const formattedValue = formatter ? formatter(value) : value;
+  public display(formatter: (data: any) => Observable<string> | string, value: any): Observable<string> {
+    const formattedValue: Observable<string> | string = formatter ? formatter(value) : value;
     return isObservable(formattedValue) ? formattedValue : of(formattedValue);
   }
 
