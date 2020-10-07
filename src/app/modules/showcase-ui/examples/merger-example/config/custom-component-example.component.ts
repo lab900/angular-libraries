@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
     <p>{{ value }}</p>
   </div>`,
 })
-export class Lab900CustomCmponentExample {
+export class Lab900CustomComponentExampleComponent {
   @Input()
   public value: string;
 }
