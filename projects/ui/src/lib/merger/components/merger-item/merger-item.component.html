@@ -1,0 +1,9 @@
+<div
+    class="lab900-merger__row__item"
+    fxLayout="{{ config.nextLine ? 'column' : 'row' }}"
+    fxLayoutAlign="{{ config.nextLine ? '' : 'space-between center' }}"
+    [ngClass]="{'selected': active}"
+>
+    <p>{{ config.label | translate }}</p>
+    <span>{{ display() | async }}</span>
+</div>

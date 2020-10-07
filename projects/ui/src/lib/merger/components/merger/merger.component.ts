@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MergeObject } from '../../models/merge-object.model';
 import { MergeConfig } from '../../models/merge-config.model';
 import * as _ from 'lodash';
-import { isObservable, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'lab900-merger',
@@ -53,11 +52,6 @@ export class Lab900MergerComponent<T> implements OnInit {
         this.schema[index].active = false;
       }
     });
-  }
-
-  public display(formatter: (data: any) => Observable<string> | string, value: any): Observable<string> {
-    const formattedValue: Observable<string> | string = formatter ? formatter(value) : value;
-    return isObservable(formattedValue) ? formattedValue : of(formattedValue);
   }
 
   public compare(attribute: string): boolean {
