@@ -1,5 +1,5 @@
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { FormField, RepeaterFieldOptions } from '../models/FormField';
+import { DateRangePickerFieldOptions, FormField, RepeaterFieldOptions } from '../models/FormField';
 import { EditType } from '../models/editType';
 import { Injectable } from '@angular/core';
 
@@ -24,6 +24,15 @@ export class Lab900FormBuilderService {
           }
         }
         formGroup.addControl(field.attribute, repeaterArray);
+      } else if (field.editType === EditType.DateRange) {
+        const options: DateRangePickerFieldOptions = field?.options;
+        formGroup.addControl(
+          field.attribute,
+          this.fb.group({
+            [options?.startKey || 'start']: '',
+            [options?.endKey || 'end']: '',
+          }),
+        );
       } else {
         let controlValue: any | null = null;
 

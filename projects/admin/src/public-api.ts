@@ -8,5 +8,6 @@ export * from './lib/models/schemaField';
 export * from './lib/models/page';
 
 export * from './lib/pages/admin-page/admin-page.component';
+export * from './lib/pages/translatable-admin-page/translatable-admin-page.component';
 
 export * from './lib/admin.module';

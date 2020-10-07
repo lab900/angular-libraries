@@ -15,4 +15,5 @@ export enum EditType {
   AutocompleteMultiple = 'AutocompleteMultiple',
   Icon = 'Icon',
   ButtonToggle = 'ButtonToggle',
+  DateRange = 'DateRange',
 }

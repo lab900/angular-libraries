@@ -46,6 +46,7 @@ import { AutocompleteMultipleFieldComponent } from './components/form-fields/aut
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMaskModule } from 'ngx-mask';
 import { ReadonlyFieldComponent } from './components/form-fields/readonly-field/readonly-field.component';
+import { DateRangeFieldComponent } from './components/form-fields/date-range-field/date-range-field.component';
 
 const customFields = [
   UnknownFieldComponent,
@@ -65,6 +66,7 @@ const customFields = [
   IconFieldComponent,
   ButtonToggleFieldComponent,
   ReadonlyFieldComponent,
+  DateRangeFieldComponent,
 ];
 
 @NgModule({

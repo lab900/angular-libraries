@@ -70,6 +70,15 @@ export interface DatepickerFieldOptions extends FieldOptions {
   minDate?: Date;
 }
 
+export interface DateRangePickerFieldOptions extends FieldOptions {
+  maxDate?: Date;
+  minDate?: Date;
+  startLabel?: string;
+  endLabel?: string;
+  startKey?: string;
+  endKey?: string;
+}
+
 export interface RangeSliderFieldOptions extends FieldOptions {
   fromLabel?: string;
   toLabel?: string;
@@ -100,6 +109,7 @@ export interface FormField<
     | IconFieldOptions
     | ButtonToggleFieldOptions
     | DatepickerFieldOptions
+    | DateRangePickerFieldOptions
 > {
   attribute?: string;
   editType: EditType;
