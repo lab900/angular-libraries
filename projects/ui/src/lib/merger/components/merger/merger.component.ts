@@ -16,7 +16,7 @@ export class Lab900MergerComponent<T> implements OnInit {
   public readonly rightObject: MergeObject<T>;
 
   @Input()
-  public schema: MergeConfig[];
+  public schema: MergeConfig<T>[];
 
   @Input()
   public fixed = false;
@@ -68,7 +68,7 @@ export class Lab900MergerComponent<T> implements OnInit {
     return this.selected === 'right' ? this.rightObject.data : this.leftObject.data;
   }
 
-  public toggleActive({ attribute, active }: MergeConfig): void {
+  public toggleActive({ attribute, active }: MergeConfig<T>): void {
     const base: T = this.getBase(!active);
     if (active) {
       delete this.changes[attribute];

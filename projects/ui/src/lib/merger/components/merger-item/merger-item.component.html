@@ -1,9 +1,11 @@
-<div
-    class="lab900-merger__row__item"
-    fxLayout="{{ config.nextLine ? 'column' : 'row' }}"
-    fxLayoutAlign="{{ config.nextLine ? '' : 'space-between center' }}"
-    [ngClass]="{'selected': active}"
->
-    <p>{{ config.label | translate }}</p>
-    <span>{{ display() | async }}</span>
+<div class="lab900-merger__row__item" [ngClass]="{'selected': active}">
+    <div
+        *ngIf="!config?.component"
+        fxLayout="{{ config.nextLine ? 'column' : 'row' }}"
+        fxLayoutAlign="{{ config.nextLine ? '' : 'space-between center' }}"
+    >
+        <p>{{ config.label | translate }}</p>
+        <span>{{ display() | async }}</span>
+    </div>
+    <ng-template #customComponentContainer></ng-template>
 </div>

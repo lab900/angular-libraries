@@ -14,7 +14,7 @@
         <div *ngFor="let config of schema" class="lab900-merger__row" fxLayoutAlign="space-between">
             <lab900-merger-item
                 [config]="config"
-                [value]="selected === 'left' ? result[config.attribute] : leftObject.data[config.attribute]"
+                [value]="selected === 'left' ? result : leftObject.data"
                 [active]="selected === 'left'"
             ></lab900-merger-item>
             <div class="lab900-merger__row__icon">
@@ -22,12 +22,12 @@
                     color="primary"
                     [ngClass]="{'not-active': !config.active, 'rotate': selected !== 'right'}"
                     (click)="toggleActive(config)"
-                    *ngIf="compare(config.attribute)"
+                    *ngIf="compare(config.attribute) && !config?.component"
                 >trending_flat</mat-icon>
             </div>
             <lab900-merger-item
                     [config]="config"
-                    [value]="selected === 'right' ? result[config.attribute] : rightObject.data[config.attribute]"
+                    [value]="selected === 'right' ? result : rightObject.data"
                     [active]="selected === 'right'"
             ></lab900-merger-item>
         </div>

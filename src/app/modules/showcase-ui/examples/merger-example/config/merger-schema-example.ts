@@ -1,6 +1,7 @@
 import { MergeConfig } from '../../../../../../../projects/ui/src/lib/merger/models/merge-config.model';
 import * as moment from 'moment';
 import { of } from 'rxjs';
+import { Lab900CustomCmponentExample } from './custom-component-example.component';
 
 export const mergerSchemaExample: MergeConfig[] = [
   {
@@ -26,5 +27,6 @@ export const mergerSchemaExample: MergeConfig[] = [
     label: 'text',
     nextLine: true,
     active: true,
+    component: Lab900CustomCmponentExample,
   },
 ];

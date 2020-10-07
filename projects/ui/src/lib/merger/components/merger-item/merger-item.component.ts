@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, Input, ViewChild, ViewContainerRef } from '@angular/core';
 import { MergeConfig } from '../../models/merge-config.model';
 import { isObservable, Observable, of } from 'rxjs';
 
@@ -6,18 +6,40 @@ import { isObservable, Observable, of } from 'rxjs';
   selector: 'lab900-merger-item',
   templateUrl: './merger-item.component.html',
 })
-export class Lab900MergerItemComponent {
+export class Lab900MergerItemComponent<T> implements AfterViewInit {
   @Input()
-  public config: MergeConfig;
+  public config: MergeConfig<T>;
 
   @Input()
-  private value: any;
+  private value: T;
 
   @Input()
   public active: boolean;
 
+  @ViewChild('customComponentContainer', { read: ViewContainerRef })
+  private customComponentContainer: ViewContainerRef;
+
+  private customComponentRef: ComponentRef<T>;
+
+  constructor(private resolver: ComponentFactoryResolver) {}
+
+  public ngAfterViewInit(): void {
+    if (this.config?.component) {
+      this.createComponent();
+    }
+  }
+
   public display(): Observable<any> {
-    const formattedValue = this.config?.formatter ? this.config.formatter(this.value) : this.value;
+    const formattedValue = this.config?.formatter
+      ? this.config.formatter(this.value[this.config.attribute])
+      : this.value[this.config.attribute];
     return isObservable(formattedValue) ? formattedValue : of(formattedValue);
+  }
+
+  private createComponent(): void {
+    const factory = this.resolver.resolveComponentFactory(this.config.component);
+    this.customComponentRef = this.customComponentContainer.createComponent(factory);
+    // ToDo: .value should be global to data
+    this.customComponentRef.instance.value = 'It works!';
   }
 }
