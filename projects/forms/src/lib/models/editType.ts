@@ -16,4 +16,5 @@ export enum EditType {
   Icon = 'Icon',
   ButtonToggle = 'ButtonToggle',
   DateRange = 'DateRange',
+  DateTime = 'DateTime',
 }

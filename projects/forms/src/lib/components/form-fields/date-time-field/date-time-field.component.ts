@@ -1,14 +1,13 @@
 import { Component, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { TranslateService } from '@ngx-translate/core';
-import { DateRangePickerFieldOptions } from '../../../models/FormField';
-import { FormGroup } from '@angular/forms';
+import { DatepickerFieldOptions } from '../../../models/FormField';
 
 @Component({
-  selector: 'lab900-date-field',
-  templateUrl: './date-range-field.component.html',
+  selector: 'lab900-date-time-field',
+  templateUrl: './date-time-field.component.html',
 })
-export class DateRangeFieldComponent extends FormComponent<DateRangePickerFieldOptions> {
+export class DateTimeFieldComponent extends FormComponent<DatepickerFieldOptions> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
@@ -16,8 +15,8 @@ export class DateRangeFieldComponent extends FormComponent<DateRangePickerFieldO
     super(translateService);
   }
 
-  public get dateFormGroup(): FormGroup {
-    return this.group.get(this.schema.attribute) as FormGroup;
+  public get startView(): 'month' | 'year' | 'multi-year' {
+    return this.schema?.options?.startView ?? 'month';
   }
 
   public get maxDate(): Date | null {
