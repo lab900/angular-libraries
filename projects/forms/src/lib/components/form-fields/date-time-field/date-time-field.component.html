@@ -1,0 +1,20 @@
+<mat-form-field [formGroup]="group" [hidden]="hide">
+    <mat-label translate>{{ schema.title }}</mat-label>
+    <input
+        #input
+        matInput
+        placeholder="{{ placeholder | translate }}"
+        [ngxMatDatetimePicker]="picker"
+        [formControlName]="schema.attribute"
+        [required]="required"
+        [readonly]="readonly || options?.readonly"
+        [max]="maxDate"
+        [min]="minDate"
+    >
+
+    <mat-datepicker-toggle [attr.disabled]="readonly" matSuffix [for]="picker"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker [disabled]="readonly" [showSpinners]="true" [showSeconds]="true" [startView]="startView"></ngx-mat-datetime-picker>
+
+    <mat-hint *ngIf="hint && !readonly  && !(schema.options.hint.hideHintOnValidValue && input.value)" translate>{{ hint }}</mat-hint>
+    <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
+</mat-form-field>

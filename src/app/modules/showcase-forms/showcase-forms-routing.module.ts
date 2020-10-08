@@ -15,6 +15,8 @@ import { FormFieldButtonToggleExampleComponent } from './examples/form-field-but
 import { FormContainerExampleComponent } from './examples/component-form-container/form-container-example.component';
 import { FormContainerReadonlyExampleComponent } from './examples/component-form-container/form-container-readonly-example.component';
 import { FormFieldAutocompleteMultipleExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-multiple-example.component';
+import { FormFieldDateRangePickerExampleComponent } from './examples/form-field-date-range-picker-example/form-field-date-range-picker-example.component';
+import { FormFieldDateTimePickerExampleComponent } from './examples/form-field-date-time-picker-example/form-field-date-time-picker-example.component';
 
 const routes: Routes = [
   {
@@ -35,7 +37,10 @@ const routes: Routes = [
     new ShowcaseExample(FormFieldRepeaterExampleComponent, 'Repeater', ['TS'], 'form-fields/form-field-repeater-editable'),
     new ShowcaseExample(FormFieldRepeaterFixedExampleComponent, 'Repeater fixed', ['TS'], 'form-fields/form-field-repeater-fixed'),
   ]),
-  new ShowcaseRoute('form-field-datepicker', 'Form Fields: Datepicker', []),
+  new ShowcaseRoute('form-field-datepicker', 'Form Fields: Datepicker', [
+    new ShowcaseExample(FormFieldDateRangePickerExampleComponent, 'Date range picker', ['TS'], 'form-fields/form-field-date-range'),
+    new ShowcaseExample(FormFieldDateTimePickerExampleComponent, 'Date time picker', ['TS'], 'form-fields/form-field-date-time'),
+  ]),
   new ShowcaseRoute('form-field-input', 'Form Fields: Input & Textarea', [
     new ShowcaseExample(FormFieldInputsExampleComponent, 'Input', ['TS'], 'form-fields/form-field-inputs'),
     new ShowcaseExample(FormFieldTextareaExampleComponent, 'Textarea', ['TS'], 'form-fields/form-field-textarea'),

@@ -50,7 +50,7 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
           },
           {
             label: 'Datepicker',
-            // route: 'forms/form-field-datepicker',
+            route: 'forms/form-field-datepicker',
           },
           {
             label: 'File upload',

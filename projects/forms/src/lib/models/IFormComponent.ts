@@ -1,4 +1,4 @@
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FormField, FieldOptions } from './FormField';
 import { Input, Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -46,11 +46,25 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     return this.schema?.options?.placeholder;
   }
 
-  public getErrorMessage(): Observable<string> {
-    const field = this.group.get(this.schema.attribute);
+  public getErrorMessage(group: FormGroup = this.group): Observable<string> {
+    const field = group.get(this.schema.attribute);
+    let errors: ValidationErrors = field.errors;
     let message = this.translateService.get('forms.error.generic');
 
-    Object.keys(field.errors).forEach((key: string) => {
+    if (field instanceof FormGroup && field.controls) {
+      errors = {};
+      for (const controlsKey in field.controls) {
+        if (field.controls.hasOwnProperty(controlsKey)) {
+          errors = { ...errors, ...field.get(controlsKey).errors };
+        }
+      }
+    }
+
+    if (!errors) {
+      return;
+    }
+
+    Object.keys(errors).forEach((key: string) => {
       if (field.hasError(key)) {
         if (this.schema.errorMessages && Object.keys(this.schema.errorMessages).includes(key)) {
           message = this.translateService.get(this.schema.errorMessages[key]);

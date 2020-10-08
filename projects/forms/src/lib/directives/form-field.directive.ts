@@ -31,6 +31,8 @@ import { IconFieldComponent } from '../components/form-fields/icon-field/icon-fi
 import { ButtonToggleFieldComponent } from '../components/form-fields/button-toggle-field/button-toggle-field.component';
 import { AutocompleteMultipleFieldComponent } from '../components/form-fields/autocomplete-multiple-field/autocomplete-multiple-field.component';
 import { ReadonlyFieldComponent } from '../components/form-fields/readonly-field/readonly-field.component';
+import { DateRangeFieldComponent } from '../components/form-fields/date-range-field/date-range-field.component';
+import { DateTimeFieldComponent } from '../components/form-fields/date-time-field/date-time-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -65,6 +67,10 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return IconFieldComponent;
     case EditType.ButtonToggle:
       return ButtonToggleFieldComponent;
+    case EditType.DateRange:
+      return DateRangeFieldComponent;
+    case EditType.DateTime:
+      return DateTimeFieldComponent;
     default:
       return UnknownFieldComponent;
   }
