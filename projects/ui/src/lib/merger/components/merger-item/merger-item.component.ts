@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { MergeConfig } from '../../models/merge-config.model';
 import { isObservable, Observable, of } from 'rxjs';
 import { CustomComponent, CustomComponentAbstract } from '../../abstracts/custom-component.abstract';
@@ -7,7 +17,7 @@ import { CustomComponent, CustomComponentAbstract } from '../../abstracts/custom
   selector: 'lab900-merger-item',
   templateUrl: './merger-item.component.html',
 })
-export class Lab900MergerItemComponent<T> implements CustomComponentAbstract<T>, AfterViewInit {
+export class Lab900MergerItemComponent<T> implements CustomComponentAbstract<T>, AfterViewInit, OnChanges {
   @Input()
   public config: MergeConfig<T>;
 
@@ -23,6 +33,12 @@ export class Lab900MergerItemComponent<T> implements CustomComponentAbstract<T>,
   private customComponentRef: ComponentRef<CustomComponent<T>>;
 
   constructor(private resolver: ComponentFactoryResolver) {}
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.data && this.customComponentRef) {
+      this.customComponentRef.instance.data = this.data;
+    }
+  }
 
   public ngAfterViewInit(): void {
     if (this.config?.component) {
