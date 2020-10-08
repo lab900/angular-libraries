@@ -1,17 +1,17 @@
 <div class="lab900-merger">
     <mat-progress-bar *ngIf="loading; else mergerUI" mode="indeterminate"></mat-progress-bar>
     <ng-template #mergerUI>
-        <div class="lab900-merger__row" fxLayoutAlign="space-between center">
-            <div class="lab900-merger__row__item" fxLayoutAlign="space-between center" [ngClass]="{'selected': selected === 'left'}" style="width: 45%">
+        <div class="lab900-merger__row" fxLayoutAlign="space-between">
+            <div class="lab900-merger__row__item" fxLayoutAlign="space-between" [ngClass]="{'selected': selected === 'left'}" style="width: 45%">
                 <h2>{{ leftObject.title }}</h2>
                 <mat-radio-button color="primary" [checked]="selected === 'left'" (change)="switchMaster()" [disabled]="fixed"></mat-radio-button>
             </div>
-            <div class="lab900-merger__row__item" fxLayoutAlign="space-between center" [ngClass]="{'selected': selected === 'right'}" style="width: 45%">
+            <div class="lab900-merger__row__item" fxLayoutAlign="space-between" [ngClass]="{'selected': selected === 'right'}" style="width: 45%">
                 <h2>{{ rightObject.title }}</h2>
                 <mat-radio-button color="primary" [checked]="selected === 'right'" (change)="switchMaster()" [disabled]="fixed"></mat-radio-button>
             </div>
         </div>
-        <div *ngFor="let config of schema" class="lab900-merger__row" fxLayoutAlign="space-between">
+        <div class="lab900-merger__row" fxLayoutAlign="space-between" *ngFor="let config of schema">
             <lab900-merger-item
                 [config]="config"
                 [data]="selected === 'left' ? result : leftObject.data"
