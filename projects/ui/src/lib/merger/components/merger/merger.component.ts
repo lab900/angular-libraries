@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MergeObject } from '../../models/merge-object.model';
 import { MergeConfig } from '../../models/merge-config.model';
 import * as _ from 'lodash';
-import { isObservable, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'lab900-merger',
@@ -17,7 +16,7 @@ export class Lab900MergerComponent<T> implements OnInit {
   public readonly rightObject: MergeObject<T>;
 
   @Input()
-  public schema: MergeConfig[];
+  public schema: MergeConfig<T>[];
 
   @Input()
   public fixed = false;
@@ -55,11 +54,6 @@ export class Lab900MergerComponent<T> implements OnInit {
     });
   }
 
-  public display(formatter: (data: any) => Observable<string> | string, value: any): Observable<string> {
-    const formattedValue: Observable<string> | string = formatter ? formatter(value) : value;
-    return isObservable(formattedValue) ? formattedValue : of(formattedValue);
-  }
-
   public compare(attribute: string): boolean {
     return !_.isEqual(
       Array.isArray(this.leftObject.data[attribute]) ? _.sortBy(this.leftObject.data[attribute]) : this.leftObject.data[attribute],
@@ -74,7 +68,7 @@ export class Lab900MergerComponent<T> implements OnInit {
     return this.selected === 'right' ? this.rightObject.data : this.leftObject.data;
   }
 
-  public toggleActive({ attribute, active }: MergeConfig): void {
+  public toggleActive({ attribute, active }: MergeConfig<T>): void {
     const base: T = this.getBase(!active);
     if (active) {
       delete this.changes[attribute];

@@ -1,6 +1,7 @@
 import { MergeObject } from '../../../../../../../projects/ui/src/lib/merger/models/merge-object.model';
+import { MergerDataExample } from '../models/merger-data-example.model';
 
-export const mergerDataExample: MergeObject[] = [
+export const mergerDataExample: MergeObject<MergerDataExample>[] = [
   {
     data: {
       name: 'Axelle',

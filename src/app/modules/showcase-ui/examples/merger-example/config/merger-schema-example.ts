@@ -1,8 +1,10 @@
 import { MergeConfig } from '../../../../../../../projects/ui/src/lib/merger/models/merge-config.model';
 import * as moment from 'moment';
 import { of } from 'rxjs';
+import { CustomExampleComponent } from '../custom-example.component';
+import { MergerDataExample } from '../models/merger-data-example.model';
 
-export const mergerSchemaExample: MergeConfig[] = [
+export const mergerSchemaExample: MergeConfig<MergerDataExample>[] = [
   {
     attribute: 'name',
     label: 'label.last-name',
@@ -23,8 +25,6 @@ export const mergerSchemaExample: MergeConfig[] = [
   },
   {
     attribute: 'text',
-    label: 'text',
-    nextLine: true,
-    active: true,
+    component: CustomExampleComponent,
   },
 ];

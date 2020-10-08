@@ -4,6 +4,7 @@ import { MergeObject } from '../../../../../../projects/ui/src/lib/merger/models
 import { MergeConfig } from '../../../../../../projects/ui/src/lib/merger/models/merge-config.model';
 import { mergerSchemaExample } from './config/merger-schema-example';
 import { Lab900MergerComponent } from '../../../../../../projects/ui/src/lib/merger/components/merger/merger.component';
+import { MergerDataExample } from './models/merger-data-example.model';
 
 @Component({
   selector: 'lab900-merger-example',
@@ -19,11 +20,11 @@ import { Lab900MergerComponent } from '../../../../../../projects/ui/src/lib/mer
   `,
 })
 export class MergerExampleComponent {
-  public exampleData: MergeObject[] = mergerDataExample;
-  public exampleSchema: MergeConfig[] = mergerSchemaExample;
+  public exampleData: MergeObject<MergerDataExample>[] = mergerDataExample;
+  public exampleSchema: MergeConfig<MergerDataExample>[] = mergerSchemaExample;
 
   @ViewChild(Lab900MergerComponent)
-  public mergerComponent: Lab900MergerComponent<any>;
+  public mergerComponent: Lab900MergerComponent<MergerDataExample>;
 
   public showResult(): void {
     console.log(this.mergerComponent.result);

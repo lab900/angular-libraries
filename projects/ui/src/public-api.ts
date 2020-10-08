@@ -54,6 +54,7 @@ export * from './lib/merger/merger.module';
 export * from './lib/merger/components/merger/merger.component';
 export * from './lib/merger/models/merge-object.model';
 export * from './lib/merger/models/merge-config.model';
+export * from './lib/merger/abstracts/custom-component.abstract';
 
 // buttons
 export * from './lib/button/button.module';
