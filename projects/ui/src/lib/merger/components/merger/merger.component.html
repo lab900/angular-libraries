@@ -14,7 +14,7 @@
         <div *ngFor="let config of schema" class="lab900-merger__row" fxLayoutAlign="space-between">
             <lab900-merger-item
                 [config]="config"
-                [value]="selected === 'left' ? result : leftObject.data"
+                [data]="selected === 'left' ? result : leftObject.data"
                 [active]="selected === 'left'"
             ></lab900-merger-item>
             <div class="lab900-merger__row__icon">
@@ -27,7 +27,7 @@
             </div>
             <lab900-merger-item
                     [config]="config"
-                    [value]="selected === 'right' ? result : rightObject.data"
+                    [data]="selected === 'right' ? result : rightObject.data"
                     [active]="selected === 'right'"
             ></lab900-merger-item>
         </div>

@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 import { Type } from '@angular/core';
+import { CustomComponent } from '../abstracts/custom-component.abstract';
 
 export interface MergeConfig<T> {
   attribute: string;
@@ -8,5 +9,5 @@ export interface MergeConfig<T> {
   rowClass?: string;
   nextLine?: boolean;
   active?: boolean;
-  component?: Type<T>;
+  component?: Type<CustomComponent<T>>;
 }

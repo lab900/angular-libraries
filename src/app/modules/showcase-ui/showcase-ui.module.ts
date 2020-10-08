@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+
 import { Lab900DataListModule } from 'projects/ui/src/lib/data-list/data-list.module';
 import { Lab900SharingModule } from 'projects/ui/src/lib/sharing/sharing.module';
 import { Lab900TableModule } from 'projects/ui/src/lib/table/table.module';
@@ -17,7 +19,7 @@ import { PageHeaderExampleComponent } from './examples/page-header-example/page-
 import { TableExampleComponent } from './examples/table-example/table-example.component';
 import { PageHeaderParamsExampleComponent } from './examples/page-header-params-example/page-header-params-example.component';
 import { MergerExampleComponent } from './examples/merger-example/merger-example.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { CustomExampleComponent } from './examples/merger-example/custom-example.component';
 
 const examples = [
   SharingExampleComponent,
@@ -28,6 +30,7 @@ const examples = [
   PageHeaderParamsExampleComponent,
   TableExampleComponent,
   MergerExampleComponent,
+  CustomExampleComponent,
 ];
 
 @NgModule({

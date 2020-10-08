@@ -1,17 +1,18 @@
 import { AfterViewInit, Component, ComponentFactoryResolver, ComponentRef, Input, ViewChild, ViewContainerRef } from '@angular/core';
 import { MergeConfig } from '../../models/merge-config.model';
 import { isObservable, Observable, of } from 'rxjs';
+import { CustomComponent, CustomComponentAbstract } from '../../abstracts/custom-component.abstract';
 
 @Component({
   selector: 'lab900-merger-item',
   templateUrl: './merger-item.component.html',
 })
-export class Lab900MergerItemComponent<T> implements AfterViewInit {
+export class Lab900MergerItemComponent<T> implements CustomComponentAbstract<T>, AfterViewInit {
   @Input()
   public config: MergeConfig<T>;
 
   @Input()
-  private value: T;
+  public data: T;
 
   @Input()
   public active: boolean;
@@ -19,7 +20,7 @@ export class Lab900MergerItemComponent<T> implements AfterViewInit {
   @ViewChild('customComponentContainer', { read: ViewContainerRef })
   private customComponentContainer: ViewContainerRef;
 
-  private customComponentRef: ComponentRef<T>;
+  private customComponentRef: ComponentRef<CustomComponent<T>>;
 
   constructor(private resolver: ComponentFactoryResolver) {}
 
@@ -31,15 +32,14 @@ export class Lab900MergerItemComponent<T> implements AfterViewInit {
 
   public display(): Observable<any> {
     const formattedValue = this.config?.formatter
-      ? this.config.formatter(this.value[this.config.attribute])
-      : this.value[this.config.attribute];
+      ? this.config.formatter(this.data[this.config.attribute])
+      : this.data[this.config.attribute];
     return isObservable(formattedValue) ? formattedValue : of(formattedValue);
   }
 
   private createComponent(): void {
-    const factory = this.resolver.resolveComponentFactory(this.config.component);
+    const factory = this.resolver.resolveComponentFactory<CustomComponent<T>>(this.config.component);
     this.customComponentRef = this.customComponentContainer.createComponent(factory);
-    // ToDo: .value should be global to data
-    this.customComponentRef.instance.value = 'It works!';
+    setTimeout(() => (this.customComponentRef.instance.data = this.data));
   }
 }
