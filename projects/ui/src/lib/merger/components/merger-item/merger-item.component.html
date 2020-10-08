@@ -7,5 +7,5 @@
         <p>{{ config.label | translate }}</p>
         <span>{{ display() | async }}</span>
     </div>
-    <ng-template #customComponentContainer></ng-template>
+    <ng-template *ngIf="config?.component" #customComponentContainer></ng-template>
 </div>
