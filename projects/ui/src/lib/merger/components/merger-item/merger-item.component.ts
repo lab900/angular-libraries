@@ -32,11 +32,10 @@ export class Lab900MergerItemComponent<T> implements CustomComponentAbstract<T>,
 
   private customComponentRef: ComponentRef<CustomComponent<T>>;
 
-  constructor(private resolver: ComponentFactoryResolver) {}
+  public constructor(private resolver: ComponentFactoryResolver) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && this.customComponentRef) {
-      console.log(this.data);
       this.customComponentRef.instance.data = this.data;
     }
   }
