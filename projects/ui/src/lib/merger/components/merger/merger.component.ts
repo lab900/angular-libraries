@@ -70,9 +70,12 @@ export class Lab900MergerComponent<T> implements OnInit {
 
   public toggleActive({ attribute, active }: MergeConfig<T>): void {
     const base: T = this.getBase(!active);
+    console.log(attribute);
     if (active) {
       delete this.changes[attribute];
     } else {
+      console.log(base);
+      console.log(base[attribute]);
       this.changes = { ...this.changes, [attribute]: base[attribute] };
     }
     this.result[attribute] = base[attribute];

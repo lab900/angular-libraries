@@ -5,7 +5,7 @@ import { MergerDataExample } from './models/merger-data-example.model';
 @Component({
   selector: 'lab900-custom-component-example',
   template: `<div *ngIf="data">
-    <p>{{ data.name }}</p>
+    <p>{{ data.text }}</p>
   </div>`,
 })
 export class CustomExampleComponent extends CustomComponentAbstract<MergerDataExample> {}

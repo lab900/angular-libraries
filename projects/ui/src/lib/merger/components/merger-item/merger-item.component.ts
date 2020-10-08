@@ -36,6 +36,7 @@ export class Lab900MergerItemComponent<T> implements CustomComponentAbstract<T>,
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && this.customComponentRef) {
+      console.log(this.data);
       this.customComponentRef.instance.data = this.data;
     }
   }

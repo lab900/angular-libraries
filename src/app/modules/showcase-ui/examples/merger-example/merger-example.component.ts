@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { mergerDataExample, mergerDataExample2 } from './config/merger-data-example';
+import { mergerDataExample } from './config/merger-data-example';
 import { MergeObject } from '../../../../../../projects/ui/src/lib/merger/models/merge-object.model';
 import { MergeConfig } from '../../../../../../projects/ui/src/lib/merger/models/merge-config.model';
 import { mergerSchemaExample } from './config/merger-schema-example';
@@ -25,10 +25,6 @@ export class MergerExampleComponent {
 
   @ViewChild(Lab900MergerComponent)
   public mergerComponent: Lab900MergerComponent<MergerDataExample>;
-
-  public constructor() {
-    setTimeout(() => (this.exampleData = mergerDataExample2), 200);
-  }
 
   public showResult(): void {
     console.log(this.mergerComponent.result);

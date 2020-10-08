@@ -25,9 +25,6 @@ export const mergerSchemaExample: MergeConfig<MergerDataExample>[] = [
   },
   {
     attribute: 'text',
-    label: 'text',
-    nextLine: true,
-    active: true,
     component: CustomExampleComponent,
   },
 ];

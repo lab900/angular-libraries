@@ -4,7 +4,7 @@ import { CustomComponent } from '../abstracts/custom-component.abstract';
 
 export interface MergeConfig<T> {
   attribute: string;
-  label: string;
+  label?: string;
   formatter?: (data: any) => Observable<string> | string;
   rowClass?: string;
   nextLine?: boolean;
