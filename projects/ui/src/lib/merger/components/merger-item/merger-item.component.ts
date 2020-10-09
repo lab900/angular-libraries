@@ -56,6 +56,9 @@ export class Lab900MergerItemComponent<T> implements CustomComponentAbstract<T>,
   private createComponent(): void {
     const factory = this.resolver.resolveComponentFactory<CustomComponent<T>>(this.config.component);
     this.customComponentRef = this.customComponentContainer.createComponent(factory);
-    setTimeout(() => (this.customComponentRef.instance.data = this.data));
+    setTimeout(() => {
+      this.customComponentRef.instance.data = this.data;
+      this.customComponentRef.location.nativeElement.style.width = '100%';
+    });
   }
 }
