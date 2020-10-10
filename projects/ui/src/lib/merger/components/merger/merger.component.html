@@ -2,12 +2,12 @@
     <mat-progress-bar *ngIf="loading; else mergerUI" mode="indeterminate"></mat-progress-bar>
     <ng-template #mergerUI>
         <div class="lab900-merger__row" fxLayoutAlign="space-between">
-            <div class="lab900-merger__row__item" fxLayoutAlign="space-between" [ngClass]="{'selected': selected === 'left'}" fxFlex="45 1 45%">
+            <div class="lab900-merger__row__header" fxLayoutAlign="space-between" [ngClass]="{'selected': selected === 'left'}" fxFlex="45 1 45%">
                 <h2>{{ leftObject.title }}</h2>
                 <mat-radio-button color="primary" [checked]="selected === 'left'" (change)="switchMaster()" [disabled]="fixed"></mat-radio-button>
             </div>
             <div fxFlex="10 1 10%"></div>
-            <div class="lab900-merger__row__item" fxLayoutAlign="space-between" [ngClass]="{'selected': selected === 'right'}" fxFlex="45 1 45%">
+            <div class="lab900-merger__row__header" fxLayoutAlign="space-between" [ngClass]="{'selected': selected === 'right'}" fxFlex="45 1 45%">
                 <h2>{{ rightObject.title }}</h2>
                 <mat-radio-button color="primary" [checked]="selected === 'right'" (change)="switchMaster()" [disabled]="fixed"></mat-radio-button>
             </div>
