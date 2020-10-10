@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MergeObject } from '../../models/merge-object.model';
 import { MergeConfig } from '../../models/merge-config.model';
 import * as _ from 'lodash';
@@ -8,7 +8,7 @@ import * as _ from 'lodash';
   templateUrl: './merger.component.html',
   styleUrls: ['./merger.component.scss'],
 })
-export class Lab900MergerComponent<T> implements OnInit {
+export class Lab900MergerComponent<T> implements OnInit, OnChanges {
   @Input()
   public readonly leftObject: MergeObject<T>;
 
@@ -79,6 +79,12 @@ export class Lab900MergerComponent<T> implements OnInit {
 
     const configIndex = this.schema.findIndex((s) => s.attribute === attribute);
     this.schema[configIndex] = { ...this.schema[configIndex], active: !active };
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if ((changes.leftObject || changes.rightObject) && this.leftObject && this.rightObject) {
+      this.reset();
+    }
   }
 
   public switchMaster(): void {
