@@ -1,13 +1,12 @@
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { ElementRef, HostBinding, Input, OnDestroy, OnInit, Directive } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Subject } from 'rxjs';
 import { BaseControlValueAccessorDirective } from './BaseControlValueAccessor';
 
 @Directive()
-export abstract class AbstractMaterialReactiveFormControlDirective<T>
-  extends BaseControlValueAccessorDirective<T>
+export abstract class AbstractMaterialReactiveFormControlDirective<T> extends BaseControlValueAccessorDirective<T>
   implements MatFormFieldControl<T>, OnInit, OnDestroy {
   static nextId = 0;
   @HostBinding() readonly id: string;

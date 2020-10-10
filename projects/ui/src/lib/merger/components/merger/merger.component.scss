@@ -1,10 +1,5 @@
 .lab900-merger__row {
-  lab900-merger-item {
-    width: 45%;
-  }
-
   ::ng-deep &__item {
-    height: 100%;
     padding: 1rem;
     border-top: 1px solid lightgray;
     border-left: 1px solid lightgray;

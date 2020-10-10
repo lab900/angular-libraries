@@ -1,6 +1,6 @@
 import { Schema } from '../../../../../../projects/admin/src/lib/models/schema';
 import { SchemaField } from '../../../../../../projects/admin/src/lib/models/schemaField';
-import { EditType } from '../../../../../../projects/forms/src/lib/models/editType';
+import { EditType } from '@lab900/forms';
 
 export const NEWS_SCHEMA: Schema = {
   name: 'News',
