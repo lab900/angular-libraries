@@ -61,6 +61,9 @@ export class Lab900TableComponent implements OnChanges {
   public selectableRowsEnabled: boolean;
 
   @Input()
+  public selectedItems: any[];
+
+  @Input()
   public multiSelect: boolean;
 
   @Input()
@@ -130,6 +133,10 @@ export class Lab900TableComponent implements OnChanges {
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.multiSelect) {
       this.selection = new SelectionModel<any>(this.multiSelect, []);
+    }
+    if (changes.selectedItems) {
+      this.selection.clear();
+      this.selection.select(...this.selectedItems);
     }
   }
 
