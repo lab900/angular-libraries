@@ -48,7 +48,7 @@
       <ng-container matColumnDef="actions-front">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="end center" *ngIf="tableActionsFront?.length">
+          <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="start center" *ngIf="tableActionsFront?.length">
             <lab900-action-button *ngFor="let action of tableActionsFront" [data]="element" [action]="action"></lab900-action-button>
           </div>
         </td>

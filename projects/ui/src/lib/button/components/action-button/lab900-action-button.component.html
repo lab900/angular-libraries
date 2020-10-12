@@ -1,8 +1,8 @@
 <ng-container *ngIf="action && !action?.hide">
     <lab900-button
         *ngIf="!action.subActions?.length; else: subActions"
-        [type]="action.type"
-        [color]="action?.color"
+        [type]="getType()"
+        [color]="getColor()"
         [disabled]="getDisabled()"
         (click)="doAction($event)"
         [label]="getLabel()"
@@ -13,8 +13,8 @@
     ></lab900-button>
     <ng-template #subActions>
         <lab900-button
-            [type]="action.type"
-            [color]="action?.color"
+            [type]="getType()"
+            [color]="getColor()"
             [disabled]="getDisabled()"
             [label]="getLabel()"
             [matMenuTriggerFor]="sub.actionMenu"

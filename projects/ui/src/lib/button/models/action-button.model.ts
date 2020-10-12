@@ -7,8 +7,8 @@ type propValue<T, R = string> = ((data?: T) => R) | R;
 export interface ActionButton<T = any> {
   label: propValue<T>;
   action?: (data?: T, e?: Event) => any;
-  type?: Lab900ButtonType;
-  color?: ThemePalette;
+  type?: propValue<T, Lab900ButtonType>;
+  color?: propValue<T, ThemePalette>;
   disabled?: propValue<T, boolean>;
   hide?: propValue<T, boolean>;
   subActions?: ActionButton<T>[];
