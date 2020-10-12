@@ -16,6 +16,7 @@ import { CustomComponent, CustomComponentAbstract } from '../../abstracts/custom
 @Component({
   selector: 'lab900-merger-item',
   templateUrl: './merger-item.component.html',
+  styleUrls: ['./merger-item.component.scss'],
 })
 export class Lab900MergerItemComponent<T> implements CustomComponentAbstract<T>, AfterViewInit, OnChanges {
   @Input()

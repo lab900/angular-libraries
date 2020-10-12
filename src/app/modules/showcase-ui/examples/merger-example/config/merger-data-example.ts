@@ -8,7 +8,7 @@ export const mergerDataExample: MergeObject<MergerDataExample>[] = [
       firstName: 'Red',
       languages: ['Nederlands', 'Frans'],
     },
-    title: 'Axelle Red',
+    title: 'Axelle Red with a very long title that does not fit in the box ',
   },
   {
     data: {

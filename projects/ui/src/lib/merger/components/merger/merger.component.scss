@@ -1,14 +1,10 @@
 .lab900-merger__row {
-  lab900-merger-item {
-    width: 45%;
-  }
-
-  ::ng-deep &__item {
-    height: 100%;
+  &__header {
     padding: 1rem;
     border-top: 1px solid lightgray;
     border-left: 1px solid lightgray;
     border-right: 1px solid lightgray;
+    border-radius: 5px 5px 0 0;
 
     p, h2 {
       margin: 0;
@@ -27,14 +23,8 @@
     }
   }
 
-  &:first-of-type {
-    ::ng-deep .lab900-merger__row__item {
-      border-top: 1px solid lightgray;
-      border-radius: 5px 5px 0 0;
-    }
-  }
   &:last-of-type {
-    ::ng-deep .lab900-merger__row__item {
+    ::ng-deep .lab900-merger-item {
       border-bottom: 1px solid lightgray;
       border-radius: 0 0 5px 5px;
     }

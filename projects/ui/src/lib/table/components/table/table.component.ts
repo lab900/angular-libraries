@@ -58,6 +58,12 @@ export class Lab900TableComponent implements OnChanges {
   public selectableRows: boolean;
 
   @Input()
+  public selectableRowsEnabled: boolean;
+
+  @Input()
+  public selectedItems: any[];
+
+  @Input()
   public multiSelect: boolean;
 
   @Input()
@@ -90,6 +96,9 @@ export class Lab900TableComponent implements OnChanges {
   @Output()
   public readonly selectionChanged: EventEmitter<SelectionModel<any>> = new EventEmitter<SelectionModel<any>>();
 
+  @Output()
+  public readonly rowSelectToggle: EventEmitter<object> = new EventEmitter<object>();
+
   @ContentChild(Lab900TableEmptyDirective, { read: TemplateRef })
   public emptyTableTemplate?: Lab900TableEmptyDirective;
 
@@ -104,7 +113,7 @@ export class Lab900TableComponent implements OnChanges {
   }
 
   public get selectEnabled(): boolean {
-    return this.maxSelectableRows ? this.selection.selected.length < this.maxSelectableRows : true;
+    return this.selectableRowsEnabled && (this.maxSelectableRows ? this.selection.selected.length < this.maxSelectableRows : true);
   }
 
   public get displayedColumns(): string[] {
@@ -125,11 +134,16 @@ export class Lab900TableComponent implements OnChanges {
     if (changes.multiSelect) {
       this.selection = new SelectionModel<any>(this.multiSelect, []);
     }
+    if (changes.selectedItems) {
+      this.selection.clear();
+      this.selection.select(...this.selectedItems);
+    }
   }
 
   public selectRow(row: object): void {
     this.selection.toggle(row);
     this.selectionChanged.emit(this.selection);
+    this.rowSelectToggle.emit(row);
   }
 
   public getRowClasses(row: object, index: number): string {

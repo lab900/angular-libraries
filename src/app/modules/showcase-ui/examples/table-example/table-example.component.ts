@@ -16,6 +16,7 @@ import { ActionButton } from 'projects/ui/src/lib/button/models/action-button.mo
     [tableHeaderActions]="tableHeaderActions"
     [toggleColumns]="true"
     [selectableRows]="true"
+    [selectedItems]="selectedItems"
   >
     <div *lab900TableHeaderContent>Header can have custom elements</div>
     <div *lab900TableEmpty>
@@ -101,6 +102,8 @@ export class TableExampleComponent {
       id: 3,
     },
   ];
+
+  public selectedItems = this.mockData[0];
 
   public paging: Paging = {
     pageIndex: 0,
