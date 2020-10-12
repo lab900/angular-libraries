@@ -6,8 +6,7 @@ import { formDataExample } from './config/form-data-example';
 
 @Component({
   selector: 'lab900-form-container-readonly-example',
-  template: `<lab900-form-container #lab900FormContainer [schema]="formFields" [data]="formData"></lab900-form-container>
-    <button mat-stroked-button (click)="submitForm()" [disabled]="!lab900FormContainer.valid">Submit Form</button>`,
+  template: `<lab900-form-container #lab900FormContainer [schema]="formFields" [data]="formData"></lab900-form-container>`,
 })
 export class FormContainerReadonlyExampleComponent implements AfterViewInit {
   public formFields: Form = { ...formFieldsExample, readonly: true };
@@ -17,9 +16,5 @@ export class FormContainerReadonlyExampleComponent implements AfterViewInit {
 
   public ngAfterViewInit() {
     setTimeout(() => (this.formData = formDataExample), 100);
-  }
-
-  public submitForm(): void {
-    console.log(this.formContainer.value);
   }
 }
