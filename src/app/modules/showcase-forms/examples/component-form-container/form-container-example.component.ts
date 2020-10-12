@@ -6,8 +6,8 @@ import { formDataExample } from './config/form-data-example';
 
 @Component({
   selector: 'lab900-form-container-example',
-  template: `<lab900-form-container #lab900FormContainer [schema]="formFields" [data]="formData"></lab900-form-container>
-    <button mat-stroked-button (click)="submitForm()" [disabled]="!lab900FormContainer.valid">Submit Form</button>`,
+  template: ` <lab900-form-container #lab900FormContainer [schema]="formFields" [data]="formData"></lab900-form-container>
+    <button mat-stroked-button (click)="submitForm()">Submit Form</button>`,
 })
 export class FormContainerExampleComponent {
   public formFields: Form = formFieldsExample;
