@@ -4,9 +4,9 @@
     <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
     <mat-icon matSuffix *ngIf="!readonly">search</mat-icon>
     <mat-chip-list #chipList [formControlName]="schema.attribute">
-        <mat-chip *ngFor="let opt of selectedOptions; let i = index" selectable removable (removed)="remove(i)">
+        <mat-chip *ngFor="let opt of selectedOptions; let i = index" [removable]="!schema.options.readonly" selectable (removed)="remove(i)">
             {{ (options?.displayOptionFn(opt) || opt) | translate }}
-            <mat-icon *ngIf="!readonly" matChipRemove>cancel</mat-icon>
+            <mat-icon *ngIf="!schema.options.readonly" matChipRemove>cancel</mat-icon>
         </mat-chip>
         <input
              #input
