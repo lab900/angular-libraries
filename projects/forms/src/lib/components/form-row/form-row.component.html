@@ -9,7 +9,7 @@
             <ng-container
                 lab900FormField
                 [schema]="field"
-                [group]="group"
+                [group]="schema.attribute ? group.get(schema.attribute) : group"
                 [readonly]="readonly"
             ></ng-container>
         </div>

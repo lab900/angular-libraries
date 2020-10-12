@@ -1,4 +1,7 @@
 export const formDataExample = {
+  nestedGroup: {
+    name: 'DSFDSF',
+  },
   uniqueNumber: 'D2020-00003H-00000A',
   registrationPointType: 'WELCOME_CENTER',
   locationId: 55,

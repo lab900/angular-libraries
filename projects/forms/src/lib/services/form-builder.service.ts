@@ -11,7 +11,12 @@ export class Lab900FormBuilderService {
     let formGroup = group ? group : this.fb.group({});
     fields.forEach((field) => {
       if (field.editType === EditType.Row && field.nestedFields) {
-        formGroup = this.createFormGroup(field.nestedFields, formGroup, data);
+        // nested form groups
+        if (field.attribute) {
+          formGroup.addControl(field.attribute, this.createFormGroup(field.nestedFields, null, data));
+        } else {
+          formGroup = this.createFormGroup(field.nestedFields, formGroup, data);
+        }
       } else if (field.editType === EditType.Repeater) {
         const repeaterArray = this.createFormArray(data, field);
         const repeaterOptions = field.options as RepeaterFieldOptions;

@@ -4,7 +4,7 @@ import { Form } from '../../../../../../../projects/forms/src/lib/models/Form';
 export const formFieldsExample: Form = {
   fields: [
     {
-      attribute: '',
+      attribute: 'nestedGroup',
       title: 'GENERAL.PERSONAL_INFO',
       editType: EditType.Row,
       nestedFields: [
