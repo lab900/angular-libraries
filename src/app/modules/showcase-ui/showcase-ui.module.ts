@@ -20,6 +20,8 @@ import { TableExampleComponent } from './examples/table-example/table-example.co
 import { PageHeaderParamsExampleComponent } from './examples/page-header-params-example/page-header-params-example.component';
 import { MergerExampleComponent } from './examples/merger-example/merger-example.component';
 import { CustomExampleComponent } from './examples/merger-example/custom-example.component';
+import { ButtonExampleComponent } from './examples/button-example/button-example.component';
+import { Lab900ButtonModule } from '../../../../projects/ui/src/lib/button/button.module';
 
 const examples = [
   SharingExampleComponent,
@@ -31,6 +33,7 @@ const examples = [
   TableExampleComponent,
   MergerExampleComponent,
   CustomExampleComponent,
+  ButtonExampleComponent,
 ];
 
 @NgModule({
@@ -47,6 +50,7 @@ const examples = [
     Lab900PageHeaderModule,
     Lab900MergerModule,
     TranslateModule,
+    Lab900ButtonModule,
   ],
 })
 export class ShowcaseUiModule {}

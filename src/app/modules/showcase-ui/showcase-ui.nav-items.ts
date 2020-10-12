@@ -8,6 +8,10 @@ export const showcaseUiNavItems: NavItemGroup[] = [
         label: 'Components',
         children: [
           {
+            label: 'Buttons',
+            route: 'ui/buttons',
+          },
+          {
             label: 'Nav List',
             route: 'ui/nav-list',
           },

@@ -4,7 +4,7 @@
         [type]="getType()"
         [color]="getColor()"
         [disabled]="getDisabled()"
-        (click)="doAction($event)"
+        (click)="!getDisabled() && doAction($event)"
         [label]="getLabel()"
         [matTooltip]="action?.tooltip?.value | translate"
         [prefixIcon]="getPrefixIcon()"
