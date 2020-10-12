@@ -19,8 +19,7 @@
                     [data]="selected === 'left' ? result : leftObject.data"
                     [active]="selected === 'left'"
             ></lab900-merger-item>
-            <div class="lab900-merger__row__icon"
-                 fxFlex="10 1 10%" fxLayoutAlign="center center">
+            <div class="lab900-merger__row__icon" fxFlex="10 1 10%" fxLayoutAlign="center center">
                 <mat-icon
                     color="primary"
                     [ngClass]="{'not-active': !config.active, 'rotate': selected !== 'right'}"

@@ -8,24 +8,29 @@ export const mergerSchemaExample: MergeConfig<MergerDataExample>[] = [
   {
     attribute: 'name',
     label: 'label.last-name',
-  },
-  {
-    attribute: 'firstName',
-    label: 'label.first-name',
+    order: 1,
   },
   {
     attribute: 'dateOfBirth',
     label: 'label.birthday',
     formatter: (data) => (data ? moment(data).format('DD/MM/YYYY') : ''),
+    order: 3,
   },
   {
     attribute: 'languages',
     label: 'language',
     formatter: (data) => of(data.sort().join(', ')),
     nextLine: true,
+    order: 4,
   },
   {
     attribute: 'text',
     component: CustomExampleComponent,
+    order: 5,
+  },
+  {
+    attribute: 'firstName',
+    label: 'label.first-name',
+    order: 2,
   },
 ];

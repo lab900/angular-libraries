@@ -10,4 +10,5 @@ export interface MergeConfig<T> {
   nextLine?: boolean;
   active?: boolean;
   component?: Type<CustomComponent<T>>;
+  order?: number;
 }
