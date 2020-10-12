@@ -42,7 +42,6 @@ export class Lab900MergerComponent<T> implements OnInit, OnChanges {
         };
       }
     });
-    this.schema = _.sortBy(this.schema, ['order']);
   }
 
   public reset(): void {
