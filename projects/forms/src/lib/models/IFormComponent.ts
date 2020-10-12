@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { FormGroup, ValidationErrors } from '@angular/forms';
 import { FormField, FieldOptions } from './FormField';
 import { Input, Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
