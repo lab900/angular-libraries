@@ -27,6 +27,19 @@ export class FormFieldRadioButtonsExampleComponent {
           ],
         },
       },
+      {
+        attribute: 'somePropName2',
+        title: 'Select ON OR OFF',
+        editType: EditType.Checkbox,
+        options: {
+          readonly: () => true,
+        },
+      },
+      {
+        attribute: 'somePropName2',
+        title: 'Select ON OR OFF',
+        editType: EditType.Checkbox,
+      },
     ],
   };
 }

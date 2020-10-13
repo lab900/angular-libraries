@@ -1,6 +1,6 @@
 import { FormGroup, ValidationErrors } from '@angular/forms';
-import { FormField, FieldOptions } from './FormField';
-import { Input, Injectable } from '@angular/core';
+import { FieldOptions, FormField } from './FormField';
+import { Injectable, Input } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
@@ -20,7 +20,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   protected constructor(private translateService: TranslateService) {}
 
   @Input()
-  public readonly = false;
+  public readonly = false; // Global form readonly flag
 
   public get valid(): boolean {
     return this.group.get(this.schema.attribute).valid;
@@ -36,6 +36,13 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
 
   public get required(): boolean {
     return (!this.readonly && this.schema?.options?.required) ?? false;
+  }
+
+  public isReadonly(value?: any): boolean {
+    if (typeof this.schema?.options?.readonly === 'function') {
+      return !this.readonly && this.schema?.options?.readonly(value);
+    }
+    return (this.readonly || this.schema?.options?.readonly) ?? false;
   }
 
   public get hint(): string {
