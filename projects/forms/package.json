@@ -1,6 +1,6 @@
 {
   "name": "@lab900/forms",
-  "version": "2.1.19",
+  "version": "2.1.20",
   "peerDependencies": {
     "@angular/common": "~10.0.2",
     "@angular/core": "~10.0.2",
