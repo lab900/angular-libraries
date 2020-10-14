@@ -7,8 +7,7 @@
         placeholder="{{ placeholder | translate }}"
         [formControlName]="schema.attribute"
         [required]="required"
-        lab900DisableControl
-        [disableControl]="isReadonly(this.group.value)"
+        [readonly]="isReadonly(this.group.value)"
         [ngClass]="{ 'readonly' : (readonly || options?.readonly) }"
         [mask]="options?.mask"
     >

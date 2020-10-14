@@ -13,8 +13,7 @@
             (input)="inputChanged($event)"
             placeholder="{{ placeholder | translate }}"
             #input
-            lab900DisableControl
-            [disableControl]="isReadonly(this.group.value)"
+            [readOnly]="isReadonly(this.group.value)"
             [matAutocomplete]="auto"
             [matChipInputFor]="chipList"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"

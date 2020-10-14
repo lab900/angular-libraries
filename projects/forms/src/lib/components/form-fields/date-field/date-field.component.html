@@ -7,8 +7,7 @@
         [matDatepicker]="picker"
         [formControlName]="schema.attribute"
         [required]="required"
-        lab900DisableControl
-        [disableControl]="isReadonly(this.group.value)"
+        [readonly]="isReadonly(this.group.value)"
         [max]="maxDate"
         [min]="minDate"
     >

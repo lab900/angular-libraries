@@ -5,8 +5,7 @@
         (input)="inputChanged($event)"
         [formControlName]="schema.attribute"
         [matAutocomplete]="auto"
-        lab900DisableControl
-        [disableControl]="isReadonly(this.group.value)"
+        [readonly]="isReadonly(this.group.value)"
         [required]="required"
         matInput
         placeholder="{{ placeholder | translate }}"
