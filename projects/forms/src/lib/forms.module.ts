@@ -49,6 +49,7 @@ import { ReadonlyFieldComponent } from './components/form-fields/readonly-field/
 import { DateRangeFieldComponent } from './components/form-fields/date-range-field/date-range-field.component';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { DateTimeFieldComponent } from './components/form-fields/date-time-field/date-time-field.component';
+import { DisableControlDirective } from './directives/disable-control.directive';
 
 const customFields = [
   UnknownFieldComponent,
@@ -75,6 +76,7 @@ const customFields = [
 @NgModule({
   declarations: [
     FormFieldDirective,
+    DisableControlDirective,
     FormDialogDirective,
     FormContainerComponent,
     FormDialogComponent,

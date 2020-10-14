@@ -9,11 +9,12 @@
             <mat-icon *ngIf="!schema.options.readonly" matChipRemove>cancel</mat-icon>
         </mat-chip>
         <input
-             #input
+            #input
             (input)="inputChanged($event)"
             placeholder="{{ placeholder | translate }}"
             #input
-            [readonly]="isReadonly(this.group.value)"
+            lab900DisableControl
+            [disableControl]="isReadonly(this.group.value)"
             [matAutocomplete]="auto"
             [matChipInputFor]="chipList"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"

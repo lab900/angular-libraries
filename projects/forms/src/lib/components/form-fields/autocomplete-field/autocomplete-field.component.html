@@ -1,14 +1,16 @@
 <mat-form-field [formGroup]="group" *ngIf="!hide(this.group.value)">
     <mat-label translate>{{ schema.title }}</mat-label>
-    <input #input
-           (input)="inputChanged($event)"
-           [formControlName]="schema.attribute"
-           [matAutocomplete]="auto"
-           [readonly]="isReadonly(this.group.value)"
-           [required]="required"
-           matInput
-           placeholder="{{ placeholder | translate }}"
-           type="text"
+    <input
+        #input
+        (input)="inputChanged($event)"
+        [formControlName]="schema.attribute"
+        [matAutocomplete]="auto"
+        lab900DisableControl
+        [disableControl]="isReadonly(this.group.value)"
+        [required]="required"
+        matInput
+        placeholder="{{ placeholder | translate }}"
+        type="text"
     >
     <mat-hint *ngIf="hint && !readonly && !(schema.options.hint.hideHintOnValidValue && input.value)" translate>{{ hint }}</mat-hint>
     <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>

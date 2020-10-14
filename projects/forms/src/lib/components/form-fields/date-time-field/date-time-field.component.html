@@ -7,7 +7,8 @@
         [ngxMatDatetimePicker]="picker"
         [formControlName]="schema.attribute"
         [required]="required"
-        [readonly]="isReadonly(this.group.value)"
+        lab900DisableControl
+        [disableControl]="isReadonly(this.group.value)"
         [max]="maxDate"
         [min]="minDate"
     >

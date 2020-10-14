@@ -1,13 +1,17 @@
-<mat-form-field [formGroup]="group" *ngIf="!hide(this.group.value)">
+<mat-form-field *ngIf="!hide(this.group.value)" [formGroup]="group">
     <mat-label translate>{{ schema.title }}</mat-label>
-    <textarea #input
-              [formControlName]="schema.attribute"
-              [required]="required"
-              [readonly]="isReadonly(this.group.value)"
-              matInput
-              placeholder="{{ placeholder | translate }}"
+    <textarea
+        #input
+        [disableControl]="isReadonly(this.group.value)"
+        [formControlName]="schema.attribute"
+        [required]="required"
+        lab900DisableControl
+        matInput
+        placeholder="{{ placeholder | translate }}"
     ></textarea>
     <mat-hint *ngIf="hint && !readonly && !(schema.options.hint.hideHintOnValidValue && input.value)" translate>{{ hint }}</mat-hint>
-    <mat-hint align="end" *ngIf="options?.maxLength && !readonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
+    <mat-hint *ngIf="options?.maxLength && !readonly" align="end">
+        {{ input.value?.length || 0 }}/{{ options?.maxLength }}
+    </mat-hint>
     <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
 </mat-form-field>
