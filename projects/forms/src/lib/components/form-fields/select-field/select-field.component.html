@@ -1,6 +1,6 @@
 <mat-form-field [formGroup]="group" [hidden]="hide">
     <mat-label translate>{{ schema.title }}</mat-label>
-    <mat-select #select [compareWith]="options?.compareWith || defaultCompare" [attr.disabled]="readonly" [formControlName]="schema.attribute" [multiple]="options?.multiple" [required]="required">
+    <mat-select #select [compareWith]="options?.compareWith || defaultCompare" [attr.disabled]="isReadonly(this.group.value)" [formControlName]="schema.attribute" [multiple]="options?.multiple" [required]="required">
         <mat-option *ngFor="let item of values" [value]="item.value" translate>{{ item.label | translate }}</mat-option>
     </mat-select>
     <mat-hint *ngIf="hint && !readonly && !(schema.options.hint.hideHintOnValidValue && select.value)" translate>{{ hint }}</mat-hint>

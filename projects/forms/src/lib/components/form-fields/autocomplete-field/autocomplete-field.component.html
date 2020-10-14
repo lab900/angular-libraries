@@ -4,7 +4,7 @@
            (input)="inputChanged($event)"
            [formControlName]="schema.attribute"
            [matAutocomplete]="auto"
-           [readonly]="readonly"
+           [readonly]="isReadonly(this.group.value)"
            [required]="required"
            matInput
            placeholder="{{ placeholder | translate }}"

@@ -13,7 +13,7 @@
             (input)="inputChanged($event)"
             placeholder="{{ placeholder | translate }}"
             #input
-            [readonly]="readonly || options?.readonly"
+            [readonly]="isReadonly(this.group.value)"
             [matAutocomplete]="auto"
             [matChipInputFor]="chipList"
             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"

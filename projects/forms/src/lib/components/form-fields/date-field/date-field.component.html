@@ -7,7 +7,7 @@
         [matDatepicker]="picker"
         [formControlName]="schema.attribute"
         [required]="required"
-        [readonly]="readonly || options?.readonly"
+        [readonly]="isReadonly(this.group.value)"
         [max]="maxDate"
         [min]="minDate"
     >
