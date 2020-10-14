@@ -54,5 +54,29 @@ export const formFieldsExample: Form = {
         },
       ],
     },
+    {
+      editType: EditType.Row,
+      nestedFields: [
+        {
+          title: 'languages',
+          attribute: 'languages',
+          editType: EditType.Select,
+          options: {
+            readonly: true,
+            colspan: 12,
+            values: [
+              {
+                value: 'Dutch',
+                label: 'DUT',
+              },
+              {
+                value: 'English',
+                label: 'ENG',
+              },
+            ],
+          },
+        },
+      ],
+    },
   ],
 };
