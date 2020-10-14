@@ -11,7 +11,7 @@ export class FormFieldInputsExampleComponent {
     fields: [
       {
         attribute: 'textInput1',
-        title: 'Text Input',
+        title: 'Text Input Hidden',
         editType: EditType.Input,
         options: { hide: true },
       },

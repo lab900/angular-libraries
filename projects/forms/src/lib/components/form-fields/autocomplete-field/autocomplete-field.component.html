@@ -1,4 +1,4 @@
-<mat-form-field [formGroup]="group" [hidden]="hide">
+<mat-form-field [formGroup]="group" *ngIf="!options?.hide">
     <mat-label translate>{{ schema.title }}</mat-label>
     <input #input
            (input)="inputChanged($event)"

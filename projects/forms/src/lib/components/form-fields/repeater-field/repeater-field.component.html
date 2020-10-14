@@ -1,4 +1,4 @@
-<div [formGroup]="group" [hidden]="hide" class="repeater-field" [class.fixed-list]="fixedList">
+<div [formGroup]="group" *ngIf="!options?.hide" class="repeater-field" [class.fixed-list]="fixedList">
     <div [formArrayName]="schema.attribute">
         <span *ngIf="schema.title" class="lab900-form-field-label">{{ schema.title | translate }}</span>
         <div *ngFor="let control of repeaterArray.controls; let i=index" class="repeater-row">
