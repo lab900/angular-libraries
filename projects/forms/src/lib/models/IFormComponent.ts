@@ -32,7 +32,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
 
   public hide(value?: any): boolean {
     if (typeof this.schema?.options?.hide === 'function') {
-      return !this.readonly && this.schema?.options?.hide(value);
+      return this.schema?.options?.hide(value);
     }
     return this.schema?.options?.hide ?? false;
   }
