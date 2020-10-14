@@ -1,4 +1,4 @@
-<div [formGroup]="group" *ngIf="!options?.hide">
+<div [formGroup]="group" *ngIf="!hide(this.group.value)">
     <span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
     <lab900-mat-range-slider-field 
         [formControlName]="schema.attribute" 

@@ -1,4 +1,4 @@
-<mat-form-field [formGroup]="group" *ngIf="!options?.hide">
+<mat-form-field [formGroup]="group" *ngIf="!hide(this.group.value)">
     <mat-label translate>{{schema.title}}</mat-label>
     <lab900-mat-file-field [attr.disabled]="readonly" #fileField [formControlName]="schema.attribute"></lab900-mat-file-field>
     <mat-icon matSuffix class="flex">folder</mat-icon>

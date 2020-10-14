@@ -30,6 +30,13 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     return this.schema?.options;
   }
 
+  public hide(value?: any): boolean {
+    if (typeof this.schema?.options?.hide === 'function') {
+      return !this.readonly && this.schema?.options?.hide(value);
+    }
+    return this.schema?.options?.hide ?? false;
+  }
+
   public get required(): boolean {
     return (!this.readonly && this.schema?.options?.required) ?? false;
   }

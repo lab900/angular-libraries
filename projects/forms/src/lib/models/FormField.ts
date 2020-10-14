@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { IFormComponent } from './IFormComponent';
 
 export interface FieldOptions {
-  hide?: boolean;
+  hide?: boolean | ((data?: any) => boolean);
   hint?: { value: string; hideHintOnValidValue?: boolean };
   placeholder?: string;
   colspan?: number;

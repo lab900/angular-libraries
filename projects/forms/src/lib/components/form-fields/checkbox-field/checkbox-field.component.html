@@ -1,4 +1,4 @@
-<div [formGroup]="group" *ngIf="!options?.hide">
+<div [formGroup]="group" *ngIf="!hide(this.group.value)">
     <mat-checkbox #checkbox [color]="options?.color || 'primary'" [disabled]="isReadonly(this.group.value)" [formControlName]="schema.attribute" [indeterminate]="indeterminate" [required]="required">
       {{schema.title | translate}}
     </mat-checkbox>
