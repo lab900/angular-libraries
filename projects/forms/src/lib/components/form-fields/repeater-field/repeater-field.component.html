@@ -8,8 +8,6 @@
                     lab900FormField
                     [schema]="field"
                     [group]="control"
-                    lab900DisableControl
-                    [disableControl]="isReadonly(this.group.value)"
                 ></ng-container>
             </div>
             <div *ngIf="!fixedList && !readonly" class="repeater-row__actions">
