@@ -1,8 +1,9 @@
 import { NavItemGroup } from 'projects/ui/src/lib/nav-list/models/nav-item.model';
+import { showcaseAdminConfig } from './showcase-admin.constants';
 
 export const showcaseAdminNavItems: NavItemGroup[] = [
   {
-    label: 'Lab900 - Admin',
+    label: showcaseAdminConfig?.title,
     items: [
       {
         label: 'Components',

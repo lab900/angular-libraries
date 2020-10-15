@@ -4,6 +4,9 @@ import { showcaseFormsNavItems } from './modules/showcase-forms/showcase-forms.n
 import { showcaseUiNavItems } from './modules/showcase-ui/showcase-ui.nav-items';
 import { showcaseAdminNavItems } from './modules/showcase-admin/showcase-admin.nav-items';
 import { TranslateService } from '@ngx-translate/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { repository } from '../../package.json';
 
 @Component({
   selector: 'lab900-root',
@@ -11,24 +14,29 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public navItemsGroups: NavItemGroup[] = [...showcaseFormsNavItems, ...showcaseUiNavItems, ...showcaseAdminNavItems];
+  public readonly languages = ['en', 'nl'];
+  public readonly gitUrl = repository;
+  public readonly navItemsGroups: NavItemGroup[] = [...showcaseFormsNavItems, ...showcaseUiNavItems, ...showcaseAdminNavItems];
+  public language = 'en';
 
-  languages = ['en', 'nl'];
-  language = 'en';
-
-  constructor(private translateService: TranslateService) {
-    // this language will be used as a fallback when a translation isn't found in the current language
+  public constructor(
+    private translateService: TranslateService,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer,
+  ) {
     this.translateService.setDefaultLang('en');
-
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
     this.translateService.use('en');
+
+    this.matIconRegistry.addSvgIcon('github', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/images/github-logo.svg'));
+
+    this.matIconRegistry.addSvgIcon('lab900', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/images/logo-duo-dark.svg'));
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.language = this.translateService.currentLang;
   }
 
-  languageChanged(language: string) {
+  public languageChanged(language: string) {
     this.translateService.use(language);
   }
 }

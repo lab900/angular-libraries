@@ -1,22 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomepageComponent } from './modules/pages/homepage/homepage.component';
+import { showcaseUiConfig } from './modules/showcase-ui/showcase-ui.constants';
+import { showcaseFormsConfig } from './modules/showcase-forms/showcase-forms.constants';
+import { showcaseAdminConfig } from './modules/showcase-admin/showcase-admin.constants';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'forms',
-    pathMatch: 'full',
+    component: HomepageComponent,
   },
   {
-    path: 'forms',
+    path: showcaseFormsConfig?.homeRoute,
     loadChildren: () => import('./modules/showcase-forms/showcase-forms.module').then((m) => m.ShowcaseFormsModule),
   },
   {
-    path: 'ui',
+    path: showcaseUiConfig?.homeRoute,
     loadChildren: () => import('./modules/showcase-ui/showcase-ui.module').then((m) => m.ShowcaseUiModule),
   },
   {
-    path: 'admin',
+    path: showcaseAdminConfig?.homeRoute,
     loadChildren: () => import('./modules/showcase-admin/showcase-admin.module').then((m) => m.ShowcaseAdminModule),
   },
 ];

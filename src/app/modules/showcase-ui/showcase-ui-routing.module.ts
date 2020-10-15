@@ -11,8 +11,16 @@ import { PageHeaderExampleComponent } from './examples/page-header-example/page-
 import { PageHeaderParamsExampleComponent } from './examples/page-header-params-example/page-header-params-example.component';
 import { MergerExampleComponent } from './examples/merger-example/merger-example.component';
 import { ButtonExampleComponent } from './examples/button-example/button-example.component';
+import { ShowcaseHomeComponent } from '../shared/components/showcase-home/showcase-home.component';
+import { showcaseUiConfig } from './showcase-ui.constants';
+import { showcaseUiNavItems } from './showcase-ui.nav-items';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: ShowcaseHomeComponent,
+    data: { config: showcaseUiConfig, nav: showcaseUiNavItems },
+  },
   new ShowcaseRoute('sharing', 'Sharing', [new ShowcaseExample(SharingExampleComponent, 'Sharing list', ['TS'], 'ui/sharing')]),
   new ShowcaseRoute('buttons', 'Buttons', [new ShowcaseExample(ButtonExampleComponent, 'Buttons', ['TS'], 'ui/buttons')]),
   new ShowcaseRoute('data-list', 'Data list', [new ShowcaseExample(DataListExampleComponent, 'Data list', ['TS'], 'ui/data-list')]),

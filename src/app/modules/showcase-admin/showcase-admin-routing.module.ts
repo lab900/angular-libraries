@@ -4,12 +4,15 @@ import { ShowcaseRoute } from '../shared/models/showcase-route.model';
 import { ShowcaseExample } from '../shared/models/showcase-example.model';
 import { AdminPageExampleComponent } from './examples/admin-page/admin-page-example.component';
 import { TranslatableAdminPageExampleComponent } from './examples/translatable-admin-page/translatable-admin-page-example.component';
+import { ShowcaseHomeComponent } from '../shared/components/showcase-home/showcase-home.component';
+import { showcaseAdminConfig } from './showcase-admin.constants';
+import { showcaseAdminNavItems } from './showcase-admin.nav-items';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'admin-page',
-    pathMatch: 'full',
+    component: ShowcaseHomeComponent,
+    data: { config: showcaseAdminConfig, nav: showcaseAdminNavItems },
   },
   new ShowcaseRoute('admin-page', 'Admin Page', [new ShowcaseExample(AdminPageExampleComponent, 'Admin Page', ['TS'], '')]),
   new ShowcaseRoute('translatable-admin-page', 'Translatable Admin Page', [

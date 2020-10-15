@@ -16,12 +16,13 @@ import { Lab900NavListModule } from 'projects/ui/src/lib/nav-list/nav-list.modul
 import { ExampleViewerComponent } from './components/example-viewer/example-viewer.component';
 import { ShowcasePageComponent } from './components/showcase-page/showcase-page.component';
 import { ComponentLoaderDirective } from './directives/component-loader.directive';
+import { ShowcaseHomeComponent } from './components/showcase-home/showcase-home.component';
 
 const material = [MatCardModule, MatButtonModule, MatTabsModule, MatIconModule, FlexLayoutModule, MatToolbarModule, MatSidenavModule];
 
 @NgModule({
-  declarations: [ExampleViewerComponent, ShowcasePageComponent, ComponentLoaderDirective],
-  exports: [ExampleViewerComponent, ShowcasePageComponent, Lab900FormsModule, Lab900NavListModule, ...material],
+  declarations: [ExampleViewerComponent, ShowcasePageComponent, ComponentLoaderDirective, ShowcaseHomeComponent],
+  exports: [ExampleViewerComponent, ShowcasePageComponent, ShowcaseHomeComponent, Lab900FormsModule, Lab900NavListModule, ...material],
   imports: [CommonModule, Lab900FormsModule, Lab900NavListModule, MarkdownModule, RouterModule, ...material],
 })
 export class SharedModule {}

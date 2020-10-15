@@ -6,7 +6,6 @@ import { ShowcaseRouteData } from '../../models/showcase-route.model';
 @Component({
   selector: 'lab900-showcase-page',
   templateUrl: './showcase-page.component.html',
-  styleUrls: ['./showcase-page.component.scss'],
 })
 export class ShowcasePageComponent {
   public examples: any[];

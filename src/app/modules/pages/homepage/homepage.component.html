@@ -1,0 +1,17 @@
+<header class="homepage-header">
+    <div class="row">
+        <img src="../assets/images/logo-dark-white.svg">
+        <h1>Angular Libraries</h1>
+        <p>Build with Angular Material</p>
+    </div>
+</header>
+<div class="row row--big">
+    <div fxLayout="row">
+        <a *ngFor="let section of sections" [routerLink]="[section.homeRoute]"  fxFlex="25%" class="homepage-block" [class.disabled]="section?.disabled">
+            <mat-icon>{{section?.icon}}</mat-icon>
+            <h2>{{section.title}}</h2>
+            <p>{{section.description}}</p>
+            <span *ngIf="section?.version">Version: {{section?.version}}</span>
+        </a>
+    </div>
+</div>

@@ -17,12 +17,15 @@ import { FormContainerReadonlyExampleComponent } from './examples/component-form
 import { FormFieldAutocompleteMultipleExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-multiple-example.component';
 import { FormFieldDateRangePickerExampleComponent } from './examples/form-field-date-range-picker-example/form-field-date-range-picker-example.component';
 import { FormFieldDateTimePickerExampleComponent } from './examples/form-field-date-time-picker-example/form-field-date-time-picker-example.component';
+import { showcaseFormsConfig } from './showcase-forms.constants';
+import { ShowcaseHomeComponent } from '../shared/components/showcase-home/showcase-home.component';
+import { showcaseFormsNavItems } from './showcase-forms.nav-items';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'form-field-repeater',
-    pathMatch: 'full',
+    component: ShowcaseHomeComponent,
+    data: { config: showcaseFormsConfig, nav: showcaseFormsNavItems },
   },
   new ShowcaseRoute('form-container', 'Components: Form Container', [
     new ShowcaseExample(FormContainerExampleComponent, 'Form Container', ['TS'], ''),

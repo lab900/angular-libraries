@@ -1,8 +1,9 @@
 import { NavItemGroup } from 'projects/ui/src/lib/nav-list/models/nav-item.model';
+import { showcaseFormsConfig } from './showcase-forms.constants';
 
 export const showcaseFormsNavItems: NavItemGroup[] = [
   {
-    label: 'Lab900 - Forms',
+    label: showcaseFormsConfig?.title,
     items: [
       {
         label: 'Components',
