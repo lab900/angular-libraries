@@ -14,12 +14,18 @@ import { ButtonExampleComponent } from './examples/button-example/button-example
 import { ShowcaseHomeComponent } from '../shared/components/showcase-home/showcase-home.component';
 import { showcaseUiConfig } from './showcase-ui.constants';
 import { showcaseUiNavItems } from './showcase-ui.nav-items';
+import { MarkdownPageComponent } from '../shared/components/markdown-page/markdown-page.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ShowcaseHomeComponent,
     data: { config: showcaseUiConfig, nav: showcaseUiNavItems },
+  },
+  {
+    path: 'getting-started',
+    component: MarkdownPageComponent,
+    data: { filePath: 'guides/ui/getting-started.md' },
   },
   new ShowcaseRoute('sharing', 'Sharing', [new ShowcaseExample(SharingExampleComponent, 'Sharing list', ['TS'], 'ui/sharing')]),
   new ShowcaseRoute('buttons', 'Buttons', [new ShowcaseExample(ButtonExampleComponent, 'Buttons', ['TS'], 'ui/buttons')]),

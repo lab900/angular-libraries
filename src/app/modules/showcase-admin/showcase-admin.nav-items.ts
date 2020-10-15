@@ -6,6 +6,15 @@ export const showcaseAdminNavItems: NavItemGroup[] = [
     label: showcaseAdminConfig?.title,
     items: [
       {
+        label: 'Guides',
+        children: [
+          {
+            label: 'Getting started',
+            route: 'admin/getting-started',
+          },
+        ],
+      },
+      {
         label: 'Components',
         children: [
           {

@@ -6,6 +6,15 @@ export const showcaseUiNavItems: NavItemGroup[] = [
     label: showcaseUiConfig?.title,
     items: [
       {
+        label: 'Guides',
+        children: [
+          {
+            label: 'Getting started',
+            route: 'ui/getting-started',
+          },
+        ],
+      },
+      {
         label: 'Components',
         children: [
           {

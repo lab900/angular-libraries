@@ -68,6 +68,6 @@ Include the library stylesheet in your scss file.
 @import '~@lab900/forms/theming';
 
 
-@include lab900-ui(YOUR_MATERIAL_THEME);
+@include lab900-forms(YOUR_MATERIAL_THEME);
 ````
-The lab900-ui mixin expects a [Material theme of config](https://material.angular.io/guide/theming).
+The lab900-forms mixin expects a [Material theme of config](https://material.angular.io/guide/theming).
