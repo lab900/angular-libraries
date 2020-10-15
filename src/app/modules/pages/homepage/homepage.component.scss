@@ -1,5 +1,7 @@
+@import '../../../../assets/styles/green.palette';
+
 .homepage-header {
-  background: #c0eae8;
+  background: $palette-lab900green-100;
   text-align: center;
 
   img {

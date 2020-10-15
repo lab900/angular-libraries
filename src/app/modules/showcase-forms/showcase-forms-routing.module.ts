@@ -20,12 +20,18 @@ import { FormFieldDateTimePickerExampleComponent } from './examples/form-field-d
 import { showcaseFormsConfig } from './showcase-forms.constants';
 import { ShowcaseHomeComponent } from '../shared/components/showcase-home/showcase-home.component';
 import { showcaseFormsNavItems } from './showcase-forms.nav-items';
+import { MarkdownPageComponent } from '../shared/components/markdown-page/markdown-page.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ShowcaseHomeComponent,
     data: { config: showcaseFormsConfig, nav: showcaseFormsNavItems },
+  },
+  {
+    path: 'getting-started',
+    component: MarkdownPageComponent,
+    data: { filePath: 'guides/forms/getting-started.md' },
   },
   new ShowcaseRoute('form-container', 'Components: Form Container', [
     new ShowcaseExample(FormContainerExampleComponent, 'Form Container', ['TS'], ''),

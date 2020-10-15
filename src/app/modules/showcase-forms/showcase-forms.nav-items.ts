@@ -6,6 +6,15 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
     label: showcaseFormsConfig?.title,
     items: [
       {
+        label: 'Guides',
+        children: [
+          {
+            label: 'Getting started',
+            route: 'forms/getting-started',
+          },
+        ],
+      },
+      {
         label: 'Components',
         children: [
           {

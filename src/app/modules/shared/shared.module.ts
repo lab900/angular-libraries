@@ -17,12 +17,21 @@ import { ExampleViewerComponent } from './components/example-viewer/example-view
 import { ShowcasePageComponent } from './components/showcase-page/showcase-page.component';
 import { ComponentLoaderDirective } from './directives/component-loader.directive';
 import { ShowcaseHomeComponent } from './components/showcase-home/showcase-home.component';
+import { MarkdownPageComponent } from './components/markdown-page/markdown-page.component';
 
 const material = [MatCardModule, MatButtonModule, MatTabsModule, MatIconModule, FlexLayoutModule, MatToolbarModule, MatSidenavModule];
 
 @NgModule({
-  declarations: [ExampleViewerComponent, ShowcasePageComponent, ComponentLoaderDirective, ShowcaseHomeComponent],
-  exports: [ExampleViewerComponent, ShowcasePageComponent, ShowcaseHomeComponent, Lab900FormsModule, Lab900NavListModule, ...material],
+  declarations: [ExampleViewerComponent, ShowcasePageComponent, ComponentLoaderDirective, ShowcaseHomeComponent, MarkdownPageComponent],
+  exports: [
+    ExampleViewerComponent,
+    ShowcasePageComponent,
+    ShowcaseHomeComponent,
+    MarkdownPageComponent,
+    Lab900FormsModule,
+    Lab900NavListModule,
+    ...material,
+  ],
   imports: [CommonModule, Lab900FormsModule, Lab900NavListModule, MarkdownModule, RouterModule, ...material],
 })
 export class SharedModule {}
