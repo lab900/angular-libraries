@@ -18,6 +18,7 @@ import { ShowcasePageComponent } from './components/showcase-page/showcase-page.
 import { ComponentLoaderDirective } from './directives/component-loader.directive';
 import { ShowcaseHomeComponent } from './components/showcase-home/showcase-home.component';
 import { MarkdownPageComponent } from './components/markdown-page/markdown-page.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 const material = [MatCardModule, MatButtonModule, MatTabsModule, MatIconModule, FlexLayoutModule, MatToolbarModule, MatSidenavModule];
 
@@ -32,6 +33,6 @@ const material = [MatCardModule, MatButtonModule, MatTabsModule, MatIconModule, 
     Lab900NavListModule,
     ...material,
   ],
-  imports: [CommonModule, Lab900FormsModule, Lab900NavListModule, MarkdownModule, RouterModule, ...material],
+  imports: [CommonModule, Lab900FormsModule, Lab900NavListModule, MarkdownModule, RouterModule, ...material, TranslateModule],
 })
 export class SharedModule {}

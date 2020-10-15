@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "lab900",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -32,17 +32,17 @@
               "src/assets",
               "src/guides",
               {
-                "glob": "**/*",
+                "glob": "**/*-example.component.*",
                 "input": "src/app/modules/showcase-forms/examples",
                 "output": "/examples"
               },
               {
-                "glob": "**/*",
+                "glob": "**/*-example.component.*",
                 "input": "src/app/modules/showcase-ui/examples",
                 "output": "/examples"
               },
               {
-                "glob": "**/*",
+                "glob": "**/*-example.component.*",
                 "input": "src/app/modules/showcase-admin/examples",
                 "output": "/examples"
               }

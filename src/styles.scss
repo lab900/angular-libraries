@@ -54,11 +54,19 @@ p {
   background: rgba($palette-lab900green-100, 0.1); 
   height: calc(100vh - 64px) !important;
   color: $palette-lab900-text;
+
+  @media screen and (max-width: 599px) {
+    height: calc(100vh - 56px) !important;
+
+  }
+}
+
+.mat-drawer {
+  min-width: 340px;
 }
 
 .mat-drawer-side {
   border-right: solid 2px $palette-lab900green-100;
-  min-width: 340px;
   color: $palette-lab900-text;
 }
 
@@ -104,5 +112,9 @@ pre[class*="language-"] {
 
   &--big {
     max-width: 1300px;
+  }
+
+  @media screen and (max-width: 599px) {
+    padding: 15px;
   }
 }

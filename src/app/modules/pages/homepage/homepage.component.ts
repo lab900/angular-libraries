@@ -15,9 +15,9 @@ export class HomepageComponent {
     showcaseUiConfig,
     showcaseAdminConfig,
     {
-      title: 'Common Library',
+      title: 'common.title',
       icon: 'construction',
-      description: 'Coming soon.',
+      description: 'common.description',
       disabled: true,
       homeRoute: '',
     },

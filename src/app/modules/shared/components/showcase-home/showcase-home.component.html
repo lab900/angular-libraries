@@ -3,17 +3,17 @@
       <span class="showcase-home__header__version">{{config.version}}</span>
       <div class="row">
          <mat-icon>{{config?.icon}}</mat-icon>
-         <h1>{{config.title}}</h1>
-         <p>{{config.description}}</p>
+         <h1>{{config.title | translate}}</h1>
+         <p>{{config.description | translate}}</p>
       </div>
    </header>
    <div class="showcase-home__links row" *ngIf="data.nav as navItemGroups">
       <ng-container *ngFor="let group of navItemGroups">
          <div *ngFor="let item of group.items" style="margin-bottom: 30px">
-            <h2>{{item.label}}</h2>
+            <h2>{{item.label | translate}}</h2>
             <div fxLayout="row wrap" fxLayoutGap="10px">
                <button *ngFor="let link of item.children"  mat-raised-button [routerLink]="['/' + link.route]">
-                  {{ link.label }}
+                  {{ link.label | translate }}
                </button>
             </div>
          </div>

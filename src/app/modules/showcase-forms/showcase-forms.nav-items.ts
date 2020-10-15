@@ -6,16 +6,16 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
     label: showcaseFormsConfig?.title,
     items: [
       {
-        label: 'Guides',
+        label: 'label.guides',
         children: [
           {
-            label: 'Getting started',
+            label: 'label.getting-started',
             route: 'forms/getting-started',
           },
         ],
       },
       {
-        label: 'Components',
+        label: 'label.components',
         children: [
           {
             label: 'Form Container',
@@ -24,7 +24,7 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
         ],
       },
       {
-        label: 'Form Fields',
+        label: 'forms.form-fields',
         children: [
           {
             label: 'Autocomplete',
