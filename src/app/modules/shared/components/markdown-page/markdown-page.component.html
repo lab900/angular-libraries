@@ -1,5 +1,5 @@
-<div *ngIf="data$ | async as data" class="markdown-page row">
+<div *ngIf="filePath" class="markdown-page row">
     <div class="page">
-        <markdown lineNumbers [src]="data?.filePath" [start]="0"></markdown>
+        <markdown lineNumbers [src]="filePath" [start]="0"></markdown>
     </div>
 </div>

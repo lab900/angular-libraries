@@ -33,10 +33,15 @@ const routes: Routes = [
     component: MarkdownPageComponent,
     data: { filePath: 'guides/forms/getting-started.md' },
   },
-  new ShowcaseRoute('form-container', 'Components: Form Container', [
-    new ShowcaseExample(FormContainerExampleComponent, 'Form Container'),
-    new ShowcaseExample(FormContainerReadonlyExampleComponent, 'Form Container Readonly', 'form-container-example'),
-  ]),
+  new ShowcaseRoute(
+    'form-container',
+    'Dynamic forms',
+    [
+      new ShowcaseExample(FormContainerExampleComponent, 'Form Container'),
+      new ShowcaseExample(FormContainerReadonlyExampleComponent, 'Form Container Readonly', 'form-container-example'),
+    ],
+    'guides/forms/creating-forms.md',
+  ),
   new ShowcaseRoute('form-field-autocomplete', 'Form Fields: Autocomplete', [
     new ShowcaseExample(FormFieldAutocompleteExampleComponent, 'Autocomplete'),
     new ShowcaseExample(FormFieldAutocompleteMultipleExampleComponent, 'Autocomplete Multiple', 'form-field-autocomplete-example'),

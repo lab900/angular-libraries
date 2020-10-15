@@ -1,8 +1,8 @@
-<div *ngIf="data$ | async as data" class="row">
+<div *ngIf="data$ | async as data" class="showcase-page row">
     <h1>{{ data.title }}</h1>
-    <mat-tab-group [selectedIndex]="1">
-        <mat-tab [label]="'API'">
-            In progress
+    <mat-tab-group>
+        <mat-tab [label]="'DOCS'" *ngIf="data?.docFile">
+            <lab900-markdown-page [filePath]="data.docFile"></lab900-markdown-page>
         </mat-tab>
         <mat-tab [label]="'EXAMPLES'" *ngIf="data?.examples?.length">
             <div *ngFor="let example of data.examples" style="padding: 30px 0">

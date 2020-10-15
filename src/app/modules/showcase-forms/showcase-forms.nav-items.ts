@@ -12,13 +12,8 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
             label: 'label.getting-started',
             route: 'forms/getting-started',
           },
-        ],
-      },
-      {
-        label: 'label.components',
-        children: [
           {
-            label: 'Form Container',
+            label: 'Create dynamic forms',
             route: 'forms/form-container',
           },
         ],

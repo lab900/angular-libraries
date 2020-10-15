@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { filter, take } from 'rxjs/operators';
 
 @Component({
   selector: 'lab900-markdown-page',
@@ -8,7 +8,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./markdown-page.component.scss'],
 })
 export class MarkdownPageComponent {
-  public data$: Observable<{ filePath: string }> = this.activatedRoute.data as any;
+  @Input()
+  public filePath: string;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.data
+      .pipe(
+        filter((data: { filePath: string }) => !!data?.filePath),
+        take(1),
+      )
+      .subscribe((data) => {
+        this.filePath = data.filePath;
+      });
+  }
 }
