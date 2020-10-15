@@ -49,6 +49,7 @@ const examples = [
     Lab900TableModule,
     Lab900PageHeaderModule,
     Lab900MergerModule,
+    Lab900ButtonModule,
     TranslateModule,
     Lab900ButtonModule,
   ],

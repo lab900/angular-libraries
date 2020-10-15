@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavItemGroup } from 'projects/ui/src/lib/nav-list/models/nav-item.model';
+import { NavItemGroup } from '@lab900/ui';
 
 @Component({
   selector: 'lab900-nav-list-example',

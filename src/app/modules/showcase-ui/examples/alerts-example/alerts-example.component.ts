@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Alert } from 'projects/ui/src/lib/alert/models/alert';
+import { Alert } from '@lab900/ui';
 
 @Component({
   selector: 'lab900-alerts-example',

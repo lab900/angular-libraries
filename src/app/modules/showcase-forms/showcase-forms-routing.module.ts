@@ -5,15 +5,15 @@ import { ShowcaseExample } from '../shared/models/showcase-example.model';
 // tslint:disable-next-line:max-line-length
 import { FormFieldAutocompleteExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-example.component';
 import { FormFieldRepeaterExampleComponent } from './examples/form-field-repeater-example/form-field-repeater-example.component';
-import { FormFieldRepeaterFixedExampleComponent } from './examples/form-field-repeater-fixed-example/form-field-repeater-fixed-xample.component';
+import { FormFieldRepeaterFixedExampleComponent } from './examples/form-field-repeater-fixed-example/form-field-repeater-fixed-example.component';
 import { FormFieldInputsExampleComponent } from './examples/form-field-inputs-example/form-field-inputs-example.component';
 import { FormFieldTextareaExampleComponent } from './examples/form-field-textarea-example/form-field-textarea-example.component';
 import { FormFieldRadioButtonsExampleComponent } from './examples/form-field-radio-buttons-example/form-field-radio-buttons-example.component';
 import { FormFieldRangeSliderExampleComponent } from './examples/form-field-range-slider-example/form-field-range-slider-example.component';
 import { FormFieldRepeaterAdvancedExampleComponent } from './examples/form-field-repeater-advanced-example/form-field-repeater-advanced-example.component';
 import { FormFieldButtonToggleExampleComponent } from './examples/form-field-button-toggle-example/form-field-button-toggle-example.component';
-import { FormContainerExampleComponent } from './examples/component-form-container/form-container-example.component';
-import { FormContainerReadonlyExampleComponent } from './examples/component-form-container/form-container-readonly-example.component';
+import { FormContainerExampleComponent } from './examples/form-container-example/form-container-example.component';
+import { FormContainerReadonlyExampleComponent } from './examples/form-container-example/form-container-readonly-example.component';
 import { FormFieldAutocompleteMultipleExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-multiple-example.component';
 import { FormFieldDateRangePickerExampleComponent } from './examples/form-field-date-range-picker-example/form-field-date-range-picker-example.component';
 import { FormFieldDateTimePickerExampleComponent } from './examples/form-field-date-time-picker-example/form-field-date-time-picker-example.component';
@@ -34,35 +34,34 @@ const routes: Routes = [
     data: { filePath: 'guides/forms/getting-started.md' },
   },
   new ShowcaseRoute('form-container', 'Components: Form Container', [
-    new ShowcaseExample(FormContainerExampleComponent, 'Form Container', ['TS'], ''),
-    new ShowcaseExample(FormContainerReadonlyExampleComponent, 'Form Container Readonly', ['TS'], ''),
+    new ShowcaseExample(FormContainerExampleComponent, 'Form Container'),
+    new ShowcaseExample(FormContainerReadonlyExampleComponent, 'Form Container Readonly', 'form-container-example'),
   ]),
   new ShowcaseRoute('form-field-autocomplete', 'Form Fields: Autocomplete', [
-    new ShowcaseExample(FormFieldAutocompleteExampleComponent, 'Autocomplete', ['TS'], 'form-fields/form-field-autocomplete'),
-    new ShowcaseExample(FormFieldAutocompleteMultipleExampleComponent, 'Autocomplete Multiple', ['TS'], ''),
+    new ShowcaseExample(FormFieldAutocompleteExampleComponent, 'Autocomplete'),
+    new ShowcaseExample(FormFieldAutocompleteMultipleExampleComponent, 'Autocomplete Multiple', 'form-field-autocomplete-example'),
   ]),
   new ShowcaseRoute('form-field-repeater', 'Form Fields: Repeater', [
-    new ShowcaseExample(FormFieldRepeaterAdvancedExampleComponent, 'Repeater (nested)', ['TS'], 'form-fields/form-field-repeater-editable'),
-    new ShowcaseExample(FormFieldRepeaterExampleComponent, 'Repeater', ['TS'], 'form-fields/form-field-repeater-editable'),
-    new ShowcaseExample(FormFieldRepeaterFixedExampleComponent, 'Repeater fixed', ['TS'], 'form-fields/form-field-repeater-fixed'),
+    new ShowcaseExample(FormFieldRepeaterAdvancedExampleComponent, 'Repeater (nested)'),
+    new ShowcaseExample(FormFieldRepeaterExampleComponent, 'Repeater'),
+    new ShowcaseExample(FormFieldRepeaterFixedExampleComponent, 'Repeater fixed'),
   ]),
   new ShowcaseRoute('form-field-datepicker', 'Form Fields: Datepicker', [
-    new ShowcaseExample(FormFieldDateRangePickerExampleComponent, 'Date range picker', ['TS'], 'form-fields/form-field-date-range'),
-    new ShowcaseExample(FormFieldDateTimePickerExampleComponent, 'Date time picker', ['TS'], 'form-fields/form-field-date-time'),
+    new ShowcaseExample(FormFieldDateRangePickerExampleComponent, 'Date range picker'),
+    new ShowcaseExample(FormFieldDateTimePickerExampleComponent, 'Date time picker'),
   ]),
   new ShowcaseRoute('form-field-input', 'Form Fields: Input & Textarea', [
-    new ShowcaseExample(FormFieldInputsExampleComponent, 'Input', ['TS'], 'form-fields/form-field-inputs'),
-    new ShowcaseExample(FormFieldTextareaExampleComponent, 'Textarea', ['TS'], 'form-fields/form-field-textarea'),
+    new ShowcaseExample(FormFieldInputsExampleComponent, 'Input'),
+    new ShowcaseExample(FormFieldTextareaExampleComponent, 'Textarea'),
   ]),
-  new ShowcaseRoute('form-field-container', 'Form container', []),
   new ShowcaseRoute('form-field-radio-buttons', 'Form Fields: Radio buttons', [
-    new ShowcaseExample(FormFieldRadioButtonsExampleComponent, 'Radio buttons', ['TS'], 'form-fields/form-field-radio-buttons'),
+    new ShowcaseExample(FormFieldRadioButtonsExampleComponent, 'Radio buttons'),
   ]),
   new ShowcaseRoute('form-field-button-toggle', 'Form Fields: Button Toggle', [
-    new ShowcaseExample(FormFieldButtonToggleExampleComponent, 'Button Toggle', ['TS'], 'form-fields/form-field-radio-buttons'),
+    new ShowcaseExample(FormFieldButtonToggleExampleComponent, 'Button Toggle'),
   ]),
   new ShowcaseRoute('form-field-range-slider', 'Form Fields: Range slider', [
-    new ShowcaseExample(FormFieldRangeSliderExampleComponent, 'Range slider', ['TS'], 'form-fields/form-field-range-slider'),
+    new ShowcaseExample(FormFieldRangeSliderExampleComponent, 'Range slider'),
   ]),
 ];
 

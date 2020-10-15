@@ -27,17 +27,17 @@ const routes: Routes = [
     component: MarkdownPageComponent,
     data: { filePath: 'guides/ui/getting-started.md' },
   },
-  new ShowcaseRoute('sharing', 'Sharing', [new ShowcaseExample(SharingExampleComponent, 'Sharing list', ['TS'], 'ui/sharing')]),
-  new ShowcaseRoute('buttons', 'Buttons', [new ShowcaseExample(ButtonExampleComponent, 'Buttons', ['TS'], 'ui/buttons')]),
-  new ShowcaseRoute('data-list', 'Data list', [new ShowcaseExample(DataListExampleComponent, 'Data list', ['TS'], 'ui/data-list')]),
-  new ShowcaseRoute('alerts', 'Alerts', [new ShowcaseExample(AlertsExampleComponent, 'Alerts', ['TS'], 'ui/alerts')]),
-  new ShowcaseRoute('nav-list', 'Nav list', [new ShowcaseExample(NavListExampleComponent, 'Nav list', ['TS'], 'ui/nav-list')]),
-  new ShowcaseRoute('table', 'Table', [new ShowcaseExample(TableExampleComponent, 'Table', ['TS'], 'ui/table')]),
+  new ShowcaseRoute('sharing', 'Sharing', [new ShowcaseExample(SharingExampleComponent, 'Sharing list')]),
+  new ShowcaseRoute('buttons', 'Buttons', [new ShowcaseExample(ButtonExampleComponent, 'Buttons')]),
+  new ShowcaseRoute('data-list', 'Data list', [new ShowcaseExample(DataListExampleComponent, 'Data list')]),
+  new ShowcaseRoute('alerts', 'Alerts', [new ShowcaseExample(AlertsExampleComponent, 'Alerts')]),
+  new ShowcaseRoute('nav-list', 'Nav list', [new ShowcaseExample(NavListExampleComponent, 'Nav list')]),
+  new ShowcaseRoute('table', 'Table', [new ShowcaseExample(TableExampleComponent, 'Table')]),
   new ShowcaseRoute('page-header', 'Page header', [
-    new ShowcaseExample(PageHeaderParamsExampleComponent, 'Page header from request params', ['TS'], 'ui/page-header'),
-    new ShowcaseExample(PageHeaderExampleComponent, 'Page header', ['TS'], 'ui/page-header'),
+    new ShowcaseExample(PageHeaderParamsExampleComponent, 'Page header from request params'),
+    new ShowcaseExample(PageHeaderExampleComponent, 'Page header'),
   ]),
-  new ShowcaseRoute('merger', 'Merger', [new ShowcaseExample(MergerExampleComponent, 'Merger', ['TS'], '')]),
+  new ShowcaseRoute('merger', 'Merger', [new ShowcaseExample(MergerExampleComponent, 'Merger')]),
 ];
 
 @NgModule({

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { PageHeaderNavItem } from 'projects/ui/src/lib/page-header/models/page-header-nav.model';
-import { ActionButton } from 'projects/ui/src/lib/button/models/action-button.model';
+import { PageHeaderNavItem, ActionButton } from '@lab900/ui';
 
 @Component({
   selector: 'lab900-page-header-params-example',

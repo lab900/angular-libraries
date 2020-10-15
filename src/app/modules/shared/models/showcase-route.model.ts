@@ -5,6 +5,7 @@ import { ShowcaseExample } from './showcase-example.model';
 
 export interface ShowcaseRouteData {
   title: string;
+  path: string;
   examples: ShowcaseExample[];
 }
 export class ShowcaseRoute implements Route {
@@ -12,6 +13,6 @@ export class ShowcaseRoute implements Route {
   public data: ShowcaseRouteData;
 
   public constructor(public path: string, title: string, examples: ShowcaseExample[]) {
-    this.data = { title, examples };
+    this.data = { title, path, examples };
   }
 }

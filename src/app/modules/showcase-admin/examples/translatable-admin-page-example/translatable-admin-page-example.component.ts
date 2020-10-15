@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NEWS_ITEMS, NEWS_SCHEMA } from '../configs/news-schema.config';
 import { TranslatableDataService } from '../../../../../../projects/admin/src/lib/models/translatableDataService';
-import { Item, Page } from '../../../../../../projects/admin/src/lib/models/page';
+import { Item, Page } from '@lab900/admin';
 
 @Component({
-  selector: 'lab900-translatable-admin-page-showcase',
+  selector: 'lab900-translatable-admin-page-example',
   templateUrl: './translatable-admin-page-example.component.html',
 })
 export class TranslatableAdminPageExampleComponent {

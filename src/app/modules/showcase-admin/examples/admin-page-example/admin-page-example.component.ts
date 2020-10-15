@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NEWS_ITEMS, NEWS_SCHEMA } from '../configs/news-schema.config';
-import { DataService } from '../../../../../../projects/admin/src/lib/models/dataService';
-import { Item, Page } from '../../../../../../projects/admin/src/lib/models/page';
+import { DataService, Item, Page } from '@lab900/admin';
 
 @Component({
-  selector: 'lab900-admin-page-showcase',
+  selector: 'lab900-admin-page-example',
   templateUrl: './admin-page-example.component.html',
 })
 export class AdminPageExampleComponent {

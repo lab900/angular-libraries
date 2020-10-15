@@ -1,5 +1,4 @@
-import { EditType } from '../../../../../../../projects/forms/src/lib/models/editType';
-import { Form } from '../../../../../../../projects/forms/src/lib/models/Form';
+import { Form, EditType } from '@lab900/forms';
 
 export const formFieldsExample: Form = {
   fields: [
