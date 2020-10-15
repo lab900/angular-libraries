@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { forkJoin, Observable } from 'rxjs';
 import { ShowcaseRouteData } from '../../models/showcase-route.model';
+import { PageHeaderNavItem } from '@lab900/ui';
 
 @Component({
   selector: 'lab900-showcase-page',
@@ -9,8 +10,33 @@ import { ShowcaseRouteData } from '../../models/showcase-route.model';
   styleUrls: ['./showcase-page.component.scss'],
 })
 export class ShowcasePageComponent {
-  public examples: any[];
-  public data$: Observable<ShowcaseRouteData> = this.activatedRoute.data as any;
+  private readonly guideNav: PageHeaderNavItem = {
+    label: 'Guide',
+    queryParams: { tab: 'guide' },
+  };
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  private readonly exampleNav: PageHeaderNavItem = {
+    label: 'Examples',
+    queryParams: { tab: 'examples' },
+  };
+
+  public currentTab: 'guide' | 'examples' = 'guide';
+  public examples: any[];
+  public data: ShowcaseRouteData;
+  public navItems: PageHeaderNavItem[] = [];
+
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      this.data = this.activatedRoute.snapshot.data as ShowcaseRouteData;
+      this.navItems = !this.data?.docFile ? [this.exampleNav] : [this.guideNav, this.exampleNav];
+      if (queryParams?.tab) {
+        this.currentTab = queryParams?.tab;
+      } else {
+        this.router.navigate([], {
+          relativeTo: this.activatedRoute,
+          queryParams: { tab: this.data?.docFile ? 'guide' : 'examples' },
+        });
+      }
+    });
+  }
 }

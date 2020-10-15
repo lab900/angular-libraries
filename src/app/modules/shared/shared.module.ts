@@ -12,6 +12,7 @@ import { MarkdownModule } from 'ngx-markdown';
 
 import { Lab900FormsModule } from 'projects/forms/src/lib/forms.module';
 import { Lab900NavListModule } from 'projects/ui/src/lib/nav-list/nav-list.module';
+import { Lab900PageHeaderModule } from 'projects/ui/src/lib/page-header/page-header.module';
 
 import { ExampleViewerComponent } from './components/example-viewer/example-viewer.component';
 import { ShowcasePageComponent } from './components/showcase-page/showcase-page.component';
@@ -33,6 +34,15 @@ const material = [MatCardModule, MatButtonModule, MatTabsModule, MatIconModule, 
     Lab900NavListModule,
     ...material,
   ],
-  imports: [CommonModule, Lab900FormsModule, Lab900NavListModule, MarkdownModule, RouterModule, ...material, TranslateModule],
+  imports: [
+    CommonModule,
+    Lab900FormsModule,
+    Lab900NavListModule,
+    Lab900PageHeaderModule,
+    MarkdownModule,
+    RouterModule,
+    ...material,
+    TranslateModule,
+  ],
 })
 export class SharedModule {}
