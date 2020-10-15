@@ -2,8 +2,6 @@
     <mat-label translate>{{ schema.title }}</mat-label>
     <mat-select
         #select
-        lab900DisableControl
-        [disableControl]="isReadonly(this.group.value)"
         [compareWith]="options?.compareWith || defaultCompare"
         [formControlName]="schema.attribute"
         [multiple]="options?.multiple"

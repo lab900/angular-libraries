@@ -1,9 +1,8 @@
 <div [formGroup]="group" *ngIf="!hide(this.group.value)">
+    <!-- ToDo: Disable when readonly -->
     <mat-checkbox
         #checkbox
         [color]="options?.color || 'primary'"
-        lab900DisableControl
-        [disableControl]="isReadonly(this.group.value)"
         [formControlName]="schema.attribute"
         [indeterminate]="indeterminate"
         [required]="required"

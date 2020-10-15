@@ -1,8 +1,7 @@
 <div [formGroup]="group" *ngIf="!hide(this.group.value)" class="radio-buttons-field">
     <span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
+    <!-- ToDo: Disable when readonly -->
     <mat-radio-group
-        lab900DisableControl
-        [disableControl]="isReadonly(this.group.value)"
         [formControlName]="schema.attribute"
         [color]="options?.color || 'primary'"
         [required]="required"
