@@ -1,7 +1,7 @@
 <div class="lab900-merger-item" [ngClass]="{'selected': active}">
     <ng-container *ngIf="!config?.component">
         <ng-container *ngIf="config?.nestedObject">
-            <div *ngFor="let subConfig of config.nestedObject" fxLayoutAlign="space-between">
+            <div *ngFor="let subConfig of config.nestedObject" fxLayoutAlign="space-between center">
                 <p>{{ subConfig.label | translate }}</p>
                 <span>{{ display(subConfig, config.attribute) | async | translate }}</span>
             </div>
@@ -10,7 +10,7 @@
         <div
             *ngIf="!config?.nestedObject"
             fxLayout="{{ config.nextLine ? 'column' : 'row' }}"
-            fxLayoutAlign="{{ config.nextLine ? '' : 'space-between' }}"
+            fxLayoutAlign="{{ config.nextLine ? '' : 'space-between center' }}"
         >
             <p>{{ config.label | translate }}</p>
             <span style="text-align: right">{{ display(config) | async | translate }}</span>
