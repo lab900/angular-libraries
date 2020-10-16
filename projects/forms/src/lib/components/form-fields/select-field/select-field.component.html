@@ -6,7 +6,6 @@
         [formControlName]="schema.attribute"
         [multiple]="options?.multiple"
         [required]="required"
-        [disabled]="isReadonly(this.group.value)"
     >
         <mat-option *ngFor="let item of values" [value]="item.value" translate>{{ item.label | translate }}</mat-option>
     </mat-select>
