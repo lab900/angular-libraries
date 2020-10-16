@@ -24,7 +24,7 @@
                     color="primary"
                     [ngClass]="{'not-active': !config.active, 'rotate': selected !== 'right'}"
                     (click)="toggleActive(config)"
-                    *ngIf="compare(config.attribute)"
+                    *ngIf="compare(config)"
                 >trending_flat</mat-icon>
             </div>
             <lab900-merger-item

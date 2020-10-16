@@ -6,8 +6,30 @@ import { MergerDataExample } from '../models/merger-data-example.model';
 
 export const mergerSchemaExample: MergeConfig<MergerDataExample>[] = [
   {
-    attribute: 'name',
-    label: 'label.last-name',
+    attribute: '',
+    nestedObject: [
+      {
+        attribute: 'name',
+        label: 'label.last-name',
+      },
+      {
+        attribute: 'firstName',
+        label: 'label.first-name',
+      },
+    ],
+  },
+  {
+    attribute: 'address',
+    nestedObject: [
+      {
+        attribute: 'street',
+        label: 'label.street',
+      },
+      {
+        attribute: 'number',
+        label: 'label.number',
+      },
+    ],
   },
   {
     attribute: 'dateOfBirth',
@@ -23,9 +45,5 @@ export const mergerSchemaExample: MergeConfig<MergerDataExample>[] = [
   {
     attribute: 'text',
     component: CustomExampleComponent,
-  },
-  {
-    attribute: 'firstName',
-    label: 'label.first-name',
   },
 ];

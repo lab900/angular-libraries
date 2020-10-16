@@ -47,10 +47,9 @@ export class Lab900MergerItemComponent<T> implements CustomComponentAbstract<T>,
     }
   }
 
-  public display(): Observable<any> {
-    const formattedValue = this.config?.formatter
-      ? this.config.formatter(this.data[this.config.attribute])
-      : this.data[this.config.attribute];
+  public display(config: MergeConfig<T>, parentAttribute?: string): Observable<any> {
+    const value = parentAttribute ? this.data[parentAttribute][config.attribute] : this.data[config.attribute];
+    const formattedValue = config?.formatter ? config.formatter(value) : value;
     return isObservable(formattedValue) ? formattedValue : of(formattedValue);
   }
 

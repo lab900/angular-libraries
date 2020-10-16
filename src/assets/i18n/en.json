@@ -12,6 +12,7 @@
     "email": "Email",
     "email-error": "Please enter a valid email address.",
     "number": "Number",
+    "street": "Street",
     "attachment": "Attachment",
     "posted-on": "Posted On",
     "published": "Published",
