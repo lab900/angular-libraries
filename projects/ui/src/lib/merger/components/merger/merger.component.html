@@ -1,37 +1,57 @@
 <div class="lab900-merger">
     <mat-progress-bar *ngIf="loading; else mergerUI" mode="indeterminate"></mat-progress-bar>
     <ng-template #mergerUI>
-        <div class="lab900-merger__row" fxLayoutAlign="space-between">
-            <div class="lab900-merger__row__header" fxLayoutAlign="space-between" [ngClass]="{'selected': selected === 'left'}" fxFlex="45 1 45%">
+        <div class="lab900-merger__row" fxLayoutAlign="space-between stretch">
+            <div
+                [ngClass]="{'selected': selected === 'left'}"
+                class="lab900-merger__row__header"
+                fxFlex="45 1 45%"
+                fxLayoutAlign="center center"
+            >
                 <h2>{{ leftObject.title }}</h2>
-                <mat-radio-button color="primary" [checked]="selected === 'left'" (change)="switchMaster()" [disabled]="fixed"></mat-radio-button>
+                <mat-radio-button
+                    (change)="switchMaster()"
+                    [checked]="selected === 'left'"
+                    [disabled]="fixed"
+                    color="primary"
+                ></mat-radio-button>
             </div>
-            <div fxFlex="10 1 10%"></div>
-            <div class="lab900-merger__row__header" fxLayoutAlign="space-between" [ngClass]="{'selected': selected === 'right'}" fxFlex="45 1 45%">
+            <div
+                [ngClass]="{'selected': selected === 'right'}"
+                class="lab900-merger__row__header"
+                fxFlex="45 1 45%"
+                fxLayoutAlign="space-between center"
+            >
                 <h2>{{ rightObject.title }}</h2>
-                <mat-radio-button color="primary" [checked]="selected === 'right'" (change)="switchMaster()" [disabled]="fixed"></mat-radio-button>
+                <mat-radio-button
+                    (change)="switchMaster()"
+                    [checked]="selected === 'right'"
+                    [disabled]="fixed"
+                    color="primary"
+                ></mat-radio-button>
             </div>
         </div>
-        <div class="lab900-merger__row" fxLayoutAlign="space-between" *ngFor="let config of schema">
+        <div *ngFor="let config of schema" class="lab900-merger__row" fxLayoutAlign="space-between stretch">
             <lab900-merger-item
-                    fxFlex="45 1 45%"
-                    [config]="config"
-                    [data]="selected === 'left' ? result : leftObject.data"
-                    [active]="selected === 'left'"
+                [active]="selected === 'left'"
+                [config]="config"
+                [data]="selected === 'left' ? result : leftObject.data"
+                fxFlex="45 1 45%"
             ></lab900-merger-item>
-            <div class="lab900-merger__row__icon" fxFlex="10 1 10%" fxLayoutAlign="center center">
+            <div class="lab900-merger__row__icon">
                 <mat-icon
-                    color="primary"
-                    [ngClass]="{'not-active': !config.active, 'rotate': selected !== 'right'}"
                     (click)="toggleActive(config)"
-                    *ngIf="compare(config.attribute)"
-                >trending_flat</mat-icon>
+                    *ngIf="compare(config)"
+                    [ngClass]="{'not-active': !config.active, 'rotate': selected !== 'right'}"
+                    color="primary"
+                >trending_flat
+                </mat-icon>
             </div>
             <lab900-merger-item
-                    fxFlex="45 1 45%"
-                    [config]="config"
-                    [data]="selected === 'right' ? result : rightObject.data"
-                    [active]="selected === 'right'"
+                [active]="selected === 'right'"
+                [config]="config"
+                [data]="selected === 'right' ? result : rightObject.data"
+                fxFlex="45 1 45%"
             ></lab900-merger-item>
         </div>
     </ng-template>

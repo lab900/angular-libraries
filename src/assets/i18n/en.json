@@ -11,7 +11,10 @@
     "open-dialog-form-prefilled": "Open dialog form with prefilled data",
     "email": "Email",
     "email-error": "Please enter a valid email address.",
+    "country": "Country",
+    "street": "Street",
     "number": "Number",
+    "box": "Box",
     "attachment": "Attachment",
     "posted-on": "Posted On",
     "published": "Published",
@@ -33,6 +36,7 @@
     "form-title": "Please enter your information below."
   },
   "reset": "Reset",
+  "log_result": "Log Result",
   "app": {
     "title": "Angular Libraries",
     "description": "Build with Angular Material"

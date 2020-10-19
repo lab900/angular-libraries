@@ -10,7 +10,10 @@
     "open-dialog-form-prefilled": "Open ingevuld vensterformulier",
     "email": "E-mailadres",
     "email-error": "Dat ziet er geen geldig e-mailadres uit.",
-    "number": "Getal",
+    "country": "Land",
+    "street": "Straat",
+    "number": "Nummer",
+    "box": "Bus",
     "attachment": "Bijlage",
     "posted-on": "Geplaatst op",
     "published": "Gepubliceerd",
@@ -37,5 +40,6 @@
   "Posted By": "Geplaatst door",
   "Content": "Inhoud",
   "Background": "Achtergrond",
-  "reset": "Reset"
+  "reset": "Reset",
+  "log_result": "Log Resultaat"
 }

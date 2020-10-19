@@ -13,10 +13,7 @@ import { MergerDataExample } from './models/merger-data-example.model';
       <button mat-flat-button color="primary" (click)="mergerComponent.reset()">{{ 'reset' | translate }}</button>
     </div>
     <lab900-merger [leftObject]="exampleData[0]" [rightObject]="exampleData[1]" [schema]="exampleSchema"></lab900-merger>
-    <div fxLayoutAlign="center center" style="margin-top: 2rem">
-      <button style="margin-right: 1rem" mat-raised-button color="primary" (click)="showResult()">Log Result</button>
-      <button mat-raised-button color="warn" (click)="showChanges()">Log Changes</button>
-    </div>
+    <button style="margin-right: 1rem" mat-raised-button color="primary" (click)="showResult()">{{ 'log_result' | translate }}</button>
   `,
 })
 export class MergerExampleComponent {
@@ -28,9 +25,5 @@ export class MergerExampleComponent {
 
   public showResult(): void {
     console.log(this.mergerComponent.result);
-  }
-
-  public showChanges(): void {
-    console.log(this.mergerComponent.changes);
   }
 }
