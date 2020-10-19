@@ -1,20 +1,25 @@
 import { NavItemGroup } from 'projects/ui/src/lib/nav-list/models/nav-item.model';
+import { showcaseFormsConfig } from './showcase-forms.constants';
 
 export const showcaseFormsNavItems: NavItemGroup[] = [
   {
-    label: 'Lab900 - Forms',
+    label: showcaseFormsConfig?.title,
     items: [
       {
-        label: 'Components',
+        label: 'label.guides',
         children: [
           {
-            label: 'Form Container',
+            label: 'label.getting-started',
+            route: 'forms/getting-started',
+          },
+          {
+            label: 'Create dynamic forms',
             route: 'forms/form-container',
           },
         ],
       },
       {
-        label: 'Form Fields',
+        label: 'forms.form-fields',
         children: [
           {
             label: 'Autocomplete',

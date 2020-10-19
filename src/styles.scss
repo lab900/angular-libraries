@@ -42,17 +42,36 @@ $angular-libraries-theme: mat-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: $palette-lab900-text }
+
+p {
+  a {
+    color: $palette-lab900green-500;
+  }
+}
 
 .mat-drawer-content {
   background: rgba($palette-lab900green-100, 0.1); 
   height: calc(100vh - 64px) !important;
-  padding: 0 30px;
+  color: $palette-lab900-text;
+
+  @media screen and (max-width: 599px) {
+    height: calc(100vh - 56px) !important;
+
+  }
+}
+
+.mat-drawer {
+  min-width: 340px;
 }
 
 .mat-drawer-side {
   border-right: solid 2px $palette-lab900green-100;
-  min-width: 340px;
+  color: $palette-lab900-text;
+}
+
+.mat-list-base .mat-list-item {
+  color: $palette-lab900-text;
 }
 
 .mat-card.lab900-card {
@@ -78,10 +97,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 pre[class*="language-"] {
-  margin: 0 !important;
+  margin: 0 0 12px !important;
   border-radius: 0 !important;
 }
 
 .clickable-cell > a {
   border-bottom: 1px solid  $palette-lab900green-500;
+}
+
+.row {
+  max-width: 800px;
+  margin: auto;
+  padding: 50px 30px;
+
+  &--big {
+    max-width: 1300px;
+  }
+
+  @media screen and (max-width: 599px) {
+    padding: 15px;
+  }
 }

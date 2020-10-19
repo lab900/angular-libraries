@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FileService } from '../../services/file.service';
+import { AfterViewInit, Component, ContentChild, ElementRef, Input, ViewChild } from '@angular/core';
 
 export interface ExampleFile {
   extension: string;
@@ -12,23 +11,23 @@ export interface ExampleFile {
   templateUrl: './example-viewer.component.html',
   styleUrls: ['./example-viewer.component.scss'],
 })
-export class ExampleViewerComponent implements OnInit {
+export class ExampleViewerComponent implements AfterViewInit {
   @Input()
   public extensions = ['HTML', 'TS', 'SCSS'];
 
   @Input()
-  public filesPath: string;
+  public fileDir?: string;
 
   @Input()
   public exampleTitle: string;
 
-  public examplesFolder = 'assets/examples/';
+  @Input()
+  public exampleName: string;
+
+  @ViewChild('exampleComponent')
+  exampleComponent: ElementRef;
 
   public showSource = false;
-
-  public constructor(private fileService: FileService) {}
-
-  public ngOnInit(): void {}
 
   public trackExampleFile(index: number, file: ExampleFile): string {
     return file.extension;
@@ -36,5 +35,9 @@ export class ExampleViewerComponent implements OnInit {
 
   public toggleSourceView(): void {
     this.showSource = !this.showSource;
+  }
+
+  public ngAfterViewInit(): void {
+    this.exampleName = this.exampleComponent?.nativeElement?.children?.[0]?.localName.replace('lab900-', '');
   }
 }

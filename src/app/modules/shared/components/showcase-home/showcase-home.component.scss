@@ -1,0 +1,47 @@
+@import '../../../../../assets/styles/green.palette';
+
+.showcase-home__header {
+  background: $palette-lab900green-100;
+  text-align: center;
+
+  img {
+    display: block;
+    width: 280px;
+    margin: 0 auto 30px;
+  }
+
+  h1 {
+    margin-top: 0;
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  .mat-icon {
+    font-size: 80px;
+    width: 80px;
+    height: 80px;
+    color: #FF7459;
+    margin: 0 auto 20px;
+  }
+
+  &__version {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 12px;
+    background: $palette-lab900green-200;
+    padding: 5px 10px 3px;
+    display: block;
+    border-radius: 10px;
+  }
+}
+
+button {
+  display: block;
+  margin-bottom: 10px;
+}

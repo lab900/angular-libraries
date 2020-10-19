@@ -1,15 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import { Form } from 'projects/forms/src/lib/models/Form';
-import { EditType } from 'projects/forms/src/lib/models/editType';
-import { FormContainerComponent } from '../../../../../../projects/forms/src/lib/components/form-container/form-container.component';
+import { Form, EditType, FormContainerComponent } from '@lab900/forms';
 
 @Component({
-  selector: 'lab900-form-field-button-group-example',
+  selector: 'lab900-form-field-button-toggle-example',
   template: '<lab900-form-container [schema]="formSchema" (click)="logValue()"></lab900-form-container>',
 })
 export class FormFieldButtonToggleExampleComponent {
   @ViewChild(FormContainerComponent)
   public form: FormContainerComponent<any>;
+
   public formSchema: Form = {
     fields: [
       {
@@ -63,7 +62,7 @@ export class FormFieldButtonToggleExampleComponent {
     ],
   };
 
-  logValue() {
+  public logValue() {
     console.log(this.form.value);
   }
 }

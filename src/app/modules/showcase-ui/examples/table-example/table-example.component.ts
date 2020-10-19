@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { TableCell } from 'projects/ui/src/lib/table/models/table-cell.model';
+import { TableCell, Paging, ActionButton } from '@lab900/ui';
 import { Sort } from '@angular/material/sort';
-import { Paging } from 'projects/ui/src/lib/common/models/paging.model';
-import { ActionButton } from 'projects/ui/src/lib/button/models/action-button.model';
 
 @Component({
   selector: 'lab900-table-example',

@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { Form } from 'projects/forms/src/lib/models/Form';
-import { EditType } from 'projects/forms/src/lib/models/editType';
-import { IFormComponent } from 'projects/forms/src/lib/models/IFormComponent';
+import { Form, EditType } from '@lab900/forms';
 
 @Component({
-  selector: 'lab900-form-field-advanced-repeater-example',
+  selector: 'lab900-form-field-repeater-advanced-example',
   template: '<lab900-form-container [schema]="formSchema"></lab900-form-container>',
 })
 export class FormFieldRepeaterAdvancedExampleComponent {
@@ -27,7 +25,7 @@ export class FormFieldRepeaterAdvancedExampleComponent {
             editType: EditType.Row,
             options: {
               colspan: 12,
-              visibleFn: (item: IFormComponent<any>) => {
+              visibleFn: (item: any) => {
                 if (
                   (item.group.parent.controls as Array<any>).indexOf(item.group) ===
                   (item.group.parent.controls as Array<any>).length - 1

@@ -1,11 +1,21 @@
 import { NavItemGroup } from 'projects/ui/src/lib/nav-list/models/nav-item.model';
+import { showcaseAdminConfig } from './showcase-admin.constants';
 
 export const showcaseAdminNavItems: NavItemGroup[] = [
   {
-    label: 'Lab900 - Admin',
+    label: showcaseAdminConfig?.title,
     items: [
       {
-        label: 'Components',
+        label: 'label.guides',
+        children: [
+          {
+            label: 'label.getting-started',
+            route: 'admin/getting-started',
+          },
+        ],
+      },
+      {
+        label: 'label.components',
         children: [
           {
             label: 'Admin page',

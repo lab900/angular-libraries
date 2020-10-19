@@ -1,0 +1,14 @@
+.showcase-page {
+  ::ng-deep {
+    .lab900-page-header__nav {
+      padding: 0;
+    }
+    .lab900-page-header__main {
+      padding: 0 0 30px;
+    }
+    .markdown-page {
+      max-width: 100%;
+      padding: 0;
+    }
+  }
+}
