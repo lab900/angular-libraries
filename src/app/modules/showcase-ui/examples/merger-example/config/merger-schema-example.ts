@@ -22,12 +22,20 @@ export const mergerSchemaExample: MergeConfig<MergerDataExample>[] = [
     attribute: 'address',
     nestedObject: [
       {
+        attribute: 'country',
+        label: 'label.street',
+      },
+      {
         attribute: 'street',
         label: 'label.street',
       },
       {
         attribute: 'number',
         label: 'label.number',
+      },
+      {
+        attribute: 'box',
+        label: 'label.street',
       },
     ],
   },

@@ -7,8 +7,10 @@ export const mergerDataExample: MergeObject<MergerDataExample>[] = [
       name: 'Axelle',
       firstName: 'Red',
       address: {
+        country: 'Belgium',
         street: 'Examplestreet',
         number: 12,
+        box: 'A',
       },
       languages: ['Nederlands', 'Frans'],
     },
@@ -19,8 +21,10 @@ export const mergerDataExample: MergeObject<MergerDataExample>[] = [
       name: 'Axelle',
       firstName: 'Blue',
       address: {
+        country: 'Netherlands',
         street: 'Examplestreet',
         number: 13,
+        box: 'A',
       },
       languages: ['Frans', 'Nederlands'],
       text:
