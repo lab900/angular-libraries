@@ -1,27 +1,24 @@
 <div class="lab900-showcase">
     <mat-toolbar class="lab900-showcase__header mat-elevation-z2">
-        <div>
-            <img src="../assets/images/logo-duo-dark.svg">
-            <h1>Angular Libraries</h1>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="row">
+                <div class="menu-button">
+                    <button (click)="drawer?.toggle()" mat-icon-button><mat-icon>menu</mat-icon></button>
+                </div>
+                <a [routerLink]="['/']" class="lab900-showcase__header__logo">
+                    <img src="../assets/images/logo-duo-dark.svg">
+                    <h1>{{ 'app.title' | translate }}</h1>
+                </a>
+            </div>
+
+            <div>
+                <a href="{{gitUrl}}" target="_blank" mat-icon-button><mat-icon svgIcon="github"></mat-icon></a>
+            </div>
         </div>
-
-        <div class="fill-remaining-space"></div>
-
-        <div class="language-selector">
-            <mat-form-field floatLabel="never">
-                <mat-label>{{ 'language' | translate }}</mat-label>
-                <mat-select (valueChange)="languageChanged($event)" [(value)]="language">
-                    <mat-option *ngFor="let lang of languages" [value]="lang">
-                        {{ 'languages.' + lang | translate }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
     </mat-toolbar>
     <div class="lab900-showcase__content">
         <mat-drawer-container class="example-container">
-            <mat-drawer mode="side" opened>
+            <mat-drawer #drawer [mode]="sideNavMode" opened>
                 <lab900-nav-list [navItemGroups]="navItemsGroups"></lab900-nav-list>
             </mat-drawer>
             <mat-drawer-content>

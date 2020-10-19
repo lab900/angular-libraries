@@ -12,13 +12,14 @@ import { MarkdownModule } from 'ngx-markdown';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MergingTranslateLoader } from './utils/merging-translate-loader';
 import { HttpClient } from '@angular/common/http';
+import { HomepageComponent } from './modules/pages/homepage/homepage.component';
 
 export function TranslationLoaderFactory(http: HttpClient) {
   return new MergingTranslateLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomepageComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

@@ -9,14 +9,17 @@ export class ComponentLoaderDirective implements OnChanges {
 
   public constructor(public container: ViewContainerRef, private resolver: ComponentFactoryResolver) {}
 
-  public ngOnChanges(changes: SimpleChanges) {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (changes.lab900ComponentLoader) {
       this.loadComponent();
     }
   }
 
-  private loadComponent() {
-    const component = this.resolver.resolveComponentFactory(this.lab900ComponentLoader);
-    this.container.createComponent(component);
+  private loadComponent(): void {
+    this.container.clear();
+    if (this.lab900ComponentLoader) {
+      const component = this.resolver.resolveComponentFactory(this.lab900ComponentLoader);
+      this.container.createComponent(component);
+    }
   }
 }

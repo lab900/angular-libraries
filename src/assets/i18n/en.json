@@ -22,7 +22,10 @@
     "cheese": "Cheese",
     "tomato": "Tomato",
     "must-agree": "I like pizza",
-    "pizza-error": "That is not a valid answer."
+    "pizza-error": "That is not a valid answer.",
+    "guides": "Guides",
+    "getting-started": "Getting started",
+    "components": "Components"
   },
   "content": {
     "buttons": "Buttons",
@@ -33,5 +36,26 @@
     "form-title": "Please enter your information below."
   },
   "reset": "Reset",
-  "log_result": "Log Result"
+  "log_result": "Log Result",
+  "app": {
+    "title": "Angular Libraries",
+    "description": "Build with Angular Material"
+  },
+  "forms": {
+    "title": "Form library",
+    "description": "Create dynamic reactive forms",
+    "form-fields": "Form fields"
+  },
+  "ui": {
+    "title": "UI Library",
+    "description": "A set of useful UI components"
+  },
+  "admin": {
+    "title": "Admin Library",
+    "description": "An admin interface in seconds"
+  },
+  "common": {
+    "title": "Common Library",
+    "description": "Coming soon"
+  }
 }

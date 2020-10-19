@@ -1,6 +1,7 @@
 {
   "name": "angular-libraries",
   "version": "0.0.0",
+  "repository": "https://github.com/lab900/angular-libraries",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4900",
@@ -38,7 +39,6 @@
       "npx prettier --write"
     ]
   },
-  "private": true,
   "dependencies": {
     "@angular-material-components/datetime-picker": "^4.0.5",
     "@angular/animations": "~10.0.2",

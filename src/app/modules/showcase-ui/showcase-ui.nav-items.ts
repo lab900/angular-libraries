@@ -1,11 +1,21 @@
 import { NavItemGroup } from 'projects/ui/src/lib/nav-list/models/nav-item.model';
+import { showcaseUiConfig } from './showcase-ui.constants';
 
 export const showcaseUiNavItems: NavItemGroup[] = [
   {
-    label: 'Lab900 - UI',
+    label: showcaseUiConfig?.title,
     items: [
       {
-        label: 'Components',
+        label: 'label.guides',
+        children: [
+          {
+            label: 'label.getting-started',
+            route: 'ui/getting-started',
+          },
+        ],
+      },
+      {
+        label: 'label.components',
         children: [
           {
             label: 'Buttons',

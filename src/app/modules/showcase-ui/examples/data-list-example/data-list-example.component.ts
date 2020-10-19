@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataListSharing } from 'projects/ui/src/lib/data-list/models/data-list.model';
+import { DataListSharing, Paging, ActionButton } from '@lab900/ui';
 import { PageEvent } from '@angular/material/paginator';
-import { Paging } from 'projects/ui/src/lib/common/models/paging.model';
-import { ActionButton } from 'projects/ui/src/lib/button/models/action-button.model';
 
 const dummyData: any[] = [
   {
