@@ -1,4 +1,4 @@
-import { FormField } from '@lab900/forms';
+import { FormField } from './FormField';
 
 export class Form {
   title?: string;
