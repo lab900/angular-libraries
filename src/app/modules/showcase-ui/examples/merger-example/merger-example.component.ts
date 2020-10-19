@@ -13,7 +13,7 @@ import { MergerDataExample } from './models/merger-data-example.model';
       <button mat-flat-button color="primary" (click)="mergerComponent.reset()">{{ 'reset' | translate }}</button>
     </div>
     <lab900-merger [leftObject]="exampleData[0]" [rightObject]="exampleData[1]" [schema]="exampleSchema"></lab900-merger>
-    <button style="margin-right: 1rem" mat-raised-button color="primary" (click)="showResult()">Log Result</button>
+    <button style="margin-right: 1rem" mat-raised-button color="primary" (click)="showResult()">{{ 'log_result' | translate }}</button>
   `,
 })
 export class MergerExampleComponent {

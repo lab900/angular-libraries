@@ -30,5 +30,6 @@
     "ui": "UI",
     "form-title": "Please enter your information below."
   },
-  "reset": "Reset"
+  "reset": "Reset",
+  "log_result": "Log Result"
 }
