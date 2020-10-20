@@ -155,7 +155,11 @@
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
-          "options": {}
+          "options": {
+            "baseHref": "https://lab900.github.io/angular-libraries/",
+            "name": "Lab900",
+            "email": "info@lab900.com"
+          },
         }
       }
     },
