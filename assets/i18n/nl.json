@@ -1,0 +1,45 @@
+{
+  "language": "Taal",
+  "languages.en": "Engels",
+  "languages.nl": "Nederlands",
+  "label": {
+    "birthday": "Geboortedatum",
+    "first-name": "Voornaam",
+    "last-name": "Achternaam",
+    "open-dialog-form": "Open vensterformulier",
+    "open-dialog-form-prefilled": "Open ingevuld vensterformulier",
+    "email": "E-mailadres",
+    "email-error": "Dat ziet er geen geldig e-mailadres uit.",
+    "country": "Land",
+    "street": "Straat",
+    "number": "Nummer",
+    "box": "Bus",
+    "attachment": "Bijlage",
+    "posted-on": "Geplaatst op",
+    "published": "Gepubliceerd",
+    "pizza-toppings": "Pizzabeleg",
+    "cheese": "Kaas",
+    "tomato": "Tomaat",
+    "must-agree": "Ik eet graag pizza",
+    "pizza-error": "Dat kan niet."
+  },
+  "content": {
+    "buttons": "Knoppen",
+    "form-element": "Formulier-element",
+    "forms": "Formulieren",
+    "admin": "Admin",
+    "ui": "UI",
+    "form-title": "Vul je gegevens hieronder in."
+  },
+
+  "Published": "Gepubliceerd",
+  "Title": "Titel",
+  "Subtitle": "Ondertitel",
+  "Author": "Auteur",
+  "Posted On": "Geplaatst op",
+  "Posted By": "Geplaatst door",
+  "Content": "Inhoud",
+  "Background": "Achtergrond",
+  "reset": "Reset",
+  "log_result": "Log Resultaat"
+}
