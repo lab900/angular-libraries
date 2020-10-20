@@ -1,6 +1,8 @@
 {
   "name": "@lab900/ui",
   "version": "2.1.87",
+  "author": "Lab900 <info@lab900.com> (https://lab900.com)",
+  "licens": "MIT",
   "peerDependencies": {
     "@angular/common": "~10.0.2",
     "@angular/core": "~10.0.2",

@@ -2,6 +2,9 @@
   "name": "angular-libraries",
   "version": "0.0.0",
   "repository": "https://github.com/lab900/angular-libraries",
+  "homepage": "https://lab900.github.io/angular-libraries",
+  "author": "Lab900 <info@lab900.com> (https://lab900.com)",
+  "licens": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4900",
@@ -21,6 +24,8 @@
     "watch:forms": "npm run build:forms -- --watch",
     "watch:admin": "npm run build:admin -- --watch",
     "watch:ui": "npm run build:ui -- --watch",
+    "build:ghpages": "ng build --prod --base-href \"https://lab900.github.io/angular-libraries\"",
+    "publish:ghpages": "npm run build:ghpages && npx angular-cli-ghpages --dir=dist/angular-libraries",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
