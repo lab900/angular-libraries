@@ -1,3 +1,7 @@
+# Lab900 - Angular libraries
+
+View the [showcase](https://lab900.github.io/angular-libraries/) for guides & exampes
+
 ## Creating a new library
 
 1) from the folder /:

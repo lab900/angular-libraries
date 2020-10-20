@@ -45,8 +45,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.translateService.setDefaultLang('en');
     this.translateService.use('en');
 
-    this.matIconRegistry.addSvgIcon('github', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/images/github-logo.svg'));
-    this.matIconRegistry.addSvgIcon('lab900', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/images/logo-duo-dark.svg'));
+    this.matIconRegistry.addSvgIcon('github', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/images/github-logo.svg'));
+    this.matIconRegistry.addSvgIcon('lab900', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/images/logo-duo-dark.svg'));
   }
 
   public ngOnInit(): void {
