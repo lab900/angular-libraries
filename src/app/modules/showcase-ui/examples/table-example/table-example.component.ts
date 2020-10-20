@@ -42,38 +42,31 @@ export class TableExampleComponent {
   public tableActions: ActionButton[] = [
     {
       label: 'remove_red_eye',
-      action: console.log,
       type: 'icon',
       tooltip: { value: 'View this' },
       disabled: (d) => d?.id === 1,
     },
     {
       label: 'Button',
-      action: console.log,
       type: 'flat',
     },
     {
       label: 'more_horiz',
-      action: console.log,
       type: 'icon',
       subActions: [
         {
           label: 'sub action',
-          action: console.log,
           subActions: [
             {
               label: 'sub action',
-              action: console.log,
             },
             {
               label: 'sub action 2',
-              action: console.log,
             },
           ],
         },
         {
           label: 'sub action 2',
-          action: console.log,
         },
       ],
     },
@@ -101,7 +94,7 @@ export class TableExampleComponent {
     },
   ];
 
-  public selectedItems = this.mockData[0];
+  public selectedItems = [this.mockData[0]];
 
   public paging: Paging = {
     pageIndex: 0,
@@ -114,7 +107,6 @@ export class TableExampleComponent {
       key: 'name',
       label: 'GENERAL.TYPE',
       sortable: true,
-      click: (d) => alert(d.name),
       cellClass: 'clickable-cell',
     },
     {
