@@ -35,6 +35,14 @@ export class Lab900MergerItemComponent<T> implements CustomComponentAbstract<T>,
 
   public constructor(private resolver: ComponentFactoryResolver) {}
 
+  public get flexDirection(): 'row' | 'column' {
+    if (this.config?.nextLine || this.config?.nestedObject) {
+      return 'column';
+    } else {
+      return 'row';
+    }
+  }
+
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && this.customComponentRef) {
       this.customComponentRef.instance.data = this.data;

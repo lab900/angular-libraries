@@ -24,16 +24,18 @@
     "watch:forms": "npm run build:forms -- --watch",
     "watch:admin": "npm run build:admin -- --watch",
     "watch:ui": "npm run build:ui -- --watch",
-    "deploy:showcase": "ng deploy --no-silent",
+    "deploy:showcase": "ng deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "pretty:check": "prettier -c \"{src,projects}/**/**.{ts,js}\"",
     "pretty:fix": "prettier  --write \"{src,projects}/**/**.{ts,js}\"",
-    "pretty:html:fix": "prettier --no-config --print-width=140 --write \"{src,projects}/**/**.html\""
+    "pretty:html:fix": "prettier --no-config --print-width=140 --write \"{src,projects}/**/**.html\"",
+    "commit": "cz"
   },
   "husky": {
     "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "pre-commit": "lint-staged",
       "pre-push": "ng lint --fix"
     }
@@ -79,6 +81,7 @@
     "@types/node": "^12.11.1",
     "angular-cli-ghpages": "^0.6.2",
     "codelyzer": "^6.0.0",
+    "cz-conventional-changelog": "^3.3.0",
     "husky": "^4.2.5",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -95,5 +98,10 @@
     "tslint": "~6.1.0",
     "tslint-plugin-prettier": "^2.3.0",
     "typescript": "~3.9.6"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

@@ -16,7 +16,7 @@
     <mat-icon matSuffix *ngIf="!readonly">search</mat-icon>
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="options.displayInputFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{ options.displayOptionFn(option) | translate }}
+            <div [innerHTML]="(options.displayOptionFn(option) || option) | translate"></div>
         </mat-option>
     </mat-autocomplete>
 </mat-form-field>

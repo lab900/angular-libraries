@@ -7,7 +7,10 @@
         [multiple]="options?.multiple"
         [required]="required"
     >
-        <mat-option *ngFor="let item of values" [value]="item.value" translate>{{ item.label | translate }}</mat-option>
+        <mat-option *ngFor="let item of values" [value]="item.value" translate>
+            <div *ngIf="options?.displayOptionFn" [innerHTML]="options.displayOptionFn(item) | translate"></div>
+            <ng-container *ngIf="!options?.displayOptionFn">{{ item.label | translate }}</ng-container>
+        </mat-option>
     </mat-select>
     <mat-hint *ngIf="hint && !readonly && !(schema.options.hint.hideHintOnValidValue && select.value)" translate>{{ hint }}</mat-hint>
     <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>

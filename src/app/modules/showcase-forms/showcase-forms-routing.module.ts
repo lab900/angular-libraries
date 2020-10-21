@@ -21,6 +21,7 @@ import { showcaseFormsConfig } from './showcase-forms.constants';
 import { ShowcaseHomeComponent } from '../shared/components/showcase-home/showcase-home.component';
 import { showcaseFormsNavItems } from './showcase-forms.nav-items';
 import { MarkdownPageComponent } from '../shared/components/markdown-page/markdown-page.component';
+import { FormFieldSelectExampleComponent } from './examples/form-field-select-example/form-field-select-example.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,7 @@ const routes: Routes = [
   new ShowcaseRoute('form-field-range-slider', 'Form Fields: Range slider', [
     new ShowcaseExample(FormFieldRangeSliderExampleComponent, 'Range slider'),
   ]),
+  new ShowcaseRoute('form-field-select', 'Form Fields: Select', [new ShowcaseExample(FormFieldSelectExampleComponent, 'Selects')]),
 ];
 
 @NgModule({

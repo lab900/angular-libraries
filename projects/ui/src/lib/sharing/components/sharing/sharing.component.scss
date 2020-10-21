@@ -1,4 +1,3 @@
-
 .lab900-sharing {
   display: flex;
   align-items: center;
@@ -19,18 +18,11 @@
     border-radius: 100%;
     float: left;
     margin-left: -10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 2px solid #fff;
     background-color: #ebebeb;
     background-position: center;
     background-size: cover;
     cursor: default;
-
-    &.has-image span {
-      display: none;
-    }
 
     &:not(:nth-child(1)) {
       position: relative;

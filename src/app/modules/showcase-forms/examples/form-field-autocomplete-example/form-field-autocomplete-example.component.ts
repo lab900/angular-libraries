@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 
 @Component({
   selector: 'lab900-form-field-autocomplete-example',
+  styleUrls: ['./form-field-autocomplete-example.component.scss'],
   template: '<lab900-form-container [schema]="formSchema"></lab900-form-container>',
 })
 export class FormFieldAutocompleteExampleComponent {
@@ -17,8 +18,13 @@ export class FormFieldAutocompleteExampleComponent {
         editType: EditType.Autocomplete,
         options: {
           getOptionsFn: (value: string) => of(this.filter(value)),
-          displayInputFn: (user: { name: string }) => (user && user.name) || '',
-          displayOptionFn: (user: { name: string }) => (user && user.name) || '',
+          displayInputFn: (user: { name: string }) => user?.name ?? '',
+          displayOptionFn: (user: { name: string }) => {
+            const userName = user?.name ?? '';
+            const image =
+              'https://firebasestorage.googleapis.com/v0/b/lab900-website-production.appspot.com/o/public%2Fproject-images%2Fyou%2Fyou-mockup.svg?alt=media';
+            return `<div class="user-option"><img width="20" height="20" src="${image}"> ${userName}</div>`;
+          },
         },
       },
     ],
