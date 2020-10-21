@@ -5,7 +5,7 @@
     <mat-icon matSuffix *ngIf="!readonly">search</mat-icon>
     <mat-chip-list #chipList [formControlName]="schema.attribute">
         <mat-chip *ngFor="let opt of selectedOptions; let i = index" [removable]="!schema.options.readonly" selectable (removed)="remove(i)">
-            {{ (options?.displayOptionFn(opt) || opt) | translate }}
+            <div [innerHTML]="(options.displayOptionFn(opt) || opt) | translate"></div>
             <mat-icon *ngIf="!schema.options.readonly" matChipRemove>cancel</mat-icon>
         </mat-chip>
         <input
@@ -21,7 +21,7 @@
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{ (options?.displayOptionFn(option) || option) | translate }}
+            <div [innerHTML]="(options.displayOptionFn(option) || option) | translate"></div>
         </mat-option>
     </mat-autocomplete>
 </mat-form-field>

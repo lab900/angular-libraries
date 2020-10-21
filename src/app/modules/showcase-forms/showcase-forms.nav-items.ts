@@ -43,7 +43,7 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
           },
           {
             label: 'Select',
-            // route: 'forms/form-field-select',
+            route: 'forms/form-field-select',
           },
           {
             label: 'Range slider',

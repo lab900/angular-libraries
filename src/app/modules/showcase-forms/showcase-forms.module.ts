@@ -19,6 +19,7 @@ import { FormContainerExampleComponent } from './examples/form-container-example
 import { FormContainerReadonlyExampleComponent } from './examples/form-container-example/form-container-readonly-example.component';
 import { FormFieldDateRangePickerExampleComponent } from './examples/form-field-date-range-picker-example/form-field-date-range-picker-example.component';
 import { FormFieldDateTimePickerExampleComponent } from './examples/form-field-date-time-picker-example/form-field-date-time-picker-example.component';
+import { FormFieldSelectExampleComponent } from './examples/form-field-select-example/form-field-select-example.component';
 
 const examples = [
   FormFieldRepeaterExampleComponent,
@@ -35,6 +36,7 @@ const examples = [
   FormContainerReadonlyExampleComponent,
   FormFieldDateRangePickerExampleComponent,
   FormFieldDateTimePickerExampleComponent,
+  FormFieldSelectExampleComponent,
 ];
 
 @NgModule({
