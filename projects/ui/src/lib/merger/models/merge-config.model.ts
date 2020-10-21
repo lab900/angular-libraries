@@ -3,7 +3,7 @@ import { Type } from '@angular/core';
 import { CustomComponent } from '../abstracts/custom-component.abstract';
 
 export interface MergeConfigBase {
-  attribute: string;
+  attribute?: string;
   label?: string;
   formatter?: (data: any) => Observable<string> | string;
 }

@@ -76,19 +76,18 @@ export class Lab900MergerComponent<T> implements OnInit, OnChanges {
     return this.selected === 'right' ? this.rightObject.data : this.leftObject.data;
   }
 
-  public toggleActive(config: MergeConfig<T>): void {
+  public toggleActive(config: MergeConfig<T>, index: number): void {
     const base: T = { ...this.getBase(!config.active) };
     if (config?.nestedObject) {
       config.nestedObject.forEach((c: MergeConfigBase) => {
-        const attribute = config.attribute ? config.attribute : c.attribute;
+        const attribute = config?.attribute ?? c.attribute;
         this.result[attribute] = base[attribute];
       });
     } else {
       this.result[config.attribute] = base[config.attribute];
     }
 
-    const configIndex = this.schema.findIndex((s) => s.attribute === config.attribute);
-    this.schema[configIndex] = { ...this.schema[configIndex], active: !config.active };
+    this.schema[index] = { ...this.schema[index], active: !config.active };
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
