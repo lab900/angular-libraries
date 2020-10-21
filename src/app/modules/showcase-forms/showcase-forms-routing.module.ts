@@ -12,7 +12,6 @@ import { FormFieldRadioButtonsExampleComponent } from './examples/form-field-rad
 import { FormFieldRangeSliderExampleComponent } from './examples/form-field-range-slider-example/form-field-range-slider-example.component';
 import { FormFieldRepeaterAdvancedExampleComponent } from './examples/form-field-repeater-advanced-example/form-field-repeater-advanced-example.component';
 import { FormFieldButtonToggleExampleComponent } from './examples/form-field-button-toggle-example/form-field-button-toggle-example.component';
-import { FormContainerExampleComponent } from './examples/form-container-example/form-container-example.component';
 import { FormContainerReadonlyExampleComponent } from './examples/form-container-example/form-container-readonly-example.component';
 import { FormFieldAutocompleteMultipleExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-multiple-example.component';
 import { FormFieldDateRangePickerExampleComponent } from './examples/form-field-date-range-picker-example/form-field-date-range-picker-example.component';
@@ -38,7 +37,7 @@ const routes: Routes = [
     'form-container',
     'Dynamic forms',
     [
-      new ShowcaseExample(FormContainerExampleComponent, 'Form Container'),
+      // new ShowcaseExample(FormContainerExampleComponent, 'Form Container'),
       new ShowcaseExample(FormContainerReadonlyExampleComponent, 'Form Container Readonly', 'form-container-example'),
     ],
     'guides/forms/creating-forms.md',
