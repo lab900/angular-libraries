@@ -106,6 +106,9 @@ pipeline {
                     steps {
                         dir('./build') {
                             sh "npm run deploy:showcase"
+                            script {
+                                setBuildStatus("Build complete.", "SUCCESS", currentCommit)
+                            }
                         }
                     }
                 }
