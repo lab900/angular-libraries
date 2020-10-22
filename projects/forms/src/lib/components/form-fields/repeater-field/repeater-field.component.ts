@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { FormArray } from '@angular/forms';
 import { RepeaterFieldOptions } from '../../../models/FormField';
@@ -47,12 +47,11 @@ export class RepeaterFieldComponent extends FormComponent<RepeaterFieldOptions> 
   }
 
   public addToArray(): void {
-    /*if (this.schema.nestedFields.length === 1 && !this.schema.nestedFields[0].attribute) {
-      this.schema.nestedFields[0].attribute = this.repeaterArray.length as any;
-      this.repeaterArray.push(new FormControl(''));
-    } else {
-    }*/
-    this.repeaterArray.push(this.fb.createFormGroup(this.schema.nestedFields));
+    const formGroup = this.fb.createFormGroup(this.schema.nestedFields);
+    this.repeaterArray.push(formGroup);
+    if (formGroup.dirty) {
+      this.repeaterArray.markAsDirty();
+    }
   }
 
   public removeFromArray(index: number): void {
