@@ -6,6 +6,7 @@ export * from './lib/models/Form';
 export * from './lib/models/FormField';
 export * from './lib/models/FormGroup';
 export * from './lib/models/editType';
+export * from './lib/models/IFieldConditions';
 
 export * from './lib/components/form-container/form-container.component';
 

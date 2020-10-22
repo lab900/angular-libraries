@@ -20,6 +20,22 @@ export const formFieldsExample: Form = {
           options: {
             colspan: 6,
           },
+          conditions: [
+            {
+              dependOn: 'name',
+              hideIfHasValue: true,
+            },
+            {
+              dependOn: 'address.country',
+              disableIfEquals: 'Belgium',
+            },
+            {
+              dependOn: 'languages',
+              onChangeFn: (value: string, fieldControl) => {
+                fieldControl.setValue(value);
+              },
+            },
+          ],
         },
       ],
     },
@@ -65,12 +81,12 @@ export const formFieldsExample: Form = {
             colspan: 12,
             selectOptions: [
               {
-                value: 'Dutch',
-                label: 'DUT',
+                label: 'Dutch',
+                value: 'DUT',
               },
               {
-                value: 'English',
-                label: 'ENG',
+                label: 'English',
+                value: 'ENG',
               },
             ],
           },

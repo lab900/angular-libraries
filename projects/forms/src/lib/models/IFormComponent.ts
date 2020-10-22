@@ -1,33 +1,65 @@
-import { FormGroup, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FieldOptions, FormField } from './FormField';
-import { Injectable, Input } from '@angular/core';
+import { AfterViewInit, Directive, Input, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { FieldConditions } from './IFieldConditions';
 
 export interface IFormComponent<T extends FieldOptions> {
   schema: FormField<T>;
   group: FormGroup;
 }
 
-@Injectable()
-export abstract class FormComponent<T extends FieldOptions = FieldOptions> implements IFormComponent<T> {
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
+export abstract class FormComponent<T extends FieldOptions = FieldOptions> implements IFormComponent<T>, AfterViewInit, OnDestroy {
+  private conditionalSubs: Subscription[] = [];
+
   @Input()
   public group: FormGroup;
 
   @Input()
   public schema: FormField<T>;
 
-  protected constructor(private translateService: TranslateService) {}
-
   @Input()
   public readonly = false; // Global form readonly flag
 
+  public get fieldControl(): AbstractControl {
+    return this.group.get(this.schema.attribute);
+  }
+
   public get valid(): boolean {
-    return this.group.get(this.schema.attribute).valid;
+    return this.fieldControl?.valid;
   }
 
   public get options(): T {
     return this.schema?.options;
+  }
+
+  public get required(): boolean {
+    return (!this.readonly && this.schema?.options?.required) ?? false;
+  }
+
+  public get hint(): string {
+    return this.schema?.options?.hint?.value;
+  }
+
+  public get placeholder(): string {
+    return this.schema?.options?.placeholder;
+  }
+
+  protected constructor(private translateService: TranslateService) {}
+
+  public ngAfterViewInit(): void {
+    if (this.group && this.schema?.conditions?.length) {
+      this.createConditions();
+    }
+  }
+
+  public ngOnDestroy(): void {
+    if (this.conditionalSubs?.length) {
+      this.conditionalSubs.forEach((sub) => sub.unsubscribe());
+    }
   }
 
   public hide(value?: any): boolean {
@@ -37,23 +69,11 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     return this.schema?.options?.hide ?? false;
   }
 
-  public get required(): boolean {
-    return (!this.readonly && this.schema?.options?.required) ?? false;
-  }
-
   public isReadonly(value?: any): boolean {
     if (typeof this.schema?.options?.readonly === 'function') {
       return !this.readonly && this.schema?.options?.readonly(value);
     }
     return (this.readonly || this.schema?.options?.readonly) ?? false;
-  }
-
-  public get hint(): string {
-    return this.schema?.options?.hint?.value;
-  }
-
-  public get placeholder(): string {
-    return this.schema?.options?.placeholder;
   }
 
   public getErrorMessage(group: FormGroup = this.group): Observable<string> {
@@ -104,5 +124,12 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
       default:
         return this.translateService.get('forms.error.generic');
     }
+  }
+
+  private createConditions(): void {
+    this.schema.conditions
+      .filter((c) => c.dependOn)
+      .map((c) => new FieldConditions(this.group, this.schema, c))
+      .forEach((conditions: FieldConditions) => this.conditionalSubs.push(conditions.start()));
   }
 }

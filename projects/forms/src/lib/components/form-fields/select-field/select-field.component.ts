@@ -14,7 +14,7 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
 
   public options$: Observable<ValueLabel[]>;
 
-  public defaultCompare = (o1: ValueLabel, o2: ValueLabel) => o1?.value === o2?.value;
+  public defaultCompare = (o1: any, o2: any) => o1 === o2;
 
   public constructor(translateService: TranslateService) {
     super(translateService);

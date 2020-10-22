@@ -3,6 +3,8 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ThemePalette } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { IFormComponent } from './IFormComponent';
+import { AbstractControl, FormControl } from '@angular/forms';
+import { IFieldConditions } from './IFieldConditions';
 
 export interface ValueLabel<T = any> {
   value: T;
@@ -55,7 +57,7 @@ export interface RepeaterFieldOptions extends FieldOptions {
 export interface SelectFieldOptions extends FieldOptions {
   multiple?: boolean;
   selectOptions?: (() => ValueLabel[] | Observable<ValueLabel[]>) | ValueLabel[] | Observable<ValueLabel[]>;
-  compareWith?: (o1: ValueLabel, o2: ValueLabel) => boolean;
+  compareWith?: (o1: any, o2: any) => boolean;
   displayOptionFn?: (option: any) => string;
 }
 
@@ -123,4 +125,5 @@ export interface FormField<
   errorMessages?: { [key: string]: string };
   nestedFields?: FormField[];
   icon?: Icon & { position: 'left' | 'right' };
+  conditions?: IFieldConditions[];
 }
