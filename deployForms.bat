@@ -1,5 +1,5 @@
 cd projects/forms/
-call npm version patch
+call npm version preminor --preid=beta
 cd ../..
 call npm run build:forms:prod
 cd dist/@lab900/forms
