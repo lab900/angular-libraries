@@ -1,5 +1,5 @@
 <mat-form-field *ngIf="!hide(this.group.value)" [formGroup]="group" class="input-field">
-    <mat-label>{{ schema.title | translate }}</mat-label>
+    <mat-label *ngIf="schema.title">{{ schema.title | translate }}</mat-label>
     <input
         matInput
         #input

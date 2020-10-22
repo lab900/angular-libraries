@@ -9,5 +9,5 @@
             <lab900-icon *ngIf="value.icon" [icon]="value.icon"></lab900-icon>
         </mat-button-toggle>
     </mat-button-toggle-group>
-    <mat-error class="mat-form-field-subscript-wrapper" *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
+    <mat-error class="mat-form-field-subscript-wrapper" *ngIf="group.controls[schema.attribute].touched && !valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
 </div>

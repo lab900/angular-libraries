@@ -8,7 +8,7 @@
     >
         <mat-radio-button *ngFor="let value of options?.values" [value]="value.value">{{ value.label | translate }}</mat-radio-button>
     </mat-radio-group>
-    <div class="radio-buttons-field__error">
-        <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
+    <div class="radio-buttons-field__error" *ngIf="group.controls[schema.attribute].touched && !valid && !readonly">
+        <mat-error>{{ getErrorMessage() | async }}</mat-error>
     </div>
 </div>

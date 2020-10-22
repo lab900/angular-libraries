@@ -1,5 +1,5 @@
 <mat-form-field *ngIf="!hide(this.group.value)" [formGroup]="group">
-    <mat-label translate>{{ schema.title }}</mat-label>
+    <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
     <textarea
         #input
         [readonly]="isReadonly(this.group.value)"

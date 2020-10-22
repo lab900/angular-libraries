@@ -1,5 +1,5 @@
 <mat-form-field [formGroup]="group" *ngIf="!hide(this.group.value) && dateFormGroup">
-    <mat-label translate>{{ schema.title }}</mat-label>
+    <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
     <mat-date-range-input [formGroup]="dateFormGroup" [rangePicker]="picker">
         <input matStartDate [formControl]="dateFormGroup.get(this.options?.startKey || 'start')" placeholder="{{ (this.options?.startLabel || 'Start date') | translate }}">
         <input matEndDate [formControl]="dateFormGroup.get(this.options?.endKey || 'end')" placeholder="{{ (this.options?.endLabel || 'End date') | translate }}">
