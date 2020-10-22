@@ -4,6 +4,11 @@ import { ThemePalette } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { IFormComponent } from './IFormComponent';
 
+export interface ValueLabel<T = any> {
+  value: T;
+  label: string;
+}
+
 export interface FieldOptions {
   hide?: boolean | ((data?: any) => boolean);
   hint?: { value: string; hideHintOnValidValue?: boolean };
@@ -49,20 +54,19 @@ export interface RepeaterFieldOptions extends FieldOptions {
 
 export interface SelectFieldOptions extends FieldOptions {
   multiple?: boolean;
-  values?: { value: any; label: string }[];
-  valuesFn?: () => Observable<{ value: any; label: string }[]>;
-  compareWith?: (o1: any, o2: any) => boolean;
-  displayOptionFn?: (option: { value: any; label: string }) => string;
+  selectOptions?: (() => ValueLabel[] | Observable<ValueLabel[]>) | ValueLabel[] | Observable<ValueLabel[]>;
+  compareWith?: (o1: ValueLabel, o2: ValueLabel) => boolean;
+  displayOptionFn?: (option: any) => string;
 }
 
 export interface AutocompleteOptions extends FieldOptions {
   displayInputFn: (option: any) => string;
   displayOptionFn: (option: any) => string;
-  getOptionsFn: (searchTerm: string) => any[] | Observable<any[]>;
+  autocompleteOptions?: (searchTerm: string) => any[] | Observable<any[]>;
 }
 
 export interface RadioButtonsFieldOptions extends FieldOptions {
-  values: { value: any; label: string }[];
+  radioOptions: ValueLabel[];
 }
 
 export interface DatepickerFieldOptions extends FieldOptions {
@@ -91,7 +95,7 @@ export interface IconFieldOptions extends FieldOptions {
   icon?: Icon;
 }
 export interface ButtonToggleFieldOptions extends FieldOptions {
-  values: { value: any; label?: string; icon?: Icon }[];
+  buttonOptions: { value: any; label?: string; icon?: Icon }[];
 }
 export interface Icon {
   name?: string;

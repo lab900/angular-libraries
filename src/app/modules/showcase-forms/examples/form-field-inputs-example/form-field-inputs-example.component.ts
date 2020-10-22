@@ -64,7 +64,7 @@ export class FormFieldInputsExampleComponent {
         editType: EditType.Select,
         options: {
           hint: { value: 'Show a hint', hideHintOnValidValue: true },
-          values: [
+          selectOptions: [
             { value: 1, label: '1' },
             { value: 2, label: '2' },
           ],

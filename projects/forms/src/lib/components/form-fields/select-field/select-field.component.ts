@@ -1,39 +1,32 @@
-import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
-import { SelectFieldOptions } from '../../../models/FormField';
+import { SelectFieldOptions, ValueLabel } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
+import { isObservable, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'lab900-select-field',
   templateUrl: './select-field.component.html',
 })
-export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit, OnDestroy {
+export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  public values: { value: any; label: string }[];
+  public options$: Observable<ValueLabel[]>;
 
-  private subscriptions: Subscription[] = [];
-
-  public defaultCompare = (o1: any, o2: any) => o1 === o2;
+  public defaultCompare = (o1: ValueLabel, o2: ValueLabel) => o1?.value === o2?.value;
 
   public constructor(translateService: TranslateService) {
     super(translateService);
   }
 
   public ngOnInit(): void {
-    this.values = (this.options && this.options.values) || [];
-    if (this.options.valuesFn) {
-      this.loadValues();
+    if (this.options?.selectOptions) {
+      const options = this.options?.selectOptions;
+      const values = typeof options === 'function' ? options() : options;
+      this.options$ = isObservable(values) ? values : of(values);
+    } else {
+      throw new Error('No options provided');
     }
-  }
-
-  public loadValues() {
-    this.subscriptions.push(this.options.valuesFn().subscribe((values) => (this.values = values)));
-  }
-
-  public ngOnDestroy(): void {
-    this.subscriptions.forEach((value) => value.unsubscribe());
   }
 }

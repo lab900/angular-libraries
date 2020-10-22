@@ -63,7 +63,7 @@ export const formFieldsExample: Form = {
           options: {
             readonly: true,
             colspan: 12,
-            values: [
+            selectOptions: [
               {
                 value: 'Dutch',
                 label: 'DUT',

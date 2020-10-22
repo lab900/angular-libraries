@@ -31,7 +31,7 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
   }
 
   public inputChanged($event: Event): void {
-    const res = this.options.getOptionsFn(($event.target as any).value);
+    const res = this.options.autocompleteOptions(($event.target as any).value);
     this.filteredOptions = isObservable(res) ? res : of(res);
   }
 

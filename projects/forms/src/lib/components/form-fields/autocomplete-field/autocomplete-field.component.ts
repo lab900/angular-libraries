@@ -19,7 +19,7 @@ export class AutocompleteFieldComponent extends FormComponent<AutocompleteOption
   }
 
   public inputChanged($event: Event) {
-    const res = this.options.getOptionsFn(($event.target as any).value);
+    const res = this.options.autocompleteOptions(($event.target as any).value);
     this.filteredOptions = isObservable(res) ? res : of(res);
   }
 }

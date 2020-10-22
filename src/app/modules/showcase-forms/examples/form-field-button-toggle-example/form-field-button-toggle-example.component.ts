@@ -17,7 +17,7 @@ export class FormFieldButtonToggleExampleComponent {
         editType: EditType.ButtonToggle,
         options: {
           required: true,
-          values: [
+          buttonOptions: [
             {
               value: true,
               label: 'yes',
@@ -39,7 +39,7 @@ export class FormFieldButtonToggleExampleComponent {
             editType: EditType.ButtonToggle,
             options: {
               required: true,
-              values: [
+              buttonOptions: [
                 {
                   value: 'edit',
                   icon: { name: 'edit' },

@@ -7,7 +7,7 @@
         [multiple]="options?.multiple"
         [required]="required"
     >
-        <mat-option *ngFor="let item of values" [value]="item.value" translate>
+        <mat-option *ngFor="let item of (options$ | async)" [value]="item.value" translate>
             <div *ngIf="options?.displayOptionFn" [innerHTML]="options.displayOptionFn(item) | translate"></div>
             <ng-container *ngIf="!options?.displayOptionFn">{{ item.label | translate }}</ng-container>
         </mat-option>

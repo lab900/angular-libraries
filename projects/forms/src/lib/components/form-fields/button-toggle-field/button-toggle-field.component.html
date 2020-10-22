@@ -2,7 +2,7 @@
     <div *ngIf="schema.title"><mat-label>{{ schema.title | translate }}</mat-label></div>
     <!-- ToDo: Disable when readonly -->
     <mat-button-toggle-group [formControlName]="schema.attribute" [required]="required">
-        <mat-button-toggle *ngFor="let value of options?.values" [value]="value.value">
+        <mat-button-toggle *ngFor="let value of options?.buttonOptions" [value]="value.value">
             <ng-container *ngIf="value.label">
                 {{ value.label | translate }}
             </ng-container>

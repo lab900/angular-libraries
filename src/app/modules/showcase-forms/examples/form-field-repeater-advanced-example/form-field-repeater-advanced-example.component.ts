@@ -12,7 +12,6 @@ export class FormFieldRepeaterAdvancedExampleComponent {
         attribute: 'repeater',
         title: 'Add something nested',
         editType: EditType.Repeater,
-        options: {},
         nestedFields: [
           {
             attribute: 'value',
