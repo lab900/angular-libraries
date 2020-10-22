@@ -3,7 +3,7 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions, ValueLabel } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
 import { isObservable, Observable, of, Subject } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
+import { catchError, switchMap, take } from 'rxjs/operators';
 import { IFieldConditions } from '../../../models/IFieldConditions';
 
 @Component({
@@ -11,27 +11,6 @@ import { IFieldConditions } from '../../../models/IFieldConditions';
   templateUrl: './select-field.component.html',
 })
 export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit {
-  public constructor(translateService: TranslateService) {
-    super(translateService);
-    this.subs.push(
-      this.conditionalChange
-        .pipe(switchMap(({ condition, value }) => this.getConditionalOptions(condition, value)))
-        .subscribe((options: ValueLabel[]) => {
-          this.selectOptions = options;
-          this.loading = false;
-          if (this.valueBeforeConditionalChange) {
-            this.fieldControl.setValue(this.valueBeforeConditionalChange);
-          }
-        }),
-    );
-  }
-
-  public get selectedOption(): any {
-    if (this.selectOptions && this.fieldControl.value) {
-      return this.selectOptions.find((opt) => this.defaultCompare(opt.value, this.fieldControl.value));
-    }
-    return null;
-  }
   private conditionalChange = new Subject();
 
   @HostBinding('class')
@@ -41,7 +20,24 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
 
   public loading = true;
 
-  private valueBeforeConditionalChange: any;
+  public get selectedOption(): any {
+    if (this.selectOptions && this.fieldControl.value) {
+      return this.selectOptions.find((opt) => this.defaultCompare(opt.value, this.fieldControl.value));
+    }
+    return null;
+  }
+
+  public constructor(translateService: TranslateService) {
+    super(translateService);
+    this.subs.push(
+      this.conditionalChange
+        .pipe(switchMap(({ condition, value }) => this.getConditionalOptions(condition, value)))
+        .subscribe((options: ValueLabel[]) => {
+          this.selectOptions = options;
+          this.loading = false;
+        }),
+    );
+  }
 
   public defaultCompare = (o1: any, o2: any) => o1 === o2;
 
@@ -49,10 +45,15 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
     if (this.options?.selectOptions) {
       const selectOptions = this.options?.selectOptions;
       const values = typeof selectOptions === 'function' ? selectOptions() : selectOptions;
-      (isObservable(values) ? values : of(values)).pipe(take(1)).subscribe((options: ValueLabel[]) => {
-        this.selectOptions = options;
-        this.loading = false;
-      });
+      (isObservable(values) ? values : of(values))
+        .pipe(
+          take(1),
+          catchError(() => of([])),
+        )
+        .subscribe((options: ValueLabel[]) => {
+          this.selectOptions = options;
+          this.loading = false;
+        });
     } else {
       this.selectOptions = [];
       this.loading = false;
@@ -62,7 +63,6 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
   public onConditionalChange(dependOn: string, value: string): void {
     const condition = this.schema.conditions.find((c) => c.dependOn === dependOn);
     if (condition?.conditionalOptions) {
-      this.valueBeforeConditionalChange = this.fieldControl.value;
       this.fieldControl.reset();
       this.conditionalChange.next({ condition, value });
     } else {
@@ -74,6 +74,6 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
     this.selectOptions = [];
     this.loading = true;
     const values = condition?.conditionalOptions(value);
-    return (isObservable(values) ? values : of(values)).pipe(take(1));
+    return (isObservable(values) ? values : of(values)).pipe(catchError(() => of([])));
   }
 }

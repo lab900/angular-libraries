@@ -79,7 +79,14 @@ export const formFieldsExample: Form = {
               enableIfHasValue: true,
               conditionalOptions: (value: string) => {
                 if (value) {
-                  return of(value === 'BE' ? [{ label: 'Vlaams', value: 'VL' }] : [{ label: 'Engels', value: 'EN' }]).pipe(delay(5000));
+                  return of(
+                    value === 'BE'
+                      ? [
+                          { label: 'Vlaams', value: 'VL' },
+                          { label: 'Waals', value: 'WL' },
+                        ]
+                      : [{ label: 'Engels', value: 'EN' }],
+                  ).pipe(delay(5000));
                 }
                 return of([]);
               },
@@ -100,6 +107,28 @@ export const formFieldsExample: Form = {
               conditionalOptions: (value: string) => {
                 if (value) {
                   return value === 'VL' ? of([{ label: 'Antwerps', value: 'ANT' }]).pipe(delay(2000)) : [{ label: 'Brits', value: 'BR' }];
+                }
+                return [];
+              },
+            },
+          ],
+          options: {
+            colspan: 12,
+          },
+        },
+        {
+          title: 'sub dialects',
+          attribute: 'subDialects',
+          editType: EditType.Select,
+          conditions: [
+            {
+              dependOn: 'dialects',
+              enableIfHasValue: true,
+              conditionalOptions: (value: string) => {
+                if (value) {
+                  return value === 'ANT'
+                    ? of([{ label: 'Plat antwerps', value: 'PLAT_ANT' }]).pipe(delay(2000))
+                    : [{ label: 'Heel Brits', value: 'HEEL_BR' }];
                 }
                 return [];
               },

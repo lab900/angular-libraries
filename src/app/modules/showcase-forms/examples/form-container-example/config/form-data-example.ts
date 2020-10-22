@@ -7,4 +7,5 @@ export const formDataExample = {
   country: 'BE',
   languages: 'VL',
   dialects: 'ANT',
+  subDialects: 'PLAT_ANT',
 };
