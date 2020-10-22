@@ -6,4 +6,5 @@ export const formDataExample = {
   firstname: 'Example',
   country: 'BE',
   languages: 'VL',
+  dialects: 'ANT',
 };

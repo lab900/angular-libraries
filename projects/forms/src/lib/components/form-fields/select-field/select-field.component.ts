@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions, ValueLabel } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,17 +11,6 @@ import { IFieldConditions } from '../../../models/IFieldConditions';
   templateUrl: './select-field.component.html',
 })
 export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit {
-  private conditionalChange = new Subject();
-
-  @HostBinding('class')
-  public classList = 'lab900-form-field';
-
-  public selectOptions: ValueLabel[];
-
-  public loading = true;
-
-  public defaultCompare = (o1: any, o2: any) => o1 === o2;
-
   public constructor(translateService: TranslateService) {
     super(translateService);
     this.subs.push(
@@ -30,6 +19,9 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
         .subscribe((options: ValueLabel[]) => {
           this.selectOptions = options;
           this.loading = false;
+          if (this.valueBeforeConditionalChange) {
+            this.fieldControl.setValue(this.valueBeforeConditionalChange);
+          }
         }),
     );
   }
@@ -40,6 +32,18 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
     }
     return null;
   }
+  private conditionalChange = new Subject();
+
+  @HostBinding('class')
+  public classList = 'lab900-form-field';
+
+  public selectOptions: ValueLabel[];
+
+  public loading = true;
+
+  private valueBeforeConditionalChange: any;
+
+  public defaultCompare = (o1: any, o2: any) => o1 === o2;
 
   public ngOnInit(): void {
     if (this.options?.selectOptions) {
@@ -58,6 +62,7 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
   public onConditionalChange(dependOn: string, value: string): void {
     const condition = this.schema.conditions.find((c) => c.dependOn === dependOn);
     if (condition?.conditionalOptions) {
+      this.valueBeforeConditionalChange = this.fieldControl.value;
       this.fieldControl.reset();
       this.conditionalChange.next({ condition, value });
     } else {

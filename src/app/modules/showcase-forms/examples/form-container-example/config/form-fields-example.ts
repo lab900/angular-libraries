@@ -1,11 +1,11 @@
-import { Form, EditType } from '@lab900/forms';
-import { Observable, of } from 'rxjs';
-import { delay, map, tap } from 'rxjs/operators';
+import { EditType, Form } from '@lab900/forms';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 export const formFieldsExample: Form = {
   readonly: false,
   fields: [
-    {
+    /*    {
       editType: EditType.Row,
       nestedFields: [
         {
@@ -47,7 +47,7 @@ export const formFieldsExample: Form = {
           },
         },
       ],
-    },
+    },*/
     {
       editType: EditType.Row,
       nestedFields: [
@@ -99,7 +99,7 @@ export const formFieldsExample: Form = {
               enableIfHasValue: true,
               conditionalOptions: (value: string) => {
                 if (value) {
-                  return value === 'VL' ? [{ label: 'Antwerps', value: 'ANT' }] : [{ label: 'Brits', value: 'BR' }];
+                  return value === 'VL' ? of([{ label: 'Antwerps', value: 'ANT' }]).pipe(delay(2000)) : [{ label: 'Brits', value: 'BR' }];
                 }
                 return [];
               },
