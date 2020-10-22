@@ -13,7 +13,7 @@ export interface IFormComponent<T extends FieldOptions> {
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
 export abstract class FormComponent<T extends FieldOptions = FieldOptions> implements IFormComponent<T>, AfterViewInit, OnDestroy {
-  private conditionalSubs: Subscription[] = [];
+  protected subs: Subscription[] = [];
 
   @Input()
   public group: FormGroup;
@@ -57,10 +57,12 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   }
 
   public ngOnDestroy(): void {
-    if (this.conditionalSubs?.length) {
-      this.conditionalSubs.forEach((sub) => sub.unsubscribe());
+    if (this.subs?.length) {
+      this.subs.forEach((sub) => sub.unsubscribe());
     }
   }
+
+  public onConditionalChange(dependOn: string, value: any): void {}
 
   public hide(value?: any): boolean {
     if (typeof this.schema?.options?.hide === 'function') {
@@ -130,6 +132,14 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     this.schema.conditions
       .filter((c) => c.dependOn)
       .map((c) => new FieldConditions(this.group, this.schema, c))
-      .forEach((conditions: FieldConditions) => this.conditionalSubs.push(conditions.start()));
+      .forEach((conditions: FieldConditions) =>
+        this.subs.push(
+          conditions.start((dependOn: string, value: any) => {
+            if (this.onConditionalChange) {
+              this.onConditionalChange(dependOn, value);
+            }
+          }),
+        ),
+      );
   }
 }

@@ -1,6 +1,6 @@
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormField } from './FormField';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 export interface IFieldConditions<T = any> {
   dependOn: string;
@@ -13,6 +13,7 @@ export interface IFieldConditions<T = any> {
   disableIfEquals?: T;
   enabledIfEquals?: T;
   onChangeFn?: (value: T, currentControl: AbstractControl, dependControl: AbstractControl) => any;
+  conditionalOptions?: (value: T) => any[] | Observable<any[]>;
 }
 
 export class FieldConditions<T = any> implements IFieldConditions<T> {
@@ -26,6 +27,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public disableIfEquals?: T;
   public enabledIfEquals?: T;
   public onChangeFn?: (value: T, currentControl: AbstractControl, dependControl: AbstractControl) => any;
+  public conditionalOptions?: (value: T) => any;
 
   public readonly dependControl: AbstractControl;
 
@@ -43,12 +45,12 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
     }
   }
 
-  public start(): Subscription {
-    this.runAll(this.dependControl.value);
-    return this.dependControl.valueChanges.subscribe((value: any) => this.runAll(value));
+  public start(callback?: (dependOn: string, value: any) => void): Subscription {
+    this.runAll(this.dependControl.value, callback);
+    return this.dependControl.valueChanges.subscribe((value: any) => this.runAll(value, callback));
   }
 
-  public runAll(value: any): void {
+  public runAll(value: any, callback?: (dependOn: string, value: any) => void): void {
     if (this.onChangeFn && typeof this.onChangeFn === 'function') {
       this.onChangeFn(value, this.fieldControl, this.dependControl);
     }
@@ -61,6 +63,9 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
       this.runDisableConditions(value);
     } else {
       throw new Error(`Can't create disabled/enable conditions: readonly option is set and may cause conflicts`);
+    }
+    if (callback && typeof callback === 'function') {
+      callback(this.dependOn, value);
     }
   }
 
@@ -79,9 +84,9 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   }
 
   public runDisableConditions(value: any): void {
-    const enable = (isTrue: boolean) => (isTrue ? this.fieldControl.enable() : this.fieldControl.disable());
+    const enable = (isTrue: boolean) => setTimeout(() => (isTrue ? this.fieldControl.enable() : this.fieldControl.disable()));
     this.run('disableIfHasValue', this.disableIfHasValue && value, (isTrue: boolean) => enable(!isTrue));
-    this.run('enabledIfHasValue', this.enableIfHasValue && value, (isTrue: boolean) => enable(isTrue));
+    this.run('enableIfHasValue', this.enableIfHasValue && value, (isTrue: boolean) => enable(isTrue));
     this.run('disableIfEquals', this.disableIfEquals === value, (isTrue: boolean) => enable(!isTrue));
     this.run('enabledIfEquals', this.enabledIfEquals === value, (isTrue: boolean) => enable(isTrue));
   }

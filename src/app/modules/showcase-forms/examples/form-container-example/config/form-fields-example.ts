@@ -1,6 +1,9 @@
 import { Form, EditType } from '@lab900/forms';
+import { Observable, of } from 'rxjs';
+import { delay, map, tap } from 'rxjs/operators';
 
 export const formFieldsExample: Form = {
+  readonly: false,
   fields: [
     {
       editType: EditType.Row,
@@ -20,22 +23,6 @@ export const formFieldsExample: Form = {
           options: {
             colspan: 6,
           },
-          conditions: [
-            {
-              dependOn: 'name',
-              hideIfHasValue: true,
-            },
-            {
-              dependOn: 'address.country',
-              disableIfEquals: 'Belgium',
-            },
-            {
-              dependOn: 'languages',
-              onChangeFn: (value: string, fieldControl) => {
-                fieldControl.setValue(value);
-              },
-            },
-          ],
         },
       ],
     },
@@ -43,14 +30,6 @@ export const formFieldsExample: Form = {
       attribute: 'address',
       editType: EditType.Row,
       nestedFields: [
-        {
-          title: 'Country',
-          attribute: 'country',
-          editType: EditType.Input,
-          options: {
-            colspan: 12,
-          },
-        },
         {
           title: 'Street',
           attribute: 'street',
@@ -73,22 +52,61 @@ export const formFieldsExample: Form = {
       editType: EditType.Row,
       nestedFields: [
         {
+          title: 'country',
+          attribute: 'country',
+          editType: EditType.Select,
+          options: {
+            colspan: 12,
+            selectOptions: of([
+              {
+                label: 'Belgium',
+                value: 'BE',
+              },
+              {
+                label: 'England',
+                value: 'EN',
+              },
+            ]).pipe(delay(1000)),
+          },
+        },
+        {
           title: 'languages',
           attribute: 'languages',
           editType: EditType.Select,
+          conditions: [
+            {
+              dependOn: 'country',
+              enableIfHasValue: true,
+              conditionalOptions: (value: string) => {
+                if (value) {
+                  return of(value === 'BE' ? [{ label: 'Vlaams', value: 'VL' }] : [{ label: 'Engels', value: 'EN' }]).pipe(delay(5000));
+                }
+                return of([]);
+              },
+            },
+          ],
           options: {
-            readonly: true,
             colspan: 12,
-            selectOptions: [
-              {
-                label: 'Dutch',
-                value: 'DUT',
+          },
+        },
+        {
+          title: 'dialects',
+          attribute: 'dialects',
+          editType: EditType.Select,
+          conditions: [
+            {
+              dependOn: 'languages',
+              enableIfHasValue: true,
+              conditionalOptions: (value: string) => {
+                if (value) {
+                  return value === 'VL' ? [{ label: 'Antwerps', value: 'ANT' }] : [{ label: 'Brits', value: 'BR' }];
+                }
+                return [];
               },
-              {
-                label: 'English',
-                value: 'ENG',
-              },
-            ],
+            },
+          ],
+          options: {
+            colspan: 12,
           },
         },
       ],

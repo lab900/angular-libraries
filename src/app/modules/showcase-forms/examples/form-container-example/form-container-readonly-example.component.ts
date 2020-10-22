@@ -16,7 +16,6 @@ export class FormContainerReadonlyExampleComponent {
 
   public constructor() {
     setTimeout(() => (this.formData = formDataExample), 500);
-    setTimeout(() => (this.formData = { ...formDataExample, languages: 'ENG' }), 3000);
-    setTimeout(() => (this.formData = { ...formDataExample, name: 'test' }), 6000);
+    setTimeout(() => (this.formData = { ...formDataExample, country: 'EN' }), 3000);
   }
 }

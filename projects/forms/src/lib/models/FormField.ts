@@ -57,6 +57,7 @@ export interface RepeaterFieldOptions extends FieldOptions {
 export interface SelectFieldOptions extends FieldOptions {
   multiple?: boolean;
   selectOptions?: (() => ValueLabel[] | Observable<ValueLabel[]>) | ValueLabel[] | Observable<ValueLabel[]>;
+  conditionalSelectOptions?: (dependOn: string, value: string) => ValueLabel[] | Observable<ValueLabel[]>;
   compareWith?: (o1: any, o2: any) => boolean;
   displayOptionFn?: (option: any) => string;
 }

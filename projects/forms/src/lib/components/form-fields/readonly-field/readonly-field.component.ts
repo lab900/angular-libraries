@@ -6,7 +6,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'lab900-readonly',
   templateUrl: './readonly-field.component.html',
-  styleUrls: ['./readonly-field.component.scss'],
 })
 export class ReadonlyFieldComponent extends FormComponent implements OnDestroy {
   private sub: Subscription;

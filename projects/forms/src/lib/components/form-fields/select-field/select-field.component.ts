@@ -2,31 +2,73 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions, ValueLabel } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
-import { isObservable, Observable, of } from 'rxjs';
+import { isObservable, Observable, of, Subject } from 'rxjs';
+import { switchMap, take } from 'rxjs/operators';
+import { IFieldConditions } from '../../../models/IFieldConditions';
 
 @Component({
   selector: 'lab900-select-field',
   templateUrl: './select-field.component.html',
 })
 export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit {
+  private conditionalChange = new Subject();
+
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  public options$: Observable<ValueLabel[]>;
+  public selectOptions: ValueLabel[];
+
+  public loading = true;
 
   public defaultCompare = (o1: any, o2: any) => o1 === o2;
 
   public constructor(translateService: TranslateService) {
     super(translateService);
+    this.subs.push(
+      this.conditionalChange
+        .pipe(switchMap(({ condition, value }) => this.getConditionalOptions(condition, value)))
+        .subscribe((options: ValueLabel[]) => {
+          this.selectOptions = options;
+          this.loading = false;
+        }),
+    );
+  }
+
+  public get selectedOption(): any {
+    if (this.selectOptions && this.fieldControl.value) {
+      return this.selectOptions.find((opt) => this.defaultCompare(opt.value, this.fieldControl.value));
+    }
+    return null;
   }
 
   public ngOnInit(): void {
     if (this.options?.selectOptions) {
-      const options = this.options?.selectOptions;
-      const values = typeof options === 'function' ? options() : options;
-      this.options$ = isObservable(values) ? values : of(values);
+      const selectOptions = this.options?.selectOptions;
+      const values = typeof selectOptions === 'function' ? selectOptions() : selectOptions;
+      (isObservable(values) ? values : of(values)).pipe(take(1)).subscribe((options: ValueLabel[]) => {
+        this.selectOptions = options;
+        this.loading = false;
+      });
     } else {
-      throw new Error('No options provided');
+      this.selectOptions = [];
+      this.loading = false;
     }
+  }
+
+  public onConditionalChange(dependOn: string, value: string): void {
+    const condition = this.schema.conditions.find((c) => c.dependOn === dependOn);
+    if (condition?.conditionalOptions) {
+      this.fieldControl.reset();
+      this.conditionalChange.next({ condition, value });
+    } else {
+      this.selectOptions = [];
+    }
+  }
+
+  private getConditionalOptions(condition: IFieldConditions, value: any): Observable<ValueLabel[]> {
+    this.selectOptions = [];
+    this.loading = true;
+    const values = condition?.conditionalOptions(value);
+    return (isObservable(values) ? values : of(values)).pipe(take(1));
   }
 }

@@ -105,8 +105,10 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
 
   public ngOnInit(): void {
     this.validateType();
-
-    const c = this.readonly && this.schema.editType !== EditType.Row ? ReadonlyFieldComponent : mapToComponent(this.schema);
+    const c =
+      this.readonly && ![EditType.Row, EditType.Select].includes(this.schema.editType)
+        ? ReadonlyFieldComponent
+        : mapToComponent(this.schema);
     const component = this.resolver.resolveComponentFactory<FormComponent<FieldOptions>>(c);
     this.component = this.container.createComponent(component);
     this.component.instance.schema = this.schema;
