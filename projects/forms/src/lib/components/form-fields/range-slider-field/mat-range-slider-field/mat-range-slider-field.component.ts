@@ -40,7 +40,8 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
   }
 
   public writeValue(value: any): void {
-    this.value = this.latestUnencodedValues = value ? value : [this.min, this.max];
+    this.value = value ? value : [this.min, this.max];
+    this.latestUnencodedValues = this.value;
     if (this.rangeSlider) {
       setTimeout(() => {
         this.rangeSlider.set(value);

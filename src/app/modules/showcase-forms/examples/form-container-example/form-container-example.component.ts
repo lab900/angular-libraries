@@ -18,6 +18,10 @@ export class FormContainerExampleComponent {
   private formContainer: FormContainerComponent<any>;
 
   public submitForm(): void {
-    console.log(this.formContainer.value);
+    if (this.formContainer.valid) {
+      console.log(this.formContainer.value);
+    } else {
+      this.formContainer.form.markAllAsTouched();
+    }
   }
 }

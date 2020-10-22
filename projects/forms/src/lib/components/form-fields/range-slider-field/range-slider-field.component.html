@@ -10,7 +10,7 @@
         [format]="options?.format"
         [required]="required"
     ></lab900-mat-range-slider-field>
-    <div class="radio-buttons-field__error">
-        <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
+    <div class="radio-buttons-field__error" *ngIf="group.controls[schema.attribute].touched && !valid && !readonly">
+        <mat-error>{{ getErrorMessage() | async }}</mat-error>
     </div>
 </div>

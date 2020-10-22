@@ -1,5 +1,5 @@
 <mat-form-field [formGroup]="group" *ngIf="!hide(this.group.value)">
-    <mat-label translate>{{ schema.title }}</mat-label>
+    <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
     <mat-hint *ngIf="hint && !readonly && !(schema.options.hint.hideHintOnValidValue && input.value)" translate>{{ hint }}</mat-hint>
     <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
     <mat-icon matSuffix *ngIf="!readonly">search</mat-icon>
