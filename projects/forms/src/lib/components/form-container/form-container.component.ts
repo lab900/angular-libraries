@@ -3,6 +3,7 @@ import { FormGroup, FormArray } from '@angular/forms';
 import { Form } from '../../models/Form';
 import { Lab900FormBuilderService } from '../../services/form-builder.service';
 import { FormField } from '../../models/FormField';
+import { areValuesEqual } from '../../models/IFieldConditions';
 
 @Component({
   selector: 'lab900-form-container',
@@ -32,7 +33,7 @@ export class FormContainerComponent<T> implements OnChanges {
     if (changes.schema) {
       this.form = this.fb.createFormGroup(this.schema.fields, null, this.data);
     }
-    if (changes.data && this.data) {
+    if (!changes?.data?.isFirstChange() && this.data) {
       setTimeout(() => this.patchValues(this.data, changes.data.previousValue));
     }
   }
@@ -40,7 +41,7 @@ export class FormContainerComponent<T> implements OnChanges {
   public patchValues(data: T, prevData?: T): void {
     Object.keys(data).forEach((key: string) => {
       const control = this.form.controls[key];
-      if (control && data[key] !== prevData?.[key]) {
+      if (control && !areValuesEqual(data[key], prevData?.[key])) {
         if (control instanceof FormArray) {
           const fieldSchema = this.schema.fields.find((field: FormField) => field.attribute === key);
           if (data[key] && fieldSchema) {

@@ -1,6 +1,19 @@
 import { EditType, Form } from '@lab900/forms';
 import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
+
+const incidents = [
+  {
+    id: 1,
+    name: 'x',
+    areas: [
+      { type: 'WELCOME', name: 'xxxx', id: 1 },
+      { type: 'CALL', name: 'xxxx', id: 2 },
+    ],
+  },
+];
+
+let areas;
 
 export const formFieldsExample: Form = {
   readonly: false,
@@ -52,41 +65,28 @@ export const formFieldsExample: Form = {
       editType: EditType.Row,
       nestedFields: [
         {
-          title: 'country',
-          attribute: 'country',
+          title: 'incidentId',
+          attribute: 'incidentId',
           editType: EditType.Select,
           options: {
             colspan: 12,
-            selectOptions: of([
-              {
-                label: 'Belgium',
-                value: 'BE',
-              },
-              {
-                label: 'England',
-                value: 'EN',
-              },
-            ]).pipe(delay(1000)),
+            selectOptions: of(incidents.map((i) => ({ value: i.id, label: i.name }))).pipe(delay(100)),
           },
         },
         {
-          title: 'languages',
-          attribute: 'languages',
+          title: 'registerPoint',
+          attribute: 'registerPoint',
           editType: EditType.Select,
           conditions: [
             {
-              dependOn: 'country',
+              dependOn: 'incidentId',
               enableIfHasValue: true,
-              conditionalOptions: (value: string) => {
+              conditionalOptions: (value: number) => {
                 if (value) {
-                  return of(
-                    value === 'BE'
-                      ? [
-                          { label: 'Vlaams', value: 'VL' },
-                          { label: 'Waals', value: 'WL' },
-                        ]
-                      : [{ label: 'Engels', value: 'EN' }],
-                  ).pipe(delay(5000));
+                  return of(['WELCOME', 'CALLS'].map((v) => ({ value: v, label: v }))).pipe(
+                    delay(100),
+                    tap((_) => (areas = incidents[0].areas)),
+                  );
                 }
                 return of([]);
               },
@@ -97,38 +97,16 @@ export const formFieldsExample: Form = {
           },
         },
         {
-          title: 'dialects',
-          attribute: 'dialects',
+          title: 'locationId',
+          attribute: 'locationId',
           editType: EditType.Select,
           conditions: [
             {
-              dependOn: 'languages',
+              dependOn: 'registerPoint',
               enableIfHasValue: true,
-              conditionalOptions: (value: string) => {
+              conditionalOptions: (value: number) => {
                 if (value) {
-                  return value === 'VL' ? of([{ label: 'Antwerps', value: 'ANT' }]).pipe(delay(2000)) : [{ label: 'Brits', value: 'BR' }];
-                }
-                return [];
-              },
-            },
-          ],
-          options: {
-            colspan: 12,
-          },
-        },
-        {
-          title: 'sub dialects',
-          attribute: 'subDialects',
-          editType: EditType.Select,
-          conditions: [
-            {
-              dependOn: 'dialects',
-              enableIfHasValue: true,
-              conditionalOptions: (value: string) => {
-                if (value) {
-                  return value === 'ANT'
-                    ? of([{ label: 'Plat antwerps', value: 'PLAT_ANT' }]).pipe(delay(2000))
-                    : [{ label: 'Heel Brits', value: 'HEEL_BR' }];
+                  return areas || [];
                 }
                 return [];
               },

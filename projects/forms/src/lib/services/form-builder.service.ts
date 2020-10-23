@@ -39,12 +39,10 @@ export class Lab900FormBuilderService {
           }),
         );
       } else {
-        let controlValue: any | null = null;
-
-        if (field.options && field.options.defaultValue) {
+        let controlValue: any | null = data?.[field.attribute];
+        if (!controlValue && field.options && field.options.defaultValue) {
           controlValue = typeof field.options.defaultValue === 'function' ? field.options.defaultValue() : field.options.defaultValue;
         }
-
         formGroup.addControl(field.attribute, new FormControl(controlValue, this.addValidators(field)));
       }
     });

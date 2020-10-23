@@ -1,6 +1,15 @@
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormField } from './FormField';
 import { Observable, Subscription } from 'rxjs';
+import * as _ from 'lodash';
+import validate = WebAssembly.validate;
+
+export const areValuesEqual = (val1: any, val2: any): boolean => {
+  if (typeof val1 === 'object' && typeof val2 === 'object') {
+    return _.isEqual(val1, val2);
+  }
+  return val1 === val2;
+};
 
 export interface IFieldConditions<T = any> {
   dependOn: string;
@@ -47,12 +56,14 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   }
 
   public start(callback?: (dependOn: string, value: T) => void): Subscription {
-    this.runAll(this.dependControl.value, callback);
-    return this.dependControl.valueChanges.subscribe((value: T) => this.runAll(value, callback));
+    console.log(this.dependOn, this.dependControl.value);
+
+    this.runAll(this.dependControl.value, true, callback);
+    return this.dependControl.valueChanges.subscribe((value: T) => this.runAll(value, false, callback));
   }
 
-  public runAll(value: T, callback?: (dependOn: string, value: T) => void): void {
-    if (this.prevValue !== value) {
+  public runAll(value: T, firstRun: boolean, callback?: (dependOn: string, value: T) => void): void {
+    if (firstRun || !areValuesEqual(this.prevValue, value)) {
       if (this.onChangeFn && typeof this.onChangeFn === 'function') {
         this.onChangeFn(value, this.fieldControl, this.dependControl);
       }

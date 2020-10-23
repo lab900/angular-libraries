@@ -39,7 +39,7 @@ const routes: Routes = [
     'Dynamic forms',
     [
       new ShowcaseExample(FormContainerExampleComponent, 'Form Container'),
-      new ShowcaseExample(FormContainerReadonlyExampleComponent, 'Form Container Readonly', 'form-container-example'),
+      // new ShowcaseExample(FormContainerReadonlyExampleComponent, 'Form Container Readonly', 'form-container-example'),
     ],
     'guides/forms/creating-forms.md',
   ),

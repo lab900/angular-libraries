@@ -4,8 +4,7 @@ export const formDataExample = {
     number: 12,
   },
   firstname: 'Example',
-  country: 'BE',
-  languages: 'VL',
-  dialects: 'ANT',
-  subDialects: 'PLAT_ANT',
+  incidentId: 1,
+  registerPoint: 'WELCOME',
+  locationId: 2,
 };

@@ -3,7 +3,7 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions, ValueLabel } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
 import { isObservable, Observable, of, Subject } from 'rxjs';
-import { catchError, switchMap, take } from 'rxjs/operators';
+import { catchError, switchMap, take, tap } from 'rxjs/operators';
 import { IFieldConditions } from '../../../models/IFieldConditions';
 
 @Component({
@@ -22,7 +22,11 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
 
   public get selectedOption(): any {
     if (this.selectOptions && this.fieldControl.value) {
-      return this.selectOptions.find((opt) => this.defaultCompare(opt.value, this.fieldControl.value));
+      return this.selectOptions.find((opt) =>
+        this.options?.compareWith
+          ? this.options?.compareWith(opt.value, this.fieldControl.value)
+          : this.defaultCompare(opt.value, this.fieldControl.value),
+      );
     }
     return null;
   }
@@ -31,7 +35,10 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
     super(translateService);
     this.subs.push(
       this.conditionalChange
-        .pipe(switchMap(({ condition, value }) => this.getConditionalOptions(condition, value)))
+        .pipe(
+          tap(console.log),
+          switchMap(({ condition, value }) => this.getConditionalOptions(condition, value)),
+        )
         .subscribe((options: ValueLabel[]) => {
           this.selectOptions = options;
           this.loading = false;
