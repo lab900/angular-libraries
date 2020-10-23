@@ -30,6 +30,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public conditionalOptions?: (value: T) => any;
 
   public readonly dependControl: AbstractControl;
+  public prevValue: T;
 
   private get fieldControl(): AbstractControl {
     return this.group.get(this.schema.attribute);
@@ -45,27 +46,30 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
     }
   }
 
-  public start(callback?: (dependOn: string, value: any) => void): Subscription {
+  public start(callback?: (dependOn: string, value: T) => void): Subscription {
     this.runAll(this.dependControl.value, callback);
-    return this.dependControl.valueChanges.subscribe((value: any) => this.runAll(value, callback));
+    return this.dependControl.valueChanges.subscribe((value: T) => this.runAll(value, callback));
   }
 
-  public runAll(value: any, callback?: (dependOn: string, value: any) => void): void {
-    if (this.onChangeFn && typeof this.onChangeFn === 'function') {
-      this.onChangeFn(value, this.fieldControl, this.dependControl);
-    }
-    if (!this.schema.options?.visibleFn) {
-      this.runVisibilityConditions(value);
-    } else {
-      throw new Error(`Can't create visibility conditions: visibleFn option is set and may cause conflicts`);
-    }
-    if (!this.schema.options?.readonly) {
-      this.runDisableConditions(value);
-    } else {
-      throw new Error(`Can't create disabled/enable conditions: readonly option is set and may cause conflicts`);
-    }
-    if (callback && typeof callback === 'function') {
-      callback(this.dependOn, value);
+  public runAll(value: T, callback?: (dependOn: string, value: T) => void): void {
+    if (this.prevValue !== value) {
+      if (this.onChangeFn && typeof this.onChangeFn === 'function') {
+        this.onChangeFn(value, this.fieldControl, this.dependControl);
+      }
+      if (!this.schema.options?.visibleFn) {
+        this.runVisibilityConditions(value);
+      } else {
+        throw new Error(`Can't create visibility conditions: visibleFn option is set and may cause conflicts`);
+      }
+      if (!this.schema.options?.readonly) {
+        this.runDisableConditions(value);
+      } else {
+        throw new Error(`Can't create disabled/enable conditions: readonly option is set and may cause conflicts`);
+      }
+      if (callback && typeof callback === 'function') {
+        callback(this.dependOn, value);
+      }
+      this.prevValue = value;
     }
   }
 
@@ -75,18 +79,18 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
     }
   }
 
-  public runVisibilityConditions(value: any): void {
+  public runVisibilityConditions(value: T): void {
     const hide = (isTrue: boolean) => (this.schema.options.hide = isTrue);
-    this.run('hideIfHasValue', this.hideIfHasValue && value, (isTrue: boolean) => hide(isTrue));
-    this.run('showIfHasValue', this.showIfHasValue && value, (isTrue: boolean) => hide(!isTrue));
+    this.run('hideIfHasValue', this.hideIfHasValue && !!value, (isTrue: boolean) => hide(isTrue));
+    this.run('showIfHasValue', this.showIfHasValue && !!value, (isTrue: boolean) => hide(!isTrue));
     this.run('hideIfEquals', this.hideIfEquals === value, (isTrue: boolean) => hide(isTrue));
     this.run('showIfEquals', this.showIfEquals === value, (isTrue: boolean) => hide(!isTrue));
   }
 
-  public runDisableConditions(value: any): void {
+  public runDisableConditions(value: T): void {
     const enable = (isTrue: boolean) => setTimeout(() => (isTrue ? this.fieldControl.enable() : this.fieldControl.disable()));
-    this.run('disableIfHasValue', this.disableIfHasValue && value, (isTrue: boolean) => enable(!isTrue));
-    this.run('enableIfHasValue', this.enableIfHasValue && value, (isTrue: boolean) => enable(isTrue));
+    this.run('disableIfHasValue', this.disableIfHasValue && !!value, (isTrue: boolean) => enable(!isTrue));
+    this.run('enableIfHasValue', this.enableIfHasValue && !!value, (isTrue: boolean) => enable(isTrue));
     this.run('disableIfEquals', this.disableIfEquals === value, (isTrue: boolean) => enable(!isTrue));
     this.run('enabledIfEquals', this.enabledIfEquals === value, (isTrue: boolean) => enable(isTrue));
   }

@@ -1,11 +1,11 @@
-import { Form, EditType } from '@lab900/forms';
-import { Observable, of } from 'rxjs';
-import { delay, map, tap } from 'rxjs/operators';
+import { EditType, Form } from '@lab900/forms';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 export const formFieldsExample: Form = {
   readonly: false,
   fields: [
-    {
+    /*    {
       editType: EditType.Row,
       nestedFields: [
         {
@@ -47,7 +47,7 @@ export const formFieldsExample: Form = {
           },
         },
       ],
-    },
+    },*/
     {
       editType: EditType.Row,
       nestedFields: [
@@ -79,7 +79,14 @@ export const formFieldsExample: Form = {
               enableIfHasValue: true,
               conditionalOptions: (value: string) => {
                 if (value) {
-                  return of(value === 'BE' ? [{ label: 'Vlaams', value: 'VL' }] : [{ label: 'Engels', value: 'EN' }]).pipe(delay(5000));
+                  return of(
+                    value === 'BE'
+                      ? [
+                          { label: 'Vlaams', value: 'VL' },
+                          { label: 'Waals', value: 'WL' },
+                        ]
+                      : [{ label: 'Engels', value: 'EN' }],
+                  ).pipe(delay(5000));
                 }
                 return of([]);
               },
@@ -99,7 +106,29 @@ export const formFieldsExample: Form = {
               enableIfHasValue: true,
               conditionalOptions: (value: string) => {
                 if (value) {
-                  return value === 'VL' ? [{ label: 'Antwerps', value: 'ANT' }] : [{ label: 'Brits', value: 'BR' }];
+                  return value === 'VL' ? of([{ label: 'Antwerps', value: 'ANT' }]).pipe(delay(2000)) : [{ label: 'Brits', value: 'BR' }];
+                }
+                return [];
+              },
+            },
+          ],
+          options: {
+            colspan: 12,
+          },
+        },
+        {
+          title: 'sub dialects',
+          attribute: 'subDialects',
+          editType: EditType.Select,
+          conditions: [
+            {
+              dependOn: 'dialects',
+              enableIfHasValue: true,
+              conditionalOptions: (value: string) => {
+                if (value) {
+                  return value === 'ANT'
+                    ? of([{ label: 'Plat antwerps', value: 'PLAT_ANT' }]).pipe(delay(2000))
+                    : [{ label: 'Heel Brits', value: 'HEEL_BR' }];
                 }
                 return [];
               },

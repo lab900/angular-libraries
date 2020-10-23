@@ -33,21 +33,22 @@ export class FormContainerComponent<T> implements OnChanges {
       this.form = this.fb.createFormGroup(this.schema.fields, null, this.data);
     }
     if (changes.data && this.data) {
-      setTimeout(() => this.patchValues(this.data), 0);
+      setTimeout(() => this.patchValues(this.data, changes.data.previousValue));
     }
   }
 
-  public patchValues(data: T): void {
+  public patchValues(data: T, prevData?: T): void {
     Object.keys(data).forEach((key: string) => {
       const control = this.form.controls[key];
-      if (control) {
+      if (control && data[key] !== prevData?.[key]) {
         if (control instanceof FormArray) {
           const fieldSchema = this.schema.fields.find((field: FormField) => field.attribute === key);
           if (data[key] && fieldSchema) {
             this.fb.createFormArray(data, fieldSchema, control);
           }
+        } else {
+          control.patchValue(data[key]);
         }
-        control.patchValue(data[key]);
       }
     });
   }
