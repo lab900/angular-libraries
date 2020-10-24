@@ -1,19 +1,18 @@
 import { EditType, Form } from '@lab900/forms';
 import { of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
+import { AbstractControl } from '@angular/forms';
 
 const incidents = [
   {
     id: 1,
     name: 'x',
     areas: [
-      { type: 'WELCOME', name: 'xxxx', id: 1 },
-      { type: 'CALL', name: 'xxxx', id: 2 },
+      { type: 'WELCOME', name: 'xxxx welcome', id: 1 },
+      { type: 'CALLS', name: 'xxxx calls', id: 2 },
     ],
   },
 ];
-
-let areas;
 
 export const formFieldsExample: Form = {
   readonly: false,
@@ -83,10 +82,7 @@ export const formFieldsExample: Form = {
               enableIfHasValue: true,
               conditionalOptions: (value: number) => {
                 if (value) {
-                  return of(['WELCOME', 'CALLS'].map((v) => ({ value: v, label: v }))).pipe(
-                    delay(100),
-                    tap((_) => (areas = incidents[0].areas)),
-                  );
+                  return of(['WELCOME', 'CALLS'].map((v) => ({ value: v, label: v }))).pipe(delay(100));
                 }
                 return of([]);
               },
@@ -104,9 +100,11 @@ export const formFieldsExample: Form = {
             {
               dependOn: 'registerPoint',
               enableIfHasValue: true,
-              conditionalOptions: (value: number) => {
+              conditionalOptions: (value: string, currentControl: AbstractControl) => {
                 if (value) {
-                  return areas || [];
+                  const incidentId = currentControl.parent.get('incidentId').value;
+                  const areas = incidents.find((i) => i.id === incidentId)?.areas;
+                  return [...(areas || [])].filter((a) => a.type === value).map((i) => ({ value: i.id, label: i.name }));
                 }
                 return [];
               },

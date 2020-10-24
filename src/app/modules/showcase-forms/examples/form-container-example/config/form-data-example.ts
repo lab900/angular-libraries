@@ -6,5 +6,5 @@ export const formDataExample = {
   firstname: 'Example',
   incidentId: 1,
   registerPoint: 'WELCOME',
-  locationId: 2,
+  locationId: 1,
 };

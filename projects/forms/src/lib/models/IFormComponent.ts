@@ -62,7 +62,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     }
   }
 
-  public onConditionalChange(dependOn: string, value: any): void {}
+  public onConditionalChange(dependOn: string, value: any, firstRun?: boolean): void {}
 
   public hide(value?: any): boolean {
     if (typeof this.schema?.options?.hide === 'function') {
@@ -134,9 +134,9 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
       .map((c) => new FieldConditions(this.group, this.schema, c))
       .forEach((conditions: FieldConditions) =>
         this.subs.push(
-          conditions.start((dependOn: string, value: any) => {
+          conditions.start((dependOn: string, value: any, firstRun: boolean) => {
             if (this.onConditionalChange) {
-              this.onConditionalChange(dependOn, value);
+              this.onConditionalChange(dependOn, value, firstRun);
             }
           }),
         ),

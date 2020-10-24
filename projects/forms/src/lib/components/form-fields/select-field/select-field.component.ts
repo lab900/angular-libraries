@@ -67,20 +67,24 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
     }
   }
 
-  public onConditionalChange(dependOn: string, value: string): void {
-    const condition = this.schema.conditions.find((c) => c.dependOn === dependOn);
-    if (condition?.conditionalOptions) {
-      this.fieldControl.reset();
-      this.conditionalChange.next({ condition, value });
-    } else {
-      this.selectOptions = [];
-    }
+  public onConditionalChange(dependOn: string, value: string, firstRun: boolean): void {
+    setTimeout(() => {
+      const condition = this.schema.conditions.find((c) => c.dependOn === dependOn);
+      if (condition?.conditionalOptions) {
+        if (!firstRun || !value) {
+          this.fieldControl.reset();
+        }
+        this.conditionalChange.next({ condition, value });
+      } else {
+        this.selectOptions = [];
+      }
+    });
   }
 
   private getConditionalOptions(condition: IFieldConditions, value: any): Observable<ValueLabel[]> {
     this.selectOptions = [];
     this.loading = true;
-    const values = condition?.conditionalOptions(value);
+    const values = condition?.conditionalOptions(value, this.fieldControl);
     return (isObservable(values) ? values : of(values)).pipe(catchError(() => of([])));
   }
 }
