@@ -1,6 +1,6 @@
 import { Component, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
-import { AutocompleteOptions } from '../../../models/FormField';
+import { AutocompleteOptions, ValueLabel } from '../../../models/FormField';
 import { Observable, isObservable, of } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -12,7 +12,7 @@ export class AutocompleteFieldComponent extends FormComponent<AutocompleteOption
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  public filteredOptions: Observable<any[]>;
+  public filteredOptions: Observable<ValueLabel[]>;
 
   public constructor(translateService: TranslateService) {
     super(translateService);

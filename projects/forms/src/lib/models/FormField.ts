@@ -57,15 +57,15 @@ export interface RepeaterFieldOptions extends FieldOptions {
 export interface SelectFieldOptions extends FieldOptions {
   multiple?: boolean;
   selectOptions?: (() => ValueLabel[] | Observable<ValueLabel[]>) | ValueLabel[] | Observable<ValueLabel[]>;
-  conditionalSelectOptions?: (dependOn: string, value: string) => ValueLabel[] | Observable<ValueLabel[]>;
+  conditionalSelectOptions?: (dependOn: string, value: any) => ValueLabel[] | Observable<ValueLabel[]>;
   compareWith?: (o1: any, o2: any) => boolean;
-  displayOptionFn?: (option: any) => string;
+  displayOptionFn?: (option: ValueLabel) => string;
 }
 
 export interface AutocompleteOptions extends FieldOptions {
-  displayInputFn: (option: any) => string;
-  displayOptionFn: (option: any) => string;
-  autocompleteOptions?: (searchTerm: string) => any[] | Observable<any[]>;
+  displayInputFn: (option: any) => string; // the value of the ValueLabel will be passed here
+  displayOptionFn: (option: ValueLabel) => string;
+  autocompleteOptions?: (searchTerm: string) => ValueLabel[] | Observable<ValueLabel[]>;
 }
 
 export interface RadioButtonsFieldOptions extends FieldOptions {

@@ -15,8 +15,9 @@
     <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
     <mat-icon matSuffix *ngIf="!readonly">search</mat-icon>
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="options.displayInputFn">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            <div [innerHTML]="(options.displayOptionFn(option) || option) | translate"></div>
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option?.value">
+            <div *ngIf="options?.displayOptionFn" [innerHTML]="options.displayOptionFn(option) | translate"></div>
+            <ng-container *ngIf="!options?.displayOptionFn">{{ option.label | translate }}</ng-container>
         </mat-option>
     </mat-autocomplete>
 </mat-form-field>

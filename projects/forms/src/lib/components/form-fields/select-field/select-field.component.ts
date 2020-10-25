@@ -35,10 +35,7 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
     super(translateService);
     this.subs.push(
       this.conditionalChange
-        .pipe(
-          tap(console.log),
-          switchMap(({ condition, value }) => this.getConditionalOptions(condition, value)),
-        )
+        .pipe(switchMap(({ condition, value }) => this.getConditionalOptions(condition, value)))
         .subscribe((options: ValueLabel[]) => {
           this.selectOptions = options;
           this.loading = false;
