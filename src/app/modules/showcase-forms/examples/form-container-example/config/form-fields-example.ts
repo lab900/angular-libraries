@@ -1,6 +1,6 @@
 import { EditType, Form } from '@lab900/forms';
 import { of } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
+import { delay } from 'rxjs/operators';
 import { AbstractControl } from '@angular/forms';
 
 const incidents = [
@@ -68,6 +68,7 @@ export const formFieldsExample: Form = {
           attribute: 'incidentId',
           editType: EditType.Select,
           options: {
+            readonly: true,
             colspan: 12,
             selectOptions: of(incidents.map((i) => ({ value: i.id, label: i.name }))).pipe(delay(100)),
           },
