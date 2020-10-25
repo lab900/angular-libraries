@@ -6,8 +6,7 @@ import { Subject } from 'rxjs';
 import { BaseControlValueAccessorDirective } from './BaseControlValueAccessor';
 
 @Directive()
-export abstract class AbstractMaterialReactiveFormControlDirective<T>
-  extends BaseControlValueAccessorDirective<T>
+export abstract class AbstractMaterialReactiveFormControlDirective<T> extends BaseControlValueAccessorDirective<T>
   implements MatFormFieldControl<T>, OnInit, OnDestroy {
   static nextId = 0;
   @HostBinding() readonly id: string;
