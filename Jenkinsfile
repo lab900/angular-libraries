@@ -92,8 +92,12 @@ pipeline {
                 stage('Publish Form library') {
                     steps {
                         withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
-                            sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> ~/.npmrc'
-                            sh 'npm publish'
+                            dir('./build') {
+                                sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> ./build/dist/@lab900/forms/.npmrc'
+                            }
+                            dir('./build/dist/@lab900/forms') {
+                                sh 'npm publish'
+                            }
                         }
                     }
                 }
