@@ -85,6 +85,8 @@ pipeline {
                 stage('Build & publish Form library') {
                     steps {
                         dir('./build/projects/forms/') {
+                            sh 'git config --global user.email "info@lab900.com"'
+                            sh 'git config --global user.name "lab900"'
                             sh "npm version patch"
                         }
                         dir('./build') {
