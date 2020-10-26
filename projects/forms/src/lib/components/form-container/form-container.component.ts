@@ -34,7 +34,7 @@ export class FormContainerComponent<T> implements OnChanges {
       this.form = this.fb.createFormGroup(this.schema.fields, null, this.data);
     }
     if (!changes?.data?.isFirstChange() && this.data) {
-      setTimeout(() => this.patchValues(this.data, changes.data.previousValue));
+      setTimeout(() => this.patchValues(this.data, changes?.data?.previousValue));
     }
   }
 

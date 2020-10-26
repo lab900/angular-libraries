@@ -3,7 +3,7 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions, ValueLabel } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
 import { isObservable, Observable, of, Subject } from 'rxjs';
-import { catchError, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, switchMap, take } from 'rxjs/operators';
 import { IFieldConditions } from '../../../models/IFieldConditions';
 
 @Component({

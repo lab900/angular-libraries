@@ -24,6 +24,7 @@ export interface IFieldConditions<T = any> {
   enabledIfEquals?: T;
   onChangeFn?: (value: T, currentControl: AbstractControl, dependControl: AbstractControl) => any;
   conditionalOptions?: (value: T, currentControl: AbstractControl) => any[] | Observable<any[]>;
+  skipIfNotExists?: boolean;
 }
 
 export class FieldConditions<T = any> implements IFieldConditions<T> {
@@ -38,6 +39,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public enabledIfEquals?: T;
   public onChangeFn?: (value: T, currentControl: AbstractControl, dependControl: AbstractControl) => any;
   public conditionalOptions?: (value: T) => any;
+  public skipIfNotExists = false;
 
   public readonly dependControl: AbstractControl;
   public prevValue: T;
@@ -50,17 +52,19 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
     if (fieldConditions) {
       Object.assign(this, fieldConditions);
       this.dependControl = this.group.get(this.dependOn);
-      if (!this.dependControl) {
+      if (!this.skipIfNotExists && !this.dependControl) {
         throw new Error(`Can't create conditional form field: no control with name ${this.dependOn} found`);
       }
     }
   }
 
   public start(callback?: (dependOn: string, value: T, firstRun?: boolean) => void): Subscription {
-    this.runAll(this.dependControl.value, true, callback);
-    return this.dependControl.valueChanges
-      .pipe(debounceTime(100), distinctUntilChanged())
-      .subscribe((value: T) => this.runAll(value, false, callback));
+    if (this.dependControl) {
+      this.runAll(this.dependControl.value, true, callback);
+      return this.dependControl.valueChanges
+        .pipe(debounceTime(100), distinctUntilChanged())
+        .subscribe((value: T) => this.runAll(value, false, callback));
+    }
   }
 
   public runAll(value: T, firstRun: boolean, callback?: (dependOn: string, value: T, firstRun?: boolean) => void): void {
@@ -73,11 +77,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
       } else {
         throw new Error(`Can't create visibility conditions: visibleFn option is set and may cause conflicts`);
       }
-      if (!this.schema.options?.readonly) {
-        this.runDisableConditions(value);
-      } else {
-        throw new Error(`Can't create disabled/enable conditions: readonly option is set and may cause conflicts`);
-      }
+      this.runDisableConditions(value);
       if (callback && typeof callback === 'function') {
         callback(this.dependOn, value, firstRun);
       }

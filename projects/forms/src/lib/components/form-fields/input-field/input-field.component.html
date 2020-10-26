@@ -1,4 +1,4 @@
-<mat-form-field *ngIf="!hide(this.group.value)" [formGroup]="group" class="input-field">
+<mat-form-field *ngIf="!fieldIsHidden" [formGroup]="group" class="input-field">
     <mat-label *ngIf="schema.title">{{ schema.title | translate }}</mat-label>
     <input
         matInput
@@ -7,13 +7,13 @@
         placeholder="{{ placeholder | translate }}"
         [formControlName]="schema.attribute"
         [required]="required"
-        [readonly]="isReadonly(this.group.value)"
-        [ngClass]="{ 'readonly' : (readonly || options?.readonly) }"
+        [readonly]="fieldIsReadonly"
+        [ngClass]="{ 'readonly' : fieldIsReadonly }"
         [mask]="options?.mask"
     >
-    <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !readonly">{{ hint | translate }}</mat-hint>
-    <mat-hint align="end" *ngIf="options?.maxLength && !readonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
-    <mat-error *ngIf="!valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
+    <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !fieldIsReadonly">{{ hint | translate }}</mat-hint>
+    <mat-hint align="end" *ngIf="options?.maxLength && !fieldIsReadonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
+    <mat-error *ngIf="!valid && !fieldIsReadonly">{{ getErrorMessage() | async }}</mat-error>
     <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'left'" matPrefix class="input-field__icon-left"></lab900-icon>
     <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'right'" matSuffix ></lab900-icon>
 </mat-form-field>

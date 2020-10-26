@@ -1,4 +1,4 @@
-<div [formGroup]="group" *ngIf="!hide(this.group.value)">
+<div [formGroup]="group" *ngIf="!fieldIsHidden">
     <!-- ToDo: Disable when readonly -->
     <mat-checkbox
         #checkbox
@@ -9,7 +9,7 @@
     >
       {{schema.title | translate}}
     </mat-checkbox>
-    <div *ngIf="!readonly" class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
+    <div *ngIf="!fieldIsReadonly" class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
         <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && checkbox.value)" translate>{{ hint }}</mat-hint>
         <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
     </div>

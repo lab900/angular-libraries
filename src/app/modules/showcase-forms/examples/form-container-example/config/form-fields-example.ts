@@ -68,7 +68,6 @@ export const formFieldsExample: Form = {
           attribute: 'incidentId',
           editType: EditType.Select,
           options: {
-            readonly: true,
             colspan: 12,
             selectOptions: of(incidents.map((i) => ({ value: i.id, label: i.name }))).pipe(delay(100)),
           },
@@ -91,6 +90,9 @@ export const formFieldsExample: Form = {
           ],
           options: {
             colspan: 12,
+            readonly: (d: any) => {
+              return !!d?.incidentId;
+            },
           },
         },
         {

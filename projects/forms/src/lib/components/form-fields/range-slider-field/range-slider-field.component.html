@@ -1,4 +1,4 @@
-<div [formGroup]="group" *ngIf="!hide(this.group.value)">
+<div [formGroup]="group" *ngIf="!fieldIsHidden">
     <span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
     <lab900-mat-range-slider-field 
         [formControlName]="schema.attribute" 
@@ -10,7 +10,7 @@
         [format]="options?.format"
         [required]="required"
     ></lab900-mat-range-slider-field>
-    <div class="radio-buttons-field__error" *ngIf="group.controls[schema.attribute].touched && !valid && !readonly">
+    <div class="radio-buttons-field__error" *ngIf="group.controls[schema.attribute].touched && !valid && !fieldIsReadonly">
         <mat-error>{{ getErrorMessage() | async }}</mat-error>
     </div>
 </div>
