@@ -85,7 +85,7 @@ pipeline {
                 stage('Build & publish Form library') {
                     steps {
                         dir('./projects/forms/') {
-                            sh 'echo pwd()'
+                            sh 'echo "current directory: ${pwd()}"'
                             sh 'git config --global user.email "info@lab900.com"'
                             sh 'git config --global user.name "lab900"'
                             sh "npm version patch"
