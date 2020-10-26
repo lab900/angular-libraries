@@ -82,20 +82,17 @@ pipeline {
                         }
                     }
                 }
-                stage('Build Form library') {
+                stage('Build & publish Form library') {
                     steps {
+                        dir('./build/projects/forms/') {
+                            sh "npm version patch"
+                        }
                         dir('./build') {
                             sh "npm run build:forms:prod"
                         }
-                    }
-                }
-                stage('Publish Form library') {
-                    steps {
                         withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
-                            dir('./build') {
-                                sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> ./build/dist/@lab900/forms/.npmrc'
-                            }
                             dir('./build/dist/@lab900/forms') {
+                                sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> .npmrc'
                                 sh 'npm publish'
                             }
                         }
