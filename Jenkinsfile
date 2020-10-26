@@ -84,22 +84,24 @@ pipeline {
                 }
                 stage('Build & publish Form library') {
                     steps {
-                        dir('./projects/forms/') {
-                            print "current directory: ${pwd()}"
-                            sh 'git config --global user.email "info@lab900.com"'
-                            sh 'git config --global user.name "lab900"'
-                            sh "npm version patch"
+                        withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
+                            dir('./projects/forms/') {
+                                print "current directory: ${pwd()}"
+                                sh 'git config --global user.email "info@lab900.com"'
+                                sh 'git config --global user.name "lab900"'
+                                sh "npm version patch"
+                                print "current directory: ${pwd()}"
+                                sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> .npmrc'
+                            }
                         }
                         dir('./build') {
                             print "current directory: ${pwd()}"
                             sh "npm run build:forms:prod"
                         }
-                        withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
-                            dir('./dist/@lab900/forms') {
-                                print "current directory: ${pwd()}"
-                                sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> .npmrc'
-                                sh 'npm publish'
-                            }
+                        dir('./dist/@lab900/forms') {
+                            print "current directory: ${pwd()}"
+                            sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> .npmrc'
+                            sh 'npm publish'
                         }
                     }
                 }
