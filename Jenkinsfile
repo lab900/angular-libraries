@@ -40,6 +40,7 @@ pipeline {
     agent none
     environment {
         GH_TOKEN = credentials('Github_token')
+        NPMJS_TOKEN = credentials('npm')
     }
     stages {
         stage('Check branch changed') {
@@ -85,6 +86,14 @@ pipeline {
                     steps {
                         dir('./build') {
                             sh "npm run build:forms:prod"
+                        }
+                    }
+                }
+                stage('Publish Form library') {
+                    steps {
+                        withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
+                            sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> ~/.npmrc'
+                            sh 'npm publish'
                         }
                     }
                 }
