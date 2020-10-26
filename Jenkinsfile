@@ -91,10 +91,12 @@ pipeline {
                             sh "npm version patch"
                         }
                         dir('./build') {
+                            print "current directory: ${pwd()}"
                             sh "npm run build:forms:prod"
                         }
                         withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
-                            dir('./build/dist/@lab900/forms') {
+                            dir('./dist/@lab900/forms') {
+                                print "current directory: ${pwd()}"
                                 sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> .npmrc'
                                 sh 'npm publish'
                             }
