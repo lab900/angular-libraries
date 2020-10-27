@@ -4,7 +4,6 @@ import { AfterViewInit, Directive, Input, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subscription } from 'rxjs';
 import { FieldConditions } from './IFieldConditions';
-import { debounceTime } from 'rxjs/operators';
 
 export interface IFormComponent<T extends FieldOptions> {
   schema: FormField<T>;
@@ -61,8 +60,10 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
         this.isReadonly();
         this.subs.push(
           this.group.valueChanges.subscribe(() => {
-            this.hide();
-            this.isReadonly();
+            setTimeout(() => {
+              this.hide();
+              this.isReadonly();
+            });
           }),
         );
       });

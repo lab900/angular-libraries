@@ -27,6 +27,10 @@ export class FormContainerComponent<T> implements OnChanges {
     return this.form.value as T;
   }
 
+  public get readonly(): boolean {
+    return this.schema?.readonly;
+  }
+
   public constructor(private fb: Lab900FormBuilderService) {}
 
   public ngOnChanges(changes: SimpleChanges): void {

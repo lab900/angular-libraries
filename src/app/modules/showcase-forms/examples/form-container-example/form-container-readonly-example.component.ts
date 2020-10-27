@@ -9,13 +9,8 @@ import { formDataExample } from './config/form-data-example';
 })
 export class FormContainerReadonlyExampleComponent {
   public formFields: Form = { ...formFieldsExample, readonly: true };
-  public formData;
+  public formData = formDataExample;
 
   @ViewChild('lab900FormContainer')
   private formContainer: FormContainerComponent<any>;
-
-  public constructor() {
-    setTimeout(() => (this.formData = formDataExample), 500);
-    setTimeout(() => (this.formData = { ...formDataExample, name: 'fdsfdsfdsjfs' }), 10000);
-  }
 }
