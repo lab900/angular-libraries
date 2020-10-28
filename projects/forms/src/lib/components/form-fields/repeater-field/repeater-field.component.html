@@ -1,4 +1,4 @@
-<div [formGroup]="group" *ngIf="!hide(this.group.value)" class="repeater-field" [class.fixed-list]="fixedList">
+<div [formGroup]="group" *ngIf="!fieldIsHidden" class="repeater-field" [class.fixed-list]="fixedList">
     <div [formArrayName]="schema.attribute">
         <span *ngIf="schema.title" class="lab900-form-field-label">{{ schema.title | translate }}</span>
         <div *ngFor="let control of repeaterArray.controls; let i=index" class="repeater-row">
@@ -10,13 +10,13 @@
                     [group]="control"
                 ></ng-container>
             </div>
-            <div *ngIf="!fixedList && !readonly" class="repeater-row__actions">
+            <div *ngIf="!fixedList && !fieldIsReadonly" class="repeater-row__actions">
                 <button *ngIf="(i + 1) > minRows || options?.removeAll" (click)="removeFromArray(i)" mat-mini-fab class="mat-elevation-z0" [color]="options?.buttonColor || 'accent'" aria-label="Delete">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
         </div>
-        <div *ngIf="!fixedList && !readonly" class="repeater-field__actions">
+        <div *ngIf="!fixedList && !fieldIsReadonly" class="repeater-field__actions">
             <button mat-button color="primary" [disabled]="!!maxRows && repeaterArray.length >= maxRows" (click)="addToArray()" class="repeater-add">{{ addLabel | translate }}</button>
         </div>
     </div>

@@ -6,6 +6,7 @@ import {
   OnChanges,
   OnDestroy,
   OnInit,
+  SimpleChanges,
   Type,
   ViewContainerRef,
 } from '@angular/core';
@@ -95,29 +96,42 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
 
   public constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
 
-  public ngOnChanges(): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     if (this.component) {
-      this.component.instance.schema = this.schema;
-      this.component.instance.group = this.group;
-      this.component.instance.readonly = this.readonly;
+      if (changes.readonly && !changes.readonly?.firstChange && changes.readonly?.previousValue !== this.readonly) {
+        this.createComponent();
+      } else {
+        this.setComponentProps();
+      }
     }
   }
 
   public ngOnInit(): void {
     this.validateType();
-
-    const c = this.readonly && this.schema.editType !== EditType.Row ? ReadonlyFieldComponent : mapToComponent(this.schema);
-    const component = this.resolver.resolveComponentFactory<FormComponent<FieldOptions>>(c);
-    this.component = this.container.createComponent(component);
-    this.component.instance.schema = this.schema;
-    this.component.instance.group = this.group;
-    this.component.instance.readonly = this.readonly;
+    this.createComponent();
   }
 
   public ngOnDestroy(): void {
     if (this.statusChangeSubscription) {
       this.statusChangeSubscription.unsubscribe();
     }
+  }
+
+  private createComponent(): void {
+    this.container.clear();
+    const c =
+      this.readonly && ![EditType.Row, EditType.Select].includes(this.schema.editType)
+        ? ReadonlyFieldComponent
+        : mapToComponent(this.schema);
+    const component = this.resolver.resolveComponentFactory<FormComponent<FieldOptions>>(c);
+    this.component = this.container.createComponent(component);
+    this.setComponentProps();
+  }
+
+  private setComponentProps(): void {
+    this.component.instance.schema = this.schema;
+    this.component.instance.group = this.group;
+    this.component.instance.readonly = this.readonly;
   }
 
   private validateType() {

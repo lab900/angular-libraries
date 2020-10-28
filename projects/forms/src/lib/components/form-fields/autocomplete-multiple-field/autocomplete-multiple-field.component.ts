@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
-import { AutocompleteOptions } from '../../../models/FormField';
+import { AutocompleteOptions, ValueLabel } from '../../../models/FormField';
 import { isObservable, Observable, of } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -19,7 +19,7 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
   @ViewChild('auto')
   private matAutocomplete: MatAutocomplete;
 
-  public filteredOptions: Observable<any[]>;
+  public filteredOptions: Observable<ValueLabel[]>;
   public separatorKeysCodes: number[] = [ENTER, COMMA];
 
   public get selectedOptions(): any[] {
@@ -31,7 +31,7 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
   }
 
   public inputChanged($event: Event): void {
-    const res = this.options.getOptionsFn(($event.target as any).value);
+    const res = this.options.autocompleteOptions(($event.target as any).value);
     this.filteredOptions = isObservable(res) ? res : of(res);
   }
 

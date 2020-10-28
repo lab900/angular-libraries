@@ -3,6 +3,13 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ThemePalette } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { IFormComponent } from './IFormComponent';
+import { AbstractControl, FormControl } from '@angular/forms';
+import { IFieldConditions } from './IFieldConditions';
+
+export interface ValueLabel<T = any> {
+  value: T;
+  label: string;
+}
 
 export interface FieldOptions {
   hide?: boolean | ((data?: any) => boolean);
@@ -49,20 +56,20 @@ export interface RepeaterFieldOptions extends FieldOptions {
 
 export interface SelectFieldOptions extends FieldOptions {
   multiple?: boolean;
-  values?: { value: any; label: string }[];
-  valuesFn?: () => Observable<{ value: any; label: string }[]>;
+  selectOptions?: (() => ValueLabel[] | Observable<ValueLabel[]>) | ValueLabel[] | Observable<ValueLabel[]>;
+  conditionalSelectOptions?: (dependOn: string, value: any) => ValueLabel[] | Observable<ValueLabel[]>;
   compareWith?: (o1: any, o2: any) => boolean;
-  displayOptionFn?: (option: { value: any; label: string }) => string;
+  displayOptionFn?: (option: ValueLabel) => string;
 }
 
 export interface AutocompleteOptions extends FieldOptions {
-  displayInputFn: (option: any) => string;
-  displayOptionFn: (option: any) => string;
-  getOptionsFn: (searchTerm: string) => any[] | Observable<any[]>;
+  displayInputFn: (option: any) => string; // the value of the ValueLabel will be passed here
+  displayOptionFn: (option: ValueLabel) => string;
+  autocompleteOptions?: (searchTerm: string) => ValueLabel[] | Observable<ValueLabel[]>;
 }
 
 export interface RadioButtonsFieldOptions extends FieldOptions {
-  values: { value: any; label: string }[];
+  radioOptions: ValueLabel[];
 }
 
 export interface DatepickerFieldOptions extends FieldOptions {
@@ -91,7 +98,7 @@ export interface IconFieldOptions extends FieldOptions {
   icon?: Icon;
 }
 export interface ButtonToggleFieldOptions extends FieldOptions {
-  values: { value: any; label?: string; icon?: Icon }[];
+  buttonOptions: { value: any; label?: string; icon?: Icon }[];
 }
 export interface Icon {
   name?: string;
@@ -119,4 +126,5 @@ export interface FormField<
   errorMessages?: { [key: string]: string };
   nestedFields?: FormField[];
   icon?: Icon & { position: 'left' | 'right' };
+  conditions?: IFieldConditions[];
 }

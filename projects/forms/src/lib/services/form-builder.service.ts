@@ -13,7 +13,11 @@ export class Lab900FormBuilderService {
       if (field.editType === EditType.Row && field.nestedFields) {
         // nested form groups
         if (field.attribute) {
-          formGroup.addControl(field.attribute, this.createFormGroup(field.nestedFields, null, data));
+          const nestedGroup = this.createFormGroup(field.nestedFields, null, data);
+          formGroup.addControl(field.attribute, nestedGroup);
+          if (nestedGroup.dirty) {
+            formGroup.markAsDirty();
+          }
         } else {
           formGroup = this.createFormGroup(field.nestedFields, formGroup, data);
         }
@@ -29,6 +33,9 @@ export class Lab900FormBuilderService {
           }
         }
         formGroup.addControl(field.attribute, repeaterArray);
+        if (repeaterArray.dirty) {
+          formGroup.markAsDirty();
+        }
       } else if (field.editType === EditType.DateRange) {
         const options: DateRangePickerFieldOptions = field?.options;
         formGroup.addControl(
@@ -39,13 +46,15 @@ export class Lab900FormBuilderService {
           }),
         );
       } else {
-        let controlValue: any | null = null;
-
-        if (field.options && field.options.defaultValue) {
+        let controlValue: any | null = data?.[field.attribute];
+        if (!controlValue && field.options && field.options.defaultValue) {
           controlValue = typeof field.options.defaultValue === 'function' ? field.options.defaultValue() : field.options.defaultValue;
         }
-
-        formGroup.addControl(field.attribute, new FormControl(controlValue, this.addValidators(field)));
+        const formControl = new FormControl(controlValue, this.addValidators(field));
+        formGroup.addControl(field.attribute, formControl);
+        if (controlValue) {
+          formGroup.markAsDirty();
+        }
       }
     });
     return formGroup;

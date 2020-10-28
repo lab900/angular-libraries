@@ -13,7 +13,7 @@ export class FormFieldSelectExampleComponent {
         title: 'Select yes or no',
         editType: EditType.Select,
         options: {
-          values: [
+          selectOptions: [
             {
               value: true,
               label: 'yes',

@@ -14,7 +14,7 @@ export class FormFieldRadioButtonsExampleComponent {
         editType: EditType.RadioButtons,
         options: {
           required: true,
-          values: [
+          radioOptions: [
             {
               value: true,
               label: 'yes',

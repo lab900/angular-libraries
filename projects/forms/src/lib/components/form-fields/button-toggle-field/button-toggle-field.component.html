@@ -1,13 +1,12 @@
-<div [formGroup]="group" *ngIf="!hide(this.group.value)" class="button-toggle-field mat-form-field-wrapper">
+<div [formGroup]="group" *ngIf="!fieldIsHidden" class="button-toggle-field mat-form-field-wrapper">
     <div *ngIf="schema.title"><mat-label>{{ schema.title | translate }}</mat-label></div>
-    <!-- ToDo: Disable when readonly -->
     <mat-button-toggle-group [formControlName]="schema.attribute" [required]="required">
-        <mat-button-toggle *ngFor="let value of options?.values" [value]="value.value">
+        <mat-button-toggle [disabled]="fieldIsReadonly" *ngFor="let value of options?.buttonOptions" [value]="value.value">
             <ng-container *ngIf="value.label">
                 {{ value.label | translate }}
             </ng-container>
             <lab900-icon *ngIf="value.icon" [icon]="value.icon"></lab900-icon>
         </mat-button-toggle>
     </mat-button-toggle-group>
-    <mat-error class="mat-form-field-subscript-wrapper" *ngIf="group.controls[schema.attribute].touched && !valid && !readonly">{{ getErrorMessage() | async }}</mat-error>
+    <mat-error class="mat-form-field-subscript-wrapper" *ngIf="group.controls[schema.attribute].touched && !valid && !fieldIsReadonly">{{ getErrorMessage() | async }}</mat-error>
 </div>
