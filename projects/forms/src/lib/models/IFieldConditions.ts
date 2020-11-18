@@ -1,8 +1,7 @@
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { FormField } from './FormField';
 import { Observable, Subscription } from 'rxjs';
 import * as _ from 'lodash';
-import validate = WebAssembly.validate;
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 export const areValuesEqual = (val1: any, val2: any): boolean => {
@@ -51,11 +50,19 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public constructor(private readonly group: FormGroup, private readonly schema: FormField, fieldConditions?: IFieldConditions) {
     if (fieldConditions) {
       Object.assign(this, fieldConditions);
-      this.dependControl = this.group.get(this.dependOn);
+      this.dependControl = this.getDependControl(this.group);
       if (!this.skipIfNotExists && !this.dependControl) {
         throw new Error(`Can't create conditional form field: no control with name ${this.dependOn} found`);
       }
     }
+  }
+
+  public getDependControl(group: FormGroup): AbstractControl  {
+    let dependControl = group.get(this.dependOn);
+    if (!dependControl && group.parent) {
+      dependControl = this.getDependControl(group.parent as FormGroup);
+    }
+    return dependControl;
   }
 
   public start(callback?: (dependOn: string, value: T, firstRun?: boolean) => void): Subscription {
