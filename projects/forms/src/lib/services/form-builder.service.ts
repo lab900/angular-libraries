@@ -63,8 +63,8 @@ export class Lab900FormBuilderService {
   public createFormArray(data: any, schema: FormField, formArray: FormArray = this.fb.array([])): FormArray {
     if (data && data[schema.attribute] && data[schema.attribute].length) {
       formArray.clear();
-      data[schema.attribute].forEach(() => {
-        formArray.push(this.createFormGroup(schema.nestedFields));
+      data[schema.attribute].forEach((nestedData) => {
+        formArray.push(this.createFormGroup(schema.nestedFields, undefined, nestedData));
       });
     }
     return formArray;
