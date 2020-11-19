@@ -13,7 +13,7 @@ export class Lab900FormBuilderService {
       if (field.editType === EditType.Row && field.nestedFields) {
         // nested form groups
         if (field.attribute) {
-          const nestedGroup = this.createFormGroup(field.nestedFields, null, data[field.attribute]);
+          const nestedGroup = this.createFormGroup(field.nestedFields, null, data?.[field.attribute]);
           formGroup.addControl(field.attribute, nestedGroup);
           if (nestedGroup.dirty) {
             formGroup.markAsDirty();
@@ -24,7 +24,7 @@ export class Lab900FormBuilderService {
       } else if (field.editType === EditType.Repeater) {
         const repeaterArray = this.createFormArray(data, field);
         const repeaterOptions = field.options as RepeaterFieldOptions;
-        if (data && data[field.attribute]) {
+        if (data?.[field.attribute]) {
           const dataRows = data[field.attribute].length;
           if (repeaterOptions?.minRows && dataRows < repeaterOptions.minRows) {
             for (let i = 0; i < repeaterOptions.minRows - dataRows; i++) {
