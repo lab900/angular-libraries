@@ -13,7 +13,7 @@ export class Lab900FormBuilderService {
       if (field.editType === EditType.Row && field.nestedFields) {
         // nested form groups
         if (field.attribute) {
-          const nestedGroup = this.createFormGroup(field.nestedFields, null, data);
+          const nestedGroup = this.createFormGroup(field.nestedFields, null, data[field.attribute]);
           formGroup.addControl(field.attribute, nestedGroup);
           if (nestedGroup.dirty) {
             formGroup.markAsDirty();

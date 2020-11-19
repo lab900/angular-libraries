@@ -3,12 +3,18 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ThemePalette } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { IFormComponent } from './IFormComponent';
-import { AbstractControl, FormControl } from '@angular/forms';
 import { IFieldConditions } from './IFieldConditions';
 
 export interface ValueLabel<T = any> {
   value: T;
   label: string;
+}
+
+export interface FieldMask {
+  mask: string;
+  showMaskedType?: boolean;
+  allowNegativeNumbers?: boolean; // default false;
+  prefix?: string;
 }
 
 export interface FieldOptions {
@@ -25,6 +31,7 @@ export interface FieldOptions {
   defaultValue?: any;
   pattern?: RegExp;
   mask?: string;
+  fieldMask?: FieldMask;
   readonlyLabel?: string;
   readonlyDisplay?: (data?: any) => any;
   color?: ThemePalette;

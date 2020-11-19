@@ -57,7 +57,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
     }
   }
 
-  public getDependControl(group: FormGroup): AbstractControl  {
+  public getDependControl(group: FormGroup): AbstractControl {
     let dependControl = group.get(this.dependOn);
     if (!dependControl && group.parent) {
       dependControl = this.getDependControl(group.parent as FormGroup);

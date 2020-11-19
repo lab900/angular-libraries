@@ -9,7 +9,10 @@
         [required]="required"
         [readonly]="fieldIsReadonly"
         [ngClass]="{ 'readonly' : fieldIsReadonly }"
-        [mask]="options?.mask"
+        [mask]="options?.fieldMask?.mask"
+        [prefix]="options?.fieldMask?.prefix || ''"
+        [allowNegativeNumbers]="options?.fieldMask?.allowNegativeNumbers || false"
+        [showMaskTyped]="options?.fieldMask?.showMaskedType || false"
     >
     <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !fieldIsReadonly">{{ hint | translate }}</mat-hint>
     <mat-hint align="end" *ngIf="options?.maxLength && !fieldIsReadonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>

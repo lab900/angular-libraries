@@ -56,18 +56,10 @@ export class FormFieldInputsExampleComponent {
         title: 'Mask',
         editType: EditType.Input,
         options: {
-          mask: '00.00.00-000.00',
-        },
-      },
-      {
-        attribute: 'select',
-        editType: EditType.Select,
-        options: {
-          hint: { value: 'Show a hint', hideHintOnValidValue: true },
-          selectOptions: [
-            { value: 1, label: '1' },
-            { value: 2, label: '2' },
-          ],
+          fieldMask: {
+            mask: 'separator.2',
+            showMaskedType: true,
+          },
         },
       },
     ],
