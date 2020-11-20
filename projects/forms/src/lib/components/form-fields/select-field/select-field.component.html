@@ -1,4 +1,4 @@
-<mat-form-field [formGroup]="group" *ngIf="!fieldIsReadonly && !fieldIsHidden" [floatLabel]="loading || fieldControl.disabled ? 'never' : 'auto'">
+<mat-form-field [formGroup]="group" *ngIf="!fieldIsReadonly && !fieldIsHidden" [floatLabel]="loading || fieldControl.disabled ? 'never' : 'auto'" class="lab900-select-field" id="lab900-select-field-{{schema?.attribute}}">
     <mat-label>
         <ng-container *ngIf="loading" >{{'form.field.loading' | translate}}</ng-container>
         <ng-container *ngIf="schema.title && !loading">{{ schema.title | translate }}</ng-container>

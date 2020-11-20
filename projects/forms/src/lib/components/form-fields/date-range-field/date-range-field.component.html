@@ -1,4 +1,4 @@
-<mat-form-field [formGroup]="group" *ngIf="!fieldIsHidden && dateFormGroup">
+<mat-form-field [formGroup]="group" *ngIf="!fieldIsHidden && dateFormGroup" class="lab900-date-range-field" id="lab900-date-range-field-{{schema?.attribute}}">
     <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
     <mat-date-range-input [formGroup]="dateFormGroup" [rangePicker]="picker">
         <input matStartDate [formControl]="dateFormGroup.get(this.options?.startKey || 'start')" placeholder="{{ (this.options?.startLabel || 'Start date') | translate }}">

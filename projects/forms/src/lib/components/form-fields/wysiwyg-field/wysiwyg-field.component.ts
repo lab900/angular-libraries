@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'lab900-wysiwyg-field',
   template: `
-    <div [formGroup]="group">
+    <div [formGroup]="group" class="lab900-wysiwyg-field">
       <angular-editor [formControlName]="schema.attribute" [config]="editorConfig"></angular-editor>
     </div>
   `,

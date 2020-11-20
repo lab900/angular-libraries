@@ -105,7 +105,7 @@ export interface IconFieldOptions extends FieldOptions {
   icon?: Icon;
 }
 export interface ButtonToggleFieldOptions extends FieldOptions {
-  buttonOptions: { value: any; label?: string; icon?: Icon }[];
+  buttonOptions: { value: any; label?: string; icon?: Icon; buttonClass?: string }[];
 }
 export interface Icon {
   name?: string;

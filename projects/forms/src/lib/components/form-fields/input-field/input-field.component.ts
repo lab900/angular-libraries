@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class InputFieldComponent extends FormComponent<InputFieldOptions> {
   @HostBinding('class')
-  public classList = 'lab900-form-field';
+  public classList = `lab900-form-field`;
 
   constructor(translateService: TranslateService) {
     super(translateService);

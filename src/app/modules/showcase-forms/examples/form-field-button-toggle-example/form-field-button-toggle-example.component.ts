@@ -21,6 +21,7 @@ export class FormFieldButtonToggleExampleComponent {
             {
               value: true,
               label: 'yes',
+              buttonClass: 'dsfkldsjflkdsjf',
             },
             {
               value: false,
