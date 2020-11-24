@@ -39,6 +39,7 @@ export * from './lib/table/components/table/table.component';
 export * from './lib/table/components/table-header/lab900-table-header.component';
 export * from './lib/table/components/table-filter-menu/table-filter-menu.component';
 export * from './lib/table/directives/table-empty.directive';
+export * from './lib/table/directives/table-custom-cell.directive';
 export * from './lib/table/directives/table-disabled.directive';
 export * from './lib/table/directives/table-header-content.directive';
 export * from './lib/table/models/table-cell.model';

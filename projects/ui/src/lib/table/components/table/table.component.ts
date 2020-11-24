@@ -9,6 +9,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Lab900TableUtils } from '../../utils/table.utils';
 import { Lab900TableHeaderContentDirective } from '../../directives/table-header-content.directive';
 import { ActionButton } from '../../../button/models/action-button.model';
+import { Lab900TableCustomCellDirective } from '../../directives/table-custom-cell.directive';
 
 @Component({
   selector: 'lab900-table',
@@ -107,6 +108,9 @@ export class Lab900TableComponent implements OnChanges {
 
   @ContentChild(Lab900TableHeaderContentDirective, { read: TemplateRef })
   public tableHeaderContent?: Lab900TableHeaderContentDirective;
+
+  @ContentChild(Lab900TableCustomCellDirective, { read: TemplateRef })
+  public customCellContent?: Lab900TableCustomCellDirective;
 
   public get selectCount(): number {
     return this.selection.selected.length;

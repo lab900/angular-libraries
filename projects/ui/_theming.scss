@@ -1,5 +1,9 @@
 @import "scss/merger";
 
 @mixin lab900-ui($config-or-theme) {
+  .mat-table {
+    width: 100%;
+  }
+
   @include lab900-merger($config-or-theme);
 }

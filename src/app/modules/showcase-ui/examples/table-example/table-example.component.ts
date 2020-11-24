@@ -17,6 +17,11 @@ import { Sort } from '@angular/material/sort';
     [selectedItems]="selectedItems"
   >
     <div *lab900TableHeaderContent>Header can have custom elements</div>
+    <div *lab900TableCustomCell="let cell">
+      <div *ngIf="cell.key === 'active'">
+        <mat-checkbox></mat-checkbox>
+      </div>
+    </div>
     <div *lab900TableEmpty>
       <div class="no-results">
         <p>No results template (can be anything)</p>
@@ -41,34 +46,14 @@ export class TableExampleComponent {
 
   public tableActions: ActionButton[] = [
     {
-      label: 'remove_red_eye',
+      label: 'edit',
       type: 'icon',
       tooltip: { value: 'View this' },
       disabled: (d) => d?.id === 1,
     },
     {
-      label: 'Button',
-      type: 'flat',
-    },
-    {
-      label: 'more_horiz',
+      label: 'delete',
       type: 'icon',
-      subActions: [
-        {
-          label: 'sub action',
-          subActions: [
-            {
-              label: 'sub action',
-            },
-            {
-              label: 'sub action 2',
-            },
-          ],
-        },
-        {
-          label: 'sub action 2',
-        },
-      ],
     },
   ];
 
@@ -105,19 +90,22 @@ export class TableExampleComponent {
   public tableCells: TableCell[] = [
     {
       key: 'name',
-      label: 'GENERAL.TYPE',
+      label: 'Name',
       sortable: true,
       cellClass: 'clickable-cell',
     },
     {
-      key: 'nameLong',
-      label: 'GENERAL.LOCATION',
+      key: 'id',
+      label: 'ID',
       sortable: true,
+      cellClass: 'clickable-cell',
+      width: '*',
     },
     {
-      key: 'nested.test',
-      label: 'GENERAL.GROUP_CODE',
-      sortable: true,
+      key: 'active',
+      label: 'Active',
+      customCellContent: true,
+      cellClass: 'center-cell',
     },
   ];
 
