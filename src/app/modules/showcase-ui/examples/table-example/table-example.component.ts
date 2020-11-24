@@ -17,9 +17,9 @@ import { Sort } from '@angular/material/sort';
     [selectedItems]="selectedItems"
   >
     <div *lab900TableHeaderContent>Header can have custom elements</div>
-    <div *lab900TableCustomCell="let cell">
-      <div *ngIf="cell.key === 'active'">
-        <mat-checkbox></mat-checkbox>
+    <div *lab900TableCustomCell="let data">
+      <div *ngIf="data.cell.key === 'active'">
+        <mat-checkbox color="primary" [checked]="data.element?.active"></mat-checkbox>
       </div>
     </div>
     <div *lab900TableEmpty>
@@ -70,6 +70,7 @@ export class TableExampleComponent {
       name: 'B name',
       nameLong: 'A name sdfdsfdsfdsfdsfdsf',
       id: 2,
+      active: true,
       nested: {},
     },
     {

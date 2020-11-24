@@ -41,7 +41,7 @@
         <th mat-header-cell mat-sort-header [disabled]="!cell.sortable" *matHeaderCellDef="let element">{{ utils.getCellLabel(cell) | translate }}</th>
         <td [style.width]="cell?.width === '*' ? '100%' : cell?.width" mat-cell *matCellDef="let element" [ngClass]="utils.getCellClass(element, cell)">
           <ng-container *ngIf="cell?.customCellContent && customCellContent">
-            <ng-container *ngTemplateOutlet="customCellContent; context: { $implicit: cell }"></ng-container>
+            <ng-container *ngTemplateOutlet="customCellContent; context: { $implicit: {cell: cell, element: element} }"></ng-container>
           </ng-container>
           <ng-container *ngIf="!cell?.customCellContent">
             <span *ngIf="!cell.click">{{ utils.getCellValue(element, cell) | translate }}</span>
