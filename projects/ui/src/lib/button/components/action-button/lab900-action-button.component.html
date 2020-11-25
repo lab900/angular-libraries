@@ -1,4 +1,4 @@
-<ng-container *ngIf="action && !action?.hide">
+<ng-container *ngIf="action && !getHidden()">
     <lab900-button
         *ngIf="!action.subActions?.length; else: subActions"
         [type]="getType()"

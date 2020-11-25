@@ -40,6 +40,13 @@ export class Lab900ActionButtonComponent {
     return this.action.label;
   }
 
+  public getHidden(): boolean {
+    if (typeof this.action.hide === 'function') {
+      return this.action.hide(this.data);
+    }
+    return this.action.hide;
+  }
+
   public getDisabled(): boolean {
     if (typeof this.action.disabled === 'function') {
       return this.action.disabled(this.data);
