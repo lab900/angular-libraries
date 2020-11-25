@@ -26,7 +26,7 @@
     >
       <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let row">
+        <td mat-cell *matCellDef="let row" class="checkbox-cell">
           <mat-checkbox
             color="primary"
             (click)="$event.stopPropagation()"
@@ -39,9 +39,14 @@
 
       <ng-container *ngFor="let cell of tableCells" [matColumnDef]="cell.key" [sticky]="cell?.sticky">
         <th mat-header-cell mat-sort-header [disabled]="!cell.sortable" *matHeaderCellDef="let element">{{ utils.getCellLabel(cell) | translate }}</th>
-        <td [style.width]="cell?.width" mat-cell *matCellDef="let element" [ngClass]="utils.getCellClass(element, cell)">
-          <span *ngIf="!cell.click">{{ utils.getCellValue(element, cell) | translate }}</span>
-          <a style="cursor: pointer" *ngIf="cell.click && utils.getCellValue(element, cell)" (click)="cell.click(element, cell)">{{ utils.getCellValue(element, cell) | translate }}</a>
+        <td [style.width]="cell?.width === '*' ? '100%' : cell?.width" mat-cell *matCellDef="let element" [ngClass]="utils.getCellClass(element, cell)">
+          <ng-container *ngIf="cell?.customCellContent && customCellContent">
+            <ng-container *ngTemplateOutlet="customCellContent; context: { $implicit: {cell: cell, element: element} }"></ng-container>
+          </ng-container>
+          <ng-container *ngIf="!cell?.customCellContent">
+            <span *ngIf="!cell.click">{{ utils.getCellValue(element, cell) | translate }}</span>
+            <a style="cursor: pointer" *ngIf="cell.click && utils.getCellValue(element, cell)" (click)="cell.click(element, cell)">{{ utils.getCellValue(element, cell) | translate }}</a>
+          </ng-container>
         </td>
       </ng-container>
 

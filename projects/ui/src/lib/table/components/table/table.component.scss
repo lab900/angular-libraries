@@ -9,6 +9,16 @@
   th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
     text-align: left;
     padding-right: 16px;
+    white-space: nowrap;
+
+    &.checkbox-cell {
+      width: 16px;
+      padding: 0 24px;
+    }
+
+    &.center-cell {
+      text-align: center;
+    }
   }
 
   .cdk-column-actions {

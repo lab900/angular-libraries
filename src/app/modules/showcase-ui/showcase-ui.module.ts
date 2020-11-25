@@ -22,6 +22,7 @@ import { MergerExampleComponent } from './examples/merger-example/merger-example
 import { CustomExampleComponent } from './examples/merger-example/custom-example.component';
 import { ButtonExampleComponent } from './examples/button-example/button-example.component';
 import { Lab900ButtonModule } from '../../../../projects/ui/src/lib/button/button.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const examples = [
   SharingExampleComponent,
@@ -52,6 +53,7 @@ const examples = [
     Lab900ButtonModule,
     TranslateModule,
     Lab900ButtonModule,
+    MatCheckboxModule,
   ],
 })
 export class ShowcaseUiModule {}

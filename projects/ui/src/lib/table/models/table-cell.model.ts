@@ -41,4 +41,8 @@ export interface TableCell<T = any> {
    * on click
    */
   click?: propFunction<T, any>;
+  /**
+   * render a different cell template
+   */
+  customCellContent?: boolean;
 }

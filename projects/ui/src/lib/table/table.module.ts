@@ -22,6 +22,7 @@ import { Lab900TableHeaderComponent } from './components/table-header/lab900-tab
 import { Lab900TableHeaderContentDirective } from './directives/table-header-content.directive';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Lab900ButtonModule } from '../button/button.module';
+import { Lab900TableCustomCellDirective } from './directives/table-custom-cell.directive';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { Lab900ButtonModule } from '../button/button.module';
     Lab900TableEmptyDirective,
     Lab900TableDisabledDirective,
     Lab900TableHeaderContentDirective,
+    Lab900TableCustomCellDirective,
     Lab900TableFilterMenuComponent,
     Lab900TableHeaderComponent,
   ],
@@ -37,6 +39,7 @@ import { Lab900ButtonModule } from '../button/button.module';
     Lab900TableEmptyDirective,
     Lab900TableDisabledDirective,
     Lab900TableHeaderContentDirective,
+    Lab900TableCustomCellDirective,
     Lab900TableFilterMenuComponent,
     Lab900TableHeaderComponent,
   ],
