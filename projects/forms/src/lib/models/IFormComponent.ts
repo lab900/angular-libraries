@@ -22,9 +22,13 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   public schema: FormField<T>;
 
   @Input()
-  public readonly = false; // Global form readonly flag
+  public readonly = false;
+
+  @Input()
+  public loading = false;
 
   public fieldIsReadonly: boolean;
+
   public fieldIsHidden: boolean;
 
   public get fieldControl(): AbstractControl {

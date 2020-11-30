@@ -1,0 +1,19 @@
+.lab900-form-field__edit {
+  position: relative;
+}
+
+.lab900-form-field__edit-actions {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  button {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+
+    .mat-icon {
+      font-size: 20px;
+    }
+  }
+}

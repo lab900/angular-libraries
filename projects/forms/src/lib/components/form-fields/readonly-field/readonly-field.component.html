@@ -1,4 +1,6 @@
-<div class="lab900-readonly-field" *ngIf="!fieldIsHidden">
-    <span *ngIf="options?.readonlyLabel || schema.title" class="lab900-readonly-field__label">{{ (options?.readonlyLabel || schema.title) | translate }}</span>
-    <div [innerHTML]="(value || '-') | translate"></div>
+<div class="lab900-readonly-field inline-edit">
+    <span *ngIf="schema?.options?.readonlyLabel || schema.title" class="lab900-readonly-field__label">{{ (schema?.options?.readonlyLabel || schema.title) | translate }}</span>
+    <div class="lab900-readonly-field__value" (click)="toggleInlineEdit.emit()">
+        <div [innerHTML]="(value || '-') | translate"></div>
+    </div>
 </div>

@@ -3,7 +3,6 @@
 @mixin lab900-range-slider($config-or-theme) {
   $config: mat-get-color-config($config-or-theme);
   $primary: map-get($config, primary);
-  $accent: map-get($config, accent);
 
   .range-slider {
     .noUi-connect {

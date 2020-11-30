@@ -4,6 +4,7 @@
 @mixin lab900-forms($config-or-theme) {
   @include lab900-form-field($config-or-theme);
   @include lab900-range-slider($config-or-theme);
+  $accent: map-get($config-or-theme, accent);
 
   // ngx-mat-timepicker fixes
   .ngx-mat-timepicker {
@@ -34,6 +35,22 @@
       font-weight: bold;
       margin-bottom: 0.75rem;
       display: block;
+    }
+
+    &__value {
+      margin: -5px;
+
+      > div {
+        padding: 5px;
+      }
+    }
+
+    &.inline-edit &__value {
+      cursor: pointer;
+
+      &:hover {
+        background: mat-color($accent, 200);
+      }
     }
   }
 }

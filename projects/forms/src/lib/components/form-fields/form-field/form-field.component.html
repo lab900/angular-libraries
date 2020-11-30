@@ -1,0 +1,15 @@
+<div class="lab900-form-field" *ngIf="!hide">
+    <div *ngIf="!readonly || inlineEdit" class="lab900-form-field__edit">
+        <ng-content></ng-content>
+        <div *ngIf="inlineEdit" class="lab900-form-field__edit-actions">
+            <button mat-mini-fab (click)="cancelInline()"><mat-icon>close</mat-icon></button>
+            <button mat-mini-fab color="primary" (click)="saveInline()"><mat-icon>check</mat-icon></button>
+        </div>
+    </div>
+    <lab900-readonly
+        *ngIf="readonly && !inlineEdit"
+        [group]="group"
+        [schema]="schema"
+        (toggleInlineEdit)="toggleInline()"
+    ></lab900-readonly>
+</div>
