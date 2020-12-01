@@ -2,11 +2,17 @@ import { Component, ViewChild } from '@angular/core';
 import { EditType, Form, FormContainerComponent } from '@lab900/forms';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-function oneDefault(): ValidatorFn {
+function validateResources(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const defaults = (control.value || []).filter((entry) => entry?.default === true);
-    if (defaults.length > 1) {
-      return { toManyDefaults: defaults.length };
+    const resourceUnits: { default: boolean }[] = control?.value || [];
+    if (resourceUnits?.length > 1) {
+      const defaults = resourceUnits.filter((ru) => ru.default === true);
+      if (!defaults.length) {
+        return { noDefault: true };
+      }
+      if (defaults.length > 1) {
+        return { toManyDefaults: defaults.length };
+      }
     }
     return null;
   };
@@ -26,7 +32,7 @@ export class FormFieldRepeaterExampleComponent {
         attribute: 'repeater',
         title: 'Add something',
         editType: EditType.Repeater,
-        validators: [oneDefault()],
+        validators: [validateResources()],
         nestedFields: [
           {
             editType: EditType.Row,

@@ -16,10 +16,7 @@
                 </button>
             </div>
         </div>
-        <div *ngIf="!fieldIsReadonly" class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
-            <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && group.value)" translate>{{ hint }}</mat-hint>
-            <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
-        </div>
+        <mat-error class="subscript-wrapper" *ngIf="touched && !valid && !fieldIsReadonly" [@transitionMessages]="valid ? 'void' : 'enter'">{{ getErrorMessage() | async }}</mat-error>
         <div *ngIf="!fixedList && !fieldIsReadonly" class="repeater-field__actions">
             <button mat-button color="primary" [disabled]="!!maxRows && repeaterArray.length >= maxRows" (click)="addToArray()" class="repeater-add">{{ addLabel | translate }}</button>
         </div>
