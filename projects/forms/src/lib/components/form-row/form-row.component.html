@@ -14,8 +14,4 @@
             ></ng-container>
         </div>
     </div>
-    <div *ngIf="schema.attribute && !fieldIsReadonly" class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
-        <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && group.get(schema.attribute).value)" translate>{{ hint }}</mat-hint>
-        <mat-error *ngIf="!valid && touched">{{ getErrorMessage() | async }}</mat-error>
-    </div>
 </ng-container>

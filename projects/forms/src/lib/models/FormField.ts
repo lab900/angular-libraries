@@ -37,12 +37,6 @@ export interface FieldOptions {
   readonlyLabel?: string;
   readonlyDisplay?: (data?: any) => any;
   color?: ThemePalette;
-
-  /**
-   * Translation key for the error to be shown when the pattern validation failed.
-   */
-  patternError?: string;
-
   visibleFn?: (item: IFormComponent<any>) => boolean;
 }
 

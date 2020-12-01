@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormField } from './FormField';
 import { Observable, Subscription } from 'rxjs';
 import * as _ from 'lodash';
@@ -17,11 +17,11 @@ export interface IFieldConditions<T = any> {
   showIfHasValue?: boolean;
   disableIfHasValue?: boolean;
   enableIfHasValue?: boolean;
-  hideIfEquals?: T;
-  showIfEquals?: T;
-  disableIfEquals?: T;
-  enabledIfEquals?: T;
-  onChangeFn?: (value: T, currentControl: AbstractControl, dependControl: AbstractControl) => any;
+  hideIfEquals?: ((value: T) => boolean) | T;
+  showIfEquals?: ((value: T) => boolean) | T;
+  disableIfEquals?: ((value: T) => boolean) | T;
+  enabledIfEquals?: ((value: T) => boolean) | T;
+  onChangeFn?: (value: T, currentControl: AbstractControl, currentScheme: FormField) => any;
   conditionalOptions?: (value: T, currentControl: AbstractControl) => any[] | Observable<any[]>;
   skipIfNotExists?: boolean;
 }
@@ -32,11 +32,11 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public showIfHasValue?: boolean;
   public disableIfHasValue?: boolean;
   public enableIfHasValue?: boolean;
-  public hideIfEquals?: T;
-  public showIfEquals?: T;
-  public disableIfEquals?: T;
-  public enabledIfEquals?: T;
-  public onChangeFn?: (value: T, currentControl: AbstractControl, dependControl: AbstractControl) => any;
+  public hideIfEquals?: ((value: T) => boolean) | T;
+  public showIfEquals?: ((value: T) => boolean) | T;
+  public disableIfEquals?: ((value: T) => boolean) | T;
+  public enabledIfEquals?: ((value: T) => boolean) | T;
+  public onChangeFn?: (value: T, currentControl: AbstractControl, currentScheme: FormField) => any;
   public conditionalOptions?: (value: T) => any;
   public skipIfNotExists = false;
 
@@ -45,6 +45,14 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
 
   private get fieldControl(): AbstractControl {
     return this.group.get(this.schema.attribute);
+  }
+
+  private static valueIsEqualTo(value: any, condition: ((obj: any) => boolean) | any): boolean {
+    return typeof condition === 'function' ? condition(value) : condition === value;
+  }
+
+  private static hasValue(value: any): boolean {
+    return value !== null && typeof value !== 'undefined';
   }
 
   public constructor(private readonly group: FormGroup, private readonly schema: FormField, fieldConditions?: IFieldConditions) {
@@ -77,7 +85,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public runAll(value: T, firstRun: boolean, callback?: (dependOn: string, value: T, firstRun?: boolean) => void): void {
     if (firstRun || !areValuesEqual(this.prevValue, value)) {
       if (this.onChangeFn && typeof this.onChangeFn === 'function') {
-        this.onChangeFn(value, this.fieldControl, this.dependControl);
+        this.onChangeFn(value, this.fieldControl, this.schema);
       }
       if (!this.schema.options?.visibleFn) {
         this.runVisibilityConditions(value);
@@ -100,17 +108,17 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
 
   public runVisibilityConditions(value: T): void {
     const hide = (isTrue: boolean) => (this.schema.options.hide = isTrue);
-    this.run('hideIfHasValue', this.hideIfHasValue && !!value, (isTrue: boolean) => hide(isTrue));
-    this.run('showIfHasValue', this.showIfHasValue && !!value, (isTrue: boolean) => hide(!isTrue));
-    this.run('hideIfEquals', this.hideIfEquals === value, (isTrue: boolean) => hide(isTrue));
-    this.run('showIfEquals', this.showIfEquals === value, (isTrue: boolean) => hide(!isTrue));
+    this.run('hideIfHasValue', this.hideIfHasValue && FieldConditions.hasValue(value), (isTrue: boolean) => hide(isTrue));
+    this.run('showIfHasValue', this.showIfHasValue && FieldConditions.hasValue(value), (isTrue: boolean) => hide(!isTrue));
+    this.run('hideIfEquals', FieldConditions.valueIsEqualTo(value, this.hideIfEquals), (isTrue: boolean) => hide(isTrue));
+    this.run('showIfEquals', FieldConditions.valueIsEqualTo(value, this.showIfEquals), (isTrue: boolean) => hide(!isTrue));
   }
 
   public runDisableConditions(value: T): void {
     const enable = (isTrue: boolean) => setTimeout(() => (isTrue ? this.fieldControl.enable() : this.fieldControl.disable()));
-    this.run('disableIfHasValue', this.disableIfHasValue && !!value, (isTrue: boolean) => enable(!isTrue));
-    this.run('enableIfHasValue', this.enableIfHasValue && !!value, (isTrue: boolean) => enable(isTrue));
-    this.run('disableIfEquals', this.disableIfEquals === value, (isTrue: boolean) => enable(!isTrue));
-    this.run('enabledIfEquals', this.enabledIfEquals === value, (isTrue: boolean) => enable(isTrue));
+    this.run('disableIfHasValue', this.disableIfHasValue && FieldConditions.hasValue(value), (isTrue: boolean) => enable(!isTrue));
+    this.run('enableIfHasValue', this.enableIfHasValue && FieldConditions.hasValue(value), (isTrue: boolean) => enable(isTrue));
+    this.run('disableIfEquals', FieldConditions.valueIsEqualTo(value, this.disableIfEquals), (isTrue: boolean) => enable(!isTrue));
+    this.run('enabledIfEquals', FieldConditions.valueIsEqualTo(value, this.enabledIfEquals), (isTrue: boolean) => enable(isTrue));
   }
 }
