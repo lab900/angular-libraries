@@ -71,7 +71,7 @@ export class Lab900FormBuilderService {
   }
 
   public addValidators(field: FormField): ValidatorFn[] {
-    const validators: ValidatorFn[] = [];
+    const validators: ValidatorFn[] = field?.validators ?? [];
     if (field.options?.required) {
       validators.push(Validators.required);
     }

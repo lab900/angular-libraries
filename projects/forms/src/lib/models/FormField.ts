@@ -4,6 +4,7 @@ import { ThemePalette } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { IFormComponent } from './IFormComponent';
 import { IFieldConditions } from './IFieldConditions';
+import { ValidatorFn } from '@angular/forms';
 
 export interface ValueLabel<T = any> {
   value: T;
@@ -130,6 +131,7 @@ export interface FormField<
   editType: EditType;
   title?: string;
   options?: T;
+  validators?: ValidatorFn[];
   errorMessages?: { [key: string]: string };
   nestedFields?: FormField[];
   icon?: Icon & { position: 'left' | 'right' };
