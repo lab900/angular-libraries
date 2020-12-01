@@ -1,10 +1,10 @@
 <ng-container *ngIf="visible">
     <span *ngIf="(fieldIsReadonly && options?.readonlyLabel) || schema.title" class="lab900-form-field-label">{{ (!fieldIsReadonly ? schema.title : (options?.readonlyLabel || schema.title)) | translate }}</span>
-    <div class="form-row">
+    <div class="form-row" [class.mobile-cols]="schema.options?.mobileCols">
         <div
             *ngFor="let field of schema.nestedFields;"
             class="form-col"
-            [style.flex]="( (100*(field.options?.colspan || 1)/12) + ' 1 ' + (100*(field.options?.colspan || 1)/12) + '%')"
+            [style.width]="(100*(field.options?.colspan || 12)/12) + '%'"
         >
             <ng-container
                 lab900FormField
@@ -13,5 +13,9 @@
                 [readonly]="fieldIsReadonly"
             ></ng-container>
         </div>
+    </div>
+    <div *ngIf="schema.attribute && !fieldIsReadonly" class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
+        <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && group.get(schema.attribute).value)" translate>{{ hint }}</mat-hint>
+        <mat-error *ngIf="!valid && touched">{{ getErrorMessage() | async }}</mat-error>
     </div>
 </ng-container>

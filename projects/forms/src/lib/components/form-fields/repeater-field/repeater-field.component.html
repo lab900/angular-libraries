@@ -3,8 +3,8 @@
         <span *ngIf="schema.title" class="lab900-form-field-label">{{ schema.title | translate }}</span>
         <div *ngFor="let control of repeaterArray.controls; let i=index" class="repeater-row">
             <div class="repeater-row__fields">
-                <ng-container 
-                    *ngFor="let field of schema.nestedFields;" 
+                <ng-container
+                    *ngFor="let field of schema.nestedFields;"
                     lab900FormField
                     [schema]="field"
                     [group]="control"
@@ -15,6 +15,10 @@
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
+        </div>
+        <div *ngIf="!fieldIsReadonly" class="subscript-wrapper" [@transitionMessages]="valid ? 'void' : 'enter'">
+            <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && group.value)" translate>{{ hint }}</mat-hint>
+            <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
         </div>
         <div *ngIf="!fixedList && !fieldIsReadonly" class="repeater-field__actions">
             <button mat-button color="primary" [disabled]="!!maxRows && repeaterArray.length >= maxRows" (click)="addToArray()" class="repeater-add">{{ addLabel | translate }}</button>

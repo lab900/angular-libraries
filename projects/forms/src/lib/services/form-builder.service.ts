@@ -14,6 +14,7 @@ export class Lab900FormBuilderService {
         // nested form groups
         if (field.attribute) {
           const nestedGroup = this.createFormGroup(field.nestedFields, null, data?.[field.attribute]);
+          nestedGroup.setValidators(this.addValidators(field));
           formGroup.addControl(field.attribute, nestedGroup);
           if (nestedGroup.dirty) {
             formGroup.markAsDirty();
@@ -32,6 +33,7 @@ export class Lab900FormBuilderService {
             }
           }
         }
+        repeaterArray.setValidators(this.addValidators(field));
         formGroup.addControl(field.attribute, repeaterArray);
         if (repeaterArray.dirty) {
           formGroup.markAsDirty();
@@ -47,7 +49,7 @@ export class Lab900FormBuilderService {
         );
       } else {
         let controlValue: any | null = data?.[field.attribute];
-        if (!controlValue && field.options && field.options.defaultValue) {
+        if (!controlValue && field.options && field.options.defaultValue !== null && typeof field.options.defaultValue !== 'undefined') {
           controlValue = typeof field.options.defaultValue === 'function' ? field.options.defaultValue() : field.options.defaultValue;
         }
         const formControl = new FormControl(controlValue, this.addValidators(field));

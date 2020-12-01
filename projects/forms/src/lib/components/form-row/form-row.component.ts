@@ -1,11 +1,13 @@
 import { Component, HostBinding } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormComponent } from '../../models/IFormComponent';
+import { matFormFieldAnimations } from '@angular/material/form-field';
 
 @Component({
   selector: 'lab900-form-row',
   templateUrl: './form-row.component.html',
   styleUrls: ['./form-row.component.scss'],
+  animations: [matFormFieldAnimations.transitionMessages],
 })
 export class FormRowComponent extends FormComponent {
   @HostBinding('class')

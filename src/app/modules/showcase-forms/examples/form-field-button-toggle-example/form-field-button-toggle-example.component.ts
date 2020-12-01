@@ -56,7 +56,6 @@ export class FormFieldButtonToggleExampleComponent {
             attribute: 'textInput',
             title: 'Text Input',
             editType: EditType.Input,
-            options: { colspan: 10 },
           },
         ],
       },

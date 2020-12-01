@@ -3,6 +3,7 @@ import { Form, EditType } from '@lab900/forms';
 export const formFieldsExample: Form = {
   fields: [
     {
+      attribute: 'fullName',
       editType: EditType.Row,
       nestedFields: [
         {

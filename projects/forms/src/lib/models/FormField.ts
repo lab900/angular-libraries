@@ -22,7 +22,8 @@ export interface FieldOptions {
   hide?: boolean | ((data?: any) => boolean);
   hint?: { value: string; hideHintOnValidValue?: boolean };
   placeholder?: string;
-  colspan?: number;
+  colspan?: number; // 12 column grid = value from 1 to 12.
+  mobileCols?: boolean; // keep colspan on mobile (only for form rows)
   required?: boolean;
   readonly?: boolean | ((data?: any) => boolean);
   minLength?: number;

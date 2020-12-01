@@ -35,6 +35,10 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     return this.fieldControl?.valid;
   }
 
+  public get touched(): boolean {
+    return this.fieldControl?.touched;
+  }
+
   public get options(): T {
     return this.schema?.options;
   }

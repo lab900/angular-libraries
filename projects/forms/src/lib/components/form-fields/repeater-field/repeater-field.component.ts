@@ -4,11 +4,13 @@ import { FormArray } from '@angular/forms';
 import { RepeaterFieldOptions } from '../../../models/FormField';
 import { Lab900FormBuilderService } from '../../../services/form-builder.service';
 import { TranslateService } from '@ngx-translate/core';
+import { matFormFieldAnimations } from '@angular/material/form-field';
 
 @Component({
   selector: 'lab900-repeater-field',
   templateUrl: './repeater-field.component.html',
   styleUrls: ['./repeater-field.component.scss'],
+  animations: [matFormFieldAnimations.transitionMessages],
 })
 export class RepeaterFieldComponent extends FormComponent<RepeaterFieldOptions> implements OnInit {
   @HostBinding('class')
