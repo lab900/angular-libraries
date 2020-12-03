@@ -23,6 +23,10 @@ export class DateTimeFieldComponent extends FormComponent<DatepickerFieldOptions
     return this.options?.maxDate;
   }
 
+  public get showSeconds(): boolean {
+    return this.options?.showSeconds ?? true;
+  }
+
   public get minDate(): Date | null {
     return this.schema?.options?.minDate;
   }

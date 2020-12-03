@@ -79,6 +79,7 @@ export interface DatepickerFieldOptions extends FieldOptions {
   startView?: 'month' | 'year' | 'multi-year';
   maxDate?: Date;
   minDate?: Date;
+  showSeconds?: boolean;
 }
 
 export interface DateRangePickerFieldOptions extends FieldOptions {
