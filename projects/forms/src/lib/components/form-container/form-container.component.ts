@@ -34,7 +34,7 @@ export class FormContainerComponent<T> implements OnChanges {
   public constructor(private fb: Lab900FormBuilderService) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.schema) {
+    if (changes.schema && this.schema?.fields) {
       this.form = this.fb.createFormGroup(this.schema.fields, null, this.data);
     }
     if (!changes?.data?.isFirstChange() && this.data) {

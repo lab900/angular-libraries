@@ -1,11 +1,11 @@
-<form [formGroup]="form" class="lab900-form">
+<form *ngIf="schema?.fields" [formGroup]="form" class="lab900-form">
     <div class="lab900-form__inner">
         <ng-container 
             *ngFor="let field of schema.fields;" 
             lab900FormField
             [schema]="field"
             [group]="form"
-            [readonly]="schema?.readonly"
+            [readonly]="readonly"
         ></ng-container>
     </div>
 </form>

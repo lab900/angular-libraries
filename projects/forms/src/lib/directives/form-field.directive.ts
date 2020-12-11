@@ -97,8 +97,10 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
   public constructor(private resolver: ComponentFactoryResolver, private container: ViewContainerRef) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (this.component) {
-      if (changes.readonly && !changes.readonly?.firstChange && changes.readonly?.previousValue !== this.readonly) {
+    if (this.component && changes.readonly) {
+      const { previousValue } = changes.readonly;
+      const hadPrevious = previousValue !== null && typeof previousValue !== 'undefined';
+      if (hadPrevious && changes.readonly?.previousValue !== this.readonly) {
         this.createComponent();
       } else {
         this.setComponentProps();
