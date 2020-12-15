@@ -12,6 +12,22 @@ export class FormFieldDateTimePickerExampleComponent {
         attribute: 'test',
         title: 'Select a date & time',
         editType: EditType.DateTime,
+        conditions: [
+          {
+            dependOn: 'urgent',
+            disableIfEquals: true,
+            onChangeFn: (v, control) => {
+              if (v === true) {
+                control.reset();
+              }
+            },
+          },
+        ],
+      },
+      {
+        attribute: 'urgent',
+        title: 'Urgent?',
+        editType: EditType.Checkbox,
       },
     ],
   };

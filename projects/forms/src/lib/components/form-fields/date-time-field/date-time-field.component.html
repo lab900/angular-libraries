@@ -12,8 +12,8 @@
         [min]="minDate"
     >
 
-    <mat-datepicker-toggle [attr.disabled]="fieldIsReadonly" matSuffix [for]="picker"></mat-datepicker-toggle>
-    <ngx-mat-datetime-picker #picker [disabled]="fieldIsReadonly" [showSpinners]="true" [showSeconds]="showSeconds" [startView]="startView"></ngx-mat-datetime-picker>
+    <mat-datepicker-toggle [disabled]="fieldIsReadonly || fieldControl.disabled" matSuffix [for]="picker"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker [disabled]="fieldIsReadonly || fieldControl.disabled" [showSpinners]="true" [showSeconds]="showSeconds" [startView]="startView"></ngx-mat-datetime-picker>
     <mat-hint *ngIf="hint && !fieldIsReadonly  && !(schema.options.hint.hideHintOnValidValue && input.value)" translate>{{ hint }}</mat-hint>
     <mat-error *ngIf="!valid && !fieldIsReadonly">{{ getErrorMessage() | async }}</mat-error>
 </mat-form-field>
