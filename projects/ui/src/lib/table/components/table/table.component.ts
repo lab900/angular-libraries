@@ -2,7 +2,6 @@ import { Component, ContentChild, EventEmitter, Input, OnChanges, Output, Simple
 import { Lab900TableEmptyDirective } from '../../directives/table-empty.directive';
 import { TableCell } from '../../models/table-cell.model';
 import { Lab900TableDisabledDirective } from '../../directives/table-disabled.directive';
-import { Sort } from '@angular/material/sort';
 import { Paging } from '../../../common/models/paging.model';
 import { PageEvent } from '@angular/material/paginator';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -10,6 +9,14 @@ import { Lab900TableUtils } from '../../utils/table.utils';
 import { Lab900TableHeaderContentDirective } from '../../directives/table-header-content.directive';
 import { ActionButton } from '../../../button/models/action-button.model';
 import { Lab900TableCustomCellDirective } from '../../directives/table-custom-cell.directive';
+import { SortDirection } from '@angular/material/sort/sort-direction';
+
+export interface Lab900Sort {
+  /** The id of the column being sorted. */
+  id: string;
+  /** The sort direction. */
+  direction: SortDirection;
+}
 
 @Component({
   selector: 'lab900-table',
@@ -83,22 +90,31 @@ export class Lab900TableComponent implements OnChanges {
   public disabled = false;
 
   @Input()
-  public activeSort: Sort;
+  public sort: Lab900Sort[] = [];
+
+  @Input()
+  public multiSort = false;
+
+  @Output()
+  public readonly sortChange = new EventEmitter<Lab900Sort[]>();
 
   @Input()
   public paging?: Paging;
 
-  @Output()
-  public readonly pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+  @Input()
+  public onRowClick: (value: any, index: number, event: Event) => void;
 
   @Output()
-  public readonly sort: EventEmitter<Sort> = new EventEmitter<Sort>();
+  public readonly pageChange = new EventEmitter<PageEvent>();
 
   @Output()
-  public readonly selectionChanged: EventEmitter<SelectionModel<any>> = new EventEmitter<SelectionModel<any>>();
+  public readonly selectionChanged = new EventEmitter<SelectionModel<any>>();
 
   @Output()
-  public readonly rowSelectToggle: EventEmitter<object> = new EventEmitter<object>();
+  public readonly rowSelectToggle = new EventEmitter<object>();
+
+  @Output()
+  public readonly tableCellsFiltered = new EventEmitter<TableCell[]>();
 
   @ContentChild(Lab900TableEmptyDirective, { read: TemplateRef })
   public emptyTableTemplate?: Lab900TableEmptyDirective;
@@ -152,7 +168,9 @@ export class Lab900TableComponent implements OnChanges {
 
   public getRowClasses(row: object, index: number): string {
     const classes: string[] = [];
-
+    if (typeof this.onRowClick === 'function') {
+      classes.push('lab900-row-clickable');
+    }
     if (this.selection && this.selection.isSelected(row)) {
       classes.push('lab900-row-selected');
     }
@@ -161,7 +179,46 @@ export class Lab900TableComponent implements OnChanges {
     } else {
       classes.push('lab900-row-odd');
     }
-
     return classes.join(' ') || '';
+  }
+
+  public handleRowClick(event: Event, row: object, index: number): void {
+    if (typeof this.onRowClick === 'function') {
+      this.onRowClick(row, index, event);
+    }
+  }
+
+  public getSortDir(cell: TableCell): SortDirection {
+    return (this.sort || []).find((s) => s.id === cell.key)?.direction ?? '';
+  }
+
+  public getSortIcon(dir: SortDirection): string {
+    if (dir === 'asc') {
+      return 'north';
+    } else if (dir === 'desc') {
+      return 'south';
+    }
+  }
+
+  public handleHeaderClick(cell: TableCell): void {
+    if (cell.sortable) {
+      if (this.multiSort) {
+        const currentIndex = (this.sort || []).findIndex((s) => s.id === cell.key);
+        if (currentIndex >= 0) {
+          const { direction } = this.sort[currentIndex];
+          if (direction === 'desc') {
+            this.sort.splice(currentIndex, 1);
+          } else {
+            this.sort[currentIndex] = { ...this.sort[currentIndex], direction: 'desc' };
+          }
+        } else {
+          this.sort.push({ id: cell.key, direction: 'asc' });
+        }
+      } else {
+        const inCurrent = (this.sort || []).find((s) => s.id === cell.key);
+        this.sort = [{ id: cell.key, direction: inCurrent?.direction === 'asc' ? 'desc' : 'asc' }];
+      }
+      this.sortChange.emit(this.sort);
+    }
   }
 }

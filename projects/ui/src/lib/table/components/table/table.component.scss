@@ -19,6 +19,21 @@
     &.center-cell {
       text-align: center;
     }
+
+    &.sortable {
+      cursor: pointer;
+
+      > div {
+        display: flex;
+        align-items: center;
+      }
+
+      .lab900-sort-arrow {
+        font-size: 12px;
+        display: block;
+        margin-left: 4px;
+      }
+    }
   }
 
   .cdk-column-actions {

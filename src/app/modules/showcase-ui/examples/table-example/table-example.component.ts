@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { TableCell, Paging, ActionButton } from '@lab900/ui';
-import { Sort } from '@angular/material/sort';
+import { TableCell, Paging, ActionButton, Lab900Sort } from '@lab900/ui';
 
 @Component({
   selector: 'lab900-table-example',
   template: `<lab900-table
     [tableCells]="tableCells"
-    [activeSort]="sort"
-    (sort)="sortChange($event)"
+    [sort]="sort"
+    (sortChange)="sortChange($event)"
     [data]="mockData"
     [paging]="paging"
     [tableActionsBack]="tableActions"
@@ -15,6 +14,9 @@ import { Sort } from '@angular/material/sort';
     [toggleColumns]="true"
     [selectableRows]="true"
     [selectedItems]="selectedItems"
+    [onRowClick]="rowClick"
+    [multiSort]="true"
+    (tableCellsFiltered)="filtered($event)"
   >
     <div *lab900TableHeaderContent>Header can have custom elements</div>
     <div *lab900TableCustomCell="let data">
@@ -30,7 +32,7 @@ import { Sort } from '@angular/material/sort';
   </lab900-table>`,
 })
 export class TableExampleComponent {
-  public sort: Sort = { active: 'id', direction: 'asc' };
+  public sort: Lab900Sort[] = [{ id: 'id', direction: 'asc' }];
 
   public tableHeaderActions: ActionButton[] = [
     {
@@ -110,9 +112,18 @@ export class TableExampleComponent {
     },
   ];
 
-  public sortChange(sort: Sort): void {
-    this.sort = sort;
-    this.mockData.sort((a: any, b: any) => (a[sort.active] < b[sort.active] ? -1 : 1) * (sort.direction === 'asc' ? 1 : -1));
-    this.mockData = [...this.mockData];
+  public sortChange(sort: Lab900Sort[]): void {
+    sort.forEach((s) => {
+      this.mockData.sort((a: any, b: any) => (a[s.id] < b[s.id] ? -1 : 1) * (s.direction === 'asc' ? 1 : -1));
+      this.mockData = [...this.mockData];
+    });
+  }
+
+  public rowClick(event, row, i) {
+    console.log(event, row, i);
+  }
+
+  public filtered(e) {
+    console.log(e);
   }
 }

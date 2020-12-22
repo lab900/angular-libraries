@@ -4,6 +4,7 @@
       [tableHeaderActions]="tableHeaderActions"
       [tableCells]="tableCells"
       [toggleColumns]="toggleColumns"
+      (tableCellsFiltered)="tableCellsFiltered.emit($event)"
   >
     <ng-container *ngIf="tableHeaderContent">
       <ng-container *ngTemplateOutlet="tableHeaderContent"></ng-container>
@@ -15,14 +16,9 @@
   <div class="lab900-table-wrapper">
     <table
       mat-table
-      matSort
       class="mat-elevation-z0"
       *ngIf="(data?.length || neverHideTable) && !disabled"
-      matSortDisableClear="true"
-      [matSortActive]="activeSort?.active"
-      [matSortDirection]="activeSort?.direction"
       [dataSource]="data"
-      (matSortChange)="sort.emit($event)"
     >
       <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef></th>
@@ -38,7 +34,19 @@
       </ng-container>
 
       <ng-container *ngFor="let cell of tableCells" [matColumnDef]="cell.key" [sticky]="cell?.sticky">
-        <th mat-header-cell mat-sort-header [disabled]="!cell.sortable" *matHeaderCellDef="let element">{{ utils.getCellLabel(cell) | translate }}</th>
+        <th
+          mat-header-cell
+          (click)="handleHeaderClick(cell)"
+          [class.sortable]="cell.sortable"
+          *matHeaderCellDef="let element"
+        >
+          <div>
+            {{ utils.getCellLabel(cell) | translate }}
+            <span class="material-icons lab900-sort-arrow" *ngIf="cell.sortable && getSortDir(cell) as dir">
+              {{getSortIcon(dir)}}
+            </span>
+          </div>
+        </th>
         <td [style.width]="cell?.width === '*' ? '100%' : cell?.width" mat-cell *matCellDef="let element" [ngClass]="utils.getCellClass(element, cell)">
           <ng-container *ngIf="cell?.customCellContent && customCellContent">
             <ng-container *ngTemplateOutlet="customCellContent; context: { $implicit: {cell: cell, element: element} }"></ng-container>
@@ -68,8 +76,14 @@
         </td>
       </ng-container>
 
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index;" [ngClass]="getRowClasses(row, i)"></tr>
+      <tr mat-row
+        *matRowDef="let row; columns: displayedColumns; let i = index;"
+        [ngClass]="getRowClasses(row, i)"
+        (click)="handleRowClick($event, row, i)"
+      ></tr>
+
     </table>
   </div>
 

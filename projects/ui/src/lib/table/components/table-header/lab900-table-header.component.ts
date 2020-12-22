@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TableCell } from '../../models/table-cell.model';
 import { ActionButton } from '../../../button/models/action-button.model';
 
@@ -21,4 +21,7 @@ export class Lab900TableHeaderComponent {
 
   @Input()
   public tableCells: TableCell[];
+
+  @Output()
+  public tableCellsFiltered: EventEmitter<TableCell[]> = new EventEmitter<TableCell[]>();
 }
