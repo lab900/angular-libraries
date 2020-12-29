@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Form, EditType, FormContainerComponent } from '@lab900/forms';
+import { EditType, Form, FormContainerComponent } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-button-toggle-example',
@@ -43,11 +43,13 @@ export class FormFieldButtonToggleExampleComponent {
               buttonOptions: [
                 {
                   value: 'edit',
-                  icon: { name: 'edit' },
+                  label: 'one',
+                  icon: { name: 'delete', position: 'right' },
                 },
                 {
                   value: 'delete',
-                  icon: { name: 'delete' },
+                  label: 'two',
+                  icon: { name: 'delete', position: 'left' },
                 },
               ],
             },
