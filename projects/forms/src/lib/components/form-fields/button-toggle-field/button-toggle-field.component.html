@@ -1,11 +1,12 @@
 <div [formGroup]="group" *ngIf="!fieldIsHidden" class="lab900-button-toggle-field button-toggle-field mat-form-field-wrapper" id="lab900-button-toggle-field-{{schema?.attribute}}">
-    <div *ngIf="schema.title"><mat-label>{{ schema.title | translate }}</mat-label></div>
+    <div *ngIf="schema.title" class="lab900-button-toggle-field__label"><mat-label>{{ schema.title | translate }}</mat-label></div>
     <mat-button-toggle-group [formControlName]="schema.attribute" [required]="required">
         <mat-button-toggle [disabled]="fieldIsReadonly" *ngFor="let value of options?.buttonOptions" [value]="value.value" class="{{value?.buttonClass}}">
+            <lab900-icon [icon]="value.icon" *ngIf="value?.icon?.position === 'left'"></lab900-icon>
             <ng-container *ngIf="value.label">
                 {{ value.label | translate }}
             </ng-container>
-            <lab900-icon *ngIf="value.icon" [icon]="value.icon"></lab900-icon>
+            <lab900-icon [icon]="value.icon" *ngIf="value?.icon?.position === 'right'" ></lab900-icon>
         </mat-button-toggle>
     </mat-button-toggle-group>
     <mat-error class="mat-form-field-subscript-wrapper" *ngIf="touched && !valid && !fieldIsReadonly">{{ getErrorMessage() | async }}</mat-error>
