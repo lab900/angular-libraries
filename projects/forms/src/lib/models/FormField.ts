@@ -130,6 +130,6 @@ export interface FormField<
   validators?: ValidatorFn[];
   errorMessages?: { [key: string]: string };
   nestedFields?: FormField[];
-  icon?: Icon & { position: 'left' | 'right' };
+  icon?: Icon & { position?: 'left' | 'right' };
   conditions?: IFieldConditions[];
 }
