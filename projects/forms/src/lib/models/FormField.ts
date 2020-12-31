@@ -38,6 +38,7 @@ export interface FieldOptions {
   readonlyDisplay?: (data?: any) => any;
   color?: ThemePalette;
   visibleFn?: (item: IFormComponent<any>) => boolean;
+  onChangeFn?: (value: any) => void;
 }
 
 export interface WysiwygFieldOptions extends FieldOptions {

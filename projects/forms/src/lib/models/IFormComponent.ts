@@ -74,6 +74,9 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
       if (this.schema?.conditions?.length) {
         this.createConditions();
       }
+      if (this.fieldControl && this.schema?.options?.onChangeFn) {
+        this.subs.push(this.fieldControl.valueChanges.subscribe((value) => this.schema?.options?.onChangeFn(value)));
+      }
     }
   }
 
