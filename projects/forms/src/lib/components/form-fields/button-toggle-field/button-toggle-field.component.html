@@ -6,7 +6,7 @@
             <ng-container *ngIf="value.label">
                 {{ value.label | translate }}
             </ng-container>
-            <lab900-icon [icon]="value.icon" *ngIf="value?.icon?.position === 'right'" ></lab900-icon>
+            <lab900-icon [icon]="value.icon" *ngIf="!value?.icon?.position || value.icon.position === 'right'" ></lab900-icon>
         </mat-button-toggle>
     </mat-button-toggle-group>
     <mat-error class="mat-form-field-subscript-wrapper" *ngIf="touched && !valid && !fieldIsReadonly">{{ getErrorMessage() | async }}</mat-error>
