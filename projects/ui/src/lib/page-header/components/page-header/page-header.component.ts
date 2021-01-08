@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PageHeaderNavItem } from '../../models/page-header-nav.model';
 import { ActionButton } from '../../../button/models/action-button.model';
+import { isObservable, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'lab900-page-header',
@@ -28,6 +29,13 @@ export class Lab900PageHeaderComponent {
       return item.label(this.data);
     }
     return item.label;
+  }
+
+  public getParams(item: PageHeaderNavItem): Observable<any> {
+    if (!isObservable(item.queryParams)) {
+      return of(item.queryParams);
+    }
+    return item.queryParams;
   }
 
   public getRoute(item: PageHeaderNavItem): string | void {

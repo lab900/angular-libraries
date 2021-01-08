@@ -10,7 +10,7 @@
       <a mat-tab-link
          routerLinkActive
          [routerLink]="getRoute(link)"
-         [queryParams]="link?.queryParams"
+         [queryParams]="getParams(link) | async"
          #rla="routerLinkActive"
          [active]="rla.isActive"
       >{{ getLabel(link) | translate }}</a>
