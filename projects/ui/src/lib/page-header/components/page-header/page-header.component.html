@@ -7,13 +7,13 @@
   </div>
   <nav *ngIf="navItems?.length" class="lab900-page-header__nav" mat-tab-nav-bar>
     <ng-container *ngFor="let link of navItems">
-      <a mat-tab-link
-         routerLinkActive
-         [routerLink]="getRoute(link)"
-         [queryParams]="getParams(link) | async"
-         #rla="routerLinkActive"
-         [active]="rla.isActive"
-      >{{ getLabel(link) | translate }}</a>
+      <ng-container *ngIf="getParams(link) | async as params">
+        <a mat-tab-link
+           [routerLink]="getRoute(link)"
+           [queryParams]="params"
+           [active]="isActive(getRoute(link), params)"
+        >{{ getLabel(link) | translate }}</a>
+      </ng-container>
     </ng-container>
   </nav>
 </header>

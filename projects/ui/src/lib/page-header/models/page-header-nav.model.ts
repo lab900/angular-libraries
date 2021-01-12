@@ -1,9 +1,8 @@
-import { Observable } from 'rxjs';
-
 type propFunction<T> = (data: T) => string;
+type paramsFunction<T> = (data: T) => Record<string, any>;
 
 export interface PageHeaderNavItem<T = any> {
   label: propFunction<T> | string;
   route?: propFunction<T> | string;
-  queryParams?: Observable<{ [key: string]: any }> | { [key: string]: any };
+  queryParams?: paramsFunction<T> | Record<string, any>;
 }

@@ -37,6 +37,7 @@ const routes: Routes = [
     new ShowcaseExample(PageHeaderParamsExampleComponent, 'Page header from request params'),
     new ShowcaseExample(PageHeaderExampleComponent, 'Page header'),
   ]),
+
   new ShowcaseRoute('merger', 'Merger', [new ShowcaseExample(MergerExampleComponent, 'Merger')]),
 ];
 

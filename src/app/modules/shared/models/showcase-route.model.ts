@@ -8,12 +8,13 @@ export interface ShowcaseRouteData {
   path: string;
   examples?: ShowcaseExample[];
   docFile?: string;
+  children?: Route;
 }
 export class ShowcaseRoute implements Route {
   public component: Type<any> = ShowcasePageComponent;
   public data: ShowcaseRouteData;
 
-  public constructor(public path: string, title: string, examples?: ShowcaseExample[], docFile?: string) {
-    this.data = { title, path, examples, docFile };
+  public constructor(public path: string, title: string, examples?: ShowcaseExample[], docFile?: string, children?: Route) {
+    this.data = { title, path, examples, docFile, children };
   }
 }
