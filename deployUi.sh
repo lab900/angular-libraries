@@ -1,6 +1,6 @@
 #!/bin/sh
 cd projects/ui/
-npm version minor
+npm version patch
 cd ../..
 npm run build:ui:prod
 cd dist/@lab900/ui
