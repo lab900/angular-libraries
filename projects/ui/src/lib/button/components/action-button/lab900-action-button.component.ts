@@ -19,7 +19,7 @@ export class Lab900ActionButtonComponent {
     return this.action?.tooltip?.position ?? 'above';
   }
 
-  public getType(): Lab900ButtonType {
+  public getType(): 'toggle' | Lab900ButtonType {
     if (typeof this.action.type === 'function') {
       return this.action.type(this.data);
     }

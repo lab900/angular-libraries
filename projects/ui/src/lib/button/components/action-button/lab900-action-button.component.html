@@ -1,28 +1,42 @@
 <ng-container *ngIf="action && !getHidden()">
-    <lab900-button
-        *ngIf="!action.subActions?.length; else: subActions"
-        [type]="getType()"
-        [color]="getColor()"
-        [disabled]="getDisabled()"
-        (click)="!getDisabled() && doAction($event)"
-        [label]="getLabel()"
-        [matTooltip]="action?.tooltip?.value | translate"
-        [prefixIcon]="getPrefixIcon()"
-        [suffixIcon]="getSuffixIcon()"
-        [matTooltipPosition]="tooltipPosition"
-    ></lab900-button>
-    <ng-template #subActions>
+    <ng-container *ngIf="action.type !== 'toggle'; else: toggleButtons">
         <lab900-button
+            *ngIf="!action.subActions?.length; else: subActions"
             [type]="getType()"
             [color]="getColor()"
             [disabled]="getDisabled()"
+            (click)="!getDisabled() && doAction($event)"
             [label]="getLabel()"
-            [matMenuTriggerFor]="sub.actionMenu"
             [matTooltip]="action?.tooltip?.value | translate"
             [prefixIcon]="getPrefixIcon()"
             [suffixIcon]="getSuffixIcon()"
             [matTooltipPosition]="tooltipPosition"
         ></lab900-button>
-        <lab900-action-button-menu #sub [actions]="action.subActions" [data]="data"></lab900-action-button-menu>
+        <ng-template #subActions>
+            <lab900-button
+                [type]="getType()"
+                [color]="getColor()"
+                [disabled]="getDisabled()"
+                [label]="getLabel()"
+                [matMenuTriggerFor]="sub.actionMenu"
+                [matTooltip]="action?.tooltip?.value | translate"
+                [prefixIcon]="getPrefixIcon()"
+                [suffixIcon]="getSuffixIcon()"
+                [matTooltipPosition]="tooltipPosition"
+            ></lab900-button>
+            <lab900-action-button-menu #sub [actions]="action.subActions" [data]="data"></lab900-action-button-menu>
+        </ng-template>
+    </ng-container>
+    <ng-template #toggleButtons>
+        <ng-container *ngIf="action.subActions">
+            <mat-button-toggle-group>
+                <mat-button-toggle *ngFor="let actionButton of action.subActions"><mat-icon *ngIf="actionButton.prefixIcon">{{actionButton.prefixIcon}}</mat-icon>
+                    <ng-container *ngIf="actionButton.label">
+                        {{ actionButton.label | translate }}
+                    </ng-container>
+                    <mat-icon *ngIf="actionButton.suffixIcon">{{actionButton.suffixIcon}}</mat-icon>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        </ng-container>
     </ng-template>
 </ng-container>

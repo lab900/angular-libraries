@@ -12,6 +12,6 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [NavListComponent, NavItemComponent, IconComponent],
   imports: [CommonModule, MatListModule, TranslateModule, FlexModule, MatIconModule, RouterModule],
-  exports: [NavListComponent],
+  exports: [NavListComponent, IconComponent],
 })
 export class Lab900NavListModule {}
