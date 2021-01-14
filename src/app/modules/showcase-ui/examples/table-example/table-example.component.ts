@@ -45,6 +45,10 @@ export class TableExampleComponent {
       type: 'stroked',
     },
     {
+      label: 'keyboard_arrow_down',
+      type: 'icon',
+    },
+    {
       label: 'Exporteer lijst',
       type: 'stroked',
       prefixIcon: 'keyboard_arrow_down',
@@ -67,11 +71,12 @@ export class TableExampleComponent {
         {
           label: 'Word',
           type: 'stroked',
-          selected: true,
+          selected: () => false,
         },
         {
           label: 'PDF',
           type: 'stroked',
+          selected: true,
         },
       ],
     },
