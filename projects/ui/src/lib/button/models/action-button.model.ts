@@ -10,9 +10,14 @@ export interface ActionButton<T = any> {
   type?: propValue<T, 'toggle' | Lab900ButtonType>;
   color?: propValue<T, ThemePalette>;
   disabled?: propValue<T, boolean>;
+  selected?: propValue<T, boolean>;
   hide?: propValue<T, boolean>;
   subActions?: ActionButton<T>[];
   tooltip?: { value: string; position?: TooltipPosition };
   suffixIcon?: propValue<T>;
   prefixIcon?: propValue<T>;
+}
+
+export interface ToggleActionButton<T = any> extends ActionButton<T> {
+  selected?: propValue<T, boolean>;
 }

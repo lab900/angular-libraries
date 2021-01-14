@@ -9,9 +9,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { Lab900ActionButtonMenuComponent } from './components/action-button-menu/lab900-action-button-menu.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { Lab900ActionButtonToggleComponent } from './components/action-button-toggle/lab900-action-button-toggle.component';
 
 @NgModule({
-  declarations: [Lab900ButtonComponent, Lab900ActionButtonComponent, Lab900ActionButtonMenuComponent],
+  declarations: [Lab900ButtonComponent, Lab900ActionButtonToggleComponent, Lab900ActionButtonComponent, Lab900ActionButtonMenuComponent],
   exports: [Lab900ButtonComponent, Lab900ActionButtonComponent, MatButtonModule],
   imports: [CommonModule, MatButtonModule, MatMenuModule, MatIconModule, TranslateModule, MatTooltipModule, MatButtonToggleModule],
 })

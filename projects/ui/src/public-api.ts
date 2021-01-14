@@ -20,6 +20,7 @@ export * from './lib/alert/models/alert';
 export * from './lib/nav-list/nav-list.module';
 export * from './lib/nav-list/models/nav-item.model';
 export * from './lib/nav-list/components/nav-list/nav-list.component';
+export * from './lib/nav-list/components/icon/icon.component';
 
 // data list
 export * from './lib/data-list/data-list.module';

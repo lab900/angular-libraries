@@ -1,9 +1,14 @@
 @import "scss/merger";
+@import "scss/action-button-toggle";
 
 @mixin lab900-ui($config-or-theme) {
+
   .mat-table {
     width: 100%;
   }
 
   @include lab900-merger($config-or-theme);
+
+  @include lab900-action-button-toggle($config-or-theme);
+
 }

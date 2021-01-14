@@ -67,6 +67,7 @@ export class TableExampleComponent {
         {
           label: 'Word',
           type: 'stroked',
+          selected: true,
         },
         {
           label: 'PDF',
