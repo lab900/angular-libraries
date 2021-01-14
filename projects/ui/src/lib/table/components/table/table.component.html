@@ -89,7 +89,8 @@
 
   <mat-paginator
       *ngIf="data?.length && paging"
-      hidePageSize
+      [hidePageSize]="pageSizeConfig.hidePageSize"
+      [pageSizeOptions]="pageSizeConfig.pageSizeOptions"
       [length]="paging.totalItems"
       [pageSize]="paging.pageSize"
       [pageIndex]="paging.pageIndex"

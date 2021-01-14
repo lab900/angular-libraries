@@ -4,6 +4,7 @@ import { ActionButton, Lab900Sort, Paging, TableCell } from '@lab900/ui';
 @Component({
   selector: 'lab900-table-example',
   template: `<lab900-table
+    [pageSizeConfig]="{ hidePageSize: true, pageSizeOptions: [5, 10] }"
     [tableCells]="tableCells"
     [sort]="sort"
     (sortChange)="sortChange($event)"
