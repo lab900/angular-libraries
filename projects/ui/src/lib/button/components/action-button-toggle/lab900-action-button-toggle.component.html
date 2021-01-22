@@ -1,0 +1,16 @@
+<ng-container *ngIf="action && !getHidden()">
+    <ng-container *ngIf="action?.subActions?.length">
+        <mat-button-toggle-group [value]="getSelected()">
+            <mat-button-toggle
+                    *ngFor="let actionButton of action.subActions"
+                    (click)="actionButton.action && actionButton.action(data)"
+                    [value]="actionButton">
+                <mat-icon *ngIf="actionButton.prefixIcon">{{actionButton.prefixIcon}}</mat-icon>
+                <ng-container *ngIf="actionButton.label">
+                    {{ actionButton.label | translate }}
+                </ng-container>
+                <mat-icon *ngIf="actionButton.suffixIcon">{{actionButton.suffixIcon}}</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </ng-container>
+</ng-container>

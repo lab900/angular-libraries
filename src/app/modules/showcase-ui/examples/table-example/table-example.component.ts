@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { TableCell, Paging, ActionButton, Lab900Sort } from '@lab900/ui';
+import { ActionButton, Lab900Sort, Paging, TableCell } from '@lab900/ui';
 
 @Component({
   selector: 'lab900-table-example',
   template: `<lab900-table
+    [pageSizeConfig]="{ hidePageSize: true, pageSizeOptions: [5, 10] }"
     [tableCells]="tableCells"
     [sort]="sort"
     (sortChange)="sortChange($event)"
@@ -18,7 +19,7 @@ import { TableCell, Paging, ActionButton, Lab900Sort } from '@lab900/ui';
     [multiSort]="true"
     (tableCellsFiltered)="filtered($event)"
   >
-    <div *lab900TableHeaderContent>Header can have custom elements</div>
+    <div *lab900TableHeaderContent>Custom header</div>
     <div *lab900TableCustomCell="let data">
       <div *ngIf="data.cell.key === 'active'">
         <mat-checkbox color="primary" [checked]="data.element?.active"></mat-checkbox>
@@ -41,8 +42,44 @@ export class TableExampleComponent {
       // suffixIcon: 'keyboard_arrow_down',
     },
     {
+      label: 'Button',
+      type: 'stroked',
+    },
+    {
+      label: 'keyboard_arrow_down',
+      type: 'icon',
+    },
+    {
       label: 'Exporteer lijst',
       type: 'stroked',
+      prefixIcon: 'keyboard_arrow_down',
+      subActions: [
+        {
+          label: 'Word',
+          type: 'stroked',
+        },
+        {
+          label: 'PDF',
+          type: 'stroked',
+        },
+      ],
+    },
+    {
+      label: 'Exporteer lijst',
+      type: 'toggle',
+      prefixIcon: 'keyboard_arrow_down',
+      subActions: [
+        {
+          label: 'Word',
+          type: 'stroked',
+          selected: () => false,
+        },
+        {
+          label: 'PDF',
+          type: 'stroked',
+          selected: true,
+        },
+      ],
     },
   ];
 

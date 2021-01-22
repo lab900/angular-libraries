@@ -36,6 +36,9 @@ export class Lab900TableComponent implements OnChanges {
   public tableClass: string;
 
   @Input()
+  public pageSizeConfig: { hidePageSize?: boolean; pageSizeOptions?: number[] } = { hidePageSize: true, pageSizeOptions: [5, 10, 50] };
+
+  @Input()
   public loading = false;
 
   @Input()

@@ -1,28 +1,33 @@
 <ng-container *ngIf="action && !getHidden()">
-    <lab900-button
-        *ngIf="!action.subActions?.length; else: subActions"
-        [type]="getType()"
-        [color]="getColor()"
-        [disabled]="getDisabled()"
-        (click)="!getDisabled() && doAction($event)"
-        [label]="getLabel()"
-        [matTooltip]="action?.tooltip?.value | translate"
-        [prefixIcon]="getPrefixIcon()"
-        [suffixIcon]="getSuffixIcon()"
-        [matTooltipPosition]="tooltipPosition"
-    ></lab900-button>
-    <ng-template #subActions>
+    <ng-container *ngIf="getType() !== 'toggle'; else: toggleButtons">
         <lab900-button
-            [type]="getType()"
+            *ngIf="!action.subActions?.length; else: subActions"
+            [type]="getButtonType()"
             [color]="getColor()"
             [disabled]="getDisabled()"
+            (click)="!getDisabled() && doAction($event)"
             [label]="getLabel()"
-            [matMenuTriggerFor]="sub.actionMenu"
             [matTooltip]="action?.tooltip?.value | translate"
             [prefixIcon]="getPrefixIcon()"
             [suffixIcon]="getSuffixIcon()"
             [matTooltipPosition]="tooltipPosition"
         ></lab900-button>
-        <lab900-action-button-menu #sub [actions]="action.subActions" [data]="data"></lab900-action-button-menu>
+        <ng-template #subActions>
+            <lab900-button
+                [type]="getButtonType()"
+                [color]="getColor()"
+                [disabled]="getDisabled()"
+                [label]="getLabel()"
+                [matMenuTriggerFor]="sub.actionMenu"
+                [matTooltip]="action?.tooltip?.value | translate"
+                [prefixIcon]="getPrefixIcon()"
+                [suffixIcon]="getSuffixIcon()"
+                [matTooltipPosition]="tooltipPosition"
+            ></lab900-button>
+            <lab900-action-button-menu #sub [actions]="action.subActions" [data]="data"></lab900-action-button-menu>
+        </ng-template>
+    </ng-container>
+    <ng-template #toggleButtons>
+        <lab900-action-button-toggle [action]="action" [data]="data"></lab900-action-button-toggle>
     </ng-template>
 </ng-container>
