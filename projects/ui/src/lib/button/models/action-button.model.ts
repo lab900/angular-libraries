@@ -1,8 +1,7 @@
 import { Lab900ButtonType } from './button.model';
 import { ThemePalette } from '@angular/material/core';
 import { TooltipPosition } from '@angular/material/tooltip';
-
-type propValue<T, R = string> = ((data?: T) => R) | R;
+import { propValue } from '../../utils/utils';
 
 export interface ActionButton<T = any> {
   label: propValue<T>;

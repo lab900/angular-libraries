@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActionButton } from '../../models/action-button.model';
 import { ThemePalette } from '@angular/material/core';
+import { readPropValue } from '../../../utils/utils';
 
 @Component({
   selector: 'lab900-action-button-toggle',
@@ -23,31 +24,19 @@ export class Lab900ActionButtonToggleComponent {
   }
 
   public getColor(): ThemePalette {
-    if (typeof this.action.color === 'function') {
-      return this.action.color(this.data);
-    }
-    return this.action.color;
+    return readPropValue(this.action.color, this.data);
   }
 
   public getLabel(): string {
-    if (typeof this.action.label === 'function') {
-      return this.action.label(this.data);
-    }
-    return this.action.label;
+    return readPropValue(this.action.label, this.data);
   }
 
   public getHidden(): boolean {
-    if (typeof this.action.hide === 'function') {
-      return this.action.hide(this.data);
-    }
-    return this.action.hide;
+    return readPropValue(this.action.hide, this.data);
   }
 
   public getDisabled(): boolean {
-    if (typeof this.action.disabled === 'function') {
-      return this.action.disabled(this.data);
-    }
-    return this.action.disabled;
+    return readPropValue(this.action.disabled, this.data);
   }
 
   public doAction(e: Event): void {
@@ -57,16 +46,10 @@ export class Lab900ActionButtonToggleComponent {
   }
 
   public getPrefixIcon(): string {
-    if (typeof this.action.prefixIcon === 'function') {
-      return this.action.prefixIcon(this.data);
-    }
-    return this.action.prefixIcon;
+    return readPropValue(this.action.prefixIcon, this.data);
   }
 
   public getSuffixIcon(): string {
-    if (typeof this.action.suffixIcon === 'function') {
-      return this.action.suffixIcon(this.data);
-    }
-    return this.action.suffixIcon;
+    return readPropValue(this.action.suffixIcon, this.data);
   }
 }

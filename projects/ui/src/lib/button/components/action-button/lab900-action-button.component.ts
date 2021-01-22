@@ -3,6 +3,7 @@ import { ActionButton } from '../../models/action-button.model';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { ThemePalette } from '@angular/material/core';
 import { Lab900ButtonType } from '../../models/button.model';
+import { readPropValue } from '../../../utils/utils';
 
 @Component({
   selector: 'lab900-action-button',
@@ -31,38 +32,23 @@ export class Lab900ActionButtonComponent {
   }
 
   public getType(): 'toggle' | Lab900ButtonType {
-    if (typeof this.action.type === 'function') {
-      return this.action.type(this.data);
-    }
-    return this.action.type;
+    return readPropValue(this.action.type, this.data);
   }
 
   public getColor(): ThemePalette {
-    if (typeof this.action.color === 'function') {
-      return this.action.color(this.data);
-    }
-    return this.action.color;
+    return readPropValue(this.action.color, this.data);
   }
 
   public getLabel(): string {
-    if (typeof this.action.label === 'function') {
-      return this.action.label(this.data);
-    }
-    return this.action.label;
+    return readPropValue(this.action.label, this.data);
   }
 
   public getHidden(): boolean {
-    if (typeof this.action.hide === 'function') {
-      return this.action.hide(this.data);
-    }
-    return this.action.hide;
+    return readPropValue(this.action.hide, this.data);
   }
 
   public getDisabled(): boolean {
-    if (typeof this.action.disabled === 'function') {
-      return this.action.disabled(this.data);
-    }
-    return this.action.disabled;
+    return readPropValue(this.action.disabled, this.data);
   }
 
   public doAction(e: Event): void {
@@ -72,16 +58,10 @@ export class Lab900ActionButtonComponent {
   }
 
   public getPrefixIcon(): string {
-    if (typeof this.action.prefixIcon === 'function') {
-      return this.action.prefixIcon(this.data);
-    }
-    return this.action.prefixIcon;
+    return readPropValue(this.action.prefixIcon, this.data);
   }
 
   public getSuffixIcon(): string {
-    if (typeof this.action.suffixIcon === 'function') {
-      return this.action.suffixIcon(this.data);
-    }
-    return this.action.suffixIcon;
+    return readPropValue(this.action.suffixIcon, this.data);
   }
 }

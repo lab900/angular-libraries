@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { ActionButton } from '../../models/action-button.model';
 import { MatMenu } from '@angular/material/menu';
+import { readPropValue } from '../../../utils/utils';
 
 @Component({
   selector: 'lab900-action-button-menu',
@@ -17,17 +18,11 @@ export class Lab900ActionButtonMenuComponent {
   public data: any;
 
   public getLabel(action: ActionButton): string {
-    if (typeof action.label === 'function') {
-      return action.label(this.data);
-    }
-    return action.label;
+    return readPropValue(action.label, this.data);
   }
 
   public getDisabled(action: ActionButton): boolean {
-    if (typeof action.disabled === 'function') {
-      return action.disabled(this.data);
-    }
-    return action.disabled;
+    return readPropValue(action.disabled, this.data);
   }
 
   public doAction(e: Event, action: ActionButton): void {
@@ -37,16 +32,10 @@ export class Lab900ActionButtonMenuComponent {
   }
 
   public getPrefixIcon(action: ActionButton): string {
-    if (typeof action.prefixIcon === 'function') {
-      return action.prefixIcon(this.data);
-    }
-    return action.prefixIcon;
+    return readPropValue(action.prefixIcon, this.data);
   }
 
   public getSuffixIcon(action: ActionButton): string {
-    if (typeof action.suffixIcon === 'function') {
-      return action.suffixIcon(this.data);
-    }
-    return action.suffixIcon;
+    return readPropValue(action.suffixIcon, this.data);
   }
 }
