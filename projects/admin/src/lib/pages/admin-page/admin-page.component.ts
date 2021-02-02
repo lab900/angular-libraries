@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Schema, SchemaConverter } from '../../models/schema';
 import { PageEvent } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DataService } from '../../models/dataService';
 import { Item, Page } from '../../models/page';
 import { Form } from '@lab900/forms';
@@ -14,6 +14,7 @@ import { Form } from '@lab900/forms';
 export class AdminPageComponent implements OnInit {
   @Input() schema: Schema;
   @Input() dataService: DataService;
+  @Input() dialogOptions: MatDialogConfig;
 
   public error: string;
   public loading = false;

@@ -9,6 +9,7 @@ import { Item, Page } from '@lab900/admin';
 })
 export class TranslatableAdminPageExampleComponent {
   public newsSchema = NEWS_SCHEMA;
+  public dialogOptions = { disableClose: false };
 
   public dataService = new (class implements TranslatableDataService {
     private previousPage = 0;
