@@ -4,6 +4,7 @@ import { SchemaField } from '../../models/schemaField';
 import { Schema, SchemaConverter } from '../../models/schema';
 import { Item, Page } from '../../models/page';
 import { Form } from '@lab900/forms';
+import { MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'lab900-admin-table',
@@ -15,6 +16,7 @@ export class AdminTableComponent implements OnInit {
   @Input() schema: Schema;
   @Input() data: Page<Item>;
   @Input() editHandler: (data: any) => Promise<boolean>;
+  @Input() public dialogOptions: MatDialogConfig;
 
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();

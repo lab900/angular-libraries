@@ -8,6 +8,7 @@ import { DataService, Item, Page } from '@lab900/admin';
 })
 export class AdminPageExampleComponent {
   public newsSchema = NEWS_SCHEMA;
+  public dialogOptions = { disableClose: false };
 
   public dataService = new (class implements DataService {
     private previousPage = 0;
