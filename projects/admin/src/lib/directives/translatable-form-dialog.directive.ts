@@ -1,5 +1,5 @@
 import { Directive, HostListener, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TranslatableFormDialogComponent } from '../components/translatable-form-dialog/translatable-form-dialog.component';
 import { Schema } from '../models/schema';
 
@@ -22,6 +22,9 @@ export class TranslatableFormDialogDirective<T> {
   @Input()
   public getHandler: (id: any, language: string) => Promise<T>;
 
+  @Input()
+  public dialogOptions: MatDialogConfig;
+
   public constructor(public dialog: MatDialog) {}
 
   @HostListener('click') onMouseEnter(): void {
@@ -33,6 +36,7 @@ export class TranslatableFormDialogDirective<T> {
         get: this.getHandler,
         create: this.create,
       },
+      ...this.dialogOptions,
     });
     dialog
       .beforeClosed()

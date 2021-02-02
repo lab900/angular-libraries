@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Schema } from '../../models/schema';
 import { PageEvent } from '@angular/material/paginator';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { TranslatableDataService } from '../../models/translatableDataService';
 import { Item, Page } from '../../models/page';
@@ -14,6 +14,7 @@ import { Item, Page } from '../../models/page';
 export class TranslatableAdminPageComponent implements OnInit, OnDestroy {
   @Input() schema: Schema;
   @Input() dataService: TranslatableDataService;
+  @Input() dialogOptions: MatDialogConfig;
 
   public error: string;
   public loading = false;
