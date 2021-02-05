@@ -39,7 +39,6 @@ static LinkedHashMap<String, Object> getBranch(String branch, String gitConfig) 
 pipeline {
     agent none
     environment {
-        GH_TOKEN = credentials('Github_token')
         NPMJS_TOKEN = credentials('npm')
     }
     stages {
@@ -94,7 +93,6 @@ pipeline {
                         }
                         withEnv(["TOKEN=${NPMJS_TOKEN}"]) {
                             dir('./build/dist/@lab900/forms') {
-                                sh 'echo "//registry.npmjs.org/:_authToken=${TOKEN}" >> .npmrc'
                                 sh 'npm publish'
                             }
                         }
