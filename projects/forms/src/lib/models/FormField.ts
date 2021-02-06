@@ -81,6 +81,8 @@ export interface DatepickerFieldOptions extends FieldOptions {
   maxDate?: Date;
   minDate?: Date;
   showSeconds?: boolean;
+  defaultTime?: [number, number, number];
+  stepMinute?: number;
 }
 
 export interface DateRangePickerFieldOptions extends FieldOptions {
