@@ -14,7 +14,6 @@ export class FormDialogComponent<T> {
 
   public dialogFormData: DialogFormData<T>;
   public loading = false;
-  public error: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: DialogFormData<T>, private dialogRef: MatDialogRef<FormDialogComponent<T>>) {
     this.dialogFormData = data;
@@ -22,11 +21,13 @@ export class FormDialogComponent<T> {
 
   submit(item: T) {
     this.loading = true;
-    this.error = null;
     this.dialogFormData
       .submit(item, this.formContainer?.form)
-      .catch((error) => (this.error = error))
-      .then((result) => (result ? this.dialogRef.close() : (this.error = 'Oops. An error occured.')))
+      .then((result) => {
+        if (result) {
+          this.dialogRef.close();
+        }
+      })
       .finally(() => (this.loading = false));
   }
 }

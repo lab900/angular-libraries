@@ -4,5 +4,5 @@
 </mat-dialog-content>
 <mat-dialog-actions  align="end">
     <button mat-raised-button mat-dialog-close tabindex="-1">Cancel</button>
-    <button mat-raised-button color="primary" [disabled]="(!lab900Form.valid || loading || !!error)" (click)="submit(lab900Form.value)" tabindex="1">Ok</button>
+    <button mat-raised-button color="primary" [disabled]="(!lab900Form.valid || loading)" (click)="submit(lab900Form.value)" tabindex="1">Ok</button>
 </mat-dialog-actions>
