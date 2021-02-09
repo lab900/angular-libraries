@@ -12,6 +12,10 @@
     </ng-container>
   </lab900-table-header>
 
+  <ng-container *ngIf="tableTopContent">
+    <ng-container *ngTemplateOutlet="tableTopContent"></ng-container>
+  </ng-container>
+
   <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 
   <div class="lab900-table-wrapper">

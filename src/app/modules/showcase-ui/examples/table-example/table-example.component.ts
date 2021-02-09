@@ -20,6 +20,7 @@ import { ActionButton, Lab900Sort, Paging, TableCell } from '@lab900/ui';
     [multiSort]="true"
     (tableCellsFiltered)="filtered($event)"
   >
+    <div *lab900TableTopContent>Custom top content</div>
     <div *lab900TableHeaderContent>Custom header</div>
     <div *lab900TableCustomCell="let data">
       <div *ngIf="data.cell.key === 'active'">
