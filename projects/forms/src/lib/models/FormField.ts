@@ -20,7 +20,7 @@ export interface FieldMask {
 
 export interface FieldOptions {
   hide?: boolean | ((data?: any) => boolean);
-  hint?: { value: string; hideHintOnValidValue?: boolean };
+  hint?: { value: string; hideHintOnValidValue?: boolean; innerHTML?: string };
   placeholder?: string;
   colspan?: number; // 12 column grid = value from 1 to 12.
   mobileCols?: boolean; // keep colspan on mobile (only for form rows)
@@ -81,6 +81,8 @@ export interface DatepickerFieldOptions extends FieldOptions {
   maxDate?: Date;
   minDate?: Date;
   showSeconds?: boolean;
+  defaultTime?: [number, number, number];
+  stepMinute?: number;
 }
 
 export interface DateRangePickerFieldOptions extends FieldOptions {

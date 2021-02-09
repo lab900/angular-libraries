@@ -14,27 +14,20 @@ export class FormDialogComponent<T> {
 
   public dialogFormData: DialogFormData<T>;
   public loading = false;
-  public error: string;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) private data: DialogFormData<T>,
-    private dialogRef: MatDialogRef<FormDialogComponent<T>>
-  ) {
+  constructor(@Inject(MAT_DIALOG_DATA) private data: DialogFormData<T>, private dialogRef: MatDialogRef<FormDialogComponent<T>>) {
     this.dialogFormData = data;
   }
 
-  submit(valid: boolean, item: T) {
-    if (valid) {
-      this.loading = true;
-      this.error = null;
-      this.dialogFormData
-        .submit(item)
-        .catch((error) => (this.error = error))
-        .then((result) => (result ? this.dialogRef.close() : (this.error = 'Oops. An error occured.')))
-        .finally(() => (this.loading = false));
-    } else if (!valid && this.data?.onInvalid) {
-      this.data?.onInvalid(this.formContainer?.form, item);
-    }
+  submit(item: T) {
+    this.loading = true;
+    this.dialogFormData
+      .submit(item, this.formContainer?.form)
+      .then((result) => {
+        if (result) {
+          this.dialogRef.close();
+        }
+      })
+      .finally(() => (this.loading = false));
   }
-
 }

@@ -9,11 +9,13 @@ import { AlertDialog } from '../../models/alertDialog';
 })
 export class AlertDialogComponent {
   message = '';
+  innerHTML = '';
   buttonText = 'Ok';
   constructor(@Inject(MAT_DIALOG_DATA) private data: AlertDialog, private dialogRef: MatDialogRef<AlertDialogComponent>) {
     if (data) {
       this.message = data.message || this.message;
       this.buttonText = data.okButtonText || this.buttonText;
+      this.innerHTML = data.innerHTML || this.innerHTML;
     }
     this.dialogRef.updateSize('300vw', '300vw');
   }

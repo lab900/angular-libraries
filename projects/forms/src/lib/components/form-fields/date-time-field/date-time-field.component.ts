@@ -30,4 +30,12 @@ export class DateTimeFieldComponent extends FormComponent<DatepickerFieldOptions
   public get minDate(): Date | null {
     return this.schema?.options?.minDate;
   }
+
+  public get defaultTime(): [number, number, number] | null {
+    return this.schema?.options?.defaultTime;
+  }
+
+  public get stepMinute(): number | 1 {
+    return this.schema?.options?.stepMinute || 1;
+  }
 }

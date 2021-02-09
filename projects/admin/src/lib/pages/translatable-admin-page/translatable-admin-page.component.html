@@ -3,7 +3,18 @@
 </div>
 <div *ngIf="!error">
     <div class="admin-page">
-        <button *ngIf="schema.creatable" mat-raised-button color="primary" lab900TranslatableFormDialog [schema]="schema" [submitFormHandler]="createHandler" [create]="true" [getHandler]="getHandler">Create</button>
+        <button 
+            *ngIf="schema.creatable" 
+            mat-raised-button color="primary" 
+            lab900TranslatableFormDialog 
+            [schema]="schema" 
+            [dialogOptions]="dialogOptions" 
+            [submitFormHandler]="createHandler" 
+            [create]="true" 
+            [getHandler]="getHandler"
+            >
+            Create
+            </button>
         <lab900-translatable-admin-table
                 [loading]="loading"
                 [schema]="schema"
