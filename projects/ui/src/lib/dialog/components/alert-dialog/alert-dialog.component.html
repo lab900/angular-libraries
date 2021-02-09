@@ -1,6 +1,6 @@
 <mat-dialog-content>
     {{message | translate}}
-    <span [innerHTML]="innerHTML"></span>
+    <span [innerHTML]="messageHTML | translate"></span>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
     <button mat-raised-button color="primary" mat-dialog-close tabindex="-1">{{buttonText | translate}}</button>

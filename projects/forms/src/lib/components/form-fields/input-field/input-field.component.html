@@ -14,8 +14,8 @@
         [allowNegativeNumbers]="options?.fieldMask?.allowNegativeNumbers || false"
         [showMaskTyped]="options?.fieldMask?.showMaskedType || false"
     >
-    <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !fieldIsReadonly">
-        {{ hint | translate }}<span *ngIf="schema.options.hint?.innerHTML" [innerHTML]="schema.options.hint.innerHTML"></span>
+    <mat-hint *ngIf="(hint || hintHTML) && !(schema.options.hint.hideHintOnValidValue && input.value) && !fieldIsReadonly">
+        {{ hint | translate }}<span *ngIf="hintHTML" [innerHTML]="hintHTML | translate"></span>
     </mat-hint>
     <mat-hint align="end" *ngIf="options?.maxLength && !fieldIsReadonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
     <mat-error *ngIf="!valid && !fieldIsReadonly">{{ getErrorMessage() | async }}</mat-error>
