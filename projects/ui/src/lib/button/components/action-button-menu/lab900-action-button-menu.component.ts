@@ -26,6 +26,7 @@ export class Lab900ActionButtonMenuComponent {
   }
 
   public doAction(e: Event, action: ActionButton): void {
+    e.stopPropagation();
     if (action.action) {
       action.action(this.data, e);
     }

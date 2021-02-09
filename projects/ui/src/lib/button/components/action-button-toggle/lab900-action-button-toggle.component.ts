@@ -40,6 +40,7 @@ export class Lab900ActionButtonToggleComponent {
   }
 
   public doAction(e: Event): void {
+    e.stopPropagation();
     if (this.action.action) {
       this.action.action(this.data, e);
     }
