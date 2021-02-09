@@ -52,6 +52,7 @@ export class Lab900ActionButtonComponent {
   }
 
   public doAction(e: Event): void {
+    e.stopPropagation();
     if (this.action.action) {
       this.action.action(this.data, e);
     }
