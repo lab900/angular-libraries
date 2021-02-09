@@ -87,6 +87,9 @@ export class Lab900TableComponent implements OnChanges {
   public toggleColumns = false;
 
   @Input()
+  public filterIcon = 'filter_alt';
+
+  @Input()
   public neverHideTable = false;
 
   @Input()
