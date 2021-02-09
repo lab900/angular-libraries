@@ -13,6 +13,7 @@ import { ActionButton, Lab900Sort, Paging, TableCell } from '@lab900/ui';
     [tableActionsBack]="tableActions"
     [tableHeaderActions]="tableHeaderActions"
     [toggleColumns]="true"
+    filterIcon="settings"
     [selectableRows]="true"
     [selectedItems]="selectedItems"
     [onRowClick]="rowClick"

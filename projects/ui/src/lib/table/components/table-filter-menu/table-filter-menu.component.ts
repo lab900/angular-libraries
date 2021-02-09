@@ -13,6 +13,9 @@ export class Lab900TableFilterMenuComponent {
   @Input()
   public tableCells: TableCell[];
 
+  @Input()
+  public filterIcon = 'filter_alt';
+
   @Output()
   public filterChanged: EventEmitter<TableCell[]> = new EventEmitter<TableCell[]>();
 

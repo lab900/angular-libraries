@@ -5,6 +5,7 @@
       [tableCells]="tableCells"
       [toggleColumns]="toggleColumns"
       (tableCellsFiltered)="tableCellsFiltered.emit($event)"
+      [filterIcon]="filterIcon"
   >
     <ng-container *ngIf="tableHeaderContent">
       <ng-container *ngTemplateOutlet="tableHeaderContent"></ng-container>

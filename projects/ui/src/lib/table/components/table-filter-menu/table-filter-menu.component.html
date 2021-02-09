@@ -1,6 +1,6 @@
 <div class="lab900-table-filter-menu" *ngIf="cells?.length">
     <button color="primary" mat-icon-button [matMenuTriggerFor]="filterMenu">
-        <mat-icon>settings</mat-icon>
+        <mat-icon>{{ filterIcon }}</mat-icon>
     </button>
     <mat-menu #filterMenu>
         <div class="lab900-table-filter-menu__option" *ngFor="let cell of cells">

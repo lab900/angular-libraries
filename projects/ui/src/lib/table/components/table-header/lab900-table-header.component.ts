@@ -22,6 +22,9 @@ export class Lab900TableHeaderComponent {
   @Input()
   public tableCells: TableCell[];
 
+  @Input()
+  public filterIcon = 'filter_alt';
+
   @Output()
   public tableCellsFiltered: EventEmitter<TableCell[]> = new EventEmitter<TableCell[]>();
 }
