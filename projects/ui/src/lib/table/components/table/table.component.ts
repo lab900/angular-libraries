@@ -10,6 +10,7 @@ import { Lab900TableHeaderContentDirective } from '../../directives/table-header
 import { ActionButton } from '../../../button/models/action-button.model';
 import { Lab900TableCustomCellDirective } from '../../directives/table-custom-cell.directive';
 import { SortDirection } from '@angular/material/sort/sort-direction';
+import { Lab900TableTopContentDirective } from '../../directives/table-top-content.directive';
 
 export interface Lab900Sort {
   /** The id of the column being sorted. */
@@ -130,6 +131,9 @@ export class Lab900TableComponent implements OnChanges {
 
   @ContentChild(Lab900TableHeaderContentDirective, { read: TemplateRef })
   public tableHeaderContent?: Lab900TableHeaderContentDirective;
+
+  @ContentChild(Lab900TableTopContentDirective, { read: TemplateRef })
+  public tableTopContent?: Lab900TableTopContentDirective;
 
   @ContentChild(Lab900TableCustomCellDirective, { read: TemplateRef })
   public customCellContent?: Lab900TableCustomCellDirective;
