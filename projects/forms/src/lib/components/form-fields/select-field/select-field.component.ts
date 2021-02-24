@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions, ValueLabel } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import { IFieldConditions } from '../../../models/IFieldConditions';
   selector: 'lab900-select-field',
   templateUrl: './select-field.component.html',
 })
-export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit {
+export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit, OnDestroy {
   private conditionalChange = new Subject();
 
   @HostBinding('class')
@@ -49,19 +49,20 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
     if (this.options?.selectOptions) {
       const selectOptions = this.options?.selectOptions;
       const values = typeof selectOptions === 'function' ? selectOptions() : selectOptions;
-      (isObservable(values) ? values : of(values))
-        .pipe(
-          take(1),
-          catchError(() => of([])),
-        )
-        .subscribe((options: ValueLabel[]) => {
+      this.subs.push(
+        (isObservable(values) ? values : of(values)).pipe(catchError(() => of([]))).subscribe((options: ValueLabel[]) => {
           this.selectOptions = options;
           this.loading = false;
-        });
+        }),
+      );
     } else {
       this.selectOptions = [];
       this.loading = false;
     }
+  }
+
+  ngOnDestroy() {
+    this.subs.forEach((subscription) => subscription.unsubscribe());
   }
 
   public onConditionalChange(dependOn: string, value: string, firstRun: boolean): void {
