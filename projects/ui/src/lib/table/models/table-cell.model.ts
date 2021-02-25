@@ -14,6 +14,18 @@ export interface TableCell<T = any> {
    */
   cellClass?: propFunction<T> | string;
   /**
+   * Custom cell header class
+   */
+  cellHeaderClass?: ((cell: TableCell) => string) | string;
+  /**
+   * Cell header icon
+   */
+  cellHeaderIcon?: ((cell: TableCell) => string) | string;
+  /**
+   * Cell header svgicon
+   */
+  cellHeaderSvgIcon?: ((cell: TableCell) => string) | string;
+  /**
    * Custom formatter to display data inside the cell
    */
   cellFormatter?: propFunction<T>;

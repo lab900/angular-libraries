@@ -43,9 +43,12 @@
           mat-header-cell
           (click)="handleHeaderClick(cell)"
           [class.sortable]="cell.sortable"
+          [ngClass]="utils.getCellHeaderClass(cell)"
           *matHeaderCellDef="let element"
         >
           <div>
+            <mat-icon *ngIf="utils.getCellHeaderIcon(cell) as icon">{{icon}}</mat-icon>
+            <mat-icon *ngIf="utils.getCellHeaderSvgIcon(cell) as icon" [svgIcon]="icon"></mat-icon>
             {{ utils.getCellLabel(cell) | translate }}
             <span class="material-icons lab900-sort-arrow" *ngIf="cell.sortable && getSortDir(cell) as dir">
               {{getSortIcon(dir)}}

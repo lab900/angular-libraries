@@ -132,7 +132,9 @@ export class TableExampleComponent {
   public tableCells: TableCell[] = [
     {
       key: 'name',
-      label: 'Name',
+      label: '',
+      cellHeaderIcon: 'accessibility',
+      cellHeaderClass: 'center-cell',
       sortable: true,
       cellClass: 'clickable-cell',
     },
