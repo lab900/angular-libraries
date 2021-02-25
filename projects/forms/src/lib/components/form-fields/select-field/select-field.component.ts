@@ -1,16 +1,16 @@
-import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions, ValueLabel } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
 import { isObservable, Observable, of, Subject } from 'rxjs';
-import { catchError, switchMap, take } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 import { IFieldConditions } from '../../../models/IFieldConditions';
 
 @Component({
   selector: 'lab900-select-field',
   templateUrl: './select-field.component.html',
 })
-export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit, OnDestroy {
+export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit {
   private conditionalChange = new Subject();
 
   @HostBinding('class')
@@ -59,10 +59,6 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
       this.selectOptions = [];
       this.loading = false;
     }
-  }
-
-  ngOnDestroy() {
-    this.subs.forEach((subscription) => subscription.unsubscribe());
   }
 
   public onConditionalChange(dependOn: string, value: string, firstRun: boolean): void {
