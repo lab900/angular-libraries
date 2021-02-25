@@ -3,7 +3,7 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { SelectFieldOptions, ValueLabel } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
 import { isObservable, Observable, of, Subject } from 'rxjs';
-import { catchError, switchMap, take } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 import { IFieldConditions } from '../../../models/IFieldConditions';
 
 @Component({
@@ -49,15 +49,12 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
     if (this.options?.selectOptions) {
       const selectOptions = this.options?.selectOptions;
       const values = typeof selectOptions === 'function' ? selectOptions() : selectOptions;
-      (isObservable(values) ? values : of(values))
-        .pipe(
-          take(1),
-          catchError(() => of([])),
-        )
-        .subscribe((options: ValueLabel[]) => {
+      this.subs.push(
+        (isObservable(values) ? values : of(values)).pipe(catchError(() => of([]))).subscribe((options: ValueLabel[]) => {
           this.selectOptions = options;
           this.loading = false;
-        });
+        }),
+      );
     } else {
       this.selectOptions = [];
       this.loading = false;
