@@ -22,4 +22,16 @@ export class Lab900TableUtils {
   public static getCellClass(data: any, cell: TableCell): string {
     return typeof cell.cellClass === 'function' ? cell.cellClass(data, cell) : cell.cellClass ?? '';
   }
+
+  public static getCellHeaderClass(cell: TableCell): string {
+    return typeof cell.cellHeaderClass === 'function' ? cell.cellHeaderClass(cell) : cell.cellHeaderClass ?? '';
+  }
+
+  public static getCellHeaderIcon(cell: TableCell): string {
+    return typeof cell.cellHeaderIcon === 'function' ? cell.cellHeaderIcon(cell) : cell.cellHeaderIcon ?? '';
+  }
+
+  public static getCellHeaderSvgIcon(cell: TableCell): string {
+    return typeof cell.cellHeaderSvgIcon === 'function' ? cell.cellHeaderSvgIcon(cell) : cell.cellHeaderSvgIcon ?? '';
+  }
 }

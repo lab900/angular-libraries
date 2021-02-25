@@ -43,6 +43,7 @@ export * from './lib/table/directives/table-empty.directive';
 export * from './lib/table/directives/table-custom-cell.directive';
 export * from './lib/table/directives/table-disabled.directive';
 export * from './lib/table/directives/table-header-content.directive';
+export * from './lib/table/directives/table-top-content.directive';
 export * from './lib/table/models/table-cell.model';
 export * from './lib/table/utils/table.utils';
 
