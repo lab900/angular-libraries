@@ -18,6 +18,7 @@ import { ActionButton, Lab900Sort, Paging, TableCell } from '@lab900/ui';
     [selectedItems]="selectedItems"
     [onRowClick]="rowClick"
     [multiSort]="true"
+    [rowClass]="getRowClass"
     (tableCellsFiltered)="filtered($event)"
   >
     <div *lab900TableTopContent>Custom top content</div>
@@ -166,5 +167,9 @@ export class TableExampleComponent {
 
   public filtered(e) {
     console.log(e);
+  }
+
+  public getRowClass(row: any): string {
+    return row.active ? 'bg-green' : '';
   }
 }
