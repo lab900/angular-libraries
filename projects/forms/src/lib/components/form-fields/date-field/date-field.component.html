@@ -13,6 +13,6 @@
     >
     <mat-datepicker-toggle [disabled]="fieldIsReadonly || fieldControl.disabled" matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker [disabled]="fieldIsReadonly || fieldControl.disabled" #picker [startView]="startView"></mat-datepicker>
-    <mat-hint *ngIf="hint && !fieldIsReadonly  && !(schema.options.hint.hideHintOnValidValue && input.value)" translate>{{ hint }}</mat-hint>
-    <mat-error *ngIf="!valid && !fieldIsReadonly">{{ getErrorMessage() | async }}</mat-error>
+    <mat-hint *ngIf="hint && !fieldIsReadonly  && !(schema.options.hint.hideHintOnValidValue && input.value)"><span [innerHTML]="hint | translate: hintValueTranslateData"></span></mat-hint>
+    <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async "></span></mat-error>
 </mat-form-field>

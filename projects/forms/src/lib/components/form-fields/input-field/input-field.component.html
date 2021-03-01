@@ -14,11 +14,11 @@
         [allowNegativeNumbers]="options?.fieldMask?.allowNegativeNumbers || false"
         [showMaskTyped]="options?.fieldMask?.showMaskedType || false"
     >
-    <mat-hint *ngIf="(hint || hintHTML) && !(schema.options.hint.hideHintOnValidValue && input.value) && !fieldIsReadonly">
-        {{ hint | translate }}<span *ngIf="hintHTML" [innerHTML]="hintHTML | translate"></span>
+    <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !fieldIsReadonly">
+        <span [innerHTML]="hint | translate: hintValueTranslateData"></span>
     </mat-hint>
     <mat-hint align="end" *ngIf="options?.maxLength && !fieldIsReadonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
-    <mat-error *ngIf="!valid && !fieldIsReadonly">{{ getErrorMessage() | async }}</mat-error>
+    <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async "></span></mat-error>
     <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'left'" matPrefix class="input-field__icon-left"></lab900-icon>
     <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'right'" matSuffix ></lab900-icon>
 </mat-form-field>
