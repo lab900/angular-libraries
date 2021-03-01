@@ -8,9 +8,9 @@
         matInput
         placeholder="{{ placeholder | translate }}"
     ></textarea>
-    <mat-hint *ngIf="hint && !fieldIsReadonly && !(schema.options.hint.hideHintOnValidValue && input.value)" translate>{{ hint }}</mat-hint>
+    <mat-hint *ngIf="hint && !fieldIsReadonly && !(schema.options.hint.hideHintOnValidValue && input.value)"><span [innerHTML]="hint | translate: hintValueTranslateData"></span></mat-hint>
     <mat-hint *ngIf="options?.maxLength && !fieldIsReadonly" align="end">
         {{ input.value?.length || 0 }}/{{ options?.maxLength }}
     </mat-hint>
-    <mat-error *ngIf="!valid && !fieldIsReadonly">{{ getErrorMessage() | async }}</mat-error>
+    <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async "></span></mat-error>
 </mat-form-field>

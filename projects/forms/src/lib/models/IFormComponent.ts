@@ -51,8 +51,8 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     return this.options?.hint?.value;
   }
 
-  public get hintHTML(): string {
-    return this.options?.hint?.valueHTML;
+  public get hintValueTranslateData(): object {
+    return this.options?.hint?.valueTranslateData;
   }
 
   public get placeholder(): string {

@@ -15,8 +15,8 @@
             <ng-container *ngIf="!options?.displayOptionFn">{{ item.label | translate }}</ng-container>
         </mat-option>
     </mat-select>
-    <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && select.value)">{{ hint | translate }}</mat-hint>
-    <mat-error *ngIf="!valid">{{ getErrorMessage() | async }}</mat-error>
+    <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && select.value)"><span [innerHTML]="hint | translate: hintValueTranslateData"></span></mat-hint>
+    <mat-error *ngIf="!valid"><span [innerHTML]="getErrorMessage() | async "></span></mat-error>
 </mat-form-field>
 
 <div class="lab900-readonly-field" *ngIf="fieldIsReadonly && !fieldIsHidden">
