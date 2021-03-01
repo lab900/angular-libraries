@@ -12,6 +12,8 @@ import { Lab900TableCustomCellDirective } from '../../directives/table-custom-ce
 import { SortDirection } from '@angular/material/sort/sort-direction';
 import { Lab900TableTopContentDirective } from '../../directives/table-top-content.directive';
 
+type propFunction<T, R = string> = (data: T) => R;
+
 export interface Lab900Sort {
   /** The id of the column being sorted. */
   id: string;
@@ -35,6 +37,9 @@ export class Lab900TableComponent implements OnChanges {
 
   @Input()
   public tableClass: string;
+
+  @Input()
+  public rowClass: propFunction<any> | string;
 
   @Input()
   public pageSizeConfig: { hidePageSize?: boolean; pageSizeOptions?: number[] } = { hidePageSize: true, pageSizeOptions: [5, 10, 50] };
@@ -189,6 +194,8 @@ export class Lab900TableComponent implements OnChanges {
     } else {
       classes.push('lab900-row-odd');
     }
+
+    classes.push(typeof this.rowClass === 'function' ? this.rowClass(row) : this.rowClass ?? '');
     return classes.join(' ') || '';
   }
 
