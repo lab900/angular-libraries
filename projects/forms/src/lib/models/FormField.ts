@@ -101,12 +101,20 @@ export interface RangeSliderFieldOptions extends FieldOptions {
   steps?: number;
   format?: 'K-M' | 'DEFAULT';
 }
+
 export interface IconFieldOptions extends FieldOptions {
   icon?: Icon;
 }
+
 export interface ButtonToggleFieldOptions extends FieldOptions {
   buttonOptions: { value: any; label?: string; icon?: Icon & { position?: 'left' | 'right' }; buttonClass?: string }[];
 }
+
+export interface FileFieldOptions extends FieldOptions {
+  multiple?: boolean;
+  accept?: string;
+}
+
 export interface Icon {
   name?: string;
   svgName?: string;
@@ -125,6 +133,7 @@ export interface FormField<
     | ButtonToggleFieldOptions
     | DatepickerFieldOptions
     | DateRangePickerFieldOptions
+    | FileFieldOptions
 > {
   attribute?: string;
   editType: EditType;
