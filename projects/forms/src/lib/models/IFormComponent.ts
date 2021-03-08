@@ -44,7 +44,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   }
 
   public get required(): boolean {
-    return (!this.readonly && this.options?.required) ?? false;
+    return (!this.fieldIsReadonly && this.options?.required) ?? false;
   }
 
   public get hint(): string {
