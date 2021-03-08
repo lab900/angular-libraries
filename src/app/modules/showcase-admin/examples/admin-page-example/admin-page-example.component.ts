@@ -12,13 +12,13 @@ export class AdminPageExampleComponent {
 
   public dataService = new (class implements DataService {
     private previousPage = 0;
-    create(item: object): Promise<string> {
+    public create(item: object): Promise<string> {
       throw new Error('Method not implemented.');
     }
-    delete(item: Item): Promise<void> {
+    public delete(item: Item): Promise<void> {
       return Promise.resolve(undefined);
     }
-    getPage(page: number, items: number): Promise<Page<Item>> {
+    public getPage(page: number, items: number): Promise<Page<Item>> {
       return new Promise<Page<Item>>((resolve) => {
         const hasmore = !!NEWS_ITEMS[page * items] || page < this.previousPage;
         this.previousPage = page;
@@ -34,11 +34,11 @@ export class AdminPageExampleComponent {
       });
     }
 
-    defaultPageSize(): number {
+    public defaultPageSize(): number {
       return 3;
     }
 
-    update(object: Item): Promise<void> {
+    public update(object: Item): Promise<void> {
       return new Promise<void>((resolve) => {
         setTimeout(() => resolve(), 1000);
       });

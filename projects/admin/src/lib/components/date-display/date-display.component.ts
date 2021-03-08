@@ -6,10 +6,10 @@ import { SchemaField } from '../../models/schemaField';
   templateUrl: './date-display.component.html',
 })
 export class DateDisplayComponent implements OnInit {
-  @Input() fieldType: SchemaField;
-  @Input() data;
+  @Input() public fieldType: SchemaField;
+  @Input() public data;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 }

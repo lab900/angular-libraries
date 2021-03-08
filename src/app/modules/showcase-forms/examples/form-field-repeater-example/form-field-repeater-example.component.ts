@@ -65,7 +65,7 @@ export class FormFieldRepeaterExampleComponent {
     ],
   };
 
-  logValue(form: any) {
+  public logValue(form: any): void {
     console.log(form);
   }
 }

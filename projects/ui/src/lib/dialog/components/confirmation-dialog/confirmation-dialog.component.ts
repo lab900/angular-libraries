@@ -8,9 +8,9 @@ import { ConfirmationDialog } from '../../models/confirmationDialog';
   styleUrls: ['./confirmation-dialog.component.scss'],
 })
 export class ConfirmationDialogComponent {
-  message = 'Are you sure?';
-  confirmButtonText = 'Yes';
-  cancelButtonText = 'Cancel';
+  public message = 'Are you sure?';
+  public confirmButtonText = 'Yes';
+  public cancelButtonText = 'Cancel';
   constructor(@Inject(MAT_DIALOG_DATA) private data: ConfirmationDialog, private dialogRef: MatDialogRef<ConfirmationDialogComponent>) {
     if (data) {
       this.message = data.message || this.message;
@@ -19,7 +19,7 @@ export class ConfirmationDialogComponent {
     }
   }
 
-  onConfirmClick(): void {
+  public onConfirmClick(): void {
     this.dialogRef.close(true);
   }
 }

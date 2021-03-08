@@ -25,7 +25,7 @@ export class ExampleViewerComponent implements AfterViewInit {
   public exampleName: string;
 
   @ViewChild('exampleComponent')
-  exampleComponent: ElementRef;
+  public exampleComponent: ElementRef;
 
   public showSource = false;
 

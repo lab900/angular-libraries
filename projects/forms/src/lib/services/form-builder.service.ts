@@ -2,6 +2,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators
 import { DateRangePickerFieldOptions, FormField, RepeaterFieldOptions } from '../models/FormField';
 import { EditType } from '../models/editType';
 import { Injectable } from '@angular/core';
+import { FormFieldUtils } from '../utils/form-field.utils';
 
 @Injectable()
 export class Lab900FormBuilderService {
@@ -14,7 +15,7 @@ export class Lab900FormBuilderService {
         // nested form groups
         if (field.attribute) {
           const nestedGroup = this.createFormGroup(field.nestedFields, null, data?.[field.attribute]);
-          nestedGroup.setValidators(this.addValidators(field));
+          nestedGroup.setValidators(this.addValidators(field, group));
           formGroup.addControl(field.attribute, nestedGroup);
           if (nestedGroup.dirty) {
             formGroup.markAsDirty();
@@ -33,7 +34,7 @@ export class Lab900FormBuilderService {
             }
           }
         }
-        repeaterArray.setValidators(this.addValidators(field));
+        repeaterArray.setValidators(this.addValidators(field, group));
         formGroup.addControl(field.attribute, repeaterArray);
         if (repeaterArray.dirty) {
           formGroup.markAsDirty();
@@ -52,7 +53,7 @@ export class Lab900FormBuilderService {
         if (!controlValue && field.options && field.options.defaultValue !== null && typeof field.options.defaultValue !== 'undefined') {
           controlValue = typeof field.options.defaultValue === 'function' ? field.options.defaultValue() : field.options.defaultValue;
         }
-        const formControl = new FormControl(controlValue, this.addValidators(field));
+        const formControl = new FormControl(controlValue, this.addValidators(field, group));
         formGroup.addControl(field.attribute, formControl);
         if (controlValue) {
           formGroup.markAsDirty();
@@ -72,9 +73,9 @@ export class Lab900FormBuilderService {
     return formArray;
   }
 
-  public addValidators(field: FormField): ValidatorFn[] {
+  public addValidators(field: FormField, group: FormGroup): ValidatorFn[] {
     const validators: ValidatorFn[] = field?.validators ?? [];
-    if (field.options?.required) {
+    if (FormFieldUtils.isRequired(FormFieldUtils.isReadOnly(field.options, group), field.options)) {
       validators.push(Validators.required);
     }
     if (field.options?.minLength) {

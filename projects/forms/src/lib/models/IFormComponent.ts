@@ -4,6 +4,7 @@ import { AfterViewInit, Directive, Input, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subscription } from 'rxjs';
 import { FieldConditions } from './IFieldConditions';
+import { FormFieldUtils } from '../utils/form-field.utils';
 
 export interface IFormComponent<T extends FieldOptions> {
   schema: FormField<T>;
@@ -150,13 +151,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   }
 
   private isReadonly(): void {
-    if (this.readonly === true) {
-      this.fieldIsReadonly = this.readonly;
-    } else if (typeof this.options?.readonly === 'function') {
-      this.fieldIsReadonly = this.options?.readonly(this.group.value);
-    } else {
-      this.fieldIsReadonly = this.options?.readonly ?? false;
-    }
+    this.fieldIsReadonly = FormFieldUtils.isReadOnly(this.options, this.group, this);
   }
 
   private createConditions(): void {

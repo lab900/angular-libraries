@@ -45,7 +45,7 @@ export class NavItemComponent implements OnInit, OnDestroy {
     }
   }
 
-  public onItemSelected() {
+  public onItemSelected(): void {
     if (!this.item.children || !this.item.children.length) {
       this.router.navigate([this.item.route]);
     }

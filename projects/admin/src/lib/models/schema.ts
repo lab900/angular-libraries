@@ -12,7 +12,7 @@ export interface Schema {
 
 /* Converts an admin schema into a form configuration */
 export class SchemaConverter {
-  static toForm(schema: Schema, create = false): Form {
+  public static toForm(schema: Schema, create = false): Form {
     const form: Form = new Form();
     form.fields = [];
     schema.fields

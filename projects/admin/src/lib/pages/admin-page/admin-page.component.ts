@@ -12,9 +12,9 @@ import { Form } from '@lab900/forms';
   styleUrls: ['./admin-page.component.scss'],
 })
 export class AdminPageComponent implements OnInit {
-  @Input() schema: Schema;
-  @Input() dataService: DataService;
-  @Input() dialogOptions: MatDialogConfig;
+  @Input() public schema: Schema;
+  @Input() public dataService: DataService;
+  @Input() public dialogOptions: MatDialogConfig;
 
   public error: string;
   public loading = false;
@@ -26,7 +26,7 @@ export class AdminPageComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.pageInfo = {
       currentPage: 1,
       pageSize: this.dataService.defaultPageSize(),
@@ -38,7 +38,7 @@ export class AdminPageComponent implements OnInit {
     this.loadData();
   }
 
-  loadData() {
+  public loadData(): void {
     this.loading = true;
     this.dataService
       .getPage(this.pageInfo.currentPage, this.pageInfo.pageSize)
@@ -53,26 +53,26 @@ export class AdminPageComponent implements OnInit {
       .finally(() => (this.loading = false));
   }
 
-  onPageEvent(pageEvent: PageEvent) {
+  public onPageEvent(pageEvent: PageEvent): void {
     this.pageInfo.currentPage = pageEvent.pageIndex + 1;
     this.loadData();
   }
 
-  editHandler = async (item: Item): Promise<boolean> => {
+  public editHandler = async (item: Item): Promise<boolean> => {
     this.loading = true;
     await this.dataService.update(item);
     this.loadData();
     return true;
   };
 
-  createHandler = async (item: object): Promise<string> => {
+  public createHandler = async (item: object): Promise<string> => {
     this.loading = true;
     const newId = await this.dataService.create(item);
     this.loadData();
     return newId;
   };
 
-  onDelete(item: any) {
+  public onDelete(item: any): void {
     this.loading = true;
     this.dataService
       .delete(item)

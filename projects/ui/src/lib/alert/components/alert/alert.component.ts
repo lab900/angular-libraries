@@ -7,7 +7,7 @@ import { Alert } from '../../models/alert';
   styleUrls: ['./alert.component.scss'],
 })
 export class AlertComponent implements OnInit {
-  @Input() type: Alert = Alert.Info;
+  @Input() public type: Alert = Alert.Info;
 
   public readonly Info = Alert.Info;
   public readonly Warn = Alert.Warn;
@@ -15,5 +15,5 @@ export class AlertComponent implements OnInit {
   public readonly Success = Alert.Success;
   constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 }

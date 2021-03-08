@@ -59,7 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.unsub.unsubscribe();
   }
 
-  public languageChanged(language: string) {
+  public languageChanged(language: string): void {
     this.translateService.use(language);
   }
 

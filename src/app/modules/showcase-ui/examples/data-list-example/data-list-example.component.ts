@@ -101,7 +101,7 @@ export class DataListExampleComponent implements OnInit {
     this.data = this.paginate(dummyData, 1);
   }
 
-  public changePage(pageEvent: PageEvent) {
+  public changePage(pageEvent: PageEvent): void {
     this.data = this.paginate(dummyData, pageEvent.pageIndex + 1);
   }
 

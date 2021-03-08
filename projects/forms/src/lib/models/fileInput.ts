@@ -7,7 +7,7 @@ export class FileInput {
     this._fileNames = (this._files || []).map((f: File) => f.name).join(delimiter);
   }
 
-  get files() {
+  get files(): File[] {
     return this._files || [];
   }
 

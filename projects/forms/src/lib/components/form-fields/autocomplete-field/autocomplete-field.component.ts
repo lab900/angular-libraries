@@ -18,7 +18,7 @@ export class AutocompleteFieldComponent extends FormComponent<AutocompleteOption
     super(translateService);
   }
 
-  public inputChanged($event: Event) {
+  public inputChanged($event: Event): void {
     const res = this.options.autocompleteOptions(($event.target as any).value);
     this.filteredOptions = isObservable(res) ? res : of(res);
   }

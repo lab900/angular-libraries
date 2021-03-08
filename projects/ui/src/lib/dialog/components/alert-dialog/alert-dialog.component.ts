@@ -8,9 +8,9 @@ import { AlertDialog } from '../../models/alertDialog';
   styleUrls: ['./alert-dialog.component.scss'],
 })
 export class AlertDialogComponent {
-  message = '';
-  messageHTML = '';
-  buttonText = 'Ok';
+  public message = '';
+  public messageHTML = '';
+  public buttonText = 'Ok';
   constructor(@Inject(MAT_DIALOG_DATA) private data: AlertDialog, private dialogRef: MatDialogRef<AlertDialogComponent>) {
     if (data) {
       this.message = data.message || this.message;
@@ -20,7 +20,7 @@ export class AlertDialogComponent {
     this.dialogRef.updateSize('300vw', '300vw');
   }
 
-  onConfirmClick(): void {
+  public onConfirmClick(): void {
     this.dialogRef.close(true);
   }
 }

@@ -7,5 +7,5 @@ import { NavItemGroup } from '../../models/nav-item.model';
   styleUrls: ['./nav-list.component.scss'],
 })
 export class NavListComponent {
-  @Input() navItemGroups: NavItemGroup[];
+  @Input() public navItemGroups: NavItemGroup[];
 }

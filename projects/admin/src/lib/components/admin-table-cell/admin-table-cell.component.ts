@@ -8,8 +8,8 @@ import { EditType } from '@lab900/forms';
   styleUrls: ['./admin-table-cell.component.scss'],
 })
 export class AdminTableCellComponent implements OnInit {
-  @Input() column: SchemaField;
-  @Input() row: any;
+  @Input() public column: SchemaField;
+  @Input() public row: any;
 
   public readonly Wysiwyg = EditType.Wysiwyg;
   public readonly Date = EditType.Date;
@@ -20,5 +20,5 @@ export class AdminTableCellComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 }

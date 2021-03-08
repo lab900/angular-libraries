@@ -14,7 +14,7 @@ import { MergingTranslateLoader } from './utils/merging-translate-loader';
 import { HttpClient } from '@angular/common/http';
 import { HomepageComponent } from './modules/pages/homepage/homepage.component';
 
-export function TranslationLoaderFactory(http: HttpClient) {
+export function TranslationLoaderFactory(http: HttpClient): MergingTranslateLoader {
   return new MergingTranslateLoader(http, './assets/i18n/', '.json');
 }
 

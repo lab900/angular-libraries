@@ -7,10 +7,10 @@ import { SchemaField } from '../../models/schemaField';
   styleUrls: ['./image-display.component.css'],
 })
 export class ImageDisplayComponent implements OnInit {
-  @Input() fieldType: SchemaField;
-  @Input() data;
+  @Input() public fieldType: SchemaField;
+  @Input() public data;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 }

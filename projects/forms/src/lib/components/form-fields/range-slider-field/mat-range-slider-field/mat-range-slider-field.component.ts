@@ -86,7 +86,7 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
     this.updateSliderInstanceValues(1, newValue <= this.max ? newValue : this.max);
   }
 
-  public parseValue(value: string) {
+  public parseValue(value: string): number {
     switch (this.format) {
       case 'K-M':
         value = `${value}`.toLowerCase().replace('k', '000');
@@ -96,7 +96,7 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
     return Number(value) || 0;
   }
 
-  public formatValue(value: number) {
+  public formatValue(value: number): string {
     switch (this.format) {
       case 'K-M':
         if (Math.abs(value) > 999999) {
@@ -104,7 +104,7 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
         } else if (Math.abs(value) > 999) {
           return Math.sign(value) * (Math.abs(value) / 1000) + ' k';
         } else {
-          return Math.sign(value) * Math.abs(value);
+          return `${Math.sign(value) * Math.abs(value)}`;
         }
       default:
         return `${value}`;
