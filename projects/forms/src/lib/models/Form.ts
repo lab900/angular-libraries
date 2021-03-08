@@ -1,7 +1,7 @@
 import { FormField } from './FormField';
 
 export class Form {
-  title?: string;
-  fields: FormField[];
-  readonly?: boolean;
+  public title?: string;
+  public fields: FormField[];
+  public readonly?: boolean;
 }

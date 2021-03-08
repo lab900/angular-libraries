@@ -1,7 +1,7 @@
 import { FormField } from './FormField';
 
 export class FormGroup {
-  attribute: string;
-  title: string;
-  fields: FormField[];
+  public attribute: string;
+  public title: string;
+  public fields: FormField[];
 }

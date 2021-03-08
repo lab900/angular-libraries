@@ -21,7 +21,7 @@ export class FormDialogDirective<T> {
 
   public constructor(public dialog: MatDialog) {}
 
-  @HostListener('click') onMouseEnter(): void {
+  @HostListener('click') public onMouseEnter(): void {
     const dialog = this.dialog.open(FormDialogComponent, {
       data: {
         schema: this.schema,

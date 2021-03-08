@@ -29,7 +29,7 @@ export class FormFieldRepeaterFixedExampleComponent {
     ],
   };
 
-  logValue() {
+  public logValue(): void {
     console.log(this.form.value);
   }
 }

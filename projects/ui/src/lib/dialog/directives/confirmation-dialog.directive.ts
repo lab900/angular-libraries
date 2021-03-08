@@ -6,16 +6,16 @@ import { ConfirmationDialogComponent } from '../components/confirmation-dialog/c
   selector: '[lab900ConfirmationDialog]',
 })
 export class ConfirmationDialogDirective {
-  @Input() message: string;
-  @Input() okButtonText: string;
-  @Input() cancelButtonText: string;
+  @Input() public message: string;
+  @Input() public okButtonText: string;
+  @Input() public cancelButtonText: string;
 
-  @Output() confirmed: EventEmitter<void> = new EventEmitter<void>();
-  @Output() cancelled: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public confirmed: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public cancelled: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(public dialog: MatDialog) {}
 
-  @HostListener('click') onMouseEnter() {
+  @HostListener('click') public onMouseEnter(): void {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         message: this.message,

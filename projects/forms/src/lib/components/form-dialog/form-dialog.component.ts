@@ -19,7 +19,7 @@ export class FormDialogComponent<T> {
     this.dialogFormData = data;
   }
 
-  submit(item: T) {
+  public submit(item: T): void {
     this.loading = true;
     this.dialogFormData
       .submit(item, this.formContainer?.form)

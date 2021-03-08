@@ -2,5 +2,5 @@ import { DataService } from './dataService';
 
 export interface TranslatableDataService extends DataService {
   /* Single methods */
-  getByIdAndLanguage(id: any, language: string);
+  getByIdAndLanguage(id: any, language: string): Promise<object>;
 }

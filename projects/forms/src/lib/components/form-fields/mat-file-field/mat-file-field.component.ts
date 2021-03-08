@@ -31,41 +31,6 @@ import { FileInput } from '../../../models/fileInput';
 export class MatFileFieldComponent
   extends FileInputMixinBase
   implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck {
-  public static nextId = 0;
-
-  public focused = false;
-  public controlType = 'file-input';
-
-  @Input()
-  public autofilled = false;
-
-  // tslint:disable-next-line:variable-name
-  private _placeholder: string;
-  // tslint:disable-next-line:variable-name
-  private _required = false;
-
-  @Input()
-  public valuePlaceholder: string;
-
-  @Input()
-  public multiple: boolean;
-
-  @Input()
-  public accept: string | null = null;
-
-  @Input()
-  public errorStateMatcher: ErrorStateMatcher;
-
-  @HostBinding()
-  public id = `lab900-mat-file-field-${MatFileFieldComponent.nextId++}`;
-
-  @HostBinding('attr.aria-describedby')
-  public describedBy = '';
-
-  public setDescribedByIds(ids: string[]) {
-    this.describedBy = ids.join(' ');
-  }
-
   @Input()
   public get value(): FileInput | null {
     return this.empty ? null : new FileInput(this.elementRef.nativeElement.value || []);
@@ -125,9 +90,39 @@ export class MatFileFieldComponent
     this.stateChanges.next();
   }
 
-  public get fileNames() {
+  public get fileNames(): string {
     return this.value ? this.value.fileNames : this.valuePlaceholder;
   }
+  public static nextId = 0;
+
+  public focused = false;
+  public controlType = 'file-input';
+
+  @Input()
+  public autofilled = false;
+
+  // tslint:disable-next-line:variable-name
+  private _placeholder: string;
+  // tslint:disable-next-line:variable-name
+  private _required = false;
+
+  @Input()
+  public valuePlaceholder: string;
+
+  @Input()
+  public multiple: boolean;
+
+  @Input()
+  public accept: string | null = null;
+
+  @Input()
+  public errorStateMatcher: ErrorStateMatcher;
+
+  @HostBinding()
+  public id = `lab900-mat-file-field-${MatFileFieldComponent.nextId++}`;
+
+  @HostBinding('attr.aria-describedby')
+  public describedBy = '';
 
   /**
    * @see https://angular.io/api/forms/ControlValueAccessor
@@ -153,6 +148,10 @@ export class MatFileFieldComponent
       this.focused = !!origin;
       this.stateChanges.next();
     });
+  }
+
+  public setDescribedByIds(ids: string[]): void {
+    this.describedBy = ids.join(' ');
   }
 
   private onChange = (_: any) => {};

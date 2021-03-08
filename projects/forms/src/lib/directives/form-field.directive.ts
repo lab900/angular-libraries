@@ -136,7 +136,7 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
     this.component.instance.readonly = this.readonly;
   }
 
-  private validateType() {
+  private validateType(): void {
     if (!mapToComponent(this.schema)) {
       const supportedTypes = Object.keys(EditType).join(', ');
       throw new Error(

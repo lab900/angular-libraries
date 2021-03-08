@@ -9,9 +9,9 @@ export class BaseControlValueAccessorDirective<T> implements ControlValueAccesso
   /**
    * Call when value has changed programmatically
    */
-  public onChange(newVal: T) {}
+  public onChange(newVal: T): void {}
 
-  public onTouched(_?: any) {}
+  public onTouched(_?: any): void {}
 
   /**
    * Model -> View changes

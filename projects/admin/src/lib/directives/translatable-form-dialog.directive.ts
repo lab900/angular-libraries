@@ -27,7 +27,7 @@ export class TranslatableFormDialogDirective<T> {
 
   public constructor(public dialog: MatDialog) {}
 
-  @HostListener('click') onMouseEnter(): void {
+  @HostListener('click') public onMouseEnter(): void {
     const dialog = this.dialog.open(TranslatableFormDialogComponent, {
       data: {
         schema: this.schema,

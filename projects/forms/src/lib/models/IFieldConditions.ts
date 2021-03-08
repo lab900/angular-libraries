@@ -27,6 +27,9 @@ export interface IFieldConditions<T = any> {
 }
 
 export class FieldConditions<T = any> implements IFieldConditions<T> {
+  private get fieldControl(): AbstractControl {
+    return this.group.get(this.schema.attribute);
+  }
   public dependOn: string;
   public hideIfHasValue?: boolean;
   public showIfHasValue?: boolean;
@@ -43,18 +46,6 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public readonly dependControl: AbstractControl;
   public prevValue: T;
 
-  private get fieldControl(): AbstractControl {
-    return this.group.get(this.schema.attribute);
-  }
-
-  private static valueIsEqualTo(value: any, condition: ((obj: any) => boolean) | any): boolean {
-    return typeof condition === 'function' ? condition(value) : condition === value;
-  }
-
-  private static hasValue(value: any): boolean {
-    return value !== null && typeof value !== 'undefined';
-  }
-
   public constructor(private readonly group: FormGroup, private readonly schema: FormField, fieldConditions?: IFieldConditions) {
     if (fieldConditions) {
       Object.assign(this, fieldConditions);
@@ -63,6 +54,14 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
         throw new Error(`Can't create conditional form field: no control with name ${this.dependOn} found`);
       }
     }
+  }
+
+  private static valueIsEqualTo(value: any, condition: ((obj: any) => boolean) | any): boolean {
+    return typeof condition === 'function' ? condition(value) : condition === value;
+  }
+
+  private static hasValue(value: any): boolean {
+    return value !== null && typeof value !== 'undefined';
   }
 
   public getDependControl(group: FormGroup): AbstractControl {

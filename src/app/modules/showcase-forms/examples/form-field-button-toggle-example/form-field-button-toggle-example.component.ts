@@ -64,7 +64,7 @@ export class FormFieldButtonToggleExampleComponent {
     ],
   };
 
-  public logValue() {
+  public logValue(): void {
     console.log(this.form.value);
   }
 }

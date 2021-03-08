@@ -13,13 +13,13 @@ export class TranslatableAdminPageExampleComponent {
 
   public dataService = new (class implements TranslatableDataService {
     private previousPage = 0;
-    create(item: object): Promise<string> {
+    public create(item: object): Promise<string> {
       throw new Error('Method not implemented.');
     }
-    delete(item: Item): Promise<void> {
+    public delete(item: Item): Promise<void> {
       return Promise.resolve(undefined);
     }
-    getPage(page: number, items: number): Promise<Page<Item>> {
+    public getPage(page: number, items: number): Promise<Page<Item>> {
       return new Promise<Page<Item>>((resolve) => {
         const hasmore = !!NEWS_ITEMS[page * items] || page < this.previousPage;
         this.previousPage = page;
@@ -35,17 +35,17 @@ export class TranslatableAdminPageExampleComponent {
       });
     }
 
-    defaultPageSize(): number {
+    public defaultPageSize(): number {
       return 3;
     }
 
-    async getByIdAndLanguage(id: any, language: string): Promise<object> {
+    public async getByIdAndLanguage(id: any, language: string): Promise<object> {
       return new Promise<object>((resolve) => {
         setTimeout(() => resolve(NEWS_ITEMS[0]), 1000);
       });
     }
 
-    update(object: Item): Promise<void> {
+    public update(object: Item): Promise<void> {
       return new Promise<void>((resolve) => {
         setTimeout(() => resolve(), 1000);
       });

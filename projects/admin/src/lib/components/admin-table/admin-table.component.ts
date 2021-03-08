@@ -12,15 +12,15 @@ import { MatDialogConfig } from '@angular/material/dialog';
   styleUrls: ['./admin-table.component.scss'],
 })
 export class AdminTableComponent implements OnInit {
-  @Input() loading = false;
-  @Input() schema: Schema;
-  @Input() data: Page<Item>;
-  @Input() editHandler: (data: any) => Promise<boolean>;
+  @Input() public loading = false;
+  @Input() public schema: Schema;
+  @Input() public data: Page<Item>;
+  @Input() public editHandler: (data: any) => Promise<boolean>;
   @Input() public dialogOptions: MatDialogConfig;
 
-  @Output() edit: EventEmitter<any> = new EventEmitter<any>();
-  @Output() delete: EventEmitter<any> = new EventEmitter<any>();
-  @Output() pageEvent: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+  @Output() public edit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public delete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public pageEvent: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
   public headers: string[];
   public columns: SchemaField[];
@@ -28,11 +28,11 @@ export class AdminTableComponent implements OnInit {
   public page = 1;
   public form: Form;
 
-  get length() {
+  get length(): number {
     return this.data?.items ? (this.data.hasMore ? this.page * this.data.items.length + 1 : this.page * this.data.items.length) : 0;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.form = SchemaConverter.toForm(this.schema, false);
     this.columns = this.schema.fields.filter((value) => !value.overviewOptions?.hide).map((value, index) => value);
     this.displayedColumns = this.schema.fields.filter((value) => !value.overviewOptions?.hide).map((value, index) => value.attribute);

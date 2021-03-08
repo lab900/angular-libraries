@@ -28,7 +28,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
     this.formData = !!this.dialogAdminSchemaData.data ? this.dialogAdminSchemaData.data : ({} as T);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.currentLanguage = Array.from(this.dialogAdminSchemaData.schema.languages.keys())[0];
     this.loading = true;
     this.dialogAdminSchemaData
@@ -45,7 +45,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
       });
   }
 
-  submit(item: T) {
+  public submit(item: T): void {
     this.loading = true;
     this.error = null;
     this.addToReturnObject(item);
@@ -57,7 +57,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
       .finally(() => (this.loading = false));
   }
 
-  onLanguageChange(language: string, item: T) {
+  public onLanguageChange(language: string, item: T): void {
     this.loading = true;
     this.addToReturnObject(item);
     this.currentLanguage = language;
@@ -115,7 +115,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
       });
   }
 
-  clearLanguage() {
+  public clearLanguage(): void {
     const translatables = {} as T;
     this.data.schema.fields
       .filter((field) => field.translatable)
@@ -126,7 +126,7 @@ export class TranslatableFormDialogComponent<T> implements OnInit {
     this.formData = { ...this.formData, ...translatables };
   }
 
-  private removeTranslatableFieldsFromRootObject(item: T) {
+  private removeTranslatableFieldsFromRootObject(item: T): T {
     this.data.schema.fields
       .filter((field) => field.translatable)
       .forEach((field) => {

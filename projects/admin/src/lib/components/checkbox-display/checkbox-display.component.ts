@@ -7,10 +7,10 @@ import { SchemaField } from '../../models/schemaField';
   styleUrls: ['./checkbox-display.component.css'],
 })
 export class CheckboxDisplayComponent implements OnInit {
-  @Input() fieldType: SchemaField;
-  @Input() data;
+  @Input() public fieldType: SchemaField;
+  @Input() public data;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 }

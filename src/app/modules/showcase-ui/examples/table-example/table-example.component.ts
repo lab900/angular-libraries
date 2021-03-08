@@ -161,11 +161,11 @@ export class TableExampleComponent {
     });
   }
 
-  public rowClick(event, row, i) {
+  public rowClick(event, row, i): void {
     console.log(event, row, i);
   }
 
-  public filtered(e) {
+  public filtered(e): void {
     console.log(e);
   }
 
