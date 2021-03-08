@@ -151,7 +151,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   }
 
   private isReadonly(): void {
-    this.fieldIsReadonly = FormFieldUtils.isReadOnly(this.options, this.group, this);
+    this.fieldIsReadonly = FormFieldUtils.isReadOnly(this.options, this.group.value, this);
   }
 
   private createConditions(): void {
