@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { FormComponent } from '../models/IFormComponent';
 
 export class FormFieldUtils {
-  public static isReadOnly = (fieldOptions: FieldOptions, formGroup: FormGroup, formComponent?: FormComponent): boolean => {
+  public static isReadOnly(fieldOptions: FieldOptions, formGroup: FormGroup, formComponent?: FormComponent): boolean {
     let isReadOnly: boolean;
     if (formComponent && formComponent.readonly === true) {
       isReadOnly = formComponent.readonly;
@@ -13,8 +13,8 @@ export class FormFieldUtils {
       isReadOnly = fieldOptions?.readonly ?? false;
     }
     return isReadOnly;
-  };
-  public static isRequired = (isReadOnly: boolean, fieldOptions: FieldOptions): boolean => {
+  }
+  public static isRequired(isReadOnly: boolean, fieldOptions: FieldOptions): boolean {
     return (!isReadOnly && fieldOptions?.required) ?? false;
-  };
+  }
 }
