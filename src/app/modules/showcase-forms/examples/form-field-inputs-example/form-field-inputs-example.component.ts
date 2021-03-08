@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
-import { Form, EditType } from '@lab900/forms';
+import { Component, ViewChild } from '@angular/core';
+import { Form, EditType, FormContainerComponent } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-inputs-example',
-  template: '<lab900-form-container [schema]="formSchema"></lab900-form-container>',
+  template:
+    '<lab900-form-container #formContainer [schema]="formSchema"></lab900-form-container><button mat-raised-button color="primary" (click)="validate()">Submit</button>',
 })
 export class FormFieldInputsExampleComponent {
+  @ViewChild('formContainer')
+  public formContainer: FormContainerComponent<any>;
+
   public formSchema: Form = {
     fields: [
       {
-        attribute: 'textInput1',
+        attribute: 'uniqueNumber',
         title: 'Text Input Hidden',
         editType: EditType.Input,
         options: { hide: true },
@@ -62,6 +66,22 @@ export class FormFieldInputsExampleComponent {
           },
         },
       },
+      {
+        attribute: 'readOnlyInput',
+        title: 'Read-only input',
+        editType: EditType.Input,
+        options: {
+          type: 'text',
+          readonly: (d: any) => {
+            return d != null;
+          },
+          required: true,
+        },
+      },
     ],
   };
+
+  public validate(): void {
+    console.log(this.formContainer.valid);
+  }
 }

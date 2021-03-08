@@ -15,7 +15,7 @@ export class Lab900FormBuilderService {
         // nested form groups
         if (field.attribute) {
           const nestedGroup = this.createFormGroup(field.nestedFields, null, data?.[field.attribute]);
-          nestedGroup.setValidators(this.addValidators(field, group));
+          nestedGroup.setValidators(this.addValidators(field, data));
           formGroup.addControl(field.attribute, nestedGroup);
           if (nestedGroup.dirty) {
             formGroup.markAsDirty();
@@ -34,7 +34,7 @@ export class Lab900FormBuilderService {
             }
           }
         }
-        repeaterArray.setValidators(this.addValidators(field, group));
+        repeaterArray.setValidators(this.addValidators(field, data));
         formGroup.addControl(field.attribute, repeaterArray);
         if (repeaterArray.dirty) {
           formGroup.markAsDirty();
@@ -53,7 +53,7 @@ export class Lab900FormBuilderService {
         if (!controlValue && field.options && field.options.defaultValue !== null && typeof field.options.defaultValue !== 'undefined') {
           controlValue = typeof field.options.defaultValue === 'function' ? field.options.defaultValue() : field.options.defaultValue;
         }
-        const formControl = new FormControl(controlValue, this.addValidators(field, group));
+        const formControl = new FormControl(controlValue, this.addValidators(field, data));
         formGroup.addControl(field.attribute, formControl);
         if (controlValue) {
           formGroup.markAsDirty();
@@ -73,9 +73,9 @@ export class Lab900FormBuilderService {
     return formArray;
   }
 
-  public addValidators(field: FormField, group: FormGroup): ValidatorFn[] {
+  public addValidators(field: FormField, data: any): ValidatorFn[] {
     const validators: ValidatorFn[] = field?.validators ?? [];
-    if (FormFieldUtils.isRequired(FormFieldUtils.isReadOnly(field.options, group), field.options)) {
+    if (FormFieldUtils.isRequired(FormFieldUtils.isReadOnly(field.options, data), field.options)) {
       validators.push(Validators.required);
     }
     if (field.options?.minLength) {
