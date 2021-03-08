@@ -4,7 +4,6 @@ import { FormComponent } from '../models/IFormComponent';
 
 export class FormFieldUtils {
   public static isReadOnly = (fieldOptions: FieldOptions, formGroup: FormGroup, formComponent?: FormComponent): boolean => {
-    console.log(formGroup);
     let isReadOnly: boolean;
     if (formComponent && formComponent.readonly === true) {
       isReadOnly = formComponent.readonly;
@@ -15,7 +14,7 @@ export class FormFieldUtils {
     }
     return isReadOnly;
   };
-  public static isRequired = (isReadOnly: boolean, fieldOptions: FieldOptions) => {
+  public static isRequired = (isReadOnly: boolean, fieldOptions: FieldOptions): boolean => {
     return (!isReadOnly && fieldOptions?.required) ?? false;
   };
 }
