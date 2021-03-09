@@ -5,6 +5,7 @@ import { isObservable, Observable, of } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { TranslateService } from '@ngx-translate/core';
+import { Lab900FormBuilderService } from '../../../services/form-builder.service';
 
 @Component({
   selector: 'lab900-autocomplete-multiple-field',
@@ -26,8 +27,8 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
     return this.group.controls[this.schema.attribute]?.value ?? [];
   }
 
-  public constructor(translateService: TranslateService) {
-    super(translateService);
+  public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
+    super(translateService, fb);
   }
 
   public inputChanged($event: Event): void {

@@ -2,6 +2,7 @@ import { Component, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { TranslateService } from '@ngx-translate/core';
 import { FileFieldOptions } from '../../../models/FormField';
+import { Lab900FormBuilderService } from '../../../services/form-builder.service';
 
 @Component({
   selector: 'lab900-file-field',
@@ -11,7 +12,7 @@ import { FileFieldOptions } from '../../../models/FormField';
 export class FileFieldComponent extends FormComponent<FileFieldOptions> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
-  constructor(translateService: TranslateService) {
-    super(translateService);
+  public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
+    super(translateService, fb);
   }
 }

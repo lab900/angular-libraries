@@ -3,6 +3,7 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { AutocompleteOptions, ValueLabel } from '../../../models/FormField';
 import { Observable, isObservable, of } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { Lab900FormBuilderService } from '../../../services/form-builder.service';
 
 @Component({
   selector: 'lab900-autocomplete-field',
@@ -14,8 +15,8 @@ export class AutocompleteFieldComponent extends FormComponent<AutocompleteOption
 
   public filteredOptions: Observable<ValueLabel[]>;
 
-  public constructor(translateService: TranslateService) {
-    super(translateService);
+  public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
+    super(translateService, fb);
   }
 
   public inputChanged($event: Event): void {
