@@ -159,7 +159,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   }
 
   private resetValidators(): void {
-    this.group.controls[this.schema.attribute].setValidators(Lab900FormBuilderService.addValidators(this.schema, this.group));
+    this.group.controls[this.schema.attribute].setValidators(Lab900FormBuilderService.addValidators(this.schema, this.group.value));
   }
 
   private createConditions(): void {
