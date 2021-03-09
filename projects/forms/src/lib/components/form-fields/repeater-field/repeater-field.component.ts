@@ -37,7 +37,7 @@ export class RepeaterFieldComponent extends FormComponent<RepeaterFieldOptions> 
   }
 
   public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
-    super(translateService, fb);
+    super(translateService);
   }
 
   public ngOnInit(): void {

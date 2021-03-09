@@ -2,7 +2,6 @@ import { Component, HostBinding } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormComponent } from '../../models/IFormComponent';
 import { matFormFieldAnimations } from '@angular/material/form-field';
-import { Lab900FormBuilderService } from '../../services/form-builder.service';
 
 @Component({
   selector: 'lab900-form-row',
@@ -14,8 +13,8 @@ export class FormRowComponent extends FormComponent {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
-    super(translateService, fb);
+  constructor(translateService: TranslateService) {
+    super(translateService);
   }
 
   get visible(): boolean {

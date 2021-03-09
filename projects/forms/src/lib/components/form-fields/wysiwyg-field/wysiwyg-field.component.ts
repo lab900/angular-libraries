@@ -4,7 +4,6 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { WysiwygFieldOptions } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
-import { Lab900FormBuilderService } from '../../../services/form-builder.service';
 
 @Component({
   selector: 'lab900-wysiwyg-field',
@@ -22,8 +21,8 @@ export class WysiwygFieldComponent extends FormComponent<WysiwygFieldOptions> im
 
   public editorConfig: AngularEditorConfig;
 
-  public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
-    super(translateService, fb);
+  constructor(translateService: TranslateService) {
+    super(translateService);
   }
 
   public ngOnInit(): void {

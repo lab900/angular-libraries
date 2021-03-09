@@ -61,7 +61,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     return this.options?.placeholder;
   }
 
-  protected constructor(private translateService: TranslateService, private formBuilderService: Lab900FormBuilderService) {}
+  protected constructor(private translateService: TranslateService) {}
 
   public ngAfterViewInit(): void {
     if (this.group) {
@@ -159,7 +159,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
   }
 
   private resetValidators(): void {
-    this.group.controls[this.schema.attribute].setValidators(this.formBuilderService.addValidators(this.schema, this.group));
+    this.group.controls[this.schema.attribute].setValidators(Lab900FormBuilderService.addValidators(this.schema, this.group));
   }
 
   private createConditions(): void {

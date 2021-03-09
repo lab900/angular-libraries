@@ -3,7 +3,6 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { TranslateService } from '@ngx-translate/core';
 import { DateRangePickerFieldOptions } from '../../../models/FormField';
 import { FormGroup } from '@angular/forms';
-import { Lab900FormBuilderService } from '../../../services/form-builder.service';
 
 @Component({
   selector: 'lab900-date-field',
@@ -13,8 +12,8 @@ export class DateRangeFieldComponent extends FormComponent<DateRangePickerFieldO
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
-    super(translateService, fb);
+  public constructor(translateService: TranslateService) {
+    super(translateService);
   }
 
   public get dateFormGroup(): FormGroup {

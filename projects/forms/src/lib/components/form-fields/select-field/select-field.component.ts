@@ -5,7 +5,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { isObservable, Observable, of, Subject } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { IFieldConditions } from '../../../models/IFieldConditions';
-import { Lab900FormBuilderService } from '../../../services/form-builder.service';
 
 @Component({
   selector: 'lab900-select-field',
@@ -32,8 +31,8 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
     return null;
   }
 
-  public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
-    super(translateService, fb);
+  public constructor(translateService: TranslateService) {
+    super(translateService);
     this.subs.push(
       this.conditionalChange
         .pipe(switchMap(({ condition, value }) => this.getConditionalOptions(condition, value)))

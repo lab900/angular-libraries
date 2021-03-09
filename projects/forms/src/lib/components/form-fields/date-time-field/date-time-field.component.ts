@@ -2,7 +2,6 @@ import { Component, HostBinding } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { TranslateService } from '@ngx-translate/core';
 import { DatepickerFieldOptions } from '../../../models/FormField';
-import { Lab900FormBuilderService } from '../../../services/form-builder.service';
 
 @Component({
   selector: 'lab900-date-time-field',
@@ -12,8 +11,8 @@ export class DateTimeFieldComponent extends FormComponent<DatepickerFieldOptions
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
-    super(translateService, fb);
+  public constructor(translateService: TranslateService) {
+    super(translateService);
   }
 
   public get startView(): 'month' | 'year' | 'multi-year' {
