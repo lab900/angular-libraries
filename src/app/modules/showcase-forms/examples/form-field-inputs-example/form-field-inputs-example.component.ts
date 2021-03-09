@@ -72,9 +72,7 @@ export class FormFieldInputsExampleComponent {
         editType: EditType.Input,
         options: {
           type: 'text',
-          readonly: (d: any) => {
-            return d != null;
-          },
+          readonly: (d: any) => d != null,
           required: true,
         },
       },

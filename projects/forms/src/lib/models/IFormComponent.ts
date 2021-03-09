@@ -1,10 +1,11 @@
-import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { FieldOptions, FormField } from './FormField';
 import { AfterViewInit, Directive, Input, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subscription } from 'rxjs';
 import { FieldConditions } from './IFieldConditions';
 import { FormFieldUtils } from '../utils/form-field.utils';
+import { Lab900FormBuilderService } from '../services/form-builder.service';
 
 export interface IFormComponent<T extends FieldOptions> {
   schema: FormField<T>;
@@ -152,6 +153,13 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
 
   private isReadonly(): void {
     this.fieldIsReadonly = FormFieldUtils.isReadOnly(this.options, this.group.value, this);
+    if (!this.required && this.options?.required) {
+      this.resetValidators();
+    }
+  }
+
+  private resetValidators(): void {
+    this.group.controls[this.schema.attribute].setValidators(Lab900FormBuilderService.addValidators(this.schema, this.group));
   }
 
   private createConditions(): void {
