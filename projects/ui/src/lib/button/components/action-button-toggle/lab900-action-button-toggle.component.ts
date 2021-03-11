@@ -39,6 +39,10 @@ export class Lab900ActionButtonToggleComponent {
     return readPropValue(this.action.disabled, this.data);
   }
 
+  public getSubActionDisabled(action: ActionButton): boolean {
+    return readPropValue(action.disabled, this.data);
+  }
+
   public doAction(e: Event): void {
     e.stopPropagation();
     if (this.action.action) {

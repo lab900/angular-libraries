@@ -3,9 +3,9 @@
     <mat-button-toggle-group [value]="getSelected()" [disabled]="getDisabled()">
       <mat-button-toggle
           *ngFor="let actionButton of action.subActions"
-          (click)="actionButton.action && actionButton.action(data)"
+          (click)="!getDisabled() && !getSubActionDisabled(actionButton) && actionButton.action && actionButton.action(data)"
           [value]="actionButton"
-          [disabled]="actionButton.disabled">
+          [disabled]="getSubActionDisabled(actionButton)">
         <mat-icon *ngIf="actionButton.prefixIcon">{{actionButton.prefixIcon}}</mat-icon>
         <ng-container *ngIf="actionButton.label">
           {{ actionButton.label | translate }}
