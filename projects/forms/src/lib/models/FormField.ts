@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IFormComponent } from './IFormComponent';
 import { IFieldConditions } from './IFieldConditions';
 import { ValidatorFn } from '@angular/forms';
+import { TemplateRef } from '@angular/core';
 
 export interface ValueLabel<T = any> {
   value: T;
@@ -113,6 +114,7 @@ export interface ButtonToggleFieldOptions extends FieldOptions {
 export interface FileFieldOptions extends FieldOptions {
   multiple?: boolean;
   accept?: string;
+  template?: TemplateRef<any>;
 }
 
 export interface Icon {

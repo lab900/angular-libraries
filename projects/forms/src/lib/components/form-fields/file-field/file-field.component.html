@@ -1,4 +1,4 @@
-<mat-form-field [formGroup]="group" *ngIf="!fieldIsHidden" class="lab900-file-field" id="lab900-file-field-{{schema?.attribute}}">
+<mat-form-field [formGroup]="group" *ngIf="!fieldIsHidden && !options?.template" class="lab900-file-field" id="lab900-file-field-{{schema?.attribute}}">
     <mat-label translate>{{schema.title}}</mat-label>
     <lab900-mat-file-field
         #fileField
@@ -15,3 +15,4 @@
     <mat-hint *ngIf="hint"><span [innerHTML]="hint | translate: hintValueTranslateData"></span></mat-hint>
     <mat-error *ngIf="!valid"><span [innerHTML]="getErrorMessage() | async "></span></mat-error>
 </mat-form-field>
+<ng-container *ngTemplateOutlet="options?.template; context: {control: group.get(schema.attribute)}"></ng-container>
