@@ -50,6 +50,8 @@ import { DateRangeFieldComponent } from './components/form-fields/date-range-fie
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { DateTimeFieldComponent } from './components/form-fields/date-time-field/date-time-field.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FilePreviewFieldComponent } from './components/form-fields/file-preview-field/file-preview-field.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const customFields = [
   UnknownFieldComponent,
@@ -83,6 +85,7 @@ const customFields = [
     MatRangeSliderFieldComponent,
     ...customFields,
     IconComponent,
+    FilePreviewFieldComponent,
   ],
   imports: [
     CommonModule,
@@ -111,6 +114,7 @@ const customFields = [
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
   ],
   exports: [FormContainerComponent, FormDialogDirective],
 })

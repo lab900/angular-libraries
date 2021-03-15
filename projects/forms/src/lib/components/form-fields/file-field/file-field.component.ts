@@ -3,6 +3,9 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { TranslateService } from '@ngx-translate/core';
 import { FileFieldOptions } from '../../../models/FormField';
 
+/**
+ * @deprecated in favor of FilePreviewFieldComponent
+ */
 @Component({
   selector: 'lab900-file-field',
   templateUrl: './file-field.component.html',

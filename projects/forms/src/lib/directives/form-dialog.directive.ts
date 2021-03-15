@@ -14,14 +14,20 @@ export class FormDialogDirective<T> {
   public data: T;
 
   @Input()
-  public submitFormHandler: (data: T) => Promise<boolean>;
+  public submitFormHandler: (data: T, originalData?: T) => Promise<boolean>;
 
   @Input()
   public dialogOptions: MatDialogConfig;
 
+  @Input()
+  public disabled = false;
+
   public constructor(public dialog: MatDialog) {}
 
   @HostListener('click') public onMouseEnter(): void {
+    if (this.disabled) {
+      return;
+    }
     const dialog = this.dialog.open(FormDialogComponent, {
       data: {
         schema: this.schema,

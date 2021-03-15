@@ -34,6 +34,7 @@ import { AutocompleteMultipleFieldComponent } from '../components/form-fields/au
 import { ReadonlyFieldComponent } from '../components/form-fields/readonly-field/readonly-field.component';
 import { DateRangeFieldComponent } from '../components/form-fields/date-range-field/date-range-field.component';
 import { DateTimeFieldComponent } from '../components/form-fields/date-time-field/date-time-field.component';
+import { FilePreviewFieldComponent } from '../components/form-fields/file-preview-field/file-preview-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -48,6 +49,8 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return DateFieldComponent;
     case EditType.File:
       return FileFieldComponent;
+    case EditType.FilePreview:
+      return FilePreviewFieldComponent;
     case EditType.Select:
       return SelectFieldComponent;
     case EditType.TextArea:
