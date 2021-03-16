@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { NavItem } from '../../models/nav-item.model';
 import { Subscription } from 'rxjs';
-import { SubscriptionBasedDirective } from '../../../../../../shared/directives/subscription-based.directive';
+import { SubscriptionBasedDirective } from '../../../../../../forms/src/lib/directives/subscription-based.directive';
 
 @Component({
   selector: 'lab900-nav-item',

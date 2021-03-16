@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { FieldConditions } from './IFieldConditions';
 import { FormFieldUtils } from '../utils/form-field.utils';
 import { Lab900FormBuilderService } from '../services/form-builder.service';
-import { SubscriptionBasedDirective } from '../../../../shared/directives/subscription-based.directive';
+import { SubscriptionBasedDirective } from '../directives/subscription-based.directive';
 
 export interface IFormComponent<T extends FieldOptions> {
   schema: FormField<T>;

@@ -2,7 +2,7 @@ import { Directive, HostListener, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TranslatableFormDialogComponent } from '../components/translatable-form-dialog/translatable-form-dialog.component';
 import { Schema } from '../models/schema';
-import { SubscriptionBasedDirective } from '../../../../shared/directives/subscription-based.directive';
+import { SubscriptionBasedDirective } from '../../../../forms/src/lib/directives/subscription-based.directive';
 
 @Directive({
   selector: '[lab900TranslatableFormDialog]',
