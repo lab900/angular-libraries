@@ -2,7 +2,7 @@ import { Directive, HostListener, Input } from '@angular/core';
 import { FormDialogComponent } from '../components/form-dialog/form-dialog.component';
 import { Form } from '../models/Form';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { SubscriptionBasedDirective } from '../../../../shared/directives/subscription-based.directive';
+import { SubscriptionBasedDirective } from './subscription-based.directive';
 
 @Directive({
   selector: '[lab900FormDialog]',
