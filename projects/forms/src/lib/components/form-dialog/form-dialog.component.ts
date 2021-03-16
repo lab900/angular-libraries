@@ -22,12 +22,13 @@ export class FormDialogComponent<T> {
   public submit(item: T): void {
     this.loading = true;
     this.dialogFormData
-      .submit(item, this.formContainer?.form)
+      .submit(item, this.dialogFormData.data)
       .then((result) => {
         if (result) {
           this.dialogRef.close();
         }
       })
+      .catch((error) => console.error(error))
       .finally(() => (this.loading = false));
   }
 }

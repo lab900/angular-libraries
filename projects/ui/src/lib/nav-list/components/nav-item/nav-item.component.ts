@@ -2,13 +2,14 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { NavItem } from '../../models/nav-item.model';
 import { Subscription } from 'rxjs';
+import { SubscriptionBasedDirective } from '../../../../../../shared/directives/subscription-based.directive';
 
 @Component({
   selector: 'lab900-nav-item',
   templateUrl: './nav-item.component.html',
   styleUrls: ['./nav-item.component.scss'],
 })
-export class NavItemComponent implements OnInit, OnDestroy {
+export class NavItemComponent extends SubscriptionBasedDirective implements OnInit, OnDestroy {
   private sub: Subscription;
 
   @Input()
@@ -22,13 +23,15 @@ export class NavItemComponent implements OnInit, OnDestroy {
 
   public expanded = false;
 
-  public constructor(public router: Router) {}
+  public constructor(public router: Router) {
+    super();
+  }
 
   public ngOnInit(): void {
     if (!(this.item.route || this.item.href || this.item.children)) {
       this.disabled = true;
     } else {
-      this.sub = this.router.events.subscribe((event: Event) => {
+      this.addSubscription(this.router.events, (event: Event) => {
         if (event instanceof NavigationEnd) {
           const url = event.urlAfterRedirects;
           if (this.item.children && url) {

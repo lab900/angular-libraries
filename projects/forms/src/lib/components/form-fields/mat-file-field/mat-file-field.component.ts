@@ -17,7 +17,7 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { FileInputMixinBase } from './file-input-mixin';
-import { FileInput } from '../../../models/fileInput';
+import { FileInput } from '../../../models/FileInput';
 
 @Component({
   selector: 'lab900-mat-file-field',
@@ -93,6 +93,7 @@ export class MatFileFieldComponent
   public get fileNames(): string {
     return this.value ? this.value.fileNames : this.valuePlaceholder;
   }
+
   public static nextId = 0;
 
   public focused = false;
@@ -144,7 +145,7 @@ export class MatFileFieldComponent
       this.ngControl.valueAccessor = this;
     }
 
-    fm.monitor(elementRef.nativeElement, true).subscribe((origin) => {
+    this.addSubscription(fm.monitor(elementRef.nativeElement, true), (origin) => {
       this.focused = !!origin;
       this.stateChanges.next();
     });

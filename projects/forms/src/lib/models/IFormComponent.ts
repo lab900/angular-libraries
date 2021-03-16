@@ -1,11 +1,12 @@
-import { AbstractControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FieldOptions, FormField } from './FormField';
 import { AfterViewInit, Directive, Input, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { FieldConditions } from './IFieldConditions';
 import { FormFieldUtils } from '../utils/form-field.utils';
 import { Lab900FormBuilderService } from '../services/form-builder.service';
+import { SubscriptionBasedDirective } from '../../../../shared/directives/subscription-based.directive';
 
 export interface IFormComponent<T extends FieldOptions> {
   schema: FormField<T>;
@@ -14,9 +15,9 @@ export interface IFormComponent<T extends FieldOptions> {
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class FormComponent<T extends FieldOptions = FieldOptions> implements IFormComponent<T>, AfterViewInit, OnDestroy {
-  protected subs: Subscription[] = [];
-
+export abstract class FormComponent<T extends FieldOptions = FieldOptions>
+  extends SubscriptionBasedDirective
+  implements IFormComponent<T>, AfterViewInit, OnDestroy {
   @Input()
   public group: FormGroup;
 
@@ -61,34 +62,28 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
     return this.options?.placeholder;
   }
 
-  protected constructor(private translateService: TranslateService) {}
+  protected constructor(private translateService: TranslateService) {
+    super();
+  }
 
   public ngAfterViewInit(): void {
     if (this.group) {
       setTimeout(() => {
         this.hide();
         this.isReadonly();
-        this.subs.push(
-          this.group.valueChanges.subscribe(() => {
-            setTimeout(() => {
-              this.hide();
-              this.isReadonly();
-            });
-          }),
-        );
+        this.addSubscription(this.group.valueChanges, () => {
+          setTimeout(() => {
+            this.hide();
+            this.isReadonly();
+          });
+        });
       });
       if (this.schema?.conditions?.length) {
         this.createConditions();
       }
       if (this.fieldControl && this.schema?.options?.onChangeFn) {
-        this.subs.push(this.fieldControl.valueChanges.subscribe((value) => this.schema?.options?.onChangeFn(value)));
+        this.addSubscription(this.fieldControl.valueChanges, (value) => this.schema?.options?.onChangeFn(value));
       }
-    }
-  }
-
-  public ngOnDestroy(): void {
-    if (this.subs?.length) {
-      this.subs.forEach((sub) => sub.unsubscribe());
     }
   }
 
@@ -173,7 +168,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> imple
           }
         });
         if (sub) {
-          this.subs.push(sub);
+          this.subscriptions.push(sub);
         }
       });
   }

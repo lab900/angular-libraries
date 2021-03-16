@@ -3,13 +3,14 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { ShowcaseRouteData } from '../../models/showcase-route.model';
 import { PageHeaderNavItem } from '@lab900/ui';
+import { SubscriptionBasedDirective } from '../../../../../../projects/shared/directives/subscription-based.directive';
 
 @Component({
   selector: 'lab900-showcase-page',
   templateUrl: './showcase-page.component.html',
   styleUrls: ['./showcase-page.component.scss'],
 })
-export class ShowcasePageComponent {
+export class ShowcasePageComponent extends SubscriptionBasedDirective {
   private readonly guideNav: PageHeaderNavItem = {
     label: 'Guide',
     queryParams: { tab: 'guide' },
@@ -26,7 +27,8 @@ export class ShowcasePageComponent {
   public navItems: PageHeaderNavItem[] = [];
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
-    this.activatedRoute.queryParams.subscribe((queryParams) => {
+    super();
+    this.addSubscription(this.activatedRoute.queryParams, (queryParams) => {
       this.data = this.activatedRoute.snapshot.data as ShowcaseRouteData;
       this.navItems = !this.data?.docFile ? [this.exampleNav] : [this.guideNav, this.exampleNav];
       if (queryParams?.tab) {

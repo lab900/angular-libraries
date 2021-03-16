@@ -1,11 +1,12 @@
 import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
+import { SubscriptionBasedDirective } from '../../../../../shared/directives/subscription-based.directive';
 
 @Directive({
   selector: '[lab900ConfirmationDialog]',
 })
-export class ConfirmationDialogDirective {
+export class ConfirmationDialogDirective extends SubscriptionBasedDirective {
   @Input() public message: string;
   @Input() public okButtonText: string;
   @Input() public cancelButtonText: string;
@@ -13,7 +14,9 @@ export class ConfirmationDialogDirective {
   @Output() public confirmed: EventEmitter<void> = new EventEmitter<void>();
   @Output() public cancelled: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {
+    super();
+  }
 
   @HostListener('click') public onMouseEnter(): void {
     const dialog = this.dialog.open(ConfirmationDialogComponent, {
@@ -23,8 +26,7 @@ export class ConfirmationDialogDirective {
         cancelButtonText: this.cancelButtonText,
       },
     });
-
-    dialog.beforeClosed().subscribe((data) => {
+    this.addSubscription(dialog.beforeClosed(), (data) => {
       if (data) {
         this.confirmed.emit();
       } else {

@@ -8,6 +8,7 @@ export default {
     'forms.error.max': 'This should be at most {{max}}.',
     'forms.error.generic': 'Field is invalid.',
     'form.field.loading': 'Loading...',
+    'form.button.upload': 'Upload',
   },
   nl: {
     'forms.error.number-required': 'Een geldig getal is verplicht.',
@@ -18,5 +19,6 @@ export default {
     'forms.error.max': 'Dit mag maximaal {{max}} zijn.',
     'forms.error.generic': 'Deze waarde is ongeldig.',
     'form.field.loading': 'Even geduld...',
+    'form.button.upload': 'Upload',
   },
 };

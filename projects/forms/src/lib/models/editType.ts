@@ -5,7 +5,12 @@ export enum EditType {
   Wysiwyg = 'Wysiwyg',
   Image = 'Image',
   Input = 'Input',
+  /**
+   *
+   * @deprecated in favor of {@link FilePreview}
+   */
   File = 'File',
+  FilePreview = 'FilePreview',
   Select = 'Select',
   Repeater = 'Repeater',
   RadioButtons = 'RadioButtons',

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IFormComponent } from './IFormComponent';
 import { IFieldConditions } from './IFieldConditions';
 import { ValidatorFn } from '@angular/forms';
+import { Form } from './Form';
 
 export interface ValueLabel<T = any> {
   value: T;
@@ -115,6 +116,12 @@ export interface FileFieldOptions extends FieldOptions {
   accept?: string;
 }
 
+export interface FilePreviewFieldOptions extends FileFieldOptions {
+  fileUploadButtonText?: string;
+  canEditFileMetaData?: boolean;
+  fileMetaDataConfig?: Form;
+}
+
 export interface Icon {
   name?: string;
   svgName?: string;
@@ -134,6 +141,7 @@ export interface FormField<
     | DatepickerFieldOptions
     | DateRangePickerFieldOptions
     | FileFieldOptions
+    | FilePreviewFieldOptions
 > {
   attribute?: string;
   editType: EditType;

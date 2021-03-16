@@ -12,13 +12,14 @@ import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
+import { SubscriptionBasedDirective } from '../../projects/shared/directives/subscription-based.directive';
 
 @Component({
   selector: 'lab900-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent extends SubscriptionBasedDirective implements OnInit, OnDestroy {
   private unsub = new Subject<void>();
   public readonly languages = ['en', 'nl'];
   public readonly gitUrl = repository;
@@ -36,7 +37,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private media: MediaObserver,
     private router: Router,
   ) {
-    this.router.events.pipe(takeUntil(this.unsub)).subscribe((e) => {
+    super();
+    this.addSubscription(this.router.events.pipe(takeUntil(this.unsub)), (e) => {
       if (e instanceof NavigationEnd && this.drawer && this.sideNavMode === 'over') {
         this.drawer.close();
       }
@@ -64,15 +66,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private watchMedia(): void {
-    this.media
-      .asObservable()
-      .pipe(
+    this.addSubscription(
+      this.media.asObservable().pipe(
         takeUntil(this.unsub),
         filter((changes: MediaChange[]) => changes.length > 0),
         map((changes: MediaChange[]) => changes[0]),
-      )
-      .subscribe((change: MediaChange) => {
+      ),
+      (change: MediaChange) => {
         this.sideNavMode = ['xs', 'sm', 'md'].includes(change.mqAlias) ? 'over' : 'side';
-      });
+      },
+    );
   }
 }
