@@ -1,6 +1,6 @@
 {
   "name": "@lab900/forms",
-  "version": "2.2.34",
+  "version": "2.3.0",
   "author": "Lab900 <info@lab900.com> (https://lab900.com)",
   "licens": "MIT",
   "peerDependencies": {
@@ -18,6 +18,5 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/lab900/angular-libraries.git"
-  },
-  "dependencies": {}
+  }
 }
