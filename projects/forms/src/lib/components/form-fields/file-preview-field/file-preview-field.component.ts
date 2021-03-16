@@ -30,7 +30,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
   }
 
   public ngAfterViewInit(): void {
-    this.files$.subscribe((images) => {
+    this.addSubscription(this.files$, (images) => {
       this.updateFormValue();
     });
     this.fileFieldComponent.registerOnChange((fileInput: FileInput) => {

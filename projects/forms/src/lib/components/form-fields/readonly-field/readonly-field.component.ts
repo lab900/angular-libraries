@@ -8,8 +8,6 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './readonly-field.component.html',
 })
 export class ReadonlyFieldComponent extends FormComponent implements OnDestroy {
-  private sub: Subscription;
-
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
@@ -20,17 +18,11 @@ export class ReadonlyFieldComponent extends FormComponent implements OnDestroy {
     setTimeout(() => {
       if (this.group?.controls) {
         this.setValue(this.group.controls[this.schema.attribute].value);
-        this.sub = this.group.controls[this.schema.attribute].valueChanges.subscribe((value: any) =>
+        this.addSubscription(this.group.controls[this.schema.attribute].valueChanges, (value: any) =>
           setTimeout(() => this.setValue(value)),
         );
       }
     });
-  }
-
-  public ngOnDestroy(): void {
-    if (this.sub) {
-      this.sub.unsubscribe();
-    }
   }
 
   private setValue(value: any): void {

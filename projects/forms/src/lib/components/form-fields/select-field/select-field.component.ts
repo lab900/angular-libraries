@@ -33,13 +33,12 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
 
   public constructor(translateService: TranslateService) {
     super(translateService);
-    this.subs.push(
-      this.conditionalChange
-        .pipe(switchMap(({ condition, value }) => this.getConditionalOptions(condition, value)))
-        .subscribe((options: ValueLabel[]) => {
-          this.selectOptions = options;
-          this.loading = false;
-        }),
+    this.addSubscription(
+      this.conditionalChange.pipe(switchMap(({ condition, value }) => this.getConditionalOptions(condition, value))),
+      (options: ValueLabel[]) => {
+        this.selectOptions = options;
+        this.loading = false;
+      },
     );
   }
 
@@ -49,12 +48,11 @@ export class SelectFieldComponent extends FormComponent<SelectFieldOptions> impl
     if (this.options?.selectOptions) {
       const selectOptions = this.options?.selectOptions;
       const values = typeof selectOptions === 'function' ? selectOptions() : selectOptions;
-      this.subs.push(
-        (isObservable(values) ? values : of(values)).pipe(catchError(() => of([]))).subscribe((options: ValueLabel[]) => {
-          this.selectOptions = options;
-          this.loading = false;
-        }),
-      );
+
+      this.addSubscription((isObservable(values) ? values : of(values)).pipe(catchError(() => of([]))), (options: ValueLabel[]) => {
+        this.selectOptions = options;
+        this.loading = false;
+      });
     } else {
       this.selectOptions = [];
       this.loading = false;
