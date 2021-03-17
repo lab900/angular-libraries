@@ -1,16 +1,19 @@
-<input #fileField type="file" style="display: none" [multiple]="options?.multiple" [accept]="options?.accept" (change)="fileChange($event)" />
-<button mat-raised-button color="primary" (click)="fileField.click()">{{(options?.fileUploadButtonText || 'form.button.upload') | translate}}</button>
-<div class="images-wrapper" *ngIf="fieldControl.value?.length">
-  <ng-container *ngFor="let file of fieldControl.value">
-    <mat-card class="image-wrapper" [class.disabled]="!options?.canEditFileMetaData"
-              [disabled]="!options?.canEditFileMetaData"
-              lab900FormDialog [schema]="options?.fileMetaDataConfig" [data]="file"
-              [submitFormHandler]="onMetaDataChanged.bind(this)">
+<div class="file-preview-component">
+  <input #fileField type="file" style="display: none" [multiple]="options?.multiple" [accept]="options?.accept"
+         (change)="fileChange($event)"/>
+  <button mat-raised-button color="primary"
+          (click)="fileField.click()">{{(options?.fileUploadButtonText || 'form.button.upload') | translate}}</button>
+  <div class="images-wrapper" *ngIf="fieldControl.value?.length">
+    <ng-container *ngFor="let file of fieldControl.value">
+      <mat-card class="image-wrapper" [class.disabled]="!options?.canEditFileMetaData"
+                [disabled]="!options?.canEditFileMetaData"
+                lab900FormDialog [schema]="options?.fileMetaDataConfig" [data]="file"
+                [submitFormHandler]="onMetaDataChanged.bind(this)">
 
-      <mat-icon (click)="$event.stopPropagation();removeFile(file)" class="delete-image">close</mat-icon>
-      <div class="image" style="background-image: url('{{file.imageSrc}}')" *ngIf="file.imageSrc"></div>
-      <p class="file-name" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.name">{{ file.name }}</p>
-    </mat-card>
-  </ng-container>
+        <mat-icon (click)="$event.stopPropagation();removeFile(file)" class="delete-image">close</mat-icon>
+        <div class="image" style="background-image: url('{{file.imageSrc}}')" *ngIf="file.imageSrc"></div>
+        <p class="file-name" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.name">{{ file.name }}</p>
+      </mat-card>
+    </ng-container>
+  </div>
 </div>
-
