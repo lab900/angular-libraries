@@ -7,7 +7,7 @@
               lab900FormDialog [schema]="options?.fileMetaDataConfig" [data]="file"
               [submitFormHandler]="onMetaDataChanged.bind(this)">
 
-      <mat-icon (click)="removeFile(file)" class="delete-image">close</mat-icon>
+      <mat-icon (click)="$event.stopPropagation();removeFile(file)" class="delete-image">close</mat-icon>
       <div class="image" style="background-image: url('{{file.imageSrc}}')" *ngIf="file.imageSrc"></div>
       <p class="file-name" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.name">{{ file.name }}</p>
     </mat-card>
