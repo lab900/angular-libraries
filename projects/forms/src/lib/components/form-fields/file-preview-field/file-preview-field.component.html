@@ -3,8 +3,8 @@
          (change)="fileChange($event)"/>
   <button mat-raised-button color="primary"
           (click)="fileField.click()">{{(options?.fileUploadButtonText || 'form.button.upload') | translate}}</button>
-  <div class="images-wrapper" *ngIf="fieldControl.value?.length">
-    <ng-container *ngFor="let file of fieldControl.value">
+  <div class="images-wrapper" *ngIf="files?.length">
+    <ng-container *ngFor="let file of files">
       <mat-card class="image-wrapper" [class.disabled]="!options?.canEditFileMetaData"
                 [disabled]="!options?.canEditFileMetaData"
                 lab900FormDialog [schema]="options?.fileMetaDataConfig" [data]="file"

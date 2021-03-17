@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { FilePreviewFieldOptions } from '../../../models/FormField';
@@ -22,6 +22,10 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
 
   constructor(translateService: TranslateService) {
     super(translateService);
+  }
+
+  get files(): File[] | Image[] {
+    return this.fieldControl?.value as File[] | Image[];
   }
 
   public fileChange(event: Event): void {
@@ -66,8 +70,8 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     this.fieldControl.setValue([...(this.fieldControl.value ?? []), file]);
   }
 
-  public removeFile(file: Image): void {
-    const files = this.fieldControl.value;
+  public removeFile(file: File | Image): void {
+    const files: Image[] | File[] = this.fieldControl.value;
     files.splice(files.indexOf(file), 1);
     this.fileFieldComponent.nativeElement.value = null;
   }
