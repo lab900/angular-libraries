@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostBinding, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { FilePreviewFieldOptions } from '../../../models/FormField';
@@ -18,7 +18,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
   public classList = 'lab900-form-field';
 
   @ViewChild('fileField')
-  private fileFieldComponent: MatFileFieldComponent;
+  private fileFieldComponent: HTMLInputElement;
 
   @ViewChild('FormDialogDirective')
   private lab900FormDialog: FormDialogDirective<T>;
@@ -29,28 +29,37 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     super(translateService);
   }
 
+  public fileChange(e): void {
+    const fileList: FileList | null = (event.target as HTMLInputElement).files;
+    const fileArray: File[] = [];
+    if (fileList) {
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < fileList.length; i++) {
+        fileArray.push(fileList[i]);
+      }
+    }
+
+    this.filesAdded(fileArray);
+  }
+
   public ngAfterViewInit(): void {
-    this.addSubscription(this.files$, (images) => {
-      this.updateFormValue();
-    });
-    this.fileFieldComponent.registerOnChange((fileInput: FileInput) => {
-      this.filesAdded(fileInput);
-    });
+    this.fieldControl.valueChanges.subscribe(console.log);
   }
 
   public addFiles(): void {
-    this.fileFieldComponent.open();
+    this.fileFieldComponent.focus();
   }
 
-  public filesAdded(fileInput: FileInput): void {
-    fileInput.files.forEach((file) => {
-      if (file.type.includes('image')) {
+  public filesAdded(fileArray: File[]): void {
+    fileArray.forEach((file) => {
+      /*if (file.type.includes('image')) {
         this.readImageData(file);
       } else {
-        this.files$.next([...this.files$.getValue(), file]);
-      }
+        this.fieldControl.setValue([...(this.fieldControl.value ?? []), file]);
+      }*/
+      this.fieldControl.setValue([...(this.fieldControl.value ?? []), file]);
     });
-    this.fileFieldComponent.value = new FileInput(this.files$.getValue());
+    // this.fileFieldComponent.value = new FileInput(this.files$.getValue());
   }
 
   private readImageData(file: File): void {
@@ -59,7 +68,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     reader.onload = (event: any) => {
       image.imageSrc = event.target.result;
       this.files$.next([...this.files$.getValue(), image]);
-      this.fileFieldComponent.value = new FileInput(this.files$.getValue());
+      // this.fileFieldComponent.value = new FileInput(this.files$.getValue());
     };
 
     reader.onerror = (event: any) => {

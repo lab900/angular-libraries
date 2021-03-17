@@ -11,7 +11,7 @@ export class FormFieldFileUploadExampleComponent {
       {
         attribute: 'file',
         title: 'My files',
-        editType: EditType.File,
+        editType: EditType.FilePreview,
         options: {
           multiple: true,
           accept: '.png',

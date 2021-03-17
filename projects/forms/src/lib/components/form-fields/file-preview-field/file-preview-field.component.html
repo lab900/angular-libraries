@@ -1,24 +1,7 @@
-<mat-form-field [formGroup]="group" *ngIf="!fieldIsHidden" class="lab900-file-field"
-                id="lab900-file-field-{{schema?.attribute}}" style="display: none;">
-  <mat-label translate>{{schema.title}}</mat-label>
-  <lab900-mat-file-field
-    #fileField
-    [hidden]="true"
-    [attr.disabled]="fieldIsReadonly"
-    [required]="required"
-    [disabled]="fieldIsReadonly"
-    [formControlName]="schema.attribute"
-    [accept]="options?.accept"
-    [multiple]="options?.multiple"
-    placeholder="{{ placeholder | translate }}"
-  ></lab900-mat-file-field>
-  <mat-hint *ngIf="hint"><span [innerHTML]="hint | translate: hintValueTranslateData"></span></mat-hint>
-  <mat-error *ngIf="!valid"><span [innerHTML]="getErrorMessage() | async "></span></mat-error>
-</mat-form-field>
-<button mat-raised-button color="primary"
-        (click)="addFiles()">{{(options?.fileUploadButtonText || 'form.button.upload') | translate}}</button>
-<div class="images-wrapper" *ngIf="files$ | async as files">
-  <ng-container *ngFor="let file of files">
+<input #fileField type="file" style="display: none" [multiple]="options?.multiple" [accept]="options?.accept" (change)="fileChange($event)" />
+<button mat-raised-button color="primary" (click)="fileField.click()">{{(options?.fileUploadButtonText || 'form.button.upload') | translate}}</button>
+<div class="images-wrapper" *ngIf="fieldControl.value?.length">
+  <ng-container *ngFor="let file of fieldControl.value">
     <mat-card class="image-wrapper" [class.disabled]="!options?.canEditFileMetaData"
               [disabled]="!options?.canEditFileMetaData"
               lab900FormDialog [schema]="options?.fileMetaDataConfig" [data]="file"
