@@ -4,6 +4,7 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { FilePreviewFieldOptions } from '../../../models/FormField';
 import { FormDialogDirective } from '../../../directives/form-dialog.directive';
 import { Image } from '../../../models/Image';
+import { logger } from 'codelyzer/util/logger';
 
 @Component({
   selector: 'lab900-file-preview-field',
@@ -72,15 +73,15 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
 
   public removeFile(file: File | Image): void {
     const files: Image[] | File[] = this.fieldControl.value;
-    files.splice(files.indexOf(file), 1);
+    files.splice(this.getFileIndex(files, file), 1);
     this.fieldControl.setValue(files);
     this.fileFieldComponent.nativeElement.value = null;
   }
 
-  public onMetaDataChanged(data: T, originalData?: Image): Promise<boolean> {
+  public onMetaDataChanged(data: T, originalData?: File | Image): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
       const files = this.fieldControl.value ?? [];
-      const index = files.indexOf(originalData);
+      const index = this.getFileIndex(files, originalData);
       if (index === -1) {
         console.error(`Couldn't find file in list`);
       }
@@ -91,5 +92,9 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
       this.fieldControl.setValue(files);
       resolve(true);
     });
+  }
+
+  private getFileIndex(files: Image[] | File[], file: File | Image): number {
+    return files.findIndex((listFile: Image) => listFile.name === file.name && listFile.type === file.type && listFile.size === file.size);
   }
 }
