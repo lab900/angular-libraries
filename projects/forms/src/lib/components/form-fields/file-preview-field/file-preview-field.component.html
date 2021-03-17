@@ -15,19 +15,21 @@
   <mat-hint *ngIf="hint"><span [innerHTML]="hint | translate: hintValueTranslateData"></span></mat-hint>
   <mat-error *ngIf="!valid"><span [innerHTML]="getErrorMessage() | async "></span></mat-error>
 </mat-form-field>
-<button mat-raised-button color="primary"
-        (click)="addFiles()">{{(options?.fileUploadButtonText || 'form.button.upload') | translate}}</button>
-<div class="images-wrapper" *ngIf="files$ | async as files">
-  <ng-container *ngFor="let file of files">
-    <mat-card class="image-wrapper" [class.disabled]="!options?.canEditFileMetaData"
-              [disabled]="!options?.canEditFileMetaData"
-              lab900FormDialog [schema]="options?.fileMetaDataConfig" [data]="file"
-              [submitFormHandler]="onMetaDataChanged.bind(this)">
+<div class="file-preview-component">
+  <button mat-raised-button color="primary"
+          (click)="addFiles()">{{(options?.fileUploadButtonText || 'form.button.upload') | translate}}</button>
+  <div class="images-wrapper" *ngIf="files$ | async as files">
+    <ng-container *ngFor="let file of files">
+      <mat-card class="image-wrapper" [class.disabled]="!options?.canEditFileMetaData"
+                [disabled]="!options?.canEditFileMetaData"
+                lab900FormDialog [schema]="options?.fileMetaDataConfig" [data]="file"
+                [submitFormHandler]="onMetaDataChanged.bind(this)">
 
-      <mat-icon (click)="removeFile(file)" class="delete-image">close</mat-icon>
-      <div class="image" style="background-image: url('{{file.imageSrc}}')" *ngIf="file.imageSrc"></div>
-      <p class="file-name" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.name">{{ file.name }}</p>
-    </mat-card>
-  </ng-container>
+        <mat-icon (click)="removeFile(file)" class="delete-image">close</mat-icon>
+        <div class="image" style="background-image: url('{{file.imageSrc}}')" *ngIf="file.imageSrc"></div>
+        <p class="file-name" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.name">{{ file.name }}</p>
+      </mat-card>
+    </ng-container>
+  </div>
 </div>
 
