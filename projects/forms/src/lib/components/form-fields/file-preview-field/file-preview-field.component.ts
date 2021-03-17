@@ -1,56 +1,55 @@
-import { AfterViewInit, Component, HostBinding, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { FilePreviewFieldOptions } from '../../../models/FormField';
 import { FormDialogDirective } from '../../../directives/form-dialog.directive';
-import { MatFileFieldComponent } from '../mat-file-field/mat-file-field.component';
-import { FileInput } from '../../../models/FileInput';
-import { BehaviorSubject } from 'rxjs';
 import { Image } from '../../../models/Image';
+import { logger } from 'codelyzer/util/logger';
 
 @Component({
   selector: 'lab900-file-preview-field',
   templateUrl: './file-preview-field.component.html',
   styleUrls: ['./file-preview-field.component.scss'],
 })
-export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewFieldOptions> implements AfterViewInit {
+export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewFieldOptions> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
   @ViewChild('fileField')
-  private fileFieldComponent: MatFileFieldComponent;
+  private fileFieldComponent: ElementRef;
 
   @ViewChild('FormDialogDirective')
   private lab900FormDialog: FormDialogDirective<T>;
-
-  public files$: BehaviorSubject<Image[]> = new BehaviorSubject([]);
 
   constructor(translateService: TranslateService) {
     super(translateService);
   }
 
-  public ngAfterViewInit(): void {
-    this.addSubscription(this.files$, (images) => {
-      this.updateFormValue();
-    });
-    this.fileFieldComponent.registerOnChange((fileInput: FileInput) => {
-      this.filesAdded(fileInput);
-    });
+  get files(): File[] | Image[] {
+    return this.fieldControl?.value as File[] | Image[];
   }
 
-  public addFiles(): void {
-    this.fileFieldComponent.open();
+  public fileChange(event: Event): void {
+    const fileList: FileList | null = (event.target as HTMLInputElement).files;
+    const fileArray: File[] = [];
+    if (fileList) {
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < fileList.length; i++) {
+        fileArray.push(fileList[i]);
+      }
+    }
+
+    this.filesAdded(fileArray);
   }
 
-  public filesAdded(fileInput: FileInput): void {
-    fileInput.files.forEach((file) => {
+  public filesAdded(fileArray: File[]): void {
+    fileArray.forEach((file) => {
       if (file.type.includes('image')) {
         this.readImageData(file);
       } else {
-        this.files$.next([...this.files$.getValue(), file]);
+        this.addFileToFieldControl(file);
       }
     });
-    this.fileFieldComponent.value = new FileInput(this.files$.getValue());
   }
 
   private readImageData(file: File): void {
@@ -58,8 +57,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     const image = file as Image;
     reader.onload = (event: any) => {
       image.imageSrc = event.target.result;
-      this.files$.next([...this.files$.getValue(), image]);
-      this.fileFieldComponent.value = new FileInput(this.files$.getValue());
+      this.addFileToFieldControl(file);
     };
 
     reader.onerror = (event: any) => {
@@ -69,20 +67,21 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     reader.readAsDataURL(image);
   }
 
-  public removeFile(file: Image): void {
-    const files = this.files$.getValue();
-    files.splice(files.indexOf(file), 1);
-    this.files$.next(files);
+  private addFileToFieldControl(file: File): void {
+    this.fieldControl.setValue([...(this.fieldControl.value ?? []), file]);
   }
 
-  private updateFormValue(): void {
-    this.fileFieldComponent.value = new FileInput(this.files$.getValue());
+  public removeFile(file: File | Image): void {
+    const files: Image[] | File[] = this.fieldControl.value;
+    files.splice(this.getFileIndex(files, file), 1);
+    this.fieldControl.setValue(files);
+    this.fileFieldComponent.nativeElement.value = null;
   }
 
-  public onMetaDataChanged(data: T, originalData?: Image): Promise<boolean> {
+  public onMetaDataChanged(data: T, originalData?: File | Image): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      const files = this.files$.getValue();
-      const index = files.indexOf(originalData);
+      const files = this.fieldControl.value ?? [];
+      const index = this.getFileIndex(files, originalData);
       if (index === -1) {
         console.error(`Couldn't find file in list`);
       }
@@ -90,8 +89,12 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
         ...originalData,
         ...data,
       };
-      this.files$.next(files);
+      this.fieldControl.setValue(files);
       resolve(true);
     });
+  }
+
+  private getFileIndex(files: Image[] | File[], file: File | Image): number {
+    return files.findIndex((listFile: Image) => listFile.name === file.name && listFile.type === file.type && listFile.size === file.size);
   }
 }

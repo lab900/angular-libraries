@@ -1,35 +1,19 @@
-<mat-form-field [formGroup]="group" *ngIf="!fieldIsHidden" class="lab900-file-field"
-                id="lab900-file-field-{{schema?.attribute}}" style="display: none;">
-  <mat-label translate>{{schema.title}}</mat-label>
-  <lab900-mat-file-field
-    #fileField
-    [hidden]="true"
-    [attr.disabled]="fieldIsReadonly"
-    [required]="required"
-    [disabled]="fieldIsReadonly"
-    [formControlName]="schema.attribute"
-    [accept]="options?.accept"
-    [multiple]="options?.multiple"
-    placeholder="{{ placeholder | translate }}"
-  ></lab900-mat-file-field>
-  <mat-hint *ngIf="hint"><span [innerHTML]="hint | translate: hintValueTranslateData"></span></mat-hint>
-  <mat-error *ngIf="!valid"><span [innerHTML]="getErrorMessage() | async "></span></mat-error>
-</mat-form-field>
 <div class="file-preview-component">
+  <input #fileField type="file" style="display: none" [multiple]="options?.multiple" [accept]="options?.accept"
+         (change)="fileChange($event)"/>
   <button mat-raised-button color="primary"
-          (click)="addFiles()">{{(options?.fileUploadButtonText || 'form.button.upload') | translate}}</button>
-  <div class="images-wrapper" *ngIf="files$ | async as files">
+          (click)="fileField.click()">{{(options?.fileUploadButtonText || 'form.button.upload') | translate}}</button>
+  <div class="images-wrapper" *ngIf="files?.length">
     <ng-container *ngFor="let file of files">
       <mat-card class="image-wrapper" [class.disabled]="!options?.canEditFileMetaData"
                 [disabled]="!options?.canEditFileMetaData"
                 lab900FormDialog [schema]="options?.fileMetaDataConfig" [data]="file"
                 [submitFormHandler]="onMetaDataChanged.bind(this)">
 
-        <mat-icon (click)="removeFile(file)" class="delete-image">close</mat-icon>
+        <mat-icon (click)="$event.stopPropagation();removeFile(file)" class="delete-image">close</mat-icon>
         <div class="image" style="background-image: url('{{file.imageSrc}}')" *ngIf="file.imageSrc"></div>
         <p class="file-name" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.name">{{ file.name }}</p>
       </mat-card>
     </ng-container>
   </div>
 </div>
-
