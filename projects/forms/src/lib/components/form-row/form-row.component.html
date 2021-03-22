@@ -10,7 +10,7 @@
                 lab900FormField
                 [schema]="field"
                 [group]="schema.attribute ? group.get(schema.attribute) : group"
-                [readonly]="readonly || schema?.options?.readonly"
+                [readonly]="rowIsReadonly(field)"
             ></ng-container>
         </div>
     </div>
