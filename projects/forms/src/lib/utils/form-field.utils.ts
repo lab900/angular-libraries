@@ -13,7 +13,12 @@ export class FormFieldUtils {
     }
     return isReadOnly;
   }
-  public static isRequired(isReadOnly: boolean, fieldOptions: FieldOptions): boolean {
-    return (!isReadOnly && fieldOptions?.required) ?? false;
+
+  public static isRequired(isReadOnly: boolean, fieldOptions: FieldOptions, data: any): boolean {
+    if (typeof fieldOptions?.required === 'function') {
+      return (!isReadOnly && fieldOptions?.required(data)) ?? false;
+    } else {
+      return (!isReadOnly && fieldOptions?.required) ?? false;
+    }
   }
 }

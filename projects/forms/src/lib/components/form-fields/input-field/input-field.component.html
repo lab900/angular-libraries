@@ -6,7 +6,7 @@
         [type]="inputType"
         placeholder="{{ placeholder | translate }}"
         [formControlName]="schema.attribute"
-        [required]="required"
+        [required]="fieldIsRequired"
         [readonly]="fieldIsReadonly"
         [ngClass]="{ 'readonly' : fieldIsReadonly }"
         [mask]="options?.fieldMask?.mask"

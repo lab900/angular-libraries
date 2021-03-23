@@ -10,7 +10,7 @@ export class Lab900FormBuilderService {
 
   public static addValidators(field: FormField, data: any): ValidatorFn[] {
     const validators: ValidatorFn[] = field?.validators ?? [];
-    if (FormFieldUtils.isRequired(FormFieldUtils.isReadOnly(field.options, data), field.options)) {
+    if (FormFieldUtils.isRequired(FormFieldUtils.isReadOnly(field.options, data), field.options, data)) {
       validators.push(Validators.required);
     }
     if (field.options?.minLength) {

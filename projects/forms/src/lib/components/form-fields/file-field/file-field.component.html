@@ -3,7 +3,7 @@
     <lab900-mat-file-field
         #fileField
         [attr.disabled]="fieldIsReadonly"
-        [required]="required"
+        [required]="fieldIsRequired"
         [disabled]="fieldIsReadonly"
         [formControlName]="schema.attribute"
         [accept]="options?.accept"

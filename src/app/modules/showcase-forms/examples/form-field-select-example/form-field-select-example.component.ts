@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Form, EditType } from '@lab900/forms';
+import { EditType, Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-select-example',
@@ -9,21 +9,49 @@ export class FormFieldSelectExampleComponent {
   public formSchema: Form = {
     fields: [
       {
-        attribute: 'somePropName',
-        title: 'Select yes or no',
-        editType: EditType.Select,
-        options: {
-          selectOptions: [
-            {
-              value: true,
-              label: 'yes',
+        attribute: '',
+        editType: EditType.Row,
+        nestedFields: [
+          {
+            attribute: 'somePropName',
+            title: 'Select yes or no',
+            editType: EditType.Select,
+            options: {
+              selectOptions: [
+                {
+                  value: true,
+                  label: 'yes',
+                },
+                {
+                  value: false,
+                  label: 'no',
+                },
+              ],
+              colspan: 6,
+              required: (data) => {
+                return data?.secondPropName;
+              },
             },
-            {
-              value: false,
-              label: 'no',
+          },
+          {
+            attribute: 'secondPropName',
+            title: 'Select yes or no',
+            editType: EditType.Select,
+            options: {
+              selectOptions: [
+                {
+                  value: true,
+                  label: 'yes',
+                },
+                {
+                  value: false,
+                  label: 'no',
+                },
+              ],
+              colspan: 6,
             },
-          ],
-        },
+          },
+        ],
       },
     ],
   };
