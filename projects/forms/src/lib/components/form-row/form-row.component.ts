@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormComponent } from '../../models/IFormComponent';
 import { matFormFieldAnimations } from '@angular/material/form-field';
 import { FormFieldUtils } from '../../utils/form-field.utils';
-import { FormField } from '../../models/FormField';
+import { FieldOptions, FormField } from '../../models/FormField';
 
 @Component({
   selector: 'lab900-form-row',
@@ -30,5 +30,9 @@ export class FormRowComponent extends FormComponent {
     return field.options?.readonly != null
       ? FormFieldUtils.isReadOnly(field.options, this.group.value, this)
       : FormFieldUtils.isReadOnly(this.options, this.group.value, this);
+  }
+
+  public isHidden(field: FormField<FieldOptions>): boolean {
+    return FormFieldUtils.isHidden(field.options, this.group);
   }
 }

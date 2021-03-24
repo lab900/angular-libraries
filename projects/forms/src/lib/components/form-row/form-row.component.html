@@ -1,8 +1,10 @@
 <ng-container *ngIf="visible && schema">
     <span *ngIf="(fieldIsReadonly && options?.readonlyLabel) || schema.title" class="lab900-form-field-label">{{ (!fieldIsReadonly ? schema.title : (options?.readonlyLabel || schema.title)) | translate }}</span>
     <div class="form-row" [class.mobile-cols]="schema.options?.mobileCols">
+        <ng-container
+            *ngFor="let field of schema.nestedFields;">
         <div
-            *ngFor="let field of schema.nestedFields;"
+           *ngIf="!isHidden(field)"
             class="form-col"
             [style.width]="(100*(field.options?.colspan || 12)/12) + '%'"
         >
@@ -13,5 +15,6 @@
                 [readonly]="rowIsReadonly(field)"
             ></ng-container>
         </div>
+        </ng-container>
     </div>
 </ng-container>

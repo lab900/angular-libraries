@@ -1,5 +1,6 @@
 import { FieldOptions } from '../models/FormField';
 import { FormComponent } from '../models/IFormComponent';
+import { FormGroup } from '@angular/forms';
 
 export class FormFieldUtils {
   public static isReadOnly(fieldOptions: FieldOptions, data: any, formComponent?: FormComponent): boolean {
@@ -19,6 +20,14 @@ export class FormFieldUtils {
       return (!isReadOnly && fieldOptions?.required(data)) ?? false;
     } else {
       return (!isReadOnly && fieldOptions?.required) ?? false;
+    }
+  }
+
+  public static isHidden(fieldOptions: FieldOptions, group: FormGroup): boolean {
+    if (typeof fieldOptions?.hide === 'function') {
+      return fieldOptions?.hide(group.value);
+    } else {
+      return fieldOptions?.hide ?? false;
     }
   }
 }
