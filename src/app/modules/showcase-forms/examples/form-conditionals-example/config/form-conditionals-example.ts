@@ -20,7 +20,7 @@ export const formConditionalsExample: Form = {
           },
         },
         {
-          attribute: 'languages',
+          attribute: 'language',
           editType: EditType.Select,
           options: {
             colspan: 6,
@@ -44,6 +44,28 @@ export const formConditionalsExample: Form = {
                 }
               },
               hideIfEquals: (country: string) => country === 'HIDE',
+            },
+          ],
+        },
+        {
+          attribute: 'favouriteFood',
+          editType: EditType.Select,
+          options: {
+            colspan: 6,
+          },
+          conditions: [
+            {
+              dependOn: 'language',
+              conditionalOptions: (language: string) => {
+                console.log(language);
+                switch (language) {
+                  case 'NL':
+                    return [{ label: 'Belgian Fries', value: 'fries' }];
+                  case 'FRA':
+                  case 'GER':
+                    return [{ label: 'Bon Cuisine', value: 'bon' }];
+                }
+              },
             },
           ],
         },

@@ -133,7 +133,11 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> exten
   }
 
   private hide(): void {
-    this.fieldIsHidden = FormFieldUtils.isHidden(this.options, this.group);
+    if (typeof this.options?.hide === 'function') {
+      this.fieldIsHidden = this.options?.hide(this.group.value);
+    } else {
+      this.fieldIsHidden = this.options?.hide ?? false;
+    }
   }
 
   private isReadonly(): void {
