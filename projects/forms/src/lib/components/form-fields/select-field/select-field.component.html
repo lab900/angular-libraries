@@ -8,7 +8,7 @@
         [compareWith]="options?.compareWith ? options?.compareWith : defaultCompare"
         [formControlName]="schema.attribute"
         [multiple]="options?.multiple"
-        [required]="required"
+        [required]="fieldIsRequired"
     >
         <mat-option *ngFor="let item of selectOptions" [value]="item.value">
             <div *ngIf="options?.displayOptionFn" [innerHTML]="options.displayOptionFn(item) | translate"></div>

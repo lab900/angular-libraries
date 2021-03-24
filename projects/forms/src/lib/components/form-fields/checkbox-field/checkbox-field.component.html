@@ -4,7 +4,7 @@
         [color]="options?.color || 'primary'"
         [formControlName]="schema.attribute"
         [indeterminate]="indeterminate"
-        [required]="required"
+        [required]="fieldIsRequired"
         [disabled]="fieldIsReadonly"
     >
       {{schema.title | translate}}

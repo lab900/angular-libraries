@@ -6,7 +6,7 @@
         placeholder="{{ placeholder | translate }}"
         [ngxMatDatetimePicker]="picker"
         [formControlName]="schema.attribute"
-        [required]="required"
+        [required]="fieldIsRequired"
         [readonly]="fieldIsReadonly"
         [max]="maxDate"
         [min]="minDate"
