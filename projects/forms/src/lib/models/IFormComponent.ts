@@ -28,6 +28,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> exten
 
   public fieldIsReadonly: boolean;
   public fieldIsHidden: boolean;
+  public fieldIsRequired: boolean;
 
   public get fieldControl(): AbstractControl {
     return this.group.get(this.schema.attribute);
@@ -43,10 +44,6 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> exten
 
   public get options(): T {
     return this.schema?.options;
-  }
-
-  public get required(): boolean {
-    return (!this.fieldIsReadonly && this.options?.required) ?? false;
   }
 
   public get hint(): string {
@@ -68,12 +65,10 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> exten
   public ngAfterViewInit(): void {
     if (this.group) {
       setTimeout(() => {
-        this.hide();
-        this.isReadonly();
+        this.setFieldProperties();
         this.addSubscription(this.group.valueChanges, () => {
           setTimeout(() => {
-            this.hide();
-            this.isReadonly();
+            this.setFieldProperties();
           });
         });
       });
@@ -138,22 +133,26 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> exten
   }
 
   private hide(): void {
-    if (typeof this.options?.hide === 'function') {
-      this.fieldIsHidden = this.options?.hide(this.group.value);
-    } else {
-      this.fieldIsHidden = this.options?.hide ?? false;
-    }
+    this.fieldIsHidden = FormFieldUtils.isHidden(this.options, this.group);
   }
 
   private isReadonly(): void {
     this.fieldIsReadonly = FormFieldUtils.isReadOnly(this.options, this.group.value, this);
-    if (!this.required && this.options?.required) {
-      this.resetValidators();
-    }
+  }
+
+  private isRequired(): void {
+    this.fieldIsRequired = FormFieldUtils.isRequired(this.fieldIsReadonly, this.options, this.group.value) ?? false;
+  }
+
+  private setFieldProperties(): void {
+    this.hide();
+    this.isReadonly();
+    this.isRequired();
+    this.resetValidators();
   }
 
   private resetValidators(): void {
-    this.group.controls[this.schema.attribute].setValidators(Lab900FormBuilderService.addValidators(this.schema, this.group.value));
+    this.group.controls[this.schema.attribute]?.setValidators(Lab900FormBuilderService.addValidators(this.schema, this.group.value));
   }
 
   private createConditions(): void {

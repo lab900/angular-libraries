@@ -8,7 +8,7 @@
         [max]="options?.max"
         [steps]="options?.steps"
         [format]="options?.format"
-        [required]="required"
+        [required]="fieldIsRequired"
     ></lab900-mat-range-slider-field>
     <div class="radio-buttons-field__error" *ngIf="group.controls[schema.attribute].touched && !valid && !fieldIsReadonly">
         <mat-error>{{ getErrorMessage() | async }}</mat-error>
