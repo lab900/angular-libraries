@@ -23,6 +23,7 @@ import { showcaseFormsNavItems } from './showcase-forms.nav-items';
 import { MarkdownPageComponent } from '../shared/components/markdown-page/markdown-page.component';
 import { FormFieldSelectExampleComponent } from './examples/form-field-select-example/form-field-select-example.component';
 import { FormFieldFileUploadExampleComponent } from './examples/form-field-file-upload-example/form-field-file-upload-example.component';
+import { FormConditionalsExampleComponent } from './examples/form-conditionals-example/form-conditionals-example.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,12 @@ const routes: Routes = [
       new ShowcaseExample(FormContainerReadonlyExampleComponent, 'Form Container Readonly', 'form-container-example'),
     ],
     'guides/forms/creating-forms.md',
+  ),
+  new ShowcaseRoute(
+    'conditional-forms',
+    'Conditional forms',
+    [new ShowcaseExample(FormConditionalsExampleComponent, 'Conditional Form Container')],
+    'guides/forms/TODO.md',
   ),
   new ShowcaseRoute('form-field-autocomplete', 'Form Fields: Autocomplete', [
     new ShowcaseExample(FormFieldAutocompleteExampleComponent, 'Autocomplete'),

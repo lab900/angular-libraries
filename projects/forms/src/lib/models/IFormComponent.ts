@@ -15,8 +15,7 @@ export interface IFormComponent<T extends FieldOptions> {
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class FormComponent<T extends FieldOptions = FieldOptions>
-  extends SubscriptionBasedDirective
+export abstract class FormComponent<T extends FieldOptions = FieldOptions> extends SubscriptionBasedDirective
   implements IFormComponent<T>, AfterViewInit, OnDestroy {
   @Input()
   public group: FormGroup;

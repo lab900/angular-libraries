@@ -21,6 +21,7 @@ import { FormFieldDateRangePickerExampleComponent } from './examples/form-field-
 import { FormFieldDateTimePickerExampleComponent } from './examples/form-field-date-time-picker-example/form-field-date-time-picker-example.component';
 import { FormFieldSelectExampleComponent } from './examples/form-field-select-example/form-field-select-example.component';
 import { FormFieldFileUploadExampleComponent } from './examples/form-field-file-upload-example/form-field-file-upload-example.component';
+import { FormConditionalsExampleComponent } from './examples/form-conditionals-example/form-conditionals-example.component';
 
 const examples = [
   FormFieldRepeaterExampleComponent,
@@ -34,6 +35,7 @@ const examples = [
   FormFieldAutocompleteMultipleExampleComponent,
   FormFieldButtonToggleExampleComponent,
   FormContainerExampleComponent,
+  FormConditionalsExampleComponent,
   FormContainerReadonlyExampleComponent,
   FormFieldDateRangePickerExampleComponent,
   FormFieldDateTimePickerExampleComponent,
