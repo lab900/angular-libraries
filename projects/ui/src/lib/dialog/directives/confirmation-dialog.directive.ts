@@ -1,7 +1,7 @@
 import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
-import { SubscriptionBasedDirective } from '../../../../../forms/src/lib/directives/subscription-based.directive';
+import { SubscriptionBasedDirective } from '../../common/directives/subscription-based.directive';
 
 @Directive({
   selector: '[lab900ConfirmationDialog]',
