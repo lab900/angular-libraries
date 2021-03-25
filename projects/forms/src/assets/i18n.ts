@@ -9,6 +9,7 @@ export default {
     'forms.error.generic': 'Field is invalid.',
     'form.field.loading': 'Loading...',
     'form.button.upload': 'Upload',
+    'forms.error.image.load': `Couldn't load image`,
   },
   nl: {
     'forms.error.number-required': 'Een geldig getal is verplicht.',
@@ -20,5 +21,6 @@ export default {
     'forms.error.generic': 'Deze waarde is ongeldig.',
     'form.field.loading': 'Even geduld...',
     'form.button.upload': 'Upload',
+    'forms.error.image.load': 'Kon afbeelding niet laden',
   },
 };

@@ -1,6 +1,7 @@
 <mat-dialog-content>
-  <div *ngIf="!imageSrc" class="loader">
+  <div *ngIf="loading" class="loader">
     <mat-spinner></mat-spinner>
   </div>
   <img *ngIf="imageSrc" src="{{this.imageSrc}}" alt="image preview"/>
+  <span style="color:red" *ngIf="error">{{'forms.error.image.load' | translate}}</span>
 </mat-dialog-content>

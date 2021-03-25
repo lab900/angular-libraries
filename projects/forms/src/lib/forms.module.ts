@@ -90,7 +90,6 @@ const customFields = [
     FilePreviewFieldComponent,
     ImagePreviewModalComponent,
     AuthImagePipe,
-    AuthImagePipe,
   ],
   imports: [
     CommonModule,

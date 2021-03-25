@@ -11,7 +11,7 @@
         <div *ngIf="options?.overlay" class="image"
              style='background-color:{{this.options.overlay.backgroundColor}};color: {{this.options.overlay.textColor}}'>
           <span>
-            {{options.overlay.text}}
+            {{options.overlay.text | translate}}
           </span>
         </div>
         <div *ngIf="!options?.overlay && file.imageSrc" class="image" style="background-image: url('{{file.imageSrc | authImage: file.authHeaders | async}}')">
