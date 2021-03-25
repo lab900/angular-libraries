@@ -16,6 +16,10 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
             label: 'Create dynamic forms',
             route: 'forms/form-container',
           },
+          {
+            label: 'Conditional Forms',
+            route: 'forms/conditional-forms',
+          },
         ],
       },
       {

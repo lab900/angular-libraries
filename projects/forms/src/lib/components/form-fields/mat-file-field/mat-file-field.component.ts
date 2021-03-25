@@ -1,17 +1,17 @@
 import {
   Component,
-  OnInit,
-  Input,
-  ElementRef,
-  OnDestroy,
-  HostBinding,
-  Renderer2,
-  HostListener,
-  Optional,
-  Self,
   DoCheck,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Renderer2,
+  Self,
 } from '@angular/core';
-import { ControlValueAccessor, NgControl, NgForm, FormGroupDirective } from '@angular/forms';
+import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { FocusMonitor } from '@angular/cdk/a11y';
@@ -28,8 +28,7 @@ import { FileInput } from '../../../models/FileInput';
   `,
   providers: [{ provide: MatFormFieldControl, useExisting: MatFileFieldComponent }],
 })
-export class MatFileFieldComponent
-  extends FileInputMixinBase
+export class MatFileFieldComponent extends FileInputMixinBase
   implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck {
   @Input()
   public get value(): FileInput | null {
