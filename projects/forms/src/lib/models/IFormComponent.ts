@@ -15,7 +15,8 @@ export interface IFormComponent<T extends FieldOptions> {
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class FormComponent<T extends FieldOptions = FieldOptions> extends SubscriptionBasedDirective
+export abstract class FormComponent<T extends FieldOptions = FieldOptions>
+  extends SubscriptionBasedDirective
   implements IFormComponent<T>, AfterViewInit, OnDestroy {
   @Input()
   public group: FormGroup;
@@ -133,11 +134,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions> exten
   }
 
   private hide(): void {
-    if (typeof this.options?.hide === 'function') {
-      this.fieldIsHidden = this.options?.hide(this.group.value);
-    } else {
-      this.fieldIsHidden = this.options?.hide ?? false;
-    }
+    this.fieldIsHidden = FormFieldUtils.isHidden(this.options, this.group);
   }
 
   private isReadonly(): void {
