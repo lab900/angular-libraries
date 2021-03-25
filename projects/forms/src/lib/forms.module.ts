@@ -52,6 +52,8 @@ import { DateTimeFieldComponent } from './components/form-fields/date-time-field
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FilePreviewFieldComponent } from './components/form-fields/file-preview-field/file-preview-field.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ImagePreviewModalComponent } from './components/image-preview-modal/image-preview-modal.component';
+import { AuthImagePipe } from './auth-image.pipe';
 
 const customFields = [
   UnknownFieldComponent,
@@ -86,6 +88,9 @@ const customFields = [
     ...customFields,
     IconComponent,
     FilePreviewFieldComponent,
+    ImagePreviewModalComponent,
+    AuthImagePipe,
+    AuthImagePipe,
   ],
   imports: [
     CommonModule,
@@ -128,6 +133,7 @@ export class Lab900FormsModule {
           provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
           useValue: settings.formField,
         },
+        AuthImagePipe,
       ],
     };
   }

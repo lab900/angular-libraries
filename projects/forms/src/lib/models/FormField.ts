@@ -120,6 +120,11 @@ export interface FilePreviewFieldOptions extends FileFieldOptions {
   fileUploadButtonText?: string;
   canEditFileMetaData?: boolean;
   fileMetaDataConfig?: Form;
+  overlay?: {
+    backgroundColor: string;
+    textColor: string;
+    text: string;
+  };
 }
 
 export interface Icon {

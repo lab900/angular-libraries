@@ -1,0 +1,6 @@
+<mat-dialog-content>
+  <div *ngIf="!imageSrc" class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+  <img *ngIf="imageSrc" src="{{this.imageSrc}}" alt="image preview"/>
+</mat-dialog-content>

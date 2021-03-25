@@ -4,7 +4,9 @@ import { FormComponent } from '../../../models/IFormComponent';
 import { FilePreviewFieldOptions } from '../../../models/FormField';
 import { FormDialogDirective } from '../../../directives/form-dialog.directive';
 import { Image } from '../../../models/Image';
-import { logger } from 'codelyzer/util/logger';
+import { FormDialogComponent } from '../../form-dialog/form-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ImagePreviewModalComponent } from '../../image-preview-modal/image-preview-modal.component';
 
 @Component({
   selector: 'lab900-file-preview-field',
@@ -21,7 +23,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
   @ViewChild('FormDialogDirective')
   private lab900FormDialog: FormDialogDirective<T>;
 
-  constructor(translateService: TranslateService) {
+  constructor(translateService: TranslateService, private dialog: MatDialog) {
     super(translateService);
   }
 
@@ -96,5 +98,31 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
 
   private getFileIndex(files: Image[] | File[], file: File | Image): number {
     return files.findIndex((listFile: Image) => listFile.name === file.name && listFile.type === file.type && listFile.size === file.size);
+  }
+
+  public handleImageClick(file: File | Image): void {
+    if (this.options?.canEditFileMetaData) {
+      this.openMetaDataDialog(file);
+    } else if ((file as Image).imageSrc != null) {
+      this.openPreviewDialog(file as Image);
+    }
+  }
+
+  private openMetaDataDialog(file: File | Image): void {
+    this.dialog.open(FormDialogComponent, {
+      data: {
+        schema: this.options?.fileMetaDataConfig,
+        data: file,
+        submit: this.onMetaDataChanged.bind(this),
+      },
+    });
+  }
+
+  private openPreviewDialog(file: Image): void {
+    this.dialog.open(ImagePreviewModalComponent, {
+      data: {
+        image: file,
+      },
+    });
   }
 }

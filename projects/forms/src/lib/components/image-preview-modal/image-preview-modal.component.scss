@@ -1,0 +1,11 @@
+mat-dialog-content {
+  .loader {
+    min-width: 300px;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    mat-spinner {
+      align-self: center;
+    }
+  }
+}

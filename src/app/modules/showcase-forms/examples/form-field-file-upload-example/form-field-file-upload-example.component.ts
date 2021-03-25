@@ -15,7 +15,7 @@ export class FormFieldFileUploadExampleComponent {
         options: {
           multiple: true,
           accept: 'image/*',
-          canEditFileMetaData: true,
+          canEditFileMetaData: false,
           fileMetaDataConfig: {
             fields: [
               {
@@ -24,6 +24,11 @@ export class FormFieldFileUploadExampleComponent {
                 editType: EditType.Input,
               },
             ],
+          },
+          overlay: {
+            backgroundColor: '#c93b2e',
+            textColor: 'white',
+            text: 'delicate',
           },
         },
       },

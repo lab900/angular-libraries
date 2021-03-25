@@ -5,13 +5,17 @@
           (click)="fileField.click()">{{(options?.fileUploadButtonText || 'form.button.upload') | translate}}</button>
   <div class="images-wrapper" *ngIf="files?.length">
     <ng-container *ngFor="let file of files">
-      <mat-card class="image-wrapper" [class.disabled]="!options?.canEditFileMetaData"
-                [disabled]="!options?.canEditFileMetaData"
-                lab900FormDialog [schema]="options?.fileMetaDataConfig" [data]="file"
-                [submitFormHandler]="onMetaDataChanged.bind(this)">
-
+      <mat-card class="image-wrapper"
+                (click)="handleImageClick(file)">
         <mat-icon (click)="$event.stopPropagation();removeFile(file)" class="delete-image">close</mat-icon>
-        <div class="image" style="background-image: url('{{file.imageSrc}}')" *ngIf="file.imageSrc"></div>
+        <div *ngIf="options?.overlay" class="image"
+             style='background-color:{{this.options.overlay.backgroundColor}};color: {{this.options.overlay.textColor}}'>
+          <span>
+            {{options.overlay.text}}
+          </span>
+        </div>
+        <div *ngIf="!options?.overlay && file.imageSrc" class="image" style="background-image: url('{{file.imageSrc | authImage: file.authHeaders | async}}')">
+        </div>
         <p class="file-name" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.name">{{ file.name }}</p>
       </mat-card>
     </ng-container>
