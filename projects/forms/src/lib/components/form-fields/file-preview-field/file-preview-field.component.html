@@ -8,13 +8,13 @@
       <mat-card class="image-wrapper"
                 (click)="handleImageClick(file)">
         <mat-icon (click)="$event.stopPropagation();removeFile(file)" class="delete-image">close</mat-icon>
-        <div *ngIf="options?.overlay" class="image"
+        <div *ngIf="showOverlay(file, options) && options?.overlay" class="image"
              style='background-color:{{this.options.overlay.backgroundColor}};color: {{this.options.overlay.textColor}}'>
           <span>
             {{options.overlay.text | translate}}
           </span>
         </div>
-        <div *ngIf="!options?.overlay && file.imageSrc" class="image" style="background-image: url('{{file.imageSrc | authImage: file.authHeaders | async}}')">
+        <div *ngIf="!showOverlay(file, options)" lab900AuthImage class="image" [image]="file">
         </div>
         <p class="file-name" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.name">{{ file.name }}</p>
       </mat-card>

@@ -1,7 +1,3 @@
 <mat-dialog-content>
-  <div *ngIf="loading" class="loader">
-    <mat-spinner></mat-spinner>
-  </div>
-  <img *ngIf="imageSrc" src="{{this.imageSrc}}" alt="image preview"/>
-  <span style="color:red" *ngIf="error">{{'forms.error.image.load' | translate}}</span>
+  <div lab900AuthImage class="image" [image]="this.image"></div>
 </mat-dialog-content>

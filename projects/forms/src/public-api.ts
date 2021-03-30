@@ -14,5 +14,6 @@ export * from './lib/utils/form-field.utils';
 export * from './lib/components/form-container/form-container.component';
 
 export * from './lib/directives/form-dialog.directive';
+export * from './lib/directives/auth-image.directive';
 
 export * from './lib/forms.module';

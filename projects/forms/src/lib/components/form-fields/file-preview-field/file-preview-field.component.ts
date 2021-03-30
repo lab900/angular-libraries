@@ -125,4 +125,12 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
       },
     });
   }
+
+  public showOverlay(file: Image, options: FilePreviewFieldOptions): boolean {
+    if (typeof options?.showOverlay === 'function') {
+      return options?.showOverlay(file);
+    } else {
+      return options?.showOverlay ?? false;
+    }
+  }
 }
