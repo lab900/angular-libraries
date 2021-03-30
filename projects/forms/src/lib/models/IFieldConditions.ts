@@ -3,6 +3,8 @@ import { FormField } from './FormField';
 import { Observable, Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { ChangeDetectorRef } from '@angular/core';
+import { FormComponent, IFormComponent } from './IFormComponent';
 
 export const areValuesEqual = (val1: any, val2: any): boolean => {
   if (typeof val1 === 'object' && typeof val2 === 'object') {
@@ -46,7 +48,11 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public readonly dependControl: AbstractControl;
   public prevValue: T;
 
-  public constructor(private readonly group: FormGroup, private readonly schema: FormField, fieldConditions?: IFieldConditions) {
+  private readonly group: FormGroup;
+  private readonly schema: FormField;
+  public constructor(private readonly component: FormComponent<any>, fieldConditions?: IFieldConditions) {
+    this.group = component.group;
+    this.schema = component.schema;
     if (fieldConditions) {
       Object.assign(this, fieldConditions);
       this.dependControl = this.getDependControl(this.group);
@@ -96,6 +102,8 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
         callback(this.dependOn, value, firstRun);
       }
       this.prevValue = value;
+      // Refresh hide settings
+      this.component.hide();
     }
   }
 

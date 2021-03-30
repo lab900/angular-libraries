@@ -1,6 +1,6 @@
 import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FieldOptions, FormField } from './FormField';
-import { AfterViewInit, Directive, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, Input, OnChanges, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { FieldConditions } from './IFieldConditions';
@@ -133,7 +133,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
     }
   }
 
-  private hide(): void {
+  public hide(): void {
     this.fieldIsHidden = FormFieldUtils.isHidden(this.options, this.group);
   }
 
@@ -159,7 +159,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
   private createConditions(): void {
     this.schema.conditions
       .filter((c) => c.dependOn)
-      .map((c) => new FieldConditions(this.group, this.schema, c))
+      .map((c) => new FieldConditions(this, c))
       .forEach((conditions: FieldConditions) => {
         const sub = conditions.start((dependOn: string, value: any, firstRun: boolean) => {
           if (this.onConditionalChange) {
