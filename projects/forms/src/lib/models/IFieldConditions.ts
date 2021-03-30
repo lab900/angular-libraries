@@ -3,8 +3,7 @@ import { FormField } from './FormField';
 import { Observable, Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { ChangeDetectorRef } from '@angular/core';
-import { FormComponent, IFormComponent } from './IFormComponent';
+import { FormComponent } from './IFormComponent';
 
 export const areValuesEqual = (val1: any, val2: any): boolean => {
   if (typeof val1 === 'object' && typeof val2 === 'object') {
@@ -114,11 +113,14 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   }
 
   public runVisibilityConditions(value: T): void {
-    const hide = (isTrue: boolean) => (this.schema.options.hide = isTrue);
-    this.run('hideIfHasValue', this.hideIfHasValue && FieldConditions.hasValue(value), (isTrue: boolean) => hide(isTrue));
-    this.run('showIfHasValue', this.showIfHasValue && FieldConditions.hasValue(value), (isTrue: boolean) => hide(!isTrue));
-    this.run('hideIfEquals', FieldConditions.valueIsEqualTo(value, this.hideIfEquals), (isTrue: boolean) => hide(isTrue));
-    this.run('showIfEquals', FieldConditions.valueIsEqualTo(value, this.showIfEquals), (isTrue: boolean) => hide(!isTrue));
+    // Fix ExpressionChangedAfterItHasBeenCheckedError with timeout
+    setTimeout(() => {
+      const hide = (isTrue: boolean) => (this.schema.options = { ...(this.schema.options ?? {}), hide: isTrue });
+      this.run('hideIfHasValue', this.hideIfHasValue && FieldConditions.hasValue(value), (isTrue: boolean) => hide(isTrue));
+      this.run('showIfHasValue', this.showIfHasValue && FieldConditions.hasValue(value), (isTrue: boolean) => hide(!isTrue));
+      this.run('hideIfEquals', FieldConditions.valueIsEqualTo(value, this.hideIfEquals), (isTrue: boolean) => hide(isTrue));
+      this.run('showIfEquals', FieldConditions.valueIsEqualTo(value, this.showIfEquals), (isTrue: boolean) => hide(!isTrue));
+    });
   }
 
   public runDisableConditions(value: T): void {
