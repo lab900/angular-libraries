@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { EditType, Form } from '@lab900/forms';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'lab900-form-field-file-upload-example',
@@ -15,7 +16,7 @@ export class FormFieldFileUploadExampleComponent {
         options: {
           multiple: true,
           accept: 'image/*',
-          canEditFileMetaData: true,
+          canEditFileMetaData: false,
           fileMetaDataConfig: {
             fields: [
               {
@@ -25,6 +26,14 @@ export class FormFieldFileUploadExampleComponent {
               },
             ],
           },
+          showOverlay: (data: any) => {
+            return data.delicate;
+          },
+          overlay: {
+            backgroundColor: '#c93b2e',
+            textColor: 'white',
+            text: 'delicate',
+          },
         },
       },
     ],
@@ -33,7 +42,11 @@ export class FormFieldFileUploadExampleComponent {
     files: [
       {
         name: 'file.jpg',
-        delicate: true,
+        delicate: false,
+        imageSrc: '',
+        authHeaders: new HttpHeaders({
+          'X-Authorization-Firebase': '',
+        }),
       },
     ],
   };

@@ -1,0 +1,12 @@
+mat-dialog-content {
+  .image{
+    width: 70vw;
+    height: 50vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    &.bg-loading{
+      opacity: 0.2;
+    }
+  }
+}

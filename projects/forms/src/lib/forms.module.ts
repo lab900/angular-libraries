@@ -52,6 +52,8 @@ import { DateTimeFieldComponent } from './components/form-fields/date-time-field
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FilePreviewFieldComponent } from './components/form-fields/file-preview-field/file-preview-field.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ImagePreviewModalComponent } from './components/image-preview-modal/image-preview-modal.component';
+import { AuthImageDirective } from './directives/auth-image.directive';
 
 const customFields = [
   UnknownFieldComponent,
@@ -86,6 +88,8 @@ const customFields = [
     ...customFields,
     IconComponent,
     FilePreviewFieldComponent,
+    ImagePreviewModalComponent,
+    AuthImageDirective,
   ],
   imports: [
     CommonModule,
@@ -116,7 +120,7 @@ const customFields = [
     MatProgressSpinnerModule,
     MatTooltipModule,
   ],
-  exports: [FormContainerComponent, FormDialogDirective],
+  exports: [FormContainerComponent, FormDialogDirective, AuthImageDirective],
 })
 export class Lab900FormsModule {
   public static forRoot(settings: FormModuleSettings = defaultFormModuleSettings): ModuleWithProviders<FormsModule> {
