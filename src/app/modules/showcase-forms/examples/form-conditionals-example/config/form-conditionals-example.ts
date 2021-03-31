@@ -3,6 +3,18 @@ import { EditType, Form } from '@lab900/forms';
 export const formConditionalsExample: Form = {
   fields: [
     {
+      attribute: 'role',
+      editType: EditType.Select,
+      options: {
+        colspan: 6,
+        selectOptions: [
+          { label: '', value: null },
+          { label: 'user', value: 'user' },
+          { label: 'administrator', value: 'administrator' },
+        ],
+      },
+    },
+    {
       attribute: '',
       editType: EditType.Row,
       nestedFields: [
@@ -11,13 +23,21 @@ export const formConditionalsExample: Form = {
           editType: EditType.Select,
           options: {
             colspan: 6,
-            selectOptions: [
-              { label: 'belgium', value: 'BEL' },
-              { label: 'france', value: 'FRA' },
-              { label: 'germany', value: 'GER' },
-              { label: 'hide language', value: 'HIDE' },
-            ],
           },
+          conditions: [
+            {
+              dependOn: 'role',
+              enableIfHasValue: true,
+              conditionalOptions: () => {
+                return [
+                  { label: 'belgium', value: 'BEL' },
+                  { label: 'france', value: 'FRA' },
+                  { label: 'germany', value: 'GER' },
+                  { label: 'hide language', value: 'HIDE' },
+                ];
+              },
+            },
+          ],
         },
         {
           attribute: 'language',
