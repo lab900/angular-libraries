@@ -48,6 +48,7 @@ export interface WysiwygFieldOptions extends FieldOptions {
 
 export interface InputFieldOptions extends FieldOptions {
   type?: 'text' | 'number' | 'email' | 'password' | 'tel' | 'url';
+  autofocus?: boolean;
 }
 
 export interface RepeaterFieldOptions extends FieldOptions {

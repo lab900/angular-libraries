@@ -22,7 +22,10 @@ export class FormFieldInputsExampleComponent {
         attribute: 'textInput2',
         title: 'Text Input',
         editType: EditType.Input,
-        options: { required: true },
+        options: {
+          required: true,
+          autofocus: true,
+        },
         icon: { name: 'search', position: 'left' },
       },
       {

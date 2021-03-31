@@ -54,6 +54,7 @@ import { FilePreviewFieldComponent } from './components/form-fields/file-preview
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ImagePreviewModalComponent } from './components/image-preview-modal/image-preview-modal.component';
 import { AuthImageDirective } from './directives/auth-image.directive';
+import { AutofocusDirective } from './directives/auto-focus.directive';
 
 const customFields = [
   UnknownFieldComponent,
@@ -90,6 +91,7 @@ const customFields = [
     FilePreviewFieldComponent,
     ImagePreviewModalComponent,
     AuthImageDirective,
+    AutofocusDirective,
   ],
   imports: [
     CommonModule,
@@ -120,7 +122,7 @@ const customFields = [
     MatProgressSpinnerModule,
     MatTooltipModule,
   ],
-  exports: [FormContainerComponent, FormDialogDirective, AuthImageDirective],
+  exports: [FormContainerComponent, FormDialogDirective, AuthImageDirective, AutofocusDirective],
 })
 export class Lab900FormsModule {
   public static forRoot(settings: FormModuleSettings = defaultFormModuleSettings): ModuleWithProviders<FormsModule> {

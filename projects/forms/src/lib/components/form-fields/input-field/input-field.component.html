@@ -13,6 +13,8 @@
         [prefix]="options?.fieldMask?.prefix || ''"
         [allowNegativeNumbers]="options?.fieldMask?.allowNegativeNumbers || false"
         [showMaskTyped]="options?.fieldMask?.showMaskedType || false"
+        lab900InputAutofocus
+        [autofocus]="options?.autofocus"
     >
     <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !fieldIsReadonly">
         <span [innerHTML]="hint | translate: hintValueTranslateData"></span>
