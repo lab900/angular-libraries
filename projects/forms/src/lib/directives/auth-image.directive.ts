@@ -24,32 +24,37 @@ export class AuthImageDirective extends SubscriptionBasedDirective implements On
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.image && this.image?.imageSrc) {
+    if ((changes.image || changes.httpCallback) && this.image?.imageSrc) {
       this.elementRef.nativeElement.classList.add('bg-loading');
-      this.addSubscription(
-        this.httpCallback(this.image).pipe(
-          map((imageBlob: Blob) => {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              const fileSrc = reader.result as string;
-              this.setSrc(fileSrc);
-              const image: HTMLImageElement = document.createElement('img');
-              image.src = fileSrc;
-              image.onload = () => image.remove();
-              image.onerror = () => {
-                this.setPlaceholder();
-                image.remove();
+      if (this.httpCallback == null) {
+        this.setSrc(this.image.imageSrc);
+      } else {
+        this.addSubscription(
+          this.httpCallback(this.image).pipe(
+            map((imageBlob: Blob) => {
+              const reader = new FileReader();
+              reader.onloadend = () => {
+                const fileSrc = reader.result as string;
+                this.setSrc(fileSrc);
+                const image: HTMLImageElement = document.createElement('img');
+                image.src = fileSrc;
+                image.onload = () => image.remove();
+                image.onerror = () => {
+                  this.setPlaceholder();
+                  image.remove();
+                };
               };
-            };
-            return reader.readAsDataURL(imageBlob);
-          }),
-        ),
-        () => {},
-      );
+              return reader.readAsDataURL(imageBlob);
+            }),
+          ),
+          () => {},
+        );
+      }
     } else {
       this.setPlaceholder();
     }
   }
+
   private setPlaceholder(): void {
     if (this.defaultImage?.length) {
       this.renderer.setStyle(this.elementRef.nativeElement, 'background-image', `url(${this.defaultImage})`);
