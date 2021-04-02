@@ -6,6 +6,7 @@ import { IFormComponent } from './IFormComponent';
 import { IFieldConditions } from './IFieldConditions';
 import { ValidatorFn } from '@angular/forms';
 import { Form } from './Form';
+import { Image } from './Image';
 
 export interface ValueLabel<T = any> {
   value: T;
@@ -121,6 +122,7 @@ export interface FilePreviewFieldOptions extends FileFieldOptions {
   fileUploadButtonText?: string;
   canEditFileMetaData?: boolean;
   fileMetaDataConfig?: Form;
+  httpCallback?: (image: Image) => Observable<Blob>;
   showOverlay: boolean | ((data?: any) => boolean);
   overlay?: {
     backgroundColor: string;

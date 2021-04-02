@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Image } from '../models/Image';
 import { SubscriptionBasedDirective } from './subscription-based.directive';
+import { Observable } from 'rxjs';
 
 @Directive({
   selector: '[lab900AuthImage]',
@@ -11,6 +12,9 @@ export class AuthImageDirective extends SubscriptionBasedDirective implements On
   // tslint:disable-next-line:no-input-rename
   @Input('image')
   private readonly image: Image;
+
+  @Input()
+  private readonly httpCallback: (image: Image) => Observable<Blob>;
 
   @Input()
   private readonly defaultImage: string;
@@ -23,7 +27,7 @@ export class AuthImageDirective extends SubscriptionBasedDirective implements On
     if (changes.image && this.image?.imageSrc) {
       this.elementRef.nativeElement.classList.add('bg-loading');
       this.addSubscription(
-        this.http.get(this.image?.imageSrc, { headers: this.image?.authHeaders, responseType: 'blob' }).pipe(
+        this.httpCallback(this.image).pipe(
           map((imageBlob: Blob) => {
             const reader = new FileReader();
             reader.onloadend = () => {
