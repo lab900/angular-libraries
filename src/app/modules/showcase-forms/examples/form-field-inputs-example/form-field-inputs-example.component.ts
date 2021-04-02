@@ -16,7 +16,9 @@ export class FormFieldInputsExampleComponent {
         attribute: 'uniqueNumber',
         title: 'Text Input Hidden',
         editType: EditType.Input,
-        options: { hide: true },
+        options: {
+          hide: true,
+        },
       },
       {
         attribute: 'textInput2',
@@ -25,6 +27,8 @@ export class FormFieldInputsExampleComponent {
         options: {
           required: true,
           autofocus: true,
+          minLength: 5,
+          maxLength: 15,
         },
         icon: { name: 'search', position: 'left' },
       },
@@ -43,15 +47,17 @@ export class FormFieldInputsExampleComponent {
         },
       },
       {
-        attribute: 'emailInput',
+        attribute: 'numberInput',
         title: 'Number Input',
         editType: EditType.Input,
         options: {
           type: 'number',
+          max: 1000,
+          min: 5,
         },
       },
       {
-        attribute: 'emailInput',
+        attribute: 'passwordInput',
         title: 'Password Input',
         editType: EditType.Input,
         options: {
