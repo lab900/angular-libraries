@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { EditType, Form } from '@lab900/forms';
-import { HttpHeaders } from '@angular/common/http';
+import { EditType, Form, Image } from '@lab900/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'lab900-form-field-file-upload-example',
@@ -26,6 +26,7 @@ export class FormFieldFileUploadExampleComponent {
               },
             ],
           },
+          httpCallback: (image: Image) => this.http.get(image?.imageSrc, { responseType: 'blob' }),
           showOverlay: (data: any) => {
             return data.delicate;
           },
@@ -44,10 +45,8 @@ export class FormFieldFileUploadExampleComponent {
         name: 'file.jpg',
         delicate: false,
         imageSrc: '',
-        authHeaders: new HttpHeaders({
-          'X-Authorization-Firebase': '',
-        }),
       },
     ],
   };
+  constructor(private http: HttpClient) {}
 }

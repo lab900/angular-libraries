@@ -125,7 +125,7 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
   private createComponent(): void {
     this.container.clear();
     const c =
-      this.readonly && ![EditType.Row, EditType.Select].includes(this.schema.editType)
+      this.readonly && ![EditType.Row, EditType.Select, EditType.FilePreview].includes(this.schema.editType)
         ? ReadonlyFieldComponent
         : mapToComponent(this.schema);
     const component = this.resolver.resolveComponentFactory<FormComponent<FieldOptions>>(c);

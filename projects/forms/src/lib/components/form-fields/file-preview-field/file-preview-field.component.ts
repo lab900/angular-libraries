@@ -101,7 +101,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
   }
 
   public handleImageClick(file: File | Image): void {
-    if (this.options?.canEditFileMetaData) {
+    if (this.options?.canEditFileMetaData && !this.fieldIsReadonly) {
       this.openMetaDataDialog(file);
     } else if ((file as Image).imageSrc != null) {
       this.openPreviewDialog(file as Image);
