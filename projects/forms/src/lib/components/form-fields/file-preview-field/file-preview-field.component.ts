@@ -70,13 +70,13 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
   }
 
   private addFileToFieldControl(file: File): void {
-    this.fieldControl.setValue([...(this.fieldControl.value ?? []), file]);
+    this.setFieldControlValue([...(this.fieldControl.value ?? []), file]);
   }
 
   public removeFile(file: File | Image): void {
     const files: Image[] | File[] = this.fieldControl.value;
     files.splice(this.getFileIndex(files, file), 1);
-    this.fieldControl.setValue(files);
+    this.setFieldControlValue(files);
     this.fileFieldComponent.nativeElement.value = null;
   }
 
@@ -91,7 +91,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
         ...originalData,
         ...data,
       };
-      this.fieldControl.setValue(files);
+      this.setFieldControlValue(files);
       resolve(true);
     });
   }
@@ -132,5 +132,11 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     } else {
       return options?.showOverlay ?? false;
     }
+  }
+
+  private setFieldControlValue(files: File[] | Image[]): void {
+    this.fieldControl.setValue(files);
+    this.fieldControl.markAsDirty();
+    this.fieldControl.markAsTouched();
   }
 }
