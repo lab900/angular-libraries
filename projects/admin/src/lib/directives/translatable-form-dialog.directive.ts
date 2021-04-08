@@ -2,12 +2,11 @@ import { Directive, HostListener, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { TranslatableFormDialogComponent } from '../components/translatable-form-dialog/translatable-form-dialog.component';
 import { Schema } from '../models/schema';
-import { SubscriptionBasedDirective } from '../../../../forms/src/lib/directives/subscription-based.directive';
 
 @Directive({
   selector: '[lab900TranslatableFormDialog]',
 })
-export class TranslatableFormDialogDirective<T> extends SubscriptionBasedDirective {
+export class TranslatableFormDialogDirective<T> {
   @Input()
   public schema: Schema;
 
@@ -26,13 +25,11 @@ export class TranslatableFormDialogDirective<T> extends SubscriptionBasedDirecti
   @Input()
   public dialogOptions: MatDialogConfig;
 
-  public constructor(public dialog: MatDialog) {
-    super();
-  }
+  public constructor(public dialog: MatDialog) {}
 
   @HostListener('click')
   public onMouseEnter(): void {
-    const dialog = this.dialog.open(TranslatableFormDialogComponent, {
+    this.dialog.open(TranslatableFormDialogComponent, {
       data: {
         schema: this.schema,
         data: this.data,
@@ -42,6 +39,5 @@ export class TranslatableFormDialogDirective<T> extends SubscriptionBasedDirecti
       },
       ...this.dialogOptions,
     });
-    this.addSubscription(dialog.beforeClosed(), (data) => {});
   }
 }
