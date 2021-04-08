@@ -75,7 +75,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
   }
 
   public removeFile(file: Lab900File): void {
-    const files: Lab900File[] | File[] = this.fieldControl.value;
+    const files: Lab900File[] = this.fieldControl.value;
     files.splice(this.getFileIndex(files, file), 1);
     this.setFieldControlValue(files);
     this.fileFieldComponent.nativeElement.value = null;
@@ -97,15 +97,15 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
 
   private getFileIndex(files: Lab900File[], file: Lab900File): number {
     return files.findIndex(
-      (listFile: Lab900File) => listFile.name === file.name && listFile.type === file.type && listFile.size === file.size,
+      (listFile: Lab900File) => listFile.fileName === file.fileName && listFile.type === file.type && listFile.size === file.size,
     );
   }
 
   public handleImageClick(file: Lab900File): void {
     if (this.options?.canEditFileMetaData && !this.fieldIsReadonly) {
       this.openMetaDataDialog(file);
-    } else if ((file as Lab900File).imageSrc != null) {
-      this.openPreviewDialog(file as Lab900File);
+    } else if (file.imageSrc != null) {
+      this.openPreviewDialog(file);
     }
   }
 
