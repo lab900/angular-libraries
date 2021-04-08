@@ -28,7 +28,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
   }
 
   get files(): Lab900File[] {
-    return this.fieldControl?.value as Lab900File[];
+    return (this.fieldControl?.value as Lab900File[]) ?? [];
   }
 
   public fileChange(event: Event): void {
@@ -70,21 +70,22 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
   }
 
   private addFileToFieldControl(file: File): void {
-    (file as Lab900File).fileName = file.name;
-    this.setFieldControlValue([...(this.fieldControl.value ?? []), file]);
+    const lab900File = file as Lab900File;
+    lab900File.fileName = file.name;
+    this.setFieldControlValue([...this.files, lab900File]);
   }
 
   public removeFile(file: Lab900File): void {
-    const files: Lab900File[] = this.fieldControl.value;
-    files.splice(this.getFileIndex(files, file), 1);
+    const files: Lab900File[] = this.files;
+    files.splice(this.getFileIndex(file), 1);
     this.setFieldControlValue(files);
     this.fileFieldComponent.nativeElement.value = null;
   }
 
   public onMetaDataChanged(data: T, originalData?: Lab900File): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      const files = this.fieldControl.value ?? [];
-      const index = this.getFileIndex(files, originalData);
+      const files = this.files;
+      const index = this.getFileIndex(originalData);
       if (index === -1) {
         console.error(`Couldn't find file in list`);
       }
@@ -95,8 +96,8 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     });
   }
 
-  private getFileIndex(files: Lab900File[], file: Lab900File): number {
-    return files.findIndex(
+  private getFileIndex(file: Lab900File): number {
+    return this.files.findIndex(
       (listFile: Lab900File) => listFile.fileName === file.fileName && listFile.type === file.type && listFile.size === file.size,
     );
   }
