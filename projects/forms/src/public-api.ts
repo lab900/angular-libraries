@@ -8,7 +8,7 @@ export * from './lib/models/FormGroup';
 export * from './lib/models/FileInput';
 export * from './lib/models/editType';
 export * from './lib/models/IFieldConditions';
-export * from './lib/models/Image';
+export * from './lib/models/Lab900File';
 export * from './lib/utils/form-field.utils';
 
 export * from './lib/components/form-container/form-container.component';

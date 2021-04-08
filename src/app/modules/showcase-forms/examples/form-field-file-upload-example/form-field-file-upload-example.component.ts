@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
-import { EditType, Form, Image } from '@lab900/forms';
+import { Component, ViewChild } from '@angular/core';
+import { EditType, Form, FormContainerComponent, Image } from '@lab900/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'lab900-form-field-file-upload-example',
-  template: '<lab900-form-container [schema]="formSchema" [data]="formData"></lab900-form-container>',
+  template:
+    '<lab900-form-container #formContainer [schema]="formSchema" [data]="formData"></lab900-form-container><button mat-raised-button color="primary" (click)="validate()">Submit</button>',
 })
 export class FormFieldFileUploadExampleComponent {
+  @ViewChild('formContainer')
+  public formContainer: FormContainerComponent<any>;
+
   public formSchema: Form = {
     fields: [
       {
@@ -16,11 +20,11 @@ export class FormFieldFileUploadExampleComponent {
         options: {
           multiple: true,
           accept: 'image/*',
-          canEditFileMetaData: false,
+          canEditFileMetaData: true,
           fileMetaDataConfig: {
             fields: [
               {
-                attribute: 'name',
+                attribute: 'fileName',
                 title: 'File name',
                 editType: EditType.Input,
               },
@@ -42,11 +46,15 @@ export class FormFieldFileUploadExampleComponent {
   public formData = {
     files: [
       {
-        name: 'file.jpg',
+        fileName: 'file.jpg',
         delicate: false,
         imageSrc: '',
       },
     ],
   };
   constructor(private http: HttpClient) {}
+
+  public validate(): void {
+    console.log(this.formContainer.form.controls.files.value);
+  }
 }
