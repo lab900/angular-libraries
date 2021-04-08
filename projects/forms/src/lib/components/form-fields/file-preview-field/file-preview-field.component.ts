@@ -121,11 +121,13 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
   }
 
   private openPreviewDialog(file: Lab900File): void {
-    this.dialog.open(ImagePreviewModalComponent, {
-      data: {
-        image: file,
-      },
-    });
+    if (file.imageBase64 != null) {
+      this.dialog.open(ImagePreviewModalComponent, {
+        data: {
+          image: file,
+        },
+      });
+    }
   }
 
   public showOverlay(file: Lab900File, options: FilePreviewFieldOptions): boolean {

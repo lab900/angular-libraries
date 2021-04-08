@@ -65,6 +65,7 @@ export class AuthImageDirective extends SubscriptionBasedDirective implements On
 
   private setSrc(src: string): void {
     if (src?.length) {
+      this.image.imageBase64 = src;
       this.renderer.setStyle(this.elementRef.nativeElement, 'background-image', `url(${src})`);
       this.elementRef.nativeElement.classList.remove('bg-loading');
       this.elementRef.nativeElement.classList.add('bg-loaded');

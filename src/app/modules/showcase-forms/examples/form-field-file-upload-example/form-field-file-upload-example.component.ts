@@ -20,7 +20,7 @@ export class FormFieldFileUploadExampleComponent {
         options: {
           multiple: true,
           accept: 'image/*',
-          canEditFileMetaData: true,
+          canEditFileMetaData: false,
           fileMetaDataConfig: {
             fields: [
               {
@@ -48,7 +48,8 @@ export class FormFieldFileUploadExampleComponent {
       {
         fileName: 'file.jpg',
         delicate: false,
-        imageSrc: '',
+        imageSrc:
+          'https://media-exp1.licdn.com/dms/image/C560BAQHHSRGRgKfSFQ/company-logo_200_200/0/1542017911828?e=2159024400&v=beta&t=mNV_FUsqSBIXoI-HFA88TpUP9kX8JO3AqoK_aT2SQ_E',
       },
     ],
   };
