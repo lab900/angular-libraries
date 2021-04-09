@@ -55,5 +55,7 @@ export class AutocompleteMultipleFieldComponent extends FormComponent<Autocomple
   private updateControlValue(val: any[]): void {
     this.group.controls[this.schema.attribute].setValue(val);
     this.group.controls[this.schema.attribute].updateValueAndValidity();
+    this.group.controls[this.schema.attribute].markAsDirty();
+    this.group.controls[this.schema.attribute].markAsTouched();
   }
 }
