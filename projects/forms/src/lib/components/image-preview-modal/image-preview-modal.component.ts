@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Image } from '../../models/Image';
+import { Lab900File } from '../../models/Lab900File';
 
 interface DialogData {
-  image: Image;
+  image: Lab900File;
 }
 
 @Component({
@@ -12,7 +12,7 @@ interface DialogData {
   styleUrls: ['./image-preview-modal.component.scss'],
 })
 export class ImagePreviewModalComponent {
-  public image: Image;
+  public image: Lab900File;
   public error = true;
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: DialogData) {

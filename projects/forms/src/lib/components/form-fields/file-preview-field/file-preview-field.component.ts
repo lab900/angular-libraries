@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { FilePreviewFieldOptions } from '../../../models/FormField';
 import { FormDialogDirective } from '../../../directives/form-dialog.directive';
-import { Image } from '../../../models/Image';
+import { Lab900File } from '../../../models/Lab900File';
 import { FormDialogComponent } from '../../form-dialog/form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ImagePreviewModalComponent } from '../../image-preview-modal/image-preview-modal.component';
@@ -27,8 +27,8 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     super(translateService);
   }
 
-  get files(): File[] | Image[] {
-    return this.fieldControl?.value as File[] | Image[];
+  get files(): Lab900File[] {
+    return (this.fieldControl?.value as Lab900File[]) ?? [];
   }
 
   public fileChange(event: Event): void {
@@ -56,7 +56,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
 
   private readImageData(file: File): void {
     const reader = new FileReader();
-    const image = file as Image;
+    const image = file as Lab900File;
     reader.onload = (event: any) => {
       image.imageSrc = event.target.result;
       this.addFileToFieldControl(file);
@@ -70,45 +70,47 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
   }
 
   private addFileToFieldControl(file: File): void {
-    this.setFieldControlValue([...(this.fieldControl.value ?? []), file]);
+    const lab900File = file as Lab900File;
+    lab900File.fileName = file.name;
+    this.setFieldControlValue([...this.files, lab900File]);
   }
 
-  public removeFile(file: File | Image): void {
-    const files: Image[] | File[] = this.fieldControl.value;
-    files.splice(this.getFileIndex(files, file), 1);
+  public removeFile(file: Lab900File): void {
+    const files: Lab900File[] = this.files;
+    files.splice(this.getFileIndex(file), 1);
     this.setFieldControlValue(files);
     this.fileFieldComponent.nativeElement.value = null;
   }
 
-  public onMetaDataChanged(data: T, originalData?: File | Image): Promise<boolean> {
+  public onMetaDataChanged(data: T, originalData?: Lab900File): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      const files = this.fieldControl.value ?? [];
-      const index = this.getFileIndex(files, originalData);
+      const files = this.files;
+      const index = this.getFileIndex(originalData);
       if (index === -1) {
         console.error(`Couldn't find file in list`);
       }
-      files[index] = {
-        ...originalData,
-        ...data,
-      };
+      Object.assign(originalData, data);
+      files[index] = originalData;
       this.setFieldControlValue(files);
       resolve(true);
     });
   }
 
-  private getFileIndex(files: Image[] | File[], file: File | Image): number {
-    return files.findIndex((listFile: Image) => listFile.name === file.name && listFile.type === file.type && listFile.size === file.size);
+  private getFileIndex(file: Lab900File): number {
+    return this.files.findIndex(
+      (listFile: Lab900File) => listFile.fileName === file.fileName && listFile.type === file.type && listFile.size === file.size,
+    );
   }
 
-  public handleImageClick(file: File | Image): void {
+  public handleImageClick(file: Lab900File): void {
     if (this.options?.canEditFileMetaData && !this.fieldIsReadonly) {
       this.openMetaDataDialog(file);
-    } else if ((file as Image).imageSrc != null) {
-      this.openPreviewDialog(file as Image);
+    } else if (file.imageSrc != null) {
+      this.openPreviewDialog(file);
     }
   }
 
-  private openMetaDataDialog(file: File | Image): void {
+  private openMetaDataDialog(file: Lab900File): void {
     this.dialog.open(FormDialogComponent, {
       data: {
         schema: this.options?.fileMetaDataConfig,
@@ -118,15 +120,17 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     });
   }
 
-  private openPreviewDialog(file: Image): void {
-    this.dialog.open(ImagePreviewModalComponent, {
-      data: {
-        image: file,
-      },
-    });
+  private openPreviewDialog(file: Lab900File): void {
+    if (file.imageBase64 != null) {
+      this.dialog.open(ImagePreviewModalComponent, {
+        data: {
+          image: file,
+        },
+      });
+    }
   }
 
-  public showOverlay(file: Image, options: FilePreviewFieldOptions): boolean {
+  public showOverlay(file: Lab900File, options: FilePreviewFieldOptions): boolean {
     if (typeof options?.showOverlay === 'function') {
       return options?.showOverlay(file);
     } else {
@@ -134,7 +138,7 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     }
   }
 
-  private setFieldControlValue(files: File[] | Image[]): void {
+  private setFieldControlValue(files: Lab900File[]): void {
     this.fieldControl.setValue(files);
     this.fieldControl.markAsDirty();
     this.fieldControl.markAsTouched();

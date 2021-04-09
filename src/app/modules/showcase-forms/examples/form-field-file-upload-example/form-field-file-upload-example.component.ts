@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
-import { EditType, Form, Image } from '@lab900/forms';
+import { Component, ViewChild } from '@angular/core';
+import { EditType, Form, FormContainerComponent, Lab900File } from '@lab900/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'lab900-form-field-file-upload-example',
-  template: '<lab900-form-container [schema]="formSchema" [data]="formData"></lab900-form-container>',
+  template:
+    '<lab900-form-container #formContainer [schema]="formSchema" [data]="formData"></lab900-form-container><button mat-raised-button color="primary" (click)="validate()">Submit</button>',
 })
 export class FormFieldFileUploadExampleComponent {
+  @ViewChild('formContainer')
+  public formContainer: FormContainerComponent<any>;
+
   public formSchema: Form = {
     fields: [
       {
@@ -20,13 +24,13 @@ export class FormFieldFileUploadExampleComponent {
           fileMetaDataConfig: {
             fields: [
               {
-                attribute: 'name',
+                attribute: 'fileName',
                 title: 'File name',
                 editType: EditType.Input,
               },
             ],
           },
-          httpCallback: (image: Image) => this.http.get(image?.imageSrc, { responseType: 'blob' }),
+          httpCallback: (image: Lab900File) => this.http.get(image?.imageSrc, { responseType: 'blob' }),
           showOverlay: (data: any) => {
             return data.delicate;
           },
@@ -42,11 +46,16 @@ export class FormFieldFileUploadExampleComponent {
   public formData = {
     files: [
       {
-        name: 'file.jpg',
+        fileName: 'file.jpg',
         delicate: false,
-        imageSrc: '',
+        imageSrc:
+          'https://media-exp1.licdn.com/dms/image/C560BAQHHSRGRgKfSFQ/company-logo_200_200/0/1542017911828?e=2159024400&v=beta&t=mNV_FUsqSBIXoI-HFA88TpUP9kX8JO3AqoK_aT2SQ_E',
       },
     ],
   };
   constructor(private http: HttpClient) {}
+
+  public validate(): void {
+    console.log(this.formContainer.form.controls.files.value);
+  }
 }

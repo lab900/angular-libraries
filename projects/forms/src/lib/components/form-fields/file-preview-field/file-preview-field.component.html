@@ -16,7 +16,7 @@
         </div>
         <div *ngIf="!showOverlay(file, options)" lab900AuthImage class="image" [image]="file" [httpCallback]="options?.httpCallback">
         </div>
-        <p class="file-name" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.name">{{ file.name }}</p>
+        <p *ngIf="file.fileName" class="file-name" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.fileName">{{ file.fileName }}</p>
       </mat-card>
     </ng-container>
   </div>

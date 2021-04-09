@@ -3,7 +3,7 @@ import { EditType, Form, FormContainerComponent } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-button-toggle-example',
-  template: '<lab900-form-container [schema]="formSchema" (click)="logValue()"></lab900-form-container>',
+  template: '<lab900-form-container [schema]="formSchema" (click)="logValue()" [data]="formData"></lab900-form-container>',
 })
 export class FormFieldButtonToggleExampleComponent {
   @ViewChild(FormContainerComponent)
@@ -19,12 +19,12 @@ export class FormFieldButtonToggleExampleComponent {
           required: true,
           buttonOptions: [
             {
-              value: true,
+              value: Involvement.VICTIM,
               label: 'yes',
               buttonClass: 'dsfkldsjflkdsjf',
             },
             {
-              value: false,
+              value: Involvement.RELATED,
               label: 'no',
             },
           ],
@@ -64,7 +64,17 @@ export class FormFieldButtonToggleExampleComponent {
     ],
   };
 
+  public formData: any = {
+    buttonGroupAttribute: 'VICTIM',
+  };
+
   public logValue(): void {
     console.log(this.form.value);
   }
+}
+
+export enum Involvement {
+  VICTIM = 'VICTIM',
+  RELATED = 'RELATED',
+  MISSING = 'MISSING',
 }

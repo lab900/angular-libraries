@@ -1,7 +1,7 @@
 import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Image } from '../models/Image';
+import { Lab900File } from '../models/Lab900File';
 import { SubscriptionBasedDirective } from './subscription-based.directive';
 import { Observable } from 'rxjs';
 
@@ -11,10 +11,10 @@ import { Observable } from 'rxjs';
 export class AuthImageDirective extends SubscriptionBasedDirective implements OnChanges {
   // tslint:disable-next-line:no-input-rename
   @Input('image')
-  private readonly image: Image;
+  private readonly image: Lab900File;
 
   @Input()
-  private readonly httpCallback: (image: Image) => Observable<Blob>;
+  private readonly httpCallback: (image: Lab900File) => Observable<Blob>;
 
   @Input()
   private readonly defaultImage: string;
@@ -65,6 +65,7 @@ export class AuthImageDirective extends SubscriptionBasedDirective implements On
 
   private setSrc(src: string): void {
     if (src?.length) {
+      this.image.imageBase64 = src;
       this.renderer.setStyle(this.elementRef.nativeElement, 'background-image', `url(${src})`);
       this.elementRef.nativeElement.classList.remove('bg-loading');
       this.elementRef.nativeElement.classList.add('bg-loaded');
