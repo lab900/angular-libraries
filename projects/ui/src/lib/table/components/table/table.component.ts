@@ -9,7 +9,7 @@ import { Lab900TableUtils } from '../../utils/table.utils';
 import { Lab900TableHeaderContentDirective } from '../../directives/table-header-content.directive';
 import { ActionButton } from '../../../button/models/action-button.model';
 import { Lab900TableCustomCellDirective } from '../../directives/table-custom-cell.directive';
-import { SortDirection } from '@angular/material/sort/sort-direction';
+import { SortDirection } from '@angular/material/sort';
 import { Lab900TableTopContentDirective } from '../../directives/table-top-content.directive';
 
 type propFunction<T, R = string> = (data: T) => R;
