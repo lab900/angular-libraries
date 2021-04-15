@@ -4,7 +4,7 @@ import { ThemePalette } from '@angular/material/core';
 import { Observable } from 'rxjs';
 import { IFormComponent } from './IFormComponent';
 import { IFieldConditions } from './IFieldConditions';
-import { ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { Form } from './Form';
 import { Lab900File } from './Lab900File';
 
@@ -72,7 +72,7 @@ export interface SelectFieldOptions extends FieldOptions {
 export interface AutocompleteOptions extends FieldOptions {
   displayInputFn: (option: any) => string; // the value of the ValueLabel will be passed here
   displayOptionFn: (option: ValueLabel) => string;
-  autocompleteOptions?: (searchTerm: string) => ValueLabel[] | Observable<ValueLabel[]>;
+  autocompleteOptions?: (searchTerm: string, currentControl: AbstractControl) => ValueLabel[] | Observable<ValueLabel[]>;
 }
 
 export interface RadioButtonsFieldOptions extends FieldOptions {
