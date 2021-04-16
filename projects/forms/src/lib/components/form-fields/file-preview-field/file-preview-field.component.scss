@@ -50,10 +50,13 @@
         word-break: break-all;
         display: flex;
         justify-content: space-between;
-        .ellipse {
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
+        p {
+          margin: 0;
+          &.ellipse {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
         }
       }
     }

@@ -18,7 +18,7 @@
         </div>
         <div class="file-name" >
           <p *ngIf="file.fileName" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.fileName">{{ file.fileName }}</p>
-          <mat-icon *ngIf="options?.canEditFileMetaData" (click)="$event.stopPropagation();openPreviewDialog(file)">visibility</mat-icon>
+          <mat-icon *ngIf="options?.canEditFileMetaData && !fieldIsReadonly" (click)="$event.stopPropagation();openPreviewDialog(file)">visibility</mat-icon>
         </div>
       </mat-card>
     </ng-container>
