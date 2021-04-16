@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { Lab900File } from '../models/Lab900File';
 import { SubscriptionBasedDirective } from './subscription-based.directive';
 import { Observable } from 'rxjs';
+import { fetchImageBase64 } from '../utils/image.utils';
 
 @Directive({
   selector: '[lab900AuthImage]',
@@ -19,7 +20,7 @@ export class AuthImageDirective extends SubscriptionBasedDirective implements On
   @Input()
   private readonly defaultImage: string;
 
-  public constructor(private http: HttpClient, private elementRef: ElementRef<HTMLElement>, private renderer: Renderer2) {
+  public constructor(private elementRef: ElementRef<HTMLElement>, private renderer: Renderer2) {
     super();
   }
 
@@ -30,23 +31,17 @@ export class AuthImageDirective extends SubscriptionBasedDirective implements On
         this.setSrc(this.image.imageSrc);
       } else {
         this.addSubscription(
-          this.httpCallback(this.image).pipe(
-            map((imageBlob: Blob) => {
-              const reader = new FileReader();
-              reader.onloadend = () => {
-                const fileSrc = reader.result as string;
-                this.setSrc(fileSrc);
-                const image: HTMLImageElement = document.createElement('img');
-                image.src = fileSrc;
-                image.onload = () => image.remove();
-                image.onerror = () => {
-                  this.setPlaceholder();
-                  image.remove();
-                };
-              };
-              return reader.readAsDataURL(imageBlob);
-            }),
-          ),
+          fetchImageBase64(this.httpCallback, this.image, (result: string | ArrayBuffer | null) => {
+            const fileSrc = result as string;
+            this.setSrc(fileSrc);
+            const image: HTMLImageElement = document.createElement('img');
+            image.src = fileSrc;
+            image.onload = () => image.remove();
+            image.onerror = () => {
+              this.setPlaceholder();
+              image.remove();
+            };
+          }),
           () => {},
         );
       }

@@ -48,8 +48,9 @@
         height: 40px;
         padding: 10px;
         word-break: break-all;
-
-        &.ellipse {
+        display: flex;
+        justify-content: space-between;
+        .ellipse {
           white-space: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
