@@ -101,8 +101,6 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
         callback(this.dependOn, value, firstRun);
       }
       this.prevValue = value;
-      // Refresh hide settings
-      this.component.hide();
     }
   }
 
@@ -120,6 +118,8 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
       this.run('showIfHasValue', this.showIfHasValue && FieldConditions.hasValue(value), (isTrue: boolean) => hide(!isTrue));
       this.run('hideIfEquals', FieldConditions.valueIsEqualTo(value, this.hideIfEquals), (isTrue: boolean) => hide(isTrue));
       this.run('showIfEquals', FieldConditions.valueIsEqualTo(value, this.showIfEquals), (isTrue: boolean) => hide(!isTrue));
+      // Refresh hide settings
+      this.component.hide();
     });
   }
 
