@@ -59,6 +59,7 @@ export class RepeaterFieldComponent extends FormComponent<RepeaterFieldOptions> 
   public removeFromArray(index: number): void {
     if (this.repeaterArray.length > this.minRows) {
       this.repeaterArray.removeAt(index);
+      this.repeaterArray.markAsDirty();
     }
   }
 }
