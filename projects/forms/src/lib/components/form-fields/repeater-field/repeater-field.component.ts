@@ -53,6 +53,7 @@ export class RepeaterFieldComponent extends FormComponent<RepeaterFieldOptions> 
     this.repeaterArray.push(formGroup);
     if (formGroup.dirty) {
       this.repeaterArray.markAsDirty();
+      this.repeaterArray.markAsTouched();
     }
   }
 
@@ -60,6 +61,7 @@ export class RepeaterFieldComponent extends FormComponent<RepeaterFieldOptions> 
     if (this.repeaterArray.length > this.minRows) {
       this.repeaterArray.removeAt(index);
       this.repeaterArray.markAsDirty();
+      this.repeaterArray.markAsTouched();
     }
   }
 }
