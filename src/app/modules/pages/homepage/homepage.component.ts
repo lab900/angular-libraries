@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { showcaseUiConfig } from '../../showcase-ui/showcase-ui.constants';
 import { showcaseFormsConfig } from '../../showcase-forms/showcase-forms.constants';
-import { showcaseAdminConfig } from '../../showcase-admin/showcase-admin.constants';
 import { ShowcaseConfigModel } from '../../shared/models/showcase-config.model';
 
 @Component({
@@ -13,7 +12,6 @@ export class HomepageComponent {
   public readonly sections: ShowcaseConfigModel[] = [
     showcaseFormsConfig,
     showcaseUiConfig,
-    showcaseAdminConfig,
     {
       title: 'common.title',
       icon: 'construction',
