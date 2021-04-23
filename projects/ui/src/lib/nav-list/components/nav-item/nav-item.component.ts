@@ -3,6 +3,8 @@ import { Event, NavigationEnd, Router } from '@angular/router';
 import { NavItem } from '../../models/nav-item.model';
 import { Subscription } from 'rxjs';
 import { SubscriptionBasedDirective } from '../../../common/directives/subscription-based.directive';
+import { FlexibleConnectedPositionStrategy } from '@angular/cdk/overlay';
+import { MediaObserver } from '@angular/flex-layout';
 
 @Component({
   selector: 'lab900-nav-item',
@@ -13,17 +15,24 @@ export class NavItemComponent extends SubscriptionBasedDirective implements OnIn
   private sub: Subscription;
 
   @Input()
-  public item: NavItem;
+  public readonly item: NavItem;
 
   @Input()
-  public depth = 0;
+  public readonly indentLevels = true;
+
+  @Input()
+  public readonly depth = 0;
+
+  @Input()
+  public readonly allowOverlayMenuUntil: string | string[] = 'xs';
 
   @Input()
   public disabled = false;
 
+  @Input()
   public expanded = false;
 
-  public constructor(public router: Router) {
+  public constructor(public readonly router: Router, public readonly mediaObserver: MediaObserver) {
     super();
   }
 
@@ -34,7 +43,7 @@ export class NavItemComponent extends SubscriptionBasedDirective implements OnIn
       this.addSubscription(this.router.events, (event: Event) => {
         if (event instanceof NavigationEnd) {
           const url = event.urlAfterRedirects;
-          if (this.item.children && url) {
+          if (url && this.item?.children?.length) {
             this.expanded = this.item.children.some((item: NavItem) => url.indexOf(`/${item.route}`) === 0);
           }
         }
@@ -48,12 +57,14 @@ export class NavItemComponent extends SubscriptionBasedDirective implements OnIn
     }
   }
 
-  public onItemSelected(): void {
-    if (!this.item.children || !this.item.children.length) {
-      this.router.navigate([this.item.route]);
-    }
-    if (this.item.children && this.item.children.length) {
+  public onClick(event: MouseEvent): void {
+    event.preventDefault();
+    if (this.item?.children?.length) {
       this.expanded = !this.expanded;
+    } else if (this.item?.route) {
+      this.router.navigate([this.item.route], { queryParams: this.item?.routeQueryParams });
+    } else if (this.item?.href?.url) {
+      window.open(this.item.href.url, this.item.href?.target ?? '_blank');
     }
   }
 }

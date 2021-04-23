@@ -7,6 +7,7 @@ export interface NavItem {
   };
   href?: { url: string; target?: '_self' | '_blank' };
   children?: NavItem[];
+  childrenInOverlay?: boolean;
 }
 
 export interface NavItemGroup {

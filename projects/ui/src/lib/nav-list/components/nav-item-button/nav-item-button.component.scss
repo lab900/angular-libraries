@@ -1,0 +1,21 @@
+.nav-item-btn {
+  background: none;
+  border: none;
+  outline: 0;
+  text-align: left;
+
+  &__icon {
+    &-left {
+      margin-right: 0.5em;
+    }
+  }
+
+  &.active {
+    font-weight: bold;
+  }
+
+  &[disabled] {
+    background: transparent;
+    opacity: 0.4;
+  }
+}

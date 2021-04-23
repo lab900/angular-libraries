@@ -7,5 +7,12 @@ import { NavItemGroup } from '../../models/nav-item.model';
   styleUrls: ['./nav-list.component.scss'],
 })
 export class NavListComponent {
-  @Input() public navItemGroups: NavItemGroup[];
+  @Input()
+  public readonly navItemGroups: NavItemGroup[];
+
+  @Input()
+  public readonly indentLevels = true;
+
+  @Input()
+  public readonly allowOverlayMenuUntil: string | string[] = 'xs';
 }
