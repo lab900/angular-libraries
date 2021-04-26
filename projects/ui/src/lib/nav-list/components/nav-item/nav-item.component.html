@@ -1,5 +1,5 @@
 <div fxLayout="column" *ngIf="item" class="nav-item nav-item--depth-{{depth}}">
-    <ng-container *ngIf="!item?.childrenInOverlay || mediaObserver.isActive(allowOverlayMenuUntil)">
+    <div class="nav-item--without-overlay" *ngIf="!item?.childrenInOverlay || mediaObserver.isActive(allowOverlayMenuUntil)">
         <lab900-nav-item-button
             [item]="item"
             [depth]="depth"
@@ -9,10 +9,10 @@
             (click)="onClick($event)"
         ></lab900-nav-item-button>
         <!-- Children -->
-        <div fxLayout="column" *ngIf="item?.children?.length && expanded">
+        <div class="nav-item--without-overlay__children" fxLayout="column" *ngIf="item?.children?.length && expanded">
             <lab900-nav-item *ngFor="let child of item.children" [item]="child" [depth]="indentLevels ? depth + 1 : 0" [indentLevels]="indentLevels" [allowOverlayMenuUntil]="allowOverlayMenuUntil"></lab900-nav-item>
         </div>
-    </ng-container>
+    </div>
     <div class="nav-item--with-overlay" *ngIf="item.childrenInOverlay && !mediaObserver.isActive(allowOverlayMenuUntil)">
         <lab900-nav-item-button
             [item]="item"

@@ -8,11 +8,11 @@ import { NavItemGroup } from '../../models/nav-item.model';
 })
 export class NavListComponent {
   @Input()
-  public readonly navItemGroups: NavItemGroup[];
+  public navItemGroups: NavItemGroup[];
 
   @Input()
-  public readonly indentLevels = true;
+  public indentLevels = true;
 
   @Input()
-  public readonly allowOverlayMenuUntil: string | string[] = 'xs';
+  public allowOverlayMenuUntil: string | string[] = 'xs';
 }
