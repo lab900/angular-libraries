@@ -3,7 +3,6 @@ import { Event, NavigationEnd, Router } from '@angular/router';
 import { NavItem } from '../../models/nav-item.model';
 import { Subscription } from 'rxjs';
 import { SubscriptionBasedDirective } from '../../../common/directives/subscription-based.directive';
-import { FlexibleConnectedPositionStrategy } from '@angular/cdk/overlay';
 import { MediaObserver } from '@angular/flex-layout';
 
 @Component({
@@ -19,6 +18,9 @@ export class NavItemComponent extends SubscriptionBasedDirective implements OnIn
 
   @Input()
   public readonly indentLevels = true;
+
+  @Input()
+  public readonly showLevelArrows = false;
 
   @Input()
   public readonly depth = 0;

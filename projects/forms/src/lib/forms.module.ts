@@ -115,7 +115,7 @@ const customFields = [
     TranslateModule,
     MatButtonToggleModule,
     MatChipsModule,
-    NgxMaskModule.forRoot(),
+    NgxMaskModule,
     NgxMatNativeDateModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,

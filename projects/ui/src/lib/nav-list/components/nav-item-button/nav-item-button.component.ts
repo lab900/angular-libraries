@@ -19,7 +19,12 @@ import { NavItem } from '../../models/nav-item.model';
       *ngIf="item.icon && (item.icon?.position === 'left' || !item.icon?.position)"
     ></lab900-icon>
     <span fxFlex="1 1 auto">{{ item.label | translate }}</span>
-    <lab900-icon class="nav-item-btn__icon-right" [icon]="item.icon" *ngIf="item?.icon?.position === 'right'"></lab900-icon>
+    <lab900-icon
+      class="nav-item-btn__icon-right"
+      [icon]="item.icon"
+      *ngIf="!showLevelArrow && item?.icon?.position === 'right'"
+    ></lab900-icon>
+    <lab900-icon class="nav-item-btn__icon-right" [icon]="{ name: levelArrow }" *ngIf="showLevelArrow"></lab900-icon>
   </button>`,
 })
 export class NavItemButtonComponent {
@@ -37,4 +42,14 @@ export class NavItemButtonComponent {
 
   @Input()
   public readonly depth: number;
+
+  @Input()
+  public readonly showLevelArrow: boolean = false;
+
+  get levelArrow(): string {
+    if (this.item?.childrenInOverlay) {
+      return 'navigate_next';
+    }
+    return this.expanded ? 'expand_less' : 'expand_more';
+  }
 }
