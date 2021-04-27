@@ -1,6 +1,6 @@
 {
   "name": "@lab900/forms",
-  "version": "2.3.16",
+  "version": "3.0.0-alpha.1",
   "author": "Lab900 <info@lab900.com> (https://lab900.com)",
   "licens": "MIT",
   "peerDependencies": {
@@ -11,11 +11,11 @@
     "@ngx-translate/core": "^13.0.0",
     "lodash": "^4.17.20",
     "@angular/forms": "~11.2.11",
-    "@kolkov/angular-editor": "^1.1.2",
+    "@kolkov/angular-editor": "^1.1.4",
     "@types/nouislider": "^9.0.7",
-    "nouislider": "^14.6.0",
-    "ngx-mask": "10.0.1",
-    "@angular-material-components/datetime-picker": "^4.0.5"
+    "nouislider": "^14.7.0",
+    "ngx-mask": "11.1.5",
+    "@angular-material-components/datetime-picker": "^5.1.0"
   },
   "repository": {
     "type": "git",
