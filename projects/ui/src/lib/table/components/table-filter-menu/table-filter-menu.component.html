@@ -5,7 +5,7 @@
     <mat-menu #filterMenu>
         <div class="lab900-table-filter-menu__option" *ngFor="let cell of cells">
             <mat-checkbox color="primary" (click)="handleCheckboxClick($event, cell)" [checked]="!cell.hide">
-                {{ utils.getCellLabel(cell) | translate }}
+                {{ getCellLabel(cell) | translate }}
             </mat-checkbox>
         </div>
     </mat-menu>

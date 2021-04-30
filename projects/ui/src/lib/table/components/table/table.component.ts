@@ -1,16 +1,31 @@
-import { Component, ContentChild, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  QueryList,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild,
+  ViewChildren,
+  ViewEncapsulation,
+} from '@angular/core';
 import { Lab900TableEmptyDirective } from '../../directives/table-empty.directive';
 import { TableCell } from '../../models/table-cell.model';
 import { Lab900TableDisabledDirective } from '../../directives/table-disabled.directive';
 import { Paging } from '../../../common/models/paging.model';
 import { PageEvent } from '@angular/material/paginator';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Lab900TableUtils } from '../../utils/table.utils';
 import { Lab900TableHeaderContentDirective } from '../../directives/table-header-content.directive';
 import { ActionButton } from '../../../button/models/action-button.model';
 import { Lab900TableCustomCellDirective } from '../../directives/table-custom-cell.directive';
 import { SortDirection } from '@angular/material/sort';
 import { Lab900TableTopContentDirective } from '../../directives/table-top-content.directive';
+import { MatTable } from '@angular/material/table';
+import { Lab900TableCellComponent } from '../table-cell/table-cell.component';
 
 type propFunction<T, R = string> = (data: T) => R;
 
@@ -25,9 +40,14 @@ export interface Lab900Sort {
   selector: 'lab900-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class Lab900TableComponent implements OnChanges {
-  public readonly utils = Lab900TableUtils;
+export class Lab900TableComponent implements OnChanges, AfterViewInit {
+  @ViewChild(MatTable)
+  public table!: MatTable<object>;
+
+  @ViewChildren(Lab900TableCellComponent)
+  public cellComponents!: QueryList<Lab900TableCellComponent>;
 
   @Input()
   public selection = new SelectionModel<object>(false, []);
@@ -48,7 +68,16 @@ export class Lab900TableComponent implements OnChanges {
   public loading = false;
 
   @Input()
-  public tableCells: TableCell[];
+  public set tableCells(cells: TableCell[]) {
+    this._tableCells = cells;
+  }
+
+  public get tableCells(): TableCell[] {
+    return this._tableCells;
+  }
+
+  // tslint:disable-next-line:variable-name
+  private _tableCells: TableCell[];
 
   /**
    * Show a set of action at the top of the table
@@ -143,26 +172,14 @@ export class Lab900TableComponent implements OnChanges {
   @ContentChild(Lab900TableCustomCellDirective, { read: TemplateRef })
   public customCellContent?: Lab900TableCustomCellDirective;
 
+  public displayedColumns: string[] = [];
+
   public get selectCount(): number {
     return this.selection.selected.length;
   }
 
   public get selectEnabled(): boolean {
     return this.selectableRowsEnabled && (this.maxSelectableRows ? this.selection.selected.length < this.maxSelectableRows : true);
-  }
-
-  public get displayedColumns(): string[] {
-    const keys = this.tableCells?.filter((cell: TableCell) => !cell.hide).map((cell: TableCell) => cell.key) ?? [];
-    if (this.tableActionsFront?.length) {
-      keys.unshift('actions-front');
-    }
-    if (this.tableActionsBack?.length) {
-      keys.push('actions-back');
-    }
-    if (this.selectableRows) {
-      keys.unshift('select');
-    }
-    return keys;
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -173,6 +190,12 @@ export class Lab900TableComponent implements OnChanges {
       this.selection.clear();
       this.selection.select(...this.selectedItems);
     }
+  }
+
+  public ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.addColumnsToTable();
+    });
   }
 
   public selectRow(row: object): void {
@@ -205,16 +228,8 @@ export class Lab900TableComponent implements OnChanges {
     }
   }
 
-  public getSortDir(cell: TableCell): SortDirection {
-    return (this.sort || []).find((s) => s.id === cell.key)?.direction ?? '';
-  }
-
-  public getSortIcon(dir: SortDirection): string {
-    if (dir === 'asc') {
-      return 'north';
-    } else if (dir === 'desc') {
-      return 'south';
-    }
+  public trackCellFn(_, item: TableCell): string {
+    return item.key;
   }
 
   public handleHeaderClick(cell: TableCell): void {
@@ -237,5 +252,31 @@ export class Lab900TableComponent implements OnChanges {
       }
       this.sortChange.emit(this.sort);
     }
+  }
+
+  public onTableCellsFiltered(tableCells: TableCell[]): void {
+    this.tableCells = tableCells;
+    this.addColumnsToTable();
+    this.tableCellsFiltered.emit(tableCells);
+  }
+
+  private addColumnsToTable(): void {
+    let columns = [];
+    for (const column of this.cellComponents.toArray()) {
+      this.table.addColumnDef(column.columnDef);
+      if (!column.cell.hide) {
+        columns = [...columns, column.cell.key];
+      }
+    }
+    if (this.tableActionsFront?.length) {
+      columns.unshift('actions-front');
+    }
+    if (this.tableActionsBack?.length) {
+      columns.push('actions-back');
+    }
+    if (this.selectableRows) {
+      columns.unshift('select');
+    }
+    this.displayedColumns = columns;
   }
 }

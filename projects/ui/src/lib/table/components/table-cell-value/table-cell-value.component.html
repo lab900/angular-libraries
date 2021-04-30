@@ -1,0 +1,4 @@
+<ng-container *ngIf="cell && cellValue">
+    <span *ngIf="!cell.click">{{ cellValue | translate }}</span>
+    <a style="cursor: pointer" *ngIf="cell.click" (click)="cell.click(data, cell)">{{ cellValue | translate }}</a>
+</ng-container>
