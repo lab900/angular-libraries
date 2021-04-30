@@ -27,7 +27,7 @@ import { SelectFieldComponent } from './components/form-fields/select-field/sele
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CheckboxFieldComponent } from './components/form-fields/checkbox-field/checkbox-field.component';
-import { defaultFormModuleSettings, FormModuleSettings } from './models/FormModuleSettings';
+import { defaultFormModuleSettings, Lab900FormModuleSettings, LAB900_FORM_MODULE_SETTINGS } from './models/Lab900FormModuleSettings';
 import { TextareaFieldComponent } from './components/form-fields/textarea-field/textarea-field.component';
 import { FormRowComponent } from './components/form-row/form-row.component';
 import { RepeaterFieldComponent } from './components/form-fields/repeater-field/repeater-field.component';
@@ -125,14 +125,19 @@ const customFields = [
   exports: [FormContainerComponent, FormDialogDirective, AuthImageDirective, AutofocusDirective],
 })
 export class Lab900FormsModule {
-  public static forRoot(settings: FormModuleSettings = defaultFormModuleSettings): ModuleWithProviders<FormsModule> {
+  public static forRoot(settings: Lab900FormModuleSettings = defaultFormModuleSettings): ModuleWithProviders<FormsModule> {
+    const formSetting: Lab900FormModuleSettings = { ...defaultFormModuleSettings, ...settings };
     return {
       ngModule: Lab900FormsModule,
       providers: [
         Lab900FormBuilderService,
         {
           provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-          useValue: settings.formField,
+          useValue: formSetting.formField,
+        },
+        {
+          provide: LAB900_FORM_MODULE_SETTINGS,
+          useValue: formSetting,
         },
       ],
     };

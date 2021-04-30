@@ -7,17 +7,15 @@ import { IFieldConditions } from './IFieldConditions';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { Form } from './Form';
 import { Lab900File } from './Lab900File';
+import { IConfig } from 'ngx-mask';
 
 export interface ValueLabel<T = any> {
   value: T;
   label: string;
 }
 
-export interface FieldMask {
+export interface FieldMask extends Partial<IConfig> {
   mask: string;
-  showMaskedType?: boolean;
-  allowNegativeNumbers?: boolean; // default false;
-  prefix?: string;
 }
 
 export interface FieldOptions {
@@ -34,7 +32,6 @@ export interface FieldOptions {
   max?: number;
   defaultValue?: any;
   pattern?: RegExp;
-  mask?: string;
   fieldMask?: FieldMask;
   readonlyLabel?: string;
   readonlyDisplay?: (data?: any) => any;

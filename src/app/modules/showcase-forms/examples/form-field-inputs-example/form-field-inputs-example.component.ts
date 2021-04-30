@@ -70,8 +70,7 @@ export class FormFieldInputsExampleComponent {
         editType: EditType.Input,
         options: {
           fieldMask: {
-            mask: 'separator.2',
-            showMaskedType: true,
+            mask: 'separator.4',
           },
         },
       },

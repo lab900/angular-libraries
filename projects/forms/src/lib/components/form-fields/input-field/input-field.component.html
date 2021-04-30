@@ -10,9 +10,14 @@
         [readonly]="fieldIsReadonly"
         [ngClass]="{ 'readonly' : fieldIsReadonly }"
         [mask]="options?.fieldMask?.mask"
-        [prefix]="options?.fieldMask?.prefix || ''"
-        [allowNegativeNumbers]="options?.fieldMask?.allowNegativeNumbers || false"
-        [showMaskTyped]="options?.fieldMask?.showMaskedType || false"
+        [prefix]="options?.fieldMask?.prefix || setting?.fieldMask?.prefix || ''"
+        [suffix]="options?.fieldMask?.suffix || setting?.fieldMask?.suffix || ''"
+        [placeHolderCharacter]="options?.fieldMask?.placeHolderCharacter || setting?.fieldMask?.placeHolderCharacter || ''"
+        [dropSpecialCharacters]="options?.fieldMask?.dropSpecialCharacters || setting?.fieldMask?.dropSpecialCharacters || true"
+        [allowNegativeNumbers]="options?.fieldMask?.allowNegativeNumbers || setting?.fieldMask?.allowNegativeNumbers"
+        [showMaskTyped]="options?.fieldMask?.showMaskTyped || setting?.fieldMask?.showMaskTyped"
+        [decimalMarker]="options?.fieldMask?.decimalMarker || setting?.fieldMask?.decimalMarker"
+        [thousandSeparator]="options?.fieldMask?.thousandSeparator || setting?.fieldMask?.thousandSeparator"
         lab900InputAutofocus
         [autofocus]="options?.autofocus"
     >
