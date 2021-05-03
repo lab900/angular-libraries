@@ -71,6 +71,8 @@ export class FormFieldInputsExampleComponent {
         options: {
           fieldMask: {
             mask: 'separator.4',
+            decimalMarker: ',',
+            thousandSeparator: '.',
           },
         },
       },
