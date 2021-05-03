@@ -4,6 +4,7 @@
 
 // common
 export * from './lib/common/models/paging.model';
+export * from './lib/utils/utils';
 
 // dialogs
 export * from './lib/dialog/dialog.module';
