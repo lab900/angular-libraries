@@ -4,6 +4,7 @@ import { Lab900TableCustomCellDirective } from '../../directives/table-custom-ce
 import { SortDirection } from '@angular/material/sort';
 import { Lab900Sort } from '../table/table.component';
 import { MatColumnDef } from '@angular/material/table';
+import { readPropValue } from '../../../utils/utils';
 
 @Component({
   selector: 'lab900-table-cell',
@@ -11,7 +12,7 @@ import { MatColumnDef } from '@angular/material/table';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Lab900TableCellComponent {
+export class Lab900TableCellComponent<T = any> {
   @HostBinding()
   public className = 'lab900-table-cell';
 
@@ -19,14 +20,14 @@ export class Lab900TableCellComponent {
   public columnDef!: MatColumnDef;
 
   // tslint:disable-next-line:variable-name
-  private _cell: TableCell;
+  private _cell: TableCell<T>;
 
-  get cell(): TableCell {
+  get cell(): TableCell<T> {
     return this._cell;
   }
 
   @Input()
-  set cell(value: TableCell) {
+  set cell(value: TableCell<T>) {
     this._cell = value;
     if (value?.key) {
       this.columnDef.name = this._cell.key;
@@ -44,7 +45,7 @@ export class Lab900TableCellComponent {
   public customCellContent?: Lab900TableCustomCellDirective;
 
   @Output()
-  public headerClick = new EventEmitter<TableCell>();
+  public headerClick = new EventEmitter<TableCell<T>>();
 
   public cellClass: string;
   public cellHeaderClass: string;
@@ -64,23 +65,23 @@ export class Lab900TableCellComponent {
     }
   }
 
-  public getCellClass(data: any): string {
-    return typeof this.cell.cellClass === 'function' ? this.cell.cellClass(data, this.cell) : this.cell.cellClass ?? '';
+  public getCellClass(data: T): string {
+    return readPropValue<[T, TableCell<T>]>(this.cell.cellClass, [data, this.cell]);
   }
 
-  private getCellLabel(): string {
-    return typeof this.cell.label === 'function' ? this.cell.label(this.cell) : this.cell.label;
+  public getCellLabel(): string {
+    return readPropValue<TableCell<T>>(this.cell.label, this.cell);
   }
 
-  private getCellHeaderClass(): string {
-    return typeof this.cell.cellHeaderClass === 'function' ? this.cell.cellHeaderClass(this.cell) : this.cell.cellHeaderClass ?? '';
+  public getCellHeaderClass(): string {
+    return readPropValue<TableCell<T>>(this.cell.cellHeaderClass, this.cell);
   }
 
-  private getCellHeaderIcon(): string {
-    return typeof this.cell.cellHeaderIcon === 'function' ? this.cell.cellHeaderIcon(this.cell) : this.cell.cellHeaderIcon ?? '';
+  public getCellHeaderIcon(): string {
+    return readPropValue<TableCell<T>>(this.cell.cellHeaderIcon, this.cell);
   }
 
-  private getCellHeaderSvgIcon(): string {
-    return typeof this.cell.cellHeaderSvgIcon === 'function' ? this.cell.cellHeaderSvgIcon(this.cell) : this.cell.cellHeaderSvgIcon ?? '';
+  public getCellHeaderSvgIcon(): string {
+    return readPropValue<TableCell<T>>(this.cell.cellHeaderSvgIcon, this.cell);
   }
 }

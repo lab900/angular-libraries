@@ -3,34 +3,37 @@ import { TableCell } from '../../models/table-cell.model';
 
 @Component({
   selector: 'lab900-table-cell-value',
-  templateUrl: './table-cell-value.component.html',
+  template: `<ng-container *ngIf="cell && cellValue">
+    <span *ngIf="!cell.click">{{ cellValue | translate }}</span>
+    <a style="cursor: pointer" *ngIf="cell.click" (click)="cell.click(data, cell)">{{ cellValue | translate }}</a>
+  </ng-container>`,
 })
-export class TableCellValueComponent implements OnChanges {
+export class Lab900TableCellValueComponent<T = any> implements OnChanges {
   @Input()
-  public data!: any;
+  public data!: T;
 
   @Input()
-  public cell!: TableCell;
+  public cell!: TableCell<T>;
 
   public cellValue: string;
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if ((changes.data || changes.cell) && this.cell) {
-      this.cellValue = this.getCellValue();
-    }
-  }
-
-  public getCellValue(): string {
-    if (this.cell.cellFormatter) {
-      return this.cell.cellFormatter(this.data, this.cell);
-    } else if (this.cell.key.includes('.')) {
-      const keys = this.cell.key.split('.');
-      let value = this.data;
+  public static getCellValue<T = any>(cell: TableCell<T>, data: T): string {
+    if (cell.cellFormatter) {
+      return cell.cellFormatter(data, cell);
+    } else if (cell.key.includes('.')) {
+      const keys = cell.key.split('.');
+      let value: any = data;
       for (const key of keys) {
         value = value?.[key] ?? '';
       }
       return value;
     }
-    return this.data?.[this.cell.key] ?? '';
+    return data?.[cell.key] ?? '';
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if ((changes.data || changes.cell) && this.cell) {
+      this.cellValue = Lab900TableCellValueComponent.getCellValue<T>(this.cell, this.data);
+    }
   }
 }

@@ -25,7 +25,7 @@ import { Lab900ButtonModule } from '../button/button.module';
 import { Lab900TableCustomCellDirective } from './directives/table-custom-cell.directive';
 import { Lab900TableTopContentDirective } from './directives/table-top-content.directive';
 import { Lab900TableCellComponent } from './components/table-cell/table-cell.component';
-import { TableCellValueComponent } from './components/table-cell-value/table-cell-value.component';
+import { Lab900TableCellValueComponent } from './components/table-cell-value/table-cell-value.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { TableCellValueComponent } from './components/table-cell-value/table-cel
     Lab900TableFilterMenuComponent,
     Lab900TableHeaderComponent,
     Lab900TableCellComponent,
-    TableCellValueComponent,
+    Lab900TableCellValueComponent,
   ],
   exports: [
     Lab900TableComponent,
@@ -49,6 +49,8 @@ import { TableCellValueComponent } from './components/table-cell-value/table-cel
     Lab900TableCustomCellDirective,
     Lab900TableFilterMenuComponent,
     Lab900TableHeaderComponent,
+    Lab900TableCellComponent,
+    Lab900TableCellValueComponent,
   ],
   imports: [
     CommonModule,
