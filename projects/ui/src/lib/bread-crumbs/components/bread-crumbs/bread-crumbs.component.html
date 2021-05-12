@@ -2,9 +2,9 @@
   <div *ngFor="let breadCrumb of breadCrumbs; let last = last"
        [class.active]="last">
     <a *ngIf="breadCrumb.route else staticBreadCrumb"
-       [routerLink]="getRoute(breadCrumb.route)">{{breadCrumb.title}}</a>
+       [routerLink]="getRoute(breadCrumb.route)">{{breadCrumb.title | translate}}</a>
     <ng-template #staticBreadCrumb>
-      <span>{{breadCrumb.title}}</span>
+      <span>{{breadCrumb.title | translate}}</span>
     </ng-template>
     <span *ngIf="!last"
           class="divider">{{breadCrumb.divider || '>'}}</span>
