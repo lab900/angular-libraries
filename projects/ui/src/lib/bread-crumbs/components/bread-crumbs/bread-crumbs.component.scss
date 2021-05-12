@@ -1,0 +1,17 @@
+.bread-crumbs {
+  display: flex;
+  font-weight: bold;
+
+  .divider {
+    margin: 0 5px;
+    font-weight: normal;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:visited {
+      color: unset;
+    }
+  }
+}

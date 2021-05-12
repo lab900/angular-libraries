@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PageHeaderNavItem, ActionButton } from '@lab900/ui';
-import { BreadCrumb } from '../../../../../../projects/ui/src/lib/page-header/models/bread-crumb.model';
+import { BreadCrumb } from '../../../../../../projects/ui/src/lib/bread-crumbs/models/bread-crumb.model';
 
 @Component({
   selector: 'lab900-page-header-example',

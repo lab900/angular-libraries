@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { PageHeaderNavItem } from '../../models/page-header-nav.model';
 import { ActionButton } from '../../../button/models/action-button.model';
-import { BreadCrumb } from '../../models/bread-crumb.model';
+import { BreadCrumb } from '../../../bread-crumbs/models/bread-crumb.model';
+import { readPropValue } from '../../../utils/utils';
 
 @Component({
   selector: 'lab900-page-header',
@@ -35,11 +36,6 @@ export class Lab900PageHeaderComponent {
   }
 
   public getRoute(route: ((data: any) => string) | string): string | null {
-    if (route) {
-      if (typeof route === 'function') {
-        return route(this.data);
-      }
-      return route;
-    }
+    return readPropValue(route, this.data);
   }
 }
