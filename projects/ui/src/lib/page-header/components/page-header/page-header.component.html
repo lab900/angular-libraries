@@ -4,6 +4,7 @@
     <div>
       <h1 *ngIf="pageTitle">{{ pageTitle | translate:pageTitleArgs }}</h1>
       <lab900-bread-crumbs
+          *ngIf="breadCrumbs?.length"
           [breadCrumbs]="breadCrumbs"
           [data]="data"
       ></lab900-bread-crumbs>

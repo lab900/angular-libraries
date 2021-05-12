@@ -65,3 +65,8 @@ export * from './lib/button/components/button/button.component';
 export * from './lib/button/components/action-button/lab900-action-button.component';
 export * from './lib/button/models/action-button.model';
 export * from './lib/button/models/button.model';
+
+// bread crumbs
+export * from './lib/bread-crumbs/bread-crumbs.module';
+export * from './lib/bread-crumbs/components/bread-crumbs/bread-crumbs.component';
+export * from './lib/bread-crumbs/models/bread-crumb.model';
