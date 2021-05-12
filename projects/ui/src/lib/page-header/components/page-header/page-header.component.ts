@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { PageHeaderNavItem } from '../../models/page-header-nav.model';
 import { ActionButton } from '../../../button/models/action-button.model';
+import { BreadCrumb } from '../../models/bread-crumb.model';
 
 @Component({
   selector: 'lab900-page-header',
@@ -23,6 +24,9 @@ export class Lab900PageHeaderComponent {
   @Input()
   public data?: any;
 
+  @Input()
+  public breadCrumbs: BreadCrumb[];
+
   public getLabel(item: PageHeaderNavItem): string {
     if (typeof item.label === 'function') {
       return item.label(this.data);
@@ -30,12 +34,12 @@ export class Lab900PageHeaderComponent {
     return item.label;
   }
 
-  public getRoute(item: PageHeaderNavItem): string | void {
-    if (item.route) {
-      if (typeof item.route === 'function') {
-        return item.route(this.data);
+  public getRoute(route: ((data: any) => string) | string): string | null {
+    if (route) {
+      if (typeof route === 'function') {
+        return route(this.data);
       }
-      return item.route;
+      return route;
     }
   }
 }

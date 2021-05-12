@@ -1,7 +1,23 @@
 <header class="lab900-page-header">
-  <div class="lab900-page-header__main" fxLayout.gt-sm="row" fxLayoutGap="16px" fxLayoutAlign.gt-sm="space-between center">
-    <h1 *ngIf="pageTitle">{{ pageTitle | translate:pageTitleArgs }}</h1>
-    <div class="lab900-page-header__actions" *ngIf="actions?.length" fxLayout="row" fxLayoutGap="16px" fxLayoutAlign.lt-md="center">
+  <div class="lab900-page-header__main" fxLayout.gt-sm="row" fxLayoutGap="16px"
+       fxLayoutAlign.gt-sm="space-between center">
+    <div>
+      <h1 *ngIf="pageTitle">{{ pageTitle | translate:pageTitleArgs }}</h1>
+      <div class="bread-crumbs">
+        <div *ngFor="let breadCrumb of breadCrumbs; let index = index"
+             [class.active]="index === breadCrumbs.length-1">
+          <a *ngIf="breadCrumb.route else staticBreadCrumb"
+             [routerLink]="getRoute(breadCrumb.route)">{{breadCrumb.title}}</a>
+          <ng-template #staticBreadCrumb>
+            <span>{{breadCrumb.title}}</span>
+          </ng-template>
+          <span *ngIf="index < breadCrumbs.length-1"
+                class="divider">{{breadCrumb.divider ? breadCrumb.divider : '>'}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="lab900-page-header__actions" *ngIf="actions?.length" fxLayout="row" fxLayoutGap="16px"
+         fxLayoutAlign.lt-md="center">
       <lab900-action-button *ngFor="let action of actions" [action]="action" [data]="data"></lab900-action-button>
     </div>
   </div>
@@ -9,7 +25,7 @@
     <ng-container *ngFor="let link of navItems">
       <a mat-tab-link
          routerLinkActive
-         [routerLink]="getRoute(link)"
+         [routerLink]="getRoute(link.route)"
          [queryParams]="link?.queryParams"
          #rla="routerLinkActive"
          [active]="rla.isActive"
