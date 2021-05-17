@@ -18,6 +18,7 @@ export class FormFieldAutocompleteExampleComponent {
         editType: EditType.Autocomplete,
         options: {
           autocompleteOptions: (value: string) => of(this.filter(value)),
+          debounceTime: 500,
           displayInputFn: (user: { name: string }) => user?.name ?? '',
           displayOptionFn: (user: ValueLabel) => {
             const userName = user?.label ?? '';

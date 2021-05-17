@@ -2,7 +2,6 @@
     <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
     <input
         #input
-        (input)="inputChanged($event)"
         [formControlName]="schema.attribute"
         [matAutocomplete]="auto"
         [readonly]="fieldIsReadonly"

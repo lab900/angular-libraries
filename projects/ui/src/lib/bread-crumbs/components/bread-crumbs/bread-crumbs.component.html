@@ -1,0 +1,12 @@
+<div class="bread-crumbs" *ngIf="breadCrumbs?.length">
+  <div *ngFor="let breadCrumb of breadCrumbs; let last = last"
+       [class.active]="last">
+    <a *ngIf="breadCrumb.route else staticBreadCrumb"
+       [routerLink]="getRoute(breadCrumb.route)">{{breadCrumb.title}}</a>
+    <ng-template #staticBreadCrumb>
+      <span>{{breadCrumb.title}}</span>
+    </ng-template>
+    <span *ngIf="!last"
+          class="divider">{{breadCrumb.divider || '>'}}</span>
+  </div>
+</div>

@@ -70,6 +70,7 @@ export interface AutocompleteOptions extends FieldOptions {
   displayInputFn: (option: any) => string; // the value of the ValueLabel will be passed here
   displayOptionFn: (option: ValueLabel) => string;
   autocompleteOptions?: (searchTerm: string, currentControl: AbstractControl) => ValueLabel[] | Observable<ValueLabel[]>;
+  debounceTime?: number;
 }
 
 export interface RadioButtonsFieldOptions extends FieldOptions {

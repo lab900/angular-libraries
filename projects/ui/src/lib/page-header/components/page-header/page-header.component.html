@@ -1,7 +1,16 @@
 <header class="lab900-page-header">
-  <div class="lab900-page-header__main" fxLayout.gt-sm="row" fxLayoutGap="16px" fxLayoutAlign.gt-sm="space-between center">
-    <h1 *ngIf="pageTitle">{{ pageTitle | translate:pageTitleArgs }}</h1>
-    <div class="lab900-page-header__actions" *ngIf="actions?.length" fxLayout="row" fxLayoutGap="16px" fxLayoutAlign.lt-md="center">
+  <div class="lab900-page-header__main" fxLayout.gt-sm="row" fxLayoutGap="16px"
+       fxLayoutAlign.gt-sm="space-between center">
+    <div>
+      <h1 *ngIf="pageTitle">{{ pageTitle | translate:pageTitleArgs }}</h1>
+      <lab900-bread-crumbs
+          *ngIf="breadCrumbs?.length"
+          [breadCrumbs]="breadCrumbs"
+          [data]="data"
+      ></lab900-bread-crumbs>
+    </div>
+    <div class="lab900-page-header__actions" *ngIf="actions?.length" fxLayout="row" fxLayoutGap="16px"
+         fxLayoutAlign.lt-md="center">
       <lab900-action-button *ngFor="let action of actions" [action]="action" [data]="data"></lab900-action-button>
     </div>
   </div>
@@ -9,7 +18,7 @@
     <ng-container *ngFor="let link of navItems">
       <a mat-tab-link
          routerLinkActive
-         [routerLink]="getRoute(link)"
+         [routerLink]="getRoute(link.route)"
          [queryParams]="link?.queryParams"
          #rla="routerLinkActive"
          [active]="rla.isActive"
