@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { AutocompleteOptions, ValueLabel } from '../../../models/FormField';
-import { Observable, isObservable, of, fromEvent } from 'rxjs';
+import { Observable, isObservable, of, fromEvent, Subject, BehaviorSubject } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
@@ -20,6 +20,8 @@ export class AutocompleteFieldComponent extends FormComponent<AutocompleteOption
 
   public filteredOptions: Observable<ValueLabel[]>;
 
+  public inputChange: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   public constructor(translateService: TranslateService) {
     super(translateService);
   }
@@ -29,13 +31,16 @@ export class AutocompleteFieldComponent extends FormComponent<AutocompleteOption
     this.initFilteredOptionsListener();
   }
 
+  public inputChanged($event: Event): void {
+    this.inputChange.next(($event.target as any).value);
+  }
+
   private initFilteredOptionsListener(): void {
     const debounce: number = this.options.debounceTime ?? (isObservable(this.options.autocompleteOptions('', this.fieldControl)) ? 300 : 0);
-    this.filteredOptions = fromEvent(this.autoCompleteInput.nativeElement, 'keyup').pipe(
+    this.filteredOptions = this.inputChange.pipe(
       debounceTime(debounce),
-      distinctUntilChanged(),
-      switchMap((input: Event) => {
-        const res = this.options.autocompleteOptions((input.target as any).value, this.fieldControl);
+      switchMap((input: string) => {
+        const res = this.options.autocompleteOptions(input, this.fieldControl);
         return isObservable(res) ? res : of(res);
       }),
     );
