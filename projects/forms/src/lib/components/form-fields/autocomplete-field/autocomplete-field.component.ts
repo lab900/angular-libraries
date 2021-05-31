@@ -1,11 +1,9 @@
 import { AfterViewInit, Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
 import { AutocompleteOptions, ValueLabel } from '../../../models/FormField';
-import { Observable, isObservable, of, fromEvent, Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, isObservable, Observable, of } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
-import { logger } from 'codelyzer/util/logger';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'lab900-autocomplete-field',
