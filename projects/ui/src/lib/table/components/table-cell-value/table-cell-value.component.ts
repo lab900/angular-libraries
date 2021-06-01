@@ -4,7 +4,7 @@ import { TableCell } from '../../models/table-cell.model';
 @Component({
   selector: 'lab900-table-cell-value',
   template: `<ng-container *ngIf="cell && cellValue">
-    <span *ngIf="!cell.click">{{ cellValue | translate }}</span>
+    <span *ngIf="!cell.click" [matTooltip]="cell.showCellTooltip ? (cellValue | translate) : ''">{{ cellValue | translate }}</span>
     <a style="cursor: pointer" *ngIf="cell.click" (click)="cell.click(data, cell)">{{ cellValue | translate }}</a>
   </ng-container>`,
 })

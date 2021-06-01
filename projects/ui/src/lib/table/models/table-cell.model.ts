@@ -57,4 +57,8 @@ export interface TableCell<T = any> {
    * render a different cell template
    */
   customCellContent?: boolean;
+  /**
+   * Enable a tooltip, displays the cell content in a tooltip
+   */
+  showCellTooltip?: boolean;
 }
