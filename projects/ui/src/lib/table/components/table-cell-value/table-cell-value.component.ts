@@ -4,7 +4,7 @@ import { TableCell } from '../../models/table-cell.model';
 @Component({
   selector: 'lab900-table-cell-value',
   template: `<ng-container *ngIf="cell && cellValue">
-    <span *ngIf="!cell.click">{{ cellValue | translate }}</span>
+    <span *ngIf="!cell.click" [matTooltip]="getMatTooltip()">{{ cellValue | translate }}</span>
     <a style="cursor: pointer" *ngIf="cell.click" (click)="cell.click(data, cell)">{{ cellValue | translate }}</a>
   </ng-container>`,
 })
@@ -35,5 +35,9 @@ export class Lab900TableCellValueComponent<T = any> implements OnChanges {
     if ((changes.data || changes.cell) && this.cell) {
       this.cellValue = Lab900TableCellValueComponent.getCellValue<T>(this.cell, this.data);
     }
+  }
+
+  public getMatTooltip(): string {
+    return this.cell.cellTooltip ? this.cell.cellTooltip(this.data, this.cell) : '';
   }
 }

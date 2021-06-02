@@ -138,6 +138,7 @@ export class TableExampleComponent {
       cellHeaderClass: 'center-cell',
       sortable: true,
       cellClass: 'clickable-cell',
+      cellTooltip: (data) => data.name,
     },
     {
       key: 'id',
