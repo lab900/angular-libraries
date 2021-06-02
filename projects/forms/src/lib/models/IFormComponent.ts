@@ -88,9 +88,8 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
     const field = group.get(this.schema.attribute);
     let errors: ValidationErrors = field.errors;
     let message = this.translateService.get('forms.error.generic');
-
     if (field instanceof FormGroup && field.controls) {
-      errors = {};
+      errors = field.errors ?? {};
       for (const controlsKey in field.controls) {
         if (field.controls.hasOwnProperty(controlsKey)) {
           errors = { ...errors, ...field.get(controlsKey).errors };

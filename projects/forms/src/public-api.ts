@@ -17,4 +17,6 @@ export * from './lib/directives/form-dialog.directive';
 export * from './lib/directives/auth-image.directive';
 export * from './lib/directives/auto-focus.directive';
 
+export * from './lib/validators/multi-language.validator';
+
 export * from './lib/forms.module';

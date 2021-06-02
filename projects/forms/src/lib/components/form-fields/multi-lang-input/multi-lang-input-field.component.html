@@ -22,6 +22,6 @@
                 >
             </mat-form-field>
         </ng-container>
-        <mat-error class="subscript-wrapper" *ngIf="touched && !valid && !fieldIsReadonly" [@transitionMessages]="valid ? 'void' : 'enter'">{{ getErrorMessage() | async }}</mat-error>
     </div>
 </div>
+<mat-error *ngIf="!valid && fieldControl.touched && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>

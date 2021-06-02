@@ -10,11 +10,14 @@
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
+
+      .mat-form-field-appearance-outline .mat-form-field-wrapper {
+        padding-bottom: 0;
+      }
     }
   }
 
   > div:first-child {
-    padding-bottom: 1.34375em;
     margin: 0.25em 0;
     display: flex;
   }

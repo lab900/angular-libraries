@@ -48,15 +48,12 @@ export class Lab900FormBuilderService {
         }
       } else if (field.editType === EditType.MultiLangInput) {
         if ((field.options as any)?.languages?.length) {
-          const nestedGroup = this.fb.group({});
+          const nestedGroup = this.fb.group({}, { validators: Lab900FormBuilderService.addValidators(field, data) });
           ((field.options as any).languages as ValueLabel[]).forEach((lang) => {
-            const formControl = new FormControl(data?.[lang.value], Lab900FormBuilderService.addValidators(field, data?.[lang.value]));
+            const formControl = new FormControl(data?.[lang.value]);
             nestedGroup.addControl(lang.value, formControl);
           });
           formGroup.addControl(field.attribute, nestedGroup);
-          if (nestedGroup.dirty) {
-            formGroup.markAsDirty();
-          }
         }
       } else if (field.editType === EditType.Repeater) {
         const repeaterArray = this.createFormArray(data, field);
