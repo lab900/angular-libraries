@@ -180,7 +180,6 @@ export class MatFileFieldComponent
 
   /**
    * Remove all files from the file input component
-   * @param [event] optional event that may have triggered the clear action
    */
   public clear(event?: Event): void {
     if (event) {
