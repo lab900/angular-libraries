@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+
+  ::ng-deep button.mat-flat-button {
+    height: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

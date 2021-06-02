@@ -1,5 +1,5 @@
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { DateRangePickerFieldOptions, FormField, RepeaterFieldOptions } from '../models/FormField';
+import { DateRangePickerFieldOptions, FormField, RepeaterFieldOptions, ValueLabel } from '../models/FormField';
 import { EditType } from '../models/editType';
 import { Injectable } from '@angular/core';
 import { FormFieldUtils } from '../utils/form-field.utils';
@@ -45,6 +45,15 @@ export class Lab900FormBuilderService {
           }
         } else {
           formGroup = this.createFormGroup(field.nestedFields, formGroup, data);
+        }
+      } else if (field.editType === EditType.MultiLangInput) {
+        if ((field.options as any)?.languages?.length) {
+          const nestedGroup = this.fb.group({}, { validators: Lab900FormBuilderService.addValidators(field, data) });
+          ((field.options as any).languages as ValueLabel[]).forEach((lang) => {
+            const formControl = new FormControl(data?.[lang.value]);
+            nestedGroup.addControl(lang.value, formControl);
+          });
+          formGroup.addControl(field.attribute, nestedGroup);
         }
       } else if (field.editType === EditType.Repeater) {
         const repeaterArray = this.createFormArray(data, field);

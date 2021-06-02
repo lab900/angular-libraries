@@ -1,0 +1,27 @@
+<div [formGroup]="group" *ngIf="!fieldIsHidden && activeLanguage" class="lab900-multi-lang-input" id="lab900-multi-lang-input-{{schema?.attribute}}">
+    <div>
+        <lab900-language-picker
+            [buttonColor]="options?.buttonColor"
+            [languages]="options.languages"
+            [(activeLanguage)]="activeLanguage"
+        ></lab900-language-picker>
+    </div>
+    <div [formGroupName]="schema.attribute">
+        <ng-container *ngFor="let lang of options.languages">
+            <mat-form-field *ngIf="lang.value === activeLanguage.value" class="lab900-input-field" id="lab900-input-field-{{schema?.attribute}}--{{lang.value}}">
+                <mat-label *ngIf="schema.title">{{ schema.title | translate }}</mat-label>
+                <input
+                    matInput
+                    [type]="inputType"
+                    placeholder="{{ placeholder | translate }}"
+                    [formControlName]="lang.value"
+                    [required]="fieldIsRequired"
+                    [readonly]="fieldIsReadonly"
+                    [ngClass]="{ 'readonly' : fieldIsReadonly }"
+                    [autofocus]="options?.autofocus"
+                >
+            </mat-form-field>
+        </ng-container>
+    </div>
+</div>
+<mat-error *ngIf="!valid && fieldControl.touched && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>

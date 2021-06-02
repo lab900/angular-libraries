@@ -23,9 +23,6 @@
       "@lab900/forms": [
         "dist/@lab900/forms",
       ],
-      "@lab900/admin": [
-        "dist/@lab900/admin",
-      ],
       "@lab900/ui": [
         "dist/@lab900/ui",
       ],
