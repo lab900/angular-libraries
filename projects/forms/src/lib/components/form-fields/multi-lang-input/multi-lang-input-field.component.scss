@@ -1,0 +1,21 @@
+.lab900-multi-lang-input {
+  display: flex;
+  position: relative;
+
+  > div:last-child {
+    flex: 1;
+
+    ::ng-deep {
+      .mat-form-field-outline-start {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  > div:first-child {
+    padding-bottom: 1.34375em;
+    margin: 0.25em 0;
+    display: flex;
+  }
+}

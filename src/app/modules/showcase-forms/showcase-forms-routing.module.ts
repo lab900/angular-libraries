@@ -24,6 +24,7 @@ import { MarkdownPageComponent } from '../shared/components/markdown-page/markdo
 import { FormFieldSelectExampleComponent } from './examples/form-field-select-example/form-field-select-example.component';
 import { FormFieldFileUploadExampleComponent } from './examples/form-field-file-upload-example/form-field-file-upload-example.component';
 import { FormConditionalsExampleComponent } from './examples/form-conditionals-example/form-conditionals-example.component';
+import { FormFieldMultiLanguageExampleComponent } from './examples/form-field-multi-language-example/form-field-multi-language-example.component';
 
 const routes: Routes = [
   {
@@ -80,6 +81,9 @@ const routes: Routes = [
   new ShowcaseRoute('form-field-select', 'Form Fields: Select', [new ShowcaseExample(FormFieldSelectExampleComponent, 'Selects')]),
   new ShowcaseRoute('form-field-file-upload', 'Form Fields: File upload', [
     new ShowcaseExample(FormFieldFileUploadExampleComponent, 'Upload'),
+  ]),
+  new ShowcaseRoute('form-field-multi-lang', 'Form Fields: Multi language', [
+    new ShowcaseExample(FormFieldMultiLanguageExampleComponent, 'Multi language'),
   ]),
 ];
 

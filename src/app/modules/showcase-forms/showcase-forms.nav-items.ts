@@ -66,8 +66,8 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
             route: 'forms/form-field-file-upload',
           },
           {
-            label: 'Wysiwyg editor',
-            // route: 'forms/form-field-wysiwyg',
+            label: 'Multi language',
+            route: 'forms/form-field-multi-lang',
           },
         ],
       },

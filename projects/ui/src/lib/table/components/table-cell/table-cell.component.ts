@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, Output, ViewChild, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, HostBinding, Input, Output, ViewChild, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { TableCell } from '../../models/table-cell.model';
 import { Lab900TableCustomCellDirective } from '../../directives/table-custom-cell.directive';
 import { SortDirection } from '@angular/material/sort';
@@ -10,7 +10,6 @@ import { readPropValue } from '../../../utils/utils';
   selector: 'lab900-table-cell',
   templateUrl: './table-cell.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Lab900TableCellComponent<T = any> {
   @HostBinding()

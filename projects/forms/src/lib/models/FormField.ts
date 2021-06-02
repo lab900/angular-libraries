@@ -49,6 +49,12 @@ export interface InputFieldOptions extends FieldOptions {
   autofocus?: boolean;
 }
 
+export interface MultiLangInputFieldOptions extends InputFieldOptions {
+  languages?: ValueLabel[];
+  buttonColor?: ThemePalette;
+  defaultLanguage?: string;
+}
+
 export interface RepeaterFieldOptions extends FieldOptions {
   fixedList?: boolean;
   removeAll?: boolean;
@@ -149,6 +155,7 @@ export interface FormField<
     | DateRangePickerFieldOptions
     | FileFieldOptions
     | FilePreviewFieldOptions
+    | MultiLangInputFieldOptions
 > {
   attribute?: string;
   editType: EditType;

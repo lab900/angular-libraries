@@ -1,0 +1,14 @@
+<ng-container *ngIf="languages?.length">
+    <button
+        mat-flat-button
+        [matMenuTriggerFor]="langMenu" [color]="buttonColor || 'primary'"
+    >
+        <mat-icon>language</mat-icon>
+        {{ activeLanguage.label | translate }}
+    </button>
+    <mat-menu #langMenu>
+        <button mat-menu-item *ngFor="let lang of languages" (click)="activeLanguageChange.emit(lang)">
+            {{ lang.label | translate }}
+        </button>
+    </mat-menu>
+</ng-container>

@@ -35,6 +35,7 @@ import { ReadonlyFieldComponent } from '../components/form-fields/readonly-field
 import { DateRangeFieldComponent } from '../components/form-fields/date-range-field/date-range-field.component';
 import { DateTimeFieldComponent } from '../components/form-fields/date-time-field/date-time-field.component';
 import { FilePreviewFieldComponent } from '../components/form-fields/file-preview-field/file-preview-field.component';
+import { MultiLangInputFieldComponent } from '../components/form-fields/multi-lang-input/multi-lang-input-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -75,6 +76,8 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return DateRangeFieldComponent;
     case EditType.DateTime:
       return DateTimeFieldComponent;
+    case EditType.MultiLangInput:
+      return MultiLangInputFieldComponent;
     default:
       return UnknownFieldComponent;
   }

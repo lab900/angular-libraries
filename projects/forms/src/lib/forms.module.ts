@@ -55,6 +55,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ImagePreviewModalComponent } from './components/image-preview-modal/image-preview-modal.component';
 import { AuthImageDirective } from './directives/auth-image.directive';
 import { AutofocusDirective } from './directives/auto-focus.directive';
+import { MultiLangInputFieldComponent } from './components/form-fields/multi-lang-input/multi-lang-input-field.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
 
 const customFields = [
   UnknownFieldComponent,
@@ -92,6 +95,8 @@ const customFields = [
     ImagePreviewModalComponent,
     AuthImageDirective,
     AutofocusDirective,
+    MultiLangInputFieldComponent,
+    LanguagePickerComponent,
   ],
   imports: [
     CommonModule,
@@ -121,6 +126,7 @@ const customFields = [
     NgxMatTimepickerModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    MatMenuModule,
   ],
   exports: [FormContainerComponent, FormDialogDirective, AuthImageDirective, AutofocusDirective],
 })

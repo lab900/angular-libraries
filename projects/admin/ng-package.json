@@ -8,5 +8,5 @@
       "@lab900/ui": "@lab900/ui"
     }
   },
-  "whitelistedNonPeerDependencies": ["lab900"]
+  "allowedNonPeerDependencies": ["lab900"]
 }

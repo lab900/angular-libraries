@@ -22,4 +22,5 @@ export enum EditType {
   ButtonToggle = 'ButtonToggle',
   DateRange = 'DateRange',
   DateTime = 'DateTime',
+  MultiLangInput = 'MultiLangInput',
 }
