@@ -59,4 +59,8 @@
       padding-bottom: 1em;
     }
   }
+
+  &__mat-tooltip {
+    min-width: fit-content;
+  }
 }
