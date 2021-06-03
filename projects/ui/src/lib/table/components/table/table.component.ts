@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   ContentChild,
   EventEmitter,
@@ -24,7 +23,7 @@ import { ActionButton } from '../../../button/models/action-button.model';
 import { Lab900TableCustomCellDirective } from '../../directives/table-custom-cell.directive';
 import { SortDirection } from '@angular/material/sort';
 import { Lab900TableTopContentDirective } from '../../directives/table-top-content.directive';
-import { MatTable } from '@angular/material/table';
+import { MatColumnDef, MatTable } from '@angular/material/table';
 import { Lab900TableCellComponent } from '../table-cell/table-cell.component';
 
 type propFunction<T, R = string> = (data: T) => R;
@@ -42,7 +41,7 @@ export interface Lab900Sort {
   styleUrls: ['./table.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class Lab900TableComponent implements OnChanges, AfterViewInit {
+export class Lab900TableComponent implements OnChanges {
   @ViewChild(MatTable)
   public table!: MatTable<object>;
 
@@ -70,6 +69,10 @@ export class Lab900TableComponent implements OnChanges, AfterViewInit {
   @Input()
   public set tableCells(cells: TableCell[]) {
     this._tableCells = cells;
+    setTimeout(() => {
+      this.removeOldColumnsFromTable();
+      this.addColumnsToTable();
+    });
   }
 
   public get tableCells(): TableCell[] {
@@ -192,12 +195,6 @@ export class Lab900TableComponent implements OnChanges, AfterViewInit {
     }
   }
 
-  public ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.addColumnsToTable();
-    });
-  }
-
   public selectRow(row: object): void {
     this.selection.toggle(row);
     this.selectionChanged.emit(this.selection);
@@ -278,5 +275,17 @@ export class Lab900TableComponent implements OnChanges, AfterViewInit {
       columns.unshift('select');
     }
     this.displayedColumns = columns;
+  }
+
+  private removeOldColumnsFromTable(): void {
+    const oldColumns: Set<MatColumnDef> = (this.table as any)._customColumnDefs;
+    oldColumns.forEach((oldColumn: MatColumnDef) => {
+      this.table.removeColumnDef(oldColumn);
+      // removing column also from the displayed columns (such array should match the dataSource!)
+      this.displayedColumns.splice(
+        this.displayedColumns.findIndex((column: string) => column === oldColumn.name),
+        1,
+      );
+    });
   }
 }
