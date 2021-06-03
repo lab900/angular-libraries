@@ -9,6 +9,15 @@ import { ThemePalette } from '@angular/material/core';
 })
 export class LanguagePickerComponent {
   @Input()
+  public translate = false;
+
+  @Input()
+  public value?: Record<string, string>;
+
+  @Output()
+  public translateChange = new EventEmitter<boolean>();
+
+  @Input()
   public buttonColor?: ThemePalette;
 
   @Input()
@@ -19,4 +28,14 @@ export class LanguagePickerComponent {
 
   @Output()
   public readonly activeLanguageChange = new EventEmitter<ValueLabel>();
+
+  @Input()
+  public translateLabel?: string;
+
+  @Input()
+  public stopTranslateLabel?: string;
+
+  public toggleTranslate(): void {
+    this.translateChange.emit(!this.translate);
+  }
 }

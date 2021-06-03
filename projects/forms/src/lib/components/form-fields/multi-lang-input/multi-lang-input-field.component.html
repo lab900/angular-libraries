@@ -1,12 +1,34 @@
-<div [formGroup]="group" *ngIf="!fieldIsHidden && activeLanguage" class="lab900-multi-lang-input" id="lab900-multi-lang-input-{{schema?.attribute}}">
+<div class="lab900-multi-lang-input-wrapper">
+    <div [formGroup]="group" *ngIf="!fieldIsHidden && activeLanguage" class="lab900-multi-lang-input" id="lab900-multi-lang-input-{{schema?.attribute}}">
     <div>
         <lab900-language-picker
             [buttonColor]="options?.buttonColor"
+            [value]="fieldControl.value"
             [languages]="options.languages"
             [(activeLanguage)]="activeLanguage"
+            [translate]="translate"
+            (translateChange)="toggleTranslate($event)"
         ></lab900-language-picker>
     </div>
-    <div [formGroupName]="schema.attribute">
+    <div *ngIf="!translate" >
+        <mat-form-field class="lab900-input-field" id="lab900-input-field-{{schema?.attribute}}">
+            <mat-label *ngIf="schema.title">{{ schema.title | translate }}</mat-label>
+            <input
+                matInput
+                [type]="inputType"
+                (blur)="fieldControl.markAllAsTouched()"
+                placeholder="{{ placeholder | translate }}"
+                [ngModel]="globalTranslation"
+                (ngModelChange)="updateGlobalTranslation($event)"
+                [required]="fieldIsRequired"
+                [readonly]="fieldIsReadonly"
+                [ngClass]="{ 'readonly' : fieldIsReadonly }"
+                [autofocus]="options?.autofocus"
+                [ngModelOptions]="{standalone: true}"
+            >
+        </mat-form-field>
+    </div>
+    <div [formGroupName]="schema.attribute" *ngIf="translate">
         <ng-container *ngFor="let lang of options.languages">
             <mat-form-field *ngIf="lang.value === activeLanguage.value" class="lab900-input-field" id="lab900-input-field-{{schema?.attribute}}--{{lang.value}}">
                 <mat-label *ngIf="schema.title">{{ schema.title | translate }}</mat-label>
@@ -24,4 +46,5 @@
         </ng-container>
     </div>
 </div>
-<mat-error *ngIf="!valid && fieldControl.touched && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
+    <mat-error *ngIf="!valid && fieldControl.touched && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
+</div>

@@ -50,8 +50,7 @@ export class Lab900FormBuilderService {
         if ((field.options as any)?.languages?.length) {
           const nestedGroup = this.fb.group({}, { validators: Lab900FormBuilderService.addValidators(field, data) });
           ((field.options as any).languages as ValueLabel[]).forEach((lang) => {
-            const formControl = new FormControl(data?.[lang.value]);
-            nestedGroup.addControl(lang.value, formControl);
+            nestedGroup.addControl(lang.value, new FormControl(data?.[field.attribute]?.[lang.value]));
           });
           formGroup.addControl(field.attribute, nestedGroup);
         }
