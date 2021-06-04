@@ -19,11 +19,24 @@ export class Lab900TableHeaderComponent {
   @Input()
   public toggleColumns = true;
 
+  /**
+   * Show columns filter to hide/show columns AND to rearrange columns
+   * This overrides toggleColumns field
+   */
+  @Input()
+  public toggleAndMoveColumns = false;
+
+  @Input()
+  public enableSettings = false;
+
   @Input()
   public tableCells: TableCell[];
 
   @Input()
   public filterIcon = 'filter_alt';
+
+  @Output()
+  public columnSettingsChanged = new EventEmitter<string[]>();
 
   @Output()
   public tableCellsFiltered: EventEmitter<TableCell[]> = new EventEmitter<TableCell[]>();
