@@ -1,5 +1,5 @@
 import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
-import { FieldOptions, FormField } from './FormField';
+import { FieldOptions, FormField, ValueLabel } from './FormField';
 import { AfterViewInit, Directive, Input, OnChanges, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
@@ -23,6 +23,12 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
 
   @Input()
   public schema: FormField<T>;
+
+  @Input()
+  public language?: string;
+
+  @Input()
+  public availableLanguages?: ValueLabel[];
 
   @Input()
   public readonly = false; // Global form readonly flag

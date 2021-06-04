@@ -1,5 +1,5 @@
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { DateRangePickerFieldOptions, FormField, RepeaterFieldOptions, ValueLabel } from '../models/FormField';
+import { DateRangePickerFieldOptions, FormField, RepeaterFieldOptions } from '../models/FormField';
 import { EditType } from '../models/editType';
 import { Injectable } from '@angular/core';
 import { FormFieldUtils } from '../utils/form-field.utils';
@@ -31,7 +31,7 @@ export class Lab900FormBuilderService {
     return validators;
   }
 
-  public createFormGroup(fields: FormField[], group?: FormGroup, data?: any): FormGroup {
+  public createFormGroup<T = any>(fields: FormField[], group?: FormGroup, data?: T): FormGroup {
     let formGroup = group ? group : this.fb.group({});
     fields.forEach((field) => {
       if (field.editType === EditType.Row && field.nestedFields) {
@@ -45,14 +45,6 @@ export class Lab900FormBuilderService {
           }
         } else {
           formGroup = this.createFormGroup(field.nestedFields, formGroup, data);
-        }
-      } else if (field.editType === EditType.MultiLangInput) {
-        if ((field.options as any)?.languages?.length) {
-          const nestedGroup = this.fb.group({}, { validators: Lab900FormBuilderService.addValidators(field, data) });
-          ((field.options as any).languages as ValueLabel[]).forEach((lang) => {
-            nestedGroup.addControl(lang.value, new FormControl(data?.[field.attribute]?.[lang.value]));
-          });
-          formGroup.addControl(field.attribute, nestedGroup);
         }
       } else if (field.editType === EditType.Repeater) {
         const repeaterArray = this.createFormArray(data, field);
@@ -94,7 +86,7 @@ export class Lab900FormBuilderService {
     return formGroup;
   }
 
-  public createFormArray(data: any, schema: FormField, formArray: FormArray = this.fb.array([])): FormArray {
+  public createFormArray<T = any>(data: T, schema: FormField, formArray: FormArray = this.fb.array([])): FormArray {
     if (data && data[schema.attribute] && data[schema.attribute].length) {
       formArray.clear();
       data[schema.attribute].forEach((nestedData) => {

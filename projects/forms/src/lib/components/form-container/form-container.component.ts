@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { Form } from '../../models/Form';
 import { Lab900FormBuilderService } from '../../services/form-builder.service';
-import { FormField } from '../../models/FormField';
+import { FormField, ValueLabel } from '../../models/FormField';
 import { areValuesEqual } from '../../models/IFieldConditions';
 
 @Component({
@@ -16,6 +16,12 @@ export class FormContainerComponent<T> implements OnChanges {
 
   @Input()
   public data: T;
+
+  @Input()
+  public language?: string;
+
+  @Input()
+  public availableLanguages?: ValueLabel[];
 
   public form: FormGroup;
 

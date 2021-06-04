@@ -58,6 +58,7 @@ import { AutofocusDirective } from './directives/auto-focus.directive';
 import { MultiLangInputFieldComponent } from './components/form-fields/multi-lang-input/multi-lang-input-field.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
+import { MultiLangFieldControlComponent } from './components/form-fields/multi-lang-input/multi-lang-field-control/multi-lang-field-control.component';
 
 const customFields = [
   UnknownFieldComponent,
@@ -97,6 +98,7 @@ const customFields = [
     AutofocusDirective,
     MultiLangInputFieldComponent,
     LanguagePickerComponent,
+    MultiLangFieldControlComponent,
   ],
   imports: [
     CommonModule,

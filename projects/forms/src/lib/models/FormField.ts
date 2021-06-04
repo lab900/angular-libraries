@@ -50,9 +50,7 @@ export interface InputFieldOptions extends FieldOptions {
 }
 
 export interface MultiLangInputFieldOptions extends InputFieldOptions {
-  languages?: ValueLabel[];
   buttonColor?: ThemePalette;
-  defaultLanguage?: string;
   translateLabel?: string;
   stopTranslateLabel?: string;
 }

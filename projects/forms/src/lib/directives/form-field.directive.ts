@@ -21,7 +21,7 @@ import { SelectFieldComponent } from '../components/form-fields/select-field/sel
 import { UnknownFieldComponent } from '../components/form-fields/unknown-field/unknown-field.component';
 import { WysiwygFieldComponent } from '../components/form-fields/wysiwyg-field/wysiwyg-field.component';
 import { EditType } from '../models/editType';
-import { FieldOptions, FormField } from '../models/FormField';
+import { FieldOptions, FormField, ValueLabel } from '../models/FormField';
 import { FormComponent, IFormComponent } from '../models/IFormComponent';
 import { FormRowComponent } from '../components/form-row/form-row.component';
 import { RepeaterFieldComponent } from '../components/form-fields/repeater-field/repeater-field.component';
@@ -94,6 +94,12 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
   public group: FormGroup;
 
   @Input()
+  public language?: string;
+
+  @Input()
+  public availableLanguages?: ValueLabel[];
+
+  @Input()
   public readonly = false;
 
   public component: ComponentRef<FormComponent>;
@@ -140,6 +146,8 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
     this.component.instance.schema = this.schema;
     this.component.instance.group = this.group;
     this.component.instance.readonly = this.readonly;
+    this.component.instance.availableLanguages = this.availableLanguages;
+    this.component.instance.language = this.language;
   }
 
   private validateType(): void {
