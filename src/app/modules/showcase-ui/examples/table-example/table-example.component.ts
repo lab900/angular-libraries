@@ -137,7 +137,6 @@ export class TableExampleComponent {
       cellHeaderIcon: 'accessibility',
       cellHeaderClass: 'center-cell',
       sortable: true,
-      columnOrder: 1,
       cellClass: 'clickable-cell',
       cellTooltip: (data) => data.name,
     },
@@ -153,7 +152,6 @@ export class TableExampleComponent {
       label: 'Active',
       customCellContent: true,
       cellClass: 'center-cell',
-      columnOrder: 0,
     },
   ];
 

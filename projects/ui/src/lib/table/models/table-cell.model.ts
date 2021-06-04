@@ -34,10 +34,6 @@ export interface TableCell<T = any> {
    */
   hide?: boolean;
   /**
-   * Order of the column in the table
-   */
-  columnOrder?: number;
-  /**
    * Can't hide the column
    */
   alwaysVisible?: boolean;

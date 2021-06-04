@@ -42,26 +42,6 @@ export interface Lab900Sort {
   encapsulation: ViewEncapsulation.None,
 })
 export class Lab900TableComponent implements OnChanges {
-  @Input()
-  public set tableCells(cells: TableCell[]) {
-    this._tableCells = cells.sort(Lab900TableComponent.reorderColumnsFn);
-    setTimeout(() => {
-      this.removeOldColumnsFromTable();
-      this.addColumnsToTable();
-    });
-  }
-
-  public get tableCells(): TableCell[] {
-    return this._tableCells;
-  }
-
-  public get selectCount(): number {
-    return this.selection.selected.length;
-  }
-
-  public get selectEnabled(): boolean {
-    return this.selectableRowsEnabled && (this.maxSelectableRows ? this.selection.selected.length < this.maxSelectableRows : true);
-  }
   @ViewChild(MatTable)
   public table!: MatTable<object>;
 
@@ -85,6 +65,19 @@ export class Lab900TableComponent implements OnChanges {
 
   @Input()
   public loading = false;
+
+  @Input()
+  public set tableCells(cells: TableCell[]) {
+    this._tableCells = cells;
+    setTimeout(() => {
+      this.removeOldColumnsFromTable();
+      this.addColumnsToTable();
+    });
+  }
+
+  public get tableCells(): TableCell[] {
+    return this._tableCells;
+  }
 
   // tslint:disable-next-line:variable-name
   private _tableCells: TableCell[];
@@ -130,14 +123,6 @@ export class Lab900TableComponent implements OnChanges {
    */
   @Input()
   public toggleColumns = false;
-
-  /**
-   * Show columns filter to hide/show columns AND show rearrange option
-   * This overrides toggleColumns field
-   * Sorted fields will come after non-sorted fields
-   */
-  @Input()
-  public toggleAndMoveColumns = false;
 
   @Input()
   public filterIcon = 'filter_alt';
@@ -192,8 +177,12 @@ export class Lab900TableComponent implements OnChanges {
 
   public displayedColumns: string[] = [];
 
-  public static reorderColumnsFn(a: TableCell, b: TableCell): number {
-    return (a.columnOrder || 0) - (b.columnOrder || 0);
+  public get selectCount(): number {
+    return this.selection.selected.length;
+  }
+
+  public get selectEnabled(): boolean {
+    return this.selectableRowsEnabled && (this.maxSelectableRows ? this.selection.selected.length < this.maxSelectableRows : true);
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -263,7 +252,7 @@ export class Lab900TableComponent implements OnChanges {
   }
 
   public onTableCellsFiltered(tableCells: TableCell[]): void {
-    this.tableCells = tableCells.sort(Lab900TableComponent.reorderColumnsFn);
+    this.tableCells = tableCells;
     this.addColumnsToTable();
     this.tableCellsFiltered.emit(tableCells);
   }
