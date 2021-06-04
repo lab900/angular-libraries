@@ -1,6 +1,9 @@
 <mat-dialog-content>
-    <lab900-form-container #lab900Form [schema]="dialogFormData.schema" [data]="dialogFormData.data">
-    </lab900-form-container>
+    <lab900-form
+        #lab900Form
+        [schema]="dialogFormData.schema"
+        [data]="dialogFormData.data"
+    ></lab900-form>
 </mat-dialog-content>
 <mat-dialog-actions  align="end">
     <button mat-raised-button mat-dialog-close tabindex="-1">Cancel</button>

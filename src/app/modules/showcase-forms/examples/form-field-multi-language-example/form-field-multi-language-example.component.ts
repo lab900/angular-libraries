@@ -9,9 +9,7 @@ const languages: ValueLabel[] = [
 
 @Component({
   selector: 'lab900-form-field-multi-language-example',
-  template: `
-    <lab900-form-container language="nl" [availableLanguages]="languages" [schema]="formSchema" [data]="data"></lab900-form-container>
-  `,
+  template: ` <lab900-form language="nl" [availableLanguages]="languages" [schema]="formSchema" [data]="data"></lab900-form> `,
 })
 export class FormFieldMultiLanguageExampleComponent {
   public readonly languages = languages;

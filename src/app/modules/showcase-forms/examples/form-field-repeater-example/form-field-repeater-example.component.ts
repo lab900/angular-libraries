@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { EditType, Form, FormContainerComponent } from '@lab900/forms';
+import { EditType, Form, Lab900Form } from '@lab900/forms';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 function validateResources(): ValidatorFn {
@@ -20,11 +20,11 @@ function validateResources(): ValidatorFn {
 
 @Component({
   selector: 'lab900-form-field-repeater-example',
-  template: '<lab900-form-container [schema]="formSchema" (click)="logValue(form)" #form></lab900-form-container>',
+  template: '<lab900-form [schema]="formSchema" (click)="logValue(form)" #form></lab900-form>',
 })
 export class FormFieldRepeaterExampleComponent {
-  @ViewChild(FormContainerComponent, { static: true })
-  public form: FormContainerComponent<any>;
+  @ViewChild(Lab900Form)
+  public form: Lab900Form<any>;
 
   public formSchema: Form = {
     fields: [
