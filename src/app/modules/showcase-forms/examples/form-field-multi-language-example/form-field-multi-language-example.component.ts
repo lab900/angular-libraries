@@ -33,6 +33,15 @@ export class FormFieldMultiLanguageExampleComponent {
           missingTranslations: 'missing translations',
         },
       },
+      {
+        attribute: 'multiLangField3',
+        title: 'Multi language field',
+        editType: EditType.MultiLangInput,
+        validators: [multiLanguageValidator()],
+        errorMessages: {
+          missingTranslations: 'missing translations',
+        },
+      },
     ],
   };
 
@@ -42,6 +51,7 @@ export class FormFieldMultiLanguageExampleComponent {
     setTimeout(() => {
       this.data = {
         multiLangField: { en: 'field en', nl: 'field nl', fr: 'field fr' },
+        multiLangField2: { en: 'field', nl: 'field', fr: 'field' },
       };
     }, 100);
   }
