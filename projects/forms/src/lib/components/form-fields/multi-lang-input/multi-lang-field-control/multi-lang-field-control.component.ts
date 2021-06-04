@@ -60,7 +60,9 @@ export class MultiLangFieldControlComponent extends BaseControlValueAccessorDire
 
   public writeValue(value: Record<string, string>): void {
     this.value = value ?? {};
-    this.toggleTranslate(!!Object.values(this.value).some((v) => !!v));
+    const valuesArray = Object.values(this.value);
+    const hasValues = !!valuesArray.some((v) => !!v);
+    this.toggleTranslate(hasValues && !valuesArray.every((v) => v === valuesArray[0]));
   }
 
   public toggleTranslate(value: boolean): void {

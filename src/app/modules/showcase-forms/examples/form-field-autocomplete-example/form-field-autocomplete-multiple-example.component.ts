@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 
 @Component({
   selector: 'lab900-form-field-autocomplete-multiple-example',
-  template: '<lab900-form-container #formContainer [schema]="formSchema"></lab900-form-container>',
+  template: '<lab900-form [schema]="formSchema"></lab900-form>',
 })
 export class FormFieldAutocompleteMultipleExampleComponent {
   public options: ValueLabel[] = [{ name: 'Mary' }, { name: 'Shelley' }, { name: 'Igor' }].map((value) => ({ value, label: value.name }));

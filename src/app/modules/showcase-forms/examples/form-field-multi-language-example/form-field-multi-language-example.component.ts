@@ -9,9 +9,7 @@ const languages: ValueLabel[] = [
 
 @Component({
   selector: 'lab900-form-field-multi-language-example',
-  template: `
-    <lab900-form-container language="nl" [availableLanguages]="languages" [schema]="formSchema" [data]="data"></lab900-form-container>
-  `,
+  template: ` <lab900-form language="nl" [availableLanguages]="languages" [schema]="formSchema" [data]="data"></lab900-form> `,
 })
 export class FormFieldMultiLanguageExampleComponent {
   public readonly languages = languages;
@@ -35,6 +33,15 @@ export class FormFieldMultiLanguageExampleComponent {
           missingTranslations: 'missing translations',
         },
       },
+      {
+        attribute: 'multiLangField3',
+        title: 'Multi language field',
+        editType: EditType.MultiLangInput,
+        validators: [multiLanguageValidator()],
+        errorMessages: {
+          missingTranslations: 'missing translations',
+        },
+      },
     ],
   };
 
@@ -44,6 +51,7 @@ export class FormFieldMultiLanguageExampleComponent {
     setTimeout(() => {
       this.data = {
         multiLangField: { en: 'field en', nl: 'field nl', fr: 'field fr' },
+        multiLangField2: { en: 'field', nl: 'field', fr: 'field' },
       };
     }, 100);
   }

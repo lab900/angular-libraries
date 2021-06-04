@@ -7,7 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import { FormContainerComponent } from './components/form-container/form-container.component';
+import { Lab900Form } from './components/form-container/form-container.component';
 import { FileFieldComponent } from './components/form-fields/file-field/file-field.component';
 import { InputFieldComponent } from './components/form-fields/input-field/input-field.component';
 import { MatFileFieldComponent } from './components/form-fields/mat-file-field/mat-file-field.component';
@@ -86,7 +86,7 @@ const customFields = [
   declarations: [
     FormFieldDirective,
     FormDialogDirective,
-    FormContainerComponent,
+    Lab900Form,
     FormDialogComponent,
     MatFileFieldComponent,
     MatRangeSliderFieldComponent,
@@ -130,7 +130,7 @@ const customFields = [
     MatTooltipModule,
     MatMenuModule,
   ],
-  exports: [FormContainerComponent, FormDialogDirective, AuthImageDirective, AutofocusDirective],
+  exports: [Lab900Form, FormDialogDirective, AuthImageDirective, AutofocusDirective],
 })
 export class Lab900FormsModule {
   public static forRoot(settings: Lab900FormModuleSettings = defaultFormModuleSettings): ModuleWithProviders<FormsModule> {

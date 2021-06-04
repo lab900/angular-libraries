@@ -3,7 +3,7 @@ import { EditType, Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-select-example',
-  template: '<lab900-form-container [schema]="formSchema"></lab900-form-container>',
+  template: '<lab900-form [schema]="formSchema"></lab900-form>',
 })
 export class FormFieldSelectExampleComponent {
   public formSchema: Form = {

@@ -1,7 +1,7 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogFormData } from '../../models/dialogFormData';
-import { FormContainerComponent } from '../form-container/form-container.component';
+import { Lab900Form } from '../form-container/form-container.component';
 
 @Component({
   selector: 'lab900-form-dialog',
@@ -9,8 +9,8 @@ import { FormContainerComponent } from '../form-container/form-container.compone
   styleUrls: ['./form-dialog.component.scss'],
 })
 export class FormDialogComponent<T> {
-  @ViewChild(FormContainerComponent)
-  public formContainer: FormContainerComponent<T>;
+  @ViewChild(Lab900Form)
+  public formContainer: Lab900Form<T>;
 
   public dialogFormData: DialogFormData<T>;
   public loading = false;

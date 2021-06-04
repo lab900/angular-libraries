@@ -1,14 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import { Form, EditType, FormContainerComponent } from '@lab900/forms';
+import { Form, EditType, Lab900Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-inputs-example',
   template:
-    '<lab900-form-container #formContainer [schema]="formSchema"></lab900-form-container><button mat-raised-button color="primary" (click)="validate()">Submit</button>',
+    '<lab900-form [schema]="formSchema"></lab900-form><button mat-raised-button color="primary" (click)="validate()">Submit</button>',
 })
 export class FormFieldInputsExampleComponent {
-  @ViewChild('formContainer')
-  public formContainer: FormContainerComponent<any>;
+  @ViewChild(Lab900Form)
+  public formContainer: Lab900Form<any>;
 
   public formSchema: Form = {
     fields: [
