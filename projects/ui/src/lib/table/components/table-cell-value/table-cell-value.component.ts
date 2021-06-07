@@ -3,8 +3,9 @@ import { TableCell } from '../../models/table-cell.model';
 
 @Component({
   selector: 'lab900-table-cell-value',
-  template: `<ng-container *ngIf="cell && cellValue">
-    <span *ngIf="!cell.click" [matTooltip]="getMatTooltip()" [matTooltipClass]="'lab900-table__mat-tooltip'">
+  template: ` <ng-container *ngIf="cell && cellValue">
+    <span *ngIf="!cell.click" class="lab900-table__tooltip">
+      <span class="lab900-table__tooltipText" *ngIf="getMatTooltip()">{{ getMatTooltip() }}</span>
       {{ cellValue | translate }}
     </span>
     <a style="cursor: pointer" *ngIf="cell.click" (click)="cell.click(data, cell)">{{ cellValue | translate }}</a>
