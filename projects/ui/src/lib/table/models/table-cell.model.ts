@@ -35,6 +35,7 @@ export interface TableCell<T = any> {
   hide?: boolean;
   /**
    * Order of the column in the table
+   * Sorted fields will come before non-sorted fields
    */
   columnOrder?: number;
   /**

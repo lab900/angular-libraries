@@ -134,7 +134,6 @@ export class Lab900TableComponent implements OnChanges {
   /**
    * Show columns filter to hide/show columns AND show rearrange option
    * This overrides toggleColumns field
-   * Sorted fields will come after non-sorted fields
    */
   @Input()
   public toggleAndMoveColumns = false;
@@ -192,8 +191,9 @@ export class Lab900TableComponent implements OnChanges {
 
   public displayedColumns: string[] = [];
 
+  // when columnOrder is not specified, put them in the back (position 10000)
   public static reorderColumnsFn(a: TableCell, b: TableCell): number {
-    return (a.columnOrder || 0) - (b.columnOrder || 0);
+    return (a.columnOrder ?? 10000) - (b.columnOrder ?? 10000);
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
