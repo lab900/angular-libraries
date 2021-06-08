@@ -1,14 +1,14 @@
 <div class="lab900-sharing" *ngIf="users?.length || shareDialogTemplate">
-    <p *ngIf="others">{{others}}</p>
-    <div class="lab900-sharing__users">
-      <div 
-        *ngFor="let user of toDisplay" 
-        class="lab900-sharing__users__img" 
-        matTooltip="{{userLabelFn ? userLabelFn(user) : ''}}"
-        [style.backgroundImage]="getUserImage(user)"
-      ></div>
-    </div>
-    <button *ngIf="shareDialogTemplate" mat-icon-button color="primary" (click)="openDialog()">
-        <mat-icon>{{openShareDialogIcon}}</mat-icon>
-    </button>
+  <p *ngIf="others">{{ others }}</p>
+  <div class="lab900-sharing__users">
+    <div
+      *ngFor="let user of toDisplay"
+      class="lab900-sharing__users__img"
+      matTooltip="{{ userLabelFn ? userLabelFn(user) : '' }}"
+      [style.backgroundImage]="getUserImage(user)"
+    ></div>
   </div>
+  <button *ngIf="shareDialogTemplate" mat-icon-button color="primary" (click)="openDialog()">
+    <mat-icon>{{ openShareDialogIcon }}</mat-icon>
+  </button>
+</div>

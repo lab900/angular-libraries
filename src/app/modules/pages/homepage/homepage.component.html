@@ -1,17 +1,24 @@
 <header class="homepage-header">
-    <div class="row">
-        <img src="assets/images/logo-dark-white.svg">
-        <h1>{{ 'app.title' | translate }}</h1>
-        <p>{{ 'app.description' | translate }}</p>
-    </div>
+  <div class="row">
+    <img src="assets/images/logo-dark-white.svg" />
+    <h1>{{ "app.title" | translate }}</h1>
+    <p>{{ "app.description" | translate }}</p>
+  </div>
 </header>
 <div class="row row--big">
-    <div fxLayout="row wrap" fxLayout.lt-sm="column">
-        <a *ngFor="let section of sections" [routerLink]="[section.homeRoute]" fxFlex="50%" fxFlex.gt-sm="25%" class="homepage-block" [class.disabled]="section?.disabled">
-            <mat-icon>{{section?.icon}}</mat-icon>
-            <h2>{{section.title | translate}}</h2>
-            <p>{{section.description | translate}}</p>
-            <span *ngIf="section?.version">Version: {{section?.version}}</span>
-        </a>
-    </div>
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <a
+      *ngFor="let section of sections"
+      [routerLink]="[section.homeRoute]"
+      fxFlex="50%"
+      fxFlex.gt-sm="25%"
+      class="homepage-block"
+      [class.disabled]="section?.disabled"
+    >
+      <mat-icon>{{ section?.icon }}</mat-icon>
+      <h2>{{ section.title | translate }}</h2>
+      <p>{{ section.description | translate }}</p>
+      <span *ngIf="section?.version">Version: {{ section?.version }}</span>
+    </a>
+  </div>
 </div>

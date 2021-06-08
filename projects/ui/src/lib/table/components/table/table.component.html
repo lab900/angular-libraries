@@ -1,11 +1,10 @@
-<div class="lab900-table {{tableClass}}" *ngIf="tableCells?.length">
-
+<div class="lab900-table {{ tableClass }}" *ngIf="tableCells?.length">
   <lab900-table-header
-      [tableHeaderActions]="tableHeaderActions"
-      [tableCells]="tableCells"
-      [toggleColumns]="toggleColumns"
-      (tableCellsFiltered)="onTableCellsFiltered($event)"
-      [filterIcon]="filterIcon"
+    [tableHeaderActions]="tableHeaderActions"
+    [tableCells]="tableCells"
+    [toggleColumns]="toggleColumns"
+    (tableCellsFiltered)="onTableCellsFiltered($event)"
+    [filterIcon]="filterIcon"
   >
     <ng-container *ngIf="tableHeaderContent">
       <ng-container *ngTemplateOutlet="tableHeaderContent"></ng-container>
@@ -39,17 +38,17 @@
         </td>
       </ng-container>
 
-        <lab900-table-cell
-            *ngFor="let cell of tableCells; trackBy: trackCellFn"
-            [cell]="cell"
-            [sort]="sort"
-            [customCellContent]="customCellContent"
-            (headerClick)="handleHeaderClick($event)"
-        ></lab900-table-cell>
+      <lab900-table-cell
+        *ngFor="let cell of tableCells; trackBy: trackCellFn"
+        [cell]="cell"
+        [sort]="sort"
+        [customCellContent]="customCellContent"
+        (headerClick)="handleHeaderClick($event)"
+      ></lab900-table-cell>
 
-        <ng-content select=".lab900-table-cell"></ng-content>
+      <ng-content select=".lab900-table-cell"></ng-content>
 
-        <ng-container matColumnDef="actions-front">
+      <ng-container matColumnDef="actions-front">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
           <div style="width: 100%" fxLayout="row" fxLayoutGap="8" fxLayoutAlign="start center" *ngIf="tableActionsFront?.length">
@@ -67,25 +66,24 @@
         </td>
       </ng-container>
 
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row
-        *matRowDef="let row; columns: displayedColumns; let i = index;"
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns; let i = index"
         [ngClass]="getRowClasses(row, i)"
         (click)="handleRowClick($event, row, i)"
       ></tr>
-
     </table>
   </div>
 
   <mat-paginator
-      *ngIf="data?.length && paging"
-      [hidePageSize]="pageSizeConfig.hidePageSize"
-      [pageSizeOptions]="pageSizeConfig.pageSizeOptions"
-      [length]="paging.totalItems"
-      [pageSize]="paging.pageSize"
-      [pageIndex]="paging.pageIndex"
-      (page)="pageChange.emit($event)"
+    *ngIf="data?.length && paging"
+    [hidePageSize]="pageSizeConfig.hidePageSize"
+    [pageSizeOptions]="pageSizeConfig.pageSizeOptions"
+    [length]="paging.totalItems"
+    [pageSize]="paging.pageSize"
+    [pageIndex]="paging.pageIndex"
+    (page)="pageChange.emit($event)"
   ></mat-paginator>
 
   <div class="lab900-table__empty" *ngIf="data && !data.length && !disabled">
@@ -93,8 +91,8 @@
       <ng-container *ngTemplateOutlet="emptyTableTemplate"></ng-container>
     </ng-container>
     <ng-container *ngIf="!emptyTableTemplate">
-      <h3>{{'GENERAL.NO_RESULTS.TITLE' | translate}}</h3>
-      <p>{{'GENERAL.NO_RESULTS.DESC' | translate}}</p>
+      <h3>{{ "GENERAL.NO_RESULTS.TITLE" | translate }}</h3>
+      <p>{{ "GENERAL.NO_RESULTS.DESC" | translate }}</p>
     </ng-container>
   </div>
 
@@ -103,9 +101,8 @@
       <ng-container *ngTemplateOutlet="disabledTableTemplate"></ng-container>
     </ng-container>
     <ng-container *ngIf="!disabledTableTemplate">
-      <h3>{{'GENERAL.DISABLED.TITLE' | translate}}</h3>
-      <p>{{'GENERAL.DISABLED.DESC' | translate}}</p>
+      <h3>{{ "GENERAL.DISABLED.TITLE" | translate }}</h3>
+      <p>{{ "GENERAL.DISABLED.DESC" | translate }}</p>
     </ng-container>
   </div>
-
 </div>
