@@ -53,7 +53,7 @@ export interface MultiLangInputFieldOptions extends InputFieldOptions {
   buttonColor?: ThemePalette;
   translateLabel?: string;
   stopTranslateLabel?: string;
-  textAreaField?: boolean;
+  useTextAreaField?: boolean;
 }
 
 export interface RepeaterFieldOptions extends FieldOptions {

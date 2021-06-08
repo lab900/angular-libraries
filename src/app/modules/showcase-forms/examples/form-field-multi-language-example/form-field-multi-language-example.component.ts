@@ -48,7 +48,7 @@ export class FormFieldMultiLanguageExampleComponent {
         editType: EditType.MultiLangInput,
         validators: [multiLanguageValidator()],
         options: {
-          textAreaField: true,
+          useTextAreaField: true,
         },
         errorMessages: {
           missingTranslations: 'missing translations',

@@ -39,7 +39,7 @@ export class MultiLangFieldControlComponent extends BaseControlValueAccessorDire
   public stopTranslateLabel?: string;
 
   @Input()
-  public textAreaField = false;
+  public useTextAreaField = false;
 
   public activeLanguage?: ValueLabel;
 
