@@ -48,7 +48,11 @@
   },
   "ui": {
     "title": "UI Library",
-    "description": "A set of useful UI components"
+    "description": "A set of useful UI components",
+    "table": {
+      "active_columns": "Active columns",
+      "inactive_columns": "Inactive columns"
+    }
   },
   "admin": {
     "title": "Admin Library",

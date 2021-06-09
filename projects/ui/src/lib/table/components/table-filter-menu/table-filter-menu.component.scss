@@ -1,5 +1,76 @@
 .lab900-table-filter-menu {
-  &__option {
-    padding: 8px 16px;
+  &__mat-menu {
+    overflow: hidden;
+    ::ng-deep &.mat-menu-panel {
+      height: fit-content !important;
+      min-height: fit-content !important;
+      .mat-menu-content {
+        padding: 0;
+      }
+    }
   }
+
+  &__items-container{
+    max-height: 41*5px; //41px is height of one item
+    overflow: auto;
+  }
+
+  &__option {
+    border-bottom: 1px solid #DDE6E9;
+    cursor: pointer;
+    &--padding {
+      padding: 8px 16px;
+    }
+    &--bold {
+      font-weight: bold;
+    }
+  }
+
+  &__title {
+    cursor: unset !important;
+    padding: 8px 16px;
+    &--middle{
+      border-top: 1px solid #DDE6E9;
+    }
+  }
+
+  &__checkbox {
+    width: 100%;
+    ::ng-deep {
+      .mat-checkbox-label {
+        margin-right: 10px;
+        white-space: normal;
+      }
+      .mat-checkbox-layout {
+        width: 100%;
+      }
+      .mat-checkbox-inner-container {
+        margin-left: auto;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  &__drag-icon {
+    color: #DDE6E9;
+    margin-right: 10px;
+    cursor: move;
+    align-self: center;
+  }
+
+  &__drag-placeholder {
+    opacity: 0.4;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 16px;
+    display: flex;
+    align-content: center;
+  }
+}
+
+.cdk-drop-dragging .cdk-drag {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+  transition: transform 350ms cubic-bezier(0, 0, 0.2, 1);
 }
