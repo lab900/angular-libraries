@@ -63,4 +63,46 @@
   &__mat-tooltip {
     min-width: fit-content;
   }
+
+  .lab900-table__tooltip {
+    position: relative;
+    display: inline-block;
+  }
+
+  .lab900-table__tooltip .lab900-table__tooltipText {
+    display: none;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    left: 60px;
+    margin-left: -60px;
+    width: fit-content;
+    word-wrap: break-word;
+    white-space: normal;
+    max-width: 500px;
+    @media screen and (max-width: 599px) {
+      max-width: 110px;
+    }
+  }
+
+  .lab900-table__tooltip .lab900-table__tooltipText::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 15px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent;
+    white-space: normal;
+  }
+
+  .lab900-table__tooltip:hover .lab900-table__tooltipText {
+    display: unset;
+  }
 }
