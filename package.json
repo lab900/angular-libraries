@@ -23,7 +23,8 @@
     "e2e": "ng e2e",
     "pretty:check": "prettier -c \"{src,projects}/**/**.{ts,js}\"",
     "pretty:fix": "prettier  --write \"{src,projects}/**/**.{ts,js}\"",
-    "pretty:html:fix": "prettier --no-config --print-width=140 --write \"{src,projects}/**/**.html\""
+    "pretty:html:fix": "prettier --no-config --print-width=140 --write \"{src,projects}/**/**.html\"",
+    "clean": "rm -rf node_modules/ && npm install"
   },
   "husky": {
     "hooks": {

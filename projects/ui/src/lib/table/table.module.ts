@@ -26,6 +26,7 @@ import { Lab900TableCustomCellDirective } from './directives/table-custom-cell.d
 import { Lab900TableTopContentDirective } from './directives/table-top-content.directive';
 import { Lab900TableCellComponent } from './components/table-cell/table-cell.component';
 import { Lab900TableCellValueComponent } from './components/table-cell-value/table-cell-value.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { Lab900TableCellValueComponent } from './components/table-cell-value/tab
     MatListModule,
     MatMenuModule,
     Lab900ButtonModule,
+    DragDropModule,
   ],
 })
 export class Lab900TableModule {}

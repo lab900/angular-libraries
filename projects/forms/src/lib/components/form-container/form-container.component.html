@@ -1,13 +1,13 @@
 <form *ngIf="schema?.fields" [formGroup]="form" class="lab900-form">
-    <div class="lab900-form__inner">
-        <ng-container 
-            *ngFor="let field of schema.fields;" 
-            lab900FormField
-            [schema]="field"
-            [group]="form"
-            [language]="language"
-            [availableLanguages]="availableLanguages"
-            [readonly]="readonly"
-        ></ng-container>
-    </div>
+  <div class="lab900-form__inner">
+    <ng-container
+      *ngFor="let field of schema.fields"
+      lab900FormField
+      [schema]="field"
+      [group]="form"
+      [language]="language"
+      [availableLanguages]="availableLanguages"
+      [readonly]="readonly"
+    ></ng-container>
+  </div>
 </form>

@@ -12,7 +12,8 @@ import { ActionButton, Lab900Sort, Paging, TableCell } from '@lab900/ui';
     [paging]="paging"
     [tableActionsBack]="tableActions"
     [tableHeaderActions]="tableHeaderActions"
-    [toggleColumns]="true"
+    [toggleColumns]="false"
+    [toggleAndMoveColumns]="true"
     filterIcon="settings"
     [selectableRows]="true"
     [selectedItems]="selectedItems"
@@ -107,6 +108,8 @@ export class TableExampleComponent {
       nested: {
         test: 'xxx',
       },
+      email: 'mail@test.com',
+      city: 'New York City',
     },
     {
       name: 'B name',
@@ -133,12 +136,21 @@ export class TableExampleComponent {
   public tableCells: TableCell[] = [
     {
       key: 'name',
-      label: '',
+      label: 'Name',
       cellHeaderIcon: 'accessibility',
       cellHeaderClass: 'center-cell',
       sortable: true,
       cellClass: 'clickable-cell',
       cellTooltip: (data) => data.name,
+      columnOrder: 0,
+    },
+    {
+      key: 'nameLong',
+      label: 'Long name',
+      sortable: true,
+      cellClass: 'clickable-cell',
+      cellTooltip: (data) => data.nameLong,
+      columnOrder: 1,
     },
     {
       key: 'id',
@@ -146,12 +158,26 @@ export class TableExampleComponent {
       sortable: true,
       cellClass: 'clickable-cell',
       width: '*',
+      columnOrder: 3,
     },
     {
       key: 'active',
       label: 'Active',
       customCellContent: true,
       cellClass: 'center-cell',
+      columnOrder: 2,
+    },
+    {
+      key: 'email',
+      label: 'Email',
+      columnOrder: 4,
+      hide: true,
+    },
+    {
+      key: 'city',
+      label: 'City',
+      columnOrder: 5,
+      hide: true,
     },
   ];
 

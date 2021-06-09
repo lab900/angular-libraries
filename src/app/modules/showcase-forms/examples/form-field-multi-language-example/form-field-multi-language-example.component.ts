@@ -42,6 +42,18 @@ export class FormFieldMultiLanguageExampleComponent {
           missingTranslations: 'missing translations',
         },
       },
+      {
+        attribute: 'multiLangField4',
+        title: 'Multi language field (TextArea)',
+        editType: EditType.MultiLangInput,
+        validators: [multiLanguageValidator()],
+        options: {
+          useTextAreaField: true,
+        },
+        errorMessages: {
+          missingTranslations: 'missing translations',
+        },
+      },
     ],
   };
 

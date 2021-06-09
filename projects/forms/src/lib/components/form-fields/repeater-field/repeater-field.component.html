@@ -1,24 +1,43 @@
-<div [formGroup]="group" *ngIf="!fieldIsHidden" class="lab900-repeater-field repeater-field" id="lab900-repeater-field-{{schema?.attribute}}" [class.fixed-list]="fixedList">
-    <div [formArrayName]="schema.attribute">
-        <span *ngIf="schema.title" class="lab900-form-field-label">{{ schema.title | translate }}</span>
-        <div *ngFor="let control of repeaterArray.controls; let i=index" class="repeater-row">
-            <div class="repeater-row__fields">
-                <ng-container
-                    *ngFor="let field of schema.nestedFields;"
-                    lab900FormField
-                    [schema]="field"
-                    [group]="control"
-                ></ng-container>
-            </div>
-            <div *ngIf="!fixedList && !fieldIsReadonly" class="repeater-row__actions">
-                <button type="button" *ngIf="(i + 1) > minRows || options?.removeAll" (click)="removeFromArray(i)" mat-mini-fab class="mat-elevation-z0" [color]="options?.buttonColor || 'accent'" aria-label="Delete">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-        </div>
-        <mat-error class="subscript-wrapper" *ngIf="touched && !valid && !fieldIsReadonly" [@transitionMessages]="valid ? 'void' : 'enter'">{{ getErrorMessage() | async }}</mat-error>
-        <div *ngIf="!fixedList && !fieldIsReadonly" class="repeater-field__actions">
-            <button mat-button color="primary" [disabled]="!!maxRows && repeaterArray.length >= maxRows" (click)="addToArray()" class="repeater-add">{{ addLabel | translate }}</button>
-        </div>
+<div
+  [formGroup]="group"
+  *ngIf="!fieldIsHidden"
+  class="lab900-repeater-field repeater-field"
+  id="lab900-repeater-field-{{ schema?.attribute }}"
+  [class.fixed-list]="fixedList"
+>
+  <div [formArrayName]="schema.attribute">
+    <span *ngIf="schema.title" class="lab900-form-field-label">{{ schema.title | translate }}</span>
+    <div *ngFor="let control of repeaterArray.controls; let i = index" class="repeater-row">
+      <div class="repeater-row__fields">
+        <ng-container *ngFor="let field of schema.nestedFields" lab900FormField [schema]="field" [group]="control"></ng-container>
+      </div>
+      <div *ngIf="!fixedList && !fieldIsReadonly" class="repeater-row__actions">
+        <button
+          type="button"
+          *ngIf="i + 1 > minRows || options?.removeAll"
+          (click)="removeFromArray(i)"
+          mat-mini-fab
+          class="mat-elevation-z0"
+          [color]="options?.buttonColor || 'accent'"
+          aria-label="Delete"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
     </div>
+    <mat-error class="subscript-wrapper" *ngIf="touched && !valid && !fieldIsReadonly" [@transitionMessages]="valid ? 'void' : 'enter'">{{
+      getErrorMessage() | async
+    }}</mat-error>
+    <div *ngIf="!fixedList && !fieldIsReadonly" class="repeater-field__actions">
+      <button
+        mat-button
+        color="primary"
+        [disabled]="!!maxRows && repeaterArray.length >= maxRows"
+        (click)="addToArray()"
+        class="repeater-add"
+      >
+        {{ addLabel | translate }}
+      </button>
+    </div>
+  </div>
 </div>
