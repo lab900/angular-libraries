@@ -1,18 +1,12 @@
 <div class="lab900-table-header" fxLayout="row wrap" fxLayoutAlign="end end" fxLayoutGap="8px">
-    <ng-content></ng-content>
-    <div
-            class="lab900-table-header__action"
-            *ngIf="tableHeaderActions?.length"
-            fxLayout="row wrap"
-            fxLayoutAlign="end end" fxLayoutGap="8px"
-    >
-        <lab900-action-button *ngFor="let action of tableHeaderActions" [action]="action"></lab900-action-button>
-    </div>
-    <lab900-table-filter-menu
-            *ngIf="toggleColumns || toggleAndMoveColumns"
-            [tableCells]="tableCells"
-            (filterChanged)="tableCellsFiltered.emit($event)"
-            [filterIcon]="filterIcon"
-            [enableMoveColumns]="toggleAndMoveColumns"
-    ></lab900-table-filter-menu>
+  <ng-content></ng-content>
+  <div class="lab900-table-header__action" *ngIf="tableHeaderActions?.length" fxLayout="row wrap" fxLayoutAlign="end end" fxLayoutGap="8px">
+    <lab900-action-button *ngFor="let action of tableHeaderActions" [action]="action"></lab900-action-button>
+  </div>
+  <lab900-table-filter-menu
+    *ngIf="toggleColumns"
+    [tableCells]="tableCells"
+    (filterChanged)="tableCellsFiltered.emit($event)"
+    [filterIcon]="filterIcon"
+  ></lab900-table-filter-menu>
 </div>

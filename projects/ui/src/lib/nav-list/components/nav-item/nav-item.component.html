@@ -1,30 +1,37 @@
-<div fxLayout="column" *ngIf="item" class="nav-item nav-item--depth-{{depth}}">
-    <div class="nav-item--without-overlay" *ngIf="!item?.childrenInOverlay || mediaObserver.isActive(allowOverlayMenuUntil)">
-        <lab900-nav-item-button
-            [item]="item"
-            [depth]="depth"
-            [expanded]="expanded"
-            [disabled]="disabled"
-            [active]="router.isActive(item.route, true)"
-            [showLevelArrow]="showLevelArrows && !!item?.children?.length"
-            (click)="onClick($event)"
-        ></lab900-nav-item-button>
-        <!-- Children -->
-        <div class="nav-item--without-overlay__children" fxLayout="column" *ngIf="item?.children?.length && expanded">
-            <lab900-nav-item *ngFor="let child of item.children" [item]="child" [depth]="indentLevels ? depth + 1 : 0" [indentLevels]="indentLevels" [allowOverlayMenuUntil]="allowOverlayMenuUntil" [showLevelArrows]="showLevelArrows"></lab900-nav-item>
-        </div>
+<div fxLayout="column" *ngIf="item" class="nav-item nav-item--depth-{{ depth }}">
+  <div class="nav-item--without-overlay" *ngIf="!item?.childrenInOverlay || mediaObserver.isActive(allowOverlayMenuUntil)">
+    <lab900-nav-item-button
+      [item]="item"
+      [depth]="depth"
+      [expanded]="expanded"
+      [disabled]="disabled"
+      [active]="router.isActive(item.route, true)"
+      [showLevelArrow]="showLevelArrows && !!item?.children?.length"
+      (click)="onClick($event)"
+    ></lab900-nav-item-button>
+    <!-- Children -->
+    <div class="nav-item--without-overlay__children" fxLayout="column" *ngIf="item?.children?.length && expanded">
+      <lab900-nav-item
+        *ngFor="let child of item.children"
+        [item]="child"
+        [depth]="indentLevels ? depth + 1 : 0"
+        [indentLevels]="indentLevels"
+        [allowOverlayMenuUntil]="allowOverlayMenuUntil"
+        [showLevelArrows]="showLevelArrows"
+      ></lab900-nav-item>
     </div>
-    <div class="nav-item--with-overlay" *ngIf="item.childrenInOverlay && !mediaObserver.isActive(allowOverlayMenuUntil)">
-        <lab900-nav-item-button
-            [item]="item"
-            [depth]="depth"
-            [expanded]="expanded"
-            [disabled]="disabled"
-            [active]="router.isActive(item.route, true)"
-            [showLevelArrow]="showLevelArrows && !!item?.children?.length"
-        ></lab900-nav-item-button>
-        <div class="nav-item--with-overlay__overlay mat-elevation-z4">
-            <lab900-nav-item *ngFor="let child of item.children" [item]="child" [depth]="0" [showLevelArrows]="showLevelArrows"></lab900-nav-item>
-        </div>
+  </div>
+  <div class="nav-item--with-overlay" *ngIf="item.childrenInOverlay && !mediaObserver.isActive(allowOverlayMenuUntil)">
+    <lab900-nav-item-button
+      [item]="item"
+      [depth]="depth"
+      [expanded]="expanded"
+      [disabled]="disabled"
+      [active]="router.isActive(item.route, true)"
+      [showLevelArrow]="showLevelArrows && !!item?.children?.length"
+    ></lab900-nav-item-button>
+    <div class="nav-item--with-overlay__overlay mat-elevation-z4">
+      <lab900-nav-item *ngFor="let child of item.children" [item]="child" [depth]="0" [showLevelArrows]="showLevelArrows"></lab900-nav-item>
     </div>
+  </div>
 </div>

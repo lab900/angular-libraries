@@ -27,8 +27,7 @@ export const mergerDataExample: MergeObject<MergerDataExample>[] = [
         box: 'A',
       },
       languages: ['Frans', 'Nederlands'],
-      text:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum nunc vel convallis malesuada. Suspendisse at tristique tortor, id elementum odio.',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum nunc vel convallis malesuada. Suspendisse at tristique tortor, id elementum odio.',
       dateOfBirth: new Date(),
     },
     title: 'Axelle Blue',
