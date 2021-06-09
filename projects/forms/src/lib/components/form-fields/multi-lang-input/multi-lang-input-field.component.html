@@ -15,6 +15,7 @@
     [buttonColor]="options?.buttonColor"
     [translateLabel]="options?.translateLabel"
     [stopTranslateLabel]="options?.stopTranslateLabel"
+    [useTextAreaField]="options?.useTextAreaField"
   ></lab900-multi-lang-field-control>
   <div *ngIf="!valid && fieldControl.touched && !fieldIsReadonly">
     <mat-error>{{ getErrorMessage() | async }}</mat-error>
