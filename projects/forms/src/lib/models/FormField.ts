@@ -155,7 +155,7 @@ export interface FormField<
     | DateRangePickerFieldOptions
     | FileFieldOptions
     | FilePreviewFieldOptions
-    | MultiLangInputFieldOptions
+    | MultiLangInputFieldOptions,
 > {
   attribute?: string;
   editType: EditType;
