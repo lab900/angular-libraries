@@ -7,7 +7,7 @@
         <mat-icon>{{ filterIcon }}</mat-icon>
     </button>
     <mat-menu #filterMenu class="lab900-table-filter-menu__mat-menu">
-        <ng-container *ngIf="!enableMoveColumns else moveColumnsRef">
+        <ng-container *ngIf="!toggleAndMoveColumns else moveColumnsRef">
             <div *ngFor="let cell of cells" class="lab900-table-filter-menu__option">
                 <mat-checkbox (click)="handleCheckboxClick($event, cell)" [checked]="!cell.hide" color="primary">
                     {{ getCellLabel(cell) | translate }}

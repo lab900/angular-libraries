@@ -20,6 +20,9 @@ export class Lab900TableHeaderComponent {
   public toggleColumns = true;
 
   @Input()
+  public toggleAndMoveColumns = false;
+
+  @Input()
   public tableCells: TableCell[];
 
   @Input()
