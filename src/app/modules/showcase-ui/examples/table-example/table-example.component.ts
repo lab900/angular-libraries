@@ -147,8 +147,6 @@ export class TableExampleComponent {
     {
       key: 'nameLong',
       label: 'Long name',
-      cellHeaderIcon: 'accessibility',
-      cellHeaderClass: 'center-cell',
       sortable: true,
       cellClass: 'clickable-cell',
       cellTooltip: (data) => data.nameLong,

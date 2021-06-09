@@ -9,9 +9,11 @@
     <mat-menu #filterMenu class="lab900-table-filter-menu__mat-menu">
         <ng-container *ngIf="!toggleAndMoveColumns else moveColumnsRef">
             <div *ngFor="let cell of cells" class="lab900-table-filter-menu__option">
-                <mat-checkbox (click)="handleCheckboxClick($event, cell)" [checked]="!cell.hide" color="primary">
-                    {{ getCellLabel(cell) | translate }}
-                </mat-checkbox>
+                <div class="lab900-table-filter-menu__option--padding">
+                    <mat-checkbox (click)="handleCheckboxClick($event, cell)" [checked]="!cell.hide" color="primary">
+                        {{ getCellLabel(cell) | translate }}
+                    </mat-checkbox>
+                </div>
             </div>
         </ng-container>
 
@@ -25,7 +27,7 @@
             >
                 {{'ui.table.active_columns' | translate}}
             </div>
-            <div cdkScrollable class="lab900-table-filter-menu__status-container">
+            <div cdkScrollable class="lab900-table-filter-menu__items-container">
                 <div (cdkDropListDropped)="drop($event)"
                      [cdkDropListData]="getOnlyShownCells(cells)"
                      cdkDropList
@@ -72,7 +74,7 @@
             >
                 {{'ui.table.inactive_columns' | translate}}
             </div>
-            <div class="lab900-table-filter-menu__status-container">
+            <div class="lab900-table-filter-menu__items-container">
                 <div (click)="handleCheckboxClick($event, cell)"
                      *ngFor="let cell of getOnlyHiddenCells(cells)"
                      class="lab900-table-filter-menu__option">
