@@ -1,17 +1,93 @@
-<div class="lab900-table-filter-menu" *ngIf="cells?.length">
-    <button color="primary" mat-icon-button [matMenuTriggerFor]="filterMenu">
+<div *ngIf="cells?.length" class="lab900-table-filter-menu">
+    <button [matMenuTriggerFor]="filterMenu"
+            color="primary"
+            mat-icon-button
+
+    >
         <mat-icon>{{ filterIcon }}</mat-icon>
     </button>
-    <mat-menu #filterMenu>
-        <div class="lab900-table-filter-menu__option" *ngFor="let cell of cells">
-            <mat-checkbox color="primary" (click)="handleCheckboxClick($event, cell)" [checked]="!cell.hide">
-                {{ getCellLabel(cell) | translate }}
-            </mat-checkbox>
-        </div>
-        <div class="lab900-table-filter-menu__option" *ngFor="let cell of cells">
-            <mat-checkbox color="primary" (click)="handleCheckboxClick($event, cell)" [checked]="!cell.hide">
-                {{ getCellLabel(cell) | translate }}
-            </mat-checkbox>
-        </div>
+    <mat-menu #filterMenu class="lab900-table-filter-menu__mat-menu">
+        <ng-container *ngIf="!enableMoveColumns else moveColumnsRef">
+            <div *ngFor="let cell of cells" class="lab900-table-filter-menu__option">
+                <mat-checkbox (click)="handleCheckboxClick($event, cell)" [checked]="!cell.hide" color="primary">
+                    {{ getCellLabel(cell) | translate }}
+                </mat-checkbox>
+            </div>
+        </ng-container>
+
+        <ng-template #moveColumnsRef>
+            <!-- ACTIVE COLUMNS -->
+            <div (click)="$event.stopPropagation();$event.preventDefault();"
+                 *ngIf="getOnlyShownCells(cells)?.length > 0"
+                 class="lab900-table-filter-menu__option
+                    lab900-table-filter-menu__option--bold
+                    lab900-table-filter-menu__title"
+            >
+                {{'ui.table.active_columns' | translate}}
+            </div>
+            <div cdkScrollable class="lab900-table-filter-menu__status-container">
+                <div (cdkDropListDropped)="drop($event)"
+                     [cdkDropListData]="getOnlyShownCells(cells)"
+                     cdkDropList
+                >
+                    <div (click)="handleCheckboxClick($event, cell)"
+                         *ngFor="let cell of getOnlyShownCells(cells)"
+                         cdkDrag
+                         class="lab900-table-filter-menu__option"
+                    >
+                        <div class="lab900-table-filter-menu__option--padding"
+                             fxLayout="row" fxLayoutAlign="center">
+                            <!-- placeholder-->
+                            <div *cdkDragPlaceholder class="lab900-table-filter-menu__drag-placeholder">
+                                <mat-icon class="lab900-table-filter-menu__drag-icon">drag_handle</mat-icon>
+                            </div>
+                            <!-- preview -->
+                            <div *cdkDragPreview>
+                                <mat-icon class="lab900-table-filter-menu__drag-icon">drag_handle</mat-icon>
+                                {{ getCellLabel(cell) | translate }}
+                            </div>
+                            <!-- content -->
+                            <mat-icon cdkDragHandle class="lab900-table-filter-menu__drag-icon">
+                                drag_handle
+                            </mat-icon>
+                            <mat-checkbox [checked]="!cell.hide"
+                                          [labelPosition]="'before'"
+                                          class="lab900-table-filter-menu__checkbox"
+                                          color="primary"
+                            >
+                                {{ getCellLabel(cell) | translate }}
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INACTIVE COLUMNS -->
+            <div (click)="$event.stopPropagation();$event.preventDefault();"
+                 *ngIf="getOnlyHiddenCells(cells)?.length > 0"
+                 class="lab900-table-filter-menu__option
+                    lab900-table-filter-menu__option--bold
+                    lab900-table-filter-menu__title
+                    lab900-table-filter-menu__title--middle"
+            >
+                {{'ui.table.inactive_columns' | translate}}
+            </div>
+            <div class="lab900-table-filter-menu__status-container">
+                <div (click)="handleCheckboxClick($event, cell)"
+                     *ngFor="let cell of getOnlyHiddenCells(cells)"
+                     class="lab900-table-filter-menu__option">
+                    <div class="lab900-table-filter-menu__option--padding">
+                        <mat-checkbox [checked]="!cell.hide"
+                                      [labelPosition]="'before'"
+
+                                      class="lab900-table-filter-menu__checkbox"
+                                      color="primary"
+                        >
+                            {{ getCellLabel(cell) | translate }}
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
     </mat-menu>
 </div>
