@@ -4,11 +4,18 @@ import { TableCell } from '../../models/table-cell.model';
 @Component({
   selector: 'lab900-table-cell-value',
   template: ` <ng-container *ngIf="cell && cellValue">
-    <span *ngIf="!cell.click" class="lab900-table__tooltip">
-      <span class="lab900-table__tooltipText" *ngIf="getMatTooltip()">{{ getMatTooltip() }}</span>
+    <span *ngIf="!cell.click" [matTooltipClass]="'lab900-table__mat-tooltip'" [matTooltip]="getMatTooltip()">
       {{ cellValue | translate }}
     </span>
-    <a style="cursor: pointer" *ngIf="cell.click" (click)="cell.click(data, cell)">{{ cellValue | translate }}</a>
+    <a
+      style="cursor: pointer"
+      *ngIf="cell.click"
+      (click)="cell.click(data, cell)"
+      [matTooltipClass]="'lab900-table__mat-tooltip'"
+      [matTooltip]="getMatTooltip()"
+    >
+      {{ cellValue | translate }}
+    </a>
   </ng-container>`,
 })
 export class Lab900TableCellValueComponent<T = any> implements OnChanges {
