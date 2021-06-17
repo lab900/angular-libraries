@@ -105,13 +105,6 @@ pipeline {
                         }
                     }
                 }
-                stage('Build Admin library') {
-                    steps {
-                        dir('./build') {
-                            sh "npm run build:admin:prod"
-                        }
-                    }
-                }
                 stage('Deploy showcase') {
                     steps {
                         dir('./build') {

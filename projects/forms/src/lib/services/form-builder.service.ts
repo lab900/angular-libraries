@@ -31,7 +31,7 @@ export class Lab900FormBuilderService {
     return validators;
   }
 
-  public createFormGroup(fields: FormField[], group?: FormGroup, data?: any): FormGroup {
+  public createFormGroup<T = any>(fields: FormField[], group?: FormGroup, data?: T): FormGroup {
     let formGroup = group ? group : this.fb.group({});
     fields.forEach((field) => {
       if (field.editType === EditType.Row && field.nestedFields) {
@@ -86,7 +86,7 @@ export class Lab900FormBuilderService {
     return formGroup;
   }
 
-  public createFormArray(data: any, schema: FormField, formArray: FormArray = this.fb.array([])): FormArray {
+  public createFormArray<T = any>(data: T, schema: FormField, formArray: FormArray = this.fb.array([])): FormArray {
     if (data && data[schema.attribute] && data[schema.attribute].length) {
       formArray.clear();
       data[schema.attribute].forEach((nestedData) => {

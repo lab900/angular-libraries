@@ -1,0 +1,20 @@
+<ng-container matColumnDef>
+  <th mat-header-cell *matHeaderCellDef (click)="headerClick.emit(cell)" [class.sortable]="cell.sortable" [ngClass]="cellHeaderClass">
+    <div>
+      <mat-icon *ngIf="cellHeaderIcon as icon">{{ icon }}</mat-icon>
+      <mat-icon *ngIf="cellHeaderSvgIcon as icon" [svgIcon]="icon"></mat-icon>
+      {{ cellLabel | translate }}
+      <span class="material-icons lab900-sort-arrow" *ngIf="cell.sortable && sortDirection">
+        {{ sortIcon }}
+      </span>
+    </div>
+  </th>
+  <td mat-cell *matCellDef="let element" [style.width]="cell?.width === '*' ? '100%' : cell?.width" [ngClass]="getCellClass(element)">
+    <ng-container *ngIf="cell?.customCellContent && customCellContent">
+      <ng-container *ngTemplateOutlet="customCellContent; context: { $implicit: { cell: cell, element: element } }"></ng-container>
+    </ng-container>
+    <ng-container *ngIf="!cell?.customCellContent">
+      <lab900-table-cell-value [data]="element" [cell]="cell"></lab900-table-cell-value>
+    </ng-container>
+  </td>
+</ng-container>

@@ -12,5 +12,5 @@
     "./scss/*.scss",
     "./_theming.scss"
   ],
-  "whitelistedNonPeerDependencies": ["lab900", "@types/nouislider", "nouislider", "@kolkov/angular-editor"]
+  "allowedNonPeerDependencies": ["lab900", "@types/nouislider", "nouislider", "@kolkov/angular-editor"]
 }

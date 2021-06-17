@@ -22,10 +22,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "allowedCommonJsDependencies": [
-              "nouislider",
-              "lodash"
-            ],
+            "allowedCommonJsDependencies": ["nouislider", "lodash"],
             "aot": true,
             "assets": [
               "src/favicon.ico",
@@ -39,11 +36,6 @@
               {
                 "glob": "**/*-example.component.*",
                 "input": "src/app/modules/showcase-ui/examples",
-                "output": "/examples"
-              },
-              {
-                "glob": "**/*-example.component.*",
-                "input": "src/app/modules/showcase-admin/examples",
                 "output": "/examples"
               }
             ],
@@ -73,7 +65,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -117,28 +108,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "src/styles.scss"],
             "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -159,51 +138,6 @@
             "baseHref": "https://lab900.github.io/angular-libraries/",
             "name": "Lab900",
             "email": "info@lab900.com"
-          },
-        }
-      }
-    },
-    "admin": {
-      "projectType": "library",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/admin",
-      "sourceRoot": "projects/admin/src",
-      "prefix": "lab900",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/admin/tsconfig.lib.json",
-            "project": "projects/admin/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/admin/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/admin/src/test.ts",
-            "tsConfig": "projects/admin/tsconfig.spec.json",
-            "karmaConfig": "projects/admin/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/admin/tsconfig.lib.json",
-              "projects/admin/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }
@@ -220,7 +154,7 @@
       "prefix": "lab900",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/forms/tsconfig.lib.json",
             "project": "projects/forms/ng-package.json"
@@ -242,13 +176,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/forms/tsconfig.lib.json",
-              "projects/forms/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["projects/forms/tsconfig.lib.json", "projects/forms/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -265,7 +194,7 @@
       "prefix": "lab900",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/ui/tsconfig.lib.json",
             "project": "projects/ui/ng-package.json"
@@ -287,13 +216,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/ui/tsconfig.lib.json",
-              "projects/ui/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["projects/ui/tsconfig.lib.json", "projects/ui/tsconfig.spec.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

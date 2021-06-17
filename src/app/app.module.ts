@@ -13,6 +13,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MergingTranslateLoader } from './utils/merging-translate-loader';
 import { HttpClient } from '@angular/common/http';
 import { HomepageComponent } from './modules/pages/homepage/homepage.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 export function TranslationLoaderFactory(http: HttpClient): MergingTranslateLoader {
   return new MergingTranslateLoader(http, './assets/i18n/', '.json');
@@ -28,6 +29,7 @@ export function TranslationLoaderFactory(http: HttpClient): MergingTranslateLoad
     AppRoutingModule,
     SharedModule,
     MarkdownModule.forRoot(),
+    NgxMaskModule.forRoot(),
     Lab900FormsModule.forRoot({
       formField: {
         appearance: 'outline',

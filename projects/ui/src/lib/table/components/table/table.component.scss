@@ -5,11 +5,14 @@
     overflow: auto;
     width: 100%;
   }
+
   .bg-green{
     background-color: #c7dad5;
   }
 
-  th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  th.mat-header-cell,
+  td.mat-cell,
+  td.mat-footer-cell {
     text-align: left;
     padding-right: 16px;
     white-space: nowrap;
@@ -46,6 +49,7 @@
   &__empty {
     text-align: center;
   }
+
   ::ng-deep .mat-paginator-container {
     .mat-form-field-appearance-outline .mat-form-field-infix {
       padding: 0.5em 0;
@@ -54,5 +58,9 @@
       margin: 0;
       padding-bottom: 1em;
     }
+  }
+
+  &__mat-tooltip {
+    min-width: fit-content;
   }
 }

@@ -2,20 +2,27 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { Form } from '../../models/Form';
 import { Lab900FormBuilderService } from '../../services/form-builder.service';
-import { FormField } from '../../models/FormField';
+import { FormField, ValueLabel } from '../../models/FormField';
 import { areValuesEqual } from '../../models/IFieldConditions';
 
 @Component({
-  selector: 'lab900-form-container',
+  selector: 'lab900-form[schema]',
   templateUrl: './form-container.component.html',
   styleUrls: ['./form-container.component.scss'],
 })
-export class FormContainerComponent<T> implements OnChanges {
+// tslint:disable-next-line:component-class-suffix
+export class Lab900Form<T> implements OnChanges {
   @Input()
-  public schema: Form;
+  public schema!: Form;
 
   @Input()
-  public data: T;
+  public data?: T;
+
+  @Input()
+  public language?: string;
+
+  @Input()
+  public availableLanguages?: ValueLabel[];
 
   public form: FormGroup;
 
@@ -35,7 +42,7 @@ export class FormContainerComponent<T> implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.schema && this.schema?.fields) {
-      this.form = this.fb.createFormGroup(this.schema.fields, null, this.data);
+      this.form = this.fb.createFormGroup<T>(this.schema.fields, null, this.data);
     }
     if (!changes?.data?.isFirstChange() && this.data) {
       setTimeout(() => this.patchValues(this.data, changes?.data?.previousValue));

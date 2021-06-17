@@ -3,7 +3,7 @@ import { Form, EditType } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-range-slider-example',
-  template: '<lab900-form-container [schema]="formSchema"></lab900-form-container>',
+  template: '<lab900-form [schema]="formSchema"></lab900-form>',
 })
 export class FormFieldRangeSliderExampleComponent {
   public formSchema: Form = {

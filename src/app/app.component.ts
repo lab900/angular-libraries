@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NavItemGroup } from 'projects/ui/src/lib/nav-list/models/nav-item.model';
 import { showcaseFormsNavItems } from './modules/showcase-forms/showcase-forms.nav-items';
 import { showcaseUiNavItems } from './modules/showcase-ui/showcase-ui.nav-items';
-import { showcaseAdminNavItems } from './modules/showcase-admin/showcase-admin.nav-items';
 import { TranslateService } from '@ngx-translate/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -10,7 +9,7 @@ import { repository } from '../../package.json';
 import { MatDrawer, MatDrawerMode } from '@angular/material/sidenav';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { SubscriptionBasedDirective } from '../../projects/forms/src/lib/directives/subscription-based.directive';
 
@@ -23,7 +22,7 @@ export class AppComponent extends SubscriptionBasedDirective implements OnInit, 
   private unsub = new Subject<void>();
   public readonly languages = ['en', 'nl'];
   public readonly gitUrl = repository;
-  public readonly navItemsGroups: NavItemGroup[] = [...showcaseFormsNavItems, ...showcaseUiNavItems, ...showcaseAdminNavItems];
+  public readonly navItemsGroups: NavItemGroup[] = [...showcaseFormsNavItems, ...showcaseUiNavItems];
   public language = 'en';
   public sideNavMode: MatDrawerMode = 'side';
 

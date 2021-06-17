@@ -56,13 +56,13 @@ EditType | Description
 When setting the `readonly` property to `true` the form will render a static view of the data.
 
 
-## 2. Add lab900-form-container
-Add the `<lab900-form-container>` to your component template and bind a schema to it.
+## 2. Add lab900-form
+Add the `<lab900-form>` to your component template and bind a schema to it.
 You can also pass a data object to fill the form inputs.
 ```html
-<lab900-form-container 
+<lab900-form 
   [schema]="myFormSchema" 
   [data]="myFormData">
-</lab900-form-container>
+</lab900-form>
 ```
 

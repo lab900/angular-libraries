@@ -1,20 +1,13 @@
 <div *ngIf="data && currentTab" class="showcase-page row">
-    <lab900-page-header
-        [pageTitle]="data.title"
-        [navItems]="navItems"
-    ></lab900-page-header>
-    <ng-container [ngSwitch]="currentTab">
-        <lab900-markdown-page *ngSwitchCase="'guide'" [filePath]="data?.docFile"></lab900-markdown-page>
-        <ng-container *ngSwitchCase="'examples'">
-            <div *ngFor="let example of data.examples" style="padding: 30px 0 0">
-                <lab900-example-viewer
-                        [extensions]="example.extensions"
-                        [fileDir]="example?.fileFolder"
-                        [exampleTitle]="example.title"
-                >
-                    <ng-container [lab900ComponentLoader]="example.component"></ng-container>
-                </lab900-example-viewer>
-            </div>
-        </ng-container>
+  <lab900-page-header [pageTitle]="data.title" [navItems]="navItems"></lab900-page-header>
+  <ng-container [ngSwitch]="currentTab">
+    <lab900-markdown-page *ngSwitchCase="'guide'" [filePath]="data?.docFile"></lab900-markdown-page>
+    <ng-container *ngSwitchCase="'examples'">
+      <div *ngFor="let example of data.examples" style="padding: 30px 0 0">
+        <lab900-example-viewer [extensions]="example.extensions" [fileDir]="example?.fileFolder" [exampleTitle]="example.title">
+          <ng-container [lab900ComponentLoader]="example.component"></ng-container>
+        </lab900-example-viewer>
+      </div>
     </ng-container>
+  </ng-container>
 </div>

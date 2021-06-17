@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './modules/pages/homepage/homepage.component';
 import { showcaseUiConfig } from './modules/showcase-ui/showcase-ui.constants';
 import { showcaseFormsConfig } from './modules/showcase-forms/showcase-forms.constants';
-import { showcaseAdminConfig } from './modules/showcase-admin/showcase-admin.constants';
 
 const routes: Routes = [
   {
@@ -17,10 +16,6 @@ const routes: Routes = [
   {
     path: showcaseUiConfig?.homeRoute,
     loadChildren: () => import('./modules/showcase-ui/showcase-ui.module').then((m) => m.ShowcaseUiModule),
-  },
-  {
-    path: showcaseAdminConfig?.homeRoute,
-    loadChildren: () => import('./modules/showcase-admin/showcase-admin.module').then((m) => m.ShowcaseAdminModule),
   },
 ];
 

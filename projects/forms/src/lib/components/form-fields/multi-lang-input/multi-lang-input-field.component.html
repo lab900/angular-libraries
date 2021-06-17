@@ -1,0 +1,23 @@
+<div
+  [formGroup]="group"
+  *ngIf="!fieldIsHidden"
+  class="lab900-multi-lang-field"
+  id="lab900-multi-lang-field-{{ schema?.attribute }}"
+  style="padding-bottom: 1.34375em"
+>
+  <lab900-multi-lang-field-control
+    [formControlName]="schema.attribute"
+    [defaultLanguage]="language"
+    [availableLanguages]="availableLanguages"
+    [required]="fieldIsRequired"
+    [readonly]="fieldIsReadonly"
+    [label]="schema.title"
+    [buttonColor]="options?.buttonColor"
+    [translateLabel]="options?.translateLabel"
+    [stopTranslateLabel]="options?.stopTranslateLabel"
+    [useTextAreaField]="options?.useTextAreaField"
+  ></lab900-multi-lang-field-control>
+  <div *ngIf="!valid && fieldControl.touched && !fieldIsReadonly">
+    <mat-error>{{ getErrorMessage() | async }}</mat-error>
+  </div>
+</div>

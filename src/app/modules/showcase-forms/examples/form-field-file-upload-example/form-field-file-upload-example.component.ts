@@ -1,15 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
-import { EditType, Form, FormContainerComponent, Lab900File } from '@lab900/forms';
+import { EditType, Form, Lab900Form, Lab900File } from '@lab900/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'lab900-form-field-file-upload-example',
   template:
-    '<lab900-form-container #formContainer [schema]="formSchema" [data]="formData"></lab900-form-container><button mat-raised-button color="primary" (click)="validate()">Submit</button>',
+    '<lab900-form [schema]="formSchema" [data]="formData"></lab900-form><button mat-raised-button color="primary" (click)="validate()">Submit</button>',
 })
 export class FormFieldFileUploadExampleComponent {
-  @ViewChild('formContainer')
-  public formContainer: FormContainerComponent<any>;
+  @ViewChild(Lab900Form)
+  public formContainer: Lab900Form<any>;
 
   public formSchema: Form = {
     fields: [

@@ -22,6 +22,7 @@ import { FormFieldDateTimePickerExampleComponent } from './examples/form-field-d
 import { FormFieldSelectExampleComponent } from './examples/form-field-select-example/form-field-select-example.component';
 import { FormFieldFileUploadExampleComponent } from './examples/form-field-file-upload-example/form-field-file-upload-example.component';
 import { FormConditionalsExampleComponent } from './examples/form-conditionals-example/form-conditionals-example.component';
+import { FormFieldMultiLanguageExampleComponent } from './examples/form-field-multi-language-example/form-field-multi-language-example.component';
 
 const examples = [
   FormFieldRepeaterExampleComponent,
@@ -41,6 +42,7 @@ const examples = [
   FormFieldDateTimePickerExampleComponent,
   FormFieldSelectExampleComponent,
   FormFieldFileUploadExampleComponent,
+  FormFieldMultiLanguageExampleComponent,
 ];
 
 @NgModule({

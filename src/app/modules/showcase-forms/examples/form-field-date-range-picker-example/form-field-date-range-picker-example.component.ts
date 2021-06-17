@@ -3,7 +3,7 @@ import { Form, EditType } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-date-range-picker-example',
-  template: '<lab900-form-container [schema]="formSchema"></lab900-form-container>',
+  template: '<lab900-form [schema]="formSchema"></lab900-form>',
 })
 export class FormFieldDateRangePickerExampleComponent {
   public formSchema: Form = {

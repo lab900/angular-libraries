@@ -1,5 +1,5 @@
 import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
-import { FieldOptions, FormField } from './FormField';
+import { FieldOptions, FormField, ValueLabel } from './FormField';
 import { AfterViewInit, Directive, Input, OnChanges, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
@@ -17,12 +17,19 @@ export interface IFormComponent<T extends FieldOptions> {
 // tslint:disable-next-line:directive-class-suffix
 export abstract class FormComponent<T extends FieldOptions = FieldOptions>
   extends SubscriptionBasedDirective
-  implements IFormComponent<T>, AfterViewInit, OnDestroy {
+  implements IFormComponent<T>, AfterViewInit, OnDestroy
+{
   @Input()
   public group: FormGroup;
 
   @Input()
   public schema: FormField<T>;
+
+  @Input()
+  public language?: string;
+
+  @Input()
+  public availableLanguages?: ValueLabel[];
 
   @Input()
   public readonly = false; // Global form readonly flag
@@ -88,9 +95,8 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
     const field = group.get(this.schema.attribute);
     let errors: ValidationErrors = field.errors;
     let message = this.translateService.get('forms.error.generic');
-
     if (field instanceof FormGroup && field.controls) {
-      errors = {};
+      errors = field.errors ?? {};
       for (const controlsKey in field.controls) {
         if (field.controls.hasOwnProperty(controlsKey)) {
           errors = { ...errors, ...field.get(controlsKey).errors };

@@ -21,7 +21,7 @@ import { SelectFieldComponent } from '../components/form-fields/select-field/sel
 import { UnknownFieldComponent } from '../components/form-fields/unknown-field/unknown-field.component';
 import { WysiwygFieldComponent } from '../components/form-fields/wysiwyg-field/wysiwyg-field.component';
 import { EditType } from '../models/editType';
-import { FieldOptions, FormField } from '../models/FormField';
+import { FieldOptions, FormField, ValueLabel } from '../models/FormField';
 import { FormComponent, IFormComponent } from '../models/IFormComponent';
 import { FormRowComponent } from '../components/form-row/form-row.component';
 import { RepeaterFieldComponent } from '../components/form-fields/repeater-field/repeater-field.component';
@@ -35,6 +35,7 @@ import { ReadonlyFieldComponent } from '../components/form-fields/readonly-field
 import { DateRangeFieldComponent } from '../components/form-fields/date-range-field/date-range-field.component';
 import { DateTimeFieldComponent } from '../components/form-fields/date-time-field/date-time-field.component';
 import { FilePreviewFieldComponent } from '../components/form-fields/file-preview-field/file-preview-field.component';
+import { MultiLangInputFieldComponent } from '../components/form-fields/multi-lang-input/multi-lang-input-field.component';
 
 const mapToComponent = (field: FormField): Type<FormComponent> => {
   switch (field.editType) {
@@ -75,6 +76,8 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
       return DateRangeFieldComponent;
     case EditType.DateTime:
       return DateTimeFieldComponent;
+    case EditType.MultiLangInput:
+      return MultiLangInputFieldComponent;
     default:
       return UnknownFieldComponent;
   }
@@ -89,6 +92,12 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
 
   @Input()
   public group: FormGroup;
+
+  @Input()
+  public language?: string;
+
+  @Input()
+  public availableLanguages?: ValueLabel[];
 
   @Input()
   public readonly = false;
@@ -137,6 +146,8 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
     this.component.instance.schema = this.schema;
     this.component.instance.group = this.group;
     this.component.instance.readonly = this.readonly;
+    this.component.instance.availableLanguages = this.availableLanguages;
+    this.component.instance.language = this.language;
   }
 
   private validateType(): void {

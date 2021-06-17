@@ -1,0 +1,78 @@
+<div
+  id="lab900-multi-lang-input-{{ this.formControlName }}"
+  class="lab900-multi-lang-input-wrapper"
+  *ngIf="availableLanguages?.length && activeLanguage"
+>
+  <div class="lab900-multi-lang-input">
+    <div>
+      <lab900-language-picker
+        [buttonColor]="buttonColor"
+        [value]="value"
+        [languages]="availableLanguages"
+        [(activeLanguage)]="activeLanguage"
+        [translate]="translate"
+        (translateChange)="toggleTranslate($event)"
+        [translateLabel]="translateLabel"
+        [stopTranslateLabel]="stopTranslateLabel"
+      ></lab900-language-picker>
+    </div>
+    <div *ngIf="!translate">
+      <mat-form-field class="lab900-input-field">
+        <mat-label *ngIf="label">{{ label | translate }}</mat-label>
+        <input
+          *ngIf="!useTextAreaField"
+          matInput
+          type="text"
+          (blur)="blur()"
+          [ngModel]="globalTranslation"
+          (ngModelChange)="updateGlobalTranslation($event)"
+          [required]="required"
+          [readonly]="readonly"
+          [ngClass]="{ readonly: readonly }"
+        />
+        <textarea
+          *ngIf="useTextAreaField"
+          matInput
+          (blur)="blur()"
+          [ngModel]="globalTranslation"
+          (ngModelChange)="updateGlobalTranslation($event)"
+          [required]="required"
+          [readonly]="readonly"
+          [ngClass]="{ readonly: readonly }"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div *ngIf="translate">
+      <ng-container *ngFor="let lang of availableLanguages">
+        <mat-form-field
+          *ngIf="lang.value === activeLanguage.value"
+          class="lab900-input-field"
+          id="lab900-input-field-{{ this.formControlName }}-{{ lang.value }}"
+        >
+          <mat-label *ngIf="label">{{ label | translate }}</mat-label>
+          <input
+            *ngIf="!useTextAreaField"
+            matInput
+            type="text"
+            (blur)="blur()"
+            [ngModel]="value && value[lang.value]"
+            (ngModelChange)="updateSingleLanguage($event, lang.value)"
+            [required]="required"
+            [readonly]="readonly"
+            [ngClass]="{ readonly: readonly }"
+          />
+          <textarea
+            *ngIf="useTextAreaField"
+            matInput
+            (blur)="blur()"
+            [ngModel]="value && value[lang.value]"
+            (ngModelChange)="updateSingleLanguage($event, lang.value)"
+            [required]="required"
+            [readonly]="readonly"
+            [ngClass]="{ readonly: readonly }"
+          ></textarea>
+        </mat-form-field>
+      </ng-container>
+    </div>
+  </div>
+</div>

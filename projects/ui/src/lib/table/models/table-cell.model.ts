@@ -1,4 +1,4 @@
-type propFunction<T, R = string> = (data: T, cell: TableCell) => R;
+import { propValue } from '../../utils/utils';
 
 export interface TableCell<T = any> {
   /**
@@ -8,31 +8,36 @@ export interface TableCell<T = any> {
   /**
    * Column header label
    */
-  label: ((cell: TableCell) => string) | string;
+  label: propValue<TableCell>;
   /**
    * Custom cell class
    */
-  cellClass?: propFunction<T> | string;
+  cellClass?: propValue<[T, TableCell<T>]>;
   /**
    * Custom cell header class
    */
-  cellHeaderClass?: ((cell: TableCell) => string) | string;
+  cellHeaderClass?: propValue<TableCell<T>>;
   /**
    * Cell header icon
    */
-  cellHeaderIcon?: ((cell: TableCell) => string) | string;
+  cellHeaderIcon?: propValue<TableCell<T>>;
   /**
    * Cell header svgicon
    */
-  cellHeaderSvgIcon?: ((cell: TableCell) => string) | string;
+  cellHeaderSvgIcon?: propValue<TableCell<T>>;
   /**
    * Custom formatter to display data inside the cell
    */
-  cellFormatter?: propFunction<T>;
+  cellFormatter?: (data: T, cell: TableCell) => string;
   /**
    * Should show column in the table
    */
   hide?: boolean;
+  /**
+   * Order of the column in the table
+   * Sorted fields will come before non-sorted fields
+   */
+  columnOrder?: number;
   /**
    * Can't hide the column
    */
@@ -52,9 +57,13 @@ export interface TableCell<T = any> {
   /**
    * on click
    */
-  click?: propFunction<T, any>;
+  click?: (data: T, cell: TableCell) => any;
   /**
    * render a different cell template
    */
   customCellContent?: boolean;
+  /**
+   * Enable a tooltip, displays the cell content in a tooltip
+   */
+  cellTooltip?: (data: T, cell: TableCell) => string;
 }

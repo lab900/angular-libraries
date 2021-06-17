@@ -20,6 +20,7 @@ import { Lab900FormsModule } from '@lab900/forms';
 @NgModule({
   imports: [
     ...
+    NgxMaskModule.forRoot(), 
     Lab900FormsModule.forRoot({
       formField: {
         appearance: 'outline', // optional, see below

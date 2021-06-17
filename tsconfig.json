@@ -1,35 +1,35 @@
-/*
-  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
-  It is not intended to be used to perform a compilation.
-
-  To learn more about this file see: https://angular.io/config/solution-tsconfig.
-*/
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/admin/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/admin/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/forms/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/forms/tsconfig.spec.json"
-    },
-    {
-      "path": "./projects/ui/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/ui/tsconfig.spec.json"
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "angular-libraries": [
+        "dist/angular-libraries"
+      ],
+      "@lab900/forms": [
+        "dist/@lab900/forms",
+      ],
+      "@lab900/ui": [
+        "dist/@lab900/ui",
+      ],
     }
-  ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
 }
