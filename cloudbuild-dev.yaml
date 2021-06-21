@@ -2,5 +2,5 @@ steps:
   - name: node:14.16.1-slim
     id: 'npm-deploy'
     entrypoint: 'sh'
-    dir: '/'
+    dir: '/workspace'
     args: [ '-c', './deploy-dev.sh' ]
