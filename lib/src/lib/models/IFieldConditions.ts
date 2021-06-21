@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { FormField } from './FormField';
 import { Observable, Subscription } from 'rxjs';
 import * as _ from 'lodash';
@@ -25,6 +25,7 @@ export interface IFieldConditions<T = any> {
   onChangeFn?: (value: T, currentControl: AbstractControl, currentScheme: FormField) => any;
   conditionalOptions?: (value: T, currentControl: AbstractControl) => any[] | Observable<any[]>;
   skipIfNotExists?: boolean;
+  validators?: (value: T) => ValidatorFn[];
 }
 
 export class FieldConditions<T = any> implements IFieldConditions<T> {
@@ -43,6 +44,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public onChangeFn?: (value: T, currentControl: AbstractControl, currentScheme: FormField) => any;
   public conditionalOptions?: (value: T) => any;
   public skipIfNotExists = false;
+  public validators?: (value: T) => ValidatorFn[];
 
   public readonly dependControl: AbstractControl;
   public prevValue: T;
@@ -90,6 +92,13 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
     if (firstRun || !areValuesEqual(this.prevValue, value)) {
       if (this.onChangeFn && typeof this.onChangeFn === 'function') {
         this.onChangeFn(value, this.fieldControl, this.schema);
+      }
+      if (this.validators) {
+        const newValidators = this.validators(value);
+        this.fieldControl.setValidators(newValidators);
+        this.fieldControl.updateValueAndValidity();
+        this.component.schema.validators = newValidators;
+        this.component.fieldIsRequired = newValidators.includes(Validators.required);
       }
       if (!this.schema.options?.visibleFn) {
         this.runVisibilityConditions(value);

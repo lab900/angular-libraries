@@ -12,6 +12,7 @@ export const formFieldsExample: Form = {
           editType: EditType.Input,
           options: {
             colspan: 6,
+            required: true,
           },
         },
         {

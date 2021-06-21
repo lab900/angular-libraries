@@ -1,6 +1,6 @@
-import { FieldOptions } from '../models/FormField';
+import { FieldOptions, FormField } from '../models/FormField';
 import { FormComponent } from '../models/IFormComponent';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 
 export class FormFieldUtils {
   public static isReadOnly(fieldOptions: FieldOptions, data: any, formComponent?: FormComponent): boolean {
@@ -15,11 +15,17 @@ export class FormFieldUtils {
     return isReadOnly;
   }
 
-  public static isRequired(isReadOnly: boolean, fieldOptions: FieldOptions, data: any): boolean {
-    if (typeof fieldOptions?.required === 'function') {
-      return (!isReadOnly && fieldOptions?.required(data)) ?? false;
+  public static isRequired(isReadOnly: boolean, field: FormField, data: any): boolean {
+    const { options, validators = [] } = field;
+    if (isReadOnly) {
+      return false;
+    }
+    if (validators?.length && validators.includes(Validators.required)) {
+      return true;
+    } else if (typeof options?.required === 'function') {
+      return options.required(data) ?? false;
     } else {
-      return (!isReadOnly && fieldOptions?.required) ?? false;
+      return options?.required ?? false;
     }
   }
 

@@ -87,6 +87,10 @@ export interface RadioButtonsFieldOptions extends FieldOptions {
   radioOptions: ValueLabel[];
 }
 
+export interface CheckboxFieldOptions extends FieldOptions {
+  disabledIndeterminate?: boolean;
+}
+
 export interface DatepickerFieldOptions extends FieldOptions {
   startView?: 'month' | 'year' | 'multi-year';
   maxDate?: Date;
@@ -159,7 +163,8 @@ export interface FormField<
     | DateRangePickerFieldOptions
     | FileFieldOptions
     | FilePreviewFieldOptions
-    | MultiLangInputFieldOptions,
+    | MultiLangInputFieldOptions
+    | CheckboxFieldOptions,
 > {
   attribute?: string;
   editType: EditType;

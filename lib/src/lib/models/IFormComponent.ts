@@ -1,11 +1,10 @@
 import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FieldOptions, FormField, ValueLabel } from './FormField';
-import { AfterViewInit, Directive, Input, OnChanges, OnDestroy } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Directive, Input, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { FieldConditions } from './IFieldConditions';
 import { FormFieldUtils } from '../utils/form-field.utils';
-import { Lab900FormBuilderService } from '../services/form-builder.service';
 import { SubscriptionBasedDirective } from '../directives/subscription-based.directive';
 
 export interface IFormComponent<T extends FieldOptions> {
@@ -17,7 +16,7 @@ export interface IFormComponent<T extends FieldOptions> {
 // tslint:disable-next-line:directive-class-suffix
 export abstract class FormComponent<T extends FieldOptions = FieldOptions>
   extends SubscriptionBasedDirective
-  implements IFormComponent<T>, AfterViewInit, OnDestroy
+  implements IFormComponent<T>, AfterViewInit, OnDestroy, AfterContentInit
 {
   @Input()
   public group: FormGroup;
@@ -34,9 +33,9 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
   @Input()
   public readonly = false; // Global form readonly flag
 
-  public fieldIsReadonly: boolean;
-  public fieldIsHidden: boolean;
-  public fieldIsRequired: boolean;
+  public fieldIsReadonly!: boolean;
+  public fieldIsHidden!: boolean;
+  public fieldIsRequired!: boolean;
 
   public get fieldControl(): AbstractControl {
     return this.group.get(this.schema.attribute);
@@ -70,21 +69,22 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
     super();
   }
 
+  public ngAfterContentInit(): void {
+    if (this.group) {
+      this.setFieldProperties();
+    }
+  }
+
   public ngAfterViewInit(): void {
     if (this.group) {
-      setTimeout(() => {
+      this.addSubscription(this.group.valueChanges, (value) => {
         this.setFieldProperties();
-        this.addSubscription(this.group.valueChanges, () => {
-          setTimeout(() => {
-            this.setFieldProperties();
-          });
-        });
+        if (this.schema?.options?.onChangeFn) {
+          this.schema?.options?.onChangeFn(value);
+        }
       });
       if (this.schema?.conditions?.length) {
         this.createConditions();
-      }
-      if (this.fieldControl && this.schema?.options?.onChangeFn) {
-        this.addSubscription(this.fieldControl.valueChanges, (value) => this.schema?.options?.onChangeFn(value));
       }
     }
   }
@@ -148,18 +148,13 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
   }
 
   private isRequired(): void {
-    this.fieldIsRequired = FormFieldUtils.isRequired(this.fieldIsReadonly, this.options, this.group.value) ?? false;
+    this.fieldIsRequired = FormFieldUtils.isRequired(this.fieldIsReadonly, this.schema, this.group.value) ?? false;
   }
 
   private setFieldProperties(): void {
     this.hide();
     this.isReadonly();
     this.isRequired();
-    this.resetValidators();
-  }
-
-  private resetValidators(): void {
-    this.group.controls[this.schema.attribute]?.setValidators(Lab900FormBuilderService.addValidators(this.schema, this.group.value));
   }
 
   private createConditions(): void {
