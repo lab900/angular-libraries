@@ -50,8 +50,11 @@ $defaultMargin: (
       margin-left: map_get($margin, 'default');
     }
 
-    & + .lab900-form-field .lab900-form-field-label {
-      margin-top: map_get($margin, 'default');
+    .spanFix {
+      .mat-form-field-prefix,
+      .mat-form-field-suffix {
+        position: static !important;
+      }
     }
 
     .mat-form-field-prefix .mat-icon,

@@ -47,6 +47,9 @@ export interface WysiwygFieldOptions extends FieldOptions {
 export interface InputFieldOptions extends FieldOptions {
   type?: 'text' | 'number' | 'email' | 'password' | 'tel' | 'url';
   autofocus?: boolean;
+  suffix?: string;
+  prefix?: string;
+  align?: 'left' | 'right';
 }
 
 export interface MultiLangInputFieldOptions extends InputFieldOptions {

@@ -1,4 +1,10 @@
-<mat-form-field *ngIf="!fieldIsHidden" [formGroup]="group" class="lab900-input-field" id="lab900-input-field-{{ schema?.attribute }}">
+<mat-form-field
+  *ngIf="!fieldIsHidden"
+  [formGroup]="group"
+  class="lab900-input-field {{ options?.align || 'left' }}"
+  [class.spanFix]="options?.suffix || options?.prefix"
+  id="lab900-input-field-{{ schema?.attribute }}"
+>
   <mat-label *ngIf="schema.title">{{ schema.title | translate }}</mat-label>
   <input
     matInput
@@ -21,11 +27,13 @@
     lab900InputAutofocus
     [autofocus]="options?.autofocus"
   />
+  <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'left'" matPrefix class="input-field__icon-left"></lab900-icon>
+  <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'right'" matSuffix></lab900-icon>
+  <span class="lab900-input-field--suffix" *ngIf="options?.suffix" matSuffix>{{ options?.suffix | translate }}</span>
+  <span class="lab900-input-field--prefix" *ngIf="options?.prefix" matPrefix>{{ options?.prefix | translate }}</span>
   <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !fieldIsReadonly">
     <span [innerHTML]="hint | translate: hintValueTranslateData"></span>
   </mat-hint>
   <mat-hint align="end" *ngIf="options?.maxLength && !fieldIsReadonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
   <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
-  <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'left'" matPrefix class="input-field__icon-left"></lab900-icon>
-  <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'right'" matSuffix></lab900-icon>
 </mat-form-field>

@@ -86,6 +86,26 @@ export class FormFieldInputsExampleComponent {
           required: true,
         },
       },
+      {
+        attribute: 'suffixField',
+        title: 'Input with suffix',
+        editType: EditType.Input,
+        options: {
+          type: 'text',
+          suffix: 'mm2',
+        },
+      },
+      {
+        attribute: 'suffixField',
+        title: 'Input with suffix, prefix & right alignment',
+        editType: EditType.Input,
+        options: {
+          type: 'text',
+          prefix: '$',
+          suffix: '.00',
+          align: 'right',
+        },
+      },
     ],
   };
 
