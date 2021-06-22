@@ -1,4 +1,5 @@
 #!/bin/sh
+npm install -g @angular-cli
 cd lib || exit
 npm version prerelease --preid test
 cd ..

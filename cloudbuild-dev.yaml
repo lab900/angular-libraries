@@ -1,5 +1,6 @@
 steps:
-- name: trion/ng-cli
+- name: node:14.16.1-slim
+  entrypoint: 'sh'
   dir: '/workspace'
   args: [ '-c', './deploy-dev.sh $$NPM_TOKEN' ]
   secretEnv: ['NPM_TOKEN']
