@@ -3,4 +3,9 @@ steps:
     id: 'npm-deploy'
     entrypoint: 'sh'
     dir: '/workspace'
-    args: [ '-c', './deploy-dev.sh' ]
+    args: [ '-c', './deploy-dev.sh $$NPM_TOKEN' ]
+    secretEnv: ['NPM_TOKEN']
+  availableSecrets:
+    secretManager:
+      - versionName: projects/18279890124/secrets/npm-access-key/versions/latest
+        env: 'NPM_TOKEN'
