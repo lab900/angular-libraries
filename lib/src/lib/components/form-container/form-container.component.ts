@@ -15,6 +15,12 @@ export class Lab900Form<T> implements OnChanges {
   @Input()
   public schema!: Form;
 
+  /**
+   * You can add a object of other form groups which could be used in the conditional fields
+   */
+  @Input()
+  public externalForms?: Record<string, FormGroup>;
+
   @Input()
   public data?: T;
 

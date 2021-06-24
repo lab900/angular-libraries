@@ -102,6 +102,9 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
   @Input()
   public readonly = false;
 
+  @Input()
+  public externalForms?: Record<string, FormGroup>;
+
   public component: ComponentRef<FormComponent>;
 
   public statusChangeSubscription: Subscription;
@@ -148,6 +151,7 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
     this.component.instance.readonly = this.readonly;
     this.component.instance.availableLanguages = this.availableLanguages;
     this.component.instance.language = this.language;
+    this.component.instance.externalForms = this.externalForms;
   }
 
   private validateType(): void {

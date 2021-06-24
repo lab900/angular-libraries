@@ -49,7 +49,6 @@ export const formConditionalsExample: Form = {
             {
               dependOn: 'country',
               conditionalOptions: (country: string) => {
-                console.log(country);
                 switch (country) {
                   case 'BEL':
                     return [
@@ -77,7 +76,6 @@ export const formConditionalsExample: Form = {
             {
               dependOn: 'language',
               conditionalOptions: (language: string) => {
-                console.log(language);
                 switch (language) {
                   case 'NL':
                     return [{ label: 'Belgian Fries', value: 'fries' }];

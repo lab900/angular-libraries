@@ -26,6 +26,7 @@ import { FormFieldFileUploadExampleComponent } from './examples/form-field-file-
 import { FormConditionalsExampleComponent } from './examples/form-conditionals-example/form-conditionals-example.component';
 import { FormFieldMultiLanguageExampleComponent } from './examples/form-field-multi-language-example/form-field-multi-language-example.component';
 import { FormCondtionalValidationExampleComponent } from './examples/form-condtional-validation-example/form-condtional-validation-example.component';
+import { FormCondtionalWithExternalFormExampleComponent } from './examples/form-condtional-with-external-form-example/form-condtional-with-external-form-example.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,7 @@ const routes: Routes = [
     [
       new ShowcaseExample(FormConditionalsExampleComponent, 'Conditional Form Container'),
       new ShowcaseExample(FormCondtionalValidationExampleComponent, 'Conditional validation'),
+      new ShowcaseExample(FormCondtionalWithExternalFormExampleComponent, 'Conditionals across multiple forms'),
     ],
     'guides/forms/TODO.md',
   ),

@@ -14,6 +14,7 @@ export const areValuesEqual = (val1: any, val2: any): boolean => {
 
 export interface IFieldConditions<T = any> {
   dependOn: string;
+  externalFormId?: string;
   hideIfHasValue?: boolean;
   showIfHasValue?: boolean;
   disableIfHasValue?: boolean;
@@ -33,6 +34,8 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
     return this.group.get(this.schema.attribute);
   }
   public dependOn: string;
+  public externalFormId?: string;
+
   public hideIfHasValue?: boolean;
   public showIfHasValue?: boolean;
   public disableIfHasValue?: boolean;
@@ -51,12 +54,16 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
 
   private readonly group: FormGroup;
   private readonly schema: FormField;
-  public constructor(private readonly component: FormComponent<any>, fieldConditions?: IFieldConditions) {
+  public constructor(
+    private readonly component: FormComponent<any>,
+    private externalForms?: Record<string, FormGroup>,
+    fieldConditions?: IFieldConditions,
+  ) {
     this.group = component.group;
     this.schema = component.schema;
     if (fieldConditions) {
       Object.assign(this, fieldConditions);
-      this.dependControl = this.getDependControl(this.group);
+      this.dependControl = this.getDependControl(this.getDependGroup());
       if (!this.skipIfNotExists && !this.dependControl) {
         throw new Error(`Can't create conditional form field: no control with name ${this.dependOn} found`);
       }
@@ -69,6 +76,18 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
 
   private static hasValue(value: any): boolean {
     return value !== null && typeof value !== 'undefined';
+  }
+
+  public getDependGroup(): FormGroup {
+    if (this.externalFormId) {
+      this.skipIfNotExists = true;
+      if (this.externalForms?.[this.externalFormId]) {
+        return this.externalForms[this.externalFormId];
+      } else {
+        throw new Error(`Can't create conditional form field: no externForm with id ${this.externalFormId} found`);
+      }
+    }
+    return this.group;
   }
 
   public getDependControl(group: FormGroup): AbstractControl {

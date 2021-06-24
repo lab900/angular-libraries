@@ -28,6 +28,9 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
   public language?: string;
 
   @Input()
+  public externalForms?: Record<string, FormGroup>;
+
+  @Input()
   public availableLanguages?: ValueLabel[];
 
   @Input()
