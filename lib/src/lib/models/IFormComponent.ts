@@ -163,7 +163,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
   private createConditions(): void {
     this.schema.conditions
       .filter((c) => c.dependOn)
-      .map((c) => new FieldConditions(this, c))
+      .map((c) => new FieldConditions(this, this.externalForms, c))
       .forEach((conditions: FieldConditions) => {
         const sub = conditions.start((dependOn: string, value: any, firstRun: boolean) => {
           if (this.onConditionalChange) {
