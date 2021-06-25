@@ -9,7 +9,7 @@
   <input
     matInput
     #input
-    [type]="inputType"
+    [type]="options?.type || 'text'"
     placeholder="{{ placeholder | translate }}"
     [formControlName]="schema.attribute"
     [required]="fieldIsRequired"

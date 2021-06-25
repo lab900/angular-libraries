@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EditType, Form } from '@lab900/forms';
+import { EditType, Lab900FormConfig } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-conditional-with-external-form-example',
@@ -11,7 +11,7 @@ import { EditType, Form } from '@lab900/forms';
   `,
 })
 export class FormCondtionalWithExternalFormExampleComponent {
-  public schema: Form = {
+  public schema: Lab900FormConfig = {
     fields: [
       {
         attribute: 'type',
@@ -27,7 +27,7 @@ export class FormCondtionalWithExternalFormExampleComponent {
       },
     ],
   };
-  public schema2: Form = {
+  public schema2: Lab900FormConfig = {
     fields: [
       {
         attribute: 'name',

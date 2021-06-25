@@ -1,5 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
-import { FormComponent } from '../../../models/IFormComponent';
+import { FormComponent } from '../../AbstractFormComponent';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

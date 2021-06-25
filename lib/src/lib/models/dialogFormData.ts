@@ -1,8 +1,7 @@
-import { Form } from './Form';
-import { FormGroup } from '@angular/forms';
+import { Lab900FormConfig } from './Lab900FormConfig';
 
 export interface DialogFormData<T> {
-  schema: Form;
+  schema: Lab900FormConfig;
   data: T;
   submit: (data: T, originalData: T) => Promise<boolean>;
 }

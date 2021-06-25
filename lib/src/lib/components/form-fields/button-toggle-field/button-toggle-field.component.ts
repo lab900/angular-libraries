@@ -1,13 +1,13 @@
 import { Component, HostBinding } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { FormComponent } from '../../../models/IFormComponent';
-import { ButtonToggleFieldOptions } from '../../../models/FormField';
+import { FormComponent } from '../../AbstractFormComponent';
+import { FormFieldButtonToggle } from './button-toggle-field.model';
 
 @Component({
   selector: 'lab900-button-toggle-field',
   templateUrl: './button-toggle-field.component.html',
 })
-export class ButtonToggleFieldComponent extends FormComponent<ButtonToggleFieldOptions> {
+export class ButtonToggleFieldComponent extends FormComponent<FormFieldButtonToggle> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 

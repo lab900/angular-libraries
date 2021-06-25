@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Form, EditType, Lab900Form } from '@lab900/forms';
+import { Lab900FormConfig, EditType, Lab900Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-inputs-example',
@@ -10,7 +10,7 @@ export class FormFieldInputsExampleComponent {
   @ViewChild(Lab900Form)
   public formContainer: Lab900Form<any>;
 
-  public formSchema: Form = {
+  public formSchema: Lab900FormConfig = {
     fields: [
       {
         attribute: 'uniqueNumber',

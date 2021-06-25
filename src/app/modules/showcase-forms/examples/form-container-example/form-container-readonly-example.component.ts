@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Form, Lab900Form } from '@lab900/forms';
+import { Lab900FormConfig, Lab900Form } from '@lab900/forms';
 import { formFieldsExample } from './config/form-fields-example';
 import { formDataExample } from './config/form-data-example';
 
@@ -11,7 +11,7 @@ import { formDataExample } from './config/form-data-example';
   `,
 })
 export class FormContainerReadonlyExampleComponent {
-  public formFields: Form = { ...formFieldsExample, readonly: true };
+  public formFields: Lab900FormConfig = { ...formFieldsExample, readonly: true };
   public formData = formDataExample;
 
   @ViewChild('lab900FormContainer')

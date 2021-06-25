@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ValueLabel } from '../../models/FormField';
 import { ThemePalette } from '@angular/material/core';
+import { ValueLabel } from '../../models/form-field-base';
 
 @Component({
   selector: 'lab900-language-picker',

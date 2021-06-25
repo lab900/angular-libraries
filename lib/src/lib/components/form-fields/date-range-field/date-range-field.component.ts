@@ -1,14 +1,14 @@
 import { Component, HostBinding } from '@angular/core';
-import { FormComponent } from '../../../models/IFormComponent';
+import { FormComponent } from '../../AbstractFormComponent';
 import { TranslateService } from '@ngx-translate/core';
-import { DateRangePickerFieldOptions } from '../../../models/FormField';
 import { FormGroup } from '@angular/forms';
+import { FormFieldDateRange } from './date-range-field.model';
 
 @Component({
   selector: 'lab900-date-field',
   templateUrl: './date-range-field.component.html',
 })
-export class DateRangeFieldComponent extends FormComponent<DateRangePickerFieldOptions> {
+export class DateRangeFieldComponent extends FormComponent<FormFieldDateRange> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 

@@ -1,28 +1,24 @@
 import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
-import { FieldOptions, FormField, ValueLabel } from './FormField';
 import { AfterContentInit, AfterViewInit, Directive, Input, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
-import { FieldConditions } from './IFieldConditions';
+import { FieldConditions } from '../models/IFieldConditions';
 import { FormFieldUtils } from '../utils/form-field.utils';
 import { SubscriptionBasedDirective } from '../directives/subscription-based.directive';
-
-export interface IFormComponent<T extends FieldOptions> {
-  schema: FormField<T>;
-  group: FormGroup;
-}
+import { Lab900FormField } from '../models/lab900-form-field.type';
+import { ValueLabel } from '../models/form-field-base';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class FormComponent<T extends FieldOptions = FieldOptions>
+export abstract class FormComponent<S extends Lab900FormField = Lab900FormField>
   extends SubscriptionBasedDirective
-  implements IFormComponent<T>, AfterViewInit, OnDestroy, AfterContentInit
+  implements AfterViewInit, OnDestroy, AfterContentInit
 {
   @Input()
   public group: FormGroup;
 
   @Input()
-  public schema: FormField<T>;
+  public schema: S;
 
   @Input()
   public language?: string;
@@ -41,19 +37,19 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
   public fieldIsRequired!: boolean;
 
   public get fieldControl(): AbstractControl {
-    return this.group.get(this.schema.attribute);
+    return this.group.get(String(this.schema.attribute));
   }
 
   public get valid(): boolean {
     return this.fieldControl?.valid;
   }
 
-  public get touched(): boolean {
-    return this.fieldControl?.touched;
+  public get options(): S['options'] {
+    return this.schema?.options;
   }
 
-  public get options(): T {
-    return this.schema?.options;
+  public get touched(): boolean {
+    return this.fieldControl?.touched;
   }
 
   public get hint(): string {
@@ -95,7 +91,7 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
   public onConditionalChange(dependOn: string, value: any, firstRun?: boolean): void {}
 
   public getErrorMessage(group: FormGroup = this.group): Observable<string> {
-    const field = group.get(this.schema.attribute);
+    const field = group.get(String(this.schema.attribute));
     let errors: ValidationErrors = field.errors;
     let message = this.translateService.get('forms.error.generic');
     if (field instanceof FormGroup && field.controls) {
@@ -143,11 +139,11 @@ export abstract class FormComponent<T extends FieldOptions = FieldOptions>
   }
 
   public hide(): void {
-    this.fieldIsHidden = FormFieldUtils.isHidden(this.options, this.group);
+    this.fieldIsHidden = FormFieldUtils.isHidden(this.schema?.options, this.group);
   }
 
   private isReadonly(): void {
-    this.fieldIsReadonly = FormFieldUtils.isReadOnly(this.options, this.group.value, this);
+    this.fieldIsReadonly = FormFieldUtils.isReadOnly(this.schema?.options, this.group.value, this.readonly);
   }
 
   private isRequired(): void {

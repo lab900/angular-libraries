@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { EditType, Form, Lab900Form } from '@lab900/forms';
+import { EditType, Lab900FormConfig, Lab900Form } from '@lab900/forms';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 function validateResources(): ValidatorFn {
@@ -26,7 +26,7 @@ export class FormFieldRepeaterExampleComponent {
   @ViewChild(Lab900Form)
   public form: Lab900Form<any>;
 
-  public formSchema: Form = {
+  public formSchema: Lab900FormConfig = {
     fields: [
       {
         attribute: 'repeater',

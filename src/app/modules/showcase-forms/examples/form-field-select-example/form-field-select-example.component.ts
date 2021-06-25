@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { EditType, Form } from '@lab900/forms';
+import { EditType, Lab900FormConfig } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-select-example',
   template: '<lab900-form [schema]="formSchema"></lab900-form>',
 })
 export class FormFieldSelectExampleComponent {
-  public formSchema: Form = {
+  public formSchema: Lab900FormConfig = {
     fields: [
       {
         attribute: '',

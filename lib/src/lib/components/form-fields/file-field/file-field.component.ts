@@ -1,7 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
-import { FormComponent } from '../../../models/IFormComponent';
+import { FormComponent } from '../../AbstractFormComponent';
 import { TranslateService } from '@ngx-translate/core';
-import { FileFieldOptions } from '../../../models/FormField';
+import { FormFieldFile } from './file-field.model';
 
 /**
  * @deprecated in favor of FilePreviewFieldComponent
@@ -11,7 +11,7 @@ import { FileFieldOptions } from '../../../models/FormField';
   templateUrl: './file-field.component.html',
   styleUrls: ['./file-field.component.scss'],
 })
-export class FileFieldComponent extends FormComponent<FileFieldOptions> {
+export class FileFieldComponent extends FormComponent<FormFieldFile> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
   constructor(translateService: TranslateService) {

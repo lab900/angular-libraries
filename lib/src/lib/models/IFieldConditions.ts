@@ -1,9 +1,9 @@
 import { AbstractControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { FormField } from './FormField';
 import { Observable, Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { FormComponent } from './IFormComponent';
+import { FormComponent } from '../components/AbstractFormComponent';
+import { Lab900FormField } from './lab900-form-field.type';
 
 export const areValuesEqual = (val1: any, val2: any): boolean => {
   if (typeof val1 === 'object' && typeof val2 === 'object') {
@@ -23,7 +23,7 @@ export interface IFieldConditions<T = any> {
   showIfEquals?: ((value: T) => boolean) | T;
   disableIfEquals?: ((value: T) => boolean) | T;
   enabledIfEquals?: ((value: T) => boolean) | T;
-  onChangeFn?: (value: T, currentControl: AbstractControl, currentScheme: FormField) => any;
+  onChangeFn?: (value: T, currentControl: AbstractControl, currentScheme: Lab900FormField) => any;
   conditionalOptions?: (value: T, currentControl: AbstractControl) => any[] | Observable<any[]>;
   skipIfNotExists?: boolean;
   validators?: (value: T) => ValidatorFn[];
@@ -44,7 +44,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public showIfEquals?: ((value: T) => boolean) | T;
   public disableIfEquals?: ((value: T) => boolean) | T;
   public enabledIfEquals?: ((value: T) => boolean) | T;
-  public onChangeFn?: (value: T, currentControl: AbstractControl, currentScheme: FormField) => any;
+  public onChangeFn?: (value: T, currentControl: AbstractControl, currentScheme: Lab900FormField) => any;
   public conditionalOptions?: (value: T) => any;
   public skipIfNotExists = false;
   public validators?: (value: T) => ValidatorFn[];
@@ -53,7 +53,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public prevValue: T;
 
   private readonly group: FormGroup;
-  private readonly schema: FormField;
+  private readonly schema: Lab900FormField;
   public constructor(
     private readonly component: FormComponent<any>,
     private externalForms?: Record<string, FormGroup>,

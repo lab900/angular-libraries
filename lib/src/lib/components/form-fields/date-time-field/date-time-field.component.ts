@@ -1,13 +1,13 @@
 import { Component, HostBinding } from '@angular/core';
-import { FormComponent } from '../../../models/IFormComponent';
+import { FormComponent } from '../../AbstractFormComponent';
 import { TranslateService } from '@ngx-translate/core';
-import { DatepickerFieldOptions } from '../../../models/FormField';
+import { FormFieldDateTimePicker } from './date-time-field.model';
 
 @Component({
   selector: 'lab900-date-time-field',
   templateUrl: './date-time-field.component.html',
 })
-export class DateTimeFieldComponent extends FormComponent<DatepickerFieldOptions> {
+export class DateTimeFieldComponent extends FormComponent<FormFieldDateTimePicker> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 

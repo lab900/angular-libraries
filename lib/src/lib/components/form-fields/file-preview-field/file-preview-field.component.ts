@@ -1,21 +1,20 @@
 import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { FormComponent } from '../../../models/IFormComponent';
-import { FilePreviewFieldOptions } from '../../../models/FormField';
+import { FormComponent } from '../../AbstractFormComponent';
 import { FormDialogDirective } from '../../../directives/form-dialog.directive';
 import { Lab900File } from '../../../models/Lab900File';
 import { FormDialogComponent } from '../../form-dialog/form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ImagePreviewModalComponent } from '../../image-preview-modal/image-preview-modal.component';
-import { map } from 'rxjs/operators';
 import { fetchImageBase64 } from '../../../utils/image.utils';
+import { FormFieldFilePreview } from './file-preview-field.model';
 
 @Component({
   selector: 'lab900-file-preview-field',
   templateUrl: './file-preview-field.component.html',
   styleUrls: ['./file-preview-field.component.scss'],
 })
-export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewFieldOptions> {
+export class FilePreviewFieldComponent<T> extends FormComponent<FormFieldFilePreview> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
@@ -144,11 +143,11 @@ export class FilePreviewFieldComponent<T> extends FormComponent<FilePreviewField
     }
   }
 
-  public showOverlay(file: Lab900File, options: FilePreviewFieldOptions): boolean {
-    if (typeof options?.showOverlay === 'function') {
-      return options?.showOverlay(file);
+  public showOverlay(file: Lab900File): boolean {
+    if (typeof this.options?.showOverlay === 'function') {
+      return this.options?.showOverlay(file);
     } else {
-      return options?.showOverlay ?? false;
+      return this.options?.showOverlay ?? false;
     }
   }
 

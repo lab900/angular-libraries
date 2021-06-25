@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Form, EditType } from '@lab900/forms';
+import { Lab900FormConfig, EditType } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-radio-buttons-example',
   template: '<lab900-form [schema]="formSchema"></lab900-form>',
 })
 export class FormFieldRadioButtonsExampleComponent {
-  public formSchema: Form = {
+  public formSchema: Lab900FormConfig = {
     fields: [
       {
         attribute: 'somePropName',

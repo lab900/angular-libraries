@@ -1,8 +1,8 @@
 import { Component, HostBinding } from '@angular/core';
-import { FormComponent } from '../../../models/IFormComponent';
+import { FormComponent } from '../../AbstractFormComponent';
 import { TranslateService } from '@ngx-translate/core';
 import { matFormFieldAnimations } from '@angular/material/form-field';
-import { CheckboxFieldOptions } from '../../../models/FormField';
+import { CheckboxFieldModel } from './checkbox-field.model';
 
 @Component({
   selector: 'lab900-checkbox-field',
@@ -10,7 +10,7 @@ import { CheckboxFieldOptions } from '../../../models/FormField';
   styleUrls: ['./checkbox-field.component.css'],
   animations: [matFormFieldAnimations.transitionMessages],
 })
-export class CheckboxFieldComponent extends FormComponent<CheckboxFieldOptions> {
+export class CheckboxFieldComponent extends FormComponent<CheckboxFieldModel> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 

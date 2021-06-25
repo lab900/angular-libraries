@@ -10,7 +10,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { Lab900Form } from './components/form-container/form-container.component';
 import { FileFieldComponent } from './components/form-fields/file-field/file-field.component';
 import { InputFieldComponent } from './components/form-fields/input-field/input-field.component';
-import { MatFileFieldComponent } from './components/form-fields/mat-file-field/mat-file-field.component';
+import { MatFileFieldComponent } from './components/form-fields/file-field/mat-file-field/mat-file-field.component';
 import { UnknownFieldComponent } from './components/form-fields/unknown-field/unknown-field.component';
 import { FormFieldDirective } from './directives/form-field.directive';
 import { FormDialogComponent } from './components/form-dialog/form-dialog.component';

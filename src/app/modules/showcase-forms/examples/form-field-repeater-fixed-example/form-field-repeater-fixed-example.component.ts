@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Form, EditType, Lab900Form } from '@lab900/forms';
+import { Lab900FormConfig, EditType, Lab900Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-repeater-fixed-example',
@@ -13,7 +13,7 @@ export class FormFieldRepeaterFixedExampleComponent {
     repeater: [{ value: 'hello' }],
   };
 
-  public formSchema: Form = {
+  public formSchema: Lab900FormConfig = {
     fields: [
       {
         attribute: 'repeater',

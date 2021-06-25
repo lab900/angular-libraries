@@ -1,6 +1,6 @@
-import { Form, EditType } from '@lab900/forms';
+import { Lab900FormConfig, EditType } from '@lab900/forms';
 
-export const formFieldsExample: Form = {
+export const formFieldsExample: Lab900FormConfig = {
   fields: [
     {
       attribute: 'fullName',

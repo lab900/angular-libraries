@@ -1,14 +1,14 @@
 import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { DateRangePickerFieldOptions, FormField, RepeaterFieldOptions } from '../models/FormField';
 import { EditType } from '../models/editType';
 import { Injectable } from '@angular/core';
 import { FormFieldUtils } from '../utils/form-field.utils';
+import { Lab900FormField } from '../models/lab900-form-field.type';
 
 @Injectable()
 export class Lab900FormBuilderService {
   public constructor(private fb: FormBuilder) {}
 
-  public static addValidators(field: FormField, data: any): ValidatorFn[] {
+  public static addValidators(field: Lab900FormField, data: any): ValidatorFn[] {
     const validators: ValidatorFn[] = field?.validators ?? [];
     if (
       !validators.includes(Validators.required) &&
@@ -34,7 +34,7 @@ export class Lab900FormBuilderService {
     return validators;
   }
 
-  public createFormGroup<T = any>(fields: FormField[], group?: FormGroup, data?: T): FormGroup {
+  public createFormGroup<T = any>(fields: Lab900FormField[], group?: FormGroup, data?: T): FormGroup {
     let formGroup = group ? group : this.fb.group({});
     fields.forEach((field) => {
       if (field.editType === EditType.Row && field.nestedFields) {
@@ -51,7 +51,7 @@ export class Lab900FormBuilderService {
         }
       } else if (field.editType === EditType.Repeater) {
         const repeaterArray = this.createFormArray(data, field);
-        const repeaterOptions = field.options as RepeaterFieldOptions;
+        const repeaterOptions = field.options;
         if (data?.[field.attribute]) {
           const dataRows = data[field.attribute].length;
           if (repeaterOptions?.minRows && dataRows < repeaterOptions.minRows) {
@@ -66,7 +66,7 @@ export class Lab900FormBuilderService {
           formGroup.markAsDirty();
         }
       } else if (field.editType === EditType.DateRange) {
-        const options: DateRangePickerFieldOptions = field?.options;
+        const options = field?.options;
         formGroup.addControl(
           field.attribute,
           this.fb.group({
@@ -94,7 +94,7 @@ export class Lab900FormBuilderService {
     return formGroup;
   }
 
-  public createFormArray<T = any>(data: T, schema: FormField, formArray: FormArray = this.fb.array([])): FormArray {
+  public createFormArray<T = any>(data: T, schema: Lab900FormField, formArray: FormArray = this.fb.array([])): FormArray {
     if (data && data[schema.attribute] && data[schema.attribute].length) {
       formArray.clear();
       data[schema.attribute].forEach((nestedData) => {

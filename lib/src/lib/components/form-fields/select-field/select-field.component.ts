@@ -1,16 +1,17 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { FormComponent } from '../../../models/IFormComponent';
-import { SelectFieldOptions, ValueLabel } from '../../../models/FormField';
+import { FormComponent } from '../../AbstractFormComponent';
 import { TranslateService } from '@ngx-translate/core';
 import { isObservable, Observable, of, Subject } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { IFieldConditions } from '../../../models/IFieldConditions';
+import { FormFieldSelect } from './field-select.model';
+import { ValueLabel } from '../../../models/form-field-base';
 
 @Component({
   selector: 'lab900-select-field',
   templateUrl: './select-field.component.html',
 })
-export class SelectFieldComponent extends FormComponent<SelectFieldOptions> implements OnInit {
+export class SelectFieldComponent extends FormComponent<FormFieldSelect> implements OnInit {
   private conditionalChange = new Subject();
 
   @HostBinding('class')

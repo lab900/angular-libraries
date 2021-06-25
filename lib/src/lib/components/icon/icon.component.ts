@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Icon } from '../../models/FormField';
+import { Icon } from '../../models/form-field-base';
 
 @Component({
   selector: 'lab900-icon',

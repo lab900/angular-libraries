@@ -1,6 +1,6 @@
 import { Directive, HostListener, Input } from '@angular/core';
 import { FormDialogComponent } from '../components/form-dialog/form-dialog.component';
-import { Form } from '../models/Form';
+import { Lab900FormConfig } from '../models/Lab900FormConfig';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SubscriptionBasedDirective } from './subscription-based.directive';
 
@@ -9,7 +9,7 @@ import { SubscriptionBasedDirective } from './subscription-based.directive';
 })
 export class FormDialogDirective<T> extends SubscriptionBasedDirective {
   @Input()
-  public schema: Form;
+  public schema: Lab900FormConfig;
 
   @Input()
   public data: T;

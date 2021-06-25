@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Form, Lab900Form } from '@lab900/forms';
+import { Lab900FormConfig, Lab900Form } from '@lab900/forms';
 import { formConditionalsExample } from './config/form-conditionals-example';
 import { formConditionalsData } from './config/form-conditionals-data';
 
@@ -11,7 +11,7 @@ import { formConditionalsData } from './config/form-conditionals-data';
   `,
 })
 export class FormConditionalsExampleComponent {
-  public formFields: Form = formConditionalsExample;
+  public formFields: Lab900FormConfig = formConditionalsExample;
   public formData = formConditionalsData;
 
   @ViewChild('lab900FormContainer')

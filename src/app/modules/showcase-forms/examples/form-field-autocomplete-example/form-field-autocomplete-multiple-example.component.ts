@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Form, EditType, ValueLabel } from '@lab900/forms';
+import { Lab900FormConfig, EditType, ValueLabel } from '@lab900/forms';
 import { of } from 'rxjs';
 
 @Component({
@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 export class FormFieldAutocompleteMultipleExampleComponent {
   public options: ValueLabel[] = [{ name: 'Mary' }, { name: 'Shelley' }, { name: 'Igor' }].map((value) => ({ value, label: value.name }));
 
-  public formSchema: Form = {
+  public formSchema: Lab900FormConfig = {
     fields: [
       {
         attribute: 'textInput',

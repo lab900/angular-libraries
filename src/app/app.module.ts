@@ -31,7 +31,7 @@ export function TranslationLoaderFactory(http: HttpClient): MergingTranslateLoad
     NgxMaskModule.forRoot(),
     Lab900FormsModule.forRoot({
       formField: {
-        appearance: 'outline',
+        appearance: 'fill',
       },
     }),
     TranslateModule.forRoot({

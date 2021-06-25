@@ -1,17 +1,18 @@
 import { AfterViewInit, Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
-import { FormComponent } from '../../../models/IFormComponent';
-import { AutocompleteOptions, ValueLabel } from '../../../models/FormField';
+import { FormComponent } from '../../AbstractFormComponent';
 import { BehaviorSubject, isObservable, Observable, of } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { TranslateService } from '@ngx-translate/core';
 import { debounceTime, switchMap } from 'rxjs/operators';
+import { ValueLabel } from '../../../models/form-field-base';
+import { FormFieldAutocompleteMulti } from './autocomplete-multiple-field.model';
 
 @Component({
   selector: 'lab900-autocomplete-multiple-field',
   templateUrl: './autocomplete-multiple-field.component.html',
 })
-export class AutocompleteMultipleFieldComponent extends FormComponent<AutocompleteOptions> implements AfterViewInit {
+export class AutocompleteMultipleFieldComponent extends FormComponent<FormFieldAutocompleteMulti> implements AfterViewInit {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 

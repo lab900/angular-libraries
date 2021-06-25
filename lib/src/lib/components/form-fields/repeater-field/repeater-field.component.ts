@@ -1,10 +1,10 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { FormComponent } from '../../../models/IFormComponent';
+import { FormComponent } from '../../AbstractFormComponent';
 import { FormArray } from '@angular/forms';
-import { RepeaterFieldOptions } from '../../../models/FormField';
 import { Lab900FormBuilderService } from '../../../services/form-builder.service';
 import { TranslateService } from '@ngx-translate/core';
 import { matFormFieldAnimations } from '@angular/material/form-field';
+import { FormFieldRepeater } from './repeater-field.model';
 
 @Component({
   selector: 'lab900-repeater-field',
@@ -12,24 +12,24 @@ import { matFormFieldAnimations } from '@angular/material/form-field';
   styleUrls: ['./repeater-field.component.scss'],
   animations: [matFormFieldAnimations.transitionMessages],
 })
-export class RepeaterFieldComponent extends FormComponent<RepeaterFieldOptions> implements OnInit {
+export class RepeaterFieldComponent extends FormComponent<FormFieldRepeater> implements OnInit {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
   public get addLabel(): string {
-    return (this.options && this.options.addLabel) || 'Add new';
+    return this.options?.addLabel ?? 'Add new';
   }
 
   public get minRows(): number {
-    return (this.options && this.options.minRows) || 1;
+    return this.options?.minRows ?? 1;
   }
 
   public get maxRows(): number {
-    return this.options && this.options.maxRows;
+    return this.options?.maxRows;
   }
 
   public get fixedList(): boolean {
-    return this.options && this.options.fixedList;
+    return this.options?.fixedList;
   }
 
   public get repeaterArray(): FormArray {

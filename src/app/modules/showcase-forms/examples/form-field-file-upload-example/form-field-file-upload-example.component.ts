@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { EditType, Form, Lab900Form, Lab900File } from '@lab900/forms';
+import { EditType, Lab900FormConfig, Lab900Form, Lab900File } from '@lab900/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -11,7 +11,7 @@ export class FormFieldFileUploadExampleComponent {
   @ViewChild(Lab900Form)
   public formContainer: Lab900Form<any>;
 
-  public formSchema: Form = {
+  public formSchema: Lab900FormConfig = {
     fields: [
       {
         attribute: 'files',

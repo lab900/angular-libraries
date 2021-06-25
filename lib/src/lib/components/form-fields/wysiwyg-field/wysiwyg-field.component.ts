@@ -1,9 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { matFormFieldAnimations } from '@angular/material/form-field';
-import { FormComponent } from '../../../models/IFormComponent';
+import { FormComponent } from '../../AbstractFormComponent';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
-import { WysiwygFieldOptions } from '../../../models/FormField';
 import { TranslateService } from '@ngx-translate/core';
+import { WysiwgFieldModel } from './wysiwg-field.model';
 
 @Component({
   selector: 'lab900-wysiwyg-field',
@@ -15,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./wysiwyg-field.component.scss'],
   animations: [matFormFieldAnimations.transitionMessages],
 })
-export class WysiwygFieldComponent extends FormComponent<WysiwygFieldOptions> implements OnInit {
+export class WysiwygFieldComponent extends FormComponent<WysiwgFieldModel> implements OnInit {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
@@ -29,48 +29,7 @@ export class WysiwygFieldComponent extends FormComponent<WysiwygFieldOptions> im
     this.editorConfig = {
       editable: true,
       sanitize: false,
-
-      /*      editable: true,
-            spellcheck: true,
-            height: 'auto',
-            minHeight: '0',
-            maxHeight: 'auto',
-            width: 'auto',
-            minWidth: '0',
-            translate: 'yes',
-            enableToolbar: true,
-            showToolbar: true,
-            placeholder: 'Enter text here...',
-            defaultParagraphSeparator: '',
-            defaultFontName: '',
-            defaultFontSize: '',
-            fonts: [
-              { class: 'arial', name: 'Arial' },
-              { class: 'times-new-roman', name: 'Times New Roman' },
-              { class: 'calibri', name: 'Calibri' },
-              { class: 'comic-sans-ms', name: 'Comic Sans MS' },
-            ],
-            customClasses: [
-              {
-                name: 'quote',
-                class: 'quote',
-              },
-              {
-                name: 'redText',
-                class: 'redText',
-              },
-              {
-                name: 'titleText',
-                class: 'titleText',
-                tag: 'h1',
-              },
-            ],
-            uploadUrl: 'v1/image',
-            uploadWithCredentials: false,
-            sanitize: true,
-            toolbarPosition: 'top',
-            toolbarHiddenButtons: [['bold', 'italic'], ['fontSize']],*/
-      ...(this.schema?.options as WysiwygFieldOptions)?.editorConfig,
+      ...(this.schema?.options?.editorConfig ?? {}),
     };
   }
 }

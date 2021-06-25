@@ -1,6 +1,6 @@
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
 import { CanUpdateErrorStateCtor, ErrorStateMatcher, mixinErrorState } from '@angular/material/core';
-import { SubscriptionBasedDirective } from '../../../directives/subscription-based.directive';
+import { SubscriptionBasedDirective } from '../../../../directives/subscription-based.directive';
 
 // Boilerplate for applying mixins to FileInput
 export class FileInputBase extends SubscriptionBasedDirective {

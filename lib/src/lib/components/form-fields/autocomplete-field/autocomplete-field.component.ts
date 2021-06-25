@@ -1,15 +1,16 @@
 import { AfterViewInit, Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
-import { FormComponent } from '../../../models/IFormComponent';
-import { AutocompleteOptions, ValueLabel } from '../../../models/FormField';
+import { FormComponent } from '../../AbstractFormComponent';
 import { BehaviorSubject, isObservable, Observable, of } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { debounceTime, switchMap } from 'rxjs/operators';
+import { ValueLabel } from '../../../models/form-field-base';
+import { FormFieldAutocomplete } from './autocomplete-field.model';
 
 @Component({
   selector: 'lab900-autocomplete-field',
   templateUrl: './autocomplete-field.component.html',
 })
-export class AutocompleteFieldComponent extends FormComponent<AutocompleteOptions> implements AfterViewInit {
+export class AutocompleteFieldComponent extends FormComponent<FormFieldAutocomplete> implements AfterViewInit {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 

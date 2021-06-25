@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { EditType, Form, Lab900Form } from '@lab900/forms';
+import { EditType, Lab900FormConfig, Lab900Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-button-toggle-example',
@@ -9,7 +9,7 @@ export class FormFieldButtonToggleExampleComponent {
   @ViewChild(Lab900Form)
   public form: Lab900Form<any>;
 
-  public formSchema: Form = {
+  public formSchema: Lab900FormConfig = {
     fields: [
       {
         attribute: 'buttonGroupAttribute',

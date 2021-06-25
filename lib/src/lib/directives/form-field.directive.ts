@@ -21,8 +21,6 @@ import { SelectFieldComponent } from '../components/form-fields/select-field/sel
 import { UnknownFieldComponent } from '../components/form-fields/unknown-field/unknown-field.component';
 import { WysiwygFieldComponent } from '../components/form-fields/wysiwyg-field/wysiwyg-field.component';
 import { EditType } from '../models/editType';
-import { FieldOptions, FormField, ValueLabel } from '../models/FormField';
-import { FormComponent, IFormComponent } from '../models/IFormComponent';
 import { FormRowComponent } from '../components/form-row/form-row.component';
 import { RepeaterFieldComponent } from '../components/form-fields/repeater-field/repeater-field.component';
 import { RadioButtonsFieldComponent } from '../components/form-fields/radio-buttons-field/radio-buttons-field.component';
@@ -36,11 +34,13 @@ import { DateRangeFieldComponent } from '../components/form-fields/date-range-fi
 import { DateTimeFieldComponent } from '../components/form-fields/date-time-field/date-time-field.component';
 import { FilePreviewFieldComponent } from '../components/form-fields/file-preview-field/file-preview-field.component';
 import { MultiLangInputFieldComponent } from '../components/form-fields/multi-lang-input/multi-lang-input-field.component';
+import { Lab900FormField } from '../models/lab900-form-field.type';
+import { FormComponent } from '../components/AbstractFormComponent';
+import { ValueLabel } from '../models/form-field-base';
 
-const mapToComponent = (field: FormField): Type<FormComponent> => {
+const mapToComponent = (field: Lab900FormField): Type<FormComponent> => {
   switch (field.editType) {
     case EditType.Input:
-    case EditType.Image:
       return InputFieldComponent;
     case EditType.Checkbox:
       return CheckboxFieldComponent;
@@ -86,9 +86,9 @@ const mapToComponent = (field: FormField): Type<FormComponent> => {
 @Directive({
   selector: '[lab900FormField]',
 })
-export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChanges, OnInit, OnDestroy {
+export class FormFieldDirective implements OnChanges, OnInit, OnDestroy {
   @Input()
-  public schema: FormField;
+  public schema: Lab900FormField;
 
   @Input()
   public group: FormGroup;
@@ -140,7 +140,7 @@ export class FormFieldDirective implements IFormComponent<FieldOptions>, OnChang
       this.readonly && ![EditType.Row, EditType.Select, EditType.FilePreview].includes(this.schema.editType)
         ? ReadonlyFieldComponent
         : mapToComponent(this.schema);
-    const component = this.resolver.resolveComponentFactory<FormComponent<FieldOptions>>(c);
+    const component = this.resolver.resolveComponentFactory<FormComponent>(c);
     this.component = this.container.createComponent(component);
     this.setComponentProps();
   }

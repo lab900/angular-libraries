@@ -1,9 +1,10 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
-import { Form } from '../../models/Form';
+import { Lab900FormConfig } from '../../models/Lab900FormConfig';
 import { Lab900FormBuilderService } from '../../services/form-builder.service';
-import { FormField, ValueLabel } from '../../models/FormField';
 import { areValuesEqual } from '../../models/IFieldConditions';
+import { ValueLabel } from '../../models/form-field-base';
+import { Lab900FormField } from '../../models/lab900-form-field.type';
 
 @Component({
   selector: 'lab900-form[schema]',
@@ -13,7 +14,7 @@ import { areValuesEqual } from '../../models/IFieldConditions';
 // tslint:disable-next-line:component-class-suffix
 export class Lab900Form<T> implements OnChanges {
   @Input()
-  public schema!: Form;
+  public schema!: Lab900FormConfig;
 
   /**
    * You can add a object of other form groups which could be used in the conditional fields
@@ -60,7 +61,7 @@ export class Lab900Form<T> implements OnChanges {
       const control = this.form.controls[key];
       if (control && !areValuesEqual(data[key], prevData?.[key])) {
         if (control instanceof FormArray) {
-          const fieldSchema = this.schema.fields.find((field: FormField) => field.attribute === key);
+          const fieldSchema = this.schema.fields.find((field: Lab900FormField) => field.attribute === key);
           if (data[key] && fieldSchema) {
             this.fb.createFormArray(data, fieldSchema, control);
           }
@@ -76,7 +77,7 @@ export class Lab900Form<T> implements OnChanges {
       const control = this.form.controls[key];
       if (control) {
         if (control instanceof FormArray) {
-          const fieldSchema = this.schema.fields.find((field: FormField) => field.attribute === key);
+          const fieldSchema = this.schema.fields.find((field: Lab900FormField) => field.attribute === key);
           if (data[key] && fieldSchema) {
             this.fb.createFormArray(data, fieldSchema, control);
           }
