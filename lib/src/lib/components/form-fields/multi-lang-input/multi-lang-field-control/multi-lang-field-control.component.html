@@ -1,9 +1,9 @@
 <div
   id="lab900-multi-lang-input-{{ this.formControlName }}"
-  class="lab900-multi-lang-input-wrapper"
+  class="lab900-multi-lang-input-wrapper lab900-multi-lang-input-wrapper--{{ setting?.formField?.appearance || 'standard' }}"
   *ngIf="availableLanguages?.length && activeLanguage"
 >
-  <div class="lab900-multi-lang-input">
+  <div class="lab900-multi-lang-input lab900-multi-lang-input--{{ setting?.formField?.appearance || 'standard' }}">
     <div>
       <lab900-language-picker
         [buttonColor]="buttonColor"

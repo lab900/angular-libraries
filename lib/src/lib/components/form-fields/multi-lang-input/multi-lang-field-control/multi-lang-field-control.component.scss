@@ -18,7 +18,14 @@
   }
 
   > div:first-child {
-    margin: 0.25em 0;
     display: flex;
+  }
+
+  &:not(&--fill) > div:first-child {
+    margin: 0.25em 0;
+  }
+
+  &--fill > div:first-child {
+    padding-bottom: 1.34375em;
   }
 }

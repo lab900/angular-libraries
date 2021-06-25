@@ -1,8 +1,9 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseControlValueAccessorDirective } from '../../../../models/forms/BaseControlValueAccessor';
 import { ValueLabel } from '../../../../models/FormField';
 import { ThemePalette } from '@angular/material/core';
+import { LAB900_FORM_MODULE_SETTINGS, Lab900FormModuleSettings } from '../../../../models/Lab900FormModuleSettings';
 
 @Component({
   selector: 'lab900-multi-lang-field-control',
@@ -47,7 +48,7 @@ export class MultiLangFieldControlComponent extends BaseControlValueAccessorDire
 
   public translate = false;
 
-  public constructor() {
+  public constructor(@Inject(LAB900_FORM_MODULE_SETTINGS) public setting: Lab900FormModuleSettings) {
     super();
   }
 

@@ -1,7 +1,7 @@
 <div
   [formGroup]="group"
   *ngIf="!fieldIsHidden"
-  class="lab900-multi-lang-field"
+  class="lab900-multi-lang-field lab900-multi-lang-field--{{ setting?.formField?.appearance || 'standard' }}"
   id="lab900-multi-lang-field-{{ schema?.attribute }}"
   style="padding-bottom: 1.34375em"
 >
