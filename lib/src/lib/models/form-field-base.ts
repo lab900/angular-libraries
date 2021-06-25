@@ -1,5 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
 import { IFieldConditions } from './IFieldConditions';
+import { Lab900FormField } from './lab900-form-field.type';
 
 export interface ValueLabel<T = any> {
   value: T;
@@ -18,7 +19,7 @@ export interface FormFieldBase<T extends string | number = string, O extends For
   errorMessages?: { [key: string]: string };
   conditions?: IFieldConditions[];
   options?: O;
-  nestedFields?: any;
+  nestedFields?: Lab900FormField[];
 }
 
 export interface FormFieldBaseOptions {

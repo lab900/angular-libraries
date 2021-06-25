@@ -13,5 +13,4 @@ export interface FormFieldRepeaterOptions extends FormFieldBaseOptions {
 
 export interface FormFieldRepeater<T extends string | number = string> extends FormFieldBase<T, FormFieldRepeaterOptions> {
   editType: EditType.Repeater;
-  nestedFields: any; // todo
 }
