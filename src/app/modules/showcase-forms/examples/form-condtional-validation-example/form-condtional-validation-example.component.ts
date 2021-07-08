@@ -37,6 +37,30 @@ export class FormCondtionalValidationExampleComponent {
           },
         ],
       },
+      {
+        attribute: 'selectField',
+        editType: EditType.Select,
+        title: 'Select Field?',
+        options: {
+          colspan: 6,
+          selectOptions: [
+            { value: 'a', label: 'Option a' },
+            { value: 'b', label: 'Option b' },
+            { value: 'c', label: 'Option c' },
+          ],
+        },
+        conditions: [
+          {
+            dependOn: 'markAsRequired',
+            validators: (v) => {
+              if (v === true) {
+                return [Validators.required];
+              }
+              return [];
+            },
+          },
+        ],
+      },
     ],
   };
 }
