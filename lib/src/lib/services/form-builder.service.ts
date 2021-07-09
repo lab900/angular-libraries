@@ -82,7 +82,7 @@ export class Lab900FormBuilderService {
           field.options.defaultValue !== null &&
           typeof field.options.defaultValue !== 'undefined'
         ) {
-          controlValue = typeof field.options.defaultValue === 'function' ? field.options.defaultValue() : field.options.defaultValue;
+          controlValue = typeof field.options.defaultValue === 'function' ? field.options.defaultValue(data) : field.options.defaultValue;
         }
         const formControl = new FormControl(controlValue, Lab900FormBuilderService.addValidators(field, data));
         formGroup.addControl(field.attribute, formControl);
