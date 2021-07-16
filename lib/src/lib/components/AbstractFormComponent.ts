@@ -133,6 +133,8 @@ export abstract class FormComponent<S extends Lab900FormField = Lab900FormField>
         return this.translateService.get('forms.error.max', interpolateParams);
       case 'pattern':
         return this.translateService.get('forms.error.pattern', interpolateParams);
+      case 'requireMatch':
+        return this.translateService.get('forms.error.requireMatch', interpolateParams);
       default:
         return this.translateService.get('forms.error.generic', interpolateParams);
     }
