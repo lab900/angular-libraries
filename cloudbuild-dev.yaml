@@ -1,13 +1,9 @@
 steps:
 - name: gcr.io/cloud-builders/gcloud
   entrypoint: bash
-  dir: /workspace
   args:
     - -c
-    - |
-      cd lib && grep version package.json | cut -c15-19 | gcloud secrets versions add forms-version --data-file=-
-      expr $$FORMS_VERSION_ALPHA + 1 | gcloud secrets versions add forms-version-alpha --data-file=-
-      expr $$FORMS_VERSION_ALPHA + 1 > /workspace/forms_version_alpha.txt
+    - expr $$FORMS_VERSION_ALPHA + 1 > /workspace/forms_version_alpha.txt
   secretEnv: ['FORMS_VERSION_ALPHA']
 - name: node:14.16.1-slim
   entrypoint: sh
@@ -16,6 +12,15 @@ steps:
     - -c
     - ./deploy-dev.sh $$NPM_TOKEN $$FORMS_VERSION $(cat forms_version_alpha.txt)
   secretEnv: ['NPM_TOKEN', 'FORMS_VERSION']
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: bash
+  dir: /workspace
+  args:
+    - -c
+    - |
+      cd lib && grep version package.json | cut -c15-19 | gcloud secrets versions add forms-version --data-file=-
+      expr $$FORMS_VERSION_ALPHA + 1 | gcloud secrets versions add forms-version-alpha --data-file=-
+  secretEnv: [ 'FORMS_VERSION_ALPHA' ]
 availableSecrets:
   secretManager:
     - versionName: projects/18279890124/secrets/npm-access-key/versions/latest
