@@ -53,6 +53,26 @@ export class FormFieldSelectExampleComponent {
           },
         ],
       },
+      {
+        attribute: '',
+        editType: EditType.Row,
+        nestedFields: [
+          {
+            attribute: 'dependOnCheck',
+            title: 'Select yes or no',
+            editType: EditType.Select,
+            options: {
+              colspan: 6,
+              selectOptions: [
+                {
+                  value: 'whatever',
+                  label: 'checked yes',
+                },
+              ],
+            },
+          },
+        ],
+      },
     ],
   };
 }

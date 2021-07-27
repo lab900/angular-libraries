@@ -11,6 +11,8 @@ export * from './lib/models/IFieldConditions';
 export * from './lib/models/Lab900File';
 export * from './lib/utils/form-field.utils';
 
+export * from './lib/components/form-fields/select-field/field-select.model';
+
 export * from './lib/components/form-container/form-container.component';
 
 export * from './lib/directives/form-dialog.directive';

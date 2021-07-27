@@ -15,6 +15,9 @@
     [formControlName]="schema.attribute"
     [multiple]="options?.multiple"
     [required]="fieldIsRequired"
+    msInfiniteScroll
+    [complete]="!options?.infiniteScroll?.enabled"
+    (infiniteScroll)="onScroll()"
   >
     <mat-option *ngFor="let item of selectOptions" [value]="item.value">
       <div *ngIf="options?.displayOptionFn" [innerHTML]="options.displayOptionFn(item) | translate"></div>

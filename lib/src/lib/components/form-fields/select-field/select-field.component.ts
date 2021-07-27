@@ -1,10 +1,9 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormComponent } from '../../AbstractFormComponent';
 import { TranslateService } from '@ngx-translate/core';
-import { isObservable, Observable, of, Subject } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
-import { IFieldConditions } from '../../../models/IFieldConditions';
-import { FormFieldSelect } from './field-select.model';
+import { BehaviorSubject, isObservable, of, Subject } from 'rxjs';
+import { catchError, filter, switchMap, take } from 'rxjs/operators';
+import { FormFieldSelect, FormFieldSelectOptionsFilter, FormFieldSelectOptionsFn } from './field-select.model';
 import { ValueLabel } from '../../../models/form-field-base';
 
 @Component({
@@ -13,6 +12,8 @@ import { ValueLabel } from '../../../models/form-field-base';
 })
 export class SelectFieldComponent extends FormComponent<FormFieldSelect> implements OnInit {
   private conditionalOptionsChange = new Subject();
+  private optionsFn$ = new BehaviorSubject<FormFieldSelectOptionsFn>(() => []);
+  private optionsFilter$ = new BehaviorSubject<FormFieldSelectOptionsFilter | null>(null);
 
   @HostBinding('class')
   public classList = 'lab900-form-field';
@@ -34,29 +35,40 @@ export class SelectFieldComponent extends FormComponent<FormFieldSelect> impleme
 
   public constructor(translateService: TranslateService) {
     super(translateService);
-    this.addSubscription(
-      this.conditionalOptionsChange.pipe(switchMap(({ condition, value }) => this.getConditionalOptions(condition, value))),
-      (options: ValueLabel[]) => {
-        this.selectOptions = options;
+
+    this.optionsFilter$
+      .pipe(
+        filter(() => !!this.optionsFn$.value),
+        switchMap((optionsFilter) =>
+          this.optionsFn$.pipe(
+            take(1),
+            switchMap((getOptions) => {
+              const values = getOptions(optionsFilter);
+              return (isObservable(values) ? values : of(values)).pipe(catchError(() => of([])));
+            }),
+          ),
+        ),
+      )
+      .subscribe((options) => {
+        if (this.optionsFilter$.value?.page > 0) {
+          this.selectOptions = this.selectOptions.concat(options);
+        } else {
+          this.selectOptions = options;
+        }
         this.loading = false;
-      },
-    );
+      });
+
+    this.conditionalOptionsChange.subscribe(({ condition, value }) => {
+      this.updateOptionsFn(() => condition?.conditionalOptions(value, this.fieldControl));
+    });
   }
 
   public defaultCompare = (o1: any, o2: any) => o1 === o2;
 
   public ngOnInit(): void {
     if (this.options?.selectOptions) {
-      const selectOptions = this.options?.selectOptions;
-      const values = typeof selectOptions === 'function' ? selectOptions() : selectOptions;
-
-      this.addSubscription((isObservable(values) ? values : of(values)).pipe(catchError(() => of([]))), (options: ValueLabel[]) => {
-        this.selectOptions = options;
-        this.loading = false;
-      });
-    } else {
-      this.selectOptions = [];
-      this.loading = false;
+      const { selectOptions } = this.options;
+      this.updateOptionsFn(typeof selectOptions === 'function' ? selectOptions : () => selectOptions);
     }
   }
 
@@ -72,10 +84,15 @@ export class SelectFieldComponent extends FormComponent<FormFieldSelect> impleme
     });
   }
 
-  private getConditionalOptions(condition: IFieldConditions, value: any): Observable<ValueLabel[]> {
-    this.selectOptions = [];
-    this.loading = true;
-    const values = condition?.conditionalOptions(value, this.fieldControl);
-    return (isObservable(values) ? values : of(values)).pipe(catchError(() => of([])));
+  public onScroll(): void {
+    if (this.options?.infiniteScroll?.enabled && !this.loading) {
+      const currentFilter = this.optionsFilter$.value;
+      this.optionsFilter$.next({ ...currentFilter, page: currentFilter.page + 1 });
+    }
+  }
+
+  private updateOptionsFn(optionsFn: FormFieldSelectOptionsFn): void {
+    this.optionsFn$.next(optionsFn);
+    this.optionsFilter$.next({ page: 0, searchQuery: '' });
   }
 }

@@ -27,6 +27,7 @@ import { FormConditionalsExampleComponent } from './examples/form-conditionals-e
 import { FormFieldMultiLanguageExampleComponent } from './examples/form-field-multi-language-example/form-field-multi-language-example.component';
 import { FormCondtionalValidationExampleComponent } from './examples/form-condtional-validation-example/form-condtional-validation-example.component';
 import { FormCondtionalWithExternalFormExampleComponent } from './examples/form-condtional-with-external-form-example/form-condtional-with-external-form-example.component';
+import { FormFieldSelectAdvancedExampleComponent } from './examples/form-field-select-example/form-field-select-advanced-example.component';
 
 const routes: Routes = [
   {
@@ -84,7 +85,10 @@ const routes: Routes = [
   new ShowcaseRoute('form-field-range-slider', 'Form Fields: Range slider', [
     new ShowcaseExample(FormFieldRangeSliderExampleComponent, 'Range slider'),
   ]),
-  new ShowcaseRoute('form-field-select', 'Form Fields: Select', [new ShowcaseExample(FormFieldSelectExampleComponent, 'Selects')]),
+  new ShowcaseRoute('form-field-select', 'Form Fields: Select', [
+    new ShowcaseExample(FormFieldSelectExampleComponent, 'Selects'),
+    new ShowcaseExample(FormFieldSelectAdvancedExampleComponent, 'Advanced selects'),
+  ]),
   new ShowcaseRoute('form-field-file-upload', 'Form Fields: File upload', [
     new ShowcaseExample(FormFieldFileUploadExampleComponent, 'Upload'),
   ]),
