@@ -36,8 +36,8 @@ export class SelectFieldComponent extends FormComponent<FormFieldSelect> impleme
   public constructor(translateService: TranslateService) {
     super(translateService);
 
-    this.optionsFilter$
-      .pipe(
+    this.addSubscription(
+      this.optionsFilter$.pipe(
         filter(() => !!this.optionsFn$.value),
         tap(() => (this.loading = true)),
         switchMap((optionsFilter) =>
@@ -49,17 +49,18 @@ export class SelectFieldComponent extends FormComponent<FormFieldSelect> impleme
             }),
           ),
         ),
-      )
-      .subscribe((options) => {
+      ),
+      (options) => {
         if (this.optionsFilter$.value?.page > 0) {
           this.selectOptions = this.selectOptions.concat(options);
         } else {
           this.selectOptions = options;
         }
         this.loading = false;
-      });
+      },
+    );
 
-    this.conditionalOptionsChange.subscribe(({ condition, value }) => {
+    this.addSubscription(this.conditionalOptionsChange, ({ condition, value }) => {
       this.updateOptionsFn((filter) => condition?.conditionalOptions(value, this.fieldControl, filter));
     });
   }
