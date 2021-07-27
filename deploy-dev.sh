@@ -1,6 +1,6 @@
 #!/bin/sh
 cd lib || exit
-npm version "$2"-test."$3"
+npm version "$2"-alpha."$3"
 cd ..
 npm i -g @angular/cli
 npm i
