@@ -24,7 +24,11 @@ export interface IFieldConditions<T = any> {
   disableIfEquals?: ((value: T) => boolean) | T;
   enabledIfEquals?: ((value: T) => boolean) | T;
   onChangeFn?: (value: T, currentControl: AbstractControl, currentScheme: Lab900FormField) => any;
-  conditionalOptions?: (value: T, currentControl: AbstractControl) => any[] | Observable<any[]>;
+  conditionalOptions?: (
+    value: T,
+    currentControl: AbstractControl,
+    options?: { page?: number; searchQuery?: string },
+  ) => any[] | Observable<any[]>;
   skipIfNotExists?: boolean;
   validators?: (value: T) => ValidatorFn[];
 }

@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormComponent } from '../../AbstractFormComponent';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, isObservable, of, Subject } from 'rxjs';
-import { catchError, debounceTime, filter, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import { FormFieldSelect, FormFieldSelectOptionsFilter, FormFieldSelectOptionsFn } from './field-select.model';
 import { ValueLabel } from '../../../models/form-field-base';
 
@@ -60,7 +60,7 @@ export class SelectFieldComponent extends FormComponent<FormFieldSelect> impleme
       });
 
     this.conditionalOptionsChange.subscribe(({ condition, value }) => {
-      this.updateOptionsFn(() => condition?.conditionalOptions(value, this.fieldControl));
+      this.updateOptionsFn((filter) => condition?.conditionalOptions(value, this.fieldControl, filter));
     });
   }
 
@@ -93,7 +93,7 @@ export class SelectFieldComponent extends FormComponent<FormFieldSelect> impleme
   }
 
   public onSearch(searchQuery: string): void {
-    if (this.options?.search?.enabled && !this.loading) {
+    if (this.options?.search?.enabled) {
       this.optionsFilter$.next({ searchQuery, page: 0 });
     }
   }
