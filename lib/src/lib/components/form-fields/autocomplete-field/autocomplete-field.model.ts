@@ -8,7 +8,6 @@ export interface FormFieldAutocompleteOptions extends FormFieldBaseOptions {
   displayOptionFn: (option: ValueLabel) => string;
   autocompleteOptions?: (searchTerm: string, currentControl: AbstractControl) => ValueLabel[] | Observable<ValueLabel[]>;
   debounceTime?: number;
-  requireMatch?: boolean;
 }
 
 export interface FormFieldAutocomplete<T extends string | number = string> extends FormFieldBase<T, FormFieldAutocompleteOptions> {
