@@ -1,4 +1,11 @@
-import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { EditType } from '../models/editType';
 import { Injectable } from '@angular/core';
 import { FormFieldUtils } from '../utils/form-field.utils';
@@ -10,11 +17,18 @@ import { requireMatchValidator } from '../validators/require-match.validator';
 export class Lab900FormBuilderService {
   public constructor(private fb: FormBuilder) {}
 
-  public static addValidators(field: Lab900FormField, data: any): ValidatorFn[] {
+  public static addValidators(
+    field: Lab900FormField,
+    data: any
+  ): ValidatorFn[] {
     const validators: ValidatorFn[] = field?.validators ?? [];
     if (
       !validators.includes(Validators.required) &&
-      FormFieldUtils.isRequired(FormFieldUtils.isReadOnly(field.options, data), field, data)
+      FormFieldUtils.isRequired(
+        FormFieldUtils.isReadOnly(field.options, data),
+        field,
+        data
+      )
     ) {
       validators.push(Validators.required);
     }
@@ -39,14 +53,24 @@ export class Lab900FormBuilderService {
     return validators;
   }
 
-  public createFormGroup<T = any>(fields: Lab900FormField[], group?: FormGroup, data?: T): FormGroup {
+  public createFormGroup<T = any>(
+    fields: Lab900FormField[],
+    group?: FormGroup,
+    data?: T
+  ): FormGroup {
     let formGroup = group ? group : this.fb.group({});
     fields.forEach((field) => {
       if (field.editType === EditType.Row && field.nestedFields) {
         // nested form groups
         if (field.attribute) {
-          const nestedGroup = this.createFormGroup(field.nestedFields, null, data?.[field.attribute]);
-          nestedGroup.setValidators(Lab900FormBuilderService.addValidators(field, data));
+          const nestedGroup = this.createFormGroup(
+            field.nestedFields,
+            null,
+            data?.[field.attribute]
+          );
+          nestedGroup.setValidators(
+            Lab900FormBuilderService.addValidators(field, data)
+          );
           formGroup.addControl(field.attribute, nestedGroup);
           if (nestedGroup.dirty) {
             formGroup.markAsDirty();
@@ -65,7 +89,9 @@ export class Lab900FormBuilderService {
             }
           }
         }
-        repeaterArray.setValidators(Lab900FormBuilderService.addValidators(field, data));
+        repeaterArray.setValidators(
+          Lab900FormBuilderService.addValidators(field, data)
+        );
         formGroup.addControl(field.attribute, repeaterArray);
         if (repeaterArray.dirty) {
           formGroup.markAsDirty();
@@ -77,7 +103,7 @@ export class Lab900FormBuilderService {
           this.fb.group({
             [options?.startKey || 'start']: '',
             [options?.endKey || 'end']: '',
-          }),
+          })
         );
       } else {
         let controlValue: any | null = data?.[field.attribute];
@@ -87,9 +113,15 @@ export class Lab900FormBuilderService {
           field.options.defaultValue !== null &&
           typeof field.options.defaultValue !== 'undefined'
         ) {
-          controlValue = typeof field.options.defaultValue === 'function' ? field.options.defaultValue(data) : field.options.defaultValue;
+          controlValue =
+            typeof field.options.defaultValue === 'function'
+              ? field.options.defaultValue(data)
+              : field.options.defaultValue;
         }
-        const formControl = new FormControl(controlValue, Lab900FormBuilderService.addValidators(field, data));
+        const formControl = new FormControl(
+          controlValue,
+          Lab900FormBuilderService.addValidators(field, data)
+        );
         formGroup.addControl(field.attribute, formControl);
         if (controlValue) {
           formGroup.markAsDirty();
@@ -99,11 +131,17 @@ export class Lab900FormBuilderService {
     return formGroup;
   }
 
-  public createFormArray<T = any>(data: T, schema: Lab900FormField, formArray: FormArray = this.fb.array([])): FormArray {
+  public createFormArray<T = any>(
+    data: T,
+    schema: Lab900FormField,
+    formArray: FormArray = this.fb.array([])
+  ): FormArray {
     if (data && data[schema.attribute] && data[schema.attribute].length) {
       formArray.clear();
       data[schema.attribute].forEach((nestedData) => {
-        formArray.push(this.createFormGroup(schema.nestedFields, undefined, nestedData));
+        formArray.push(
+          this.createFormGroup(schema.nestedFields, undefined, nestedData)
+        );
       });
     }
     return formArray;

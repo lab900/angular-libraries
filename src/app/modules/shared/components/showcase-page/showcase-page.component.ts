@@ -29,7 +29,9 @@ export class ShowcasePageComponent extends SubscriptionBasedDirective {
     super();
     this.addSubscription(this.activatedRoute.queryParams, (queryParams) => {
       this.data = this.activatedRoute.snapshot.data as ShowcaseRouteData;
-      this.navItems = !this.data?.docFile ? [this.exampleNav] : [this.guideNav, this.exampleNav];
+      this.navItems = !this.data?.docFile
+        ? [this.exampleNav]
+        : [this.guideNav, this.exampleNav];
       if (queryParams?.tab) {
         this.currentTab = queryParams?.tab;
       } else {

@@ -9,13 +9,19 @@ import { WysiwgFieldModel } from './wysiwg-field.model';
   selector: 'lab900-wysiwyg-field',
   template: `
     <div [formGroup]="group" class="lab900-wysiwyg-field">
-      <angular-editor [formControlName]="schema.attribute" [config]="editorConfig"></angular-editor>
+      <angular-editor
+        [formControlName]="schema.attribute"
+        [config]="editorConfig"
+      ></angular-editor>
     </div>
   `,
   styleUrls: ['./wysiwyg-field.component.scss'],
   animations: [matFormFieldAnimations.transitionMessages],
 })
-export class WysiwygFieldComponent extends FormComponent<WysiwgFieldModel> implements OnInit {
+export class WysiwygFieldComponent
+  extends FormComponent<WysiwgFieldModel>
+  implements OnInit
+{
   @HostBinding('class')
   public classList = 'lab900-form-field';
 

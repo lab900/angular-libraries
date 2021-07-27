@@ -12,7 +12,10 @@ import { FormFieldRepeater } from './repeater-field.model';
   styleUrls: ['./repeater-field.component.scss'],
   animations: [matFormFieldAnimations.transitionMessages],
 })
-export class RepeaterFieldComponent extends FormComponent<FormFieldRepeater> implements OnInit {
+export class RepeaterFieldComponent
+  extends FormComponent<FormFieldRepeater>
+  implements OnInit
+{
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
@@ -36,7 +39,10 @@ export class RepeaterFieldComponent extends FormComponent<FormFieldRepeater> imp
     return this.group.get(this.schema.attribute) as FormArray;
   }
 
-  public constructor(private fb: Lab900FormBuilderService, translateService: TranslateService) {
+  public constructor(
+    private fb: Lab900FormBuilderService,
+    translateService: TranslateService
+  ) {
     super(translateService);
   }
 

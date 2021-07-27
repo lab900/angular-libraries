@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ShowcaseRoute } from '../shared/models/showcase-route.model';
 import { ShowcaseExample } from '../shared/models/showcase-example.model';
-// tslint:disable-next-line:max-line-length
 import { FormFieldAutocompleteExampleComponent } from './examples/form-field-autocomplete-example/form-field-autocomplete-example.component';
 import { FormFieldRepeaterExampleComponent } from './examples/form-field-repeater-example/form-field-repeater-example.component';
 import { FormFieldRepeaterFixedExampleComponent } from './examples/form-field-repeater-fixed-example/form-field-repeater-fixed-example.component';
@@ -45,32 +44,61 @@ const routes: Routes = [
     'Dynamic forms',
     [
       new ShowcaseExample(FormContainerExampleComponent, 'Form Container'),
-      new ShowcaseExample(FormContainerReadonlyExampleComponent, 'Form Container Readonly', 'form-container-example'),
+      new ShowcaseExample(
+        FormContainerReadonlyExampleComponent,
+        'Form Container Readonly',
+        'form-container-example'
+      ),
     ],
-    'guides/forms/creating-forms.md',
+    'guides/forms/creating-forms.md'
   ),
   new ShowcaseRoute(
     'conditional-forms',
     'Conditional forms',
     [
-      new ShowcaseExample(FormConditionalsExampleComponent, 'Conditional Form Container'),
-      new ShowcaseExample(FormCondtionalValidationExampleComponent, 'Conditional validation'),
-      new ShowcaseExample(FormCondtionalWithExternalFormExampleComponent, 'Conditionals across multiple forms'),
+      new ShowcaseExample(
+        FormConditionalsExampleComponent,
+        'Conditional Form Container'
+      ),
+      new ShowcaseExample(
+        FormCondtionalValidationExampleComponent,
+        'Conditional validation'
+      ),
+      new ShowcaseExample(
+        FormCondtionalWithExternalFormExampleComponent,
+        'Conditionals across multiple forms'
+      ),
     ],
-    'guides/forms/TODO.md',
+    'guides/forms/TODO.md'
   ),
   new ShowcaseRoute('form-field-autocomplete', 'Form Fields: Autocomplete', [
     new ShowcaseExample(FormFieldAutocompleteExampleComponent, 'Autocomplete'),
-    new ShowcaseExample(FormFieldAutocompleteMultipleExampleComponent, 'Autocomplete Multiple', 'form-field-autocomplete-example'),
+    new ShowcaseExample(
+      FormFieldAutocompleteMultipleExampleComponent,
+      'Autocomplete Multiple',
+      'form-field-autocomplete-example'
+    ),
   ]),
   new ShowcaseRoute('form-field-repeater', 'Form Fields: Repeater', [
-    new ShowcaseExample(FormFieldRepeaterAdvancedExampleComponent, 'Repeater (nested)'),
+    new ShowcaseExample(
+      FormFieldRepeaterAdvancedExampleComponent,
+      'Repeater (nested)'
+    ),
     new ShowcaseExample(FormFieldRepeaterExampleComponent, 'Repeater'),
-    new ShowcaseExample(FormFieldRepeaterFixedExampleComponent, 'Repeater fixed'),
+    new ShowcaseExample(
+      FormFieldRepeaterFixedExampleComponent,
+      'Repeater fixed'
+    ),
   ]),
   new ShowcaseRoute('form-field-datepicker', 'Form Fields: Datepicker', [
-    new ShowcaseExample(FormFieldDateRangePickerExampleComponent, 'Date range picker'),
-    new ShowcaseExample(FormFieldDateTimePickerExampleComponent, 'Date time picker'),
+    new ShowcaseExample(
+      FormFieldDateRangePickerExampleComponent,
+      'Date range picker'
+    ),
+    new ShowcaseExample(
+      FormFieldDateTimePickerExampleComponent,
+      'Date time picker'
+    ),
   ]),
   new ShowcaseRoute('form-field-input', 'Form Fields: Input & Textarea', [
     new ShowcaseExample(FormFieldInputsExampleComponent, 'Input'),
@@ -87,13 +115,19 @@ const routes: Routes = [
   ]),
   new ShowcaseRoute('form-field-select', 'Form Fields: Select', [
     new ShowcaseExample(FormFieldSelectExampleComponent, 'Selects'),
-    new ShowcaseExample(FormFieldSelectAdvancedExampleComponent, 'Advanced selects'),
+    new ShowcaseExample(
+      FormFieldSelectAdvancedExampleComponent,
+      'Advanced selects'
+    ),
   ]),
   new ShowcaseRoute('form-field-file-upload', 'Form Fields: File upload', [
     new ShowcaseExample(FormFieldFileUploadExampleComponent, 'Upload'),
   ]),
   new ShowcaseRoute('form-field-multi-lang', 'Form Fields: Multi language', [
-    new ShowcaseExample(FormFieldMultiLanguageExampleComponent, 'Multi language'),
+    new ShowcaseExample(
+      FormFieldMultiLanguageExampleComponent,
+      'Multi language'
+    ),
   ]),
 ];
 

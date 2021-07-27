@@ -20,10 +20,24 @@ import { ShowcaseHomeComponent } from './components/showcase-home/showcase-home.
 import { MarkdownPageComponent } from './components/markdown-page/markdown-page.component';
 import { TranslateModule } from '@ngx-translate/core';
 
-const material = [MatCardModule, MatButtonModule, MatTabsModule, MatIconModule, FlexLayoutModule, MatToolbarModule, MatSidenavModule];
+const material = [
+  MatCardModule,
+  MatButtonModule,
+  MatTabsModule,
+  MatIconModule,
+  FlexLayoutModule,
+  MatToolbarModule,
+  MatSidenavModule,
+];
 
 @NgModule({
-  declarations: [ExampleViewerComponent, ShowcasePageComponent, ComponentLoaderDirective, ShowcaseHomeComponent, MarkdownPageComponent],
+  declarations: [
+    ExampleViewerComponent,
+    ShowcasePageComponent,
+    ComponentLoaderDirective,
+    ShowcaseHomeComponent,
+    MarkdownPageComponent,
+  ],
   exports: [
     ExampleViewerComponent,
     ShowcasePageComponent,

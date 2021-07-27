@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ContentChild, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChild,
+  ElementRef,
+  Input,
+  ViewChild,
+} from '@angular/core';
 
 export interface ExampleFile {
   extension: string;
@@ -38,6 +45,10 @@ export class ExampleViewerComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.exampleName = this.exampleComponent?.nativeElement?.children?.[0]?.localName.replace('lab900-', '');
+    this.exampleName =
+      this.exampleComponent?.nativeElement?.children?.[0]?.localName.replace(
+        'lab900-',
+        ''
+      );
   }
 }

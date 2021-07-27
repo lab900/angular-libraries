@@ -17,7 +17,10 @@ import { SubscriptionBasedDirective } from './modules/shared/directives/subscrip
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent extends SubscriptionBasedDirective implements OnInit, OnDestroy {
+export class AppComponent
+  extends SubscriptionBasedDirective
+  implements OnInit, OnDestroy
+{
   private unsub = new Subject<void>();
   public readonly languages = ['en', 'nl'];
   public readonly gitUrl = repository;
@@ -33,20 +36,37 @@ export class AppComponent extends SubscriptionBasedDirective implements OnInit, 
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
     private media: MediaObserver,
-    private router: Router,
+    private router: Router
   ) {
     super();
-    this.addSubscription(this.router.events.pipe(takeUntil(this.unsub)), (e) => {
-      if (e instanceof NavigationEnd && this.drawer && this.sideNavMode === 'over') {
-        this.drawer.close();
+    this.addSubscription(
+      this.router.events.pipe(takeUntil(this.unsub)),
+      (e) => {
+        if (
+          e instanceof NavigationEnd &&
+          this.drawer &&
+          this.sideNavMode === 'over'
+        ) {
+          this.drawer.close();
+        }
       }
-    });
+    );
 
     this.translateService.setDefaultLang('en');
     this.translateService.use('en');
 
-    this.matIconRegistry.addSvgIcon('github', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/images/github-logo.svg'));
-    this.matIconRegistry.addSvgIcon('lab900', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/images/logo-duo-dark.svg'));
+    this.matIconRegistry.addSvgIcon(
+      'github',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        'assets/images/github-logo.svg'
+      )
+    );
+    this.matIconRegistry.addSvgIcon(
+      'lab900',
+      this.domSanitizer.bypassSecurityTrustResourceUrl(
+        'assets/images/logo-duo-dark.svg'
+      )
+    );
   }
 
   public ngOnInit(): void {
@@ -68,11 +88,13 @@ export class AppComponent extends SubscriptionBasedDirective implements OnInit, 
       this.media.asObservable().pipe(
         takeUntil(this.unsub),
         filter((changes: MediaChange[]) => changes.length > 0),
-        map((changes: MediaChange[]) => changes[0]),
+        map((changes: MediaChange[]) => changes[0])
       ),
       (change: MediaChange) => {
-        this.sideNavMode = ['xs', 'sm', 'md'].includes(change.mqAlias) ? 'over' : 'side';
-      },
+        this.sideNavMode = ['xs', 'sm', 'md'].includes(change.mqAlias)
+          ? 'over'
+          : 'side';
+      }
     );
   }
 }

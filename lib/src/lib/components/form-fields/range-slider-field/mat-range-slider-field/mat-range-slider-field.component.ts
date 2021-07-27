@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as noUiSlider from 'nouislider';
 import { BaseControlValueAccessorDirective } from '../../../../models/forms/BaseControlValueAccessor';
@@ -7,10 +15,19 @@ import { BaseControlValueAccessorDirective } from '../../../../models/forms/Base
   selector: 'lab900-mat-range-slider-field',
   templateUrl: './mat-range-slider-field.component.html',
   styleUrls: ['./nouislider.scss', './mat-range-slider-field.component.scss'],
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: MatRangeSliderFieldComponent, multi: true }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: MatRangeSliderFieldComponent,
+      multi: true,
+    },
+  ],
   encapsulation: ViewEncapsulation.None,
 })
-export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirective<number[]> implements AfterViewInit, OnChanges {
+export class MatRangeSliderFieldComponent
+  extends BaseControlValueAccessorDirective<number[]>
+  implements AfterViewInit, OnChanges
+{
   private rangeSlider: noUiSlider.noUiSlider;
   private latestUnencodedValues: number[];
 
@@ -50,7 +67,10 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
   }
 
   public ngAfterViewInit(): void {
-    this.rangeSlider = noUiSlider.create(this.el.nativeElement.querySelector('.noUiSlider'), this.getSliderOptions());
+    this.rangeSlider = noUiSlider.create(
+      this.el.nativeElement.querySelector('.noUiSlider'),
+      this.getSliderOptions()
+    );
     this.attachSliderInstanceUpdateHandler();
   }
 
@@ -78,12 +98,18 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
 
   public updateFromValue(event: InputEvent): void {
     const newValue = this.parseValue((event.target as any).value);
-    this.updateSliderInstanceValues(0, newValue >= this.min ? newValue : this.min);
+    this.updateSliderInstanceValues(
+      0,
+      newValue >= this.min ? newValue : this.min
+    );
   }
 
   public updateToValue(event: InputEvent): void {
     const newValue = this.parseValue((event.target as any).value);
-    this.updateSliderInstanceValues(1, newValue <= this.max ? newValue : this.max);
+    this.updateSliderInstanceValues(
+      1,
+      newValue <= this.max ? newValue : this.max
+    );
   }
 
   public parseValue(value: string): number {
@@ -112,14 +138,20 @@ export class MatRangeSliderFieldComponent extends BaseControlValueAccessorDirect
   }
 
   public attachSliderInstanceUpdateHandler(): void {
-    this.rangeSlider.on('update', (values: string[], handle: number, unencodedValues: number[]) => {
-      unencodedValues = unencodedValues.map((value) => Math.round(value));
-      if (unencodedValues[0] !== this.latestUnencodedValues[0] || unencodedValues[1] !== this.latestUnencodedValues[1]) {
-        this.value = unencodedValues;
-        this.latestUnencodedValues = this.value;
-        this.onChange(this.value);
+    this.rangeSlider.on(
+      'update',
+      (values: string[], handle: number, unencodedValues: number[]) => {
+        unencodedValues = unencodedValues.map((value) => Math.round(value));
+        if (
+          unencodedValues[0] !== this.latestUnencodedValues[0] ||
+          unencodedValues[1] !== this.latestUnencodedValues[1]
+        ) {
+          this.value = unencodedValues;
+          this.latestUnencodedValues = this.value;
+          this.onChange(this.value);
+        }
       }
-    });
+    );
   }
 
   private getSliderOptions(): noUiSlider.Options {

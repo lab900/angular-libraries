@@ -29,8 +29,16 @@ export class FormRowComponent extends FormComponent<FormRow> {
 
   public rowIsReadonly(field: Lab900FormField): boolean {
     return field.options?.readonly != null
-      ? FormFieldUtils.isReadOnly(field.options, this.group.value, this.readonly)
-      : FormFieldUtils.isReadOnly(this.options, this.group.value, this.readonly);
+      ? FormFieldUtils.isReadOnly(
+          field.options,
+          this.group.value,
+          this.readonly
+        )
+      : FormFieldUtils.isReadOnly(
+          this.options,
+          this.group.value,
+          this.readonly
+        );
   }
 
   public isHidden(field: Lab900FormField): boolean {

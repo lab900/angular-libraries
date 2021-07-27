@@ -4,7 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/showcase-forms/showcase-forms.module').then((m) => m.ShowcaseFormsModule),
+    loadChildren: () =>
+      import('./modules/showcase-forms/showcase-forms.module').then(
+        (m) => m.ShowcaseFormsModule
+      ),
   },
 ];
 

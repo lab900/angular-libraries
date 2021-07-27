@@ -3,7 +3,8 @@ import { EditType, Lab900FormConfig, Lab900Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-button-toggle-example',
-  template: '<lab900-form [schema]="formSchema" (click)="logValue()" [data]="formData"></lab900-form>',
+  template:
+    '<lab900-form [schema]="formSchema" (click)="logValue()" [data]="formData"></lab900-form>',
 })
 export class FormFieldButtonToggleExampleComponent {
   @ViewChild(Lab900Form)

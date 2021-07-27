@@ -3,7 +3,8 @@ import { Lab900FormConfig, EditType, Lab900Form } from '@lab900/forms';
 
 @Component({
   selector: 'lab900-form-field-repeater-fixed-example',
-  template: '<lab900-form [schema]="formSchema" [data]="repeaterData" (click)="logValue()" ></lab900-form>',
+  template:
+    '<lab900-form [schema]="formSchema" [data]="repeaterData" (click)="logValue()" ></lab900-form>',
 })
 export class FormFieldRepeaterFixedExampleComponent {
   @ViewChild(Lab900Form)
@@ -19,7 +20,13 @@ export class FormFieldRepeaterFixedExampleComponent {
         attribute: 'repeater',
         title: 'Fill the 3 fields',
         editType: EditType.Repeater,
-        nestedFields: [{ attribute: 'value', editType: EditType.Input, title: 'Repeated field' }],
+        nestedFields: [
+          {
+            attribute: 'value',
+            editType: EditType.Input,
+            title: 'Repeated field',
+          },
+        ],
         options: {
           minRows: 3,
           fixedList: true,

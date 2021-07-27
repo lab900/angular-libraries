@@ -1,17 +1,35 @@
-import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Inject,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseControlValueAccessorDirective } from '../../../../models/forms/BaseControlValueAccessor';
 import { ThemePalette } from '@angular/material/core';
-import { LAB900_FORM_MODULE_SETTINGS, Lab900FormModuleSettings } from '../../../../models/Lab900FormModuleSettings';
+import {
+  LAB900_FORM_MODULE_SETTINGS,
+  Lab900FormModuleSettings,
+} from '../../../../models/Lab900FormModuleSettings';
 import { ValueLabel } from '../../../../models/form-field-base';
 
 @Component({
   selector: 'lab900-multi-lang-field-control',
   templateUrl: './multi-lang-field-control.component.html',
   styleUrls: ['./multi-lang-field-control.component.scss'],
-  providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: MultiLangFieldControlComponent, multi: true }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: MultiLangFieldControlComponent,
+      multi: true,
+    },
+  ],
 })
-export class MultiLangFieldControlComponent extends BaseControlValueAccessorDirective<Record<string, string>> implements OnChanges {
+export class MultiLangFieldControlComponent
+  extends BaseControlValueAccessorDirective<Record<string, string>>
+  implements OnChanges
+{
   @Input()
   public defaultLanguage?: string;
 
@@ -48,7 +66,10 @@ export class MultiLangFieldControlComponent extends BaseControlValueAccessorDire
 
   public translate = false;
 
-  public constructor(@Inject(LAB900_FORM_MODULE_SETTINGS) public setting: Lab900FormModuleSettings) {
+  public constructor(
+    @Inject(LAB900_FORM_MODULE_SETTINGS)
+    public setting: Lab900FormModuleSettings
+  ) {
     super();
   }
 
@@ -66,7 +87,9 @@ export class MultiLangFieldControlComponent extends BaseControlValueAccessorDire
     this.value = value ?? {};
     const valuesArray = Object.values(this.value);
     const hasValues = !!valuesArray.some((v) => !!v);
-    this.toggleTranslate(hasValues && !valuesArray.every((v) => v === valuesArray[0]));
+    this.toggleTranslate(
+      hasValues && !valuesArray.every((v) => v === valuesArray[0])
+    );
   }
 
   public toggleTranslate(value: boolean): void {
@@ -93,7 +116,9 @@ export class MultiLangFieldControlComponent extends BaseControlValueAccessorDire
   }
 
   public resetDefaultLanguage(): void {
-    this.activeLanguage = this.availableLanguages.find((l) => l.value === this.defaultLanguage) ?? this.availableLanguages[0];
+    this.activeLanguage =
+      this.availableLanguages.find((l) => l.value === this.defaultLanguage) ??
+      this.availableLanguages[0];
   }
 
   private updateAllToGlobalTranslation(): void {

@@ -1,5 +1,8 @@
 import { EditType } from '../../../models/editType';
-import { FormFieldBase, FormFieldBaseOptions } from '../../../models/form-field-base';
+import {
+  FormFieldBase,
+  FormFieldBaseOptions,
+} from '../../../models/form-field-base';
 
 export interface FormFieldDatePickerOptions extends FormFieldBaseOptions {
   startView?: 'month' | 'year' | 'multi-year';
@@ -7,6 +10,7 @@ export interface FormFieldDatePickerOptions extends FormFieldBaseOptions {
   minDate?: Date;
 }
 
-export interface FormFieldDatePicker<T extends string | number = string> extends FormFieldBase<T, FormFieldDatePickerOptions> {
+export interface FormFieldDatePicker<T extends string | number = string>
+  extends FormFieldBase<T, FormFieldDatePickerOptions> {
   editType: EditType.Date;
 }

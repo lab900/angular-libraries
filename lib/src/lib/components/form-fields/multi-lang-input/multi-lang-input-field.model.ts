@@ -10,6 +10,7 @@ export interface FormFieldMultiLangOptions extends FormFieldInputOptions {
   useTextAreaField?: boolean;
 }
 
-export interface FormFieldMultiLang<T extends string | number = string> extends FormFieldBase<T, FormFieldMultiLangOptions> {
+export interface FormFieldMultiLang<T extends string | number = string>
+  extends FormFieldBase<T, FormFieldMultiLangOptions> {
   editType: EditType.MultiLangInput;
 }

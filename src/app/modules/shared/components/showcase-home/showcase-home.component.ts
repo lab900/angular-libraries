@@ -10,7 +10,10 @@ import { NavItemGroup } from '@lab900/ui';
   styleUrls: ['./showcase-home.component.scss'],
 })
 export class ShowcaseHomeComponent {
-  public data$: Observable<{ config: ShowcaseConfigModel; nav: NavItemGroup[] }> = this.activatedRoute.data as any;
+  public data$: Observable<{
+    config: ShowcaseConfigModel;
+    nav: NavItemGroup[];
+  }> = this.activatedRoute.data as any;
 
   constructor(private activatedRoute: ActivatedRoute) {}
 }

@@ -11,7 +11,7 @@ import { Lab900FormField } from '../../models/lab900-form-field.type';
   templateUrl: './form-container.component.html',
   styleUrls: ['./form-container.component.scss'],
 })
-// tslint:disable-next-line:component-class-suffix
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class Lab900Form<T> implements OnChanges {
   @Input()
   public schema!: Lab900FormConfig;
@@ -49,10 +49,16 @@ export class Lab900Form<T> implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.schema && this.schema?.fields) {
-      this.form = this.fb.createFormGroup<T>(this.schema.fields, null, this.data);
+      this.form = this.fb.createFormGroup<T>(
+        this.schema.fields,
+        null,
+        this.data
+      );
     }
     if (!changes?.data?.isFirstChange() && this.data) {
-      setTimeout(() => this.patchValues(this.data, changes?.data?.previousValue));
+      setTimeout(() =>
+        this.patchValues(this.data, changes?.data?.previousValue)
+      );
     }
   }
 
@@ -61,7 +67,9 @@ export class Lab900Form<T> implements OnChanges {
       const control = this.form.controls[key];
       if (control && !areValuesEqual(data[key], prevData?.[key])) {
         if (control instanceof FormArray) {
-          const fieldSchema = this.schema.fields.find((field: Lab900FormField) => field.attribute === key);
+          const fieldSchema = this.schema.fields.find(
+            (field: Lab900FormField) => field.attribute === key
+          );
           if (data[key] && fieldSchema) {
             this.fb.createFormArray(data, fieldSchema, control);
           }
@@ -77,7 +85,9 @@ export class Lab900Form<T> implements OnChanges {
       const control = this.form.controls[key];
       if (control) {
         if (control instanceof FormArray) {
-          const fieldSchema = this.schema.fields.find((field: Lab900FormField) => field.attribute === key);
+          const fieldSchema = this.schema.fields.find(
+            (field: Lab900FormField) => field.attribute === key
+          );
           if (data[key] && fieldSchema) {
             this.fb.createFormArray(data, fieldSchema, control);
           }

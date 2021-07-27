@@ -1,5 +1,8 @@
 import { EditType } from '../../../models/editType';
-import { FormFieldBase, FormFieldBaseOptions } from '../../../models/form-field-base';
+import {
+  FormFieldBase,
+  FormFieldBaseOptions,
+} from '../../../models/form-field-base';
 import { Lab900FormConfig } from '../../../models/Lab900FormConfig';
 import { Lab900File } from '../../../models/Lab900File';
 import { Observable } from 'rxjs';
@@ -19,6 +22,7 @@ export interface FormFieldFilePreviewOptions extends FormFieldBaseOptions {
   };
 }
 
-export interface FormFieldFilePreview<T extends string | number = string> extends FormFieldBase<T, FormFieldFilePreviewOptions> {
+export interface FormFieldFilePreview<T extends string | number = string>
+  extends FormFieldBase<T, FormFieldFilePreviewOptions> {
   editType: EditType.FilePreview;
 }

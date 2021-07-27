@@ -1,5 +1,8 @@
 import { EditType } from '../../../models/editType';
-import { FormFieldBase, FormFieldBaseOptions } from '../../../models/form-field-base';
+import {
+  FormFieldBase,
+  FormFieldBaseOptions,
+} from '../../../models/form-field-base';
 import { ThemePalette } from '@angular/material/core';
 
 export interface FormFieldRepeaterOptions extends FormFieldBaseOptions {
@@ -11,6 +14,7 @@ export interface FormFieldRepeaterOptions extends FormFieldBaseOptions {
   buttonColor?: ThemePalette;
 }
 
-export interface FormFieldRepeater<T extends string | number = string> extends FormFieldBase<T, FormFieldRepeaterOptions> {
+export interface FormFieldRepeater<T extends string | number = string>
+  extends FormFieldBase<T, FormFieldRepeaterOptions> {
   editType: EditType.Repeater;
 }

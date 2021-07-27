@@ -4,7 +4,8 @@ import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'lab900-form-condtional-validation-example',
-  template: '<lab900-form #lab900FormContainer [schema]="schema"></lab900-form>',
+  template:
+    '<lab900-form #lab900FormContainer [schema]="schema"></lab900-form>',
 })
 export class FormCondtionalValidationExampleComponent {
   public schema: Lab900FormConfig = {

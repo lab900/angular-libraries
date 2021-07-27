@@ -11,7 +11,12 @@ import {
   Renderer2,
   Self,
 } from '@angular/core';
-import { ControlValueAccessor, FormGroupDirective, NgControl, NgForm } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormGroupDirective,
+  NgControl,
+  NgForm,
+} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { FocusMonitor } from '@angular/cdk/a11y';
@@ -23,18 +28,32 @@ import { FileInput } from '../../../../models/FileInput';
   selector: 'lab900-mat-file-field',
   styleUrls: ['./mat-file-field.component.scss'],
   template: `
-    <input #input type="file" [attr.multiple]="multiple ? '' : null" [attr.accept]="accept" />
+    <input
+      #input
+      type="file"
+      [attr.multiple]="multiple ? '' : null"
+      [attr.accept]="accept"
+    />
     <span class="filename" [title]="fileNames">{{ fileNames }}</span>
   `,
-  providers: [{ provide: MatFormFieldControl, useExisting: MatFileFieldComponent }],
+  providers: [
+    { provide: MatFormFieldControl, useExisting: MatFileFieldComponent },
+  ],
 })
 export class MatFileFieldComponent
   extends FileInputMixinBase
-  implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck
+  implements
+    MatFormFieldControl<FileInput>,
+    ControlValueAccessor,
+    OnInit,
+    OnDestroy,
+    DoCheck
 {
   @Input()
   public get value(): FileInput | null {
-    return this.empty ? null : new FileInput(this.elementRef.nativeElement.value || []);
+    return this.empty
+      ? null
+      : new FileInput(this.elementRef.nativeElement.value || []);
   }
 
   public set value(fileInput: FileInput | null) {
@@ -58,7 +77,10 @@ export class MatFileFieldComponent
    * Whether the current input has files
    */
   public get empty(): boolean {
-    return !this.elementRef.nativeElement.value || this.elementRef.nativeElement.value.length === 0;
+    return (
+      !this.elementRef.nativeElement.value ||
+      this.elementRef.nativeElement.value.length === 0
+    );
   }
 
   @HostBinding('class.mat-form-field-should-float')
@@ -103,9 +125,7 @@ export class MatFileFieldComponent
   @Input()
   public autofilled = false;
 
-  // tslint:disable-next-line:variable-name
   private _placeholder: string;
-  // tslint:disable-next-line:variable-name
   private _required = false;
 
   @Input()
@@ -138,7 +158,7 @@ export class MatFileFieldComponent
     @Self()
     public ngControl: NgControl,
     @Optional() public parentForm: NgForm,
-    @Optional() public parentFormGroup: FormGroupDirective,
+    @Optional() public parentFormGroup: FormGroupDirective
   ) {
     super(defaultErrorStateMatcher, parentForm, parentFormGroup, ngControl);
 
@@ -146,10 +166,13 @@ export class MatFileFieldComponent
       this.ngControl.valueAccessor = this;
     }
 
-    this.addSubscription(fm.monitor(elementRef.nativeElement, true), (origin) => {
-      this.focused = !!origin;
-      this.stateChanges.next();
-    });
+    this.addSubscription(
+      fm.monitor(elementRef.nativeElement, true),
+      (origin) => {
+        this.focused = !!origin;
+        this.stateChanges.next();
+      }
+    );
   }
 
   public setDescribedByIds(ids: string[]): void {
@@ -160,7 +183,10 @@ export class MatFileFieldComponent
   private onTouched = () => {};
 
   public onContainerClick(event: MouseEvent): void {
-    if ((event.target as Element).tagName.toLowerCase() !== 'input' && !this.disabled) {
+    if (
+      (event.target as Element).tagName.toLowerCase() !== 'input' &&
+      !this.disabled
+    ) {
       this.elementRef.nativeElement.querySelector('input').focus();
       this.focused = true;
       this.open();
@@ -168,7 +194,11 @@ export class MatFileFieldComponent
   }
 
   public writeValue(obj: FileInput | null): void {
-    this.renderer.setProperty(this.elementRef.nativeElement, 'value', obj instanceof FileInput ? obj.files : null);
+    this.renderer.setProperty(
+      this.elementRef.nativeElement,
+      'value',
+      obj instanceof FileInput ? obj.files : null
+    );
   }
 
   public registerOnChange(fn: (_: any) => void): void {
@@ -197,7 +227,6 @@ export class MatFileFieldComponent
     const fileList: FileList | null = (event.target as HTMLInputElement).files;
     const fileArray: File[] = [];
     if (fileList) {
-      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < fileList.length; i++) {
         fileArray.push(fileList[i]);
       }
@@ -213,7 +242,11 @@ export class MatFileFieldComponent
   }
 
   public setDisabledState(isDisabled: boolean): void {
-    this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', isDisabled);
+    this.renderer.setProperty(
+      this.elementRef.nativeElement,
+      'disabled',
+      isDisabled
+    );
   }
 
   public ngOnInit(): void {

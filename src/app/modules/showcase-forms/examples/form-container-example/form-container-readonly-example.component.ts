@@ -6,12 +6,19 @@ import { formDataExample } from './config/form-data-example';
 @Component({
   selector: 'lab900-form-container-readonly-example',
   template: `
-    <lab900-form #lab900FormContainer [schema]="formFields" [data]="formData"></lab900-form>
+    <lab900-form
+      #lab900FormContainer
+      [schema]="formFields"
+      [data]="formData"
+    ></lab900-form>
     <button (click)="toggleReadOnly()">Toggle edit</button>
   `,
 })
 export class FormContainerReadonlyExampleComponent {
-  public formFields: Lab900FormConfig = { ...formFieldsExample, readonly: true };
+  public formFields: Lab900FormConfig = {
+    ...formFieldsExample,
+    readonly: true,
+  };
   public formData = formDataExample;
 
   @ViewChild('lab900FormContainer')

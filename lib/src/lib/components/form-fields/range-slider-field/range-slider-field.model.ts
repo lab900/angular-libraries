@@ -1,5 +1,8 @@
 import { EditType } from '../../../models/editType';
-import { FormFieldBase, FormFieldBaseOptions } from '../../../models/form-field-base';
+import {
+  FormFieldBase,
+  FormFieldBaseOptions,
+} from '../../../models/form-field-base';
 
 export interface FormFieldRangeSliderOptions extends FormFieldBaseOptions {
   fromLabel?: string;
@@ -9,6 +12,7 @@ export interface FormFieldRangeSliderOptions extends FormFieldBaseOptions {
   format?: 'K-M' | 'DEFAULT';
 }
 
-export interface FormFieldRangeSlider<T extends string | number = string> extends FormFieldBase<T, FormFieldRangeSliderOptions> {
+export interface FormFieldRangeSlider<T extends string | number = string>
+  extends FormFieldBase<T, FormFieldRangeSliderOptions> {
   editType: EditType.RangeSlider;
 }

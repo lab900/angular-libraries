@@ -17,11 +17,11 @@ export class MarkdownPageComponent extends SubscriptionBasedDirective {
     this.addSubscription(
       this.activatedRoute.data.pipe(
         filter((data: { filePath: string }) => !!data?.filePath),
-        take(1),
+        take(1)
       ),
       (data) => {
         this.filePath = data.filePath;
-      },
+      }
     );
   }
 }

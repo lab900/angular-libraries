@@ -1,5 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { EditType, Lab900FormConfig, Lab900Form, Lab900File } from '@lab900/forms';
+import {
+  EditType,
+  Lab900FormConfig,
+  Lab900Form,
+  Lab900File,
+} from '@lab900/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -30,7 +35,8 @@ export class FormFieldFileUploadExampleComponent {
               },
             ],
           },
-          httpCallback: (image: Lab900File) => this.http.get(image?.imageSrc, { responseType: 'blob' }),
+          httpCallback: (image: Lab900File) =>
+            this.http.get(image?.imageSrc, { responseType: 'blob' }),
           showOverlay: (data: any) => {
             return data.delicate;
           },

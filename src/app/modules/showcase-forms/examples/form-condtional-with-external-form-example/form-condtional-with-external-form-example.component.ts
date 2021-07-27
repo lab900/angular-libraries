@@ -7,7 +7,11 @@ import { EditType, Lab900FormConfig } from '@lab900/forms';
     <h2>Form 1</h2>
     <lab900-form #form1 [schema]="schema"></lab900-form>
     <h2>Form 2</h2>
-    <lab900-form #form2 [schema]="schema2" [externalForms]="{ form1: form1.form }"></lab900-form>
+    <lab900-form
+      #form2
+      [schema]="schema2"
+      [externalForms]="{ form1: form1.form }"
+    ></lab900-form>
   `,
 })
 export class FormCondtionalWithExternalFormExampleComponent {

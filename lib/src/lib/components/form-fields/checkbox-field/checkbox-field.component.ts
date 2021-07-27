@@ -19,6 +19,9 @@ export class CheckboxFieldComponent extends FormComponent<CheckboxFieldModel> {
   }
 
   get indeterminate(): boolean {
-    return !this.options?.disabledIndeterminate && this.group.get(this.schema.attribute).value === null;
+    return (
+      !this.options?.disabledIndeterminate &&
+      this.group.get(this.schema.attribute).value === null
+    );
   }
 }

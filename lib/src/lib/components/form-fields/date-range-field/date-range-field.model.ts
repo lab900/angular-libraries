@@ -1,5 +1,8 @@
 import { EditType } from '../../../models/editType';
-import { FormFieldBase, FormFieldBaseOptions } from '../../../models/form-field-base';
+import {
+  FormFieldBase,
+  FormFieldBaseOptions,
+} from '../../../models/form-field-base';
 
 export interface FormFieldDateRangeOptions extends FormFieldBaseOptions {
   maxDate?: Date;
@@ -10,6 +13,7 @@ export interface FormFieldDateRangeOptions extends FormFieldBaseOptions {
   endKey?: string;
 }
 
-export interface FormFieldDateRange<T extends string | number = string> extends FormFieldBase<T, FormFieldDateRangeOptions> {
+export interface FormFieldDateRange<T extends string | number = string>
+  extends FormFieldBase<T, FormFieldDateRangeOptions> {
   editType: EditType.DateRange;
 }

@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { EditType, Lab900FormConfig, FormFieldSelectOptionsFilter, ValueLabel } from '@lab900/forms';
+import {
+  EditType,
+  Lab900FormConfig,
+  FormFieldSelectOptionsFilter,
+  ValueLabel,
+} from '@lab900/forms';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -91,7 +96,10 @@ export class FormFieldSelectAdvancedExampleComponent {
 
   public constructor(private http: HttpClient) {}
 
-  public getSelectOptions(filter?: FormFieldSelectOptionsFilter, author?: string): Observable<ValueLabel[]> {
+  public getSelectOptions(
+    filter?: FormFieldSelectOptionsFilter,
+    author?: string
+  ): Observable<ValueLabel[]> {
     return this.http
       .get<{ docs: any[] }>('https://openlibrary.org/search.json', {
         params: {
@@ -106,8 +114,8 @@ export class FormFieldSelectAdvancedExampleComponent {
           res?.docs?.map((d) => ({
             label: d.title,
             value: d,
-          })),
-        ),
+          }))
+        )
       );
   }
 }

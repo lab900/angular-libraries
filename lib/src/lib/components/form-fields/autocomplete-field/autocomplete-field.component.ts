@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostBinding,
+  ViewChild,
+} from '@angular/core';
 import { FormComponent } from '../../AbstractFormComponent';
 import { BehaviorSubject, isObservable, Observable, of } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,7 +16,10 @@ import { FormFieldAutocomplete } from './autocomplete-field.model';
   selector: 'lab900-autocomplete-field',
   templateUrl: './autocomplete-field.component.html',
 })
-export class AutocompleteFieldComponent extends FormComponent<FormFieldAutocomplete> implements AfterViewInit {
+export class AutocompleteFieldComponent
+  extends FormComponent<FormFieldAutocomplete>
+  implements AfterViewInit
+{
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
@@ -35,13 +44,17 @@ export class AutocompleteFieldComponent extends FormComponent<FormFieldAutocompl
   }
 
   private initFilteredOptionsListener(): void {
-    const debounce: number = this.options.debounceTime ?? (isObservable(this.options.autocompleteOptions('', this.fieldControl)) ? 300 : 0);
+    const debounce: number =
+      this.options.debounceTime ??
+      (isObservable(this.options.autocompleteOptions('', this.fieldControl))
+        ? 300
+        : 0);
     this.filteredOptions = this.inputChange.pipe(
       debounceTime(debounce),
       switchMap((input: string) => {
         const res = this.options.autocompleteOptions(input, this.fieldControl);
         return isObservable(res) ? res : of(res);
-      }),
+      })
     );
   }
 }

@@ -1,5 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Lab900FormConfig, Lab900Form, EditType, ValueLabel } from '@lab900/forms';
+import {
+  Lab900FormConfig,
+  Lab900Form,
+  EditType,
+  ValueLabel,
+} from '@lab900/forms';
 import { of } from 'rxjs';
 
 @Component({
@@ -12,7 +17,11 @@ export class FormFieldAutocompleteExampleComponent {
   @ViewChild(Lab900Form)
   public formContainer: Lab900Form<any>;
 
-  public options: ValueLabel[] = [{ name: 'Mary' }, { name: 'Shelley' }, { name: 'Igor' }].map((value) => ({ value, label: value.name }));
+  public options: ValueLabel[] = [
+    { name: 'Mary' },
+    { name: 'Shelley' },
+    { name: 'Igor' },
+  ].map((value) => ({ value, label: value.name }));
 
   public formSchema: Lab900FormConfig = {
     fields: [
@@ -55,7 +64,9 @@ export class FormFieldAutocompleteExampleComponent {
 
   private filter(value: string): ValueLabel[] {
     const filterValue = value.toLowerCase();
-    return this.options.filter((option: ValueLabel) => option.label.toLowerCase().includes(filterValue));
+    return this.options.filter((option: ValueLabel) =>
+      option.label.toLowerCase().includes(filterValue)
+    );
   }
 
   public validate(): void {

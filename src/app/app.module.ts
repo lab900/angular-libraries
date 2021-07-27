@@ -14,7 +14,9 @@ import { MergingTranslateLoader } from './utils/merging-translate-loader';
 import { HttpClient } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
 
-export function TranslationLoaderFactory(http: HttpClient): MergingTranslateLoader {
+export function TranslationLoaderFactory(
+  http: HttpClient
+): MergingTranslateLoader {
   return new MergingTranslateLoader(http, './assets/i18n/', '.json');
 }
 

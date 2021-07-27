@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { Lab900FormConfig, EditType, multiLanguageValidator, ValueLabel } from '@lab900/forms';
+import {
+  Lab900FormConfig,
+  EditType,
+  multiLanguageValidator,
+  ValueLabel,
+} from '@lab900/forms';
 
 const languages: ValueLabel[] = [
   { value: 'nl', label: 'NLD' },
@@ -9,7 +14,14 @@ const languages: ValueLabel[] = [
 
 @Component({
   selector: 'lab900-form-field-multi-language-example',
-  template: ` <lab900-form language="nl" [availableLanguages]="languages" [schema]="formSchema" [data]="data"></lab900-form> `,
+  template: `
+    <lab900-form
+      language="nl"
+      [availableLanguages]="languages"
+      [schema]="formSchema"
+      [data]="data"
+    ></lab900-form>
+  `,
 })
 export class FormFieldMultiLanguageExampleComponent {
   public readonly languages = languages;

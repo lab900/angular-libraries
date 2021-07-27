@@ -7,7 +7,11 @@ import { of } from 'rxjs';
   template: '<lab900-form [schema]="formSchema"></lab900-form>',
 })
 export class FormFieldAutocompleteMultipleExampleComponent {
-  public options: ValueLabel[] = [{ name: 'Mary' }, { name: 'Shelley' }, { name: 'Igor' }].map((value) => ({ value, label: value.name }));
+  public options: ValueLabel[] = [
+    { name: 'Mary' },
+    { name: 'Shelley' },
+    { name: 'Igor' },
+  ].map((value) => ({ value, label: value.name }));
 
   public formSchema: Lab900FormConfig = {
     fields: [
@@ -26,6 +30,8 @@ export class FormFieldAutocompleteMultipleExampleComponent {
 
   private filter(value: string): ValueLabel[] {
     const filterValue = value.toLowerCase();
-    return this.options.filter((option: ValueLabel) => option.label.toLowerCase().includes(filterValue));
+    return this.options.filter((option: ValueLabel) =>
+      option.label.toLowerCase().includes(filterValue)
+    );
   }
 }
