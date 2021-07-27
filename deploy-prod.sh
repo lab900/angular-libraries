@@ -1,4 +1,5 @@
 #!/bin/sh
+# Used in automatic deploy on main branch
 cd lib || exit
 cd ..
 npm i -g @angular/cli

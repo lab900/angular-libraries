@@ -1,4 +1,5 @@
 #!/bin/sh
+# Used in automatic deploy on dev branch
 cd lib || exit
 npm version "$2"-alpha."$3"
 cd ..
