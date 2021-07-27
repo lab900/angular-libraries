@@ -3,6 +3,8 @@ import { EditType } from '../models/editType';
 import { Injectable } from '@angular/core';
 import { FormFieldUtils } from '../utils/form-field.utils';
 import { Lab900FormField } from '../models/lab900-form-field.type';
+import { FormFieldAutocomplete } from '../components/form-fields/autocomplete-field/autocomplete-field.model';
+import { requireMatchValidator } from '../validators/require-match.validator';
 
 @Injectable()
 export class Lab900FormBuilderService {
@@ -30,6 +32,9 @@ export class Lab900FormBuilderService {
     }
     if (field.options?.pattern) {
       validators.push(Validators.pattern(field.options.pattern));
+    }
+    if ((field as FormFieldAutocomplete).options?.requireMatch) {
+      validators.push(requireMatchValidator());
     }
     return validators;
   }
