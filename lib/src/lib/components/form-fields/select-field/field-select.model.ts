@@ -22,13 +22,13 @@ export interface FormFieldSelectOptions extends FormFieldBaseOptions {
   infiniteScroll?: {
     enabled: boolean;
     /**
-     * The threshold distance from the bottom of the options list to call the infiniteScroll output event when scrolled. The threshold value can be either in percent, or in pixels. For example, use the value of 10% for the infiniteScroll output event to get called when the user has needs 10% to reach the bottom.
-     * @default '15%'
+     * The threshold distance from the bottom of the options list to call the infiniteScroll output event when scrolled.
+     * The threshold value can be either in percent, or in pixels.
+     * For example, use the value of 10% for the infiniteScroll output event to get called when the user has needs 10% to reach the bottom.
      */
     threshold?: string;
     /**
      * The threshold time before firing the infiniteScroll event
-     * @default 150
      */
     debounceTime?: number;
   };

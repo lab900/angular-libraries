@@ -61,7 +61,7 @@ export class SelectFieldComponent extends FormComponent<FormFieldSelect> impleme
     );
 
     this.addSubscription(this.conditionalOptionsChange, ({ condition, value }) => {
-      this.updateOptionsFn((filter) => condition?.conditionalOptions(value, this.fieldControl, filter));
+      this.updateOptionsFn((f) => condition?.conditionalOptions(value, this.fieldControl, f));
     });
   }
 

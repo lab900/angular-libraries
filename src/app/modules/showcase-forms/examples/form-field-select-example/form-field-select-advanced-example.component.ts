@@ -78,7 +78,7 @@ export class FormFieldSelectAdvancedExampleComponent {
               {
                 dependOn: 'author',
                 enableIfHasValue: true,
-                conditionalOptions: (value: string, _control, filter) => {
+                conditionalOptions: (value: string, control, filter) => {
                   return this.getSelectOptions(filter, value);
                 },
               },
