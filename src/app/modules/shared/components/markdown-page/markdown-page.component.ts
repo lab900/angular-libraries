@@ -12,7 +12,7 @@ export class MarkdownPageComponent extends SubscriptionBasedDirective {
   @Input()
   public filePath: string;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  public constructor(private activatedRoute: ActivatedRoute) {
     super();
     this.addSubscription(
       this.activatedRoute.data.pipe(

@@ -12,7 +12,7 @@ export class IconFieldComponent extends FormComponent<FormFieldIcon> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  constructor(translateService: TranslateService) {
+  public constructor(translateService: TranslateService) {
     super(translateService);
   }
 }

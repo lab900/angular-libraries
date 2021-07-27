@@ -10,7 +10,7 @@ import { formsTranslations } from '@lab900/forms';
  * (root) project. The root project can override and extend translations as needed.
  */
 export class MergingTranslateLoader implements TranslateLoader {
-  constructor(
+  public constructor(
     private http: HttpClient,
     public prefix: string = '/assets/i18n/',
     public suffix: string = '.json'

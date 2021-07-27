@@ -15,5 +15,5 @@ export class ShowcaseHomeComponent {
     nav: NavItemGroup[];
   }> = this.activatedRoute.data as any;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  public constructor(private activatedRoute: ActivatedRoute) {}
 }

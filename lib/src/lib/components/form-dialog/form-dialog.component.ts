@@ -15,7 +15,7 @@ export class FormDialogComponent<T> {
   public dialogFormData: DialogFormData<T>;
   public loading = false;
 
-  constructor(
+  public constructor(
     @Inject(MAT_DIALOG_DATA) private data: DialogFormData<T>,
     private dialogRef: MatDialogRef<FormDialogComponent<T>>
   ) {

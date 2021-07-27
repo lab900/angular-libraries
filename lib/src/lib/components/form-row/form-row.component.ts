@@ -16,11 +16,11 @@ export class FormRowComponent extends FormComponent<FormRow> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  constructor(translateService: TranslateService) {
+  public constructor(translateService: TranslateService) {
     super(translateService);
   }
 
-  get visible(): boolean {
+  public get visible(): boolean {
     if (this.options && this.options.visibleFn) {
       return this.options.visibleFn(this);
     }

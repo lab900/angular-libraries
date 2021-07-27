@@ -59,7 +59,8 @@ export class FormFieldFileUploadExampleComponent {
       },
     ],
   };
-  constructor(private http: HttpClient) {}
+
+  public constructor(private http: HttpClient) {}
 
   public validate(): void {
     console.log(this.formContainer.form.controls.files.value);

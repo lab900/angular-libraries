@@ -8,7 +8,7 @@ export class AutofocusDirective implements OnChanges {
   @Input()
   private autofocus = false;
 
-  constructor(private matInput: MatInput) {}
+  public constructor(private matInput: MatInput) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.autofocus && changes.autofocus.currentValue === true) {

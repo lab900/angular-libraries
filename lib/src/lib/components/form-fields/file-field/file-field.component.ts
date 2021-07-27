@@ -14,7 +14,7 @@ import { FormFieldFile } from './file-field.model';
 export class FileFieldComponent extends FormComponent<FormFieldFile> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
-  constructor(translateService: TranslateService) {
+  public constructor(translateService: TranslateService) {
     super(translateService);
   }
 }

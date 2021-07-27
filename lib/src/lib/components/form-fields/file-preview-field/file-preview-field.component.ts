@@ -26,11 +26,14 @@ export class FilePreviewFieldComponent<
   @ViewChild('FormDialogDirective')
   private lab900FormDialog: FormDialogDirective<T>;
 
-  constructor(translateService: TranslateService, private dialog: MatDialog) {
+  public constructor(
+    translateService: TranslateService,
+    private dialog: MatDialog
+  ) {
     super(translateService);
   }
 
-  get files(): Lab900File[] {
+  public get files(): Lab900File[] {
     return (this.fieldControl?.value as Lab900File[]) ?? [];
   }
 

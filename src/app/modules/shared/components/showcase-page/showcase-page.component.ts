@@ -25,7 +25,10 @@ export class ShowcasePageComponent extends SubscriptionBasedDirective {
   public data: ShowcaseRouteData;
   public navItems: PageHeaderNavItem[] = [];
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  public constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
     super();
     this.addSubscription(this.activatedRoute.queryParams, (queryParams) => {
       this.data = this.activatedRoute.snapshot.data as ShowcaseRouteData;

@@ -14,11 +14,11 @@ export class CheckboxFieldComponent extends FormComponent<CheckboxFieldModel> {
   @HostBinding('class')
   public classList = 'lab900-form-field';
 
-  constructor(translateService: TranslateService) {
+  public constructor(translateService: TranslateService) {
     super(translateService);
   }
 
-  get indeterminate(): boolean {
+  public get indeterminate(): boolean {
     return (
       !this.options?.disabledIndeterminate &&
       this.group.get(this.schema.attribute).value === null

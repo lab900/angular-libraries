@@ -15,7 +15,7 @@ export class MultiLangInputFieldComponent extends FormComponent<FormFieldMultiLa
   @HostBinding('class')
   public classList = `lab900-form-field`;
 
-  constructor(
+  public constructor(
     @Inject(LAB900_FORM_MODULE_SETTINGS)
     public setting: Lab900FormModuleSettings,
     translateService: TranslateService

@@ -15,7 +15,7 @@ export class ImagePreviewModalComponent {
   public image: Lab900File;
   public error = true;
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: DialogData) {
+  public constructor(@Inject(MAT_DIALOG_DATA) private data: DialogData) {
     this.image = data.image;
   }
 }

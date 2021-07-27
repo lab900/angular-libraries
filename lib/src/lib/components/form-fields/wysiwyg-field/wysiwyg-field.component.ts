@@ -27,7 +27,7 @@ export class WysiwygFieldComponent
 
   public editorConfig: AngularEditorConfig;
 
-  constructor(translateService: TranslateService) {
+  public constructor(translateService: TranslateService) {
     super(translateService);
   }
 

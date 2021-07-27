@@ -13,6 +13,7 @@
         "plugin:prettier/recommended"
       ],
       "rules": {
+        "@typescript-eslint/explicit-member-accessibility": ["error"],
         "prettier/prettier": [
           "error",
           {
