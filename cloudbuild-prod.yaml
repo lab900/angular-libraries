@@ -12,7 +12,7 @@ steps:
   dir: /workspace
   args:
     - -c
-    - ./deploy-prod.sh $$NPM_TOKEN'
+    - ./deploy-prod.sh $$NPM_TOKEN
   secretEnv: ['NPM_TOKEN']
 availableSecrets:
   secretManager:
