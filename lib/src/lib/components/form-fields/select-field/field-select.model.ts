@@ -14,14 +14,21 @@ export interface FormFieldSelectOptions extends FormFieldBaseOptions {
   selectOptions?: FormFieldSelectOptionsFn | ValueLabel[] | Observable<ValueLabel[]>;
   compareWith?: (o1: any, o2: any) => boolean;
   displayOptionFn?: (option: ValueLabel) => string;
+  search?: {
+    enabled: boolean;
+    placeholder?: string;
+    notFoundLabel?: string;
+  };
   infiniteScroll?: {
     enabled: boolean;
     /**
-     * default '15%'
+     * The threshold distance from the bottom of the options list to call the infiniteScroll output event when scrolled. The threshold value can be either in percent, or in pixels. For example, use the value of 10% for the infiniteScroll output event to get called when the user has needs 10% to reach the bottom.
+     * @default '15%'
      */
     threshold?: string;
     /**
-     * default 150
+     * The threshold time before firing the infiniteScroll event
+     * @default 150
      */
     debounceTime?: number;
   };

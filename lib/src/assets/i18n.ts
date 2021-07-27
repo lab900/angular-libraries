@@ -9,6 +9,8 @@ export const formsTranslations = {
     'forms.error.requireMatch': 'Please select a value.',
     'forms.error.generic': 'Field is invalid.',
     'form.field.loading': 'Loading...',
+    'form.field.search': 'Search...',
+    'form.field.no_options_found': 'No options found',
     'form.button.upload': 'Upload',
     'forms.error.image.load': `Couldn't load image`,
   },
@@ -24,5 +26,7 @@ export const formsTranslations = {
     'form.field.loading': 'Even geduld...',
     'form.button.upload': 'Upload',
     'forms.error.image.load': 'Kon afbeelding niet laden',
+    'form.field.search': 'Zoek...',
+    'form.field.no_options_found': 'Geen opties gevonden',
   },
 };

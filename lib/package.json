@@ -16,7 +16,8 @@
     "nouislider": "^14.7.0",
     "ngx-mask": "11.1.5",
     "@angular-material-components/datetime-picker": "^5.1.0",
-    "ng-mat-select-infinite-scroll": "^2.1.1"
+    "ng-mat-select-infinite-scroll": "^2.1.1",
+    "ngx-mat-select-search": "^3.3.0"
   },
   "repository": {
     "type": "git",

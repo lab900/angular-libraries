@@ -17,8 +17,21 @@
     [required]="fieldIsRequired"
     msInfiniteScroll
     [complete]="!options?.infiniteScroll?.enabled"
+    [threshold]="options?.infiniteScroll?.threshold || '15%'"
+    [debounceTime]="options?.infiniteScroll?.debounceTime || 150"
     (infiniteScroll)="onScroll()"
   >
+    <mat-option *ngIf="options?.search?.enabled">
+      <ngx-mat-select-search
+        [ngModel]="(optionsFilter$ | async)?.searchQuery || ''"
+        [searching]="loading"
+        (ngModelChange)="onSearch($event)"
+        [ngModelOptions]="{ standalone: true }"
+        [placeholderLabel]="options?.search?.placeholder || 'form.field.search' | translate"
+        [noEntriesFoundLabel]="options?.search?.notFoundLabel || 'form.field.no_options_found' | translate"
+        [disableScrollToActiveOnOptionsChanged]="options?.infiniteScroll?.enabled"
+      ></ngx-mat-select-search>
+    </mat-option>
     <mat-option *ngFor="let item of selectOptions" [value]="item.value">
       <div *ngIf="options?.displayOptionFn" [innerHTML]="options.displayOptionFn(item) | translate"></div>
       <ng-container *ngIf="!options?.displayOptionFn">{{ item.label | translate }}</ng-container>

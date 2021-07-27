@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { FormComponent } from '../../AbstractFormComponent';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, isObservable, of, Subject } from 'rxjs';
-import { catchError, filter, switchMap, take } from 'rxjs/operators';
+import { catchError, debounceTime, filter, switchMap, take, tap } from 'rxjs/operators';
 import { FormFieldSelect, FormFieldSelectOptionsFilter, FormFieldSelectOptionsFn } from './field-select.model';
 import { ValueLabel } from '../../../models/form-field-base';
 
@@ -13,7 +13,7 @@ import { ValueLabel } from '../../../models/form-field-base';
 export class SelectFieldComponent extends FormComponent<FormFieldSelect> implements OnInit {
   private conditionalOptionsChange = new Subject();
   private optionsFn$ = new BehaviorSubject<FormFieldSelectOptionsFn>(() => []);
-  private optionsFilter$ = new BehaviorSubject<FormFieldSelectOptionsFilter | null>(null);
+  public optionsFilter$ = new BehaviorSubject<FormFieldSelectOptionsFilter | null>(null);
 
   @HostBinding('class')
   public classList = 'lab900-form-field';
@@ -39,6 +39,7 @@ export class SelectFieldComponent extends FormComponent<FormFieldSelect> impleme
     this.optionsFilter$
       .pipe(
         filter(() => !!this.optionsFn$.value),
+        tap(() => (this.loading = true)),
         switchMap((optionsFilter) =>
           this.optionsFn$.pipe(
             take(1),
@@ -88,6 +89,12 @@ export class SelectFieldComponent extends FormComponent<FormFieldSelect> impleme
     if (this.options?.infiniteScroll?.enabled && !this.loading) {
       const currentFilter = this.optionsFilter$.value;
       this.optionsFilter$.next({ ...currentFilter, page: currentFilter.page + 1 });
+    }
+  }
+
+  public onSearch(searchQuery: string): void {
+    if (this.options?.search?.enabled && !this.loading) {
+      this.optionsFilter$.next({ searchQuery, page: 0 });
     }
   }
 

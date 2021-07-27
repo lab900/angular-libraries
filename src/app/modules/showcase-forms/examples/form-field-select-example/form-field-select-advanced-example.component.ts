@@ -9,8 +9,6 @@ import { map } from 'rxjs/operators';
   template: '<lab900-form [schema]="formSchema"></lab900-form>',
 })
 export class FormFieldSelectAdvancedExampleComponent {
-  public constructor(private http: HttpClient) {}
-
   public getSelectOptions = (filter?: FormFieldSelectOptionsFilter): Observable<ValueLabel[]> => {
     return this.http
       .get<{ docs: any[] }>('https://openlibrary.org/search.json', {
@@ -43,10 +41,22 @@ export class FormFieldSelectAdvancedExampleComponent {
             options: {
               selectOptions: this.getSelectOptions,
               colspan: 6,
-              required: (data) => {
-                return data?.secondPropName;
-              },
               infiniteScroll: {
+                enabled: true,
+              },
+            },
+          },
+          {
+            attribute: 'books2',
+            title: 'Search a book',
+            editType: EditType.Select,
+            options: {
+              selectOptions: this.getSelectOptions,
+              colspan: 6,
+              infiniteScroll: {
+                enabled: true,
+              },
+              search: {
                 enabled: true,
               },
             },
@@ -55,4 +65,6 @@ export class FormFieldSelectAdvancedExampleComponent {
       },
     ],
   };
+
+  public constructor(private http: HttpClient) {}
 }
