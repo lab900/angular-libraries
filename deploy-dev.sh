@@ -1,6 +1,6 @@
 #!/bin/sh
 cd lib || exit
-npm version prerelease --preid test
+npm version "$2"-test."$3"
 cd ..
 npm i -g @angular/cli
 npm i
