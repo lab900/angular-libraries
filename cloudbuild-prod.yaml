@@ -1,0 +1,20 @@
+steps:
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: bash
+  dir: /workspace
+  args:
+    - -c
+    - |
+      cd lib && grep version package.json | cut -c15-19 | gcloud secrets versions add forms-version --data-file=-
+      echo "0" | gcloud secrets versions add forms-version-alpha --data-file=-
+- name: node:14.16.1-slim
+  entrypoint: sh
+  dir: /workspace
+  args:
+    - -c
+    - ./deploy-prod.sh $$NPM_TOKEN'
+  secretEnv: ['NPM_TOKEN']
+availableSecrets:
+  secretManager:
+    - versionName: projects/18279890124/secrets/npm-access-key/versions/latest
+      env: 'NPM_TOKEN'
