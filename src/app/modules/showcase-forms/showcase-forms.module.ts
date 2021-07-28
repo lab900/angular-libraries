@@ -26,7 +26,7 @@ import { FormCondtionalValidationExampleComponent } from './examples/form-condti
 import { FormCondtionalWithExternalFormExampleComponent } from './examples/form-condtional-with-external-form-example/form-condtional-with-external-form-example.component';
 import { FormFieldSelectAdvancedExampleComponent } from './examples/form-field-select-example/form-field-select-advanced-example.component';
 import { FormFieldNestedGroupsExampleComponent } from './examples/form-field-nested-groups-example/form-field-nested-groups-example.component';
-import { FormFieldNestedGroupsByAttributeExampleComponent } from './examples/form-field-nested-groups-by-attribute-example/form-field-nested-groups-example.component';
+import { FormFieldNestedGroupsByAttributeExampleComponent } from './examples/form-field-nested-groups-by-attribute-example/form-field-nested-groups-by-attribute-example.component';
 
 const examples = [
   FormFieldRepeaterExampleComponent,

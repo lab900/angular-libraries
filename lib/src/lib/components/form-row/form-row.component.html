@@ -1,8 +1,13 @@
 <ng-container *ngIf="visible && schema">
-  <div [hidden]="isHidden(schema)">
+  <div
+    [hidden]="isHidden(schema)"
+    class="lab900-form-row {{ options?.customClass }}"
+  >
     <span
       *ngIf="(fieldIsReadonly && options?.readonlyLabel) || schema.title"
-      class="lab900-form-field-label"
+      class="lab900-form-field-label lab900-form-row-label {{
+        options?.customTitleClass
+      }}"
       >{{
         (!fieldIsReadonly
           ? schema.title
