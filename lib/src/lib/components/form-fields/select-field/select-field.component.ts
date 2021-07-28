@@ -9,6 +9,7 @@ import {
   FormFieldSelectOptionsFn,
 } from './field-select.model';
 import { ValueLabel } from '../../../models/form-field-base';
+import { coerceArray } from '@lab900/ui';
 
 @Component({
   selector: 'lab900-select-field',
@@ -43,6 +44,28 @@ export class SelectFieldComponent
 
   public constructor(translateService: TranslateService) {
     super(translateService);
+  }
+
+  public defaultCompare = (o1: any, o2: any): boolean => o1 === o2;
+
+  public ngOnInit(): void {
+    if (this.options?.selectOptions) {
+      const { selectOptions } = this.options;
+      this.updateOptionsFn(
+        typeof selectOptions === 'function'
+          ? selectOptions
+          : () => selectOptions
+      );
+    }
+
+    this.addSubscription(
+      this.conditionalOptionsChange,
+      ({ condition, value }) => {
+        this.updateOptionsFn((f) =>
+          condition?.conditionalOptions(value, this.fieldControl, f)
+        );
+      }
+    );
 
     this.addSubscription(
       this.optionsFilter$.pipe(
@@ -61,36 +84,48 @@ export class SelectFieldComponent
         )
       ),
       (options) => {
+        const compare = this.options?.compareWith || this.defaultCompare;
+
         if (this.optionsFilter$.value?.page > 0) {
-          this.selectOptions = this.selectOptions.concat(options);
+          /**
+           * concat options for infinite scroll
+           * duplicates are filtered out (can happen because of the option add)
+           */
+          this.selectOptions = this.selectOptions.concat(
+            options.filter((o) =>
+              this.selectOptions.some((so) => compare(o, so))
+            )
+          );
         } else {
           this.selectOptions = options;
         }
+
+        /**
+         * with infinite scroll & searching the form control value(s) might not always be present in the options
+         * this will cause the select to appear empty while it has values.
+         * to salve this we add the form values to the options
+         */
+        if (this.fieldControl?.value) {
+          const value = coerceArray(this.fieldControl?.value);
+          const compare = this.options?.compareWith || this.defaultCompare;
+          const inOptions = this.selectOptions.some((o) =>
+            value.some((v) => compare(o.value, v))
+          );
+          if (!inOptions) {
+            this.selectOptions = value
+              .map((v) => ({
+                value: v,
+                label: this.options?.displayOptionFn
+                  ? this.options.displayOptionFn(v)
+                  : v,
+              }))
+              .concat(this.selectOptions);
+          }
+        }
+
         this.loading = false;
       }
     );
-
-    this.addSubscription(
-      this.conditionalOptionsChange,
-      ({ condition, value }) => {
-        this.updateOptionsFn((f) =>
-          condition?.conditionalOptions(value, this.fieldControl, f)
-        );
-      }
-    );
-  }
-
-  public defaultCompare = (o1: any, o2: any): boolean => o1 === o2;
-
-  public ngOnInit(): void {
-    if (this.options?.selectOptions) {
-      const { selectOptions } = this.options;
-      this.updateOptionsFn(
-        typeof selectOptions === 'function'
-          ? selectOptions
-          : () => selectOptions
-      );
-    }
   }
 
   public onConditionalChange(
