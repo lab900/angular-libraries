@@ -80,7 +80,7 @@ export class SelectFieldComponent
     );
   }
 
-  public defaultCompare = (o1: any, o2: any) => o1 === o2;
+  public defaultCompare = (o1: any, o2: any): boolean => o1 === o2;
 
   public ngOnInit(): void {
     if (this.options?.selectOptions) {

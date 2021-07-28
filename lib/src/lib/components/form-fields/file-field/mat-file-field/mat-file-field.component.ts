@@ -179,8 +179,8 @@ export class MatFileFieldComponent
     this.describedBy = ids.join(' ');
   }
 
-  private onChange = (_: any) => {};
-  private onTouched = () => {};
+  private onChange = (_: any): void => {};
+  private onTouched = (): void => {};
 
   public onContainerClick(event: MouseEvent): void {
     if (

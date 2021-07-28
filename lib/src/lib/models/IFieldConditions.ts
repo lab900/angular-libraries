@@ -181,7 +181,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public runVisibilityConditions(value: T): void {
     // Fix ExpressionChangedAfterItHasBeenCheckedError with timeout
     setTimeout(() => {
-      const hide = (isTrue: boolean) =>
+      const hide = (isTrue: boolean): any =>
         (this.schema.options = {
           ...(this.schema.options ?? {}),
           hide: isTrue,
@@ -212,7 +212,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   }
 
   public runDisableConditions(value: T): void {
-    const enable = (isTrue: boolean) =>
+    const enable = (isTrue: boolean): any =>
       setTimeout(() =>
         isTrue ? this.fieldControl.enable() : this.fieldControl.disable()
       );
