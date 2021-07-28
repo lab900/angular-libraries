@@ -35,4 +35,9 @@
       display: block;
     }
   }
+
+  .mat-select-search-inside-mat-option .mat-select-search-clear {
+    right: 0 !important;
+    top: 0 !important;
+  }
 }

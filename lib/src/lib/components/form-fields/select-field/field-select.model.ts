@@ -29,7 +29,7 @@ export interface FormFieldSelectOptions extends FormFieldBaseOptions {
     notFoundLabel?: string;
     /**
      * Clear the search when the select closes
-     * @default true
+     * @default false
      */
     clearOnClose?: boolean;
   };
