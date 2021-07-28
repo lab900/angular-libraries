@@ -27,6 +27,11 @@ export interface FormFieldSelectOptions extends FormFieldBaseOptions {
     enabled: boolean;
     placeholder?: string;
     notFoundLabel?: string;
+    /**
+     * Clear the search when the select closes
+     * @default true
+     */
+    clearOnClose?: boolean;
   };
   infiniteScroll?: {
     enabled: boolean;
