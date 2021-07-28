@@ -1,16 +1,30 @@
-<mat-form-field *ngIf="!fieldIsHidden" [formGroup]="group" class="lab900-textarea-field" id="lab900-textarea-field-{{ schema?.attribute }}">
+<mat-form-field
+  *ngIf="!fieldIsHidden"
+  [formGroup]="group"
+  class="lab900-textarea-field"
+  id="lab900-textarea-field-{{ schema?.attribute }}"
+>
   <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
   <textarea
     #input
     [readonly]="fieldIsReadonly"
-    [formControlName]="schema.attribute"
+    [formControlName]="fieldAttribute"
     [required]="fieldIsRequired"
     matInput
     placeholder="{{ placeholder | translate }}"
   ></textarea>
-  <mat-hint *ngIf="hint && !fieldIsReadonly && !(schema.options.hint.hideHintOnValidValue && input.value)"
+  <mat-hint
+    *ngIf="
+      hint &&
+      !fieldIsReadonly &&
+      !(schema.options.hint.hideHintOnValidValue && input.value)
+    "
     ><span [innerHTML]="hint | translate: hintValueTranslateData"></span
   ></mat-hint>
-  <mat-hint *ngIf="options?.maxLength && !fieldIsReadonly" align="end"> {{ input.value?.length || 0 }}/{{ options?.maxLength }} </mat-hint>
-  <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
+  <mat-hint *ngIf="options?.maxLength && !fieldIsReadonly" align="end">
+    {{ input.value?.length || 0 }}/{{ options?.maxLength }}
+  </mat-hint>
+  <mat-error *ngIf="!valid && !fieldIsReadonly"
+    ><span [innerHTML]="getErrorMessage() | async"></span
+  ></mat-error>
 </mat-form-field>

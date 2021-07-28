@@ -43,9 +43,9 @@ export interface IFieldConditions<T = any> {
 }
 
 export class FieldConditions<T = any> implements IFieldConditions<T> {
-  private get fieldControl(): AbstractControl {
-    return this.group.get(this.schema.attribute);
-  }
+  private readonly fieldControl: AbstractControl;
+  private externalForms?: Record<string, FormGroup>;
+
   public dependOn: string;
   public externalFormId?: string;
 
@@ -73,11 +73,12 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   private readonly schema: Lab900FormField;
   public constructor(
     private readonly component: FormComponent<any>,
-    private externalForms?: Record<string, FormGroup>,
     fieldConditions?: IFieldConditions
   ) {
     this.group = component.group;
     this.schema = component.schema;
+    this.fieldControl = component.fieldControl;
+    this.externalForms = component?.externalForms;
     if (fieldConditions) {
       Object.assign(this, fieldConditions);
       this.dependControl = this.getDependControl(this.getDependGroup());

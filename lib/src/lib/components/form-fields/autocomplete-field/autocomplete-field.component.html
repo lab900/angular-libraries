@@ -8,7 +8,7 @@
   <input
     #input
     (input)="inputChanged($event)"
-    [formControlName]="schema.attribute"
+    [formControlName]="fieldAttribute"
     [matAutocomplete]="auto"
     [readonly]="fieldIsReadonly"
     [required]="fieldIsRequired"
@@ -16,15 +16,33 @@
     placeholder="{{ placeholder | translate }}"
     type="text"
   />
-  <mat-hint *ngIf="hint && !fieldIsReadonly && !(schema.options.hint.hideHintOnValidValue && input.value)"
+  <mat-hint
+    *ngIf="
+      hint &&
+      !fieldIsReadonly &&
+      !(schema.options.hint.hideHintOnValidValue && input.value)
+    "
     ><span [innerHTML]="hint | translate: hintValueTranslateData"></span
   ></mat-hint>
-  <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
+  <mat-error *ngIf="!valid && !fieldIsReadonly"
+    ><span [innerHTML]="getErrorMessage() | async"></span
+  ></mat-error>
   <mat-icon matSuffix *ngIf="!fieldIsReadonly">search</mat-icon>
-  <mat-autocomplete #auto="matAutocomplete" [displayWith]="options.displayInputFn">
-    <mat-option *ngFor="let option of filteredOptions | async" [value]="option?.value">
-      <div *ngIf="options?.displayOptionFn" [innerHTML]="options.displayOptionFn(option) | translate"></div>
-      <ng-container *ngIf="!options?.displayOptionFn">{{ option.label | translate }}</ng-container>
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    [displayWith]="options.displayInputFn"
+  >
+    <mat-option
+      *ngFor="let option of filteredOptions | async"
+      [value]="option?.value"
+    >
+      <div
+        *ngIf="options?.displayOptionFn"
+        [innerHTML]="options.displayOptionFn(option) | translate"
+      ></div>
+      <ng-container *ngIf="!options?.displayOptionFn">{{
+        option.label | translate
+      }}</ng-container>
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

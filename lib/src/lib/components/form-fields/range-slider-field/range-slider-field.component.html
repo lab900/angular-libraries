@@ -1,7 +1,14 @@
-<div [formGroup]="group" *ngIf="!fieldIsHidden" class="lab900-range-slider-field" id="lab900-range-slider-field-{{ schema?.attribute }}">
-  <span *ngIf="schema.title" class="lab900-form-field-label" translate>{{ schema.title }}</span>
+<div
+  [formGroup]="group"
+  *ngIf="!fieldIsHidden"
+  class="lab900-range-slider-field"
+  id="lab900-range-slider-field-{{ schema?.attribute }}"
+>
+  <span *ngIf="schema.title" class="lab900-form-field-label" translate>{{
+    schema.title
+  }}</span>
   <lab900-mat-range-slider-field
-    [formControlName]="schema.attribute"
+    [formControlName]="fieldAttribute"
     [fromLabel]="options?.fromLabel || 'From'"
     [toLabel]="options?.toLabel || 'To'"
     [min]="options?.min"
@@ -10,7 +17,10 @@
     [format]="options?.format"
     [required]="fieldIsRequired"
   ></lab900-mat-range-slider-field>
-  <div class="radio-buttons-field__error" *ngIf="group.controls[schema.attribute].touched && !valid && !fieldIsReadonly">
+  <div
+    class="radio-buttons-field__error"
+    *ngIf="group.controls[fieldAttribute].touched && !valid && !fieldIsReadonly"
+  >
     <mat-error>{{ getErrorMessage() | async }}</mat-error>
   </div>
 </div>

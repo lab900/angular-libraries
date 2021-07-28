@@ -154,7 +154,16 @@ export class FormFieldDirective implements OnChanges, OnInit, OnDestroy {
 
   private setComponentProps(): void {
     this.component.instance.schema = this.schema;
-    this.component.instance.group = this.group;
+    if (this.schema?.attribute?.includes('.')) {
+      const attributeMap = this.schema?.attribute.split('.');
+      this.component.instance.fieldAttribute = attributeMap.pop();
+      this.component.instance.group = this.group.get(
+        attributeMap.join('.')
+      ) as FormGroup;
+    } else {
+      this.component.instance.fieldAttribute = this.schema.attribute;
+      this.component.instance.group = this.group;
+    }
     this.component.instance.readonly = this.readonly;
     this.component.instance.availableLanguages = this.availableLanguages;
     this.component.instance.language = this.language;

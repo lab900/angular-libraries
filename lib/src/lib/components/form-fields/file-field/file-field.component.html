@@ -1,17 +1,28 @@
-<mat-form-field [formGroup]="group" *ngIf="!fieldIsHidden" class="lab900-file-field" id="lab900-file-field-{{ schema?.attribute }}">
+<mat-form-field
+  [formGroup]="group"
+  *ngIf="!fieldIsHidden"
+  class="lab900-file-field"
+  id="lab900-file-field-{{ fieldAttribute }}"
+>
   <mat-label translate>{{ schema.title }}</mat-label>
   <lab900-mat-file-field
     #fileField
     [attr.disabled]="fieldIsReadonly"
     [required]="fieldIsRequired"
     [disabled]="fieldIsReadonly"
-    [formControlName]="schema.attribute"
+    [formControlName]="fieldAttribute"
     [accept]="options?.accept"
     [multiple]="options?.multiple"
     placeholder="{{ placeholder | translate }}"
   ></lab900-mat-file-field>
   <mat-icon matSuffix>folder</mat-icon>
-  <mat-icon *ngIf="!fileField.empty" matSuffix (click)="fileField.clear($event)">close</mat-icon>
-  <mat-hint *ngIf="hint"><span [innerHTML]="hint | translate: hintValueTranslateData"></span></mat-hint>
-  <mat-error *ngIf="!valid"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
+  <mat-icon *ngIf="!fileField.empty" matSuffix (click)="fileField.clear($event)"
+    >close</mat-icon
+  >
+  <mat-hint *ngIf="hint"
+    ><span [innerHTML]="hint | translate: hintValueTranslateData"></span
+  ></mat-hint>
+  <mat-error *ngIf="!valid"
+    ><span [innerHTML]="getErrorMessage() | async"></span
+  ></mat-error>
 </mat-form-field>

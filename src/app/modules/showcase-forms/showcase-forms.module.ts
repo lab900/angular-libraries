@@ -25,6 +25,8 @@ import { FormFieldMultiLanguageExampleComponent } from './examples/form-field-mu
 import { FormCondtionalValidationExampleComponent } from './examples/form-condtional-validation-example/form-condtional-validation-example.component';
 import { FormCondtionalWithExternalFormExampleComponent } from './examples/form-condtional-with-external-form-example/form-condtional-with-external-form-example.component';
 import { FormFieldSelectAdvancedExampleComponent } from './examples/form-field-select-example/form-field-select-advanced-example.component';
+import { FormFieldNestedGroupsExampleComponent } from './examples/form-field-nested-groups-example/form-field-nested-groups-example.component';
+import { FormFieldNestedGroupsByAttributeExampleComponent } from './examples/form-field-nested-groups-by-attribute-example/form-field-nested-groups-example.component';
 
 const examples = [
   FormFieldRepeaterExampleComponent,
@@ -48,6 +50,8 @@ const examples = [
   FormCondtionalValidationExampleComponent,
   FormCondtionalWithExternalFormExampleComponent,
   FormFieldSelectAdvancedExampleComponent,
+  FormFieldNestedGroupsExampleComponent,
+  FormFieldNestedGroupsByAttributeExampleComponent,
 ];
 
 @NgModule({

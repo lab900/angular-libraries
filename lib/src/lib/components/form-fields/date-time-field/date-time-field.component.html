@@ -10,14 +10,18 @@
     matInput
     placeholder="{{ placeholder | translate }}"
     [ngxMatDatetimePicker]="picker"
-    [formControlName]="schema.attribute"
+    [formControlName]="fieldAttribute"
     [required]="fieldIsRequired"
     [readonly]="fieldIsReadonly"
     [max]="maxDate"
     [min]="minDate"
   />
 
-  <mat-datepicker-toggle [disabled]="fieldIsReadonly || fieldControl.disabled" matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker-toggle
+    [disabled]="fieldIsReadonly || fieldControl.disabled"
+    matSuffix
+    [for]="picker"
+  ></mat-datepicker-toggle>
   <ngx-mat-datetime-picker
     #picker
     [disabled]="fieldIsReadonly || fieldControl.disabled"
@@ -27,8 +31,15 @@
     [defaultTime]="defaultTime"
     [stepMinute]="stepMinute"
   ></ngx-mat-datetime-picker>
-  <mat-hint *ngIf="hint && !fieldIsReadonly && !(schema.options.hint.hideHintOnValidValue && input.value)"
+  <mat-hint
+    *ngIf="
+      hint &&
+      !fieldIsReadonly &&
+      !(schema.options.hint.hideHintOnValidValue && input.value)
+    "
     ><span [innerHTML]="hint | translate: hintValueTranslateData"></span
   ></mat-hint>
-  <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
+  <mat-error *ngIf="!valid && !fieldIsReadonly"
+    ><span [innerHTML]="getErrorMessage() | async"></span
+  ></mat-error>
 </mat-form-field>

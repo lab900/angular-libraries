@@ -7,21 +7,32 @@
   <div *ngIf="schema.title" class="lab900-button-toggle-field__label">
     <mat-label>{{ schema.title | translate }}</mat-label>
   </div>
-  <mat-button-toggle-group [formControlName]="schema.attribute" [required]="fieldIsRequired">
+  <mat-button-toggle-group
+    [formControlName]="fieldAttribute"
+    [required]="fieldIsRequired"
+  >
     <mat-button-toggle
       [disabled]="fieldIsReadonly"
       *ngFor="let value of options?.buttonOptions"
       [value]="value.value"
       class="{{ value?.buttonClass }}"
     >
-      <lab900-icon [icon]="value.icon" *ngIf="value?.icon?.position === 'left'"></lab900-icon>
+      <lab900-icon
+        [icon]="value.icon"
+        *ngIf="value?.icon?.position === 'left'"
+      ></lab900-icon>
       <ng-container *ngIf="value.label">
         {{ value.label | translate }}
       </ng-container>
-      <lab900-icon [icon]="value.icon" *ngIf="!value?.icon?.position || value.icon.position === 'right'"></lab900-icon>
+      <lab900-icon
+        [icon]="value.icon"
+        *ngIf="!value?.icon?.position || value.icon.position === 'right'"
+      ></lab900-icon>
     </mat-button-toggle>
   </mat-button-toggle-group>
-  <mat-error class="mat-form-field-subscript-wrapper" *ngIf="touched && !valid && !fieldIsReadonly">{{
-    getErrorMessage() | async
-  }}</mat-error>
+  <mat-error
+    class="mat-form-field-subscript-wrapper"
+    *ngIf="touched && !valid && !fieldIsReadonly"
+    >{{ getErrorMessage() | async }}</mat-error
+  >
 </div>

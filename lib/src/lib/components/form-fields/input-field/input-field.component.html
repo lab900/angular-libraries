@@ -11,29 +11,70 @@
     #input
     [type]="options?.type || 'text'"
     placeholder="{{ placeholder | translate }}"
-    [formControlName]="schema.attribute"
+    [formControlName]="fieldAttribute"
     [required]="fieldIsRequired"
     [readonly]="fieldIsReadonly"
     [ngClass]="{ readonly: fieldIsReadonly }"
     [mask]="options?.fieldMask?.mask"
     [prefix]="options?.fieldMask?.prefix || setting?.fieldMask?.prefix || ''"
     [suffix]="options?.fieldMask?.suffix || setting?.fieldMask?.suffix || ''"
-    [placeHolderCharacter]="options?.fieldMask?.placeHolderCharacter || setting?.fieldMask?.placeHolderCharacter || ''"
-    [dropSpecialCharacters]="options?.fieldMask?.dropSpecialCharacters || setting?.fieldMask?.dropSpecialCharacters || true"
-    [allowNegativeNumbers]="options?.fieldMask?.allowNegativeNumbers || setting?.fieldMask?.allowNegativeNumbers"
-    [showMaskTyped]="options?.fieldMask?.showMaskTyped || setting?.fieldMask?.showMaskTyped"
-    [decimalMarker]="options?.fieldMask?.decimalMarker || setting?.fieldMask?.decimalMarker"
-    [thousandSeparator]="options?.fieldMask?.thousandSeparator || setting?.fieldMask?.thousandSeparator"
+    [placeHolderCharacter]="
+      options?.fieldMask?.placeHolderCharacter ||
+      setting?.fieldMask?.placeHolderCharacter ||
+      ''
+    "
+    [dropSpecialCharacters]="
+      options?.fieldMask?.dropSpecialCharacters ||
+      setting?.fieldMask?.dropSpecialCharacters ||
+      true
+    "
+    [allowNegativeNumbers]="
+      options?.fieldMask?.allowNegativeNumbers ||
+      setting?.fieldMask?.allowNegativeNumbers
+    "
+    [showMaskTyped]="
+      options?.fieldMask?.showMaskTyped || setting?.fieldMask?.showMaskTyped
+    "
+    [decimalMarker]="
+      options?.fieldMask?.decimalMarker || setting?.fieldMask?.decimalMarker
+    "
+    [thousandSeparator]="
+      options?.fieldMask?.thousandSeparator ||
+      setting?.fieldMask?.thousandSeparator
+    "
     lab900InputAutofocus
     [autofocus]="options?.autofocus"
   />
-  <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'left'" matPrefix class="input-field__icon-left"></lab900-icon>
-  <lab900-icon [icon]="schema.icon" *ngIf="schema?.icon?.position === 'right'" matSuffix></lab900-icon>
-  <span class="lab900-input-field--suffix" *ngIf="options?.suffix" matSuffix>{{ options?.suffix | translate }}</span>
-  <span class="lab900-input-field--prefix" *ngIf="options?.prefix" matPrefix>{{ options?.prefix | translate }}</span>
-  <mat-hint *ngIf="hint && !(schema.options.hint.hideHintOnValidValue && input.value) && !fieldIsReadonly">
+  <lab900-icon
+    [icon]="schema.icon"
+    *ngIf="schema?.icon?.position === 'left'"
+    matPrefix
+    class="input-field__icon-left"
+  ></lab900-icon>
+  <lab900-icon
+    [icon]="schema.icon"
+    *ngIf="schema?.icon?.position === 'right'"
+    matSuffix
+  ></lab900-icon>
+  <span class="lab900-input-field--suffix" *ngIf="options?.suffix" matSuffix>{{
+    options?.suffix | translate
+  }}</span>
+  <span class="lab900-input-field--prefix" *ngIf="options?.prefix" matPrefix>{{
+    options?.prefix | translate
+  }}</span>
+  <mat-hint
+    *ngIf="
+      hint &&
+      !(schema.options.hint.hideHintOnValidValue && input.value) &&
+      !fieldIsReadonly
+    "
+  >
     <span [innerHTML]="hint | translate: hintValueTranslateData"></span>
   </mat-hint>
-  <mat-hint align="end" *ngIf="options?.maxLength && !fieldIsReadonly">{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint>
-  <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
+  <mat-hint align="end" *ngIf="options?.maxLength && !fieldIsReadonly"
+    >{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint
+  >
+  <mat-error *ngIf="!valid && !fieldIsReadonly"
+    ><span [innerHTML]="getErrorMessage() | async"></span
+  ></mat-error>
 </mat-form-field>

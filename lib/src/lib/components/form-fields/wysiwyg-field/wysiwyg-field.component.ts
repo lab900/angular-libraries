@@ -10,7 +10,7 @@ import { WysiwgFieldModel } from './wysiwg-field.model';
   template: `
     <div [formGroup]="group" class="lab900-wysiwyg-field">
       <angular-editor
-        [formControlName]="schema.attribute"
+        [formControlName]="fieldAttribute"
         [config]="editorConfig"
       ></angular-editor>
     </div>

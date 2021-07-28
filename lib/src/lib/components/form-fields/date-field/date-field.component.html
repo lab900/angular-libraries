@@ -1,20 +1,40 @@
-<mat-form-field [formGroup]="group" *ngIf="!fieldIsHidden" class="lab900-date-field" id="lab900-date-field-{{ schema?.attribute }}">
+<mat-form-field
+  [formGroup]="group"
+  *ngIf="!fieldIsHidden"
+  class="lab900-date-field"
+  id="lab900-date-field-{{ schema?.attribute }}"
+>
   <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
   <input
     #input
     matInput
     placeholder="{{ placeholder | translate }}"
     [matDatepicker]="picker"
-    [formControlName]="schema.attribute"
+    [formControlName]="fieldAttribute"
     [required]="fieldIsRequired"
     [readonly]="fieldIsReadonly"
     [max]="maxDate"
     [min]="minDate"
   />
-  <mat-datepicker-toggle [disabled]="fieldIsReadonly || fieldControl.disabled" matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker [disabled]="fieldIsReadonly || fieldControl.disabled" #picker [startView]="startView"></mat-datepicker>
-  <mat-hint *ngIf="hint && !fieldIsReadonly && !(schema.options.hint.hideHintOnValidValue && input.value)"
+  <mat-datepicker-toggle
+    [disabled]="fieldIsReadonly || fieldControl.disabled"
+    matSuffix
+    [for]="picker"
+  ></mat-datepicker-toggle>
+  <mat-datepicker
+    [disabled]="fieldIsReadonly || fieldControl.disabled"
+    #picker
+    [startView]="startView"
+  ></mat-datepicker>
+  <mat-hint
+    *ngIf="
+      hint &&
+      !fieldIsReadonly &&
+      !(schema.options.hint.hideHintOnValidValue && input.value)
+    "
     ><span [innerHTML]="hint | translate: hintValueTranslateData"></span
   ></mat-hint>
-  <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
+  <mat-error *ngIf="!valid && !fieldIsReadonly"
+    ><span [innerHTML]="getErrorMessage() | async"></span
+  ></mat-error>
 </mat-form-field>

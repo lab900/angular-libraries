@@ -17,7 +17,7 @@ export class DateRangeFieldComponent extends FormComponent<FormFieldDateRange> {
   }
 
   public get dateFormGroup(): FormGroup {
-    return this.group.get(this.schema.attribute) as FormGroup;
+    return this.group.get(this.fieldAttribute) as FormGroup;
   }
 
   public get maxDate(): Date | null {

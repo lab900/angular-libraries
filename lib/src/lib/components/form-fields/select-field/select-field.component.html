@@ -16,7 +16,7 @@
   <mat-select
     #select
     [compareWith]="options?.compareWith ? options?.compareWith : defaultCompare"
-    [formControlName]="schema.attribute"
+    [formControlName]="fieldAttribute"
     [multiple]="options?.multiple"
     [required]="fieldIsRequired"
     msInfiniteScroll

@@ -20,6 +20,9 @@ export abstract class FormComponent<S extends Lab900FormField = Lab900FormField>
   implements AfterViewInit, OnDestroy, AfterContentInit
 {
   @Input()
+  public fieldAttribute?: string;
+
+  @Input()
   public group: FormGroup;
 
   @Input()
@@ -42,7 +45,7 @@ export abstract class FormComponent<S extends Lab900FormField = Lab900FormField>
   public fieldIsRequired!: boolean;
 
   public get fieldControl(): AbstractControl {
-    return this.group.get(String(this.schema.attribute));
+    return this.group.get(this.fieldAttribute);
   }
 
   public get valid(): boolean {
@@ -100,7 +103,7 @@ export abstract class FormComponent<S extends Lab900FormField = Lab900FormField>
   ): void {}
 
   public getErrorMessage(group: FormGroup = this.group): Observable<string> {
-    const field = group.get(String(this.schema.attribute));
+    const field = group.get(String(this.fieldAttribute));
     let errors: ValidationErrors = field.errors;
     let message = this.translateService.get('forms.error.generic');
     if (field instanceof FormGroup && field.controls) {
@@ -206,7 +209,7 @@ export abstract class FormComponent<S extends Lab900FormField = Lab900FormField>
   private createConditions(): void {
     this.schema.conditions
       .filter((c) => c.dependOn)
-      .map((c) => new FieldConditions(this, this.externalForms, c))
+      .map((c) => new FieldConditions(this, c))
       .forEach((conditions: FieldConditions) => {
         const sub = conditions.start(
           (dependOn: string, value: any, firstRun: boolean) => {

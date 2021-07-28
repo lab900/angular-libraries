@@ -5,13 +5,25 @@
   id="lab900-autocomplete-multi-field-{{ schema?.attribute }}"
 >
   <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
-  <mat-hint *ngIf="hint && !fieldIsReadonly && !(schema.options.hint.hideHintOnValidValue && input.value)"
+  <mat-hint
+    *ngIf="
+      hint &&
+      !fieldIsReadonly &&
+      !(schema.options.hint.hideHintOnValidValue && input.value)
+    "
     ><span [innerHTML]="hint | translate: hintValueTranslateData"></span
   ></mat-hint>
-  <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
+  <mat-error *ngIf="!valid && !fieldIsReadonly"
+    ><span [innerHTML]="getErrorMessage() | async"></span
+  ></mat-error>
   <mat-icon matSuffix *ngIf="!fieldIsReadonly">search</mat-icon>
-  <mat-chip-list #chipList [formControlName]="schema.attribute">
-    <mat-chip *ngFor="let opt of selectedOptions; let i = index" [removable]="!fieldIsReadonly" selectable (removed)="remove(i)">
+  <mat-chip-list #chipList [formControlName]="fieldAttribute">
+    <mat-chip
+      *ngFor="let opt of selectedOptions; let i = index"
+      [removable]="!fieldIsReadonly"
+      selectable
+      (removed)="remove(i)"
+    >
       <div [innerHTML]="options.displayInputFn(opt) | translate"></div>
       <mat-icon *ngIf="!fieldIsReadonly" matChipRemove>cancel</mat-icon>
     </mat-chip>
@@ -26,9 +38,17 @@
     />
   </mat-chip-list>
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-    <mat-option *ngFor="let option of filteredOptions | async" [value]="option?.value">
-      <div *ngIf="options?.displayOptionFn" [innerHTML]="options.displayOptionFn(option) | translate"></div>
-      <ng-container *ngIf="!options?.displayOptionFn">{{ option.label | translate }}</ng-container>
+    <mat-option
+      *ngFor="let option of filteredOptions | async"
+      [value]="option?.value"
+    >
+      <div
+        *ngIf="options?.displayOptionFn"
+        [innerHTML]="options.displayOptionFn(option) | translate"
+      ></div>
+      <ng-container *ngIf="!options?.displayOptionFn">{{
+        option.label | translate
+      }}</ng-container>
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

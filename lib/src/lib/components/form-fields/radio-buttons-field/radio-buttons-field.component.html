@@ -1,12 +1,28 @@
-<div [formGroup]="group" *ngIf="!fieldIsHidden" class="lab900-radio-buttons-field" id="lab900-radio-buttons-field-{{ schema?.attribute }}">
+<div
+  [formGroup]="group"
+  *ngIf="!fieldIsHidden"
+  class="lab900-radio-buttons-field"
+  id="lab900-radio-buttons-field-{{ schema?.attribute }}"
+>
   <div *ngIf="schema.title" class="lab900-radio-buttons-field__label">
     <mat-label>{{ schema.title | translate }}</mat-label>
   </div>
   <!-- ToDo: Disable when readonly -->
-  <mat-radio-group [formControlName]="schema.attribute" [color]="options?.color || 'primary'" [required]="fieldIsRequired">
-    <mat-radio-button *ngFor="let value of options?.radioOptions" [value]="value.value">{{ value.label | translate }}</mat-radio-button>
+  <mat-radio-group
+    [formControlName]="fieldAttribute"
+    [color]="options?.color || 'primary'"
+    [required]="fieldIsRequired"
+  >
+    <mat-radio-button
+      *ngFor="let value of options?.radioOptions"
+      [value]="value.value"
+      >{{ value.label | translate }}</mat-radio-button
+    >
   </mat-radio-group>
-  <div class="radio-buttons-field__error" *ngIf="group.controls[schema.attribute].touched && !valid && !fieldIsReadonly">
+  <div
+    class="radio-buttons-field__error"
+    *ngIf="group.controls[fieldAttribute].touched && !valid && !fieldIsReadonly"
+  >
     <mat-error>{{ getErrorMessage() | async }}</mat-error>
   </div>
 </div>

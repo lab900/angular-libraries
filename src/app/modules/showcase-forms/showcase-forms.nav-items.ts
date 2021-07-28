@@ -65,6 +65,10 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
             label: 'Multi language',
             route: 'form-field-multi-lang',
           },
+          {
+            label: 'Nested groups',
+            route: 'form-field-nested-groups',
+          },
         ],
       },
     ],

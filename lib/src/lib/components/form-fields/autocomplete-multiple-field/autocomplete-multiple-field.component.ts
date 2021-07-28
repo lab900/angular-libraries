@@ -39,7 +39,7 @@ export class AutocompleteMultipleFieldComponent
   public inputChange: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   public get selectedOptions(): any[] {
-    return this.group.controls[this.schema.attribute]?.value ?? [];
+    return this.group.controls[this.fieldAttribute]?.value ?? [];
   }
 
   public constructor(translateService: TranslateService) {
@@ -88,9 +88,9 @@ export class AutocompleteMultipleFieldComponent
   }
 
   private updateControlValue(val: any[]): void {
-    this.group.controls[this.schema.attribute].setValue(val);
-    this.group.controls[this.schema.attribute].updateValueAndValidity();
-    this.group.controls[this.schema.attribute].markAsDirty();
-    this.group.controls[this.schema.attribute].markAsTouched();
+    this.group.controls[this.fieldAttribute].setValue(val);
+    this.group.controls[this.fieldAttribute].updateValueAndValidity();
+    this.group.controls[this.fieldAttribute].markAsDirty();
+    this.group.controls[this.fieldAttribute].markAsTouched();
   }
 }

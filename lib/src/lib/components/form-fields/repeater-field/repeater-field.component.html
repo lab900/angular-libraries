@@ -5,11 +5,21 @@
   id="lab900-repeater-field-{{ schema?.attribute }}"
   [class.fixed-list]="fixedList"
 >
-  <div [formArrayName]="schema.attribute">
-    <span *ngIf="schema.title" class="lab900-form-field-label">{{ schema.title | translate }}</span>
-    <div *ngFor="let control of repeaterArray.controls; let i = index" class="repeater-row">
+  <div [formArrayName]="fieldAttribute">
+    <span *ngIf="schema.title" class="lab900-form-field-label">{{
+      schema.title | translate
+    }}</span>
+    <div
+      *ngFor="let control of repeaterArray.controls; let i = index"
+      class="repeater-row"
+    >
       <div class="repeater-row__fields">
-        <ng-container *ngFor="let field of schema.nestedFields" lab900FormField [schema]="field" [group]="control"></ng-container>
+        <ng-container
+          *ngFor="let field of schema.nestedFields"
+          lab900FormField
+          [schema]="field"
+          [group]="control"
+        ></ng-container>
       </div>
       <div *ngIf="!fixedList && !fieldIsReadonly" class="repeater-row__actions">
         <button
@@ -25,9 +35,12 @@
         </button>
       </div>
     </div>
-    <mat-error class="subscript-wrapper" *ngIf="touched && !valid && !fieldIsReadonly" [@transitionMessages]="valid ? 'void' : 'enter'">{{
-      getErrorMessage() | async
-    }}</mat-error>
+    <mat-error
+      class="subscript-wrapper"
+      *ngIf="touched && !valid && !fieldIsReadonly"
+      [@transitionMessages]="valid ? 'void' : 'enter'"
+      >{{ getErrorMessage() | async }}</mat-error
+    >
     <div *ngIf="!fixedList && !fieldIsReadonly" class="repeater-field__actions">
       <button
         mat-button
