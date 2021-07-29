@@ -2,7 +2,7 @@
   *ngIf="!fieldIsHidden"
   [formGroup]="group"
   class="lab900-textarea-field"
-  id="lab900-textarea-field-{{ schema?.attribute }}"
+  id="lab900-textarea-field-{{ fieldAttribute }}"
 >
   <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
   <textarea

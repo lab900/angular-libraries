@@ -2,7 +2,7 @@
   [formGroup]="group"
   *ngIf="!fieldIsHidden"
   class="lab900-repeater-field repeater-field"
-  id="lab900-repeater-field-{{ schema?.attribute }}"
+  id="lab900-repeater-field-{{ fieldAttribute }}"
   [class.fixed-list]="fixedList"
 >
   <div [formArrayName]="fieldAttribute">

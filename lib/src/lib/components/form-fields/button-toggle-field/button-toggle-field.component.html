@@ -2,7 +2,7 @@
   [formGroup]="group"
   *ngIf="!fieldIsHidden"
   class="lab900-button-toggle-field button-toggle-field mat-form-field-wrapper"
-  id="lab900-button-toggle-field-{{ schema?.attribute }}"
+  id="lab900-button-toggle-field-{{ fieldAttribute }}"
 >
   <div *ngIf="schema.title" class="lab900-button-toggle-field__label">
     <mat-label>{{ schema.title | translate }}</mat-label>

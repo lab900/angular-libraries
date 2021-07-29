@@ -3,7 +3,7 @@
   *ngIf="!fieldIsReadonly && !fieldIsHidden"
   [floatLabel]="loading || fieldControl.disabled ? 'never' : 'auto'"
   class="lab900-select-field"
-  id="lab900-select-field-{{ schema?.attribute }}"
+  id="lab900-select-field-{{ fieldAttribute }}"
 >
   <mat-label>
     <ng-container *ngIf="loading">{{

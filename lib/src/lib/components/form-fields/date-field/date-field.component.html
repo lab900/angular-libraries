@@ -2,7 +2,7 @@
   [formGroup]="group"
   *ngIf="!fieldIsHidden"
   class="lab900-date-field"
-  id="lab900-date-field-{{ schema?.attribute }}"
+  id="lab900-date-field-{{ fieldAttribute }}"
 >
   <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
   <input

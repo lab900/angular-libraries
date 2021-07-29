@@ -2,7 +2,7 @@
   [formGroup]="group"
   *ngIf="!fieldIsHidden"
   class="lab900-radio-buttons-field"
-  id="lab900-radio-buttons-field-{{ schema?.attribute }}"
+  id="lab900-radio-buttons-field-{{ fieldAttribute }}"
 >
   <div *ngIf="schema.title" class="lab900-radio-buttons-field__label">
     <mat-label>{{ schema.title | translate }}</mat-label>

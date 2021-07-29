@@ -2,7 +2,7 @@
   [formGroup]="group"
   *ngIf="!fieldIsHidden && dateFormGroup"
   class="lab900-date-range-field"
-  id="lab900-date-range-field-{{ schema?.attribute }}"
+  id="lab900-date-range-field-{{ fieldAttribute }}"
 >
   <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
   <mat-date-range-input [formGroup]="dateFormGroup" [rangePicker]="picker">
@@ -17,10 +17,24 @@
       placeholder="{{ this.options?.endLabel || 'End date' | translate }}"
     />
   </mat-date-range-input>
-  <mat-datepicker-toggle [disabled]="fieldIsReadonly || dateFormGroup.disabled" matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-date-range-picker [disabled]="fieldIsReadonly || dateFormGroup.disabled" #picker></mat-date-range-picker>
-  <mat-hint *ngIf="hint && !fieldIsReadonly && !(schema.options.hint.hideHintOnValidValue && dateFormGroup.value)"
+  <mat-datepicker-toggle
+    [disabled]="fieldIsReadonly || dateFormGroup.disabled"
+    matSuffix
+    [for]="picker"
+  ></mat-datepicker-toggle>
+  <mat-date-range-picker
+    [disabled]="fieldIsReadonly || dateFormGroup.disabled"
+    #picker
+  ></mat-date-range-picker>
+  <mat-hint
+    *ngIf="
+      hint &&
+      !fieldIsReadonly &&
+      !(schema.options.hint.hideHintOnValidValue && dateFormGroup.value)
+    "
     ><span [innerHTML]="hint | translate: hintValueTranslateData"></span
   ></mat-hint>
-  <mat-error *ngIf="!valid && !fieldIsReadonly"><span [innerHTML]="getErrorMessage() | async"></span></mat-error>
+  <mat-error *ngIf="!valid && !fieldIsReadonly"
+    ><span [innerHTML]="getErrorMessage() | async"></span
+  ></mat-error>
 </mat-form-field>

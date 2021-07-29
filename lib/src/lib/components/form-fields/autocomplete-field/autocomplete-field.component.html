@@ -2,7 +2,7 @@
   [formGroup]="group"
   *ngIf="!fieldIsHidden"
   class="lab900-autocomplete-field"
-  id="lab900-autocomplete-field-{{ schema?.attribute }}"
+  id="lab900-autocomplete-field-{{ fieldAttribute }}"
 >
   <mat-label *ngIf="schema.title" translate>{{ schema.title }}</mat-label>
   <input

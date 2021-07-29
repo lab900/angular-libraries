@@ -3,7 +3,7 @@
   [formGroup]="group"
   class="lab900-input-field {{ options?.align || 'left' }}"
   [class.spanFix]="options?.suffix || options?.prefix"
-  id="lab900-input-field-{{ schema?.attribute }}"
+  id="lab900-input-field-{{ fieldAttribute }}"
 >
   <mat-label *ngIf="schema.title">{{ schema.title | translate }}</mat-label>
   <input
