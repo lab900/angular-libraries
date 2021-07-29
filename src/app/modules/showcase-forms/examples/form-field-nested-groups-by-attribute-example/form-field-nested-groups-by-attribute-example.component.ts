@@ -62,7 +62,7 @@ export class FormFieldNestedGroupsByAttributeExampleComponent {
           },
           {
             editType: EditType.Input,
-            attribute: 'sub.anotherOne',
+            attribute: 'sub.anotherOne.input',
             title: 'Another nested one',
             conditions: [
               {
@@ -83,15 +83,15 @@ export class FormFieldNestedGroupsByAttributeExampleComponent {
         nestedFields: [
           {
             editType: EditType.Select,
-            attribute: 'sub.select',
+            attribute: 'sub.anotherOne.select',
             title: 'Sub 2 selection',
             conditions: [
               {
                 dependOn: 'parentAttr.disable',
                 conditionalOptions: (value) => {
                   return value
-                    ? [{ value, label: 'is true' }]
-                    : [{ value, label: 'is false' }];
+                    ? [{ value: 'true', label: 'is true' }]
+                    : [{ value: 'false', label: 'is false' }];
                 },
               },
             ],
