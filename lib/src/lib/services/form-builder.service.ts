@@ -134,7 +134,7 @@ export class Lab900FormBuilderService {
       if (
         data == null &&
         field.options?.defaultValue !== null &&
-        typeof field.options.defaultValue !== 'undefined'
+        typeof field.options?.defaultValue !== 'undefined'
       ) {
         data =
           typeof field.options.defaultValue === 'function'
@@ -173,10 +173,10 @@ export class Lab900FormBuilderService {
       const keys = attribute.split('.');
       let value: any = data;
       for (const key of keys) {
-        value = value?.[key] ?? '';
+        value = value?.[key] ?? null;
       }
       return value;
     }
-    return data?.[attribute] ?? '';
+    return data?.[attribute] ?? null;
   }
 }
