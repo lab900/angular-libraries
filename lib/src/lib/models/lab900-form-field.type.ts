@@ -9,6 +9,7 @@ import { FormFieldDatePicker } from '../components/form-fields/date-field/date-f
 import { FormFieldDateTimePicker } from '../components/form-fields/date-time-field/date-time-field.model';
 import { FormFieldAutocomplete } from '../components/form-fields/autocomplete-field/autocomplete-field.model';
 import { FormFieldButtonToggle } from '../components/form-fields/button-toggle-field/button-toggle-field.model';
+import { FormFieldSlideToggle } from '../components/form-fields/slide-toggle-field/slide-toggle-field.model';
 import { FormFieldAutocompleteMulti } from '../components/form-fields/autocomplete-multiple-field/autocomplete-multiple-field.model';
 import { FormFieldDateRange } from '../components/form-fields/date-range-field/date-range-field.model';
 import { FormFieldFile } from '../components/form-fields/file-field/file-field.model';
@@ -30,6 +31,7 @@ export type Lab900FormField<T extends string | number = string> =
   | FormFieldIcon<T>
   | FormRow<T>
   | FormFieldButtonToggle<T>
+  | FormFieldSlideToggle<T>
   | FormFieldRangeSlider<T>
   | FormFieldDatePicker<T>
   | FormFieldDateTimePicker<T>

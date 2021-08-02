@@ -49,7 +49,8 @@ export const myFormSchema: Form = {
 | `EditType.Row`                                                   | For columns or nested FormGroups                       |
 | [`EditType.Autocomplete`](forms/form-field-autocomplete)         | Input fields with autocomplete                         |
 | [`EditType.AutocompleteMultiple`](forms/form-field-autocomplete) | ?                                                      |
-| [`EditType.ButtonToggle`](forms/form-field-button-toggle)        | Radio buttons that are styled as buttons,              |
+| [`EditType.SlideToggle`](forms/form-field-button-toggle)         | Radio buttons that are styled as buttons,              |
+| [`EditType.ButtonToggle`](forms/form-field-slide-toggle)         | Slide Toggle,                                          |
 | `EditType.Icon`                                                  | ?                                                      |
 
 ### Readonly mode

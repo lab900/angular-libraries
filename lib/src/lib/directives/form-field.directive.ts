@@ -28,6 +28,7 @@ import { RangeSliderFieldComponent } from '../components/form-fields/range-slide
 import { AutocompleteFieldComponent } from '../components/form-fields/autocomplete-field/autocomplete-field.component';
 import { IconFieldComponent } from '../components/form-fields/icon-field/icon-field.component';
 import { ButtonToggleFieldComponent } from '../components/form-fields/button-toggle-field/button-toggle-field.component';
+import { SlideToggleFieldComponent } from '../components/form-fields/slide-toggle-field/slide-toggle-field.component';
 import { AutocompleteMultipleFieldComponent } from '../components/form-fields/autocomplete-multiple-field/autocomplete-multiple-field.component';
 import { ReadonlyFieldComponent } from '../components/form-fields/readonly-field/readonly-field.component';
 import { DateRangeFieldComponent } from '../components/form-fields/date-range-field/date-range-field.component';
@@ -72,6 +73,8 @@ const mapToComponent = (field: Lab900FormField): Type<FormComponent> => {
       return IconFieldComponent;
     case EditType.ButtonToggle:
       return ButtonToggleFieldComponent;
+    case EditType.SlideToggle:
+      return SlideToggleFieldComponent;
     case EditType.DateRange:
       return DateRangeFieldComponent;
     case EditType.DateTime:
