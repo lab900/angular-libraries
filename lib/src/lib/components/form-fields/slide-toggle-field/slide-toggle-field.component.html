@@ -2,14 +2,14 @@
   [formGroup]="group"
   *ngIf="!fieldIsHidden"
   class="lab900-slide-toggle-field mat-form-field-wrapper"
-  id="lab900-slide-toggle-field-{{ schema?.attribute }}"
+  id="lab900-slide-toggle-field-{{ fieldAttribute }}"
 >
   <div *ngIf="schema.title" class="lab900-slide-toggle-field__title">
     <mat-label>{{ schema.title | translate }}</mat-label>
   </div>
   <mat-slide-toggle
     [disabled]="fieldIsReadonly"
-    [formControlName]="schema.attribute"
+    [formControlName]="fieldAttribute"
     [required]="fieldIsRequired"
     [color]="options?.color || 'primary'"
     [labelPosition]="options?.labelPosition"
