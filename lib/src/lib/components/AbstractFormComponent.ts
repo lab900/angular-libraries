@@ -211,15 +211,15 @@ export abstract class FormComponent<S extends Lab900FormField = Lab900FormField>
       .filter((c) => c.dependOn)
       .map((c) => new FieldConditions(this, c))
       .forEach((conditions: FieldConditions) => {
-        const sub = conditions.start(
+        const subs = conditions.start(
           (dependOn: string, value: any, firstRun: boolean) => {
             if (this.onConditionalChange) {
               this.onConditionalChange(dependOn, value, firstRun);
             }
           }
         );
-        if (sub) {
-          this.subscriptions.push(sub);
+        if (subs?.length) {
+          this.subscriptions.concat(subs);
         }
       });
   }

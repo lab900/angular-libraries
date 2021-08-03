@@ -4,7 +4,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import * as _ from 'lodash';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FormComponent } from '../components/AbstractFormComponent';
@@ -18,7 +18,7 @@ export const areValuesEqual = (val1: any, val2: any): boolean => {
 };
 
 export interface IFieldConditions<T = any> {
-  dependOn: string;
+  dependOn: string | string[];
   externalFormId?: string;
   hideIfHasValue?: boolean;
   showIfHasValue?: boolean;
@@ -46,7 +46,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   private readonly fieldControl: AbstractControl;
   private externalForms?: Record<string, FormGroup>;
 
-  public dependOn: string;
+  public dependOn: string | string[];
   public externalFormId?: string;
 
   public hideIfHasValue?: boolean;
@@ -66,7 +66,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
   public skipIfNotExists = false;
   public validators?: (value: T) => ValidatorFn[];
 
-  public readonly dependControl: AbstractControl;
+  public dependControls: Record<string, AbstractControl>;
   public prevValue: T;
 
   private readonly group: FormGroup;
@@ -81,8 +81,8 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
     this.externalForms = component?.externalForms;
     if (fieldConditions) {
       Object.assign(this, fieldConditions);
-      this.dependControl = this.getDependControl(this.getDependGroup());
-      if (!this.skipIfNotExists && !this.dependControl) {
+      this.setDependOnControls();
+      if (!this.skipIfNotExists && !Object.keys(this.dependControls)?.length) {
         throw new Error(
           `Can't create conditional form field: no control with name ${this.dependOn} found`
         );
@@ -117,26 +117,38 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
     return this.group;
   }
 
-  public getDependControl(group: FormGroup): AbstractControl {
-    let dependControl = group.get(this.dependOn);
+  public getDependControl(dependOn: string, group: FormGroup): AbstractControl {
+    let dependControl = group.get(dependOn);
     if (!dependControl && group.parent) {
-      dependControl = this.getDependControl(group.parent as FormGroup);
+      dependControl = this.getDependControl(
+        dependOn,
+        group.parent as FormGroup
+      );
     }
     return dependControl;
   }
 
   public start(
     callback?: (dependOn: string, value: T, firstRun?: boolean) => void
-  ): Subscription {
-    if (this.dependControl) {
-      this.runAll(this.dependControl.value, true, callback);
-      return this.dependControl.valueChanges
-        .pipe(debounceTime(100), distinctUntilChanged())
-        .subscribe((value: T) => this.runAll(value, false, callback));
+  ): Subscription[] {
+    const subs: Subscription[] = [];
+    if (Object.keys(this.dependControls)?.length) {
+      Object.entries(this.dependControls).forEach(([key, control]) => {
+        this.runAll(key, this.getDependControlValues(), true, callback);
+        subs.push(
+          control.valueChanges
+            .pipe(debounceTime(100), distinctUntilChanged())
+            .subscribe((v) =>
+              this.runAll(key, this.getDependControlValues(), false, callback)
+            )
+        );
+      });
     }
+    return subs;
   }
 
   public runAll(
+    dependOn: string,
     value: T,
     firstRun: boolean,
     callback?: (dependOn: string, value: T, firstRun?: boolean) => void
@@ -163,7 +175,7 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
       }
       this.runDisableConditions(value);
       if (callback && typeof callback === 'function') {
-        callback(this.dependOn, value, firstRun);
+        callback(dependOn, value, firstRun);
       }
       this.prevValue = value;
     }
@@ -237,5 +249,29 @@ export class FieldConditions<T = any> implements IFieldConditions<T> {
       FieldConditions.valueIsEqualTo(value, this.enabledIfEquals),
       (isTrue: boolean) => enable(isTrue)
     );
+  }
+
+  private setDependOnControls(): void {
+    this.dependControls = {};
+    const dependOnArray: string[] = Array.isArray(this.dependOn)
+      ? this.dependOn
+      : [this.dependOn];
+    dependOnArray.forEach((dependOn) => {
+      this.dependControls = {
+        ...this.dependControls,
+        [dependOn]: this.getDependControl(dependOn, this.getDependGroup()),
+      };
+    });
+  }
+
+  private getDependControlValues(): T {
+    const entries = Object.entries(this.dependControls);
+    if (entries?.length > 1) {
+      return entries.reduce((acc, [key, control], i) => {
+        acc = { ...acc, [key]: control?.value };
+        return acc;
+      }, {} as T);
+    }
+    return entries?.[0]?.[1]?.value;
   }
 }

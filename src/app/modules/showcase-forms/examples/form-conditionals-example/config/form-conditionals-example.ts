@@ -5,6 +5,7 @@ export const formConditionalsExample: Lab900FormConfig = {
     {
       attribute: 'role',
       editType: EditType.Select,
+      title: 'Role',
       options: {
         colspan: 6,
         selectOptions: [
@@ -21,6 +22,7 @@ export const formConditionalsExample: Lab900FormConfig = {
         {
           attribute: 'country',
           editType: EditType.Select,
+          title: 'Country',
           options: {
             colspan: 6,
           },
@@ -42,14 +44,18 @@ export const formConditionalsExample: Lab900FormConfig = {
         {
           attribute: 'language',
           editType: EditType.Select,
+          title: 'Language',
           options: {
             colspan: 6,
           },
           conditions: [
             {
-              dependOn: 'country',
-              conditionalOptions: (country: string) => {
-                switch (country) {
+              dependOn: ['country', 'role'],
+              conditionalOptions: (value: {
+                country: string;
+                role: string;
+              }) => {
+                switch (value?.country) {
                   case 'BEL':
                     return [
                       { label: 'Dutch', value: 'NL' },
@@ -62,13 +68,15 @@ export const formConditionalsExample: Lab900FormConfig = {
                     return [{ label: 'German', value: 'DE' }];
                 }
               },
-              hideIfEquals: (country: string) => country === 'HIDE',
+              disableIfEquals: (value: { country: string; role: string }) =>
+                value?.country === 'BEL' && value?.role === 'administrator',
             },
           ],
         },
         {
           attribute: 'favouriteFood',
           editType: EditType.Select,
+          title: 'Favourite food',
           options: {
             colspan: 6,
           },

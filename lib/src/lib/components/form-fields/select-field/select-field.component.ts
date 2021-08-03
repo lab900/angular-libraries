@@ -134,8 +134,10 @@ export class SelectFieldComponent
     firstRun: boolean
   ): void {
     setTimeout(() => {
-      const condition = this.schema.conditions.find(
-        (c) => c.dependOn === dependOn
+      const condition = this.schema.conditions.find((c) =>
+        (Array.isArray(c.dependOn) ? c.dependOn : [c.dependOn]).includes(
+          dependOn
+        )
       );
       if (condition?.conditionalOptions) {
         if (!firstRun || !value) {
