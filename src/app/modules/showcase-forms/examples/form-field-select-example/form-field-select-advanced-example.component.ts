@@ -67,6 +67,9 @@ export class FormFieldSelectAdvancedExampleComponent {
             options: {
               compareWith: compare,
               displayOptionFn: (o) => o?.value?.title,
+              customTriggerFn: (value: any[]) => {
+                return value?.length + ' selected';
+              },
               selectOptions: this.getSelectOptions.bind(this),
               colspan: 4,
               multiple: true,

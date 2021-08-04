@@ -3,9 +3,10 @@
   *ngIf="!fieldIsReadonly && !fieldIsHidden"
   [floatLabel]="loading || fieldControl.disabled ? 'never' : 'auto'"
   class="lab900-select-field"
+  [class.has-value]="fieldControl?.value"
   id="lab900-select-field-{{ fieldAttribute }}"
 >
-  <mat-label>
+  <mat-label *ngIf="schema?.title">
     <ng-container *ngIf="loading">{{
       'form.field.loading' | translate
     }}</ng-container>
@@ -15,6 +16,7 @@
   </mat-label>
   <mat-select
     #select
+    placeholder="{{ placeholder | translate }}"
     [compareWith]="options?.compareWith ? options?.compareWith : defaultCompare"
     [formControlName]="fieldAttribute"
     [multiple]="options?.multiple"
@@ -25,6 +27,9 @@
     [debounceTime]="options?.infiniteScroll?.debounceTime || 150"
     (infiniteScroll)="onScroll()"
   >
+    <mat-select-trigger *ngIf="options?.customTriggerFn">
+      <div [innerHTML]="options?.customTriggerFn(fieldControl.value)"></div>
+    </mat-select-trigger>
     <mat-option *ngIf="options?.search?.enabled">
       <ngx-mat-select-search
         [ngModel]="(optionsFilter$ | async)?.searchQuery || ''"

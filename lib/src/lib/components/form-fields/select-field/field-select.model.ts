@@ -23,6 +23,7 @@ export interface FormFieldSelectOptions extends FormFieldBaseOptions {
     | Observable<ValueLabel[]>;
   compareWith?: (o1: any, o2: any) => boolean;
   displayOptionFn?: (option: ValueLabel) => string;
+  customTriggerFn?: (value: any) => string;
   search?: {
     enabled: boolean;
     placeholder?: string;

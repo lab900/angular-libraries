@@ -14,9 +14,9 @@ export class FormFieldSelectExampleComponent {
         nestedFields: [
           {
             attribute: 'somePropName',
-            title: 'Select yes or no',
             editType: EditType.Select,
             options: {
+              placeholder: 'select yes or no',
               selectOptions: [
                 {
                   value: true,
