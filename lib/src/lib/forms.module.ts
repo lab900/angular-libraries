@@ -154,6 +154,7 @@ const customFields = [
     FormDialogDirective,
     AuthImageDirective,
     AutofocusDirective,
+    SelectFieldComponent,
   ],
 })
 export class Lab900FormsModule {
