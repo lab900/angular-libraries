@@ -71,7 +71,11 @@
   >
     <span [innerHTML]="hint | translate: hintValueTranslateData"></span>
   </mat-hint>
-  <mat-hint align="end" *ngIf="options?.maxLength && !fieldIsReadonly"
+  <mat-hint
+    align="end"
+    *ngIf="
+      options?.maxLength && !options?.hideLengthIndicator && !fieldIsReadonly
+    "
     >{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint
   >
   <mat-error *ngIf="!valid && !fieldIsReadonly"

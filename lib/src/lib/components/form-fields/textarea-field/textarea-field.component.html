@@ -21,7 +21,12 @@
     "
     ><span [innerHTML]="hint | translate: hintValueTranslateData"></span
   ></mat-hint>
-  <mat-hint *ngIf="options?.maxLength && !fieldIsReadonly" align="end">
+  <mat-hint
+    *ngIf="
+      options?.maxLength && !options?.hideLengthIndicator && !fieldIsReadonly
+    "
+    align="end"
+  >
     {{ input.value?.length || 0 }}/{{ options?.maxLength }}
   </mat-hint>
   <mat-error *ngIf="!valid && !fieldIsReadonly"

@@ -1,7 +1,14 @@
 import { EditType } from '../../../models/editType';
-import { FormFieldBase } from '../../../models/form-field-base';
+import {
+  FormFieldBase,
+  FormFieldBaseOptions,
+} from '../../../models/form-field-base';
+
+export interface FormFieldTextareaOptions extends FormFieldBaseOptions {
+  hideLengthIndicator?: boolean;
+}
 
 export interface FormFieldTextarea<T extends string | number = string>
-  extends FormFieldBase<T> {
+  extends FormFieldBase<T, FormFieldTextareaOptions> {
   editType: EditType.TextArea;
 }
