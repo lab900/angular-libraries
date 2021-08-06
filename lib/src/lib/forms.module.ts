@@ -162,8 +162,14 @@ export class Lab900FormsModule {
     settings: Lab900FormModuleSettings = defaultFormModuleSettings
   ): ModuleWithProviders<FormsModule> {
     const formSetting: Lab900FormModuleSettings = {
-      ...defaultFormModuleSettings,
-      ...settings,
+      formField: {
+        ...defaultFormModuleSettings.formField,
+        ...(settings?.formField ?? {}),
+      },
+      fieldMask: {
+        ...defaultFormModuleSettings.fieldMask,
+        ...(settings?.fieldMask ?? {}),
+      },
     };
     return {
       ngModule: Lab900FormsModule,
