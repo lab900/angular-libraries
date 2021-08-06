@@ -34,6 +34,7 @@ export function TranslationLoaderFactory(
     Lab900FormsModule.forRoot({
       formField: {
         appearance: 'fill',
+        showLengthIndicator: true,
       },
     }),
     TranslateModule.forRoot({

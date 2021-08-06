@@ -5,7 +5,7 @@ import {
 } from '../../../models/form-field-base';
 
 export interface FormFieldTextareaOptions extends FormFieldBaseOptions {
-  hideLengthIndicator?: boolean;
+  showLengthIndicator?: boolean;
 }
 
 export interface FormFieldTextarea<T extends string | number = string>

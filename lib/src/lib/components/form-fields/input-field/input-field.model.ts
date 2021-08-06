@@ -17,7 +17,7 @@ export interface FormFieldInputOptions extends FormFieldBaseOptions {
   prefix?: string;
   align?: 'left' | 'right';
   fieldMask?: FieldMask;
-  hideLengthIndicator?: boolean;
+  showLengthIndicator?: boolean;
 }
 
 export interface FormFieldInput<T extends string | number = string>

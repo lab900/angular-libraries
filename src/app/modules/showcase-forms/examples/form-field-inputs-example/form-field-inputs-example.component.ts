@@ -29,6 +29,7 @@ export class FormFieldInputsExampleComponent {
           autofocus: true,
           minLength: 5,
           maxLength: 15,
+          showLengthIndicator: false,
         },
         icon: { name: 'search', position: 'left' },
       },

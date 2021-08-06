@@ -73,9 +73,7 @@
   </mat-hint>
   <mat-hint
     align="end"
-    *ngIf="
-      options?.maxLength && !options?.hideLengthIndicator && !fieldIsReadonly
-    "
+    *ngIf="options?.maxLength && showLengthIndicator && !fieldIsReadonly"
     >{{ input.value?.length || 0 }}/{{ options?.maxLength }}</mat-hint
   >
   <mat-error *ngIf="!valid && !fieldIsReadonly"

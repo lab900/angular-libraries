@@ -22,9 +22,7 @@
     ><span [innerHTML]="hint | translate: hintValueTranslateData"></span
   ></mat-hint>
   <mat-hint
-    *ngIf="
-      options?.maxLength && !options?.hideLengthIndicator && !fieldIsReadonly
-    "
+    *ngIf="options?.maxLength && showLengthIndicator && !fieldIsReadonly"
     align="end"
   >
     {{ input.value?.length || 0 }}/{{ options?.maxLength }}
