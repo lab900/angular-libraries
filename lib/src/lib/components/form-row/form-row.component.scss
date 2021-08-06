@@ -7,6 +7,15 @@
   .form-col {
     padding: 0 10px;
     box-sizing: border-box;
+    display: flex;
+
+    &__info {
+      padding: 1em 0 0 0.75em;
+
+      .mat-icon {
+        cursor: help;
+      }
+    }
   }
 
   &:not(.mobile-cols) .form-col {

@@ -13,6 +13,9 @@ export const formFieldsExample: Lab900FormConfig = {
           options: {
             colspan: 6,
             required: true,
+            infoTooltip: {
+              text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin id magna et mauris imperdiet imperdiet. Praesent sit amet luctus nulla, vel consequat diam. Fusce luctus mauris mollis justo efficitur, sed posuere purus tempor. Morbi a lectus convallis, interdum sapien nec, finibus enim. Mauris sollicitudin condimentum gravida. Morbi convallis sed ligula eu imperdiet. Praesent tincidunt turpis ut eros placerat, a facilisis nisi volutpat. Cras nisl augue, faucibus eu felis ut, pellentesque sollicitudin risus. Nam feugiat eu risus at volutpat. Nam rutrum finibus lectus id scelerisque. Integer vel feugiat est. Vivamus ipsum mi, pulvinar vitae purus quis, condimentum pellentesque lacus. Nulla facilisi. Donec nec elit tortor. Nunc id placerat mauris, sed placerat purus.',
+            },
           },
         },
         {
@@ -43,7 +46,6 @@ export const formFieldsExample: Lab900FormConfig = {
           editType: EditType.Input,
           options: {
             colspan: 6,
-            readonly: true,
           },
         },
         {
@@ -64,7 +66,7 @@ export const formFieldsExample: Lab900FormConfig = {
           attribute: 'languages',
           editType: EditType.Select,
           options: {
-            readonly: true,
+            infoTooltip: { text: 'dlfdsjflk klsdfjsd kjdfl sdjf ds' },
             colspan: 12,
             selectOptions: [
               {
@@ -76,6 +78,15 @@ export const formFieldsExample: Lab900FormConfig = {
                 label: 'ENG',
               },
             ],
+          },
+        },
+        {
+          title: 'Remark',
+          attribute: 'remark',
+          editType: EditType.TextArea,
+          options: {
+            colspan: 12,
+            infoTooltip: { text: 'dlfdsjflk klsdfjsd kjdfl sdjf ds' },
           },
         },
       ],
