@@ -38,6 +38,11 @@ export class FormFieldInputsExampleComponent {
         title: 'Text Input',
         editType: EditType.Input,
         icon: { name: 'search', position: 'right' },
+        options: {
+          required: (data) => {
+            return !data?.emailInput;
+          },
+        },
       },
       {
         attribute: 'emailInput',

@@ -13,6 +13,7 @@ import { FormFieldUtils } from '../utils/form-field.utils';
 import { SubscriptionBasedDirective } from '../directives/subscription-based.directive';
 import { Lab900FormField } from '../models/lab900-form-field.type';
 import { ValueLabel } from '../models/form-field-base';
+import { Lab900FormBuilderService } from '../services/form-builder.service';
 
 @Directive()
 export abstract class FormComponent<S extends Lab900FormField = Lab900FormField>
@@ -192,12 +193,25 @@ export abstract class FormComponent<S extends Lab900FormField = Lab900FormField>
   }
 
   private isRequired(): void {
-    this.fieldIsRequired =
+    const isRequired =
       FormFieldUtils.isRequired(
         this.fieldIsReadonly,
         this.schema,
         this.group.value
       ) ?? false;
+    if (this.fieldIsRequired != isRequired) {
+      this.fieldIsRequired = isRequired;
+      setTimeout(() => {
+        this.group
+          .get(this.fieldAttribute)
+          .setValidators(
+            Lab900FormBuilderService.addValidators(
+              this.schema,
+              this.group.value
+            )
+          );
+      });
+    }
   }
 
   private setFieldProperties(): void {
