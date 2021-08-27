@@ -19,8 +19,8 @@
       <div
         *ngFor="let field of schema.nestedFields"
         class="form-col"
+        [class.hidden]="isHidden(field)"
         [style.width]="(100 * (field.options?.colspan || 12)) / 12 + '%'"
-        [hidden]="isHidden(field)"
       >
         <ng-container
           lab900FormField
