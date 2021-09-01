@@ -203,8 +203,8 @@ export abstract class FormComponent<S extends Lab900FormField = Lab900FormField>
       this.fieldIsRequired = isRequired;
       setTimeout(() => {
         this.group
-          .get(this.fieldAttribute)
-          .setValidators(
+          ?.get(this.fieldAttribute)
+          ?.setValidators(
             Lab900FormBuilderService.addValidators(
               this.schema,
               this.group.value
