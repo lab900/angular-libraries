@@ -10,6 +10,7 @@ import {
 } from './field-select.model';
 import { ValueLabel } from '../../../models/form-field-base';
 import { coerceArray } from '@lab900/ui';
+import { IFieldConditions } from '../../../models/IFieldConditions';
 
 @Component({
   selector: 'lab900-select-field',
@@ -19,7 +20,16 @@ export class SelectFieldComponent
   extends FormComponent<FormFieldSelect>
   implements OnInit
 {
-  private conditionalOptionsChange = new Subject();
+  /*
+   * When conditional options are used for this select, keep the previously selected item
+   * and select it again when the new valuelist is loaded
+   */
+  private conditionalItemToSelectWhenExists: any;
+
+  private conditionalOptionsChange = new Subject<{
+    condition: IFieldConditions;
+    value: string;
+  }>();
   private optionsFn$ = new BehaviorSubject<FormFieldSelectOptionsFn>(() => []);
   public optionsFilter$ =
     new BehaviorSubject<FormFieldSelectOptionsFilter | null>(null);
@@ -100,13 +110,24 @@ export class SelectFieldComponent
           this.selectOptions = options;
         }
 
+        if (this.conditionalItemToSelectWhenExists) {
+          const value = coerceArray(this.conditionalItemToSelectWhenExists);
+          const compare = this.options?.compareWith || this.defaultCompare;
+          const inOptions = this.selectOptions.some((o) =>
+            value.some((v) => compare(o.value, v))
+          );
+          if (inOptions) {
+            this.fieldControl.setValue(this.conditionalItemToSelectWhenExists);
+          }
+        }
+
         /**
          * with infinite scroll & searching the form control value(s) might not always be present in the options
          * this will cause the select to appear empty while it has values.
          * to salve this we add the form values to the options
          */
         if (this.fieldControl?.value) {
-          const value = coerceArray(this.fieldControl?.value);
+          const value = coerceArray(this.fieldControl.value);
           const compare = this.options?.compareWith || this.defaultCompare;
           const inOptions = this.selectOptions.some((o) =>
             value.some((v) => compare(o.value, v))
@@ -127,7 +148,6 @@ export class SelectFieldComponent
       }
     );
   }
-
   public onConditionalChange(
     dependOn: string,
     value: string,
@@ -141,9 +161,15 @@ export class SelectFieldComponent
       );
       if (condition?.conditionalOptions) {
         if (!firstRun || !value) {
+          if (this.fieldControl?.value) {
+            this.conditionalItemToSelectWhenExists = this.fieldControl?.value;
+          }
           this.fieldControl.reset();
         }
-        this.conditionalOptionsChange.next({ condition, value });
+        // When conditional has no value, this field is disabled. No need to fetch the options yet.
+        if (!condition.enableIfHasValue || this.fieldControl?.enabled) {
+          this.conditionalOptionsChange.next({ condition, value });
+        }
       }
     });
   }
