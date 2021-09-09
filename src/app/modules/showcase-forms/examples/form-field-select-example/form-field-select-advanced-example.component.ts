@@ -95,6 +95,11 @@ export class FormFieldSelectAdvancedExampleComponent {
               selectOptions: [
                 { value: 'twain', label: 'Twain' },
                 { value: 'tolkien', label: 'Tolkien' },
+                {
+                  value: 'martin',
+                  label: 'George R. R. Martin',
+                  disabled: true,
+                },
               ],
               colspan: 6,
             },

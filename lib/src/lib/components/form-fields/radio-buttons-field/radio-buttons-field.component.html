@@ -16,6 +16,7 @@
     <mat-radio-button
       *ngFor="let value of options?.radioOptions"
       [value]="value.value"
+      [disabled]="value.disabled"
       >{{ value.label | translate }}</mat-radio-button
     >
   </mat-radio-group>

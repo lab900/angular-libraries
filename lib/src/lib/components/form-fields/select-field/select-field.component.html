@@ -49,7 +49,11 @@
         [clearSearchInput]="options?.search?.clearOnClose || false"
       ></ngx-mat-select-search>
     </mat-option>
-    <mat-option *ngFor="let item of selectOptions" [value]="item.value">
+    <mat-option
+      *ngFor="let item of selectOptions"
+      [value]="item.value"
+      [disabled]="item.disabled"
+    >
       <div
         *ngIf="options?.displayOptionFn"
         [innerHTML]="options.displayOptionFn(item) | translate"

@@ -5,6 +5,7 @@ import { Lab900FormField } from './lab900-form-field.type';
 export interface ValueLabel<T = any> {
   value: T;
   label: string;
+  disabled?: boolean;
 }
 
 export interface Icon {

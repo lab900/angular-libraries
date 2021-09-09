@@ -35,6 +35,7 @@
     <mat-option
       *ngFor="let option of filteredOptions | async"
       [value]="option?.value"
+      [disabled]="option?.disabled"
     >
       <div
         *ngIf="options?.displayOptionFn"
