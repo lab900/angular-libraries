@@ -28,8 +28,10 @@ import { FileInput } from '../../../models/FileInput';
   `,
   providers: [{ provide: MatFormFieldControl, useExisting: MatFileFieldComponent }],
 })
-export class MatFileFieldComponent extends FileInputMixinBase
-  implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck {
+export class MatFileFieldComponent
+  extends FileInputMixinBase
+  implements MatFormFieldControl<FileInput>, ControlValueAccessor, OnInit, OnDestroy, DoCheck
+{
   @Input()
   public get value(): FileInput | null {
     return this.empty ? null : new FileInput(this.elementRef.nativeElement.value || []);
