@@ -10,15 +10,15 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
         children: [
           {
             label: 'label.getting-started',
-            route: 'forms/getting-started',
+            route: 'getting-started',
           },
           {
             label: 'Create dynamic forms',
-            route: 'forms/form-container',
+            route: 'form-container',
           },
           {
             label: 'Conditional Forms',
-            route: 'forms/conditional-forms',
+            route: 'conditional-forms',
           },
         ],
       },
@@ -27,47 +27,43 @@ export const showcaseFormsNavItems: NavItemGroup[] = [
         children: [
           {
             label: 'Autocomplete',
-            route: 'forms/form-field-autocomplete',
+            route: 'form-field-autocomplete',
           },
           {
             label: 'Input & Textarea',
-            route: 'forms/form-field-input',
+            route: 'form-field-input',
           },
           {
             label: 'Radio Buttons',
-            route: 'forms/form-field-radio-buttons',
+            route: 'form-field-radio-buttons',
           },
           {
             label: 'Button Toggle',
-            route: 'forms/form-field-button-toggle',
-          },
-          {
-            label: 'Checkboxes',
-            // route: 'forms/form-field-checkboxes',
+            route: 'form-field-button-toggle',
           },
           {
             label: 'Select',
-            route: 'forms/form-field-select',
+            route: 'form-field-select',
           },
           {
             label: 'Range slider',
-            route: 'forms/form-field-range-slider',
+            route: 'form-field-range-slider',
           },
           {
             label: 'Repeater',
-            route: 'forms/form-field-repeater',
+            route: 'form-field-repeater',
           },
           {
             label: 'Datepicker',
-            route: 'forms/form-field-datepicker',
+            route: 'form-field-datepicker',
           },
           {
             label: 'File upload',
-            route: 'forms/form-field-file-upload',
+            route: 'form-field-file-upload',
           },
           {
             label: 'Multi language',
-            route: 'forms/form-field-multi-lang',
+            route: 'form-field-multi-lang',
           },
         ],
       },

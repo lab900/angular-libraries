@@ -73,7 +73,12 @@ export class Lab900FormBuilderService {
         );
       } else {
         let controlValue: any | null = data?.[field.attribute];
-        if (!controlValue && field.options && field.options.defaultValue !== null && typeof field.options.defaultValue !== 'undefined') {
+        if (
+          controlValue == null &&
+          field.options &&
+          field.options.defaultValue !== null &&
+          typeof field.options.defaultValue !== 'undefined'
+        ) {
           controlValue = typeof field.options.defaultValue === 'function' ? field.options.defaultValue() : field.options.defaultValue;
         }
         const formControl = new FormControl(controlValue, Lab900FormBuilderService.addValidators(field, data));

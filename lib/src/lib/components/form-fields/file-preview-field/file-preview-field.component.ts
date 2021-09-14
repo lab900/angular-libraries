@@ -7,6 +7,7 @@ import { Lab900File } from '../../../models/Lab900File';
 import { FormDialogComponent } from '../../form-dialog/form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ImagePreviewModalComponent } from '../../image-preview-modal/image-preview-modal.component';
+import { map } from 'rxjs/operators';
 import { fetchImageBase64 } from '../../../utils/image.utils';
 
 @Component({

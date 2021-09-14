@@ -1,7 +1,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
-@import '../lib/theming';
+@import '../dist/@lab900/forms/theming';
 @import './assets/styles/green.palette';
 @import './assets/styles/grey.palette';
 

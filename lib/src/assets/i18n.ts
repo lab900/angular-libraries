@@ -1,4 +1,4 @@
-export default {
+export const formsTranslations = {
   en: {
     'forms.error.number-required': 'A valid number is required.',
     'forms.error.required': 'This is required.',

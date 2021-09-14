@@ -8,6 +8,6 @@
       "@kolkov/angular-editor": "@kolkov/angular-editor"
     }
   },
-  "assets": ["./scss/*.scss", "./_theming.scss"],
+  "assets": ["./scss/*.scss", "./_theming.scss", "./assets/i18n.ts"],
   "allowedNonPeerDependencies": ["lab900", "@types/nouislider", "nouislider", "@kolkov/angular-editor"]
 }

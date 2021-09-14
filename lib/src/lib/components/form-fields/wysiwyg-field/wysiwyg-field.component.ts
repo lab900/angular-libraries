@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { matFormFieldAnimations } from '@angular/material/form-field';
 import { FormComponent } from '../../../models/IFormComponent';
 import { AngularEditorConfig } from '@kolkov/angular-editor';

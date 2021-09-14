@@ -1,6 +1,6 @@
 import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FieldOptions, FormField, ValueLabel } from './FormField';
-import { AfterViewInit, Directive, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, Input, OnChanges, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { FieldConditions } from './IFieldConditions';

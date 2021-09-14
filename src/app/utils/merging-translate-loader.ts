@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { TranslateLoader } from '@ngx-translate/core';
 
-import formsTranslations from '../../../lib/src/assets/i18n';
+import { formsTranslations } from '@lab900/forms';
 
 /**
  * Custom ngx-translate translation loader that combines translation files from subprojects with translations from this

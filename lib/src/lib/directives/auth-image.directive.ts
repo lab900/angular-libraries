@@ -1,4 +1,6 @@
 import { Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { Lab900File } from '../models/Lab900File';
 import { SubscriptionBasedDirective } from './subscription-based.directive';
 import { Observable } from 'rxjs';

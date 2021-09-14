@@ -1,4 +1,5 @@
 import { Form } from './Form';
+import { FormGroup } from '@angular/forms';
 
 export interface DialogFormData<T> {
   schema: Form;

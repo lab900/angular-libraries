@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ShowcaseRouteData } from '../../models/showcase-route.model';
 import { PageHeaderNavItem } from '@lab900/ui';
-import { SubscriptionBasedDirective } from '../../../../../../lib/src/lib/directives/subscription-based.directive';
+import { SubscriptionBasedDirective } from '../../directives/subscription-based.directive';
 
 @Component({
   selector: 'lab900-showcase-page',

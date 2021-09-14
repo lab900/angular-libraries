@@ -10,7 +10,7 @@ import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
-import { SubscriptionBasedDirective } from '../../lib/src/lib/directives/subscription-based.directive';
+import { SubscriptionBasedDirective } from './modules/shared/directives/subscription-based.directive';
 
 @Component({
   selector: 'lab900-root',

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
-import { SubscriptionBasedDirective } from '../../../../../../lib/src/lib/directives/subscription-based.directive';
+import { SubscriptionBasedDirective } from '../../directives/subscription-based.directive';
 
 @Component({
   selector: 'lab900-markdown-page',

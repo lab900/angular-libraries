@@ -1,5 +1,6 @@
 import { Component, HostBinding, OnDestroy } from '@angular/core';
 import { FormComponent } from '../../../models/IFormComponent';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
