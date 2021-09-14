@@ -1,0 +1,36 @@
+<div class="file-preview-component">
+  <input
+    #fileField
+    type="file"
+    style="display: none;"
+    [multiple]="options?.multiple"
+    [accept]="options?.accept"
+    (change)="fileChange($event)"
+  />
+  <button *ngIf="!fieldIsReadonly" mat-raised-button color="primary" (click)="fileField.click()">
+    {{ options?.fileUploadButtonText || 'form.button.upload' | translate }}
+  </button>
+  <div class="images-wrapper" *ngIf="files?.length">
+    <ng-container *ngFor="let file of files">
+      <mat-card class="image-wrapper" (click)="handleImageClick(file)">
+        <mat-icon *ngIf="!fieldIsReadonly" (click)="$event.stopPropagation(); removeFile(file)" class="delete-image">close</mat-icon>
+        <div
+          *ngIf="showOverlay(file, options) && options?.overlay"
+          class="image"
+          style="background-color:{{ this.options.overlay.backgroundColor }};color: {{ this.options.overlay.textColor }}"
+        >
+          <span>
+            {{ options.overlay.text | translate }}
+          </span>
+        </div>
+        <div *ngIf="!showOverlay(file, options)" lab900AuthImage class="image" [image]="file" [httpCallback]="options?.httpCallback"></div>
+        <div class="file-name">
+          <p *ngIf="file.fileName" [class.ellipse]="!!file.imageSrc" [matTooltip]="file.fileName">{{ file.fileName }}</p>
+          <mat-icon *ngIf="options?.canEditFileMetaData && !fieldIsReadonly" (click)="$event.stopPropagation(); openPreviewDialog(file)"
+            >visibility</mat-icon
+          >
+        </div>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>

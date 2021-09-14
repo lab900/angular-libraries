@@ -36,7 +36,8 @@
       border-collapse: collapse;
       width: 100%;
 
-      td, th {
+      td,
+      th {
         border: 1px solid $palette-lab900green-100;
         padding: 8px;
         text-align: left;

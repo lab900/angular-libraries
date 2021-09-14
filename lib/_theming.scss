@@ -1,0 +1,38 @@
+@import './scss/range-slider-theme';
+@import './scss/form-field-theme';
+
+@mixin lab900-forms($config-or-theme) {
+  @include lab900-form-field($config-or-theme);
+  @include lab900-range-slider($config-or-theme);
+
+  // ngx-mat-timepicker fixes
+  .ngx-mat-timepicker {
+    .mat-form-field {
+      max-width: 40px !important;
+      width: 40px !important;
+    }
+
+    .mat-form-field-infix {
+      padding: 5px 0 10px !important;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-wrapper {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .mat-form-field-subscript-wrapper {
+      display: none !important;
+    }
+  }
+
+  .lab900-readonly-field {
+    padding-bottom: 1.34375em;
+
+    &__label {
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+  }
+}

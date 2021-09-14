@@ -1,18 +1,18 @@
 # Getting Started with Lab900 Forms
 
-This guide explains how to setup your Angular project to begin using Lab900 forms. 
+This guide explains how to setup your Angular project to begin using Lab900 forms.
 
 ## Install
-Install via npm package manager.
 
+Install via npm package manager.
 
 ```bash
 npm install --save @lab900/forms
 ```
-## How to use  
+
+## How to use
 
 Import the `Lab900FormsModule` in your root module.
-
 
 ```ts
 import { Lab900FormsModule } from '@lab900/forms';
@@ -20,7 +20,7 @@ import { Lab900FormsModule } from '@lab900/forms';
 @NgModule({
   imports: [
     ...
-    NgxMaskModule.forRoot(), 
+    NgxMaskModule.forRoot(),
     Lab900FormsModule.forRoot({
       formField: {
         appearance: 'outline', // optional, see below
@@ -34,7 +34,7 @@ export class AppModule {}
 
 ```
 
-You can overwrite the [MatFormFieldDefaultOptions](https://material.angular.io/components/form-field/api) in the `forRoot()` method.  
+You can overwrite the [MatFormFieldDefaultOptions](https://material.angular.io/components/form-field/api) in the `forRoot()` method.
 
 ```ts
 FormModuleSettings = {
@@ -65,10 +65,11 @@ export class SharedModule {}
 ## Styling
 
 Include the library stylesheet in your scss file.
-````scss
+
+```scss
 @import '~@lab900/forms/theming';
 
-
 @include lab900-forms(YOUR_MATERIAL_THEME);
-````
+```
+
 The lab900-forms mixin expects a [Material theme of config](https://material.angular.io/guide/theming).

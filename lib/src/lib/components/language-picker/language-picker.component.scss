@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+
+  ::ng-deep button.mat-stroked-button {
+    height: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+  }
+
+  .mat-icon.done {
+    color: green;
+  }
+}

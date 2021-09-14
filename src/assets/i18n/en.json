@@ -1,5 +1,4 @@
 {
-  "forms.error.somethingelse": "123",
   "language": "Language",
   "languages.en": "English",
   "languages.nl": "Dutch",
@@ -38,25 +37,13 @@
   "reset": "Reset",
   "log_result": "Log Result",
   "app": {
-    "title": "Angular Libraries",
-    "description": "Build with Angular Material"
+    "title": "Angular Form Library",
+    "description": "Built with Angular Material"
   },
   "forms": {
     "title": "Form library",
     "description": "Create dynamic reactive forms",
     "form-fields": "Form fields"
-  },
-  "ui": {
-    "title": "UI Library",
-    "description": "A set of useful UI components",
-    "table": {
-      "active_columns": "Active columns",
-      "inactive_columns": "Inactive columns"
-    }
-  },
-  "admin": {
-    "title": "Admin Library",
-    "description": "An admin interface in seconds"
   },
   "common": {
     "title": "Common Library",

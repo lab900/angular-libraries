@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { forkJoin, Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ShowcaseRouteData } from '../../models/showcase-route.model';
 import { PageHeaderNavItem } from '@lab900/ui';
-import { SubscriptionBasedDirective } from '../../../../../../projects/forms/src/lib/directives/subscription-based.directive';
+import { SubscriptionBasedDirective } from '../../../../../../lib/src/lib/directives/subscription-based.directive';
 
 @Component({
   selector: 'lab900-showcase-page',

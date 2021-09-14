@@ -8,11 +8,9 @@
 
 </p>
 
-A set Angular 10+ libraries build on top of [Angular Material](https://material.angular.io/). \
+A set of Angular 11+ form components build on top of [Angular Material](https://material.angular.io/). \
 View the [showcase](https://lab900.github.io/angular-libraries/) for guides & examples
 
 ## Getting started
-- [Forms library](https://lab900.github.io/angular-libraries/forms/getting-started)
-- [UI library](https://lab900.github.io/angular-libraries/ui/getting-started)
-- [Admin library](https://lab900.github.io/angular-libraries/admin/getting-started)
 
+- [Forms library](https://lab900.github.io/angular-libraries/forms/getting-started)

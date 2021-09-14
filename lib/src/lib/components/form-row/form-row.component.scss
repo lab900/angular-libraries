@@ -1,0 +1,17 @@
+.form-row {
+  margin: 0 -10px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+
+  .form-col {
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
+  &:not(.mobile-cols) .form-col {
+    @media screen and (max-width: 599px) {
+      width: 100% !important;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.lab900-form-field
+  :ng-deep
+  date-time-field.ngx-mat-timepicker
+  form
+  .ngx-mat-timepicker-table
+  .ngx-mat-timepicker-tbody
+  tr
+  td
+  .mat-form-field {
+  max-width: 40px;
+  width: 40px;
+}

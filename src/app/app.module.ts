@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { Lab900FormsModule } from '../../projects/forms/src/lib/forms.module';
+import { Lab900FormsModule } from '../../lib/src/lib/forms.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +12,6 @@ import { MarkdownModule } from 'ngx-markdown';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MergingTranslateLoader } from './utils/merging-translate-loader';
 import { HttpClient } from '@angular/common/http';
-import { HomepageComponent } from './modules/pages/homepage/homepage.component';
 import { NgxMaskModule } from 'ngx-mask';
 
 export function TranslationLoaderFactory(http: HttpClient): MergingTranslateLoader {
@@ -20,7 +19,7 @@ export function TranslationLoaderFactory(http: HttpClient): MergingTranslateLoad
 }
 
 @NgModule({
-  declarations: [AppComponent, HomepageComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

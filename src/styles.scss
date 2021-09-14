@@ -1,9 +1,7 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
-@import '../projects/forms/theming';
-@import '../projects/ui/theming';
+@import '../lib/theming';
 @import './assets/styles/green.palette';
 @import './assets/styles/grey.palette';
 
@@ -25,31 +23,38 @@ $angular-libraries-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$angular-libraries-theme: mat-light-theme((
-  color: (
-    primary: $angular-libraries-primary,
-    accent: $angular-libraries-accent,
-    warn: $angular-libraries-warn,
+$angular-libraries-theme: mat-light-theme(
+  (
+    color: (
+      primary: $angular-libraries-primary,
+      accent: $angular-libraries-accent,
+      warn: $angular-libraries-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($angular-libraries-theme);
 @include lab900-forms($angular-libraries-theme);
-@include lab900-ui($angular-libraries-theme);
 
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: $palette-lab900-text }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  color: $palette-lab900-text;
+}
 
 p {
   a {
     color: $palette-lab900green-500;
   }
 }
-
 
 .mat-drawer-content {
   background: rgba($palette-lab900green-100, 0.1);
@@ -58,7 +63,6 @@ p {
 
   @media screen and (max-width: 599px) {
     height: calc(100vh - 56px) !important;
-
   }
 }
 
@@ -97,13 +101,13 @@ p {
   }
 }
 
-pre[class*="language-"] {
+pre[class*='language-'] {
   margin: 0 0 12px !important;
   border-radius: 0 !important;
 }
 
 .clickable-cell > a {
-  border-bottom: 1px solid  $palette-lab900green-500;
+  border-bottom: 1px solid $palette-lab900green-500;
 }
 
 .row {

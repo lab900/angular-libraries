@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-libraries",
+            "outputPath": "dist/angular-library-forms",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,11 +31,6 @@
               {
                 "glob": "**/*-example.component.*",
                 "input": "src/app/modules/showcase-forms/examples",
-                "output": "/examples"
-              },
-              {
-                "glob": "**/*-example.component.*",
-                "input": "src/app/modules/showcase-ui/examples",
                 "output": "/examples"
               }
             ],
@@ -149,74 +144,34 @@
           "style": "scss"
         }
       },
-      "root": "projects/forms",
-      "sourceRoot": "projects/forms/src",
+      "root": "lib",
+      "sourceRoot": "lib/src",
       "prefix": "lab900",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/forms/tsconfig.lib.json",
-            "project": "projects/forms/ng-package.json"
+            "tsConfig": "lib/tsconfig.lib.json",
+            "project": "lib/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/forms/tsconfig.lib.prod.json"
+              "tsConfig": "lib/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/forms/src/test.ts",
-            "tsConfig": "projects/forms/tsconfig.spec.json",
-            "karmaConfig": "projects/forms/karma.conf.js"
+            "main": "lib/src/test.ts",
+            "tsConfig": "lib/tsconfig.spec.json",
+            "karmaConfig": "lib/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["projects/forms/tsconfig.lib.json", "projects/forms/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
-    },
-    "ui": {
-      "projectType": "library",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "projects/ui",
-      "sourceRoot": "projects/ui/src",
-      "prefix": "lab900",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/ui/tsconfig.lib.json",
-            "project": "projects/ui/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ui/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/ui/src/test.ts",
-            "tsConfig": "projects/ui/tsconfig.spec.json",
-            "karmaConfig": "projects/ui/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["projects/ui/tsconfig.lib.json", "projects/ui/tsconfig.spec.json"],
+            "tsConfig": ["lib/tsconfig.lib.json", "lib/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }

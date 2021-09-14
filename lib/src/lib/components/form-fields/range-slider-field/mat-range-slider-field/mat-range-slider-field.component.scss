@@ -1,0 +1,73 @@
+.range-slider {
+  > div {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+  }
+
+  &__slider {
+    margin: 0.25em 0;
+    padding: 0 15px 1.34375em;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+
+    > div {
+      width: 100%;
+    }
+
+    @media screen and (min-width: 960px) {
+      width: calc(100% - (90px * 2));
+      padding: 0 30px 1.34375em;
+      order: 1;
+    }
+
+    .noUi-horizontal {
+      background-color: rgba(#000, 0.2);
+      border: 0;
+      box-shadow: none;
+      border-radius: 4px;
+      height: 8px;
+    }
+    .noUiSlider .noUi-handle {
+      top: -11px;
+      width: 30px;
+      height: 30px;
+      background: #fff;
+      border-radius: 50%;
+      outline: none;
+      cursor: pointer;
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__input {
+    box-sizing: border-box;
+
+    @media screen and (max-width: 959px) {
+      width: 50%;
+
+      &--from {
+        padding-right: 3px;
+      }
+
+      &--to {
+        padding-left: 3px;
+      }
+    }
+    @media screen and (min-width: 960px) {
+      width: 90px;
+
+      &--from {
+        order: 0;
+      }
+
+      &--to {
+        order: 2;
+      }
+    }
+  }
+}

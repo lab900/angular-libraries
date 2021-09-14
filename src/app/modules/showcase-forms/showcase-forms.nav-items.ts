@@ -1,4 +1,4 @@
-import { NavItemGroup } from 'projects/ui/src/lib/nav-list/models/nav-item.model';
+import { NavItemGroup } from '@lab900/ui';
 import { showcaseFormsConfig } from './showcase-forms.constants';
 
 export const showcaseFormsNavItems: NavItemGroup[] = [

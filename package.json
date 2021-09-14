@@ -1,8 +1,8 @@
 {
-  "name": "angular-libraries",
-  "version": "0.0.0",
-  "repository": "https://github.com/lab900/angular-libraries",
-  "homepage": "https://lab900.github.io/angular-libraries",
+  "name": "angular-library-forms",
+  "version": "1.0.0",
+  "repository": "https://github.com/lab900/angular-library-forms",
+  "homepage": "https://lab900.github.io/angular-libraries/forms",
   "author": "Lab900 <info@lab900.com> (https://lab900.com)",
   "licens": "MIT",
   "scripts": {
@@ -10,13 +10,8 @@
     "start": "ng serve --port 4900",
     "build": "ng build",
     "build:forms": "ng build forms",
-    "build:ui": "ng build ui",
     "build:forms:prod": "npm run build:forms -- --prod",
-    "build:ui:prod": "npm run build:ui -- --prod",
-    "build:all-libs": "npm run build:forms && npm run build:ui",
-    "build:all": "npm run build:all-libs && npm run build",
     "watch:forms": "npm run build:forms -- --watch",
-    "watch:ui": "npm run build:ui -- --watch",
     "deploy:showcase": "ng deploy",
     "test": "ng test",
     "lint": "ng lint",
@@ -33,8 +28,9 @@
     }
   },
   "lint-staged": {
-    "{src,projects}/**/**.{ts,js}": [
-      "npx prettier --write"
+    "**/*.{js,ts,json,css,scss,html,md}": [
+      "prettier --write",
+      "git add"
     ]
   },
   "dependencies": {
@@ -53,6 +49,7 @@
     "@kolkov/angular-editor": "^1.1.4",
     "@ngx-translate/core": "^13.0.0",
     "@types/nouislider": "^9.0.7",
+    "@lab900/ui": "^3.0.4-alpha.9",
     "lodash": "^4.17.20",
     "moment": "^2.29.0",
     "ngx-markdown": "^11.1.3",
@@ -73,7 +70,7 @@
     "angular-cli-ghpages": "^0.6.2",
     "codelyzer": "^6.0.0",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^4.2.5",
+    "husky": "^4.3.8",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.3.2",
@@ -81,9 +78,9 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "lint-staged": "^10.2.2",
+    "lint-staged": "^10.5.4",
     "ng-packagr": "^11.2.4",
-    "prettier": "^2.0.5",
+    "prettier": "2.3.1",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",

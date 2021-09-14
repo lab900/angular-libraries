@@ -1,0 +1,26 @@
+.repeater-field {
+  .repeater-row {
+    width: 100%;
+  }
+
+  &:not(.fixed-list) .repeater-row {
+    display: flex;
+    align-items: center;
+
+    &__fields {
+      width: calc(100% - 40px);
+      padding-right: 15px;
+      box-sizing: border-box;
+    }
+
+    &__actions {
+      margin: 0.25em 0;
+      padding-bottom: 1.34375em;
+    }
+  }
+
+  &__actions {
+    margin: 0.25em 0;
+    padding-bottom: 1.34375em;
+  }
+}

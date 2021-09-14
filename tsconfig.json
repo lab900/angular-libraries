@@ -12,20 +12,11 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "angular-libraries": [
-        "dist/angular-libraries"
-      ],
-      "@lab900/forms": [
-        "dist/@lab900/forms",
-      ],
-      "@lab900/ui": [
-        "dist/@lab900/ui",
-      ],
+      "angular-libraries": ["dist/angular-libraries"],
+      "@lab900/forms": ["dist/@lab900/forms"],
+      "@lab900/ui": ["dist/@lab900/ui"]
     }
   },
   "angularCompilerOptions": {

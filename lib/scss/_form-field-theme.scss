@@ -1,0 +1,62 @@
+@import '~@angular/material/theming';
+
+$defaultMargin: (
+  default: 16px,
+);
+
+@mixin lab900-form-field($config-or-theme, $margin: $defaultMargin) {
+  $configTypo: mat-typography-config();
+
+  .readonly {
+    opacity: 0.6;
+  }
+
+  .lab900-form-field {
+    width: 100%;
+
+    .mat-error {
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    .mat-form-field {
+      width: 100%;
+    }
+
+    .lab900-form-field-label {
+      display: block;
+      margin-bottom: map_get($margin, 'default');
+      @include mat-typography-level-to-styles($configTypo, subheading-2);
+    }
+
+    .lab900-button-toggle-field {
+      &__label {
+        margin-bottom: map_get($margin, 'default');
+      }
+    }
+
+    .lab900-radio-buttons-field {
+      margin: 0.25em 0;
+      padding-bottom: 1.34375em;
+      &__error {
+        margin-top: 0.3em;
+      }
+      &__label {
+        margin-bottom: map_get($margin, 'default');
+      }
+    }
+
+    .mat-radio-button ~ .mat-radio-button {
+      margin-left: map_get($margin, 'default');
+    }
+
+    & + .lab900-form-field .lab900-form-field-label {
+      margin-top: map_get($margin, 'default');
+    }
+
+    .mat-form-field-prefix .mat-icon,
+    .mat-form-field-suffix .mat-icon {
+      font-size: 1.5em;
+    }
+  }
+}
